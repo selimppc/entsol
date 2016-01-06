@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Laravel</title>
+        <title>Enterprise Solution </title>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+        <link href="{{ URL::asset('assets/dist/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" >
 
         <style>
             html, body {
@@ -38,8 +39,15 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 5</div>
+                <div class="title">Enterprise Solution.</div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                       <a href=""> Accounts </a>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <script type="text/javascript" src="{{ URL::asset('assets/dist/js/bootstrap.min.js') }}"></script>
     </body>
 </html>
