@@ -145,6 +145,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        //Modularize
+//        App\Modules\ServiceProvider::class,
+    App\Modules\ServiceProvider::class,
+
     ],
 
     /*
