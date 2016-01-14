@@ -9,5 +9,6 @@
 return [
     'modules'=>array(
         "user",
+        "admin",
     ),
 ];
