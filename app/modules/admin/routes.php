@@ -9,15 +9,19 @@
 Route::group(array('modules'=>'Admin', 'namespace' => 'App\Modules\Admin\Controllers'), function() {
     //Your routes belong to this module.
 
+Route::any('examples', [
+'as' => 'examples',
+'uses' => 'AdminController@examples_pages'
+]);
 
-    Route::any('admin', [
-        'as' => 'admin',
-        'uses' => 'AdminController@index'
-    ]);
+Route::any('admin', [
+    'as' => 'admin',
+    'uses' => 'AdminController@index'
+]);
 
-    Route::get('/', function () {
-        return 'Hello World';
-    });
+Route::get('/', function () {
+    return 'Hello World';
+});
 
 
 });

@@ -1,0 +1,19 @@
+
+#switcher-examples .switcher {
+    vertical-align: middle;
+}
+.switcher {
+    height: 24px;
+    width: 60px;
+}
+.switcher {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

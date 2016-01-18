@@ -24,7 +24,7 @@
             <a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text mmc-dropdown-delay animated fadeIn">Layouts</span></a>
             <ul class="mmc-dropdown-delay animated fadeInLeft">
                 <li>
-                    <a tabindex="-1" href="#"><span class="mm-text">Layout</span></a>
+                    <a tabindex="-1" href="examples"><span class="mm-text">Example Pages</span></a>
                 </li>
                 <li>
                     <a tabindex="-1" href="#"><i class="menu-icon fa fa-th-list"></i><span class="mm-text">Main menu</span></a>
