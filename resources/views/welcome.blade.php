@@ -4,7 +4,7 @@
         <title>Enterprise Solution </title>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-        <link href="{{ URL::asset('assets/dist/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" >
+        <link href="{{ URL::asset('admin') }}" rel="stylesheet" type="text/css" >
 
         <style>
             html, body {
