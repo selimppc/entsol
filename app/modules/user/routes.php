@@ -14,7 +14,7 @@ Route::any('user', [
     'as' => 'user',
     'uses' => 'UserController@index'
 ]);
-    
+
 
 });
 

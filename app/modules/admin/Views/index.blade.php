@@ -5,4 +5,5 @@
 
 @section('content')
     content here.......
+
 @stop

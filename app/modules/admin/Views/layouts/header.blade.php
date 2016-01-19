@@ -1,3 +1,4 @@
+
 <div id="main-navbar" class="navbar navbar-inverse" role="navigation">
     <!-- Main menu toggle -->
     <button type="button" id="main-menu-toggle"><i class="navbar-icon fa fa-bars icon"></i><span class="hide-menu-text">HIDE MENU</span></button>
@@ -116,7 +117,7 @@
                                 <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 250px;"><div class="messages-list" id="main-navbar-messages" style="overflow: hidden; width: auto; height: 250px;">
 
                                         <div class="message">
-                                            <img src="./Dashboard - LanderApp_files/2.jpg" alt="" class="message-avatar">
+                                            <img src="" alt="" class="message-avatar">
                                             <a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
                                             <div class="message-description">
                                                 from <a href="#">Robert Jang</a>

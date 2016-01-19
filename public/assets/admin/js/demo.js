@@ -210,6 +210,7 @@
         return result;
     }
 
+
     var activateTheme = function (btns) {
         document.body.className = document.body.className.replace(/theme\-[a-z0-9\-\_]+/ig, 'theme-' + demo_settings.theme);
 

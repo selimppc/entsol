@@ -23,7 +23,15 @@ Route::any('admin', [
         'as' => 'dashboard',
         'uses' => 'AdminController@dashboard'
     ]);
+    Route::any('index', [
+        'as' => 'index',
+        'uses' => 'AdminController@index'
+    ]);
 
+    /*Route::any('test', [
+        'as' => 'test',
+        'uses' => 'AdminController@test'
+    ]);*/
 
 });
 

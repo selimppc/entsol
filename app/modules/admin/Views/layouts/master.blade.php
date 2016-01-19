@@ -10,16 +10,14 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&amp;subset=latin" rel="stylesheet" type="text/css">
 
     <link href="{{ URL::asset('assets/admin/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" >
-    <link href="{{ URL::asset('assets/admin/css/bootstrap-theme.min.css') }}" rel="stylesheet" type="text/css" >
-    {{--<link href="{{ URL::asset('assets/admin/css/bootstrap.css') }}" rel="stylesheet" type="text/css" >--}}
-    <link href="{{ URL::asset('assets/admin/css/custom.css') }}" rel="stylesheet" type="text/css" >
-    <link href="{{ URL::asset('assets/admin/css/styles.min.css') }}" rel="stylesheet" type="text/css" >
+
+    <!---generate.min.css  refers to landerapp.min.css ----->
+    <link href="{{ URL::asset('assets/admin/css/generate.min.css') }}" rel="stylesheet" type="text/css" >
     <link href="{{ URL::asset('assets/admin/css/rtl.min.css') }}" rel="stylesheet" type="text/css" >
     <link href="{{ URL::asset('assets/admin/css/pages.min.css') }}" rel="stylesheet" type="text/css" >
     <link href="{{ URL::asset('assets/admin/css/widgets.min.css') }}" rel="stylesheet" type="text/css" >
     <link href="{{ URL::asset('assets/admin/css/themes.min.css') }}" rel="stylesheet" type="text/css" >
-    <link href="{{ URL::asset('assets/admin/css/component.css') }}" rel="stylesheet" type="text/css" >
-
+    {{--<link href="{{ URL::asset('assets/admin/css/styles.min.css') }}" rel="stylesheet" type="text/css" >--}}
 </head>
 
 <body class="theme-dust main-menu-animated" style="">
@@ -34,6 +32,7 @@
 
         <div id="content-wrapper">
             <div>
+                <script>var init = [];</script>
                 @yield('content')
             </div>
         </div>
@@ -49,10 +48,6 @@
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/custom.min.js') }}"></script>
-<script type="text/javascript" src="{{ URL::asset('assets/admin/js/demo-mock.js') }}"></script>
-<script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.mockjax.js') }}"></script>
-
-<script>var init = [];</script>
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/demo.js') }}"></script>
 
 <script type="text/javascript">
