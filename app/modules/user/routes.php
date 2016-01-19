@@ -14,11 +14,7 @@ Route::any('user', [
     'as' => 'user',
     'uses' => 'UserController@index'
 ]);
-
-Route::get('/', function () {
-    return 'Hello World';
-});
-
+    
 
 });
 

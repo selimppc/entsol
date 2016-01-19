@@ -19,9 +19,10 @@ Route::any('admin', [
     'uses' => 'AdminController@index'
 ]);
 
-Route::get('/', function () {
-    return 'Hello World';
-});
+    Route::any('/', [
+        'as' => 'dashboard',
+        'uses' => 'AdminController@dashboard'
+    ]);
 
 
 });

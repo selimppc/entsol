@@ -13,6 +13,11 @@ class AdminController extends Controller
         return view('admin::layouts.example_pages.form_elements');
     }
 
+    public function dashboard()
+    {
+        return view('admin::layouts.dashboard');
+    }
+
     public function index()
     {
         return view('admin::index');
