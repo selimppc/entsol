@@ -35,6 +35,9 @@
             <a href="#"><i class="menu-icon fa fa-user-md"></i><span class="mm-text mmc-dropdown-delay animated fadeIn">User</span></a>
             <ul class="mmc-dropdown-delay animated fadeInLeft">
                 <li>
+                    <a tabindex="-1" href="index"><span class="mm-text">Page 1</span></a>
+                </li>
+                <li>
                     <a tabindex="-1" href="#"><span class="mm-text">Sign Up</span></a>
                 </li>
                 <li>
