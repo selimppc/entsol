@@ -8,26 +8,20 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
        return view('user::user.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create_sign_up()
     {
-        //
+        return view('user::signup._form');
     }
 
+    public function create_sign_in()
+    {
+        return view('user::signin._form');
+    }
     /**
      * Store a newly created resource in storage.
      *

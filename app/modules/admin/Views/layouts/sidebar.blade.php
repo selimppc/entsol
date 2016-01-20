@@ -20,28 +20,30 @@
         <li class="active">
             <a href="./"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text mmc-dropdown-delay animated fadeIn">Dashboard</span></a>
         </li>
+
         <li class="mm-dropdown mm-dropdown-root">
             <a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text mmc-dropdown-delay animated fadeIn">Layouts</span></a>
             <ul class="mmc-dropdown-delay animated fadeInLeft">
                 <li>
-                    <a tabindex="-1" href="examples"><span class="mm-text">Example Pages</span></a>
+                    <a tabindex="-1" href="form-elements"><span class="mm-text">Example Pages</span></a>
                 </li>
                 <li>
-                    <a tabindex="-1" href="#"><i class="menu-icon fa fa-th-list"></i><span class="mm-text">Main menu</span></a>
+                    <a tabindex="-1" href="index"><span class="mm-text">Content Page Sample</span></a>
                 </li>
             </ul>
+        </li>
+        <li class="">
+            <a href="reg-sample"><i class="menu-icon fa fa-barcode"></i><span class="mm-text mmc-dropdown-delay animated fadeIn">Registration Form Sample</span></a>
         </li>
         <li class="mm-dropdown mm-dropdown-root">
             <a href="#"><i class="menu-icon fa fa-user-md"></i><span class="mm-text mmc-dropdown-delay animated fadeIn">User</span></a>
             <ul class="mmc-dropdown-delay animated fadeInLeft">
+
                 <li>
-                    <a tabindex="-1" href="index"><span class="mm-text">Page 1</span></a>
+                    <a tabindex="-1" href="sign-up"><span class="mm-text">Sign Up</span></a>
                 </li>
                 <li>
-                    <a tabindex="-1" href="#"><span class="mm-text">Sign Up</span></a>
-                </li>
-                <li>
-                    <a tabindex="-1" href="#"><span class="mm-text">Sign In</span></a>
+                    <a tabindex="-1" href="sign-in"><span class="mm-text">Sign In</span></a>
                 </li>
                 <li>
                     <a tabindex="-1" href="#"><span class="mm-text">Profile</span></a>
