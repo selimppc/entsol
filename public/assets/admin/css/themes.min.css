@@ -227,7 +227,7 @@
 
 .theme-default .progress-striped .progress-bar{background-color:#1d89cf;background-image:-webkit-gradient(linear,0 100%,100% 0,color-stop(0.25,rgba(255,255,255,.1)),color-stop(0.25,transparent),color-stop(0.5,transparent),color-stop(0.5,rgba(255,255,255,.1)),color-stop(0.75,rgba(255,255,255,.1)),color-stop(0.75,transparent),to(transparent));background-image:-webkit-linear-gradient(45deg,rgba(255,255,255,.1)25%,transparent 25%,transparent 50%,rgba(255,255,255,.1)50%,rgba(255,255,255,.1)75%,transparent 75%,transparent);background-image:-moz-linear-gradient(45deg,rgba(255,255,255,.1)25%,transparent 25%,transparent 50%,rgba(255,255,255,.1)50%,rgba(255,255,255,.1)75%,transparent 75%,transparent);background-image:linear-gradient(45deg,rgba(255,255,255,.1)25%,transparent 25%,transparent 50%,rgba(255,255,255,.1)50%,rgba(255,255,255,.1)75%,transparent 75%,transparent);background-size:10px 10px}
 
-.theme-default .label.label-primary{background:#1d89cf}
+.theme-default .label.label-primary{background:#7a6f6f}
 
 .theme-default .label.label-primary[href]:focus,.theme-default .label.label-primary[href]:hover{background-color:#176ba2}
 
@@ -267,7 +267,7 @@
 
 .theme-default .table-primary .table-header{background:#1d89cf}
 
-.theme-default .nav-tabs>li.active>a,.theme-default .nav-tabs>li.active>a:focus,.theme-default .nav-tabs>li.active>a:hover{background:#1d89cf;border-bottom:2px solid #1a7ab9}
+.theme-default .nav-tabs>li.active>a,.theme-default .nav-tabs>li.active>a:focus,.theme-default .nav-tabs>li.active>a:hover{background:#102A54;border-bottom:2px solid #6d6363}
 
 .theme-default .nav-tabs .nav-tabs.nav-justified>.active>a{border-bottom-color:#1a7ab9}
 

@@ -24,5 +24,10 @@ Route::any('sign-in', [
     'as' => 'sign-in',
     'uses' => 'UserController@create_sign_in'
 ]);
+
+Route::any('user-profile', [
+    'as' => 'user-profile',
+    'uses' => 'UserController@create_profile'
+]);
 });
 

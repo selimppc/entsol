@@ -22,6 +22,10 @@ class UserController extends Controller
     {
         return view('user::signin._form');
     }
+    public function create_profile()
+    {
+        return view('user::profile.index');
+    }
     /**
      * Store a newly created resource in storage.
      *

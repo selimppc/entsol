@@ -46,7 +46,7 @@
                     <a tabindex="-1" href="sign-in"><span class="mm-text">Sign In</span></a>
                 </li>
                 <li>
-                    <a tabindex="-1" href="#"><span class="mm-text">Profile</span></a>
+                    <a tabindex="-1" href="user-profile"><span class="mm-text">Profile</span></a>
                 </li>
             </ul>
         </li>
