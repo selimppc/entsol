@@ -155,7 +155,7 @@
 
 .theme-default #main-navbar .navbar-header a{text-transform:uppercase;font-size:11px;font-weight:600}
 
-.theme-default.page-signin .signin-info,.theme-default.page-signup .signup-header{background:#1d89cf;background:rgba(29,137,207,.8)}
+.theme-default.page-signin .signin-info,.theme-default.page-signup .signup-header{background:#1d89cf;background:rgba(67,61,60,.8)}
 
 .theme-default .timeline:after,.theme-default .timeline:before,.theme-default .tl-header,.theme-default .tl-icon{background:#ddd}
 
@@ -303,7 +303,7 @@
 
 .theme-default .text-primary a:active,.theme-default .text-primary a:hover{color:#145d8c}
 
-.theme-default .bg-primary{background:#1d89cf!important}
+.theme-default .bg-primary{background:#102A54!important}
 
 .theme-default .bg-primary.darken,.theme-default .bg-primary[href]:hover{background:#227fbb!important}
 
@@ -1691,7 +1691,7 @@
 
 .theme-dust #main-navbar .navbar-header a{text-transform:uppercase;font-size:12px;}
 
-.theme-dust.page-signin .signin-info,.theme-dust.page-signup .signup-header{background:#433d3c;background:rgba(67,61,60,.8)}
+.theme-dust.page-signin .signin-info,.theme-dust.page-signup .signup-header{background:#433d3c;background: rgba(67,61,60,.8)}
 
 .theme-dust .timeline:after,.theme-dust .timeline:before,.theme-dust .tl-header,.theme-dust .tl-icon{background:#d7d5ca}
 
