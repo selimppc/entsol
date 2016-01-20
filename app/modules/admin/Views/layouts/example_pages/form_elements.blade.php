@@ -20,39 +20,6 @@
             <form class="panel form-horizontal">
 
                 <div class="panel-body">
-                    
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Text</label>
-                        <div class="col-sm-10">
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" class="px" checked="">
-                                    <span class="lbl">Option one is this and that—be sure to include why it's great</span>
-                                </label>
-                            </div> <!-- / .radio -->
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" class="px">
-                                    <span class="lbl">Option two can be something else and selecting it will deselect option one</span>
-                                </label>
-                            </div> <!-- / .radio -->
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios2-2" value="option2" class="px">
-                                    <span class="lbl">Option three</span>
-                                </label>
-                            </div> <!-- / .radio -->
-                        </div> <!-- / .col-sm-10 -->
-                    </div> <!-- / .form-group -->
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" class="px"> <span class="lbl">Remember me</span>
-                                </label>
-                            </div> <!-- / .checkbox -->
-                        </div>
-                    </div> <!-- / .form-group -->
                     <table class="table" id="inputs-table">
                         <thead>
                         <th>Control</th>
