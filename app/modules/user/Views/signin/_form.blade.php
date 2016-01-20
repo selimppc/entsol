@@ -2,14 +2,12 @@
 
 @section('content')
 
-        <!-- Page background -->
-<div id="page-signin-bg">
+<div id="page-signup-bg">
     <!-- Background overlay -->
     <div class="overlay"></div>
     <!-- Replace this with your bg image -->
     <img src="assets/user/img/signin-bg-1.jpg" alt="">
 </div>
-<!-- / Page background -->
 
 <!-- Container -->
 <div class="signin-container">
@@ -49,9 +47,9 @@
             <div class="form-actions">
                 <input type="submit" value="SIGN IN" class="signin-btn bg-primary">
                 <a href="#" class="forgot-password" id="forgot-password-link">Forgot your password?</a>
-            </div>
+            </div> <!-- / .form-actions -->
         {!! Form::close() !!}
-
+        <!-- / Form -->
 
         <!-- "Sign In with" block -->
         <div class="signin-with">

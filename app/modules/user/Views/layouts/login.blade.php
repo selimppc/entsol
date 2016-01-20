@@ -52,15 +52,6 @@
 
 </head>
 
-
-<!-- 1. $BODY ======================================================================================
-
-	Body
-
-	Classes:
-	* 'theme-{THEME NAME}'
-	* 'right-to-left'     - Sets text direction to right-to-left
--->
 <body class="theme-default page-signin">
 
 <script>
