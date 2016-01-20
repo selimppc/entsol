@@ -15,14 +15,24 @@ Route::any('user', [
     'uses' => 'UserController@index'
 ]);
 
-Route::any('sign-up', [
-    'as' => 'sign-up',
+Route::any('create-sign-up', [
+    'as' => 'create-sign-up',
     'uses' => 'UserController@create_sign_up'
 ]);
 
-Route::any('sign-in', [
-    'as' => 'sign-in',
+Route::any('signup', [
+    'as' => 'signup',
+    'uses' => 'UserController@signup'
+]);
+
+Route::any('create-sign-in', [
+    'as' => 'create-sign-in',
     'uses' => 'UserController@create_sign_in'
+]);
+
+Route::any('signin', [
+    'as' => 'signin',
+    'uses' => 'UserController@signin'
 ]);
 
 Route::any('user-profile', [

@@ -17,10 +17,19 @@ class UserController extends Controller
     {
         return view('user::signup._form');
     }
+    public function store_signup_info(Request $request)
+    {
+        exit('123');
+    }
 
     public function create_sign_in()
     {
         return view('user::signin._form');
+    }
+
+    public function signin()
+    {
+        exit('123');
     }
     public function create_profile()
     {
@@ -32,10 +41,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+
 
     /**
      * Display the specified resource.

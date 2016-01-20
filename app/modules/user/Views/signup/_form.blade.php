@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Sign Up - LanderApp</title>
+    <title>Sign Up - ENTSOL</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
     <!-- Open Sans font from Google CDN -->
@@ -53,28 +53,12 @@
 
 </head>
 
-
-<!-- 1. $BODY ======================================================================================
-
-	Body
-
-	Classes:
-	* 'theme-{THEME NAME}'
-	* 'right-to-left'     - Sets text direction to right-to-left
--->
 <body class="theme-default page-signup">
 
 <script>
     var init = [];
 </script>
 
-<!-- Page background -->
-<!--<div id="page-signup-bg">
-    &lt;!&ndash; Background overlay &ndash;&gt;
-    <div class="overlay"></div>
-    &lt;!&ndash; Replace this with your bg image &ndash;&gt;
-    <img src="assets/demo/signin-bg-1.jpg" alt="">
-</div>-->
 <div id="page-signup-bg">
     <!-- Background overlay -->
     <div class="overlay"></div>
@@ -132,14 +116,6 @@
                 <input type="submit" value="SIGN UP" class="signup-btn bg-primary">
             </div>
         </form>
-        <!-- / Form -->
-
-        <!-- "Sign In with" block -->
-        <!--<div class="signup-with">
-            &lt;!&ndash; Facebook &ndash;&gt;
-            <a href="index.html" class="signup-with-btn" style="background:#4f6faa;background:rgba(79, 111, 170, .8);">Sign Up with <span>Facebook</span></a>
-        </div>-->
-        <!-- / "Sign In with" block -->
     </div>
     <!-- Right side -->
 </div>
@@ -162,7 +138,7 @@
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/custom.min.js') }}"></script>
 
 <script type="text/javascript">
-    // Resize BG
+
     init.push(function () {
         $("#signup-form_id").validate({ focusInvalid: true, errorPlacement: function () {} });
 

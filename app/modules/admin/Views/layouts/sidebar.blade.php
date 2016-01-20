@@ -40,10 +40,10 @@
             <ul class="mmc-dropdown-delay animated fadeInLeft">
 
                 <li>
-                    <a tabindex="-1" href="sign-up"><span class="mm-text">Sign Up</span></a>
+                    <a tabindex="-1" href="create-sign-up"><span class="mm-text">Sign Up</span></a>
                 </li>
                 <li>
-                    <a tabindex="-1" href="sign-in"><span class="mm-text">Sign In</span></a>
+                    <a tabindex="-1" href="create-sign-in"><span class="mm-text">Sign In</span></a>
                 </li>
                 <li>
                     <a tabindex="-1" href="user-profile"><span class="mm-text">Profile</span></a>
