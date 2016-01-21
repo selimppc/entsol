@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Sign In - ETSB</title>
+    <title>Sign Up - LanderApp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
     <!-- Open Sans font from Google CDN -->
@@ -20,13 +20,9 @@
     <link href="{{ URL::asset('assets/admin/css/pages.min.css') }}" rel="stylesheet" type="text/css" >
     <link href="{{ URL::asset('assets/admin/css/widgets.min.css') }}" rel="stylesheet" type="text/css" >
     <link href="{{ URL::asset('assets/admin/css/themes.min.css') }}" rel="stylesheet" type="text/css" >
-    <!--[if lt IE 9]>
-    <script src="assets/javascripts/ie.min.js"></script>
-    <![endif]-->
-
 
     <style>
-        #signin-demo {
+        #signup-demo {
             position: fixed;
             right: 0;
             bottom: 0;
@@ -35,9 +31,9 @@
             padding: 6px;
             border-radius: 3px;
         }
-        #signin-demo img { cursor: pointer; height: 40px; }
-        #signin-demo img:hover { opacity: .5; }
-        #signin-demo div {
+        #signup-demo img { cursor: pointer; height: 40px; }
+        #signup-demo img:hover { opacity: .5; }
+        #signup-demo div {
             color: #fff;
             font-size: 10px;
             font-weight: 600;
@@ -48,63 +44,67 @@
 
 </head>
 
-<body class="theme-default page-signin">
+<body class="theme-default page-signup">
 
     <script>
         var init = [];
     </script>
 
-    @yield('content')
+    <div id="page-signup-bg">
+        <!-- Background overlay -->
+        <div class="overlay"></div>
+        <!-- Replace this with your bg image -->
+        <img src="assets/user/img/signin-bg-1.jpg" alt="">
+    </div>
+<!-- / Page background -->
 
+<!-- Container -->
+    <div class="signup-container">
+        <!-- Header -->
+        <div class="signup-header">
+            <a href="#" class="logo">
+                ETSB<span style="font-weight:100;"></span>
+            </a> <!-- / .logo -->
+        </div>
+        <!-- / Header -->
+        @yield('content')
+    </div>
+    <div class="have-account">
+        Already have an account? <a href="pages-signin.html">Sign In</a>
+    </div>
 <!-- Get jQuery from Google CDN -->
 <!--[if !IE]> -->
 <script type="text/javascript"> window.jQuery || document.write('<script src="assets/admin/js/jquery.min.js">'+"<"+"/script>"); </script>
 <!-- <![endif]-->
-{{--<!--[if lte IE 9]>
+<!--[if lte IE 9]>
 <script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">'+"<"+"/script>"); </script>
-<![endif]-->--}}
+<![endif]-->
 
 
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/custom.min.js') }}"></script>
 
-<script type="text/javascript">
+{{--<script type="text/javascript">
     // Resize BG
     init.push(function () {
-        var $ph  = $('#page-signin-bg'),
-                $img = $ph.find('> img');
+        $("#signup-form_id").validate({ focusInvalid: true, errorPlacement: function () {} });
 
-        $(window).on('resize', function () {
-            $img.attr('style', '');
-            if ($img.height() < $ph.height()) {
-                $img.css({
-                    height: '100%',
-                    width: 'auto'
-                });
-            }
+        // Validate name
+        $("#name_id").rules("add", {
+            required: true,
+            minlength: 1
         });
-    });
 
-    // Show/Hide password reset form on click
-    init.push(function () {
-        $('#forgot-password-link').click(function () {
-            $('#password-reset-form').fadeIn(400);
-            return false;
+        // Validate email
+        $("#email_id").rules("add", {
+            required: true,
+            email: true
         });
-        $('#password-reset-form .close').click(function () {
-            $('#password-reset-form').fadeOut(400);
-            return false;
-        });
-    });
-
-    // Setup Sign In form validation
-    init.push(function () {
-        $("#signin-form_id").validate({ focusInvalid: true, errorPlacement: function () {} });
 
         // Validate username
         $("#username_id").rules("add", {
             required: true,
-//            minlength: 3
+            minlength: 3
         });
 
         // Validate password
@@ -112,21 +112,15 @@
             required: true,
 //            minlength: 6
         });
-    });
 
-    // Setup Password Reset form validation
-    init.push(function () {
-        $("#password-reset-form_id").validate({ focusInvalid: true, errorPlacement: function () {} });
-
-        // Validate email
-        $("#p_email_id").rules("add", {
-            required: true,
-            email: true
+        // Validate confirm checkbox
+        $("#confirm_id").rules("add", {
+            required: true
         });
     });
 
     window.LanderApp.start(init);
-</script>
+</script>--}}
 
 </body>
 </html>

@@ -22,7 +22,7 @@ Route::any('create-sign-up', [
 
 Route::any('signup', [
     'as' => 'signup',
-    'uses' => 'UserController@signup'
+    'uses' => 'UserController@store_signup_info'
 ]);
 
 Route::any('create-sign-in', [

@@ -1,108 +1,45 @@
-@extends('user::layouts.login')
+@extends('user::layouts.signup')
 
 @section('content')
-    <script>
-        var init = [];
-    </script>
-    <div id="page-signup-bg">
-        <!-- Background overlay -->
-        <div class="overlay"></div>
-        <!-- Replace this with your bg image -->
-        <img src="assets/user/img/signin-bg-1.jpg" alt="">
-    </div>
-
-    <!-- Container -->
-    <div class="signup-container">
-        <!-- Header -->
-        <div class="signup-header">
-            <a href="#" class="logo">
-                ETSB<span style="font-weight:100;"></span>
-            </a> <!-- / .logo -->
-        </div>
-        <!-- / Header -->
 
         <!-- Form -->
-        <div class="signup-form">
-            <form action="index.html" id="signup-form_id">
+<div class="signup-form">
 
-                <div class="signup-text">
-                    <span>Create an account</span>
-                </div>
+    {!! Form::open(['route' => 'signup','id'=>'signup-form_id']) !!}
 
-                <div class="form-group w-icon">
-                    <input type="text" name="signup_name" id="name_id" class="form-control input-lg" placeholder="Full name">
-                    <span class="fa fa-info signup-form-icon"></span>
-                </div>
-
-                <div class="form-group w-icon">
-                    <input type="text" name="signup_email" id="email_id" class="form-control input-lg" placeholder="E-mail">
-                    <span class="fa fa-envelope signup-form-icon"></span>
-                </div>
-
-                <div class="form-group w-icon">
-                    <input type="text" name="signup_username" id="username_id" class="form-control input-lg" placeholder="Username">
-                    <span class="fa fa-user signup-form-icon"></span>
-                </div>
-
-                <div class="form-group w-icon">
-                    <input type="password" name="signup_password" id="password_id" class="form-control input-lg" placeholder="Password">
-                    <span class="fa fa-lock signup-form-icon"></span>
-                </div>
-
-                <div class="form-group" style="margin-top: 20px;margin-bottom: 20px;">
-                    <label class="checkbox-inline">
-                        <input type="checkbox" name="signup_confirm" class="px" id="confirm_id">
-                        <span class="lbl">I agree with the <a href="#" target="_blank">Terms and Conditions</a></span>
-                    </label>
-                </div>
-
-                <div class="form-actions">
-                    <input type="submit" value="SIGN UP" class="signup-btn bg-primary">
-                </div>
-            </form>
+        <div class="signup-text">
+            <span>Create an account</span>
         </div>
-        <!-- Right side -->
-    </div>
 
-    <div class="have-account">
-        Already have an account? <a href="sign-in">Sign In</a>
-    </div>
+        <div class="form-group">
+            {!! Form::text('name', null, ['id'=>'name_id','name'=>'signup_name', 'class' => 'form-control input-lg','required','placeholder'=>'Full name']) !!}
+        </div>
 
-    <script type="text/javascript">
+        <div class="form-group">
+            {!! Form::email('email', null, ['id'=>'email_id','name'=>'signup_email', 'class' => 'form-control input-lg','required','placeholder'=>'E-mail']) !!}
+        </div>
 
-        init.push(function () {
-            $("#signup-form_id").validate({ focusInvalid: true, errorPlacement: function () {} });
+        <div class="form-group">
+            {!! Form::text('username', null, ['id'=>'username_id','name'=>'signup_username', 'class' => 'form-control input-lg','required','placeholder'=>'Username']) !!}
+        </div>
 
-            // Validate name
-            $("#name_id").rules("add", {
-                required: true,
-                minlength: 1
-            });
+        <div class="form-group">
+            {!! Form::text('password', null, ['id'=>'password_id','name'=>'signup_password', 'class' => 'form-control input-lg','required','placeholder'=>'Password']) !!}
+        </div>
 
-            // Validate email
-            $("#email_id").rules("add", {
-                required: true,
-                email: true
-            });
 
-            // Validate username
-            $("#username_id").rules("add", {
-                required: true,
-                minlength: 3
-            });
+        <div class="form-group" style="margin-top: 20px;margin-bottom: 20px;">
+            <label class="checkbox-inline">
+                {!! Form::checkbox('remember_me', null,['name'=>'signup_confirm','class'=>'px','id'=>'confirm_id']) !!}
+                <span class="lbl">I agree with the <a href="#" target="_blank">Terms and Conditions</a></span>
+            </label>
+        </div>
 
-            // Validate password
-            $("#password_id").rules("add", {
-                required: true,
-                minlength: 6
-            });
+        <div class="form-actions">
+            <input type="submit" value="SIGN UP" class="signup-btn bg-primary">
+        </div>
+    {!! Form::close() !!}
+    <!-- / Form -->
+</div>
 
-            // Validate confirm checkbox
-            $("#confirm_id").rules("add", {
-                required: true
-            });
-        });
-
-        window.LanderApp.start(init);
-    </script>
 @stop
