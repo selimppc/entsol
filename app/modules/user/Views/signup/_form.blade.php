@@ -11,22 +11,17 @@
             <span>Create an account</span>
         </div>
 
+    <div class="form-group">
+        {!! Form::text('username', null, ['id'=>'username_id','name'=>'username', 'class' => 'form-control input-lg','required','placeholder'=>'Username']) !!}
+    </div>
+
         <div class="form-group">
-            {!! Form::text('name', null, ['id'=>'name_id','name'=>'signup_name', 'class' => 'form-control input-lg','required','placeholder'=>'Full name']) !!}
+            {!! Form::email('email', null, ['id'=>'email_id','name'=>'email', 'class' => 'form-control input-lg','required','placeholder'=>'E-mail']) !!}
         </div>
 
         <div class="form-group">
-            {!! Form::email('email', null, ['id'=>'email_id','name'=>'signup_email', 'class' => 'form-control input-lg','required','placeholder'=>'E-mail']) !!}
+            {!! Form::password('password', null, ['id'=>'password_id','name'=>'password', 'class' => 'form-control input-lg','required','placeholder'=>'Password']) !!}
         </div>
-
-        <div class="form-group">
-            {!! Form::text('username', null, ['id'=>'username_id','name'=>'signup_username', 'class' => 'form-control input-lg','required','placeholder'=>'Username']) !!}
-        </div>
-
-        <div class="form-group">
-            {!! Form::text('password', null, ['id'=>'password_id','name'=>'signup_password', 'class' => 'form-control input-lg','required','placeholder'=>'Password']) !!}
-        </div>
-
 
         <div class="form-group" style="margin-top: 20px;margin-bottom: 20px;">
             <label class="checkbox-inline">

@@ -41,7 +41,7 @@ return [
     |
     */
 
-    'table' => 'users',
+    'table' => 'user',
 
     /*
     |--------------------------------------------------------------------------
@@ -57,11 +57,12 @@ return [
     | they have less time to be guessed. You may change this as needed.
     |
     */
-
-    'password' => [
+    'username' => 'email',
+    'password' => 'hashed_password',
+    /*'password' => [
         'email' => 'emails.password',
         'table' => 'password_resets',
         'expire' => 60,
-    ],
+    ],*/
 
 ];

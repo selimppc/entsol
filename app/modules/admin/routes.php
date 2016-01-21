@@ -34,5 +34,9 @@ Route::any('index', [
     'uses' => 'AdminController@index'
 ]);
 
+Route::any('dashboard', [
+    'as' => 'dashboard',
+    'uses' => 'AdminController@dashboard'
+]);
 });
 
