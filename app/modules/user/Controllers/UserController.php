@@ -77,20 +77,22 @@ class UserController extends Controller
             $user_data_exists = User::where('email', $data['email'])->exists();
 
             if($user_data_exists){
-                print_r( $data);exit('2220');
+
                 $user_data = User::where('email', $data['email'])->first();
 
-                if(isset($user_data->status)?$user_data->status == 'inactive':''){
+                if($user_data->status == 'inactive'){
 
                     Session::flash('flash_message_error', "You are not permitted for login.Your account is in-active.");
                 }else{
                     try{
                         #print_r( $data);exit('2222');
-                        if (Auth::attempt(['email' => $data['email'],'password' =>$data->password]))
+                        if (Auth::attempt(['email' => $data['email'],'password' =>$data['password']]))
                         {
+                            print_r( $data);exit('2220');
                             print_r( $data['password']);exit('2222');
+
                             Session::put('email', $user_data->email);
-                            Session::put('user_type', $user_data->type);
+                            Session::put('password', $user_data->password);
                             Session::flash('flash_message', "Successfully  Logged In.");
 
                             return redirect()->route('user.dashboard');
