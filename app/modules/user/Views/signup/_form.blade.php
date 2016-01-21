@@ -16,11 +16,11 @@
     </div>
 
         <div class="form-group">
-            {!! Form::email('email', null, ['id'=>'email_id','name'=>'email', 'class' => 'form-control input-lg','required','placeholder'=>'E-mail']) !!}
+            {!! Form::email('email', null, ['class' => 'form-control input-lg','required','placeholder'=>'E-mail']) !!}
         </div>
 
         <div class="form-group">
-            {!! Form::password('password', null, ['id'=>'password_id','name'=>'password', 'class' => 'form-control input-lg','required','placeholder'=>'Password']) !!}
+            {!! Form::password('password', ['class' => 'form-control input-lg','required','placeholder'=>'Password']) !!}
         </div>
 
         <div class="form-group" style="margin-top: 20px;margin-bottom: 20px;">
