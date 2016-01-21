@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateChartOfAccountsTable extends Migration
+class CreateCurrencyTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,17 +12,13 @@ class CreateChartOfAccountsTable extends Migration
      */
     public function up()
     {
-        Schema::create('chart_of_accounts', function (Blueprint $table) {
+        Schema::create('currency', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('account_code',64)->nullable();
+            $table->string('code',45)->nullable();
+            $table->string('title',45)->nullable();
             $table->text('description')->nullable();
-            $table->enum('account_type',array('asset','liability','income','expenses'))->nullable();
-            $table->enum('account_usage',array('ledger','ap','ar'))->nullable();
-            $table->unsignedInteger('group_one_id')->nullable();
-            $table->enum('analytical_code',array('cash','non-cash'))->nullable();
-            $table->string('branch_code', 45)->nullable();
+            $table->decimal('exchange_rate',20,2)->nullable();
             $table->enum('status',array('active','inactive'))->nullable();
-            $table->unsignedInteger('business_id')->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -37,6 +33,6 @@ class CreateChartOfAccountsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('chart_of_accounts');
+        Schema::drop('currency');
     }
 }
