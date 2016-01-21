@@ -30,9 +30,9 @@ Route::any('create-sign-in', [
     'uses' => 'UserController@create_sign_in'
 ]);
 
-Route::any('signin', [
-    'as' => 'signin',
-    'uses' => 'UserController@signin'
+Route::any('login', [
+    'as' => 'login',
+    'uses' => 'UserController@login'
 ]);
 
 Route::any('user-profile', [

@@ -29,20 +29,17 @@
     </div>
 
     <div class="signin-form">
-
-            {!! Form::open(['route' => 'signin','id'=>'signin-form_id']) !!}
+            {!! Form::open(['route' => 'login','id'=>'signin-form_id']) !!}
             <div class="signin-text">
                 <span>Sign In to your account</span>
             </div>
 
-            <div class="form-group w-icon">
-                {!! Form::text('username', null, ['id'=>'username_id','name'=>'signin_username', 'class' => 'form-control input-lg','required','placeholder'=>'Username or email']) !!}
-                <span class="fa fa-user signin-form-icon"></span>
+            <div class="form-group">
+                {!! Form::email('email', null, ['class' => 'form-control input-lg','required','placeholder'=>'Username or email']) !!}
             </div>
 
-            <div class="form-group w-icon">
-                {!! Form::text('password', null, ['id'=>'password_id','name'=>'signin_password', 'class' => 'form-control input-lg','required','placeholder'=>'Password']) !!}
-                <span class="fa fa-lock signin-form-icon"></span>
+            <div class="form-group">
+                {!! Form::password('password', ['class'=>'form-control input-lg', 'placeholder'=>'Password', 'required'=>'required']) !!}
             </div>
             <div class="form-actions">
                 <input type="submit" value="SIGN IN" class="signin-btn bg-primary">

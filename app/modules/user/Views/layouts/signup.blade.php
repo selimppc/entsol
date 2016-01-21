@@ -60,6 +60,28 @@
 
 <!-- Container -->
     <div class="signup-container">
+        @if($errors->any())
+            <ul class="alert alert-danger">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
+
+        {{--set some message after action--}}
+        @if (Session::has('message'))
+            <div class="alert alert-success">{{Session::get("message")}}</div>
+
+        @elseif(Session::has('error'))
+            <div class="alert alert-warning">{{Session::get("error")}}</div>
+
+        @elseif(Session::has('info'))
+            <div class="alert alert-info">{{Session::get("info")}}</div>
+
+        @elseif(Session::has('danger'))
+            <div class="alert alert-danger">{{Session::get("danger")}}</div>
+
+            @endif
         <!-- Header -->
         <div class="signup-header">
             <a href="#" class="logo">
@@ -70,7 +92,7 @@
         @yield('content')
     </div>
     <div class="have-account">
-        Already have an account? <a href="pages-signin.html">Sign In</a>
+        Already have an account? <a href="create-sign-in">Sign In</a>
     </div>
 <!-- Get jQuery from Google CDN -->
 <!--[if !IE]> -->
