@@ -12,7 +12,7 @@ class CreateVoucherDetailTable extends Migration
      */
     public function up()
     {
-        Schema::create('voucher_detail', function (Blueprint $table) {
+        Schema::create('ac_voucher_detail', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('voucher_head_id')->nullable();
             $table->unsignedInteger('coa_id')->nullable();
@@ -38,6 +38,6 @@ class CreateVoucherDetailTable extends Migration
      */
     public function down()
     {
-        Schema::drop('voucher_detail');
+        Schema::drop('ac_voucher_detail');
     }
 }

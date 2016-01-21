@@ -12,7 +12,7 @@ class CreateChartOfAccountsTable extends Migration
      */
     public function up()
     {
-        Schema::create('chart_of_accounts', function (Blueprint $table) {
+        Schema::create('ac_chart_of_accounts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('account_code',64)->nullable();
             $table->text('description')->nullable();
@@ -37,6 +37,6 @@ class CreateChartOfAccountsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('chart_of_accounts');
+        Schema::drop('ac_chart_of_accounts');
     }
 }

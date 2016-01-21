@@ -12,7 +12,7 @@ class CreateDefaultOffsetTable extends Migration
      */
     public function up()
     {
-        Schema::create('default_offset', function (Blueprint $table) {
+        Schema::create('ac_default_offset', function (Blueprint $table) {
             $table->increments('id');
             $table->string('offset',45)->nullable();
             $table->string('pnl_account', 45)->nullable();
@@ -32,6 +32,6 @@ class CreateDefaultOffsetTable extends Migration
      */
     public function down()
     {
-        Schema::drop('default_offset');
+        Schema::drop('ac_default_offset');
     }
 }

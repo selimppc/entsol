@@ -12,7 +12,7 @@ class CreateCurrencyTable extends Migration
      */
     public function up()
     {
-        Schema::create('currency', function (Blueprint $table) {
+        Schema::create('cm_currency', function (Blueprint $table) {
             $table->increments('id');
             $table->string('code',45)->nullable();
             $table->string('title',45)->nullable();
@@ -33,6 +33,6 @@ class CreateCurrencyTable extends Migration
      */
     public function down()
     {
-        Schema::drop('currency');
+        Schema::drop('cm_currency');
     }
 }

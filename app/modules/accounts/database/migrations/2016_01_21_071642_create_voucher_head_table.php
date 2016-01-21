@@ -12,7 +12,7 @@ class CreateVoucherHeadTable extends Migration
      */
     public function up()
     {
-        Schema::create('vouhcer_head', function (Blueprint $table) {
+        Schema::create('ac_vouhcer_head', function (Blueprint $table) {
             $table->increments('id');
             $table->enum('account_type',array(
                 'account-payable','account-receivable','account-adjustment','journal-vouche','receipt-voucher','reverse-entry'))->nullable();
@@ -37,6 +37,6 @@ class CreateVoucherHeadTable extends Migration
      */
     public function down()
     {
-        Schema::drop('vouhcer_head');
+        Schema::drop('ac_vouhcer_head');
     }
 }

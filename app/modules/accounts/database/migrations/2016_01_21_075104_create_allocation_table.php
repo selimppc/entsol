@@ -12,7 +12,7 @@ class CreateAllocationTable extends Migration
      */
     public function up()
     {
-        Schema::create('allocation', function (Blueprint $table) {
+        Schema::create('ac_allocation', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('voucher_head_id')->nullable();
             $table->string('invoice_number', 45)->nullable();
@@ -35,6 +35,6 @@ class CreateAllocationTable extends Migration
      */
     public function down()
     {
-        Schema::drop('allocation');
+        Schema::drop('ac_allocation');
     }
 }

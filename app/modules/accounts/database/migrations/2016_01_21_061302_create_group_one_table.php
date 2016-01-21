@@ -12,7 +12,7 @@ class CreateGroupOneTable extends Migration
      */
     public function up()
     {
-        Schema::create('group_one', function (Blueprint $table) {
+        Schema::create('ac_group_one', function (Blueprint $table) {
             $table->increments('id');
             $table->string('code',45)->nullable();
             $table->string('title', 45)->nullable();
@@ -31,6 +31,6 @@ class CreateGroupOneTable extends Migration
      */
     public function down()
     {
-        Schema::drop('group_one');
+        Schema::drop('ac_group_one');
     }
 }
