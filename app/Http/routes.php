@@ -15,8 +15,9 @@
     return view('welcome');
 });*/
 
+Route::get('login', ['middleware' => 'auth', 'uses' => '<your-controller>@<your-action>']);
 
-Route::post('login', [
+Route::any('login', [
     'as' => 'login',
     'uses' => 'Auth\AuthController@login'
 ]);

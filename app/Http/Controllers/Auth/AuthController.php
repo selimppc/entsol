@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -78,7 +77,7 @@ class AuthController extends Controller
         ]);
 
         if ($attempt) {
-            return redirect()->route('dashboard');
+            return redirect()->intended('admin::layouts.dashboard');
         }
     }
 
