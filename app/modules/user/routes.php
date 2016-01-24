@@ -6,8 +6,6 @@
  * Time: 5:54 PM
  */
 
-
-
 Route::group(array('modules'=>'User', 'namespace' => 'App\Modules\User\Controllers'), function() {
     //Your routes belong to this module.
 
@@ -27,15 +25,10 @@ Route::any('signup', [
     'uses' => 'UserController@store_signup_info'
 ]);
 
-/*Route::any('create-sign-in', [
+Route::get('create-sign-in', [
     'as' => 'create-sign-in',
     'uses' => 'UserController@create_sign_in'
-]);*/
-
-/*Route::any('login', [
-    'as' => 'login',
-    'uses' => 'UserController@login'
-]);*/
+]);
 
 Route::any('user-profile', [
     'as' => 'user-profile',

@@ -11,22 +11,13 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 
-Route::any('create-sign-in', [
-    'as' => 'create-sign-in',
-    'uses' => 'Auth\AuthController@create_sign_in'
-]);
-
-Route::any('login', [
+Route::post('login', [
     'as' => 'login',
     'uses' => 'Auth\AuthController@login'
 ]);
 
-Route::any('example/login', [
-    'as' => 'example.login',
-    'uses' => 'Auth\AuthController@getLogin'
-]);

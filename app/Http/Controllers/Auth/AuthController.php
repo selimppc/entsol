@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
+use Mockery\CountValidator\Exception;
 use Validator;
 use Input;
 use Session;
@@ -47,7 +48,7 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            #'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
         ]);
@@ -68,30 +69,18 @@ class AuthController extends Controller
         ]);
     }
 
-    public function create_sign_in()
-    {
-        return view('user::signin._form');
-    }
-
     public function login(Request $request)
     {
+         $attempt = Auth::attempt([
+            'email' => $request->get('email'),
+            'password' => $request->get('password'),
+            #'active' => $request->get('active')
+        ]);
 
-        $credentials = array('email' => $request->email, 'password' => $request->password);
-#print_r($credentials);exit;
-        if (Auth::attempt($credentials, true)){
-            dd('success');
-            return redirect()->intended('dashboard');
-        }else{
-            dd('failed');
+        if ($attempt) {
+            return redirect()->route('dashboard');
         }
-        exit('123');
     }
-
-    public function getLogin(){
-//        exit('454');
-
-    }
-
 
 
 }
