@@ -16,9 +16,17 @@ Route::get('/', function () {
 });
 
 
-//Route::any('example/login', 'Auth\AuthController@postLogin');
+Route::any('create-sign-in', [
+    'as' => 'create-sign-in',
+    'uses' => 'Auth\AuthController@create_sign_in'
+]);
+
+Route::any('login', [
+    'as' => 'login',
+    'uses' => 'Auth\AuthController@login'
+]);
 
 Route::any('example/login', [
     'as' => 'example.login',
-    'uses' => 'AuthController@getLogin'
+    'uses' => 'Auth\AuthController@getLogin'
 ]);

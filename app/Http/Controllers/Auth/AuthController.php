@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Auth;
+use Illuminate\Http\Request;
 use Validator;
+use Input;
+use Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -58,15 +62,36 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+           # 'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
     }
 
-    public function getLogin(){
-        exit('454');
+    public function create_sign_in()
+    {
+        return view('user::signin._form');
     }
+
+    public function login(Request $request)
+    {
+
+        $credentials = array('email' => $request->email, 'password' => $request->password);
+#print_r($credentials);exit;
+        if (Auth::attempt($credentials, true)){
+            dd('success');
+            return redirect()->intended('dashboard');
+        }else{
+            dd('failed');
+        }
+        exit('123');
+    }
+
+    public function getLogin(){
+//        exit('454');
+
+    }
+
 
 
 }
