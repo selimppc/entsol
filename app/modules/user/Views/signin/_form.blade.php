@@ -8,7 +8,6 @@
     <!-- Replace this with your bg image -->
     <img src="assets/user/img/signin-bg-1.jpg" alt="">
 </div>
-
 <!-- Container -->
 <div class="signin-container">
 
@@ -27,30 +26,32 @@
             <li><i class="fa fa-heart signin-icon"></i> Crafted with love</li>
         </ul> <!-- / Info list -->
     </div>
-    @if($errors->any())
-        <ul class="alert alert-danger">
-            @foreach($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
 
-    {{--set some message after action--}}
-    @if (Session::has('message'))
-        <div class="alert alert-success">{{Session::get("message")}}</div>
-
-    @elseif(Session::has('error'))
-        <div class="alert alert-warning">{{Session::get("error")}}</div>
-
-    @elseif(Session::has('info'))
-        <div class="alert alert-info">{{Session::get("info")}}</div>
-
-    @elseif(Session::has('danger'))
-        <div class="alert alert-danger">{{Session::get("danger")}}</div>
-
-    @endif
     <div class="signin-form">
-            {{--{!! Form::open(['route' => 'login','id'=>'signin-form_id']) !!}--}}
+        @if($errors->any())
+            <ul class="alert alert-danger">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
+
+        {{--set some message after action--}}
+        @if (Session::has('message'))
+            <div class="alert alert-success">{{Session::get("message")}}</div>
+
+        @elseif(Session::has('error'))
+            <div class="alert alert-warning">{{Session::get("error")}}</div>
+
+        @elseif(Session::has('info'))
+            <div class="alert alert-info">{{Session::get("info")}}</div>
+
+        @elseif(Session::has('danger'))
+            <div class="alert alert-danger">{{Session::get("danger")}}</div>
+
+        @endif
+            
+        {{--{!! Form::open(['route' => 'login','id'=>'signin-form_id']) !!}--}}
         {!! Form::open(array('url' => 'login')) !!}
             <div class="signin-text">
                 <span>Sign In to your account</span>

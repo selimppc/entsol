@@ -14,6 +14,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
 {
+
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller
@@ -27,16 +28,17 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
+
     /**
      * Create a new authentication controller instance.
      *
      * @return void
      */
-    public function __construct()
+    /*public function __construct()
     {
         $this->middleware('guest', ['except' => 'getLogout']);
 
-    }
+    }*/
 
     /**
      * Get a validator for an incoming registration request.
@@ -68,8 +70,10 @@ class AuthController extends Controller
         ]);
     }
 
-    public function login(Request $request)
+    public function getLogin(Request $request)
     {
+//        exit("IO");
+
          $attempt = Auth::attempt([
             'email' => $request->get('email'),
             'password' => $request->get('password'),
@@ -77,7 +81,10 @@ class AuthController extends Controller
         ]);
 
         if ($attempt) {
-            return redirect()->intended('admin::layouts.dashboard');
+            return redirect()->intended('dashboard');
+        }else{
+            Session::flash('error', "Email Address / Password InCorrect.Please Try Again");
+            return redirect()->intended('create-sign-in');
         }
     }
 

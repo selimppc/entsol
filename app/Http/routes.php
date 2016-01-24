@@ -15,10 +15,13 @@
     return view('welcome');
 });*/
 
-Route::get('login', ['middleware' => 'auth', 'uses' => '<your-controller>@<your-action>']);
+
+/*Route::any('tanin-login', function () {
+    return view('welcome');
+});*/
 
 Route::any('login', [
     'as' => 'login',
-    'uses' => 'Auth\AuthController@login'
+    'uses' => 'Auth\AuthController@getLogin'
 ]);
 
