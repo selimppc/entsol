@@ -27,15 +27,15 @@ Route::any('signup', [
     'uses' => 'UserController@store_signup_info'
 ]);
 
-Route::any('create-sign-in', [
+/*Route::any('create-sign-in', [
     'as' => 'create-sign-in',
     'uses' => 'UserController@create_sign_in'
-]);
+]);*/
 
-Route::any('login', [
+/*Route::any('login', [
     'as' => 'login',
     'uses' => 'UserController@login'
-]);
+]);*/
 
 Route::any('user-profile', [
     'as' => 'user-profile',
