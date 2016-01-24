@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+//Route::any('example/login', 'Auth\AuthController@postLogin');
+
+Route::any('example/login', [
+    'as' => 'example.login',
+    'uses' => 'AuthController@getLogin'
+]);

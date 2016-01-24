@@ -6,6 +6,8 @@
  * Time: 5:54 PM
  */
 
+
+
 Route::group(array('modules'=>'User', 'namespace' => 'App\Modules\User\Controllers'), function() {
     //Your routes belong to this module.
 
@@ -39,5 +41,9 @@ Route::any('user-profile', [
     'as' => 'user-profile',
     'uses' => 'UserController@create_profile'
 ]);
+
 });
+
+
+
 
