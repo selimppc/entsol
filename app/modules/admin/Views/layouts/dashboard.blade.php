@@ -4,10 +4,10 @@
 @stop
 
 @section('content')
-    <ul class="breadcrumb breadcrumb-page">
+    {{--<ul class="breadcrumb breadcrumb-page">
         <div class="breadcrumb-label text-light-gray">You are here: </div>
         <li><a href="#">Home</a></li>
         <li class="active"><a href="#">Dashboard</a></li>
-    </ul>
+    </ul>--}}
     Welcome To Dashboard.....
 @stop

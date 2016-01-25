@@ -92,7 +92,7 @@
         @yield('content')
     </div>
     <div class="have-account">
-        Already have an account? <a href="create-sign-in">Sign In</a>
+        Already have an account? <a href="get-user-login">Sign In</a>
     </div>
 <!-- Get jQuery from Google CDN -->
 <!--[if !IE]> -->

@@ -106,6 +106,6 @@
 <!-- / Container -->
 
 <div class="not-a-member">
-    Not a member? <a href="sign-up">Sign up now</a>
+    Not a member? <a href="create-sign-up">Sign up now</a>
 </div>
 @stop

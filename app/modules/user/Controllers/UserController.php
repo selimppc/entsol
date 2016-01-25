@@ -31,12 +31,12 @@ class UserController extends Controller
             'username'=>$input['username'],
             'email'=>$input['email'],
             'password'=>Hash::make($input['password']),
-//            'auth_key'=>'',
-            'access_token'=>str_random(30),
+            #'auth_key'=>'',
+            #'access_token'=>str_random(30),
             'csrf_token'=> str_random(30),
             'ip_address'=> getHostByName(getHostName()),
-//            'last_visit'=> date('Y-m-d h:i:s', time()),
-//            'role_id'=> '',
+            #'last_visit'=> date('Y-m-d h:i:s', time()),
+            #'role_id'=> '',
         ];
         /* Transaction Start Here */
         DB::beginTransaction();

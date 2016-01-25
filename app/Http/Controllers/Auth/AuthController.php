@@ -91,14 +91,14 @@ class AuthController extends Controller
                 if($user_data_exists){
                     $user_data = User::where('email', $data['email'])->first();
                 }
-                
+
                 if ($attempt) {
                     Session::put('email', $user_data->email);
                     #Session::put('password', $user_data->password);
-                    Session::flash('flash_message', "Successfully  Logged In.");
-                    return redirect()->intended('dashboard');
+                    Session::flash('message', "Successfully  Logged In.");
+                    return redirect()->route('dashboard');
                 }else{
-                    Session::flash('error', "Email Address / Password InCorrect.Please Try Again");
+                    Session::flash('danger', "Email Address / Password InCorrect.Please Try Again");
                     return redirect()->route('get-user-login');
                 }
             }catch(Exception $e){
