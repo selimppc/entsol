@@ -8,7 +8,8 @@
 
 Route::group(array('modules'=>'Accounts', 'namespace' => 'App\Modules\Accounts\Controllers'), function() {
     //Your routes belong to this module.
-
+    @include('routes_tjt.php');
+    
     Route::get('accounts', function () {
         return 'Welcome In Accounts Module';
     });
