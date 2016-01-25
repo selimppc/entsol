@@ -15,7 +15,7 @@ class CreateUserTable extends Migration
     {
         /*role_head*/
 
-        Schema::create('role_head', function (Blueprint $table) {
+        Schema::create('user_role_head', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title', 64)->nullable();
             $table->text('description')->nullable();
@@ -44,14 +44,14 @@ class CreateUserTable extends Migration
             $table->engine = 'InnoDB';
         });
         Schema::table('user', function($table) {
-            $table->foreign('role_id')->references('id')->on('role_head');
+            $table->foreign('role_id')->references('id')->on('user_role_head');
         });
 
-        /*role_detail*/
+        /*user_role_detail*/
 
-        Schema::create('role_detail', function (Blueprint $table) {
+        Schema::create('user_role_detail', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('role_head_id')->nullable();
+            $table->unsignedInteger('user_role_head_id')->nullable();
             $table->unsignedInteger('menu_panel_id')->nullable();
             $table->unsignedInteger('parent_menu_panel_id')->nullable();
             $table->enum('status', ['active', 'inactive'])->nullable();
@@ -143,8 +143,8 @@ class CreateUserTable extends Migration
     public function down()
     {
         Schema::drop('user');
-        Schema::drop('role_head');
-        Schema::drop('role_detail');
+        Schema::drop('user_role_head');
+        Schema::drop('user_role_detail');
         Schema::drop('user_profile');
         Schema::drop('user_meta');
         Schema::drop('user_image');
