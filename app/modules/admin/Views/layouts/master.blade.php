@@ -72,6 +72,7 @@
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/custom.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/demo.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/admin/js/validation.js') }}"></script>
 
 <script type="text/javascript">
     init.push(function () {
