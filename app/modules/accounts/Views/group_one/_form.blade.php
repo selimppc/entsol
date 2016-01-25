@@ -37,8 +37,7 @@
 {!! Form::submit('Submit', ['class' => 'btn btn-success']) !!}--}}
 
 <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    {{--<button type="Submit" class="btn btn-primary">Save changes</button>--}}
+    <a href="{{ URL::previous()}}"  class="btn btn-default" type="button"> Close </a>
     {!! Form::submit('Save changes', ['class' => 'btn btn-primary']) !!}
 </div>
 
