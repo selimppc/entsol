@@ -18,4 +18,8 @@ class Branch extends Model
     protected $fillable = [
         'code','description','currency_id','exchage_rate','contact_person','billing_address','phone','mobile','fax','email','status'
     ];
+
+    public function relCurrency(){
+        return $this->belongsTo('App\Currency', 'currency_id', 'id');
+    }
 }

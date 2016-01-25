@@ -44,10 +44,6 @@
                             <th> Currency </th>
                             <th> Exchange Rate </th>
                             <th> Contact Person </th>
-                            <th> Billing Address </th>
-                            <th> Phone </th>
-                            <th> Mobile </th>
-                            <th> Fax </th>
                             <th> email </th>
                             <th> Status </th>
                             <th> Action </th>
@@ -58,13 +54,9 @@
                             @foreach($data as $values)
                                 <tr class="gradeX">
                                     <td>{{$values->code}}</td>
-                                    <td>{{$values->currency_id}}</td>
+                                    <td>{{$values->relCurrency->title}}</td>
                                     <td>{{$values->exchange_rate}}</td>
                                     <td>{{$values->contact_person}}</td>
-                                    <td>{{$values->billing_address}}</td>
-                                    <td>{{$values->phone}}</td>
-                                    <td>{{$values->mobile}}</td>
-                                    <td>{{$values->fax}}</td>
                                     <td>{{$values->email}}</td>
                                     <td>{{$values->status}}</td>
                                     <td>
