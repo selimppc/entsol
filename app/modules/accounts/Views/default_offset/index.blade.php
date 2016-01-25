@@ -5,14 +5,14 @@
 
 @section('content')
 
-<!-- page start-->
+        <!-- page start-->
 <div class="row">
     <div class="col-sm-12">
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>
                 <a class="btn btn-primary pull-right" data-toggle="modal" href="#addData" title="Add">
-                    <strong>Add Group One</strong>
+                    <strong>Add Default Offset</strong>
                 </a>
             </div>
 
@@ -40,8 +40,10 @@
                     <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
                         <thead>
                         <tr>
-                            <th> Code </th>
-                            <th> Title </th>
+                            <th> Offset </th>
+                            <th> Pnl Account </th>
+                            <th> Year </th>
+                            <th> Period </th>
                             <th> Action </th>
                         </tr>
                         </thead>
@@ -49,12 +51,14 @@
                         @if(isset($data))
                             @foreach($data as $values)
                                 <tr class="gradeX">
-                                    <td>{{$values->code}}</td>
-                                    <td>{{$values->title}}</td>
+                                    <td>{{$values->offset}}</td>
+                                    <td>{{$values->pnl_account}}</td>
+                                    <td>{{$values->year}}</td>
+                                    <td>{{$values->period}}</td>
                                     <td>
-                                        <a href="{{ route('group_one-show', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('group_one-edit', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Edit"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('group_one-delete', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Delete"><i class="fa fa-trash-o"></i></a>
+                                        <a href="{{ route('default_offset-show', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('default_offset-edit', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Edit"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('default_offset-delete', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Delete"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -93,11 +97,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel">Add Group One</h4>
+                <h4 class="modal-title" id="myModalLabel">Add Default Offset</h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['route' => 'group_one-store']) !!}
-                @include('accounts::group_one._form')
+                {!! Form::open(['route' => 'default_offset-store']) !!}
+                @include('accounts::default_offset._form')
                 {!! Form::close() !!}
             </div> <!-- / .modal-body -->
             {{--<div class="modal-footer">

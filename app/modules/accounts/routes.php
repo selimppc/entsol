@@ -45,7 +45,70 @@ Route::group(array('modules'=>'Accounts', 'namespace' => 'App\Modules\Accounts\C
         "uses" => "GroupOneController@delete"
     ]);
 
-    /**Group One**/
+    /**Default Offset**/
+
+    Route::any("default_offset/index", [
+        "as"   => "default_offset-index",
+        "uses" => "DefaultOffsetController@index"
+    ]);
+
+    Route::any("default_offset/store", [
+        "as"   => "default_offset-store",
+        "uses" => "DefaultOffsetController@store"
+    ]);
+
+    Route::any("default_offset/show/{id}", [
+        "as"   => "default_offset-show",
+        "uses" => "DefaultOffsetController@show"
+    ]);
+
+    Route::any("default_offset/edit/{id}", [
+        "as"   => "default_offset-edit",
+        "uses" => "DefaultOffsetController@edit"
+    ]);
+
+    Route::any("default_offset/update/{id}", [
+        "as"   => "default_offset-update",
+        "uses" => "DefaultOffsetController@update"
+    ]);
+
+    Route::any("default_offset/delete/{id}", [
+        "as"   => "default_offset-delete",
+        "uses" => "DefaultOffsetController@delete"
+    ]);
+
+
+    /**Currency**/
+
+    Route::any("currency/index", [
+        "as"   => "currency-index",
+        "uses" => "CurrencyController@index"
+    ]);
+
+    Route::any("currency/store", [
+        "as"   => "currency-store",
+        "uses" => "CurrencyController@store"
+    ]);
+
+    Route::any("currency/show/{id}", [
+        "as"   => "currency-show",
+        "uses" => "CurrencyController@show"
+    ]);
+
+    Route::any("currency/edit/{id}", [
+        "as"   => "currency-edit",
+        "uses" => "CurrencyController@edit"
+    ]);
+
+    Route::any("currency/update/{id}", [
+        "as"   => "currency-update",
+        "uses" => "CurrencyController@update"
+    ]);
+
+    Route::any("currency/delete/{id}", [
+        "as"   => "currency-delete",
+        "uses" => "CurrencyController@delete"
+    ]);
 
 
 });
