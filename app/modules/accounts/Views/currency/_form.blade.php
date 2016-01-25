@@ -33,7 +33,7 @@
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         {!! Form::label('exchange_rate', 'Exchange Rate:', ['class' => 'control-label']) !!}
-        {!! Form::input('number', 'exchange_rate', null, ['id'=>'exchange_rate', 'class' => 'form-control']) !!}
+        {!! Form::input('number', 'exchange_rate', null, ['id'=>'exchange_rate', 'class' => 'form-control', 'step'=>'any']) !!}
     </div>
 </div>
 

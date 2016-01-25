@@ -112,5 +112,38 @@ Route::group(array('modules'=>'Accounts', 'namespace' => 'App\Modules\Accounts\C
     ]);
 
 
+    /**Branch**/
+
+    Route::any("branch/index", [
+        "as"   => "branch-index",
+        "uses" => "BranchController@index"
+    ]);
+
+    Route::any("branch/store", [
+        "as"   => "branch-store",
+        "uses" => "BranchController@store"
+    ]);
+
+    Route::any("branch/show/{id}", [
+        "as"   => "branch-show",
+        "uses" => "BranchController@show"
+    ]);
+
+    Route::any("branch/edit/{id}", [
+        "as"   => "branch-edit",
+        "uses" => "BranchController@edit"
+    ]);
+
+    Route::any("branch/update/{id}", [
+        "as"   => "branch-update",
+        "uses" => "BranchController@update"
+    ]);
+
+    Route::any("branch/delete/{id}", [
+        "as"   => "branch-delete",
+        "uses" => "BranchController@delete"
+    ]);
+
+
 });
 
