@@ -9,9 +9,9 @@
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
-        {!! Form::label('type', 'Type:', ['class' => 'control-label']) !!}
+        {!! Form::label('account_type', 'Account Type:', ['class' => 'control-label']) !!}
         <small class="required">(Required)</small>
-        {!! Form::Select('type',array('account-payable'=>'Account Payable','account-receivable'=>'Account Receivable','account-adjustment'=>'account Adjustment','journal-vouche'=>'Journal Voucher','receipt-voucher'=>'Receipt Voucher','reverse-entry'=>'Reverse Entry'),Input::old('type'),['class'=>'form-control ','required']) !!}
+        {!! Form::Select('account_type',array('account-payable'=>'Account Payable','account-receivable'=>'Account Receivable','account-adjustment'=>'account Adjustment','journal-vouche'=>'Journal Voucher','receipt-voucher'=>'Receipt Voucher','reverse-entry'=>'Reverse Entry'),Input::old('account_type'),['class'=>'form-control ','required']) !!}
     </div>
 </div>
 
@@ -35,7 +35,7 @@
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         {!! Form::label('year', 'Year:', ['class' => 'control-label']) !!}
-        {!! Form::text('year', null, ['class' => 'form-control','required']) !!}
+        {!! Form::text('year',null, ['class' => 'form-control','required']) !!}
     </div>
 </div>
 
@@ -49,10 +49,24 @@
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         {!! Form::label('branch_id', 'Branch:', ['class' => 'control-label']) !!}
-        {!! Form::text('branch_id', null, ['class' => 'form-control','required']) !!}
+        {!! Form::Select('branch_id', $branch_data, Input::old('branch_id'),['class' => 'form-control','required']) !!}
     </div>
 </div>
 
+<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+    <div class="row">
+        {!! Form::label('note', 'Note:', ['class' => 'control-label']) !!}
+        {!! Form::text('note', null, ['class' => 'form-control']) !!}
+    </div>
+</div>
+
+<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+    <div class="row">
+        {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
+        <small class="required">(Required)</small>
+        {!! Form::Select('status',array('active'=>'Active','inactive'=>'Inactive'),Input::old('status'),['class'=>'form-control ','required']) !!}
+    </div>
+</div>
 <p> &nbsp; </p>
 
 <div class="modal-footer">
@@ -74,9 +88,6 @@
         var options2 = {
             orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
         }
-        $('#bs-datepicker-range').datepicker(options2);
-
-        $('#bs-datepicker-inline').datepicker();
     });
 </script>
 

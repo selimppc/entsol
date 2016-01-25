@@ -40,13 +40,21 @@
             <ul class="mmc-dropdown-delay animated fadeInLeft">
 
                 <li>
-                    <a tabindex="-1" href="create-sign-up"><span class="mm-text">Sign Up</span></a>
+                    <a tabindex="-1" href="{{route('create-sign-up')}}"><span class="mm-text">Sign Up</span></a>
                 </li>
                 <li>
-                    <a tabindex="-1" href="get-user-login"><span class="mm-text">Sign In</span></a>
+                    <a tabindex="-1" href="{{route('get-user-login')}}"><span class="mm-text">Sign In</span></a>
                 </li>
                 <li>
-                    <a tabindex="-1" href="user-profile"><span class="mm-text">Profile</span></a>
+                    <a tabindex="-1" href="{{route('user-profile')}}"><span class="mm-text">Profile</span></a>
+                </li>
+            </ul>
+        </li>
+        <li class="mm-dropdown mm-dropdown-root">
+            <a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text mmc-dropdown-delay animated fadeIn">Crud</span></a>
+            <ul class="mmc-dropdown-delay animated fadeInLeft">
+                <li>
+                    <a tabindex="-1" href="{{route('voucher-head')}}"><span class="mm-text">Voucher Head</span></a>
                 </li>
             </ul>
         </li>
