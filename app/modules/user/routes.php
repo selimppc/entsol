@@ -25,14 +25,19 @@ Route::any('signup', [
     'uses' => 'UserController@store_signup_info'
 ]);
 
-Route::get('create-sign-in', [
-    'as' => 'create-sign-in',
-    'uses' => 'UserController@create_sign_in'
+Route::get('get-user-login', [
+    'as' => 'get-user-login',
+    'uses' => 'UserController@getLogin'
 ]);
 
 Route::any('user-profile', [
     'as' => 'user-profile',
     'uses' => 'UserController@create_profile'
+]);
+
+Route::get('user-logout', [
+    'as' => 'user-logout',
+    'uses' => 'UserController@logout'
 ]);
 
 });

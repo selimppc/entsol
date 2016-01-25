@@ -16,12 +16,13 @@
 });*/
 
 
-/*Route::any('tanin-login', function () {
-    return view('welcome');
-});*/
+Route::any('/', [
+    'as' => 'dashboard',
+    'uses' => 'HomeController@dashboard'
+]);
 
-Route::any('login', [
-    'as' => 'login',
-    'uses' => 'Auth\AuthController@getLogin'
+Route::any('post-user-login', [
+    'as' => 'post-user-login',
+    'uses' => 'Auth\AuthController@postLogin'
 ]);
 

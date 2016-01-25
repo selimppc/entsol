@@ -51,8 +51,7 @@
 
         @endif
 
-        {{--{!! Form::open(['route' => 'login','id'=>'signin-form_id']) !!}--}}
-        {!! Form::open(array('url' => 'login')) !!}
+        {!! Form::open(['route' => 'post-user-login']) !!}
             <div class="signin-text">
                 <span>Sign In to your account</span>
             </div>

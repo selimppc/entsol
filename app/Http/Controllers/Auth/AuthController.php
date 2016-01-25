@@ -70,23 +70,41 @@ class AuthController extends Controller
         ]);
     }
 
-    public function getLogin(Request $request)
+    public function postLogin(Request $request)
     {
-//        exit("IO");
+        $data = Input::all();
 
-         $attempt = Auth::attempt([
-            'email' => $request->get('email'),
-            'password' => $request->get('password'),
-            #'active' => $request->get('active')
-        ]);
+        if(Auth::check()){
 
-        if ($attempt) {
-            return redirect()->intended('dashboard');
+            Session::put('email', isset(Auth::user()->get()->id));
+            Session::flash('flash_message', "You Have Already Logged In.");
+
+            return redirect()->route('dashboard');
         }else{
-            Session::flash('error', "Email Address / Password InCorrect.Please Try Again");
-            return redirect()->intended('create-sign-in');
+            try{
+                $attempt = Auth::attempt([
+                    'email' => $request->get('email'),
+                    'password' => $request->get('password'),
+                ]);
+                $user_data_exists = User::where('email', $data['email'])->exists();
+
+                if($user_data_exists){
+                    $user_data = User::where('email', $data['email'])->first();
+                }
+                
+                if ($attempt) {
+                    Session::put('email', $user_data->email);
+                    #Session::put('password', $user_data->password);
+                    Session::flash('flash_message', "Successfully  Logged In.");
+                    return redirect()->intended('dashboard');
+                }else{
+                    Session::flash('error', "Email Address / Password InCorrect.Please Try Again");
+                    return redirect()->route('get-user-login');
+                }
+            }catch(Exception $e){
+                Session::flash('error', $e->getMessage());
+                return redirect()->route('get-user-login');
+            }
         }
     }
-
-
 }

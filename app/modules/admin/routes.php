@@ -19,11 +19,6 @@ Route::get('reg-sample', function () {
     return view('admin::layouts.example_pages.reg_form');
 });
 
-Route::any('/', [
-    'as' => 'dashboard',
-    'uses' => 'AdminController@dashboard'
-]);
-
 Route::any('admin', [
     'as' => 'admin',
     'uses' => 'AdminController@index'
@@ -34,9 +29,6 @@ Route::any('index', [
     'uses' => 'AdminController@index'
 ]);
 
-Route::any('dashboard', [
-    'as' => 'dashboard',
-    'uses' => 'AdminController@dashboard'
-]);
+
 });
 
