@@ -37,6 +37,7 @@ class CreateUserTable extends Migration
             $table->string('ip_address', 32)->nullable();
             $table->dateTime('last_visit')->nullable();
             $table->unsignedInteger('role_id')->nullable();
+            $table->string('remember_token',64)->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
