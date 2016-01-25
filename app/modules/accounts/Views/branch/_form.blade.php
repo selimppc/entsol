@@ -36,9 +36,9 @@
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
-        {!! Form::label('exchage_rate', 'Exchange Rate:', ['class' => 'control-label']) !!}
+        {!! Form::label('exchange_rate', 'Exchange Rate:', ['class' => 'control-label']) !!}
         <small class="required">(Required)</small>
-        {!! Form::input('number', 'exchage_rate', null, ['id'=>'exchage_rate', 'class' => 'form-control', 'step'=>'any','required']) !!}
+        {!! Form::input('number', 'exchange_rate', null, ['id'=>'exchange_rate', 'class' => 'form-control', 'step'=>'any','required']) !!}
     </div>
 </div>
 

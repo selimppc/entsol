@@ -33,7 +33,7 @@ class BranchRequest extends Request
         return [
             'code' => 'required|max:45',
             'currency_id' => 'required|max:10',
-            'exchage_rate' => 'required'
+            'exchange_rate' => 'required'
         ];
     }
 }

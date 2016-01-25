@@ -110,7 +110,7 @@ class CreateEntsolTableTable extends Migration
         Schema::create('ac_voucher_head', function (Blueprint $table) {
             $table->increments('id');
             $table->enum('account_type',array(
-                'account-payable','account-receivable','account-adjustment','journal-vouche','receipt-voucher','reverse-entry'))->nullable();
+                'account-payable','account-receivable','account-adjustment','journal-voucher','receipt-voucher','reverse-entry'))->nullable();
             $table->date('date')->nullable();
             $table->string('reference', 45)->nullable();
             $table->unsignedInteger('year')->nullable();
@@ -140,7 +140,7 @@ class CreateEntsolTableTable extends Migration
             $table->unsignedInteger('coa_id')->nullable();
             $table->string('sub_account_code', 45)->nullable();
             $table->unsignedInteger('currency_id')->nullable();
-            $table->decimal('exchage_rate', 20,2)->nullable();
+            $table->decimal('exchange_rate', 20,2)->nullable();
             $table->decimal('prime_amount', 20,2)->nullable();
             $table->decimal('base_amount', 20,2)->nullable();
             $table->string('branch', 45)->nullable();
@@ -176,11 +176,11 @@ class CreateEntsolTableTable extends Migration
             $table->string('sub_account_code', 45)->nullable();
             $table->date('date')->nullable();
             $table->string('branch', 45)->nullable();
-            $table->string('referance', 45)->nullable();
+            $table->string('reference', 45)->nullable();
             $table->unsignedInteger('year')->nullable();
             $table->unsignedInteger('period')->nullable();
             $table->unsignedInteger('currency_id')->nullable();
-            $table->decimal('exchage_rate', 20,2)->nullable();
+            $table->decimal('exchange_rate', 20,2)->nullable();
             $table->decimal('prime_amount', 20,2)->nullable();
             $table->decimal('base_amount', 20,2)->nullable();
             $table->enum('status',array('active','inactive'))->nullable();
@@ -214,7 +214,7 @@ class CreateEntsolTableTable extends Migration
             $table->string('invoice_number', 45)->nullable();
             $table->date('date')->nullable();
             $table->unsignedInteger('currency_id')->nullable();
-            $table->decimal('exchage_rate', 20,2)->nullable();
+            $table->decimal('exchange_rate', 20,2)->nullable();
             $table->decimal('prime_amount', 20,2)->nullable();
             $table->decimal('base_amount', 20,2)->nullable();
             $table->integer('created_by', false, 11);
