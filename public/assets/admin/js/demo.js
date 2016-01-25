@@ -336,6 +336,7 @@
         '}',
         '#demo-settings {',
         ' position: fixed;',
+        ' display: none;',
         ' right: -' + (panel_width + 10) + 'px;',
         ' width: ' + (panel_width + 10) + 'px;',
         ' top: 70px;',

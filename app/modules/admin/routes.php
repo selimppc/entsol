@@ -24,10 +24,10 @@ Route::any('admin', [
     'uses' => 'AdminController@index'
 ]);
 
-Route::any('index', [
+/*Route::any('index', [
     'as' => 'index',
     'uses' => 'AdminController@index'
-]);
+]);*/
 
 
 });

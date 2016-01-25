@@ -14,6 +14,8 @@ use App\Http\Controllers\Controller;
 class VoucherHeadController extends Controller
 {
    public function index(){
-       return view('accounts::voucher_head.index');
+
+       $pageTitle = 'Voucher Head';
+       return view('accounts::voucher_head.index',['pageTitle'=>$pageTitle]);
    }
 }
