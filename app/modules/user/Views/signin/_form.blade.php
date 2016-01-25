@@ -50,7 +50,7 @@
             <div class="alert alert-danger">{{Session::get("danger")}}</div>
 
         @endif
-            
+
         {{--{!! Form::open(['route' => 'login','id'=>'signin-form_id']) !!}--}}
         {!! Form::open(array('url' => 'login')) !!}
             <div class="signin-text">
