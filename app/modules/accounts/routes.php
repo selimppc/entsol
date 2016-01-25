@@ -13,6 +13,8 @@ Route::group(array('modules'=>'Accounts', 'namespace' => 'App\Modules\Accounts\C
         return 'Welcome In Accounts Module';
     });
 
+    /**Group One**/
+
     Route::any("group_one/index", [
         "as"   => "group_one-index",
         "uses" => "GroupOneController@index"
@@ -42,6 +44,8 @@ Route::group(array('modules'=>'Accounts', 'namespace' => 'App\Modules\Accounts\C
         "as"   => "group_one-delete",
         "uses" => "GroupOneController@delete"
     ]);
+
+    /**Group One**/
 
 
 });

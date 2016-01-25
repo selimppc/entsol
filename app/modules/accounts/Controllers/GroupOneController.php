@@ -63,9 +63,69 @@ class GroupOneController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
+    {//print_r($id);exit;
+        $pageTitle = 'Show the detail';
+        $data = GroupOne::where('id',$id)->first();
+
+        return view('accounts::group_one.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
     {
         $pageTitle = 'Show the detail';
         $data = GroupOne::where('id',$id)->first();
-        return view('accounts::group_one.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
+        return view('accounts::group_one.update', ['data' => $data, 'pageTitle'=> $pageTitle]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Requests\GroupOneRequest $request, $id)
+    {
+        $model = GroupOne::where('id',$id)->first();
+        $input = $request->all();
+
+        DB::beginTransaction();
+        try {
+            $model->update($input);
+            DB::commit();
+            Session::flash('flash_message', "Successfully Updated");
+        }
+        catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('flash_message_error', $e->getMessage());
+        }
+        return redirect()->back();
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        try {
+            $model = GroupOne::where('id',$id)->first();
+            if ($model->delete()) {
+                Session::flash('flash_message', " Successfully Deleted.");
+                return redirect()->back();
+            }
+        } catch(\Exception $e) {
+            Session::flash('flash_message_error',$e->getMessage() );
+            return redirect()->back();
+        }
     }
 }

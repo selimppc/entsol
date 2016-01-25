@@ -115,9 +115,16 @@
 <!-- Modal  -->
 {{--<div class="modal fade" id="etsbModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
 </div>--}}
-<!-- modal -->
-<div id="etsbModal" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+<div class="modal fade" id="etsbModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+
+        </div>
+    </div>
 </div>
+<!-- modal -->
+
 
 <!--script for this page only-->
 @if($errors->any())
