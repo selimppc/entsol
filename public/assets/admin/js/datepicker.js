@@ -9,12 +9,8 @@ init.push(function () {
         todayBtn: "linked",
         orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
     }
-    $('#bs-datepicker-example').datepicker({
-        format: 'yyyy/mm/dd (D)',
-        autoclose: true,
-    });
 
-    $('#bs-datepicker-component').datepicker({
+    $('.bs-datepicker-component').datepicker({
         format: 'yyyy/mm/dd (D)',
         autoclose: true,
     });

@@ -12,8 +12,8 @@
 
         {!! Form::label('date', 'Date:', ['class' => 'control-label']) !!}
 
-        <div class="input-group date" id="bs-datepicker-component">
-            {!! Form::text('date', null, ['class' => 'form-control','required']) !!}
+        <div class="input-group date">
+            {!! Form::text('date', null, ['class' => 'form-control bs-datepicker-component','required']) !!}
             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
         </div>
 
