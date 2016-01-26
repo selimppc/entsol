@@ -77,8 +77,8 @@
                 <h4 class="modal-title" id="myModalLabel">Add Voucher Head</h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['route' => 'voucher-head-store']) !!}
-                {{--@include('accounts::voucher_head._form')--}}
+                {!! Form::open(['route' => 'store-voucher-detail']) !!}
+                @include('accounts::voucher_detail._form')
                 {!! Form::close() !!}
             </div> <!-- / .modal-body -->
         </div> <!-- / .modal-content -->

@@ -11,6 +11,7 @@ namespace App\Modules\Accounts\Controllers;
 use App\Branch;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VoucherHeadRequest;
+use App\VoucherDetail;
 use App\VoucherHead;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -29,9 +30,9 @@ class VoucherDetailController extends Controller
 
        $pageTitle = 'Voucher Head Dteail';
 
-           $data = VoucherHead::with('relBranch')->orderBy('id', 'DESC')->paginate(50);
-
-       return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'data'=>$data]);
+       $data = VoucherDetail::with('relVoucherHead','')->orderBy('id', 'DESC')->paginate(50);
+       $branch_head_data = VoucherHead::lists('id','');
+       return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'data'=>$data,'branch_head_data'=>$branch_head_data]);
    }
 
     public function store(VoucherHeadRequest $request){

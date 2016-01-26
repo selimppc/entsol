@@ -56,6 +56,13 @@
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
+        {!! Form::label('branch_id', 'Branch:', ['class' => 'control-label']) !!}
+        {!! Form::Select('branch_id', $branch_data, Input::old('branch_id'),['class' => 'form-control','required']) !!}
+    </div>
+</div>
+
+<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+    <div class="row">
         {!! Form::label('note', 'Note:', ['class' => 'control-label']) !!}
         {!! Form::textarea('note', null, ['class' => 'form-control']) !!}
     </div>

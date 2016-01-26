@@ -20,5 +20,8 @@ class VoucherDetail extends Model
         'voucher_head_id','coa_id','sub_account_code','currency_id','exchage_rate','prime_amount','base_amount','branch','note','status'
     ];
 
+    public function relVoucherHead(){
+        return $this->belongsTo('App\VoucherHead', 'voucher_head_id', 'id');
+    }
 
 }
