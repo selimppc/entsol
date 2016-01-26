@@ -13,20 +13,39 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\VoucherHeadRequest;
 use App\VoucherHead;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 
 class VoucherHeadController extends Controller
 {
+
+    protected function isPostRequest()
+    {
+        return Input::server("REQUEST_METHOD") == "POST";
+    }
+
    public function index(){
 
        $pageTitle = 'Voucher Head';
 
+       if($this->isPostRequest()){
+
+           $account_type = Input::get('account_type');
+           $branch = Input::get('branch');
+
+           $term_year = Input::get('year');
+           $status = Input::get('status');
+           $search_branch_data = Branch::where('code','LIKE','%'.$branch.'%')->first();
+
+           $data = VoucherHead::with('relBranch')->where('account_type',$account_type)->orWhere('branch_id',$search_branch_data->id)->orWhere('year',$term_year)->orWhere('status',$status)->orderBy('id', 'DESC')->get();
+       }else{
+           $data = VoucherHead::with('relBranch')->orderBy('id', 'DESC')->get();
+       }
        $model = new VoucherHead();
        $year = $model->getYear();
        $branch_data = Branch::lists('code','id');
 
-       $data = VoucherHead::with('relBranch')->orderBy('id', 'DESC')->get();
        return view('accounts::voucher_head.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'data'=>$data,'year'=>$year]);
    }
 
@@ -48,7 +67,7 @@ class VoucherHeadController extends Controller
     }
 
     public function show($id)
-    {//print_r($id);exit;
+    {
         $pageTitle = 'Show the detail';
         $data = VoucherHead::with('relBranch')->where('id',$id)->first();
 

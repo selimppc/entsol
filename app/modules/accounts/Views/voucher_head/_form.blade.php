@@ -17,11 +17,14 @@
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
+
         {!! Form::label('date', 'Date:', ['class' => 'control-label']) !!}
+
         <div class="input-group date" id="bs-datepicker-component">
             {!! Form::text('date', null, ['class' => 'form-control','required']) !!}
             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
         </div>
+
     </div>
 </div>
 
@@ -74,6 +77,7 @@
     {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
 </div>
 
+
 <!-- Javascript -->
 <script>
     init.push(function () {
@@ -85,9 +89,9 @@
 
         $('#bs-datepicker-component').datepicker();
 
-        var options2 = {
+        /*var options2 = {
             orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
-        }
+        }*/
     });
 </script>
 
