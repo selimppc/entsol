@@ -89,9 +89,6 @@
 
         $('#bs-datepicker-component').datepicker();
 
-        /*var options2 = {
-            orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
-        }*/
     });
 </script>
 
