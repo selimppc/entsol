@@ -50,7 +50,7 @@
 {!! Form::submit('Submit', ['class' => 'btn btn-success']) !!}--}}
 
 <div class="modal-footer">
-    <a href="{{ URL::previous()}}"  class="btn btn-default" type="button"> Close </a>
+    <a href="{{route('currency')}}"  class="btn btn-default" type="button"> Close </a>
     {!! Form::submit('Save changes', ['class' => 'btn btn-primary']) !!}
 </div>
 

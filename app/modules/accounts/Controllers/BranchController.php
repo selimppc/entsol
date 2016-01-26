@@ -47,11 +47,11 @@ class BranchController extends Controller
         try {
             Branch::create($input);
             DB::commit();
-            Session::flash('flash_message', 'Successfully added!');
+            Session::flash('message', 'Successfully added!');
         } catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
-            Session::flash('flash_message_error', $e->getMessage());
+            Session::flash('danger', $e->getMessage());
         }
 
         return redirect()->back();
@@ -101,12 +101,12 @@ class BranchController extends Controller
         try {
             $model->update($input);
             DB::commit();
-            Session::flash('flash_message', "Successfully Updated");
+            Session::flash('message', "Successfully Updated");
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
-            Session::flash('flash_message_error', $e->getMessage());
+            Session::flash('danger', $e->getMessage());
         }
         return redirect()->back();
     }
@@ -122,11 +122,11 @@ class BranchController extends Controller
         try {
             $model = Branch::where('id',$id)->first();
             if ($model->delete()) {
-                Session::flash('flash_message', " Successfully Deleted.");
+                Session::flash('message', "Successfully Deleted.");
                 return redirect()->back();
             }
         } catch(\Exception $e) {
-            Session::flash('flash_message_error',$e->getMessage() );
+            Session::flash('danger',$e->getMessage());
             return redirect()->back();
         }
     }

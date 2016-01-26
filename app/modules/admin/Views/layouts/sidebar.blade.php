@@ -56,6 +56,15 @@
                 <li>
                     <a tabindex="-1" href="{{route('voucher-head')}}"><span class="mm-text">Voucher Head</span></a>
                 </li>
+                <li>
+                    <a tabindex="-1" href="{{route('group-one')}}"><span class="mm-text">Group One</span></a>
+                </li>
+                <li>
+                    <a tabindex="-1" href="{{route('branch')}}"><span class="mm-text">Branch</span></a>
+                </li>
+                <li>
+                    <a tabindex="-1" href="{{route('currency')}}"><span class="mm-text">Currency</span></a>
+                </li>
             </ul>
         </li>
 

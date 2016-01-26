@@ -8,7 +8,7 @@
 
 <div class="modal-body">
     @section('content_update')
-    {!! Form::model($data, ['method' => 'PATCH', 'route'=> ['branch-update'],'id' => 'jq-validation-form']) !!}
+    {!! Form::model($data, ['method' => 'PATCH', 'route'=> ['update-branch', $data->id]]) !!}
     @include('accounts::branch._form')
     {!! Form::close() !!}
 </div>

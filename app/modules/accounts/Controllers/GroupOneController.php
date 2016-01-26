@@ -124,7 +124,7 @@ class GroupOneController extends Controller
                 return redirect()->back();
             }
         } catch(\Exception $e) {
-            Session::flash('danger',$ex->getMessage());
+            Session::flash('danger',$e->getMessage());
             return redirect()->back();
         }
     }
