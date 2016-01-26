@@ -27,6 +27,10 @@
                 <td>{{ isset($data->period)?$data->period:'' }}</td>
             </tr>
             <tr>
+                <th class="col-lg-4">Branch</th>
+                <td>{{isset($data->relBranch->code)?$data->relBranch->code:''}}</td>
+            </tr>
+            <tr>
                 <th class="col-lg-4">note</th>
                 <td>{{ isset($data->note)?$data->note:'' }}</td>
             </tr>

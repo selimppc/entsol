@@ -35,7 +35,7 @@
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         {!! Form::label('year', 'Year:', ['class' => 'control-label']) !!}
-        {!! Form::text('year',null, ['class' => 'form-control','required']) !!}
+        {!! Form::select('year',$year, Input::old('year'),['class' => 'form-control','required']) !!}
     </div>
 </div>
 

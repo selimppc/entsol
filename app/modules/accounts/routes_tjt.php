@@ -34,3 +34,8 @@ Route::any('delete-voucher-head/{id}', [
     'as' => 'delete-voucher-head',
     'uses' => 'VoucherHeadController@delete'
 ]);
+
+Route::any('status-voucher-head/{id}', [
+    'as' => 'status-voucher-head',
+    'uses' => 'VoucherHeadController@change_status'
+]);

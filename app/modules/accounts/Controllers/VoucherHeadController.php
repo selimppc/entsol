@@ -21,9 +21,13 @@ class VoucherHeadController extends Controller
    public function index(){
 
        $pageTitle = 'Voucher Head';
+
+       $model = new VoucherHead();
+       $year = $model->getYear();
        $branch_data = Branch::lists('code','id');
-       $data = VoucherHead::orderBy('id', 'DESC')->get();
-       return view('accounts::voucher_head.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'data'=>$data]);
+
+       $data = VoucherHead::with('relBranch')->orderBy('id', 'DESC')->get();
+       return view('accounts::voucher_head.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'data'=>$data,'year'=>$year]);
    }
 
     public function store(VoucherHeadRequest $request){
@@ -46,7 +50,7 @@ class VoucherHeadController extends Controller
     public function show($id)
     {//print_r($id);exit;
         $pageTitle = 'Show the detail';
-        $data = VoucherHead::where('id',$id)->first();
+        $data = VoucherHead::with('relBranch')->where('id',$id)->first();
 
         return view('accounts::voucher_head.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
@@ -54,11 +58,12 @@ class VoucherHeadController extends Controller
     public function edit($id)
     {
         $pageTitle = 'Show the detail';
+
+        $model = new VoucherHead();
         $branch_data = Branch::lists('code','id');
-        #$year = VoucherHead::getYear();
-        #$print_r($year);exit;
-        $data = VoucherHead::where('id',$id)->first();
-        return view('accounts::voucher_head.update', ['data' => $data,'branch_data'=>$branch_data,'pageTitle'=> $pageTitle]);
+        $year = $model->getYear();
+        $data = VoucherHead::findOrFail($id);
+        return view('accounts::voucher_head.update', ['data' => $data,'branch_data'=>$branch_data,'pageTitle'=> $pageTitle,'year'=>$year]);
     }
 
     public function update(VoucherHeadRequest $request, $id)
@@ -79,17 +84,44 @@ class VoucherHeadController extends Controller
         }
         return redirect()->back();
     }
+    public function change_status($id)
+    {
+        $model = VoucherHead::findOrFail($id);
+
+        DB::beginTransaction();
+        try {
+            if($model->status =='active'){
+                $model->status = 'inactive';
+            }else{
+                $model->status = 'active';
+            }
+            $model->save();
+            DB::commit();
+            Session::flash('message', "Successfully Changed Status.");
+        }
+        catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('error', $e->getMessage());
+        }
+        return redirect()->route('voucher-head');
+    }
 
     public function delete($id){
+
+        $model = VoucherHead::findOrFail($id);
+
+        DB::beginTransaction();
         try {
-            $model = VoucherHead::findOrFail($id);
-            if ($model->delete()) {
-                Session::flash('message', " Successfully Deleted.");
-                return redirect()->back();
-            }
-        } catch(\Exception $e) {
-            Session::flash('danger',$e->getMessage() );
-            return redirect()->back();
+            $model->delete();
+            DB::commit();
+            Session::flash('message', "Successfully Deleted.");
         }
+        catch (Exception $ex){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('danger',$ex->getMessage());
+        }
+        return redirect()->back();
     }
 }

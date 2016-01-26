@@ -20,6 +20,12 @@ class VoucherHead extends Model
         'account_type','date','reference','year','period','branch_id','note','status'
     ];
 
+
+
+    public function relBranch(){
+        return $this->belongsTo('App\Branch', 'branch_id', 'id');
+    }
+
     public static function getYear(){
         return $year = [
             '2010' => '2010',

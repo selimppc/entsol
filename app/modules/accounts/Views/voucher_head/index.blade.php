@@ -40,8 +40,15 @@
                                     <td>{{$values->reference}}</td>
                                     <td>{{$values->year}}</td>
                                     <td>{{$values->period}}</td>
-                                    <td>{{$values->branch}}</td>
-                                    <td>{{$values->status}}</td>
+                                    <td>{{isset($values->relBranch->code)?$values->relBranch->code:''}}</td>
+                                    <td>{{$values->status}}
+                                      @if($values->status == 'active')&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="{{ route('status-voucher-head', $values->id) }}" class="" title="Inactivate this Status" onclick="return confirm('Are you sure to Inactive status?')"><i class="fa  fa-minus-square"></i></a>
+                                      @else
+                                            &nbsp;
+                                            <a href="{{ route('status-voucher-head', $values->id) }}" class="" title="Activate This Status" onclick="return confirm('Are you sure to Active status?')"><i class="fa fa-plus-square"></i></a>
+                                      @endif
+                                    </td>
                                     <td>
                                         <a href="{{ route('view-voucher-head', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
                                         <a href="{{ route('edit-voucher-head', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Edit"><i class="fa fa-edit"></i></a>
@@ -75,12 +82,7 @@
         </div> <!-- / .modal-content -->
     </div> <!-- / .modal-dialog -->
 </div>
-<!-- modal -->
 
-
-<!-- Modal  -->
-{{--<div class="modal fade" id="etsbModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
-</div>--}}
 <div class="modal fade" id="etsbModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
