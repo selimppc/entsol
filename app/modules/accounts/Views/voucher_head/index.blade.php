@@ -34,7 +34,7 @@
                             {!! Form::Select('status',array(''=>'Status','active'=>'Active','inactive'=>'Inactive'),Input::old('status'),['class'=>'form-control ']) !!}
                         </div>
                         <div class="col-sm-2 filter-btn">
-                            {!! Form::submit('Filter', array('class'=>'btn btn-info btn-xs','id'=>'button')) !!}
+                            {!! Form::submit('Search', array('class'=>'btn btn-info btn-xs','id'=>'button')) !!}
                         </div>
                     </div>
                     {!! Form::close() !!}
@@ -85,6 +85,7 @@
 
                         </tbody>
                     </table>
+                    <span class="pull-right">{!! str_replace('/?', '?', $data->render()) !!} </span>
                 </div>
             </div>
         </div>
@@ -127,14 +128,5 @@
         });
     </script>
 @endif
-
-<script>
-    init.push(function () {
-        $('#jq-datatables-example').dataTable();
-        /*$('#jq-datatables-example_wrapper .table-caption').text('Some header text');*/
-        $('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
-    });
-</script>
-
 
 @stop

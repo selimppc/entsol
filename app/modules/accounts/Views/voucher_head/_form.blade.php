@@ -1,11 +1,3 @@
-@if($errors->any())
-    <ul class="alert alert-danger">
-        @foreach($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-@endif
-
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
@@ -78,18 +70,6 @@
 </div>
 
 
-<!-- Javascript -->
-<script>
-    init.push(function () {
-        var options = {
-            todayBtn: "linked",
-            orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
-        }
-        $('#bs-datepicker-example').datepicker(options);
-
-        $('#bs-datepicker-component').datepicker();
-
-    });
-</script>
+<script type="text/javascript" src="{{ URL::asset('assets/admin/js/datepicker.js') }}"></script>
 
 

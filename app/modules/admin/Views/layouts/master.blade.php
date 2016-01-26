@@ -74,7 +74,14 @@
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/demo.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/validation.js') }}"></script>
 
+
 <script type="text/javascript">
+    /*--------data table-----------*/
+    init.push(function () {
+        $('#jq-datatables-example').dataTable();
+        $('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Filter...');
+    });
+    /*-------------data table--------*/
     init.push(function () {
         // Javascript code here
     })
