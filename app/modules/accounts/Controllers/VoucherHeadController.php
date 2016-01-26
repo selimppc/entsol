@@ -40,7 +40,7 @@ class VoucherHeadController extends Controller
 
            $data = VoucherHead::with('relBranch')->where('account_type',$account_type)->orWhere('branch_id',$search_branch_data->id)->orWhere('year',$term_year)->orWhere('status',$status)->orderBy('id', 'DESC')->get();
        }else{
-           $data = VoucherHead::with('relBranch')->orderBy('id', 'DESC')->paginate(2);
+           $data = VoucherHead::with('relBranch')->orderBy('id', 'DESC')->paginate(50);
        }
        $model = new VoucherHead();
        $year = $model->getYear();

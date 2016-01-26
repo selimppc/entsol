@@ -85,8 +85,8 @@
 
                         </tbody>
                     </table>
-                    <span class="pull-right">{!! str_replace('/?', '?', $data->render()) !!} </span>
                 </div>
+                    <span class="pull-left">{!! str_replace('/?', '?', $data->render()) !!} </span>
             </div>
         </div>
     </div>
