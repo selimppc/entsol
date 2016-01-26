@@ -4,7 +4,7 @@
 </div>
 
 <div class="modal-body">
-    {!! Form::model($data, ['method' => 'PATCH', 'route'=> ['group_one-update', $data->id,'class' => 'form-horizontal','id' => 'jq-validation-form']]) !!}
+    {!! Form::model($data, ['method' => 'PATCH', 'route'=> ['update-group-one', $data->id]]) !!}
     @include('accounts::group_one._form')
     {!! Form::close() !!}
 </div>

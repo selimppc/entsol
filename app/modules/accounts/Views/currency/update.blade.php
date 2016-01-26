@@ -4,7 +4,7 @@
 </div>
 
 <div class="modal-body">
-    {!! Form::model($data, ['method' => 'PATCH', 'route'=> ['currency-update', $data->id]]) !!}
+    {!! Form::model($data, ['method' => 'PATCH', 'route'=> ['update-currency', $data->id]]) !!}
     @include('accounts::currency._form')
     {!! Form::close() !!}
 </div>
