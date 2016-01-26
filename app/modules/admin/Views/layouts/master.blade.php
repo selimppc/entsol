@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html class="gt-ie8 gt-ie9 not-ie pxajs"><!--<![endif]-->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -19,9 +18,11 @@
     <link href="{{ URL::asset('assets/admin/css/themes.min.css') }}" rel="stylesheet" type="text/css" >
     <link href="{{ URL::asset('assets/admin/css/custom.css') }}" rel="stylesheet" type="text/css" >
     {{--<link href="{{ URL::asset('assets/admin/css/styles.min.css') }}" rel="stylesheet" type="text/css" >--}}
+
 </head>
 
-<body class="theme-dust main-menu-animated" style="">
+<body class="theme-dust main-menu-animated">
+<script>var init = [];</script>
 
    <div id="main-wrapper">
         @include('admin::layouts.header')
@@ -55,7 +56,6 @@
 
             @endif
             <div>
-                <script>var init = [];</script>
                 @yield('content')
             </div>
         </div>
@@ -81,9 +81,14 @@
         $('#jq-datatables-example').dataTable();
         $('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Filter...');
     });
-    /*-------------data table--------*/
+
+    init.push(function () {
+        $('.bs-datepicker-component').datepicker();
+    });
+
     init.push(function () {
         // Javascript code here
     })
     window.LanderApp.start(init);
+
 </script>

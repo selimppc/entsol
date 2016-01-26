@@ -17,31 +17,7 @@
             </div>
 
             <div class="panel-body">
-    {{-------------- Filter :Starts -------------------------------------------}}
-                    {!! Form::open(['route' => 'voucher-head']) !!}
-                    <div class="col-sm-10">
-                        <div class="col-sm-4">
-                            {!! Form::Select('account_type',array(''=>'Select Account Type','account-payable'=>'Account Payable','account-receivable'=>'Account Receivable','account-adjustment'=>'account Adjustment','journal-vouche'=>'Journal Voucher','receipt-voucher'=>'Receipt Voucher','reverse-entry'=>'Reverse Entry'),Input::old('account_type'),['class'=>'form-control ']) !!}
-                        </div>
 
-                        <div class="col-sm-2">
-                            {!! Form::text('branch',Input::old('branch'),['class' => 'form-control','placeholder'=>'Branch']) !!}
-                        </div>
-                        <div class="col-sm-2">
-                            {!! Form::select('year',['' => 'Year']+$year, Input::old('year'),['class' => 'form-control']) !!}
-                        </div>
-                        <div class="col-sm-2">
-                            {!! Form::Select('status',array(''=>'Status','active'=>'Active','inactive'=>'Inactive'),Input::old('status'),['class'=>'form-control ']) !!}
-                        </div>
-                        <div class="col-sm-2 filter-btn">
-                            {!! Form::submit('Search', array('class'=>'btn btn-info btn-xs','id'=>'button')) !!}
-                        </div>
-                    </div>
-                    {!! Form::close() !!}
-                    <p> &nbsp;</p>
-                    <p> &nbsp;</p>
-
-    {{-------------- Filter :Ends -------------------------------------------}}
                 <div class="table-primary">
                     <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
                         <thead>
@@ -102,7 +78,7 @@
             </div>
             <div class="modal-body">
                 {!! Form::open(['route' => 'voucher-head-store']) !!}
-                @include('accounts::voucher_head._form')
+                {{--@include('accounts::voucher_head._form')--}}
                 {!! Form::close() !!}
             </div> <!-- / .modal-body -->
         </div> <!-- / .modal-content -->
