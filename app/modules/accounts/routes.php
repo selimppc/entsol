@@ -16,131 +16,131 @@ Route::group(array('modules'=>'Accounts', 'namespace' => 'App\Modules\Accounts\C
 
     /**Group One**/
 
-    Route::any("group_one/index", [
-        "as"   => "group_one-index",
+    Route::any("group-one", [
+        "as"   => "group-one",
         "uses" => "GroupOneController@index"
     ]);
 
-    Route::any("group_one/store", [
-        "as"   => "group_one-store",
+    Route::any("store-group-one", [
+        "as"   => "store-group-one",
         "uses" => "GroupOneController@store"
     ]);
 
-    Route::any("group_one/show/{id}", [
-        "as"   => "group_one-show",
+    Route::any("view-group-one/{id}", [
+        "as"   => "view-group-one",
         "uses" => "GroupOneController@show"
     ]);
 
-    Route::any("group_one/edit/{id}", [
-        "as"   => "group_one-edit",
+    Route::any("edit-group-one/{id}", [
+        "as"   => "edit-group-one",
         "uses" => "GroupOneController@edit"
     ]);
 
-    Route::any("group_one/update/{id}", [
-        "as"   => "group_one-update",
+    Route::any("update-group-one/{id}", [
+        "as"   => "update-group-one",
         "uses" => "GroupOneController@update"
     ]);
 
-    Route::any("group_one/delete/{id}", [
-        "as"   => "group_one-delete",
+    Route::any("delete-group-one/delete/{id}", [
+        "as"   => "delete-group-one",
         "uses" => "GroupOneController@delete"
     ]);
 
     /**Default Offset**/
 
-    Route::any("default_offset/index", [
-        "as"   => "default_offset-index",
+    Route::any("default-offset", [
+        "as"   => "default-offset",
         "uses" => "DefaultOffsetController@index"
     ]);
 
-    Route::any("default_offset/store", [
-        "as"   => "default_offset-store",
+    Route::any("store-default-offset", [
+        "as"   => "store-default-offset",
         "uses" => "DefaultOffsetController@store"
     ]);
 
-    Route::any("default_offset/show/{id}", [
-        "as"   => "default_offset-show",
+    Route::any("view-default-offset/{id}", [
+        "as"   => "view-default-offset",
         "uses" => "DefaultOffsetController@show"
     ]);
 
-    Route::any("default_offset/edit/{id}", [
-        "as"   => "default_offset-edit",
+    Route::any("edit-default-offset/{id}", [
+        "as"   => "edit-default-offset",
         "uses" => "DefaultOffsetController@edit"
     ]);
 
-    Route::any("default_offset/update/{id}", [
-        "as"   => "default_offset-update",
+    Route::any("update-default-offset/{id}", [
+        "as"   => "update-default-offset",
         "uses" => "DefaultOffsetController@update"
     ]);
 
-    Route::any("default_offset/delete/{id}", [
-        "as"   => "default_offset-delete",
+    Route::any("delete-default-offset/{id}", [
+        "as"   => "delete-default-offset",
         "uses" => "DefaultOffsetController@delete"
     ]);
 
 
     /**Currency**/
 
-    Route::any("currency/index", [
-        "as"   => "currency-index",
+    Route::any("currency", [
+        "as"   => "currency",
         "uses" => "CurrencyController@index"
     ]);
 
-    Route::any("currency/store", [
-        "as"   => "currency-store",
+    Route::any("store-currency", [
+        "as"   => "store-currency",
         "uses" => "CurrencyController@store"
     ]);
 
-    Route::any("currency/show/{id}", [
-        "as"   => "currency-show",
+    Route::any("view-currency/{id}", [
+        "as"   => "view-currency",
         "uses" => "CurrencyController@show"
     ]);
 
-    Route::any("currency/edit/{id}", [
-        "as"   => "currency-edit",
+    Route::any("edit-currency/{id}", [
+        "as"   => "edit-currency",
         "uses" => "CurrencyController@edit"
     ]);
 
-    Route::any("currency/update/{id}", [
-        "as"   => "currency-update",
+    Route::any("update-currency/{id}", [
+        "as"   => "update-currency",
         "uses" => "CurrencyController@update"
     ]);
 
-    Route::any("currency/delete/{id}", [
-        "as"   => "currency-delete",
+    Route::any("delete-currency/{id}", [
+        "as"   => "delete-currency",
         "uses" => "CurrencyController@delete"
     ]);
 
 
     /**Branch**/
 
-    Route::any("branch/index", [
-        "as"   => "branch-index",
+    Route::any("branch", [
+        "as"   => "branch",
         "uses" => "BranchController@index"
     ]);
 
-    Route::any("branch/store", [
-        "as"   => "branch-store",
+    Route::any("store-branch", [
+        "as"   => "store-branch",
         "uses" => "BranchController@store"
     ]);
 
-    Route::any("branch/show/{id}", [
-        "as"   => "branch-show",
+    Route::any("view-branch/{id}", [
+        "as"   => "view-branch",
         "uses" => "BranchController@show"
     ]);
 
-    Route::any("branch/edit/{id}", [
-        "as"   => "branch-edit",
+    Route::any("edit-branch/{id}", [
+        "as"   => "edit-branch",
         "uses" => "BranchController@edit"
     ]);
 
-    Route::any("branch/update/{id}", [
-        "as"   => "branch-update",
+    Route::any("update-branch/{id}", [
+        "as"   => "update-branch",
         "uses" => "BranchController@update"
     ]);
 
-    Route::any("branch/delete/{id}", [
-        "as"   => "branch-delete",
+    Route::any("delete-branch/{id}", [
+        "as"   => "delete-branch",
         "uses" => "BranchController@delete"
     ]);
 
