@@ -56,7 +56,7 @@
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         {!! Form::label('note', 'Note:', ['class' => 'control-label']) !!}
-        {!! Form::text('note', null, ['class' => 'form-control']) !!}
+        {!! Form::textarea('note', null, ['class' => 'form-control']) !!}
     </div>
 </div>
 
