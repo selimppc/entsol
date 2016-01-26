@@ -80,14 +80,17 @@
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         {!! Form::label('email', 'Email:', ['class' => 'control-label']) !!}
-        {!! Form::email('email', null, ['id'=>'email', 'class' => 'form-control','required']) !!}
+        {!! Form::email('email', null, ['id'=>'email', 'class' => 'form-control']) !!}
     </div>
 </div>
 
-<div class="form-group">
-    {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
-    <small class="required">(Required)</small>
-    {!! Form::Select('status',array('active'=>'Active','inactive'=>'Inactive'),Input::old('status'),['class'=>'form-control ','required']) !!}
+<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+    <div class="row">
+        {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
+        <small class="required">(Required)</small>
+        {{--{!! Form::select('status', array(''=>'--select--','active'=>'Active','inactive'=>'Inactive'),Input::old('status'),['class' => 'form-control','required']) !!}--}}
+        {!! Form::select('status', array('active'=>'Active','inactive'=>'Inactive'),Input::old('status'),['class' => 'form-control','required']) !!}
+    </div>
 </div>
 
 <p> &nbsp; </p>
@@ -100,4 +103,3 @@
     <a href="{{ URL::previous()}}"  class="btn btn-default" type="button"> Close </a>
     {!! Form::submit('Save changes', ['class' => 'btn btn-primary']) !!}
 </div>
-

@@ -96,7 +96,7 @@
                 <h4 class="modal-title" id="myModalLabel">Add Group One</h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['route' => 'group_one-store']) !!}
+                {!! Form::open(['route' => 'group_one-store','class' => 'form-horizontal','id' => 'jq-validation-form']) !!}
                 @include('accounts::group_one._form')
                 {!! Form::close() !!}
             </div> <!-- / .modal-body -->

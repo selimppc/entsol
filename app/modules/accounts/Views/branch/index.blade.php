@@ -101,10 +101,10 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel">Add Currency</h4>
+                <h4 class="modal-title" id="myModalLabel">Add Branch</h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['route' => 'branch-store']) !!}
+                {!! Form::open(['route' => 'branch-store','id' => 'jq-validation-form']) !!}
                 @include('accounts::branch._form')
                 {!! Form::close() !!}
             </div> <!-- / .modal-body -->
@@ -119,16 +119,17 @@
 
 
 <!-- Modal  -->
-{{--<div class="modal fade" id="etsbModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
-</div>--}}
-<div class="modal fade" id="etsbModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+<div class="modal fade" id="etsbModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-
-
+            {{--<section id="content_update">--}}
+                {{--@yield('content_update')--}}
+            {{--</section>--}}
         </div>
     </div>
 </div>
+
 <!-- modal -->
 
 
