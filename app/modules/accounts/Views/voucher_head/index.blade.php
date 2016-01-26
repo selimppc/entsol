@@ -66,7 +66,7 @@
                                     <td>{{$values->year}}</td>
                                     <td>{{$values->period}}</td>
                                     <td>{{isset($values->relBranch->code)?$values->relBranch->code:''}}</td>
-                                    <td>{{$values->status}}
+                                    <td>{{ucfirst($values->status)}}
                                       @if($values->status == 'active')&nbsp;&nbsp;&nbsp;&nbsp;
                                         <a href="{{ route('status-voucher-head', $values->id) }}" class="" title="Inactivate this Status" onclick="return confirm('Are you sure to Inactive status?')"><i class="fa  fa-minus-square"></i></a>
                                       @else
