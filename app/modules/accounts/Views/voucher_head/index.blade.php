@@ -45,10 +45,10 @@
                         <thead>
                         <tr>
                             <th> Account Type </th>
+                            <th> Voucher Number </th>
                             <th> Date </th>
                             <th> Reference </th>
                             <th> Year </th>
-                            <th> Period </th>
                             <th> Branch </th>
                             <th> Status </th>
                             <th> Action </th>
@@ -57,12 +57,12 @@
                         <tbody>
                         @if(isset($data))
                             @foreach($data as $values)
-                                <tr class="gradeX">
+                                <tr>
                                     <td>{{$values->account_type}}</td>
+                                    <td>{{$values->voucher_number}}</td>
                                     <td>{{$values->date}}</td>
                                     <td>{{$values->reference}}</td>
                                     <td>{{$values->year}}</td>
-                                    <td>{{$values->period}}</td>
                                     <td>{{isset($values->relBranch->code)?$values->relBranch->code:''}}</td>
                                     <td>{{ucfirst($values->status)}}
                                       @if($values->status == 'active')&nbsp;&nbsp;&nbsp;&nbsp;
@@ -76,6 +76,7 @@
                                         <a href="{{ route('view-voucher-head', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
                                         <a href="{{ route('edit-voucher-head', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Edit"><i class="fa fa-edit"></i></a>
                                         <a href="{{ route('delete-voucher-head', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Cancel"><i class="fa  fa-minus"></i></a>
+                                        <a href="{{ route('voucher-detail', $values->id) }}" class="btn btn-info btn-xs" title="Voucher-Details">V-Details</a>
                                     </td>
                                 </tr>
                             @endforeach

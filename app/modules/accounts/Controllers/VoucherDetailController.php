@@ -28,7 +28,7 @@ class VoucherDetailController extends Controller
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-   public function index(){
+   public function index($id){
 
        $pageTitle = 'Voucher Head Dteail';
 
@@ -38,7 +38,7 @@ class VoucherDetailController extends Controller
        $currency_data = Currency::lists('code','id');
        $branch_data =  Branch::lists('code','id');
 
-       return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'data'=>$data,'branch_head_data'=>$branch_head_data,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'branch_data'=>$branch_data]);
+       return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'data'=>$data,'branch_head_data'=>$branch_head_data,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id]);
    }
 
     public function store(VoucherHeadRequest $request){

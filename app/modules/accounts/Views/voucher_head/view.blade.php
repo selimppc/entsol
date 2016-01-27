@@ -11,6 +11,10 @@
                 <td>{{ isset($data->account_type)?$data->account_type:''}}</td>
             </tr>
             <tr>
+                <th class="col-lg-4">Voucher Number</th>
+                <td>{{ isset($data->voucher_number)?$data->voucher_number:''}}</td>
+            </tr>
+            <tr>
                 <th class="col-lg-4">Date</th>
                 <td>{{ isset($data->date)?$data->date:''}}</td>
             </tr>

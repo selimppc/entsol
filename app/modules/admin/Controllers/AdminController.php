@@ -15,7 +15,7 @@ class AdminController extends Controller
         return view('admin::layouts.dashboard');
     }
 
-    public function index()
+    public function content_page()
     {
         return view('admin::index');
     }
