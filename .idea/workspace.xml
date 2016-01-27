@@ -3,6 +3,51 @@
   <component name="ChangeListManager">
     <list default="true" id="52053729-aaaf-4403-b098-2b8807a1f56d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Controllers/BranchController.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Controllers/BranchController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Controllers/CurrencyController.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Controllers/CurrencyController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Controllers/DefaultOffsetController.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Controllers/DefaultOffsetController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Controllers/VoucherDetailController.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Controllers/VoucherDetailController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Controllers/VoucherHeadController.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Controllers/VoucherHeadController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Models/Balance.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Models/Balance.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Models/Branch.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Models/Branch.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Models/Currency.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Models/Currency.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Models/DefaultOffset.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Models/DefaultOffset.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Models/VoucherDetail.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Models/VoucherDetail.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Models/VoucherHead.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Models/VoucherHead.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Requests/BranchRequest.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Requests/BranchRequest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Requests/CurrencyRequest.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Requests/CurrencyRequest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Requests/DefaultOffsetRequest.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Requests/DefaultOffsetRequest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Requests/GroupOneRequest.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Requests/GroupOneRequest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Requests/VoucherHeadRequest.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Requests/VoucherHeadRequest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/branch/_form.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/branch/_form.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/branch/index.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/branch/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/branch/update.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/branch/update.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/branch/view.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/branch/view.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/currency/_form.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/currency/_form.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/currency/index.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/currency/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/currency/update.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/currency/update.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/currency/view.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/currency/view.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/default_offset/_form.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/default_offset/_form.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/default_offset/index.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/default_offset/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/default_offset/update.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/default_offset/update.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/default_offset/view.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/default_offset/view.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/group_one/update.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/group_one/update.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/group_one/view.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/group_one/view.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_detail/_form.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_detail/_form.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_detail/index.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_detail/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_detail/update.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_detail/update.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_detail/view.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_detail/view.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_head/_form.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_head/_form.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_head/index.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_head/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_head/update.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_head/update.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_head/view.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_head/view.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/routes_tjt.php" afterPath="$PROJECT_DIR$/app/modules/accounts/routes_tjt.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/app.php" afterPath="$PROJECT_DIR$/config/app.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/admin/css/custom.css" afterPath="$PROJECT_DIR$/public/assets/admin/css/custom.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/admin/js/datepicker.js" afterPath="$PROJECT_DIR$/public/assets/admin/js/datepicker.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/admin/js/validation.js" afterPath="$PROJECT_DIR$/public/assets/admin/js/validation.js" />
     </list>
     <ignored path="entsol.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,7 +68,7 @@
     <favorites_list name="entsol" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -33,7 +78,6 @@
       <list>
         <option value="$PROJECT_DIR$/resources/views/errors/404.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
-        <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/app/modules/user/routes.php" />
@@ -45,6 +89,7 @@
         <option value="$PROJECT_DIR$/app/modules/admin/Views/layouts/master.blade.php" />
         <option value="$PROJECT_DIR$/app/modules/accounts/Views/voucher_head/update.blade.php" />
         <option value="$PROJECT_DIR$/app/modules/admin/Views/layouts/sidebar.blade.php" />
+        <option value="$PROJECT_DIR$/config/app.php" />
       </list>
     </option>
   </component>
@@ -93,6 +138,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -111,10 +158,108 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entsol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entsol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entsol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entsol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="seeds" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entsol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entsol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entsol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entsol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entsol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entsol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entsol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entsol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="user" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -172,7 +317,7 @@
     <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25414366" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25809" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -214,7 +359,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="9" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -222,9 +366,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#31#44#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -232,7 +373,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="19" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -247,13 +387,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -292,13 +425,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-91.53846">
-          <caret line="140" column="10" selection-start-line="140" selection-start-column="10" selection-end-line="140" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitattributes">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -310,13 +436,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -395,7 +514,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.24717286">
           <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -410,9 +528,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.64625853">
           <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
-          <folding>
-            <element signature="e#31#44#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -420,7 +535,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.034013607">
           <caret line="4" column="9" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -428,7 +542,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.13605443">
           <caret line="4" column="19" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -436,7 +549,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.20408164">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -444,11 +556,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.40816328">
           <caret line="15" column="90" selection-start-line="15" selection-start-column="67" selection-end-line="15" selection-end-column="90" />
-          <folding>
-            <marker date="1453804839243" expanded="true" signature="255:586" placeholder="..." />
-            <marker date="1453804839243" expanded="true" signature="269:584" placeholder="..." />
-            <marker date="1453804839243" expanded="true" signature="290:518" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -456,10 +563,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6258503">
           <caret line="85" column="13" selection-start-line="85" selection-start-column="13" selection-end-line="85" selection-end-column="13" />
-          <folding>
-            <element signature="e#3381#3540#0#HTML" expanded="true" />
-            <element signature="e#3659#3698#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -467,13 +570,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6938776">
           <caret line="124" column="20" selection-start-line="124" selection-start-column="20" selection-end-line="124" selection-end-column="20" />
-          <folding>
-            <element signature="e#6428#6460#0#HTML" expanded="true" />
-            <element signature="e#6658#6710#0#HTML" expanded="true" />
-            <marker date="1453804958867" expanded="true" signature="823:1169" placeholder="..." />
-            <marker date="1453804958867" expanded="true" signature="837:1167" placeholder="..." />
-            <marker date="1453804958867" expanded="true" signature="858:1112" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -481,7 +577,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.13605443">
           <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -489,7 +584,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8503401">
           <caret line="27" column="43" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -497,9 +591,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.64625853">
           <caret line="23" column="23" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
-          <folding>
-            <element signature="e#298#362#1#PHP" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5102041">
+          <caret line="90" column="35" selection-start-line="90" selection-start-column="35" selection-end-line="90" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>
