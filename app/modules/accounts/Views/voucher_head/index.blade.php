@@ -25,7 +25,7 @@
                         </div>
 
                         <div class="col-sm-2">
-                            {!! Form::text('branch',Input::old('branch'),['class' => 'form-control','placeholder'=>'Branch']) !!}
+                            {!! Form::select('year',['' => 'Branch']+$year, Input::old('year'),['class' => 'form-control']) !!}
                         </div>
                         <div class="col-sm-2">
                             {!! Form::select('year',['' => 'Year']+$year, Input::old('year'),['class' => 'form-control']) !!}
@@ -34,7 +34,7 @@
                             {!! Form::Select('status',array(''=>'Status','active'=>'Active','inactive'=>'Inactive'),Input::old('status'),['class'=>'form-control ']) !!}
                         </div>
                         <div class="col-sm-2 filter-btn">
-                            {!! Form::submit('Search', array('class'=>'btn btn-info btn-xs','id'=>'button')) !!}
+                            {!! Form::submit('Search', array('class'=>'btn btn-info btn-xs','id'=>'search-button')) !!}
                         </div>
                     </div>
                     {!! Form::close() !!}
@@ -125,6 +125,7 @@
         $(function(){
             $("#addData").modal('show');
         });
+
     </script>
 @endif
 
