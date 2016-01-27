@@ -1,42 +1,44 @@
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
-        {!! Form::label('account_code', 'Account Code:', ['class' => 'control-label']) !!}
-        <small class="required">(Required)</small>
-        {!! Form::text('account_code', null, ['id'=>'account_code', 'class' => 'form-control','required']) !!}
+        <div class="col-sm-6">
+            {!! Form::label('account_code', 'Account Code:', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
+            {!! Form::text('account_code', null, ['id'=>'account_code', 'class' => 'form-control','required']) !!}
+        </div>
+        <div class="col-sm-6">
+            {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
+            {!! Form::text('title', null, ['id'=>'title', 'class' => 'form-control','required']) !!}
+        </div>
     </div>
 </div>
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
-        {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
-        <small class="required">(Required)</small>
-        {!! Form::text('title', null, ['id'=>'title', 'class' => 'form-control','required']) !!}
+        <div class="col-sm-12">
+            {!! Form::label('description', 'Description:', ['class' => 'control-label']) !!}
+            {!! Form::textarea('description', null, ['id'=>'description', 'class' => 'form-control','size' => '12x3']) !!}
+        </div>
     </div>
 </div>
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
-        {!! Form::label('description', 'Description:', ['class' => 'control-label']) !!}
-        {!! Form::textarea('description', null, ['id'=>'description', 'class' => 'form-control']) !!}
+        <div class="col-sm-6">
+            {!! Form::label('account_type', 'Account Type:', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
+            {!! Form::select('account_type', array('asset'=>'Asset','liability'=>'Liability','income'=>'Income','expenses'=>'Expenses'),Input::old('account_type'),['class' => 'form-control','required']) !!}
+        </div>
+        <div class="col-sm-6">
+            {!! Form::label('account_usage', 'Account Usage:', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
+            {!! Form::select('account_usage', array('ledger'=>'Ledger','ap'=>'Ap','ar'=>'Ar'),Input::old('account_usage'),['class' => 'form-control','required']) !!}
+        </div>
     </div>
 </div>
 
-<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
-    <div class="row">
-        {!! Form::label('account_type', 'Account Type:', ['class' => 'control-label']) !!}
-        <small class="required">(Required)</small>
-        {!! Form::select('account_type', array('asset'=>'Asset','liability'=>'Liability','income'=>'Income','expenses'=>'Expenses'),Input::old('account_type'),['class' => 'form-control','required']) !!}
-    </div>
-</div>
 
-<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
-    <div class="row">
-        {!! Form::label('account_usage', 'Account Usage:', ['class' => 'control-label']) !!}
-        <small class="required">(Required)</small>
-        {!! Form::select('account_usage', array('ledger'=>'Ledger','ap'=>'Ap','ar'=>'Ar'),Input::old('account_usage'),['class' => 'form-control','required']) !!}
-    </div>
-</div>
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
