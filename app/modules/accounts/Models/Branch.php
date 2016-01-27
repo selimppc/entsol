@@ -16,7 +16,7 @@ class Branch extends Model
     protected $table = 'cm_branch';
 
     protected $fillable = [
-        'code','description','currency_id','exchange_rate','contact_person','billing_address','phone','mobile','fax','email','status'
+        'code','title','description','currency_id','exchange_rate','contact_person','billing_address','phone','mobile','fax','email','status'
     ];
 
     public function relCurrency(){

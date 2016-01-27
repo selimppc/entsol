@@ -28,33 +28,6 @@ class CreateEntsolTableTable extends Migration
         });
 
         /*
-         * Chart Of Accounts
-         */
-
-
-        Schema::create('ac_chart_of_accounts', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('account_code',64)->nullable();
-            $table->text('description')->nullable();
-            $table->enum('account_type',array('asset','liability','income','expenses'))->nullable();
-            $table->enum('account_usage',array('ledger','ap','ar'))->nullable();
-            $table->unsignedInteger('group_one_id')->nullable();
-            $table->enum('analytical_code',array('cash','non-cash'))->nullable();
-            $table->string('branch_code', 45)->nullable();
-            $table->enum('status',array('active','inactive','cancel'))->nullable();
-            $table->unsignedInteger('business_id')->nullable();
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
-            $table->timestamps();
-            $table->engine = 'InnoDB';
-        });
-
-        Schema::table('ac_chart_of_accounts', function($table) {
-            $table->foreign('group_one_id')->references('id')->on('ac_group_one');
-        });
-
-
-        /*
          * Currency
          */
 
@@ -81,6 +54,7 @@ class CreateEntsolTableTable extends Migration
         Schema::create('cm_branch', function (Blueprint $table) {
             $table->increments('id');
             $table->string('code',45)->nullable();
+            $table->string('title',45)->nullable();
             $table->text('description')->nullable();
             $table->unsignedInteger('currency_id')->nullable();
             $table->decimal('exchange_rate', 20,2)->nullable();
@@ -99,6 +73,38 @@ class CreateEntsolTableTable extends Migration
 
         Schema::table('cm_branch', function($table) {
             $table->foreign('currency_id')->references('id')->on('cm_currency');
+        });
+
+
+        /*
+         * Chart Of Accounts
+         */
+
+
+        Schema::create('ac_chart_of_accounts', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('account_code',64)->nullable();
+            $table->string('title',45)->nullable();
+            $table->text('description')->nullable();
+            $table->enum('account_type',array('asset','liability','income','expenses'))->nullable();
+            $table->enum('account_usage',array('ledger','ap','ar'))->nullable();
+            $table->unsignedInteger('group_one_id')->nullable();
+            $table->enum('analytical_code',array('cash','non-cash'))->nullable();
+            $table->unsignedInteger('branch_id')->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
+            $table->unsignedInteger('business_id')->nullable();
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+
+        Schema::table('ac_chart_of_accounts', function($table) {
+            $table->foreign('group_one_id')->references('id')->on('ac_group_one');
+        });
+
+        Schema::table('ac_chart_of_accounts', function($table) {
+            $table->foreign('branch_id')->references('id')->on('cm_branch');
         });
 
 

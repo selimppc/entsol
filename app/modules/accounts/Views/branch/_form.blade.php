@@ -17,6 +17,14 @@
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
+        {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
+        <small class="required">(Required)</small>
+        {!! Form::text('title', null, ['id'=>'title', 'class' => 'form-control','required']) !!}
+    </div>
+</div>
+
+<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+    <div class="row">
         {!! Form::label('description', 'Description:', ['class' => 'control-label']) !!}
         {!! Form::textarea('description', null, ['id'=>'description', 'class' => 'form-control']) !!}
     </div>
