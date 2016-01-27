@@ -37,7 +37,7 @@
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         {!! Form::label('period', 'Period:', ['class' => 'control-label']) !!}
-        {!! Form::text('period', null, ['class' => 'form-control','required']) !!}
+        {!! Form::selectRange('period', 1, 12,Input::old('year'),['class' => 'form-control']) !!}
     </div>
 </div>
 
@@ -59,7 +59,7 @@
     <div class="row">
         {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
         <small class="required">(Required)</small>
-        {!! Form::Select('status',array('active'=>'Active','inactive'=>'Inactive'),Input::old('status'),['class'=>'form-control ','required']) !!}
+        {!! Form::Select('status',array('active'=>'Active','inactive'=>'Inactive','cancel'=>'Cancel'),Input::old('status'),['class'=>'form-control ','required']) !!}
     </div>
 </div>
 <p> &nbsp; </p>

@@ -32,19 +32,19 @@ class VoucherHeadController extends Controller
        if($this->isPostRequest()){
 
            $account_type = Input::get('account_type');
-           $branch = Input::get('branch');
+           #print_r($account_type);exit;
+           $branch = Input::get('branch_id');
 
            $term_year = Input::get('year');
            $status = Input::get('status');
-           $search_branch_data = Branch::where('code','LIKE','%'.$branch.'%')->first();
 
-           $data = VoucherHead::with('relBranch')->where('account_type',$account_type)->orWhere('branch_id',$search_branch_data->id)->orWhere('year',$term_year)->orWhere('status',$status)->orderBy('id', 'DESC')->get();
+           $data = VoucherHead::with('relBranch')->where('account_type',$account_type)->orWhere('year',$term_year)->orWhere('status',$status)->orderBy('id', 'DESC')->paginate(50);
        }else{
            $data = VoucherHead::with('relBranch')->orderBy('id', 'DESC')->paginate(50);
        }
        $model = new VoucherHead();
        $year = $model->getYear();
-       $branch_data = Branch::lists('code','id');
+       $branch_data = Branch::lists('id','code');
 
        return view('accounts::voucher_head.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'data'=>$data,'year'=>$year]);
    }
