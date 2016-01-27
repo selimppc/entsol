@@ -25,10 +25,10 @@
                         </div>
 
                         <div class="col-sm-2">
-                            {!! Form::select('year',['' => 'Branch']+$year, Input::old('year'),['class' => 'form-control']) !!}
+                            {!! Form::Select('branch_id',$branch_data, Input::old('branch_id'),['class' => 'form-control','required']) !!}
                         </div>
                         <div class="col-sm-2">
-                            {!! Form::select('year',['' => 'Year']+$year, Input::old('year'),['class' => 'form-control']) !!}
+                            {!! Form::Select('year',['' => 'Year']+$year, Input::old('year'),['class' => 'form-control']) !!}
                         </div>
                         <div class="col-sm-2">
                             {!! Form::Select('status',array(''=>'Status','active'=>'Active','inactive'=>'Inactive'),Input::old('status'),['class'=>'form-control ']) !!}
