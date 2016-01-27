@@ -13,21 +13,22 @@ class UserTableSeeder extends Seeder
     {
         DB::table('user')->delete();
 
-        $users =
-            array('admin', 'admin@admin.com', Hash::make('admin'), 'CbnYEmtDaePmLJb6Yn4j3aogp0v36o', 'CbnYEmtDaePmLJb6Yn4j3aogp0v36o', 'CbnYEmtDaePmLJb6Yn4j3aogp0v36o','127.0.1.1','2015-08-27 16:33:22','','CbnYEmtDaePmLJb6Yn4j3aogp0v36o');
+        $users = array(
+            array('admin', 'admin@admin.com', Hash::make('admin'),'127.0.1.1','2015-08-27 16:33:22')
+        );
 
         foreach($users as $user) {
             \App\User::insert(array(
                 'username' => $user[0],
                 'email' => $user[1],
                 'password' => $user[2],
-                'auth_key' => $user[3],
-                'access_token' => $user[4],
-                'csrf_token' => $user[5],
-                'ip_address' => $user[6],
-                'last_visit' => $user[7],
-                'role_id' => $user[8],
-                'remember_token' => $user[9],
+                'auth_key' => '',
+                'access_token' => '',
+                'csrf_token' => '',
+                'ip_address' => $user[3],
+                'last_visit' => $user[4],
+                'role_id' => Null,
+                'remember_token' => '',
                 'created_at' => new DateTime,
                 'updated_at' => new DateTime
             ));
