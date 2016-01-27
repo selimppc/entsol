@@ -145,5 +145,39 @@ Route::group(array('modules'=>'Accounts', 'namespace' => 'App\Modules\Accounts\C
     ]);
 
 
+    /**Chart of Accounts**/
+
+    Route::any("chart-of-accounts", [
+        "as"   => "chart-of-accounts",
+        "uses" => "ChartOfAccountsController@index"
+    ]);
+
+    Route::any("store-chart-of-accounts", [
+        "as"   => "store-chart-of-accounts",
+        "uses" => "ChartOfAccountsController@store"
+    ]);
+
+    Route::any("view-chart-of-accounts/{id}", [
+        "as"   => "view-chart-of-accounts",
+        "uses" => "ChartOfAccountsController@show"
+    ]);
+
+    Route::any("edit-chart-of-accounts/{id}", [
+        "as"   => "edit-chart-of-accounts",
+        "uses" => "ChartOfAccountsController@edit"
+    ]);
+
+    Route::any("update-chart-of-accounts/{id}", [
+        "as"   => "update-chart-of-accounts",
+        "uses" => "ChartOfAccountsController@update"
+    ]);
+
+    Route::any("delete-chart-of-accounts/{id}", [
+        "as"   => "delete-chart-of-accounts",
+        "uses" => "ChartOfAccountsController@delete"
+    ]);
+
+
+
 });
 

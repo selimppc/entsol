@@ -68,6 +68,9 @@
                 <li>
                     <a tabindex="-1" href="{{route('default-offset')}}"><span class="mm-text">Default Offset</span></a>
                 </li>
+                <li>
+                    <a tabindex="-1" href="{{route('chart-of-accounts')}}"><span class="mm-text">Chart of Accounts</span></a>
+                </li>
             </ul>
         </li>
 
