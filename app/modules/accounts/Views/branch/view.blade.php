@@ -11,6 +11,10 @@
                 <td>{{ isset($data->code)?$data->code:''}}</td>
             </tr>
             <tr>
+                <th class="col-lg-4">Title</th>
+                <td>{{ isset($data->title)?$data->title:''}}</td>
+            </tr>
+            <tr>
                 <th class="col-lg-4">Description</th>
                 <td>{{ isset($data->description)?$data->description:''}}</td>
             </tr>

@@ -12,16 +12,16 @@
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>
                 <a class="btn btn-primary pull-right" data-toggle="modal" href="#addData" title="Add">
-                    <strong>Add Branch</strong>
+                    <strong>Add COA</strong>
                 </a>
             </div>
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['route' => 'branch']) !!}
+                {!! Form::open(['route' => 'chart-of-accounts']) !!}
                 <div class="col-sm-8">
                     <div class="col-sm-4">
-                        {!! Form::text('code',Input::old('code'),['class' => 'form-control','placeholder'=>'Code']) !!}
+                        {!! Form::text('account_code',Input::old('account_code'),['class' => 'form-control','placeholder'=>'Account Code']) !!}
                     </div>
                     <div class="col-sm-3 filter-btn">
                         {!! Form::submit('Search', array('class'=>'btn btn-primary pull-left','id'=>'button')) !!}
@@ -36,12 +36,12 @@
                     <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
                         <thead>
                         <tr>
-                            <th> Code </th>
-                            <th> Title </th>
-                            <th> Currency </th>
-                            <th> Exchange Rate </th>
-                            <th> Contact Person </th>
-                            <th> email </th>
+                            <th> Account Code </th>
+                            <th> Account Type </th>
+                            <th> Account Usage </th>
+                            <th> Group One Title </th>
+                            <th> Branch Title </th>
+                            <th> Analytical Code </th>
                             <th> Status </th>
                             <th> Action </th>
                         </tr>
@@ -50,17 +50,17 @@
                         @if(isset($data))
                             @foreach($data as $values)
                                 <tr class="gradeX">
-                                    <td>{{$values->code}}</td>
-                                    <td>{{$values->title}}</td>
-                                    <td>{{$values->relCurrency->title}}</td>
-                                    <td>{{$values->exchange_rate}}</td>
-                                    <td>{{$values->contact_person}}</td>
-                                    <td>{{$values->email}}</td>
+                                    <td>{{$values->account_code}}</td>
+                                    <td>{{$values->account_type}}</td>
+                                    <td>{{$values->account_usage}}</td>
+                                    <td>{{$values->relGroupOne->title}}</td>
+                                    <td>{{$values->relBranch->title}}</td>
+                                    <td>{{$values->analytical_code}}</td>
                                     <td>{{$values->status}}</td>
                                     <td>
-                                        <a href="{{ route('view-branch', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('edit-branch', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Edit"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('delete-branch', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Delete"><i class="fa fa-trash-o"></i></a>
+                                        <a href="{{ route('view-chart-of-accounts', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('edit-chart-of-accounts', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Edit"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('delete-chart-of-accounts', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Delete"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -83,8 +83,8 @@
                 <h4 class="modal-title" id="myModalLabel">Add Branch</h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['route' => 'store-branch','id' => 'jq-validation-form']) !!}
-                @include('accounts::branch._form')
+                {!! Form::open(['route' => 'store-chart-of-accounts','id' => 'jq-validation-form']) !!}
+                @include('accounts::chart_of_accounts._form')
                 {!! Form::close() !!}
             </div> <!-- / .modal-body -->
         </div> <!-- / .modal-content -->
