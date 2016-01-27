@@ -76,7 +76,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title" id="myModalLabel">Add Voucher Head</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body modal-backdrop">
                 {!! Form::open(['route' => 'store-voucher-detail']) !!}
                 @include('accounts::voucher_detail._form')
                 {!! Form::close() !!}
