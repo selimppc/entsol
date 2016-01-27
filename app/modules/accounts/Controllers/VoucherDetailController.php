@@ -33,17 +33,17 @@ class VoucherDetailController extends Controller
        $pageTitle = 'Voucher Head Dteail';
 
        $data = VoucherDetail::with('relVoucherHead','')->orderBy('id', 'DESC')->paginate(50);
-       $branch_head_data = VoucherHead::lists('id','id');
+
        $coa_data = ChartOfAccounts::lists('account_code','id');
        $currency_data = Currency::lists('code','id');
        $branch_data =  Branch::lists('code','id');
 
-       return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'data'=>$data,'branch_head_data'=>$branch_head_data,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id]);
+       return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'data'=>$data,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id]);
    }
 
     public function store(VoucherHeadRequest $request){
         $input = $request->all();
-
+print_r($input);exit;
         /* Transaction Start Here */
         DB::beginTransaction();
         try {

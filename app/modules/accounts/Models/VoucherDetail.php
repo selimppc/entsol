@@ -17,7 +17,7 @@ class VoucherDetail extends Model
     protected $table = 'ac_voucher_detail';
 
     protected $fillable = [
-        'voucher_head_id','coa_id','sub_account_code','currency_id','exchage_rate','prime_amount','base_amount','branch','note','status'
+        'voucher_head_id','voucher_number','coa_id','account_code','sub_account_code','currency_id','exchange_rate','prime_amount','base_amount','branch_id','note','status'
     ];
 
     public function relVoucherHead(){

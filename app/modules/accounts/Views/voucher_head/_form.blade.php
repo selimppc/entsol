@@ -1,10 +1,10 @@
 
-<div class="form-group">
+<div class="form-group form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('account_type', 'Account Type:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::Select('account_type',array('account-payable'=>'Account Payable','account-receivable'=>'Account Receivable','account-adjustment'=>'account Adjustment','journal-vouche'=>'Journal Voucher','receipt-voucher'=>'Receipt Voucher','reverse-entry'=>'Reverse Entry'),Input::old('account_type'),['class'=>'form-control ','required']) !!}
+            {!! Form::Select('account_type',array('account-payable'=>'Account Payable','account-receivable'=>'Account Receivable','account-adjustment'=>'account Adjustment','journal-voucher'=>'Journal Voucher','receipt-voucher'=>'Receipt Voucher','reverse-entry'=>'Reverse Entry'),Input::old('account_type'),['class'=>'form-control ','required']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('branch_id', 'Branch:', ['class' => 'control-label']) !!}
@@ -13,11 +13,11 @@
     </div>
 </div>
 
-<div class="form-group">
+<div class="form-group form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('voucher_number', 'Voucher Number:', ['class' => 'control-label']) !!}
-            {!! Form::text('voucher_number', null, ['class' => 'form-control','required']) !!}
+            {!! Form::text('voucher_number', Input::old('voucher_number'), ['class' => 'form-control','required']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('reference', 'Reference:', ['class' => 'control-label']) !!}
@@ -26,7 +26,7 @@
     </div>
 </div>
 
-<div class="form-group">
+<div class="form-group form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('date', 'Date:', ['class' => 'control-label']) !!}
@@ -42,7 +42,7 @@
     </div>
 </div>
 
-<div class="form-group">
+<div class="form-group form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('period', 'Period:', ['class' => 'control-label']) !!}
@@ -56,11 +56,11 @@
     </div>
 </div>
 
-<div class="form-group">
+<div class="form-group form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         <div class="col-sm-12">
             {!! Form::label('note', 'Note:', ['class' => 'control-label']) !!}
-            {!! Form::textarea('note', null, ['class' => 'form-control']) !!}
+            {!! Form::textarea('note', null, ['class' => 'form-control','size' => '15x8']) !!}
         </div>
     </div>
 </div>

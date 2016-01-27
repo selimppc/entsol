@@ -25,7 +25,7 @@
                         </div>
 
                         <div class="col-sm-2">
-                            {!! Form::Select('branch_id',$branch_data, Input::old('branch_id'),['class' => 'form-control','required']) !!}
+                            {!! Form::Select('branch_id',$branch_data, Input::old('branch_id'),['class' => 'form-control']) !!}
                         </div>
                         <div class="col-sm-2">
                             {!! Form::Select('year',['' => 'Year']+$year, Input::old('year'),['class' => 'form-control']) !!}

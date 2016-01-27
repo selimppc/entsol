@@ -1800,9 +1800,9 @@
 
 .theme-dust .table-primary .table-header,.theme-dust .table-primary thead,.theme-dust .table-primary thead th,.theme-dust .table-primary thead tr{border-color:#565656!important;color:#fff}
 
-.theme-dust .table-primary thead th,.theme-dust .table-primary thead tr{background:#656565}
+.theme-dust .table-primary thead th,.theme-dust .table-primary thead tr{background:#102A54}
 
-.theme-dust .table-primary .table-header{background:#7a6f6f}
+.theme-dust .table-primary .table-header{background:#102A54}
 
 .theme-dust .nav-tabs>li.active>a,.theme-dust .nav-tabs>li.active>a:focus,.theme-dust .nav-tabs>li.active>a:hover{background:#102A54;border-bottom:2px solid #6d6363}
 
@@ -1820,7 +1820,7 @@
 
 .theme-dust .pagination>li>a:hover{border-color:#7a6f6f}
 
-.theme-dust .pagination>li.active>a,.theme-dust .pagination>li.active>a:focus,.theme-dust .pagination>li.active>a:hover,.theme-dust .pagination>li.active>span{background:#7a6f6f;border-color:#7a6f6f}
+.theme-dust .pagination>li.active>a,.theme-dust .pagination>li.active>a:focus,.theme-dust .pagination>li.active>a:hover,.theme-dust .pagination>li.active>span{background:#102A54;border-color:#7a6f6f}
 
 .theme-dust .pager li>a:hover{border-color:#7a6f6f}
 

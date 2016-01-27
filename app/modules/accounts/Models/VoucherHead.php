@@ -17,7 +17,7 @@ class VoucherHead extends Model
     protected $table = 'ac_voucher_head';
 
     protected $fillable = [
-        'account_type','date','reference','year','period','branch_id','note','status'
+        'account_type','voucher_number','date','reference','year','period','branch_id','note','status'
     ];
 
 
