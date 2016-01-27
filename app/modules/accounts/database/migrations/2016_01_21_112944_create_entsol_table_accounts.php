@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEntsolTableTable extends Migration
+class CreateEntsolTableAccounts extends Migration
 {
     /**
      * Run the migrations.
