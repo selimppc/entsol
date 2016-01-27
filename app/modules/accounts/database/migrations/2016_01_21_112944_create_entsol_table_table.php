@@ -162,6 +162,10 @@ class CreateEntsolTableTable extends Migration
         });
 
         Schema::table('ac_voucher_detail', function($table) {
+            $table->foreign('voucher_head_id')->references('id')->on('ac_voucher_head');
+        });
+
+        Schema::table('ac_voucher_detail', function($table) {
             $table->foreign('coa_id')->references('id')->on('ac_chart_of_accounts');
         });
 
@@ -170,8 +174,10 @@ class CreateEntsolTableTable extends Migration
         });
 
         Schema::table('ac_voucher_detail', function($table) {
-            $table->foreign('voucher_head_id')->references('id')->on('ac_voucher_head');
+            $table->foreign('branch_id')->references('id')->on('cm_branch');
         });
+
+
 
 
         /*
@@ -202,16 +208,22 @@ class CreateEntsolTableTable extends Migration
         });
 
         Schema::table('ac_balance', function($table) {
+            $table->foreign('voucher_head_id')->references('id')->on('ac_voucher_head');
+        });
+
+        Schema::table('ac_balance', function($table) {
             $table->foreign('coa_id')->references('id')->on('ac_chart_of_accounts');
+        });
+
+        Schema::table('ac_balance', function($table) {
+            $table->foreign('branch_id')->references('id')->on('cm_branch');
         });
 
         Schema::table('ac_balance', function($table) {
             $table->foreign('currency_id')->references('id')->on('cm_currency');
         });
 
-        Schema::table('ac_balance', function($table) {
-            $table->foreign('voucher_head_id')->references('id')->on('ac_voucher_head');
-        });
+
 
 
         /*
