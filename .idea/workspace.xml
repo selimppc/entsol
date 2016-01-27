@@ -2,52 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52053729-aaaf-4403-b098-2b8807a1f56d" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/modules/user/database/seeds/.gitkeep" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/modules/user/database/seeds/DatabaseSeeder.php" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Controllers/BranchController.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Controllers/BranchController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Controllers/CurrencyController.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Controllers/CurrencyController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Controllers/DefaultOffsetController.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Controllers/DefaultOffsetController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Controllers/VoucherDetailController.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Controllers/VoucherDetailController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Controllers/VoucherHeadController.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Controllers/VoucherHeadController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Models/Balance.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Models/Balance.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Models/Branch.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Models/Branch.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Models/Currency.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Models/Currency.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Models/DefaultOffset.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Models/DefaultOffset.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Models/VoucherDetail.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Models/VoucherDetail.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Models/VoucherHead.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Models/VoucherHead.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Requests/BranchRequest.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Requests/BranchRequest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Requests/CurrencyRequest.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Requests/CurrencyRequest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Requests/DefaultOffsetRequest.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Requests/DefaultOffsetRequest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Requests/GroupOneRequest.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Requests/GroupOneRequest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Requests/VoucherHeadRequest.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Requests/VoucherHeadRequest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/branch/_form.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/branch/_form.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/branch/index.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/branch/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/branch/update.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/branch/update.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/branch/view.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/branch/view.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/currency/_form.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/currency/_form.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/currency/index.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/currency/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/currency/update.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/currency/update.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/currency/view.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/currency/view.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/default_offset/_form.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/default_offset/_form.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/default_offset/index.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/default_offset/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/default_offset/update.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/default_offset/update.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/default_offset/view.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/default_offset/view.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/group_one/update.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/group_one/update.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/group_one/view.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/group_one/view.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_detail/_form.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_detail/_form.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_detail/index.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_detail/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_detail/update.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_detail/update.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_detail/view.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_detail/view.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_head/_form.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_head/_form.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_head/index.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_head/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_head/update.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_head/update.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_head/view.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_head/view.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/routes_tjt.php" afterPath="$PROJECT_DIR$/app/modules/accounts/routes_tjt.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/app.php" afterPath="$PROJECT_DIR$/config/app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/admin/css/custom.css" afterPath="$PROJECT_DIR$/public/assets/admin/css/custom.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/admin/js/datepicker.js" afterPath="$PROJECT_DIR$/public/assets/admin/js/datepicker.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/admin/js/validation.js" afterPath="$PROJECT_DIR$/public/assets/admin/js/validation.js" />
     </list>
     <ignored path="entsol.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -68,7 +26,40 @@
     <favorites_list name="entsol" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="DatabaseSeeder.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.0">
+              <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+              <folding>
+                <element signature="e#7#38#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/modules/user/Models/User.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.0">
+              <caret line="6" column="47" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserTableSeeder.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/database/seeds/UserTableSeeder.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6844741">
+              <caret line="24" column="43" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -90,6 +81,8 @@
         <option value="$PROJECT_DIR$/app/modules/accounts/Views/voucher_head/update.blade.php" />
         <option value="$PROJECT_DIR$/app/modules/admin/Views/layouts/sidebar.blade.php" />
         <option value="$PROJECT_DIR$/config/app.php" />
+        <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
+        <option value="$PROJECT_DIR$/database/seeds/UserTableSeeder.php" />
       </list>
     </option>
   </component>
@@ -103,15 +96,18 @@
       </GulpfileState>
     </gulpfiles>
   </component>
+  <component name="NamedScopeManager">
+    <order />
+  </component>
   <component name="PhpServers">
     <servers />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="53" />
-    <option name="y" value="24" />
-    <option name="width" value="1313" />
-    <option name="height" value="744" />
+    <option name="x" value="43" />
+    <option name="y" value="21" />
+    <option name="width" value="1323" />
+    <option name="height" value="747" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -134,12 +130,10 @@
       <autoscrollToSource />
       <autoscrollFromSource />
       <sortByType />
-      <manualOrder />
-      <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -187,6 +181,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="seeds" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entsol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entsol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrations" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -258,6 +270,62 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entsol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entsol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="user" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entsol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entsol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="user" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrations" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -265,9 +333,11 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="SearchEverywhereHistoryKey" value="UserC&#9;null&#9;null&#10;app.php&#9;FILE&#9;file:///Users/selimreza/Sites/entsol/config/app.php" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../osp/ccms" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/modules/user/database/migrations" />
       <recent name="$PROJECT_DIR$/public/assests" />
       <recent name="$PROJECT_DIR$/resources/views/errors" />
     </key>
@@ -295,6 +365,7 @@
       <gulpfile />
       <tasks />
       <arguments />
+      <pass-parent-envs>true</pass-parent-envs>
       <envs />
       <method />
     </configuration>
@@ -313,28 +384,28 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="53" y="24" width="1313" height="744" extended-state="6" />
-    <editor active="false" />
+    <frame x="43" y="21" width="1323" height="747" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25809" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2740047" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -443,7 +514,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -507,13 +577,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2905297">
           <caret line="79" column="16" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/user/Models/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24717286">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -598,6 +661,31 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5102041">
           <caret line="90" column="35" selection-start-line="90" selection-start-column="35" selection-end-line="90" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.0">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+          <folding>
+            <element signature="e#7#38#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/user/Models/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.0">
+          <caret line="6" column="47" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/UserTableSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6844741">
+          <caret line="24" column="43" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
           <folding />
         </state>
       </provider>
