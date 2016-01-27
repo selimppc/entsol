@@ -36,11 +36,10 @@ class VoucherHeadController extends Controller
            $branch = Input::get('branch_id');
 
            $term_year = Input::get('year');
-           $status = Input::get('status');
 
-           $data = VoucherHead::with('relBranch')->where('account_type',$account_type)->orWhere('branch_id',$branch)->orWhere('year',$term_year)->orWhere('status',$status)->orderBy('id', 'DESC')->paginate(50);
+           $data = VoucherHead::with('relBranch')->where('account_type',$account_type)->orWhere('branch_id',$branch)->orWhere('year',$term_year)->orderBy('id', 'DESC')->paginate(50);
        }else{
-           $data = VoucherHead::with('relBranch')->orderBy('id', 'DESC')->paginate(50);
+           $data = VoucherHead::with('relBranch')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(50);
        }
        $model = new VoucherHead();
        $year = $model->getYear();
@@ -134,7 +133,8 @@ class VoucherHeadController extends Controller
 
         DB::beginTransaction();
         try {
-            $model->delete();
+            $model->status = 'cancel';
+            $model->save();
             DB::commit();
             Session::flash('message', "Successfully Deleted.");
         }

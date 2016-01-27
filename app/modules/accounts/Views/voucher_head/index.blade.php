@@ -30,9 +30,7 @@
                         <div class="col-sm-2">
                             {!! Form::Select('year',['' => 'Year']+$year, Input::old('year'),['class' => 'form-control']) !!}
                         </div>
-                        <div class="col-sm-2">
-                            {!! Form::Select('status',array(''=>'Status','active'=>'Active','inactive'=>'Inactive'),Input::old('status'),['class'=>'form-control ']) !!}
-                        </div>
+
                         <div class="col-sm-2 filter-btn">
                             {!! Form::submit('Search', array('class'=>'btn btn-info btn-xs','id'=>'search-button')) !!}
                         </div>
@@ -77,7 +75,7 @@
                                     <td>
                                         <a href="{{ route('view-voucher-head', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
                                         <a href="{{ route('edit-voucher-head', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Edit"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('delete-voucher-head', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Delete"><i class="fa fa-trash-o"></i></a>
+                                        <a href="{{ route('delete-voucher-head', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Cancel"><i class="fa  fa-minus"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
