@@ -44,4 +44,29 @@ class ChartOfAccountsController extends Controller
 
         return view('accounts::chart_of_accounts.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'group_one_id'=> $group_one_id, 'branch_id'=> $branch_id]);
     }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Requests\BranchRequest $request)
+    {
+        $input = $request->all();
+
+        /* Transaction Start Here */
+        DB::beginTransaction();
+        try {
+            ChartOfAccounts::create($input);
+            DB::commit();
+            Session::flash('message', 'Successfully added!');
+        } catch (\Exception $e) {
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', $e->getMessage());
+        }
+
+        return redirect()->back();
+    }
 }

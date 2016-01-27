@@ -1,9 +1,9 @@
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
-        {!! Form::label('code', 'Code:', ['class' => 'control-label']) !!}
+        {!! Form::label('account_code', 'Account Code:', ['class' => 'control-label']) !!}
         <small class="required">(Required)</small>
-        {!! Form::text('code', null, ['id'=>'code', 'class' => 'form-control','required']) !!}
+        {!! Form::text('account_code', null, ['id'=>'account_code', 'class' => 'form-control','required']) !!}
     </div>
 </div>
 
@@ -24,63 +24,49 @@
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
-        {!! Form::label('currency_id', 'Currency:', ['class' => 'control-label']) !!}
+        {!! Form::label('account_type', 'Account Type:', ['class' => 'control-label']) !!}
         <small class="required">(Required)</small>
-        @if(count($currency_id)>0)
-            {!! Form::select('currency_id', $currency_id,Input::old('currency_id'),['class' => 'form-control','required']) !!}
+        {!! Form::select('account_type', array('asset'=>'Asset','liability'=>'Liability','income'=>'Income','expenses'=>'Expenses'),Input::old('account_type'),['class' => 'form-control','required']) !!}
+    </div>
+</div>
+
+<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+    <div class="row">
+        {!! Form::label('account_usage', 'Account Usage:', ['class' => 'control-label']) !!}
+        <small class="required">(Required)</small>
+        {!! Form::select('account_usage', array('ledger'=>'Ledger','ap'=>'Ap','ar'=>'Ar'),Input::old('account_usage'),['class' => 'form-control','required']) !!}
+    </div>
+</div>
+
+<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+    <div class="row">
+        {!! Form::label('group_one_id', 'Group One Title:', ['class' => 'control-label']) !!}
+        <small class="required">(Required)</small>
+        @if(count($group_one_id)>0)
+            {!! Form::select('group_one_id', $group_one_id,Input::old('group_one_id'),['class' => 'form-control','required']) !!}
         @else
-            {!! Form::text('currency_id', 'No Currency ID available',['id'=>'currency_id','class' => 'form-control','required','disabled']) !!}
+            {!! Form::text('group_one_id', 'No Group One ID available',['id'=>'group_one_id','class' => 'form-control','required','disabled']) !!}
         @endif
     </div>
 </div>
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
-        {!! Form::label('exchange_rate', 'Exchange Rate:', ['class' => 'control-label']) !!}
+        {!! Form::label('analytical_code', 'Analytical Code:', ['class' => 'control-label']) !!}
         <small class="required">(Required)</small>
-        {!! Form::input('number', 'exchange_rate', null, ['id'=>'exchange_rate', 'class' => 'form-control', 'step'=>'any','required']) !!}
+        {!! Form::select('analytical_code', array('cash'=>'Cash','non-cash'=>'Non Cash'),Input::old('analytical_code'),['class' => 'form-control','required']) !!}
     </div>
 </div>
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
-        {!! Form::label('contact_person', 'Contact Person:', ['class' => 'control-label']) !!}
-        {!! Form::text('contact_person', null, ['id'=>'contact_person', 'class' => 'form-control']) !!}
-    </div>
-</div>
-
-<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
-    <div class="row">
-        {!! Form::label('billing_address', 'Billing Address:', ['class' => 'control-label']) !!}
-        {!! Form::text('billing_address', null, ['id'=>'billing_address', 'class' => 'form-control']) !!}
-    </div>
-</div>
-
-<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
-    <div class="row">
-        {!! Form::label('phone', 'Phone:', ['class' => 'control-label']) !!}
-        {!! Form::text('phone', null, ['id'=>'phone', 'class' => 'form-control']) !!}
-    </div>
-</div>
-
-<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
-    <div class="row">
-        {!! Form::label('mobile', 'Mobile:', ['class' => 'control-label']) !!}
-        {!! Form::text('mobile', null, ['id'=>'mobile', 'class' => 'form-control']) !!}
-    </div>
-</div>
-
-<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
-    <div class="row">
-        {!! Form::label('fax', 'Fax:', ['class' => 'control-label']) !!}
-        {!! Form::text('fax', null, ['id'=>'fax', 'class' => 'form-control']) !!}
-    </div>
-</div>
-
-<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
-    <div class="row">
-        {!! Form::label('email', 'Email:', ['class' => 'control-label']) !!}
-        {!! Form::email('email', null, ['id'=>'email', 'class' => 'form-control']) !!}
+        {!! Form::label('branch_id', 'Branch Id:', ['class' => 'control-label']) !!}
+        <small class="required">(Required)</small>
+        @if(count($branch_id)>0)
+            {!! Form::select('branch_id', $branch_id,Input::old('branch_id'),['class' => 'form-control','required']) !!}
+        @else
+            {!! Form::text('branch_id', 'No Branch ID available',['id'=>'branch_id','class' => 'form-control','required','disabled']) !!}
+        @endif
     </div>
 </div>
 
@@ -89,6 +75,13 @@
         {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
         <small class="required">(Required)</small>
         {!! Form::select('status', array('active'=>'Active','inactive'=>'Inactive'),Input::old('status'),['class' => 'form-control','required']) !!}
+    </div>
+</div>
+
+<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+    <div class="row">
+        {!! Form::label('business_id', 'Business Id:', ['class' => 'control-label']) !!}
+        {!! Form::select('business_id', array(''=>'---select---'),Input::old('business_id'),['class' => 'form-control']) !!}
     </div>
 </div>
 
