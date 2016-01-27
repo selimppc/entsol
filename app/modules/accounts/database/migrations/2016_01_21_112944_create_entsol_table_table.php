@@ -146,6 +146,7 @@ class CreateEntsolTableTable extends Migration
             $table->unsignedInteger('voucher_head_id')->nullable();
             $table->string('voucher_number', 45)->nullable();
             $table->unsignedInteger('coa_id')->nullable();
+            $table->string('account_code', 45)->nullable();
             $table->string('sub_account_code', 45)->nullable();
             $table->unsignedInteger('currency_id')->nullable();
             $table->decimal('exchange_rate', 20,2)->nullable();
