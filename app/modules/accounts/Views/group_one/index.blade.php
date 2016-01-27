@@ -11,7 +11,7 @@
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>
-                <a class="btn btn-primary pull-right" data-toggle="modal" href="#addData" title="Add">
+                <a class="btn btn-primary btn-xs pull-right" data-toggle="modal" href="#addData" title="Add">
                     <strong>Add Group One</strong>
                 </a>
             </div>
@@ -24,7 +24,7 @@
                         {!! Form::text('code',Input::old('code'),['class' => 'form-control','placeholder'=>'Code']) !!}
                     </div>
                     <div class="col-sm-3 filter-btn">
-                        {!! Form::submit('Search', array('class'=>'btn btn-primary pull-left','id'=>'button')) !!}
+                        {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button')) !!}
                     </div>
                 </div>
                 {!! Form::close() !!}
