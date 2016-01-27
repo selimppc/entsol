@@ -30,11 +30,16 @@
     </div>
 </div>
 
-<p> &nbsp; </p>
+<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+    <div class="row">
+        {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
+        <small class="required">(Required)</small>
+        {{--{!! Form::select('status', array(''=>'--select--','active'=>'Active','inactive'=>'Inactive'),Input::old('status'),['class' => 'form-control','required']) !!}--}}
+        {!! Form::select('status', array('active'=>'Active','inactive'=>'Inactive','cancel'=>'Cancel'),Input::old('status'),['class' => 'form-control','required']) !!}
+    </div>
+</div>
 
-{{--<a href="{{ URL::previous()}}"  class="btn btn-default" type="button"> Close </a>--}}
-{{--<a href=""  class="btn btn-default" type="button"> Close </a>
-{!! Form::submit('Submit', ['class' => 'btn btn-success']) !!}--}}
+<p> &nbsp; </p>
 
 <div class="modal-footer">
     <a href="{{route('group-one')}}"  class="btn btn-default" type="button"> Close </a>

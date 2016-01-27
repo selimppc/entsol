@@ -40,14 +40,10 @@
 <div class="form-group">
     {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
     <small class="required">(Required)</small>
-    {!! Form::Select('status',array('active'=>'Active','inactive'=>'Inactive'),Input::old('status'),['class'=>'form-control ','required']) !!}
+    {!! Form::Select('status',array('active'=>'Active','inactive'=>'Inactive','cancel'=>'Cancel'),Input::old('status'),['class'=>'form-control ','required']) !!}
 </div>
 
 <p> &nbsp; </p>
-
-{{--<a href="{{ URL::previous()}}"  class="btn btn-default" type="button"> Close </a>--}}
-{{--<a href=""  class="btn btn-default" type="button"> Close </a>
-{!! Form::submit('Submit', ['class' => 'btn btn-success']) !!}--}}
 
 <div class="modal-footer">
     <a href="{{route('currency')}}"  class="btn btn-default" type="button"> Close </a>

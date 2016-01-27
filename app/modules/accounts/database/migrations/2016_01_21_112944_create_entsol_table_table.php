@@ -20,6 +20,7 @@ class CreateEntsolTableTable extends Migration
             $table->string('code',45)->nullable();
             $table->string('title', 45)->nullable();
             $table->text('description')->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -40,7 +41,7 @@ class CreateEntsolTableTable extends Migration
             $table->unsignedInteger('group_one_id')->nullable();
             $table->enum('analytical_code',array('cash','non-cash'))->nullable();
             $table->string('branch_code', 45)->nullable();
-            $table->enum('status',array('active','inactive'))->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->unsignedInteger('business_id')->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
@@ -64,7 +65,7 @@ class CreateEntsolTableTable extends Migration
             $table->string('title',45)->nullable();
             $table->text('description')->nullable();
             $table->decimal('exchange_rate',20,2)->nullable();
-            $table->enum('status',array('active','inactive'))->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -89,7 +90,7 @@ class CreateEntsolTableTable extends Migration
             $table->string('mobile', 45)->nullable();
             $table->string('fax', 45)->nullable();
             $table->string('email', 45)->nullable();
-            $table->enum('status',array('active','inactive'))->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -116,7 +117,7 @@ class CreateEntsolTableTable extends Migration
             $table->unsignedInteger('period')->nullable();
             $table->unsignedInteger('branch_id')->nullable();
             $table->text('note')->nullable();
-            $table->enum('status',array('active','inactive'))->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -144,7 +145,7 @@ class CreateEntsolTableTable extends Migration
             $table->decimal('base_amount', 20,2)->nullable();
             $table->string('branch', 45)->nullable();
             $table->text('note')->nullable();
-            $table->enum('status',array('active','inactive'))->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -182,7 +183,7 @@ class CreateEntsolTableTable extends Migration
             $table->decimal('exchange_rate', 20,2)->nullable();
             $table->decimal('prime_amount', 20,2)->nullable();
             $table->decimal('base_amount', 20,2)->nullable();
-            $table->enum('status',array('active','inactive'))->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -216,6 +217,7 @@ class CreateEntsolTableTable extends Migration
             $table->decimal('exchange_rate', 20,2)->nullable();
             $table->decimal('prime_amount', 20,2)->nullable();
             $table->decimal('base_amount', 20,2)->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -241,6 +243,7 @@ class CreateEntsolTableTable extends Migration
             $table->string('pnl_account', 45)->nullable();
             $table->unsignedInteger('year')->nullable();
             $table->unsignedInteger('period')->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();

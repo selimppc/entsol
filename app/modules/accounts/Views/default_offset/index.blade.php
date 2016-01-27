@@ -16,26 +16,22 @@
                 </a>
             </div>
 
-            {{--@if($errors->any())
-                <div class="alert alert-danger">
-                    @foreach($errors->all() as $error)
-                        <p>{{ $error }}</p>
-                    @endforeach
-                </div>
-            @endif--}}
-
-            @if(Session::has('flash_message'))
-                <div class="alert alert-success">
-                    <p>{{ Session::get('flash_message') }}</p>
-                </div>
-            @endif
-            {{--@if(Session::has('flash_message_error'))
-                <div class="alert alert-danger">
-                    <p>{{ Session::get('flash_message_error') }}</p>
-                </div>
-            @endif--}}
-
             <div class="panel-body">
+                {{-------------- Filter :Starts -------------------------------------------}}
+                {!! Form::open(['route' => 'default-offset']) !!}
+                <div class="col-sm-8">
+                    <div class="col-sm-4">
+                        {!! Form::text('offset',Input::old('offset'),['class' => 'form-control','placeholder'=>'Offset']) !!}
+                    </div>
+                    <div class="col-sm-3 filter-btn">
+                        {!! Form::submit('Search', array('class'=>'btn btn-primary pull-left','id'=>'button')) !!}
+                    </div>
+                </div>
+                {!! Form::close() !!}
+                <p> &nbsp;</p>
+                <p> &nbsp;</p>
+
+                {{-------------- Filter :Ends -------------------------------------------}}
                 <div class="table-primary">
                     <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
                         <thead>
@@ -44,6 +40,7 @@
                             <th> Pnl Account </th>
                             <th> Year </th>
                             <th> Period </th>
+                            <th> status </th>
                             <th> Action </th>
                         </tr>
                         </thead>
@@ -55,10 +52,11 @@
                                     <td>{{$values->pnl_account}}</td>
                                     <td>{{$values->year}}</td>
                                     <td>{{$values->period}}</td>
+                                    <td>{{$values->status}}</td>
                                     <td>
-                                        <a href="{{ route('default_offset-show', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('default_offset-edit', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Edit"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('default_offset-delete', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Delete"><i class="fa fa-trash-o"></i></a>
+                                        <a href="{{ route('view-default-offset', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('edit-default-offset', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Edit"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('delete-default-offset', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Delete"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -73,25 +71,6 @@
 </div>
 <!-- page end-->
 
-
-<!-- addData -->
-{{--<div class="modal fade" id="addData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog"  style="width: 75%;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Add Group One</h4>
-            </div>
-            <div class="modal-body">
-                {!! Form::open(['route' => 'group_one-store']) !!}
-                @include('accounts::group_one._form')
-                {!! Form::close() !!}
-            </div>
-
-        </div>
-    </div>
-</div>--}}
-
 <div id="addData" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -100,14 +79,10 @@
                 <h4 class="modal-title" id="myModalLabel">Add Default Offset</h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['route' => 'default_offset-store']) !!}
+                {!! Form::open(['route' => 'store-default-offset','id' => 'jq-validation-form']) !!}
                 @include('accounts::default_offset._form')
                 {!! Form::close() !!}
             </div> <!-- / .modal-body -->
-            {{--<div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="Submit" class="btn btn-primary">Save changes</button>
-            </div>--}}
         </div> <!-- / .modal-content -->
     </div> <!-- / .modal-dialog -->
 </div>
@@ -115,8 +90,7 @@
 
 
 <!-- Modal  -->
-{{--<div class="modal fade" id="etsbModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
-</div>--}}
+
 <div class="modal fade" id="etsbModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -136,14 +110,6 @@
         });
     </script>
 @endif
-
-<script>
-    init.push(function () {
-        $('#jq-datatables-example').dataTable();
-        /*$('#jq-datatables-example_wrapper .table-caption').text('Some header text');*/
-        $('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
-    });
-</script>
 
 
 @stop

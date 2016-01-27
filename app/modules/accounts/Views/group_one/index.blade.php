@@ -5,7 +5,7 @@
 
 @section('content')
 
-<!-- page start-->
+        <!-- page start-->
 <div class="row">
     <div class="col-sm-12">
         <div class="panel">
@@ -17,12 +17,28 @@
             </div>
 
             <div class="panel-body">
+                {{-------------- Filter :Starts -------------------------------------------}}
+                {!! Form::open(['route' => 'group-one']) !!}
+                <div class="col-sm-8">
+                    <div class="col-sm-4">
+                        {!! Form::text('code',Input::old('code'),['class' => 'form-control','placeholder'=>'Code']) !!}
+                    </div>
+                    <div class="col-sm-3 filter-btn">
+                        {!! Form::submit('Search', array('class'=>'btn btn-primary pull-left','id'=>'button')) !!}
+                    </div>
+                </div>
+                {!! Form::close() !!}
+                <p> &nbsp;</p>
+                <p> &nbsp;</p>
+
+                {{-------------- Filter :Ends -------------------------------------------}}
                 <div class="table-primary">
                     <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
                         <thead>
                         <tr>
                             <th> Code </th>
                             <th> Title </th>
+                            <th> Status </th>
                             <th> Action </th>
                         </tr>
                         </thead>
@@ -32,6 +48,7 @@
                                 <tr class="gradeX">
                                     <td>{{$values->code}}</td>
                                     <td>{{$values->title}}</td>
+                                    <td>{{$values->status}}</td>
                                     <td>
                                         <a href="{{ route('view-group-one', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
                                         <a href="{{ route('edit-group-one', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Edit"><i class="fa fa-edit"></i></a>

@@ -18,6 +18,12 @@ use Input;
 
 class DefaultOffsetController extends Controller
 {
+
+    protected function isPostRequest()
+    {
+        return Input::server("REQUEST_METHOD") == "POST";
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,8 +32,12 @@ class DefaultOffsetController extends Controller
     public function index()
     {
         $pageTitle = "Default Offset";
-        /*$data = GroupOne::orderBy('id', 'DESC')->paginate(3);*/
-        $data = DefaultOffset::orderBy('id', 'DESC')->get();
+        if($this->isPostRequest()){
+            $offset = Input::get('offset');
+            $data = DefaultOffset::where('status','active')->where('offset','LIKE','%'.$offset.'%')->orderBy('id', 'DESC')->get();
+        }else{
+            $data = DefaultOffset::where('status','active')->orderBy('id', 'DESC')->paginate(50);
+        }
         return view('accounts::default_offset.index', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 
@@ -118,16 +128,24 @@ class DefaultOffsetController extends Controller
      */
     public function delete($id)
     {
+        $model = DefaultOffset::findOrFail($id);
+
+        DB::beginTransaction();
         try {
-            $model = DefaultOffset::where('id',$id)->first();
-            if ($model->delete()) {
-                Session::flash('flash_message', " Successfully Deleted.");
-                return redirect()->back();
+            if($model->status =='active'){
+                $model->status = 'cancel';
+            }else{
+                $model->status = 'active';
             }
+            $model->save();
+            DB::commit();
+            Session::flash('message', "Successfully Deleted.");
+
         } catch(\Exception $e) {
-            Session::flash('flash_message_error',$e->getMessage() );
-            return redirect()->back();
+            DB::rollback();
+            Session::flash('danger',$e->getMessage());
         }
+        return redirect()->back();
     }
 
 

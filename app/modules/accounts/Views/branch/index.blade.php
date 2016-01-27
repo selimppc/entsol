@@ -17,6 +17,21 @@
             </div>
 
             <div class="panel-body">
+                {{-------------- Filter :Starts -------------------------------------------}}
+                {!! Form::open(['route' => 'branch']) !!}
+                <div class="col-sm-8">
+                    <div class="col-sm-4">
+                        {!! Form::text('code',Input::old('code'),['class' => 'form-control','placeholder'=>'Code']) !!}
+                    </div>
+                    <div class="col-sm-3 filter-btn">
+                        {!! Form::submit('Search', array('class'=>'btn btn-primary pull-left','id'=>'button')) !!}
+                    </div>
+                </div>
+                {!! Form::close() !!}
+                <p> &nbsp;</p>
+                <p> &nbsp;</p>
+
+                {{-------------- Filter :Ends -------------------------------------------}}
                 <div class="table-primary">
                     <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
                         <thead>
@@ -81,14 +96,13 @@
 <div class="modal fade" id="etsbModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            {{--<section id="content_update">--}}
-                {{--@yield('content_update')--}}
-            {{--</section>--}}
+
         </div>
     </div>
 </div>
 
 <!-- modal -->
+
 
 <!--script for this page only-->
 @if($errors->any())

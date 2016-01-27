@@ -18,6 +18,12 @@ use Input;
 
 class CurrencyController extends Controller
 {
+
+    protected function isPostRequest()
+    {
+        return Input::server("REQUEST_METHOD") == "POST";
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,8 +32,12 @@ class CurrencyController extends Controller
     public function index()
     {
         $pageTitle = "Currency";
-        /*$data = GroupOne::orderBy('id', 'DESC')->paginate(3);*/
-        $data = Currency::orderBy('id', 'DESC')->get();
+        if($this->isPostRequest()){
+            $code = Input::get('code');
+            $data = Currency::where('status','active')->where('code','LIKE','%'.$code.'%')->orderBy('id', 'DESC')->get();
+        }else{
+            $data = Currency::where('status','active')->orderBy('id', 'DESC')->paginate(50);
+        }
         return view('accounts::currency.index', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 
@@ -117,15 +127,23 @@ class CurrencyController extends Controller
      */
     public function delete($id)
     {
+        $model = Currency::findOrFail($id);
+
+        DB::beginTransaction();
         try {
-            $model = Currency::where('id',$id)->first();
-            if ($model->delete()) {
-                Session::flash('message', "Successfully Deleted.");
-                return redirect()->back();
+            if($model->status =='active'){
+                $model->status = 'cancel';
+            }else{
+                $model->status = 'active';
             }
+            $model->save();
+            DB::commit();
+            Session::flash('message', "Successfully Deleted.");
+
         } catch(\Exception $e) {
+            DB::rollback();
             Session::flash('danger',$e->getMessage());
-            return redirect()->back();
         }
+        return redirect()->back();
     }
 }

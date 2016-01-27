@@ -18,6 +18,10 @@
                 <th class="col-lg-4">Description</th>
                 <td>{{ isset($data->description)?$data->description:'' }}</td>
             </tr>
+            <tr>
+                <th class="col-lg-4">Status</th>
+                <td>{{ isset($data->status)?$data->status:'' }}</td>
+            </tr>
         </table>
     </div>
 </div>

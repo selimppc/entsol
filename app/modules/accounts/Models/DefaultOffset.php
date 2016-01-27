@@ -17,6 +17,6 @@ class DefaultOffset extends Model
     protected $table = 'ac_default_offset';
 
     protected $fillable = [
-        'offset','pnl_account','year','period'
+        'offset','pnl_account','year','period','status'
     ];
 }

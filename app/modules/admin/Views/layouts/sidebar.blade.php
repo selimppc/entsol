@@ -65,6 +65,9 @@
                 <li>
                     <a tabindex="-1" href="{{route('currency')}}"><span class="mm-text">Currency</span></a>
                 </li>
+                <li>
+                    <a tabindex="-1" href="{{route('default-offset')}}"><span class="mm-text">Default Offset</span></a>
+                </li>
             </ul>
         </li>
 

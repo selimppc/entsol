@@ -4,7 +4,7 @@
 </div>
 
 <div class="modal-body">
-    {!! Form::model($data, ['method' => 'PATCH', 'route'=> ['default_offset-update', $data->id]]) !!}
+    {!! Form::model($data, ['method' => 'PATCH', 'route'=> ['update-default-offset', $data->id]]) !!}
     @include('accounts::default_offset._form')
     {!! Form::close() !!}
 </div>

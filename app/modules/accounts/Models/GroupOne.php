@@ -17,6 +17,6 @@ class GroupOne extends Model
     protected $table = 'ac_group_one';
 
     protected $fillable = [
-        'code','title','description'
+        'code','title','description','status'
     ];
 }

@@ -17,6 +17,21 @@
             </div>
 
             <div class="panel-body">
+                {{-------------- Filter :Starts -------------------------------------------}}
+                {!! Form::open(['route' => 'currency']) !!}
+                <div class="col-sm-8">
+                    <div class="col-sm-4">
+                        {!! Form::text('code',Input::old('code'),['class' => 'form-control','placeholder'=>'Code']) !!}
+                    </div>
+                    <div class="col-sm-3 filter-btn">
+                        {!! Form::submit('Search', array('class'=>'btn btn-primary pull-left','id'=>'button')) !!}
+                    </div>
+                </div>
+                {!! Form::close() !!}
+                <p> &nbsp;</p>
+                <p> &nbsp;</p>
+
+                {{-------------- Filter :Ends -------------------------------------------}}
                 <div class="table-primary">
                     <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
                         <thead>
@@ -62,10 +77,11 @@
                 <h4 class="modal-title" id="myModalLabel">Add Currency</h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['route' => 'store-currency']) !!}
+                {!! Form::open(['route' => 'store-currency','id' => 'jq-validation-form']) !!}
                 @include('accounts::currency._form')
                 {!! Form::close() !!}
             </div> <!-- / .modal-body -->
+
         </div> <!-- / .modal-content -->
     </div> <!-- / .modal-dialog -->
 </div>
@@ -93,6 +109,5 @@
         });
     </script>
 @endif
-
 
 @stop

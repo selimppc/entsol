@@ -88,7 +88,6 @@
     <div class="row">
         {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
         <small class="required">(Required)</small>
-        {{--{!! Form::select('status', array(''=>'--select--','active'=>'Active','inactive'=>'Inactive'),Input::old('status'),['class' => 'form-control','required']) !!}--}}
         {!! Form::select('status', array('active'=>'Active','inactive'=>'Inactive'),Input::old('status'),['class' => 'form-control','required']) !!}
     </div>
 </div>

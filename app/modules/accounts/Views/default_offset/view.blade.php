@@ -22,6 +22,10 @@
                 <th class="col-lg-4">Period</th>
                 <td>{{ isset($data->period)?$data->period:'' }}</td>
             </tr>
+            <tr>
+                <th class="col-lg-4">Status</th>
+                <td>{{ isset($data->status)?$data->status:'' }}</td>
+            </tr>
         </table>
     </div>
 </div>

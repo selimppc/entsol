@@ -19,6 +19,11 @@ use Input;
 
 class BranchController extends Controller
 {
+    protected function isPostRequest()
+    {
+        return Input::server("REQUEST_METHOD") == "POST";
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -27,8 +32,13 @@ class BranchController extends Controller
     public function index()
     {
         $pageTitle = "Branch";
+        if($this->isPostRequest()){
+            $code = Input::get('code');
+            $data = Branch::where('status','active')->where('code','LIKE','%'.$code.'%')->orderBy('id', 'DESC')->get();
+        }else{
+            $data = Branch::where('status','active')->orderBy('id', 'DESC')->paginate(50);
+        }
         $currency_id = Currency::lists('title','id');
-        $data = Branch::orderBy('id', 'DESC')->get();
         return view('accounts::branch.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'currency_id'=> $currency_id]);
     }
 
@@ -119,15 +129,23 @@ class BranchController extends Controller
      */
     public function delete($id)
     {
+        $model = Branch::findOrFail($id);
+
+        DB::beginTransaction();
         try {
-            $model = Branch::where('id',$id)->first();
-            if ($model->delete()) {
-                Session::flash('message', "Successfully Deleted.");
-                return redirect()->back();
+            if($model->status =='active'){
+                $model->status = 'cancel';
+            }else{
+                $model->status = 'active';
             }
+            $model->save();
+            DB::commit();
+            Session::flash('message', "Successfully Deleted.");
+
         } catch(\Exception $e) {
+            DB::rollback();
             Session::flash('danger',$e->getMessage());
-            return redirect()->back();
         }
+        return redirect()->back();
     }
 }
