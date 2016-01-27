@@ -8,7 +8,7 @@
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         {!! Form::label('coa_id', 'Chat Of Accounts:', ['class' => 'control-label']) !!}
-        {!! Form::text('coa_id', $coa_data, Input::old('coa_id'), ['class' => 'form-control','required']) !!}
+        {!! Form::Select('coa_id', $coa_data, Input::old('coa_id'), ['class' => 'form-control','required']) !!}
     </div>
 </div>
 
@@ -22,7 +22,7 @@
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         {!! Form::label('currency_id', 'Currency:', ['class' => 'control-label']) !!}
-        {!! Form::text('currency_id', $currency_data, Input::old('currency_id'), ['class' => 'form-control','required']) !!}
+        {!! Form::Select('currency_id', $currency_data, Input::old('currency_id'), ['class' => 'form-control','required']) !!}
     </div>
 </div>
 
