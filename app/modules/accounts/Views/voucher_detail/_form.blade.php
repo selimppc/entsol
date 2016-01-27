@@ -75,9 +75,8 @@
         {!! Form::Select('status',array('active'=>'Active','inactive'=>'Inactive'),Input::old('status'),['class'=>'form-control ','required']) !!}
     </div>
 </div>
-<p> &nbsp; </p>
 
-<div class="modal-footer">
+<div class="">
     <a href="{{route('voucher-head')}}"  class="btn btn-default" type="button"> Close </a>
     {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
 </div>
