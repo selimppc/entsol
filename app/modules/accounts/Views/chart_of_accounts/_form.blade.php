@@ -38,58 +38,56 @@
     </div>
 </div>
 
-
-
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
-        {!! Form::label('group_one_id', 'Group One Title:', ['class' => 'control-label']) !!}
-        <small class="required">(Required)</small>
-        @if(count($group_one_id)>0)
-            {!! Form::select('group_one_id', $group_one_id,Input::old('group_one_id'),['class' => 'form-control','required']) !!}
-        @else
-            {!! Form::text('group_one_id', 'No Group One ID available',['id'=>'group_one_id','class' => 'form-control','required','disabled']) !!}
-        @endif
+        <div class="col-sm-6">
+            {!! Form::label('group_one_id', 'Group One Title:', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
+            @if(count($group_one_id)>0)
+                {!! Form::select('group_one_id', $group_one_id,Input::old('group_one_id'),['class' => 'form-control','required']) !!}
+            @else
+                {!! Form::text('group_one_id', 'No Group One ID available',['id'=>'group_one_id','class' => 'form-control','required','disabled']) !!}
+            @endif
+        </div>
+        <div class="col-sm-6">
+            {!! Form::label('analytical_code', 'Analytical Code:', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
+            {!! Form::select('analytical_code', array('cash'=>'Cash','non-cash'=>'Non Cash'),Input::old('analytical_code'),['class' => 'form-control','required']) !!}
+        </div>
     </div>
 </div>
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
-        {!! Form::label('analytical_code', 'Analytical Code:', ['class' => 'control-label']) !!}
-        <small class="required">(Required)</small>
-        {!! Form::select('analytical_code', array('cash'=>'Cash','non-cash'=>'Non Cash'),Input::old('analytical_code'),['class' => 'form-control','required']) !!}
+        <div class="col-sm-6">
+            {!! Form::label('branch_id', 'Branch :', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
+            @if(count($branch_id)>0)
+                {!! Form::select('branch_id', $branch_id,Input::old('branch_id'),['class' => 'form-control','required']) !!}
+            @else
+                {!! Form::text('branch_id', 'No Branch ID available',['id'=>'branch_id','class' => 'form-control','required','disabled']) !!}
+            @endif
+        </div>
+        <div class="col-sm-6">
+            {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
+            {!! Form::select('status', array('active'=>'Active','inactive'=>'Inactive'),Input::old('status'),['class' => 'form-control','required']) !!}
+        </div>
     </div>
 </div>
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
-        {!! Form::label('branch_id', 'Branch Id:', ['class' => 'control-label']) !!}
-        <small class="required">(Required)</small>
-        @if(count($branch_id)>0)
-            {!! Form::select('branch_id', $branch_id,Input::old('branch_id'),['class' => 'form-control','required']) !!}
-        @else
-            {!! Form::text('branch_id', 'No Branch ID available',['id'=>'branch_id','class' => 'form-control','required','disabled']) !!}
-        @endif
-    </div>
-</div>
-
-<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
-    <div class="row">
-        {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
-        <small class="required">(Required)</small>
-        {!! Form::select('status', array('active'=>'Active','inactive'=>'Inactive'),Input::old('status'),['class' => 'form-control','required']) !!}
-    </div>
-</div>
-
-<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
-    <div class="row">
-        {!! Form::label('business_id', 'Business Id:', ['class' => 'control-label']) !!}
-        {!! Form::select('business_id', array(''=>'---select---'),Input::old('business_id'),['class' => 'form-control']) !!}
+        <div class="col-sm-12">
+            {!! Form::label('business_id', 'Business Title:', ['class' => 'control-label']) !!}
+            {!! Form::select('business_id', array(''=>'---select---'),Input::old('business_id'),['class' => 'form-control']) !!}
+        </div>
     </div>
 </div>
 
 <p> &nbsp; </p>
 
-<div class="modal-footer">
-    <a href="{{route('branch')}}"  class="btn btn-default" type="button"> Close </a>
-    {!! Form::submit('Save changes', ['class' => 'btn btn-primary']) !!}
+<div class="form-margin-btn">
+    <a href="{{route('chart-of-accounts')}}" class=" btn btn-default">Close</a>
+    {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
 </div>

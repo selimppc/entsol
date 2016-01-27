@@ -51,7 +51,7 @@ class ChartOfAccountsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\BranchRequest $request)
+    public function store(Requests\ChartOfAccountsRequest $request)
     {
         $input = $request->all();
 
@@ -67,6 +67,89 @@ class ChartOfAccountsController extends Controller
             Session::flash('danger', $e->getMessage());
         }
 
+        return redirect()->back();
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {//print_r($id);exit;
+        $pageTitle = 'Show the detail';
+        $data = ChartOfAccounts::where('id',$id)->first();
+
+        return view('accounts::chart_of_accounts.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $pageTitle = 'Show the detail';
+        $data = ChartOfAccounts::where('id',$id)->first();
+        $group_one_id = GroupOne::lists('title','id');
+        $branch_id = Branch::lists('title','id');
+        return view('accounts::chart_of_accounts.update', ['data' => $data, 'pageTitle'=> $pageTitle, 'group_one_id'=> $group_one_id, 'branch_id'=> $branch_id]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Requests\ChartOfAccountsRequest $request, $id)
+    {
+        $model = ChartOfAccounts::where('id',$id)->first();
+        $input = $request->all();
+
+        DB::beginTransaction();
+        try {
+            $model->update($input);
+            DB::commit();
+            Session::flash('message', "Successfully Updated");
+        }
+        catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('danger', $e->getMessage());
+        }
+        return redirect()->back();
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        $model = ChartOfAccounts::findOrFail($id);
+
+        DB::beginTransaction();
+        try {
+            if($model->status =='active'){
+                $model->status = 'cancel';
+            }else{
+                $model->status = 'active';
+            }
+            $model->save();
+            DB::commit();
+            Session::flash('message', "Successfully Deleted.");
+
+        } catch(\Exception $e) {
+            DB::rollback();
+            Session::flash('danger',$e->getMessage());
+        }
         return redirect()->back();
     }
 }

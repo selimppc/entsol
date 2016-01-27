@@ -35,8 +35,9 @@
 
 <p> &nbsp; </p>
 
-<div class="modal-footer">
-    <a href="{{route('group-one')}}"  class="btn btn-default" type="button"> Close </a>
-    {!! Form::submit('Save changes', ['class' => 'btn btn-primary']) !!}
+
+<div class="form-margin-btn">
+    <a href="{{route('group-one')}}" class=" btn btn-default">Close</a>
+    {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
 </div>
 

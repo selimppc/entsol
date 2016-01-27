@@ -11,7 +11,7 @@
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>
-                <a class="btn btn-primary pull-right" data-toggle="modal" href="#addData" title="Add">
+                <a class="btn btn-primary btn-xs pull-right" data-toggle="modal" href="#addData" title="Add">
                     <strong>Add COA</strong>
                 </a>
             </div>
@@ -24,7 +24,7 @@
                         {!! Form::text('account_code',Input::old('account_code'),['class' => 'form-control','placeholder'=>'Account Code']) !!}
                     </div>
                     <div class="col-sm-3 filter-btn">
-                        {!! Form::submit('Search', array('class'=>'btn btn-primary pull-left','id'=>'button')) !!}
+                        {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button')) !!}
                     </div>
                 </div>
                 {!! Form::close() !!}
@@ -80,7 +80,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel">Add Branch</h4>
+                <h4 class="modal-title" id="myModalLabel">Add Chart Of Accounts</h4>
             </div>
             <div class="modal-body">
                 {!! Form::open(['route' => 'store-chart-of-accounts','id' => 'jq-validation-form']) !!}
