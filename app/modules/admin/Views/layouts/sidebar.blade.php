@@ -18,22 +18,22 @@
     </div>
     <ul class="navigation">
         <li class="active">
-            <a href="./"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text mmc-dropdown-delay animated fadeIn">Dashboard</span></a>
+            <a href="{{URL::to('dashboard')}}"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text mmc-dropdown-delay animated fadeIn">Dashboard</span></a>
         </li>
 
         <li class="mm-dropdown mm-dropdown-root">
-            <a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text mmc-dropdown-delay animated fadeIn">Layouts</span></a>
+            <a><i class="menu-icon fa fa-th"></i><span class="mm-text mmc-dropdown-delay animated fadeIn">Layouts</span></a>
             <ul class="mmc-dropdown-delay animated fadeInLeft">
                 <li>
-                    <a tabindex="-1" href="form-elements"><span class="mm-text">Example Pages</span></a>
+                    <a tabindex="-1" href="{{URL::to('form-elements')}}"><span class="mm-text">Example Pages</span></a>
                 </li>
                 <li>
-                    <a tabindex="-1" href="index"><span class="mm-text">Content Page Sample</span></a>
+                    <a tabindex="-1" href="{{URL::to('content-page')}}"><span class="mm-text">Content Page Sample</span></a>
                 </li>
             </ul>
         </li>
         <li class="">
-            <a href="reg-sample"><i class="menu-icon fa fa-barcode"></i><span class="mm-text mmc-dropdown-delay animated fadeIn">Registration Form Sample</span></a>
+            <a href="{{URL::to('reg-sample')}}"><i class="menu-icon fa fa-barcode"></i><span class="mm-text mmc-dropdown-delay animated fadeIn">Registration Form Sample</span></a>
         </li>
         <li class="mm-dropdown mm-dropdown-root">
             <a href="#"><i class="menu-icon fa fa-user-md"></i><span class="mm-text mmc-dropdown-delay animated fadeIn">User</span></a>

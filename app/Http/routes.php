@@ -26,3 +26,8 @@ Route::any('post-user-login', [
     'uses' => 'Auth\AuthController@postLogin'
 ]);
 
+Route::any('dashboard', [
+    'as' => 'dashboard',
+    'uses' => 'HomeController@dashboard'
+]);
+

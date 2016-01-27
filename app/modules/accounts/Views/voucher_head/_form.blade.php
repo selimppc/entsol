@@ -10,7 +10,19 @@
             {!! Form::label('branch_id', 'Branch:', ['class' => 'control-label']) !!}
             {!! Form::Select('branch_id', $branch_data, Input::old('branch_id'),['class' => 'form-control','required']) !!}
         </div>
+    </div>
+</div>
 
+<div class="form-group">
+    <div class="row">
+        <div class="col-sm-6">
+            {!! Form::label('voucher_number', 'Voucher Number:', ['class' => 'control-label']) !!}
+            {!! Form::text('voucher_number', null, ['class' => 'form-control','required']) !!}
+        </div>
+        <div class="col-sm-6">
+            {!! Form::label('reference', 'Reference:', ['class' => 'control-label']) !!}
+            {!! Form::text('reference', null, ['class' => 'form-control','required']) !!}
+        </div>
     </div>
 </div>
 
@@ -47,15 +59,6 @@
 <div class="form-group">
     <div class="row">
         <div class="col-sm-12">
-            {!! Form::label('reference', 'Reference:', ['class' => 'control-label']) !!}
-            {!! Form::text('reference', null, ['class' => 'form-control','required']) !!}
-        </div>
-    </div>
-</div>
-
-<div class="form-group">
-    <div class="row">
-        <div class="col-sm-12">
             {!! Form::label('note', 'Note:', ['class' => 'control-label']) !!}
             {!! Form::textarea('note', null, ['class' => 'form-control']) !!}
         </div>
@@ -63,10 +66,8 @@
 </div>
 
 <div class="form-margin-btn">
-    {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
     <a href="{{route('voucher-head')}}" class=" btn btn-default" style="">Close</a>
+    {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
 </div>
-
-
 
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/datepicker.js') }}"></script>
