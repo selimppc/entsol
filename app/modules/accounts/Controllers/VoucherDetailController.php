@@ -43,7 +43,7 @@ class VoucherDetailController extends Controller
 
     public function store(VoucherHeadRequest $request){
         $input = $request->all();
-print_r($input);exit;
+#print_r($input);exit;
         /* Transaction Start Here */
         DB::beginTransaction();
         try {

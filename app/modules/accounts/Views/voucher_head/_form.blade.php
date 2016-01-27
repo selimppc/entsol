@@ -60,7 +60,7 @@
     <div class="row">
         <div class="col-sm-12">
             {!! Form::label('note', 'Note:', ['class' => 'control-label']) !!}
-            {!! Form::textarea('note', null, ['class' => 'form-control','size' => '15x8']) !!}
+            {!! Form::textarea('note', null, ['class' => 'form-control','size' => '12x3']) !!}
         </div>
     </div>
 </div>
