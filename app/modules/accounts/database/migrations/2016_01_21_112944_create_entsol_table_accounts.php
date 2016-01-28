@@ -272,6 +272,74 @@ class CreateEntsolTableAccounts extends Migration
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
+
+
+
+
+        /*
+         * View GL(General Ledger) Transaction
+         */
+        DB::statement( 'CREATE VIEW vw_gl_trn AS (
+            SELECT
+                `a`.`voucher_head_id` AS `voucher_head_id`,
+                `a`.`voucher_number` AS `voucher_number`,
+                `c`.`reference` AS `reference`,
+                `c`.`date` AS `date`,
+                `c`.`year` AS `year`,
+                `c`.`period` AS `period`,
+                `c`.`branch_id` AS `branch_id`,
+                `a`.`coa_id` AS `coa_id`,
+                `a`.`account_code` AS `account_code`,
+                `b`.`title` AS `title`,
+                (CASE
+                WHEN (`a`.`base_amount` > 0) THEN `a`.`base_amount`
+                END) AS `debit`,
+                (CASE
+                WHEN (`a`.`base_amount` < 0) THEN ABS(`a`.`base_amount`)
+                END) AS `credit`
+                FROM
+                ((`entsol`.`ac_voucher_detail` `a`
+                JOIN `entsol`.`ac_chart_of_accounts` `b`)
+                JOIN `entsol`.`ac_voucher_head` `c`)
+                WHERE
+                ((`a`.`coa_id` = `b`.`id`)
+                AND (`a`.`voucher_head_id` = `c`.`id`))
+        )'
+        );
+
+
+
+        /*
+         * View Voucher
+         */
+
+        DB::statement( 'CREATE VIEW vw_voucher AS (
+            SELECT
+                `a`.`voucher_head_id` AS `voucher_head_id`,
+                `a`.`voucher_number` AS `voucher_number`,
+                `a`.`coa_id` AS `coa_id`,
+                `a`.`account_code` AS `account_code`,
+                `b`.`title` AS `title`,
+                `a`.`sub_account_code` AS `sub_account_code`,
+                `a`.`currency_id` AS `currency_id`,
+                `a`.`exchange_rate` AS `exchange_rate`,
+                (CASE
+                WHEN (`a`.`prime_amount` > 0) THEN `a`.`prime_amount`
+                END) AS `prime_debit`,
+                (CASE
+                WHEN (`a`.`prime_amount` < 0) THEN ABS(`a`.`prime_amount`)
+                END) AS `prime_credit`,
+                (CASE
+                WHEN (`a`.`base_amount` > 0) THEN `a`.`base_amount`
+                END) AS `base_debit`,
+                (CASE
+                WHEN (`a`.`base_amount` < 0) THEN ABS(`a`.`base_amount`)
+                END) AS `base_credit`
+                FROM
+                (`entsol`.`ac_voucher_detail` `a`
+                JOIN `entsol`.`ac_chart_of_accounts` `b` ON ((`a`.`coa_id` = `b`.`id`)))
+        )'
+        );
     }
 
     /**
@@ -290,5 +358,7 @@ class CreateEntsolTableAccounts extends Migration
         Schema::drop('ac_balance');
         Schema::drop('ac_allocation');
         Schema::drop('ac_default_offset');
+        Schema::drop('vw_gl_trn');
+        Schema::drop('vw_voucher');
     }
 }
