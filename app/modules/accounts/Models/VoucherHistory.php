@@ -12,5 +12,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class VoucherHistory extends Model
 {
+    protected $table = 'vw_voucher';
 
+    public function relCurrency(){
+        return $this->belongsTo('App\Currency', 'currency_id', 'id');
+    }
+
+    public function relChartOfAccounts(){
+        return $this->belongsTo('App\ChartOfAccounts', 'coa_id', 'id');
+    }
 }
