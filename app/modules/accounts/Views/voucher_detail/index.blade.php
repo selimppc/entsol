@@ -46,10 +46,10 @@
                                     <td>{{isset($values->relBranch->title)?$values->relBranch->title:''}}</td>
                                     <td>{{ucfirst($values->status)}}
                                       @if($values->status == 'active')&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="{{ route('status-voucher-head', $values->id) }}" class="" title="Inactivate this Status" onclick="return confirm('Are you sure to Inactive status?')"><i class="fa  fa-minus-square"></i></a>
+                                        <a href="{{ route('status-voucher-detail', $values->id) }}" class="" title="Inactivate this Status" onclick="return confirm('Are you sure to Inactive status?')"><i class="fa  fa-minus-square"></i></a>
                                       @else
                                             &nbsp;
-                                            <a href="{{ route('status-voucher-head', $values->id) }}" class="" title="Activate This Status" onclick="return confirm('Are you sure to Active status?')"><i class="fa fa-plus-square"></i></a>
+                                            <a href="{{ route('status-voucher-detail', $values->id) }}" class="" title="Activate This Status" onclick="return confirm('Are you sure to Active status?')"><i class="fa fa-plus-square"></i></a>
                                       @endif
                                     </td>
                                     <td>

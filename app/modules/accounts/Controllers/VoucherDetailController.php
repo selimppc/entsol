@@ -105,7 +105,7 @@ class VoucherDetailController extends Controller
 
     public function change_status($id)
     {
-        $model = VoucherHead::findOrFail($id);
+        $model = VoucherDetail::findOrFail($id);
 
         DB::beginTransaction();
         try {
@@ -123,7 +123,7 @@ class VoucherDetailController extends Controller
             DB::rollback();
             Session::flash('error', $e->getMessage());
         }
-        return redirect()->route('voucher-head');
+        return redirect()->back();
     }
 
     public function delete($id){
