@@ -17,21 +17,7 @@
             </div>
 
             <div class="panel-body">
-                {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['route' => 'default-offset']) !!}
-                <div class="col-sm-8">
-                    <div class="col-sm-4">
-                        {!! Form::text('offset',Input::old('offset'),['class' => 'form-control','placeholder'=>'Offset']) !!}
-                    </div>
-                    <div class="col-sm-3 filter-btn">
-                        {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button')) !!}
-                    </div>
-                </div>
-                {!! Form::close() !!}
-                <p> &nbsp;</p>
-                <p> &nbsp;</p>
 
-                {{-------------- Filter :Ends -------------------------------------------}}
                 <div class="table-primary">
                     <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
                         <thead>
@@ -55,8 +41,6 @@
                                     <td>{{$values->status}}</td>
                                     <td>
                                         <a href="{{ route('view-default-offset', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('edit-default-offset', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Edit"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('delete-default-offset', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Delete"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -34,9 +34,10 @@ class CurrencyController extends Controller
         $pageTitle = "Currency";
         if($this->isPostRequest()){
             $code = Input::get('code');
-            $data = Currency::where('status','active')->where('code','LIKE','%'.$code.'%')->orderBy('id', 'DESC')->get();
+            $title = Input::get('title');
+            $data = Currency::where('status','!=','cancel')->where('code', 'LIKE', '%'.$code.'%')->where('title', 'LIKE', '%'.$title.'%')->orderBy('id', 'DESC')->paginate(50);
         }else{
-            $data = Currency::where('status','active')->orderBy('id', 'DESC')->paginate(50);
+            $data = Currency::where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(50);
         }
         return view('accounts::currency.index', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }

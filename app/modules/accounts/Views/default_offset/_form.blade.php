@@ -18,11 +18,11 @@
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('year', 'Year:', ['class' => 'control-label']) !!}
-            {!! Form::input('number', 'year', null, ['id'=>'year', 'class' => 'form-control']) !!}
+            {!! Form::select('year',$year, Input::old('year'),['class' => 'form-control','required']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('period', 'Period:', ['class' => 'control-label']) !!}
-            {!! Form::input('number', 'period', null, ['id'=>'period', 'class' => 'form-control']) !!}
+            {!! Form::selectRange('period', 1, 12,Input::old('year'),['class' => 'form-control']) !!}
         </div>
     </div>
 </div>

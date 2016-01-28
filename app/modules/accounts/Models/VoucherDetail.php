@@ -23,5 +23,14 @@ class VoucherDetail extends Model
     public function relVoucherHead(){
         return $this->belongsTo('App\VoucherHead', 'voucher_head_id', 'id');
     }
+    public function relChartOfAccounts(){
+        return $this->belongsTo('App\ChartOfAccounts', 'coa_id', 'id');
+    }
+    public function relCurrency(){
+        return $this->belongsTo('App\Currency', 'currency_id', 'id');
+    }
+    public function relBranch(){
+        return $this->belongsTo('App\Branch', 'branch_id', 'id');
+    }
 
 }
