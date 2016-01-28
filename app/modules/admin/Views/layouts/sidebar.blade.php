@@ -16,12 +16,15 @@
             <a href="#" class="close">×</a>
         </div>
     </div>
+
+
+
     <ul class="navigation">
         <li class="active">
             <a href="{{URL::to('dashboard')}}"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text mmc-dropdown-delay animated fadeIn">Dashboard</span></a>
         </li>
 
-        <li class="mm-dropdown mm-dropdown-root">
+        <li class="mm-dropdown">
             <a><i class="menu-icon fa fa-th"></i><span class="mm-text mmc-dropdown-delay animated fadeIn">Layouts</span></a>
             <ul class="mmc-dropdown-delay animated fadeInLeft">
                 <li>
@@ -35,10 +38,10 @@
         <li class="">
             <a href="{{URL::to('reg-sample')}}"><i class="menu-icon fa fa-barcode"></i><span class="mm-text mmc-dropdown-delay animated fadeIn">Registration Form Sample</span></a>
         </li>
-        <li class="mm-dropdown mm-dropdown-root">
-            <a href="#"><i class="menu-icon fa fa-user-md"></i><span class="mm-text mmc-dropdown-delay animated fadeIn">User</span></a>
-            <ul class="mmc-dropdown-delay animated fadeInLeft">
 
+        <li class="mm-dropdown">
+            <a href="#"><i class="menu-icon fa fa-user-md"></i><span class="mm-text">User</span></a>
+            <ul>
                 <li>
                     <a tabindex="-1" href="{{route('create-sign-up')}}"><span class="mm-text">Sign Up</span></a>
                 </li>
@@ -50,8 +53,10 @@
                 </li>
             </ul>
         </li>
-        <li class="mm-dropdown mm-dropdown-root">
-            <a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text mmc-dropdown-delay animated fadeIn">Crud</span></a>
+
+
+        <li class="mm-dropdown">
+            <a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text mmc-dropdown-delay animated fadeIn">Accounts Module</span></a>
             <ul class="mmc-dropdown-delay animated fadeInLeft">
                 <li>
                     <a tabindex="-1" href="{{route('voucher-head')}}"><span class="mm-text">Voucher Head</span></a>
