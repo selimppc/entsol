@@ -1,16 +1,12 @@
 .required {
     color: orangered;
 }
-.filter-btn{
+.s-btn{
     padding-top: 1%;
-    /*padding: 3px;*/
-    /*height: 2px;*/
-
 }
 .form-margin-btn{
     margin-left: 82%;
 }
-
 
 select.input-sm, select.form-group-sm .form-control {
     height: 22px;

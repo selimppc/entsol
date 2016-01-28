@@ -31,8 +31,8 @@
                             {!! Form::Select('year',['' => 'Year']+$year, Input::old('year'),['class' => 'form-control']) !!}
                         </div>
 
-                        <div class="col-sm-2 filter-btn">
-                            {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs','id'=>'search-button')) !!}
+                        <div class="col-sm-2 srch-btn">
+                            {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs')) !!}
                         </div>
                     </div>
                     {!! Form::close() !!}
