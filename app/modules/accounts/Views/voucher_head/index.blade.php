@@ -19,12 +19,14 @@
             <div class="panel-body">
     {{-------------- Filter :Starts -------------------------------------------}}
                     {!! Form::open(['route' => 'voucher-head']) !!}
-                    <div class="col-sm-10">
-                        <div class="col-sm-4">
+                    <div class="col-sm-12">
+                        <div class="col-sm-3">
                             {!! Form::Select('account_type',array(''=>'Select Account Type','account-payable'=>'Account Payable','account-receivable'=>'Account Receivable','account-adjustment'=>'account Adjustment','journal-vouche'=>'Journal Voucher','receipt-voucher'=>'Receipt Voucher','reverse-entry'=>'Reverse Entry'),Input::old('account_type'),['class'=>'form-control ']) !!}
                         </div>
-
                         <div class="col-sm-2">
+                            {!! Form::text('voucher_number', Input::old('voucher_number'),['class' => 'form-control','placeholder'=>'voucher number']) !!}
+                        </div>
+                        <div class="col-sm-3">
                             {!! Form::Select('branch_id',$branch_data, Input::old('branch_id'),['class' => 'form-control']) !!}
                         </div>
                         <div class="col-sm-2">
@@ -37,7 +39,7 @@
                     </div>
                     {!! Form::close() !!}
                     <p> &nbsp;</p>
-                    <p> &nbsp;</p>
+
 
     {{-------------- Filter :Ends -------------------------------------------}}
                 <div class="table-primary">

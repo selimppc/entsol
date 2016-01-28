@@ -17,7 +17,29 @@
             </div>
 
             <div class="panel-body">
+                {{-------------- Filter :Starts -------------------------------------------}}
+                {!! Form::open(['route' => 'voucher-head']) !!}
+                <div class="col-sm-12">
 
+                    <div class="col-sm-3">
+                        {!! Form::Select('coa_id',$coa_data, Input::old('coa_id'), ['class' => 'form-control','required']) !!}
+                    </div>
+                    <div class="col-sm-2">
+                        {!! Form::text('account_code', Input::old('account_code'), ['class' => 'form-control','placeholder'=>'account code']) !!}
+                    </div>
+                    <div class="col-sm-2">
+                        {!! Form::Select('currency_id',$currency_data, Input::old('currency_id'), ['class' => 'form-control','required']) !!}
+                    </div>
+                    <div class="col-sm-3">
+                       {!! Form::Select('branch_id', $branch_data, Input::old('branch_id'),['class' => 'form-control','required']) !!}
+                    </div>
+                    <div class="col-sm-2 srch-btn">
+                        {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs')) !!}
+                    </div>
+                </div>
+                {!! Form::close() !!}
+                <p> &nbsp;</p>
+                {{-------------- Filter :Ends -------------------------------------------}}
                 <div class="table-primary">
                     <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
                         <thead>

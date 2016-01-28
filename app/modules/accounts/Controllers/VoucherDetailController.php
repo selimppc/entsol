@@ -32,14 +32,29 @@ class VoucherDetailController extends Controller
    public function index($id){
 
        $pageTitle = 'Voucher Head Detail';
+       if($this->isPostRequest()){
 
-       $data = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(50);
+           $search_coa = Input::get('coa_id');
+           $search_branch = Input::get('branch_id');
+           $search_curr = Input::get('branch_id');
+           $search_acc_code = Input::get('account_code');
+
+           $data = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->whereExists(function ($query) use ($search_coa,$search_branch,$search_curr,$search_acc_code) {
+               $query->from('cm_branch')->whereRaw('cm_branch.id = ac_voucher_head.branch_id')
+                   ->where('branch_id',$branch);
+           })->orWhere('year',$term_year)
+               ->orWhere('account_type', $account_type)
+               ->orderby('id','DESC')->paginate(50);
+       }else{
+           $data = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(50);
+       }
+
        //get vouncher-number data...
        $voucher_number = VoucherDetail::where('voucher_head_id',$id)->first();
 
-       $coa_data = ChartOfAccounts::lists('account_code','id');
-       $currency_data = Currency::lists('code','id');
-       $branch_data =  Branch::lists('code','id');
+       $coa_data = [''=>'Chart Of Accounts'] + ChartOfAccounts::lists('title','id')->all();
+       $currency_data = [''=>'Currency'] + Currency::lists('title','id')->all();
+       $branch_data =  [''=>'Branch'] + Branch::lists('title','id')->all();
 
        return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'data'=>$data,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'voucher_number'=>$voucher_number]);
    }

@@ -32,12 +32,17 @@ class VoucherHeadController extends Controller
        if($this->isPostRequest()){
 
            $account_type = Input::get('account_type');
-           #print_r($account_type);exit;
            $branch = Input::get('branch_id');
-
+           $voucher_number = Input::get('voucher_number');
            $term_year = Input::get('year');
 
-           $data = VoucherHead::with('relBranch')->where('account_type',$account_type)->orWhere('branch_id',$branch)->orWhere('year',$term_year)->orderBy('id', 'DESC')->paginate(50);
+           $data = VoucherHead::with('relBranch')->whereExists(function ($query) use ($branch,$account_type,$term_year) {
+               $query->from('cm_branch')->whereRaw('cm_branch.id = ac_voucher_head.branch_id')
+                   ->where('branch_id',$branch);
+           })->orWhere('year',$term_year)
+              ->orWhere('account_type', $account_type)
+              ->orWhere('voucher_number','LIKE', '%'.$voucher_number.'%')
+              ->orderby('id','DESC')->paginate(50);
        }else{
            $data = VoucherHead::with('relBranch')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(50);
        }
