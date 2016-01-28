@@ -23,3 +23,12 @@ select.input-sm, select.form-group-sm .form-control {
     line-height: 1.5;
     border-radius: 3px;
 }
+body{
+    font-size:12px;
+}
+
+.form-control{
+    height: 27px;
+    padding: 2px 6px;
+    font-size: 12px;
+    }

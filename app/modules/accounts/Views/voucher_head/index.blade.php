@@ -11,7 +11,7 @@
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>
-                <a class="btn btn-xs btn-info pull-right" data-toggle="modal" href="#addData" title="Add">
+                <a class="btn btn-xs btn-primary pull-right" data-toggle="modal" href="#addData" title="Add">
                     <strong>Add+</strong>
                 </a>
             </div>
@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="col-sm-2 filter-btn">
-                            {!! Form::submit('Search', array('class'=>'btn btn-info btn-xs','id'=>'search-button')) !!}
+                            {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs','id'=>'search-button')) !!}
                         </div>
                     </div>
                     {!! Form::close() !!}
