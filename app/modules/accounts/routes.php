@@ -178,6 +178,23 @@ Route::group(array('modules'=>'Accounts', 'namespace' => 'App\Modules\Accounts\C
     ]);
 
 
+    /**Table View :: Gl-Transaction **/
+
+    Route::any("gl-transaction", [
+        "as"   => "gl-transaction",
+        "uses" => "GlTransactionController@index"
+    ]);
+
+    /**Table View :: Voucher History **/
+
+    Route::any("voucher-history", [
+        "as"   => "voucher-history",
+        "uses" => "VoucherHistoryController@index"
+    ]);
+
+
+
+
 
 });
 
