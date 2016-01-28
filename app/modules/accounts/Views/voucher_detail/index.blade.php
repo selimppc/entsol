@@ -22,11 +22,12 @@
                     <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
                         <thead>
                         <tr>
-                            <th> Account Type </th>
-                            <th> Date </th>
-                            <th> Reference </th>
-                            <th> Year </th>
-                            <th> Period </th>
+                            <th>Voucher Number </th>
+                            <th>Chart Of Account </th>
+                            <th> Account Code </th>
+                            <th> Currency </th>
+                            <th> Prime Amount </th>
+                            <th> Base Amount </th>
                             <th> Branch </th>
                             <th> Status </th>
                             <th> Action </th>
@@ -36,24 +37,25 @@
                         @if(isset($data))
                             @foreach($data as $values)
                                 <tr class="gradeX">
-                                    <td>{{$values->account_type}}</td>
-                                    <td>{{$values->date}}</td>
-                                    <td>{{$values->reference}}</td>
-                                    <td>{{$values->year}}</td>
-                                    <td>{{$values->period}}</td>
-                                    <td>{{isset($values->relBranch->code)?$values->relBranch->code:''}}</td>
+                                    <td>{{isset($values->relVoucherHead->voucher_number)?$values->relVoucherHead->voucher_number:''}}</td>
+                                    <td>{{isset($values->relChartOfAccounts->title)?$values->relChartOfAccounts->title:''}}</td>
+                                    <td>{{isset($values->relChartOfAccounts->account_code)?$values->relChartOfAccounts->account_code:''}}</td>
+                                    <td>{{isset($values->relCurrency->title)?$values->relCurrency->title:''}}</td>
+                                    <td>{{$values->prime_amount}}</td>
+                                    <td>{{$values->base_amount}}</td>
+                                    <td>{{isset($values->relBranch->title)?$values->relBranch->title:''}}</td>
                                     <td>{{ucfirst($values->status)}}
                                       @if($values->status == 'active')&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="{{ route('status-voucher-head', $values->id) }}" class="" title="Inactivate this Status" onclick="return confirm('Are you sure to Inactive status?')"><i class="fa  fa-minus-square"></i></a>
+                                        <a href="{{ route('status-voucher-detail', $values->id) }}" class="" title="Inactivate this Status" onclick="return confirm('Are you sure to Inactive status?')"><i class="fa  fa-minus-square"></i></a>
                                       @else
                                             &nbsp;
-                                            <a href="{{ route('status-voucher-head', $values->id) }}" class="" title="Activate This Status" onclick="return confirm('Are you sure to Active status?')"><i class="fa fa-plus-square"></i></a>
+                                            <a href="{{ route('status-voucher-detail', $values->id) }}" class="" title="Activate This Status" onclick="return confirm('Are you sure to Active status?')"><i class="fa fa-plus-square"></i></a>
                                       @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('view-voucher-head', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('edit-voucher-head', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Edit"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('delete-voucher-head', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Delete"><i class="fa fa-trash-o"></i></a>
+                                        <a href="{{ route('view-voucher-detail', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('edit-voucher-detail', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Edit"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('delete-voucher-detail', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Delete"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -78,7 +80,7 @@
             </div>
             <div class="modal-body modal-backdrop">
                 {!! Form::open(['route' => 'store-voucher-detail']) !!}
-                @include('accounts::voucher_detail._form')
+                    @include('accounts::voucher_detail._form')
                 {!! Form::close() !!}
             </div> <!-- / .modal-body -->
         </div> <!-- / .modal-content -->
