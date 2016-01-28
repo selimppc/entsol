@@ -32,21 +32,32 @@ class VoucherDetailController extends Controller
    public function index($id){
 
        $pageTitle = 'Voucher Head Detail';
+       $model = new VoucherDetail();
        if($this->isPostRequest()){
 
-           $search_coa = Input::get('coa_id');
            $search_branch = Input::get('branch_id');
-           $search_curr = Input::get('branch_id');
+           $search_curr = Input::get('currency_id');
            $search_acc_code = Input::get('account_code');
 
-           $data = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->whereExists(function ($query) use ($search_coa,$search_branch,$search_curr,$search_acc_code) {
-               $query->from('cm_branch')->whereRaw('cm_branch.id = ac_voucher_head.branch_id')
-                   ->where('branch_id',$branch);
-           })->orWhere('year',$term_year)
-               ->orWhere('account_type', $account_type)
-               ->orderby('id','DESC')->paginate(50);
+           $model = $model->with('relVoucherHead','relChartOfAccounts','relCurrency');
+           if (isset($search_branch) && !empty($search_branch)) $model ->where('ac_voucher_detail.branch_id', '=', $search_branch);
+           if (isset($search_curr) && !empty($search_curr)) $model->where('ac_voucher_detail.currency_id', '=', $search_curr);
+           if (isset($search_acc_code) && !empty($search_acc_code)) $model->where('ac_voucher_detail.account_code', '=', $search_acc_code);
+           #$model = $model->get();
+           #print_r($model);exit;
+           $model = $model->leftJoin('cm_currency as cur', function($query)  use($search_curr){
+               $query->on('cur.id', '=', 'ac_voucher_detail.currency_id');
+               $query->where('cur.id',  '=', $search_curr);
+           });
+           $model = $model->leftJoin('cm_branch as branch', function($query)  use($search_branch){
+               $query->on('branch.id', '=', 'ac_voucher_detail.branch_id');
+               $query->where('branch.id',  '=', $search_branch);
+           });
+           $model = $model->get();
+           #print_r($model);exit;
+
        }else{
-           $data = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(50);
+           $model = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
        }
 
        //get vouncher-number data...
@@ -56,7 +67,7 @@ class VoucherDetailController extends Controller
        $currency_data = [''=>'Currency'] + Currency::lists('title','id')->all();
        $branch_data =  [''=>'Branch'] + Branch::lists('title','id')->all();
 
-       return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'data'=>$data,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'voucher_number'=>$voucher_number]);
+       return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'model'=>$model,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'voucher_number'=>$voucher_number]);
    }
 
     public function store(VoucherDetailRequest $request){
