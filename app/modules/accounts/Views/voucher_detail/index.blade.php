@@ -18,20 +18,16 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['route' => 'voucher-head']) !!}
+                {!! Form::open(['method' => '','route' => 'voucher-detail']) !!}
                 <div class="col-sm-12">
-
-                    <div class="col-sm-3">
-                        {!! Form::Select('coa_id',$coa_data, Input::old('coa_id'), ['class' => 'form-control','required']) !!}
-                    </div>
                     <div class="col-sm-2">
                         {!! Form::text('account_code', Input::old('account_code'), ['class' => 'form-control','placeholder'=>'account code']) !!}
                     </div>
                     <div class="col-sm-2">
-                        {!! Form::Select('currency_id',$currency_data, Input::old('currency_id'), ['class' => 'form-control','required']) !!}
+                        {!! Form::Select('currency_id',$currency_data, Input::old('currency_id'), ['class' => 'form-control']) !!}
                     </div>
                     <div class="col-sm-3">
-                       {!! Form::Select('branch_id', $branch_data, Input::old('branch_id'),['class' => 'form-control','required']) !!}
+                       {!! Form::Select('branch_id', $branch_data, Input::old('branch_id'),['class' => 'form-control']) !!}
                     </div>
                     <div class="col-sm-2 srch-btn">
                         {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs')) !!}
@@ -56,12 +52,12 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @if(isset($data))
-                            @foreach($data as $values)
+                        @if(isset($model))
+                            @foreach($model as $values)
                                 <tr class="gradeX">
                                     <td>{{isset($values->relVoucherHead->voucher_number)?$values->relVoucherHead->voucher_number:''}}</td>
                                     <td>{{isset($values->relChartOfAccounts->title)?$values->relChartOfAccounts->title:''}}</td>
-                                    <td>{{isset($values->relChartOfAccounts->account_code)?$values->relChartOfAccounts->account_code:''}}</td>
+                                    <td>{{isset($values->relChartOfAccounts->account_code)?$values['account_code']:''}}</td>
                                     <td>{{isset($values->relCurrency->title)?$values->relCurrency->title:''}}</td>
                                     <td>{{$values->prime_amount}}</td>
                                     <td>{{$values->base_amount}}</td>
@@ -86,7 +82,7 @@
                         </tbody>
                     </table>
                 </div>
-                    <span class="pull-left">{!! str_replace('/?', '?', $data->render()) !!} </span>
+                    {{--<span class="pull-left">{!! str_replace('/?', '?', $model->render()) !!} </span>--}}
             </div>
         </div>
     </div>

@@ -28,7 +28,7 @@ class VoucherHeadController extends Controller
    public function index(){
 
        $pageTitle = 'Voucher Head';
-
+       $model = new VoucherHead();
        if($this->isPostRequest()){
 
            $account_type = Input::get('account_type');
@@ -36,23 +36,26 @@ class VoucherHeadController extends Controller
            $voucher_number = Input::get('voucher_number');
            $term_year = Input::get('year');
 
-           $data = VoucherHead::with('relBranch')->whereExists(function ($query) use ($branch,$account_type,$term_year) {
-               $query->from('cm_branch')->whereRaw('cm_branch.id = ac_voucher_head.branch_id')
-                   ->where('branch_id',$branch);
-           })->orWhere('year',$term_year)
-              ->orWhere('account_type', $account_type)
-              ->orWhere('voucher_number','LIKE', '%'.$voucher_number.'%')
-              ->orderby('id','DESC')->paginate(50);
+           $model = $model->with('relBranch');
+           if (isset($account_type) && !empty($account_type)) $model ->where('ac_voucher_head.account_type', '=', $account_type);
+           if (isset($branch) && !empty($branch)) $model->where('ac_voucher_head.branch_id', '=', $branch);
+           if (isset($term_year) && !empty($term_year)) $model->where('ac_voucher_head.year', '=', $term_year);
+           if (isset($voucher_number) && !empty($voucher_number)) $model->where('ac_voucher_head.voucher_number', '=', $voucher_number);
+
+           $model = $model->leftJoin('cm_branch as branch', function($query)  use($branch){
+               $query->on('branch.id', '=', 'ac_voucher_head.branch_id');
+               $query->where('branch.id',  '=', $branch);
+           });
+           $model = $model->paginate(50);
        }else{
-           $data = VoucherHead::with('relBranch')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(50);
+           $model = VoucherHead::with('relBranch')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(50);
        }
-       $model = new VoucherHead();
-       $year = $model->getYear();
+
+       $year = VoucherHead::getYear();
        $branch_data =  [''=>'Branch'] + Branch::lists('code','id')->all();
 
-       #print_r($branch_data);exit;
 
-       return view('accounts::voucher_head.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'data'=>$data,'year'=>$year]);
+       return view('accounts::voucher_head.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model,'year'=>$year]);
    }
 
     public function store(VoucherHeadRequest $request){
