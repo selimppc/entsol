@@ -7,28 +7,40 @@
     <div style="padding: 30px;">
         <table id="" class="table table-bordered table-hover table-striped">
             <tr>
-                <th class="col-lg-4">Account Type</th>
-                <td>{{ isset($data->account_type)?$data->account_type:''}}</td>
+                <th class="col-lg-4">Voucher Number</th>
+                <td>{{ isset($data->relVoucherHead->voucher_number)?$data->relVoucherHead->voucher_number:''}}</td>
             </tr>
             <tr>
-                <th class="col-lg-4">Date</th>
-                <td>{{ isset($data->date)?$data->date:''}}</td>
+                <th class="col-lg-4">Chart Of Account</th>
+                <td>{{ isset($data->relChartOfAccounts->title)?$data->relChartOfAccounts->title:''}}</td>
             </tr>
             <tr>
-                <th class="col-lg-4">Reference</th>
-                <td>{{ isset($data->reference)?$data->reference:'' }}</td>
+                <th class="col-lg-4">Account Code</th>
+                <td>{{ isset($data->relChartOfAccounts->account_code)?$data->relChartOfAccounts->account_code:'' }}</td>
             </tr>
             <tr>
-                <th class="col-lg-4">Year</th>
-                <td>{{ isset($data->year)?$data->year:'' }}</td>
+                <th class="col-lg-4">Sub Account Code</th>
+                <td>{{ isset($data->sub_account_code)?$data->sub_account_code:'' }}</td>
             </tr>
             <tr>
-                <th class="col-lg-4">Period</th>
-                <td>{{ isset($data->period)?$data->period:'' }}</td>
+                <th class="col-lg-4">Currency</th>
+                <td>{{isset($data->relCurrency->title)?$data->relCurrency->title:'' }}</td>
+            </tr>
+            <tr>
+                <th class="col-lg-4">Exchange Rate</th>
+                <td>{{isset($data->exchange_rate)?$data->exchange_rate:''}}</td>
+            </tr>
+            <tr>
+                <th class="col-lg-4">Prime Amount</th>
+                <td>{{isset($data->prime_amount)?$data->prime_amount:''}}</td>
+            </tr>
+            <tr>
+                <th class="col-lg-4">Base Amount</th>
+                <td>{{isset($data->base_amount)?$data->base_amount:''}}</td>
             </tr>
             <tr>
                 <th class="col-lg-4">Branch</th>
-                <td>{{isset($data->relBranch->code)?$data->relBranch->code:''}}</td>
+                <td>{{isset($data->relBranch->title)?$data->relBranch->title:''}}</td>
             </tr>
             <tr>
                 <th class="col-lg-4">note</th>

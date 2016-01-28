@@ -12,6 +12,7 @@ use App\Branch;
 use App\ChartOfAccounts;
 use App\Currency;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\VoucherDetailRequest;
 use App\Http\Requests\VoucherHeadRequest;
 use App\VoucherDetail;
 use App\VoucherHead;
@@ -30,24 +31,28 @@ class VoucherDetailController extends Controller
 
    public function index($id){
 
-       $pageTitle = 'Voucher Head Dteail';
+       $pageTitle = 'Voucher Head Detail';
 
-       $data = VoucherDetail::with('relVoucherHead','')->orderBy('id', 'DESC')->paginate(50);
+       $data = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(50);
+       //get vouncher-number data...
+       $voucher_number = VoucherDetail::where('voucher_head_id',$id)->first();
 
        $coa_data = ChartOfAccounts::lists('account_code','id');
        $currency_data = Currency::lists('code','id');
        $branch_data =  Branch::lists('code','id');
 
-       return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'data'=>$data,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id]);
+       return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'data'=>$data,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'voucher_number'=>$voucher_number]);
    }
 
-    public function store(VoucherHeadRequest $request){
+    public function store(VoucherDetailRequest $request){
+
         $input = $request->all();
-#print_r($input);exit;
+
         /* Transaction Start Here */
         DB::beginTransaction();
         try {
-            VoucherHead::create($input);
+            VoucherDetail::create($input);
+
             DB::commit();
             Session::flash('message', 'Successfully added!');
         } catch (\Exception $e) {
@@ -61,25 +66,27 @@ class VoucherDetailController extends Controller
     public function show($id)
     {
         $pageTitle = 'Show the detail';
-        $data = VoucherHead::with('relBranch')->where('id',$id)->first();
+        $data = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('id',$id)->first();
 
-        return view('accounts::voucher_head.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
+        return view('accounts::voucher_detail.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 
     public function edit($id)
     {
         $pageTitle = 'Show the detail';
 
-        $model = new VoucherHead();
-        $branch_data = Branch::lists('code','id');
-        $year = $model->getYear();
-        $data = VoucherHead::findOrFail($id);
-        return view('accounts::voucher_head.update', ['data' => $data,'branch_data'=>$branch_data,'pageTitle'=> $pageTitle,'year'=>$year]);
+        $data = VoucherDetail::findOrFail($id);
+
+        $coa_data = ChartOfAccounts::lists('account_code','id');
+        $currency_data = Currency::lists('code','id');
+        $branch_data =  Branch::lists('code','id');
+
+        return view('accounts::voucher_detail.update', ['data' => $data,'branch_data'=>$branch_data,'pageTitle'=> $pageTitle,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'id'=>$id]);
     }
 
-    public function update(VoucherHeadRequest $request, $id)
+    public function update(VoucherDetailRequest $request, $id)
     {
-        $model = VoucherHead::findOrFail($id);
+        $model = VoucherDetail::findOrFail($id);
         $input = $request->all();
 
         DB::beginTransaction();
@@ -95,6 +102,7 @@ class VoucherDetailController extends Controller
         }
         return redirect()->back();
     }
+
     public function change_status($id)
     {
         $model = VoucherHead::findOrFail($id);
@@ -120,11 +128,13 @@ class VoucherDetailController extends Controller
 
     public function delete($id){
 
-        $model = VoucherHead::findOrFail($id);
+        $model = VoucherDetail::findOrFail($id);
 
         DB::beginTransaction();
         try {
-            $model->delete();
+            $model->status = 'cancel';
+            $model->save();
+
             DB::commit();
             Session::flash('message', "Successfully Deleted.");
         }
