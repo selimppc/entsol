@@ -1,3 +1,4 @@
+<form class="form-horizontal" id="jq-validation-form">
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
@@ -40,4 +41,6 @@
     <a href="{{route('group-one')}}" class=" btn btn-default">Close</a>
     {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
 </div>
+
+</form>
 
