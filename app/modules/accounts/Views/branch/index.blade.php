@@ -26,6 +26,9 @@
                     <div class="col-sm-3">
                         {!! Form::text('title',Input::old('title'),['class' => 'form-control','placeholder'=>'Title']) !!}
                     </div>
+                    <div class="col-sm-3">
+                        {!! Form::Select('currency_id',$currency_id, Input::old('currency_id'),['class' => 'form-control','placeholder'=>'Currency']) !!}
+                    </div>
                     <div class="col-sm-3 filter-btn">
                         {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button')) !!}
                     </div>

@@ -35,8 +35,9 @@ class BranchController extends Controller
         if($this->isPostRequest()){
             $title = Input::get('title');
             $code = Input::get('code');
+            $currency=Input::get('currency_id');
 
-            $data = Branch::with('relCurrency')->where('code', 'LIKE', '%'.$code.'%')->where('title', 'LIKE', '%'.$title.'%')->orderBy('id', 'DESC')->paginate(50);
+            $data = Branch::with('relCurrency')->where('status','!=','cancel')->orWhere('code', 'LIKE', '%'.$code.'%')->orWhere('title', 'LIKE', '%'.$title.'%')->orWhere('currency_id',$currency)->orderBy('id', 'DESC')->paginate(50);
         }else{
             $data = Branch::where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(50);
         }
