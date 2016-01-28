@@ -23,6 +23,9 @@
                     <div class="col-sm-4">
                         {!! Form::text('code',Input::old('code'),['class' => 'form-control','placeholder'=>'Code']) !!}
                     </div>
+                    <div class="col-sm-4">
+                        {!! Form::text('title',Input::old('title'),['class' => 'form-control','placeholder'=>'Title']) !!}
+                    </div>
                     <div class="col-sm-3 filter-btn">
                         {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button')) !!}
                     </div>

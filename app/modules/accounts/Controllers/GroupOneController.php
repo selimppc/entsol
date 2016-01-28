@@ -34,9 +34,10 @@ class GroupOneController extends Controller
         $pageTitle = "Group One";
         if($this->isPostRequest()){
             $code = Input::get('code');
-            $data = GroupOne::where('status','active')->where('code','LIKE','%'.$code.'%')->orderBy('id', 'DESC')->get();
+            $title = Input::get('title');
+            $data = GroupOne::where('status','!=','cancel')->where('code', 'LIKE', '%'.$code.'%')->where('title', 'LIKE', '%'.$title.'%')->orderBy('id', 'DESC')->paginate(50);
         }else{
-            $data = GroupOne::where('status','active')->orderBy('id', 'DESC')->paginate(50);
+            $data = GroupOne::where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(50);
         }
         return view('accounts::group_one.index', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }

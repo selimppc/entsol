@@ -8,6 +8,7 @@
 
 namespace App\Modules\Accounts\Controllers;
 use App\DefaultOffset;
+use App\VoucherHead;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -32,13 +33,10 @@ class DefaultOffsetController extends Controller
     public function index()
     {
         $pageTitle = "Default Offset";
-        if($this->isPostRequest()){
-            $offset = Input::get('offset');
-            $data = DefaultOffset::where('status','active')->where('offset','LIKE','%'.$offset.'%')->orderBy('id', 'DESC')->get();
-        }else{
-            $data = DefaultOffset::where('status','active')->orderBy('id', 'DESC')->paginate(50);
-        }
-        return view('accounts::default_offset.index', ['data' => $data, 'pageTitle'=> $pageTitle]);
+
+        $data = DefaultOffset::where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(50);
+        $year = VoucherHead::getYear();
+        return view('accounts::default_offset.index', ['data' => $data, 'pageTitle'=> $pageTitle,'year'=>$year]);
     }
 
     /**
