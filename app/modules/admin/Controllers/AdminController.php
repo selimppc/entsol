@@ -20,5 +20,10 @@ class AdminController extends Controller
         return view('admin::index');
     }
 
+    public function validation_page()
+    {
+        return view('admin::layouts.example_pages.validation_index');
+    }
+
 
 }

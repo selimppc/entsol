@@ -37,7 +37,14 @@ class BranchController extends Controller
             $code = Input::get('code');
             $currency=Input::get('currency_id');
 
-            $data = Branch::with('relCurrency')->where('status','!=','cancel')->orWhere('code', 'LIKE', '%'.$code.'%')->orWhere('title', 'LIKE', '%'.$title.'%')->orWhere('currency_id',$currency)->orderBy('id', 'DESC')->paginate(50);
+            $data = Branch::with('relCurrency')->whereExists(function ($query) use ($currency) {
+                $query->from('cm_currency')->whereRaw('cm_currency.id = cm_branch.currency_id')
+                    ->where('currency_id',$currency);
+            })->orWhere('title','LIKE', '%'.$title.'%')
+                ->orWhere('code','LIKE', '%'.$code.'%')
+                ->orderby('id','DESC')->paginate(50);
+
+            /*$data = Branch::with('relCurrency')->where('status','!=','cancel')->orWhere('code', 'LIKE', '%'.$code.'%')->orWhere('title', 'LIKE', '%'.$title.'%')->orWhere('currency_id',$currency)->orderBy('id', 'DESC')->paginate(50);*/
         }else{
             $data = Branch::where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(50);
         }

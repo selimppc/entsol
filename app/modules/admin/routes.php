@@ -30,5 +30,10 @@ Route::any('content-page', [
 ]);
 
 
+Route::any('validation-page', [
+    'as' => 'validation-page',
+    'uses' => 'AdminController@validation_page'
+]);
+
 });
 
