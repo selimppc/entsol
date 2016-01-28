@@ -18,7 +18,7 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['method' => 'GET','route' => 'voucher-detail',$id]) !!}
+                {!! Form::open(['method' => '','route' => 'voucher-detail']) !!}
                 <div class="col-sm-12">
                     <div class="col-sm-2">
                         {!! Form::text('account_code', Input::old('account_code'), ['class' => 'form-control','placeholder'=>'account code']) !!}

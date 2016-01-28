@@ -29,7 +29,7 @@ class VoucherDetailController extends Controller
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-   public function index($id){
+   public function index($id=null ){
 
        $pageTitle = 'Voucher Head Detail';
        $model = new VoucherDetail();
@@ -61,7 +61,8 @@ class VoucherDetailController extends Controller
        }
 
        //get vouncher-number data...
-       $voucher_number = VoucherDetail::where('voucher_head_id',$id)->first();
+
+           $voucher_number = VoucherDetail::where('voucher_head_id',$id)->first();
 
        $coa_data = [''=>'Chart Of Accounts'] + ChartOfAccounts::lists('title','id')->all();
        $currency_data = [''=>'Currency'] + Currency::lists('title','id')->all();
