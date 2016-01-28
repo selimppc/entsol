@@ -21,7 +21,7 @@
                     {!! Form::open(['method' => 'GET','route' => 'voucher-head']) !!}
                     <div class="col-sm-12">
                         <div class="col-sm-3">
-                            {!! Form::Select('account_type',array(''=>'Select Account Type','account-payable'=>'Account Payable','account-receivable'=>'Account Receivable','account-adjustment'=>'account Adjustment','journal-vouche'=>'Journal Voucher','receipt-voucher'=>'Receipt Voucher','reverse-entry'=>'Reverse Entry'),Input::old('account_type'),['class'=>'form-control ']) !!}
+                            {!! Form::Select('account_type',array(''=>'Select Account Type','account-payable'=>'Account Payable','account-receivable'=>'Account Receivable','account-adjustment'=>'account Adjustment','journal-voucher'=>'Journal Voucher','receipt-voucher'=>'Receipt Voucher','reverse-entry'=>'Reverse Entry'),Input::old('account_type'),['class'=>'form-control ']) !!}
                         </div>
                         <div class="col-sm-2">
                             {!! Form::text('voucher_number', Input::old('voucher_number'),['class' => 'form-control','placeholder'=>'voucher number']) !!}
