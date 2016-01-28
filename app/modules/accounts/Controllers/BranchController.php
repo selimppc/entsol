@@ -33,12 +33,14 @@ class BranchController extends Controller
     {
         $pageTitle = "Branch";
         if($this->isPostRequest()){
+            $title = Input::get('title');
             $code = Input::get('code');
-            $data = Branch::where('status','active')->where('code','LIKE','%'.$code.'%')->orderBy('id', 'DESC')->get();
+
+            $data = Branch::with('relCurrency')->where('code', 'LIKE', '%'.$code.'%')->where('title', 'LIKE', '%'.$title.'%')->orderBy('id', 'DESC')->paginate(50);
         }else{
-            $data = Branch::where('status','active')->orderBy('id', 'DESC')->paginate(50);
+            $data = Branch::where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(50);
         }
-        $currency_id = Currency::lists('title','id');
+        $currency_id =  [''=>'Currency'] + Currency::lists('title','id')->all();
         return view('accounts::branch.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'currency_id'=> $currency_id]);
     }
 
