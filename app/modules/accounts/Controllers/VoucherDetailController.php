@@ -64,9 +64,9 @@ class VoucherDetailController extends Controller
 
        $voucher_data = VoucherHead::where('id',$id)->first();
 
-       $coa_data = [''=>'Chart Of Accounts'] + ChartOfAccounts::lists('title','id')->all();
-       $currency_data = [''=>'Currency'] + Currency::lists('title','id')->all();
-       $branch_data =  [''=>'Branch'] + Branch::lists('title','id')->all();
+       $coa_data = [''=>'Select Chart Of Accounts'] + ChartOfAccounts::lists('title','id')->all();
+       $currency_data = [''=>'Select Currency'] + Currency::lists('title','id')->all();
+       $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
 
        return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'model'=>$model,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'voucher_data'=>$voucher_data,'id'=>$id]);
    }
