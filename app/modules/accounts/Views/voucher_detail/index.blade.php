@@ -155,13 +155,4 @@
 
 
 
-
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $("#abcd").click(function(){
-                alert("The paragraph was clicked.");
-            });
-        });
-
-</script>
 @stop

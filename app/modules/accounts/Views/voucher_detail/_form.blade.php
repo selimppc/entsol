@@ -44,8 +44,9 @@
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         <div class="col-sm-6">
-            {!! Form::label('amount', 'Amount:', ['class' => 'control-label']) !!}
-            {!! Form::text('amount', Input::old('amount'), ['data-toggle'=>"tooltip" ,'data-placement'=>"left" ,'class' => 'form-control','title'=>'For credit add minus sign(-) before numeric digit(s).']) !!}
+            {!! Form::label('amount', 'Amount (Debit/Credit):', ['class' => 'control-label']) !!}
+            <small>(For credit add minus sign(-) before numeric digit(s).)</small>
+            {!! Form::text('amount', Input::old('amount'), ['data-toggle'=>'tooltip','data-placement'=>"left" ,'class' => 'form-control','title'=>'For credit add minus sign(-) before numeric digit(s).']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
@@ -69,8 +70,3 @@
     <a href="" class=" btn btn-default" style="">Close</a>
 </div>
 
-{{--<script type="text/javascript">
-    $(document).ready(function(){
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-</script>--}}
