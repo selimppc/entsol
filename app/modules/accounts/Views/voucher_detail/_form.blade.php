@@ -44,14 +44,14 @@
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         <div class="col-sm-6">
-            {!! Form::label('prime_amount', 'Prime Amount:', ['class' => 'control-label']) !!}
-            {!! Form::text('prime_amount', Input::old('prime_amount'), ['class' => 'form-control']) !!}
+            {!! Form::label('amount', 'Amount:', ['class' => 'control-label']) !!}
+            {!! Form::text('amount', Input::old('amount'), ['class' => 'form-control']) !!}
         </div>
         <div class="col-sm-6">
-            {!! Form::label('base_amount', 'Base Amount:', ['class' => 'control-label']) !!}
-            {!! Form::text('base_amount', Input::old('base_amount'), ['class' => 'form-control']) !!}
+            {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
+            {!! Form::Select('status',array('active'=>'Active','inactive'=>'Inactive'),Input::old('status'),['class'=>'form-control ','required']) !!}
         </div>
-
     </div>
 </div>
 
@@ -64,15 +64,6 @@
     </div>
 </div>
 
-<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
-    <div class="row">
-        <div class="col-sm-12">
-            {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
-            <small class="required">(Required)</small>
-            {!! Form::Select('status',array('active'=>'Active','inactive'=>'Inactive'),Input::old('status'),['class'=>'form-control ','required']) !!}
-        </div>
-    </div>
-</div>
 
 <div class="form-margin-btn">
     <a href="" class=" btn btn-default" style="">Close</a>
