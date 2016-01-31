@@ -1,6 +1,9 @@
 .required {
     color: orangered;
 }
+.narration{
+    color:lightseagreen;
+}
 .s-btn{
     padding-top: 1%;
 }

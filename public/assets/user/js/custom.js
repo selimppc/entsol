@@ -57,6 +57,9 @@ window.LanderApp.start(init);
 /*-------------sign up validation----------------------------- */
 
 /*tooltip*/
+
+$( document ).tooltip();
+/*
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
-});
+});*/

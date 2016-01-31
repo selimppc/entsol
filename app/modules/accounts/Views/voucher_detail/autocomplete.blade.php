@@ -1,28 +1,22 @@
-@extends('admin::layouts.master')
-@section('sidebar')
-@include('admin::layouts.sidebar')
-@stop
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>jQuery UI Tooltip - Default functionality</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-@section('content')
+    <script>
+        $(function() {
+            $( document ).tooltip();
+        });
+    </script>
 
-    <div class="panel-body">
-        {{-------------- Filter :Starts -------------------------------------------}}
-        {!! Form::open(['route' => 'search']) !!}
-        <div class="col-sm-12">
-            <div class="col-sm-2">
-                {!! Form::text('account_code', Input::old('account_code'), ['id'=>'abcd','class' => 'form-control','placeholder'=>'account code']) !!}
-            </div>
-        </div>
-        {!! Form::close() !!}
-    </div>
+</head>
+<body>
 
-<script type="text/javascript">
+{!! Form::text('amount', Input::old('amount'), ['class' => 'form-control','title'=>'For credit add minus sign(-) before numeric digit(s).']) !!}
 
-    $('[id="abcd"]').click(function(e) {
-        alert("The paragraph was clicked.");
-    });
-
-
-</script>
-
-@stop
+</body>
+</html>

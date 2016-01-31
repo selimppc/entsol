@@ -1,10 +1,15 @@
 
+{{--<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">--}}
+{{--<script src="//code.jquery.com/jquery-1.10.2.js"></script>--}}
+{{--<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>--}}
+
 {!! Form::hidden('voucher_head_id',$id) !!}
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('coa_id', 'Chat Of Accounts:', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
             {!! Form::Select('coa_id', $coa_data, Input::old('coa_id'), ['class' => 'form-control','required']) !!}
         </div>
         <div class="col-sm-6">
@@ -18,10 +23,12 @@
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('sub_account_code', 'Sub Account Code:', ['class' => 'control-label']) !!}
+            <small>(Optional)</small>
             {!! Form::text('sub_account_code', Input::old('sub_account_code'), ['class' => 'form-control']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('branch_id', 'Branch:', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
             {!! Form::Select('branch_id', $branch_data, Input::old('branch_id'),['class' => 'form-control','required']) !!}
         </div>
     </div>
@@ -31,10 +38,12 @@
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('currency_id', 'Currency:', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
             {!! Form::Select('currency_id', $currency_data, Input::old('currency_id'), ['class' => 'form-control','required']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('exchange_rate', 'Exchange Rate:', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
             {!! Form::input('number','exchange_rate', Input::old('exchange_rate'), ['class' => 'form-control']) !!}
         </div>
     </div>
@@ -44,9 +53,11 @@
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         <div class="col-sm-6">
-            {!! Form::label('amount', 'Amount (Debit/Credit):', ['class' => 'control-label']) !!}
-            <small>(For credit add minus sign(-) before numeric digit(s).)</small>
-            {!! Form::text('amount', Input::old('amount'), ['data-toggle'=>'tooltip','data-placement'=>"left" ,'class' => 'form-control','title'=>'For credit add minus sign(-) before numeric digit(s).']) !!}
+            {!! Form::label('amount', 'Amount(Debit/Credit):', ['class' => 'control-label']) !!}
+            <small>For credit add minus sign(-) before numeric digit(s).</small>
+            <small class="required">(Required)</small>
+
+            {!! Form::text('amount', Input::old('amount'), ['data-placement'=>"left" ,'class' => 'form-control','title'=>'For credit add minus sign(-) before numeric digit(s).']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
@@ -65,8 +76,14 @@
     </div>
 </div>
 
+
 <div class="form-margin-btn">
     {!! Form::submit('Save Changes', ['class' => 'btn btn-primary']) !!}
     <a href="" class=" btn btn-default" style="">Close</a>
 </div>
 
+{{--<script>--}}
+    {{--$(function() {--}}
+        {{--$( document ).tooltip();--}}
+    {{--});--}}
+{{--</script>--}}
