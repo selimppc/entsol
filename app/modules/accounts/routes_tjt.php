@@ -78,7 +78,7 @@ Route::any('status-voucher-detail/{id}', [
 
 
 
-Route::get('search/autocomplete', [
+Route::any('search/autocomplete', [
     'as' => 'search-autocomplete',
     'uses' => 'VoucherDetailController@autocomplete'
 ]);

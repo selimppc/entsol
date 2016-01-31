@@ -56,7 +56,6 @@ class VoucherDetailController extends Controller
            });
            $model = $model->get();
            #print_r($model);exit;
-
        }else{
            $model = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
        }
@@ -69,7 +68,7 @@ class VoucherDetailController extends Controller
        $currency_data = [''=>'Currency'] + Currency::lists('title','id')->all();
        $branch_data =  [''=>'Branch'] + Branch::lists('title','id')->all();
 
-       return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'model'=>$model,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'voucher_number'=>$voucher_number]);
+       return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'model'=>$model,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'voucher_number'=>$voucher_number,'id'=>$id]);
    }
 
     public function store(VoucherDetailRequest $request){
@@ -175,18 +174,18 @@ class VoucherDetailController extends Controller
     }
 
     public function autocomplete(){
-        $term = Input::get('term');
-        print_r($term);exit;
+        $term = Input::get('account_code');
+        #print_r($term);exit;
         $results = array();
 
         $queries = DB::table('ac_chart_of_accounts')
             ->where('account_code', 'LIKE', '%'.$term.'%')
-            ->take(5)->get();
+            ->get();
         #print_r($queries);exit;
 
         foreach ($queries as $query)
         {
-            $results[] = ['value' => $query->account_code];
+            $results[] = ['account_code'=>$query->account_code];
         }
         #print_r($results);exit;
         return Response::json($results);
