@@ -30,7 +30,7 @@
                             {!! Form::Select('branch_id',$branch_data, Input::old('branch_id'),['class' => 'form-control']) !!}
                         </div>
                         <div class="col-sm-2">
-                            {!! Form::Select('year',['' => 'Year']+$year, Input::old('year'),['class' => 'form-control']) !!}
+                            {!! Form::select('year', array('' => 'Select Year') + range(2016,2030), Input::old('year'),['class' => 'form-control']) !!}
                         </div>
 
                         <div class="col-sm-2 srch-btn">
@@ -105,7 +105,7 @@
                 <h4 class="modal-title" id="myModalLabel">Add Voucher Head</h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['route' => 'voucher-head-store']) !!}
+                {!! Form::open(['route' => 'voucher-head-store','id' => 'jq-validation-form']) !!}
                 @include('accounts::voucher_head._form')
                 {!! Form::close() !!}
             </div> <!-- / .modal-body -->
