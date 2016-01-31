@@ -51,11 +51,11 @@ class VoucherHeadController extends Controller
            $model = VoucherHead::with('relBranch')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(50);
        }
 
-       $year = VoucherHead::getYear();
-       $branch_data =  [''=>'Branch'] + Branch::lists('title','id')->all();
+       //$year = VoucherHead::getYear();
+       $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
 
 
-       return view('accounts::voucher_head.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model,'year'=>$year]);
+       return view('accounts::voucher_head.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model]);
    }
 
     public function store(VoucherHeadRequest $request){
@@ -89,9 +89,9 @@ class VoucherHeadController extends Controller
 
         $model = new VoucherHead();
         $branch_data = Branch::lists('title','id');
-        $year = $model->getYear();
+        /*$year = $model->getYear();*/
         $data = VoucherHead::findOrFail($id);
-        return view('accounts::voucher_head.update', ['data' => $data,'branch_data'=>$branch_data,'pageTitle'=> $pageTitle,'year'=>$year]);
+        return view('accounts::voucher_head.update', ['data' => $data,'branch_data'=>$branch_data,'pageTitle'=> $pageTitle]);
     }
 
     public function update(VoucherHeadRequest $request, $id)
