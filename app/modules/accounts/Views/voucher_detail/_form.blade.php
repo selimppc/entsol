@@ -46,7 +46,7 @@
         <div class="col-sm-6">
             {!! Form::label('amount', 'Amount (Debit/Credit):', ['class' => 'control-label']) !!}
             <small>(For credit add minus sign(-) before numeric digit(s).)</small>
-            {!! Form::text('amount', Input::old('amount'), ['data-placement'=>"left" ,'class' => 'form-control acc','title'=>'For credit add minus sign(-) before numeric digit(s).']) !!}
+            {!! Form::text('amount', Input::old('amount'), ['data-toggle'=>'tooltip','data-placement'=>"left" ,'class' => 'form-control','title'=>'For credit add minus sign(-) before numeric digit(s).']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
