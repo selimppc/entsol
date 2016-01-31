@@ -30,7 +30,7 @@
                             {!! Form::Select('branch_id',$branch_data, Input::old('branch_id'),['class' => 'form-control']) !!}
                         </div>
                         <div class="col-sm-2">
-                            {!! Form::select('year', array('' => 'Select Year') + range(2016,2030), Input::old('year'),['class' => 'form-control']) !!}
+                            {!! Form::selectrange('year', 2016,2030, Input::old('year'),['class' => 'form-control']) !!}
                         </div>
 
                         <div class="col-sm-2 srch-btn">

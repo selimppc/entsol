@@ -7,6 +7,7 @@
         </div>
         <div class="col-sm-6">
             {!! Form::label('voucher_number', 'Voucher Number:', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
             {!! Form::text('voucher_number', Input::old('voucher_number'), ['class' => 'form-control','required']) !!}
         </div>
     </div>
@@ -33,11 +34,11 @@
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('year', 'Year:', ['class' => 'control-label']) !!}
-            {!! Form::select('year',array('' => 'Select Year') + range(2016,2030), Input::old('year'),['class' => 'form-control','required']) !!}
+            {!! Form::selectrange('year',2016,2030, Input::old('year'),['class' => 'form-control','required']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('period', 'Period:', ['class' => 'control-label']) !!}
-            {!! Form::select('period', array('' => 'Select Period') + range(1,12),Input::old('year'),['class' => 'form-control','required']) !!}
+            {!! Form::selectrange('period', 1,12,Input::old('year'),['class' => 'form-control','required']) !!}
         </div>
     </div>
 </div>
@@ -46,6 +47,7 @@
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('branch_id', 'Branch:', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
             {!! Form::Select('branch_id', $branch_data, Input::old('branch_id'),['class' => 'form-control','required']) !!}
         </div>
         <div class="col-sm-6">
