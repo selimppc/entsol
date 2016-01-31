@@ -39,6 +39,6 @@
 <p> &nbsp; </p>
 
 <div class="form-margin-btn">
+    {!! Form::submit('Save changes', ['class' => 'btn btn-primary']) !!}
     <a href="{{route('default-offset')}}" class=" btn btn-default">Close</a>
-    {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
 </div>

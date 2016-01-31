@@ -37,11 +37,11 @@
                         <thead>
                         <tr>
                             <th> Account Code </th>
+                            <th> Title </th>
                             <th> Account Type </th>
                             <th> Account Usage </th>
                             <th> Group One Title </th>
                             <th> Branch Title </th>
-                            <th> Analytical Code </th>
                             <th> Status </th>
                             <th> Action </th>
                         </tr>
@@ -51,11 +51,11 @@
                             @foreach($data as $values)
                                 <tr class="gradeX">
                                     <td>{{$values->account_code}}</td>
+                                    <td>{{$values->title}}</td>
                                     <td>{{$values->account_type}}</td>
                                     <td>{{$values->account_usage}}</td>
                                     <td>{{$values->relGroupOne->title}}</td>
                                     <td>{{$values->relBranch->title}}</td>
-                                    <td>{{$values->analytical_code}}</td>
                                     <td>{{$values->status}}</td>
                                     <td>
                                         <a href="{{ route('view-chart-of-accounts', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
