@@ -81,8 +81,10 @@
 
                         </tbody>
                     </table>
+
                 </div>
                     {{--<span class="pull-left">{!! str_replace('/?', '?', $model->render()) !!} </span>--}}
+                <a class="pull-right btn btn-xs btn-primary" href="{{ URL::route('voucher-head')}}"> <i class="fa fa-arrow-circle-left"></i> Back To Journal Voucher</a>
             </div>
         </div>
     </div>
