@@ -52,7 +52,7 @@ class VoucherHeadController extends Controller
        }
 
        $year = VoucherHead::getYear();
-       $branch_data =  [''=>'Branch'] + Branch::lists('code','id')->all();
+       $branch_data =  [''=>'Branch'] + Branch::lists('title','id')->all();
 
 
        return view('accounts::voucher_head.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model,'year'=>$year]);

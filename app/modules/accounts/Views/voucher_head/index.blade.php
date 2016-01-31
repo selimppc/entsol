@@ -46,8 +46,8 @@
                     <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
                         <thead>
                         <tr>
-                            <th> Account Type </th>
                             <th> Voucher Number </th>
+                            <th> Account Type </th>
                             <th> Date </th>
                             <th> Reference </th>
                             <th> Year </th>
@@ -60,8 +60,10 @@
                         @if(isset($model))
                             @foreach($model as $values)
                                 <tr>
+                                    <td>
+                                        <a href="{{ URL::route('voucher-detail',$values->id) }}" class="btn-link" title="voucher-detail">{{$values->voucher_number}}</a>
+                                    </td>
                                     <td>{{$values->account_type}}</td>
-                                    <td>{{$values->voucher_number}}</td>
                                     <td>{{$values->date}}</td>
                                     <td>{{$values->reference}}</td>
                                     <td>{{$values->year}}</td>
@@ -89,6 +91,7 @@
                 </div>
                     {{--<span class="pull-left">{!! str_replace('/?', '?', $model->render()) !!} </span>--}}
             </div>
+
         </div>
     </div>
 </div>
