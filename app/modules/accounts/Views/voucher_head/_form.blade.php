@@ -17,6 +17,7 @@
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('date', 'Date:', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
             <div class="input-group date">
                 {!! Form::text('date', null, ['class' => 'form-control bs-datepicker-component','required']) !!}
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -24,7 +25,7 @@
         </div>
         <div class="col-sm-6">
             {!! Form::label('reference', 'Reference:', ['class' => 'control-label']) !!}
-            <small class="required">(Narration)</small>
+            <small class="narration">(Narration)</small>
             {!! Form::text('reference', null, ['class' => 'form-control','required']) !!}
         </div>
     </div>
