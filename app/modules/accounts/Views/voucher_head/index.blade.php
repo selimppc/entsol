@@ -61,7 +61,7 @@
                             @foreach($model as $values)
                                 <tr>
                                     <td>
-                                        <a href="{{ URL::route('voucher-detail',$values->id) }}" class="link-text-decoration" title="voucher-detail" target="_blank"><strong>{{$values->voucher_number}}</strong></a>
+                                        <a href="{{ URL::route('voucher-detail',$values->id) }}" class="link-text-decoration" title="voucher-detail"><strong>{{$values->voucher_number}}</strong></a>
                                     </td>
                                     <td>{{$values->account_type}}</td>
                                     <td>{{$values->date}}</td>
