@@ -31,7 +31,7 @@ class BranchRequest extends Request
     public function rules()
     {
         return [
-            'code' => 'required|max:45',
+            'code' => 'required|max:64',
             'currency_id' => 'required|max:10',
             'exchange_rate' => 'required'
         ];

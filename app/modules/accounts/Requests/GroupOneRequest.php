@@ -31,8 +31,8 @@ class GroupOneRequest extends Request
     public function rules()
     {
         return [
-            'code' => 'required|max:45',
-            'title' => 'required|max:45'
+            'code' => 'required|max:64',
+            'title' => 'required|max:64'
         ];
     }
 }

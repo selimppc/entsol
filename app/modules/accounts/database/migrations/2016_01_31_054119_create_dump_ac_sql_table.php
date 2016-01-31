@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDumpSqlTable extends Migration
+class CreateDumpAcSqlTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateDumpSqlTable extends Migration
      */
     public function up()
     {
-        //
+        DB::unprepared(file_get_contents("app/modules/accounts/database/sql_dump/ac_group_one.sql"));
     }
 
     /**
