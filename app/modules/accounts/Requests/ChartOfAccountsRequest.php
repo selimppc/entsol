@@ -30,8 +30,8 @@ class ChartOfAccountsRequest extends Request
     public function rules()
     {
         return [
-            'account_code' => 'required|max:45',
-            'title' => 'required|max:45',
+            'account_code' => 'required|max:64',
+            'title' => 'required|max:64',
             'account_type' => 'required',
             'account_usage' => 'required',
             'analytical_code' => 'required',

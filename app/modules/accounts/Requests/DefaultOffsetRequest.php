@@ -30,8 +30,8 @@ class DefaultOffsetRequest extends Request
     public function rules()
     {
         return [
-            'offset' => 'required|max:45',
-            'pnl_account' => 'required|max:45'
+            'offset' => 'required|max:64',
+            'pnl_account' => 'required|max:64'
         ];
     }
 }
