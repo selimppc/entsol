@@ -124,7 +124,7 @@
                 <h4 class="modal-title" id="myModalLabel">Journal Voucher Detail ( Voucher Number: {{isset($voucher_data->voucher_number)?$voucher_data->voucher_number:''}})</h4>
             </div>
             <div class="modal-body modal-backdrop">
-                {!! Form::open(['route' => 'store-voucher-detail']) !!}
+                {!! Form::open(['route' => 'store-voucher-detail','id' => 'jq-validation-form']) !!}
                     @include('accounts::voucher_detail._form')
                 {!! Form::close() !!}
             </div> <!-- / .modal-body -->
