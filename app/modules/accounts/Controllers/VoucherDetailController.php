@@ -19,6 +19,7 @@ use App\VoucherHead;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 
 class VoucherDetailController extends Controller
@@ -29,7 +30,7 @@ class VoucherDetailController extends Controller
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-   public function index($id=null ){
+   public function index($id){
 
        $pageTitle = 'Voucher Head Detail';
        $model = new VoucherDetail();
@@ -104,9 +105,9 @@ class VoucherDetailController extends Controller
 
         $data = VoucherDetail::findOrFail($id);
 
-        $coa_data = ChartOfAccounts::lists('account_code','id');
-        $currency_data = Currency::lists('code','id');
-        $branch_data =  Branch::lists('code','id');
+        $coa_data = ChartOfAccounts::lists('title','id');
+        $currency_data = Currency::lists('title','id');
+        $branch_data =  Branch::lists('title','id');
 
         return view('accounts::voucher_detail.update', ['data' => $data,'branch_data'=>$branch_data,'pageTitle'=> $pageTitle,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'id'=>$id]);
     }
@@ -171,5 +172,23 @@ class VoucherDetailController extends Controller
             Session::flash('danger',$ex->getMessage());
         }
         return redirect()->back();
+    }
+
+    public function autocomplete(){
+        $term = Input::get('term');
+        print_r($term);exit;
+        $results = array();
+
+        $queries = DB::table('ac_chart_of_accounts')
+            ->where('account_code', 'LIKE', '%'.$term.'%')
+            ->take(5)->get();
+        #print_r($queries);exit;
+
+        foreach ($queries as $query)
+        {
+            $results[] = ['value' => $query->account_code];
+        }
+        #print_r($results);exit;
+        return Response::json($results);
     }
 }
