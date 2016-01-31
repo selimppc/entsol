@@ -62,13 +62,13 @@ class VoucherDetailController extends Controller
 
        //get vouncher-number data...
 
-           $voucher_number = VoucherDetail::where('voucher_head_id',$id)->first();
+       $voucher_data = VoucherHead::where('id',$id)->first();
 
        $coa_data = [''=>'Chart Of Accounts'] + ChartOfAccounts::lists('title','id')->all();
        $currency_data = [''=>'Currency'] + Currency::lists('title','id')->all();
        $branch_data =  [''=>'Branch'] + Branch::lists('title','id')->all();
 
-       return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'model'=>$model,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'voucher_number'=>$voucher_number,'id'=>$id]);
+       return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'model'=>$model,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'voucher_data'=>$voucher_data,'id'=>$id]);
    }
 
     public function store(VoucherDetailRequest $request){

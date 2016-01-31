@@ -28,7 +28,7 @@
             </tr>
             <tr>
                 <th class="col-lg-4">Exchange Rate</th>
-                <td>{{isset($data->exchange_rate)?$data->exchange_rate:''}}</td>
+                <td>{{isset($data->relCurrency->exchange_rate)?$data->relCurrency->exchange_rate:''}}</td>
             </tr>
             <tr>
                 <th class="col-lg-4">Prime Amount</th>

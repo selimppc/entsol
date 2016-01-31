@@ -69,11 +69,9 @@
                         <thead>
                         <tr>
                             <th>Voucher Number </th>
-                            <th>Chart Of Account </th>
-                            <th> Account Code </th>
-                            <th> Currency </th>
-                            <th> Prime Amount </th>
-                            <th> Base Amount </th>
+                            <th>COA(Account Code) </th>
+                            <th> Currency (Exchange Rate)</th>
+                            <th> Amount </th>
                             <th> Branch </th>
                             <th> Status </th>
                             <th> Action </th>
@@ -84,10 +82,9 @@
                             @foreach($model as $values)
                                 <tr class="gradeX">
                                     <td>{{isset($values->relVoucherHead->voucher_number)?$values->relVoucherHead->voucher_number:''}}</td>
-                                    <td>{{isset($values->relChartOfAccounts->title)?$values->relChartOfAccounts->title:''}}</td>
-                                    <td>{{isset($values->relChartOfAccounts->account_code)?$values['account_code']:''}}</td>
-                                    <td>{{isset($values->relCurrency->title)?$values->relCurrency->title:''}}</td>
-                                    <td>{{$values->prime_amount}}</td>
+                                    <td>{{isset($values->relChartOfAccounts->title)?$values->relChartOfAccounts->title:''}} ( {{isset($values->relChartOfAccounts->account_code)?$values['account_code']:''}})</td>
+                                    {{--<td>{{isset($values->relChartOfAccounts->account_code)?$values['account_code']:''}}</td>--}}
+                                    <td>{{isset($values->relCurrency->title)?$values->relCurrency->title:''}} ({{isset($values->relCurrency->exchange_rate)?$values->relCurrency->exchange_rate:''}})</td>
                                     <td>{{$values->base_amount}}</td>
                                     <td>{{isset($values->relBranch->title)?$values->relBranch->title:''}}</td>
                                     <td>{{ucfirst($values->status)}}
@@ -124,7 +121,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel">Add Voucher Head Detail</h4>
+                <h4 class="modal-title" id="myModalLabel">Journal Voucher Detail ( Voucher Number: {{isset($voucher_data->voucher_number)?$voucher_data->voucher_number:''}})</h4>
             </div>
             <div class="modal-body modal-backdrop">
                 {!! Form::open(['route' => 'store-voucher-detail']) !!}

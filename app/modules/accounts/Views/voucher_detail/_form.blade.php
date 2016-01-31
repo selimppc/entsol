@@ -65,8 +65,8 @@
 </div>
 
 <div class="form-margin-btn">
+    {!! Form::submit('Save Changes', ['class' => 'btn btn-primary']) !!}
     <a href="" class=" btn btn-default" style="">Close</a>
-    {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
 </div>
 
 {{--<script type="text/javascript">
