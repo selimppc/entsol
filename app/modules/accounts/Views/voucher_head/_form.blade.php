@@ -67,7 +67,7 @@
 
 <div class="form-margin-btn">
     {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
-    <a href="{{route('voucher-head')}}" class=" btn btn-default" style="">Close</a>
+    <a href="{{route('voucher-head')}}" class=" btn btn-default">Close</a>
 </div>
 
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/datepicker.js') }}"></script>
