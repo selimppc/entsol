@@ -57,7 +57,7 @@ class VoucherDetailController extends Controller
            $model = $model->get();
            #print_r($model);exit;
        }else{
-           $model = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
+           $model = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('voucher_head_id',$id)->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
        }
 
        //get vouncher-number data...
@@ -171,6 +171,10 @@ class VoucherDetailController extends Controller
             Session::flash('danger',$ex->getMessage());
         }
         return redirect()->back();
+    }
+
+    public function search(){
+        return view('accounts::voucher_detail.autocomplete');
     }
 
     public function autocomplete(){
