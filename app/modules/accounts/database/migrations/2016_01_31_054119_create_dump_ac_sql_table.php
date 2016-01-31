@@ -17,6 +17,8 @@ class CreateDumpAcSqlTable extends Migration
         DB::unprepared(file_get_contents("app/modules/accounts/database/sql_dump/cm_currency.sql"));
 
         DB::unprepared(file_get_contents("app/modules/accounts/database/sql_dump/cm_branch.sql"));
+
+        DB::unprepared(file_get_contents("app/modules/accounts/database/sql_dump/ac_chart_of_accounts.sql"));
     }
 
     /**

@@ -1,5 +1,5 @@
 --
--- Dumping data for table `article`
+-- Dumping data for table `ac_group_one`
 --
 
 INSERT INTO `ac_group_one` (`id`, `code`, `title`, `description`, `status`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
