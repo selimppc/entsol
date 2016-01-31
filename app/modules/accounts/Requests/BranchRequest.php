@@ -35,6 +35,9 @@ class BranchRequest extends Request
             'title' => 'required|max:64',
             'currency_id' => 'required|max:10',
             'exchange_rate' => 'required',
+            'contact_person' => 'required|max:64',
+            'phone' => 'required|max:64',
+            'email' => 'required|max:64',
             'status' => 'required'
         ];
     }
