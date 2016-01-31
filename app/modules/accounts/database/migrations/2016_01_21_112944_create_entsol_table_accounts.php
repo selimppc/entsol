@@ -21,8 +21,8 @@ class CreateEntsolTableAccounts extends Migration
             $table->string('title', 45)->nullable();
             $table->text('description')->nullable();
             $table->enum('status',array('active','inactive','cancel'))->nullable();
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
@@ -39,8 +39,8 @@ class CreateEntsolTableAccounts extends Migration
             $table->text('description')->nullable();
             $table->decimal('exchange_rate',20,2)->nullable();
             $table->enum('status',array('active','inactive','cancel'))->nullable();
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
@@ -65,8 +65,8 @@ class CreateEntsolTableAccounts extends Migration
             $table->string('fax', 45)->nullable();
             $table->string('email', 45)->nullable();
             $table->enum('status',array('active','inactive','cancel'))->nullable();
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
@@ -93,8 +93,8 @@ class CreateEntsolTableAccounts extends Migration
             $table->unsignedInteger('branch_id')->nullable();
             $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->unsignedInteger('business_id')->nullable();
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
@@ -125,8 +125,8 @@ class CreateEntsolTableAccounts extends Migration
             $table->unsignedInteger('branch_id')->nullable();
             $table->text('note')->nullable();
             $table->enum('status',array('active','inactive','cancel'))->nullable();
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
@@ -155,8 +155,8 @@ class CreateEntsolTableAccounts extends Migration
             $table->unsignedInteger('branch_id')->nullable();
             $table->text('note')->nullable();
             $table->enum('status',array('active','inactive','cancel'))->nullable();
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
@@ -201,8 +201,8 @@ class CreateEntsolTableAccounts extends Migration
             $table->decimal('prime_amount', 20,2)->nullable();
             $table->decimal('base_amount', 20,2)->nullable();
             $table->enum('status',array('active','inactive','cancel'))->nullable();
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
@@ -241,8 +241,8 @@ class CreateEntsolTableAccounts extends Migration
             $table->decimal('prime_amount', 20,2)->nullable();
             $table->decimal('base_amount', 20,2)->nullable();
             $table->enum('status',array('active','inactive','cancel'))->nullable();
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
