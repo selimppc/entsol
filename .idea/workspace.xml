@@ -2,7 +2,72 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52053729-aaaf-4403-b098-2b8807a1f56d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/admin/Views/layouts/sidebar.blade.php" afterPath="$PROJECT_DIR$/app/modules/admin/Views/layouts/sidebar.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Controllers/BranchController.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Controllers/BranchController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Controllers/ChartOfAccountsController.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Controllers/ChartOfAccountsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Controllers/CurrencyController.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Controllers/CurrencyController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Controllers/DefaultOffsetController.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Controllers/DefaultOffsetController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Controllers/GlTransactionController.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Controllers/GlTransactionController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Controllers/VoucherDetailController.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Controllers/VoucherDetailController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Controllers/VoucherHeadController.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Controllers/VoucherHeadController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Controllers/VoucherHistoryController.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Controllers/VoucherHistoryController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Models/Balance.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Models/Balance.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Models/Branch.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Models/Branch.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Models/ChartOfAccounts.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Models/ChartOfAccounts.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Models/Currency.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Models/Currency.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Models/DefaultOffset.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Models/DefaultOffset.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Models/GlTransaction.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Models/GlTransaction.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Models/VoucherDetail.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Models/VoucherDetail.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Models/VoucherHead.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Models/VoucherHead.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Models/VoucherHistory.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Models/VoucherHistory.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Requests/BranchRequest.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Requests/BranchRequest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Requests/ChartOfAccountsRequest.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Requests/ChartOfAccountsRequest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Requests/CurrencyRequest.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Requests/CurrencyRequest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Requests/DefaultOffsetRequest.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Requests/DefaultOffsetRequest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Requests/GroupOneRequest.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Requests/GroupOneRequest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Requests/VoucherDetailRequest.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Requests/VoucherDetailRequest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Requests/VoucherHeadRequest.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Requests/VoucherHeadRequest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/branch/_form.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/branch/_form.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/branch/index.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/branch/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/branch/update.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/branch/update.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/branch/view.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/branch/view.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/chart_of_accounts/_form.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/chart_of_accounts/_form.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/chart_of_accounts/index.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/chart_of_accounts/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/chart_of_accounts/update.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/chart_of_accounts/update.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/chart_of_accounts/view.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/chart_of_accounts/view.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/currency/_form.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/currency/_form.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/currency/index.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/currency/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/currency/update.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/currency/update.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/currency/view.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/currency/view.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/default_offset/_form.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/default_offset/_form.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/default_offset/index.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/default_offset/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/default_offset/update.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/default_offset/update.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/default_offset/view.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/default_offset/view.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/gl_transaction/index.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/gl_transaction/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/group_one/update.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/group_one/update.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/group_one/view.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/group_one/view.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_detail/_form.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_detail/_form.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_detail/index.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_detail/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_detail/update.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_detail/update.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_detail/view.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_detail/view.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_head/_form.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_head/_form.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_head/index.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_head/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_head/update.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_head/update.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_head/view.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_head/view.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_history/index.blade.php" afterPath="$PROJECT_DIR$/app/modules/accounts/Views/voucher_history/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/database/migrations/2016_01_21_112944_create_entsol_table_accounts.php" afterPath="$PROJECT_DIR$/app/modules/accounts/database/migrations/2016_01_21_112944_create_entsol_table_accounts.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/database/migrations/2016_01_31_052907_create_dump_sql_table.php" afterPath="$PROJECT_DIR$/app/modules/accounts/database/migrations/2016_01_31_052907_create_dump_sql_table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/database/migrations/2016_01_31_054119_create_dump_sql_table.php" afterPath="$PROJECT_DIR$/app/modules/accounts/database/migrations/2016_01_31_054119_create_dump_sql_table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/database/sql_dump/ac_group_one.sql" afterPath="$PROJECT_DIR$/app/modules/accounts/database/sql_dump/ac_group_one.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/accounts/routes_tjt.php" afterPath="$PROJECT_DIR$/app/modules/accounts/routes_tjt.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/admin/Views/layouts/example_pages/form_test.blade.php" afterPath="$PROJECT_DIR$/app/modules/admin/Views/layouts/example_pages/form_test.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/admin/Views/layouts/example_pages/validation_form.blade.php" afterPath="$PROJECT_DIR$/app/modules/admin/Views/layouts/example_pages/validation_form.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/admin/Views/layouts/example_pages/validation_index.blade.php" afterPath="$PROJECT_DIR$/app/modules/admin/Views/layouts/example_pages/validation_index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/UserTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/UserTableSeeder.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/admin/css/custom.css" afterPath="$PROJECT_DIR$/public/assets/admin/css/custom.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/admin/js/datepicker.js" afterPath="$PROJECT_DIR$/public/assets/admin/js/datepicker.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/admin/js/validation.js" afterPath="$PROJECT_DIR$/public/assets/admin/js/validation.js" />
     </list>
     <ignored path="entsol.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -18,17 +83,78 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
+  <component name="DatabaseView">
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="entsol" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="sidebar.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sidebar.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/admin/Views/layouts/sidebar.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.1904762">
-              <caret line="57" column="30" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="30" />
+            <state vertical-scroll-proportion="-44.13793">
+              <caret line="65" column="30" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VoucherDetailController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/modules/accounts/Controllers/VoucherDetailController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.2413793">
+              <caret line="35" column="34" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2016_01_21_112944_create_entsol_table_accounts.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/modules/accounts/database/migrations/2016_01_21_112944_create_entsol_table_accounts.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.9848197">
+              <caret line="265" column="44" selection-start-line="265" selection-start-column="44" selection-end-line="265" selection-end-column="44" />
+              <folding>
+                <element signature="e#332#855#1#PHP" expanded="true" />
+                <element signature="e#942#1527#1#PHP" expanded="true" />
+                <element signature="e#1611#2591#1#PHP" expanded="true" />
+                <element signature="e#2630#2739#1#PHP" expanded="true" />
+                <element signature="e#2845#3830#1#PHP" expanded="true" />
+                <element signature="e#3880#3991#1#PHP" expanded="true" />
+                <element signature="e#4041#4146#1#PHP" expanded="true" />
+                <element signature="e#4242#5181#1#PHP" expanded="true" />
+                <element signature="e#5226#5331#1#PHP" expanded="true" />
+                <element signature="e#5431#6471#1#PHP" expanded="true" />
+                <element signature="e#6518#6635#1#PHP" expanded="true" />
+                <element signature="e#6682#6795#1#PHP" expanded="true" />
+                <element signature="e#6842#6951#1#PHP" expanded="true" />
+                <element signature="e#6998#7103#1#PHP" expanded="true" />
+                <element signature="e#7190#8397#1#PHP" expanded="true" />
+                <element signature="e#8437#8554#1#PHP" expanded="true" />
+                <element signature="e#8594#8707#1#PHP" expanded="true" />
+                <element signature="e#8747#8852#1#PHP" expanded="true" />
+                <element signature="e#8892#9001#1#PHP" expanded="true" />
+                <element signature="e#9095#9890#1#PHP" expanded="true" />
+                <element signature="e#9933#10050#1#PHP" expanded="true" />
+                <element signature="e#10093#10202#1#PHP" expanded="true" />
+                <element signature="n#down#0;n#CreateEntsolTableAccounts#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="coa_list.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Desktop/coa_list.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="9" column="58" selection-start-line="9" selection-start-column="58" selection-end-line="9" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -57,8 +183,10 @@
         <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
         <option value="$PROJECT_DIR$/database/seeds/UserTableSeeder.php" />
-        <option value="$PROJECT_DIR$/app/modules/accounts/database/migrations/2016_01_21_112944_create_entsol_table_accounts.php" />
         <option value="$PROJECT_DIR$/app/modules/admin/Views/layouts/sidebar.blade.php" />
+        <option value="$USER_HOME$/Desktop/coa_list.sql" />
+        <option value="$USER_HOME$/Desktop/am_group_one.sql" />
+        <option value="$PROJECT_DIR$/app/modules/accounts/database/migrations/2016_01_21_112944_create_entsol_table_accounts.php" />
       </list>
     </option>
   </component>
@@ -107,7 +235,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -268,15 +395,68 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entsol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entsol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="accounts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entsol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entsol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="accounts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrations" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="UserC&#9;null&#9;null&#10;app.php&#9;FILE&#9;file:///Users/selimreza/Sites/entsol/config/app.php" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ccms" />
+    <property name="SearchEverywhereHistoryKey" value="Voucher&#9;null&#9;null&#10;UserC&#9;null&#9;null&#10;app.php&#9;FILE&#9;file:///Users/selimreza/Sites/entsol/config/app.php" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -312,6 +492,12 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <envs />
+      <method />
+    </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="SvnConfiguration">
@@ -331,10 +517,11 @@
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28334647" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28255722" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -346,7 +533,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -362,7 +548,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28334647" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28255722" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -390,14 +576,34 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/modules/admin/Views/layouts/sidebar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="64" column="30" selection-start-line="64" selection-start-column="30" selection-end-line="64" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/accounts/Controllers/VoucherDetailController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/admin/Views/layouts/sidebar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-          <folding>
-            <element signature="e#7#38#0#PHP" expanded="true" />
-            <element signature="n#run#0;n#DatabaseSeeder#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -405,9 +611,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="6" column="47" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
-          <folding>
-            <element signature="e#23#59#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -415,7 +618,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -654,7 +856,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.71428573">
           <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -662,9 +863,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.1564626">
           <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding>
-            <element signature="e#23#59#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -672,29 +870,62 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.40816328">
           <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-          <folding>
-            <element signature="e#7#38#0#PHP" expanded="true" />
-            <element signature="n#run#0;n#DatabaseSeeder#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/accounts/database/migrations/2016_01_21_112944_create_entsol_table_accounts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.76840216">
-          <caret line="361" column="32" selection-start-line="361" selection-start-column="32" selection-end-line="361" selection-end-column="32" />
-          <folding>
-            <element signature="n#up#0;n#CreateEntsolTableAccounts#0;n#!!top" expanded="true" />
-            <element signature="e#10109#10679#1#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/admin/Views/layouts/sidebar.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.1904762">
-          <caret line="57" column="30" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="30" />
+        <state vertical-scroll-proportion="-44.13793">
+          <caret line="65" column="30" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/accounts/Controllers/VoucherDetailController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.2413793">
+          <caret line="35" column="34" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/coa_list.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="58" selection-start-line="9" selection-start-column="58" selection-end-line="9" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/accounts/database/migrations/2016_01_21_112944_create_entsol_table_accounts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.9848197">
+          <caret line="265" column="44" selection-start-line="265" selection-start-column="44" selection-end-line="265" selection-end-column="44" />
+          <folding>
+            <element signature="e#332#855#1#PHP" expanded="true" />
+            <element signature="e#942#1527#1#PHP" expanded="true" />
+            <element signature="e#1611#2591#1#PHP" expanded="true" />
+            <element signature="e#2630#2739#1#PHP" expanded="true" />
+            <element signature="e#2845#3830#1#PHP" expanded="true" />
+            <element signature="e#3880#3991#1#PHP" expanded="true" />
+            <element signature="e#4041#4146#1#PHP" expanded="true" />
+            <element signature="e#4242#5181#1#PHP" expanded="true" />
+            <element signature="e#5226#5331#1#PHP" expanded="true" />
+            <element signature="e#5431#6471#1#PHP" expanded="true" />
+            <element signature="e#6518#6635#1#PHP" expanded="true" />
+            <element signature="e#6682#6795#1#PHP" expanded="true" />
+            <element signature="e#6842#6951#1#PHP" expanded="true" />
+            <element signature="e#6998#7103#1#PHP" expanded="true" />
+            <element signature="e#7190#8397#1#PHP" expanded="true" />
+            <element signature="e#8437#8554#1#PHP" expanded="true" />
+            <element signature="e#8594#8707#1#PHP" expanded="true" />
+            <element signature="e#8747#8852#1#PHP" expanded="true" />
+            <element signature="e#8892#9001#1#PHP" expanded="true" />
+            <element signature="e#9095#9890#1#PHP" expanded="true" />
+            <element signature="e#9933#10050#1#PHP" expanded="true" />
+            <element signature="e#10093#10202#1#PHP" expanded="true" />
+            <element signature="n#down#0;n#CreateEntsolTableAccounts#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
