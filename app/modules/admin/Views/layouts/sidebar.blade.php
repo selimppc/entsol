@@ -59,7 +59,7 @@
             <a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text mmc-dropdown-delay animated fadeIn">Accounts Module</span></a>
             <ul class="mmc-dropdown-delay animated fadeInLeft">
                 <li>
-                    <a tabindex="-1" href="{{route('voucher-head')}}"><span class="mm-text">Voucher Head</span></a>
+                    <a tabindex="-1" href="{{route('voucher-head')}}"><span class="mm-text">Journal Voucher</span></a>
                 </li>
                 <li>
                     <a tabindex="-1" href="{{route('group-one')}}"><span class="mm-text">Group One</span></a>
