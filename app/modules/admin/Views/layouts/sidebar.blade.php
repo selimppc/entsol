@@ -6,7 +6,8 @@
         <div>
             <div class="text-bg"><span class="text-slim">Welcome,</span> <span class="text-semibold">User</span></div>
 
-            <img src="assets/admin/img/avatar1.jpg" alt="" class="">
+            <img src="{{URL::to('assets/admin/img/avatar1.jpg')}}" alt="User Image" >
+
             <div class="btn-group">
                 <a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-envelope"></i></a>
                 <a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-user"></i></a>

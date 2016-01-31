@@ -230,7 +230,7 @@
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
-                                <img src="assets/admin/img/avatar1.jpg" alt="">
+                                <img src="{{URL::to('assets/admin/img/avatar1.jpg')}}" alt="User Image">
                                 <span>User</span>
                             </a>
                             <ul class="dropdown-menu">

@@ -56,3 +56,7 @@ init.push(function () {
 window.LanderApp.start(init);
 /*-------------sign up validation----------------------------- */
 
+/*tooltip*/
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
