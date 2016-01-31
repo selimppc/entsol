@@ -88,7 +88,7 @@ class VoucherHeadController extends Controller
         $pageTitle = 'Show the detail';
 
         $model = new VoucherHead();
-        $branch_data = Branch::lists('code','id');
+        $branch_data = Branch::lists('title','id');
         $year = $model->getYear();
         $data = VoucherHead::findOrFail($id);
         return view('accounts::voucher_head.update', ['data' => $data,'branch_data'=>$branch_data,'pageTitle'=> $pageTitle,'year'=>$year]);

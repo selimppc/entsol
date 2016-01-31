@@ -5,6 +5,17 @@
 
 @section('content')
 
+    <script>
+        $( document ).ready(function() {
+             $( "#ac-search" ).autocomplete({
+                    source: "search/autocomplete",
+                    minLength: 3,
+                    select: function(event, ui) {
+                        $('#ac-search').val(ui.item.value);
+                    }
+                });
+        });
+    </script>
         <!-- page start-->
 <div class="row">
     <div class="col-sm-12">
@@ -18,10 +29,11 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['method' => 'GET','route' => 'voucher-detail']) !!}
+                {!! Form::open(['method' => 'GET','route' => 'voucher-detail',$id]) !!}
                 <div class="col-sm-12">
                     <div class="col-sm-2">
-                        {!! Form::text('account_code', Input::old('account_code'), ['class' => 'form-control','placeholder'=>'account code']) !!}
+                        {!! Form::text('ac-search', '', ['id'=>'ac-search','class' => 'form-control','placeholder'=>'account code']) !!}
+
                     </div>
                     <div class="col-sm-2">
                         {!! Form::Select('currency_id',$currency_data, Input::old('currency_id'), ['class' => 'form-control']) !!}

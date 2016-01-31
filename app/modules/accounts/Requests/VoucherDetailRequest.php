@@ -24,8 +24,8 @@ class VoucherDetailRequest extends Request
     public function rules()
     {
         return [
-            'prime_amount' => 'required',
-            'base_amount' => 'required',
+//            'prime_amount' => 'required',
+//            'base_amount' => 'required',
         ];
     }
 }
