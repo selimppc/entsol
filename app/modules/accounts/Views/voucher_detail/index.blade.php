@@ -5,17 +5,33 @@
 
 @section('content')
 
-    <script>
-        $( document ).ready(function() {
-             $( "#ac-search" ).autocomplete({
-                    source: "search/autocomplete",
-                    minLength: 3,
-                    select: function(event, ui) {
-                        $('#ac-search').val(ui.item.value);
-                    }
-                });
+    {{--<script>
+        $(document).ready(function(){
+            $("#ac-search").autocomplete({
+
+                source: function (request, response) {
+                    $.ajax({
+
+                        url: "{{URL('search/autocomplete')}}",
+                        data: {
+                            account_code: this.term
+                        },
+                        success: function (data) {
+
+                            // data must be an array containing 0 or more items
+                            console.log("[SUCCESS] " + data.length + " item(s)");
+                            //response(data);
+                            response( $.map( data, function( item ) {
+                                return {
+                                    value: item.code
+                                };
+                            }));
+                        },
+                    });
+                },
+            });
         });
-    </script>
+    </script>--}}
         <!-- page start-->
 <div class="row">
     <div class="col-sm-12">
@@ -29,10 +45,10 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['method' => 'GET','route' => 'voucher-detail',$id]) !!}
+                {!! Form::open(['route' => 'voucher-detail',$id]) !!}
                 <div class="col-sm-12">
                     <div class="col-sm-2">
-                        {!! Form::text('ac-search', '', ['id'=>'ac-search','class' => 'form-control','placeholder'=>'account code']) !!}
+                        {!! Form::text('account_code', Input::old('account_code'), ['id'=>'ac-search','class' => 'form-control','placeholder'=>'account code']) !!}
 
                     </div>
                     <div class="col-sm-2">
@@ -130,6 +146,7 @@
 
 
 <!--script for this page only-->
+{{--
 @if($errors->any())
     <script type="text/javascript">
         $(function(){
@@ -137,5 +154,12 @@
         });
     </script>
 @endif
+--}}
 
+
+<script>
+    $(".ac-search").click(function(){
+        alert('fghgh');
+    });
+</script>
 @stop
