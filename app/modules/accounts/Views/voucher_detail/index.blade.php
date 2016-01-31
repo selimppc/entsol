@@ -48,7 +48,7 @@
                 {!! Form::open(['route' => 'voucher-detail',$id]) !!}
                 <div class="col-sm-12">
                     <div class="col-sm-2">
-                        {!! Form::text('account_code', Input::old('account_code'), ['id'=>'ac-search','class' => 'form-control','placeholder'=>'account code']) !!}
+                        {!! Form::text('account_code', Input::old('account_code'), ['id'=>'abcd','class' => 'form-control','placeholder'=>'account code']) !!}
 
                     </div>
                     <div class="col-sm-2">
@@ -157,9 +157,14 @@
 --}}
 
 
-<script>
-    $(".ac-search").click(function(){
-        alert('fghgh');
-    });
+
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#abcd").click(function(){
+                alert("The paragraph was clicked.");
+            });
+        });
+
 </script>
 @stop
