@@ -27,4 +27,8 @@ body{
     height: 27px;
     padding: 2px 6px;
     font-size: 12px;
-    }
+ }
+
+.link-text-decoration{
+    text-decoration: underline;
+}

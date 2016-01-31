@@ -71,3 +71,4 @@
 </div>
 
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/datepicker.js') }}"></script>
+

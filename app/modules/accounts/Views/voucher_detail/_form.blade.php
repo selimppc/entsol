@@ -45,7 +45,7 @@
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('amount', 'Amount:', ['class' => 'control-label']) !!}
-            {!! Form::text('amount', Input::old('amount'), ['class' => 'form-control']) !!}
+            {!! Form::text('amount', Input::old('amount'), ['data-toggle'=>"tooltip" ,'data-placement'=>"left" ,'class' => 'form-control','title'=>'For credit add minus sign(-) before numeric digit(s).']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
@@ -64,9 +64,13 @@
     </div>
 </div>
 
-
 <div class="form-margin-btn">
     <a href="" class=" btn btn-default" style="">Close</a>
     {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
 </div>
 
+{{--<script type="text/javascript">
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>--}}
