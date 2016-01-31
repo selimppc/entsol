@@ -32,8 +32,10 @@ class BranchRequest extends Request
     {
         return [
             'code' => 'required|max:64',
+            'title' => 'required|max:64',
             'currency_id' => 'required|max:10',
-            'exchange_rate' => 'required'
+            'exchange_rate' => 'required',
+            'status' => 'required'
         ];
     }
 }
