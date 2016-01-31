@@ -70,12 +70,17 @@ init.push(function () {
                 required: true,
                 phone_format: true
             },
-            'status': {
-                required: true
+            'email': {
+                required: true,
+                email: true
             },
             'currency_id': {
                 required: true
             },
+            'status': {
+                required: true
+            },
+
             'jq-validation-multiselect': {
                 required: true,
                 minlength: 2
@@ -116,20 +121,19 @@ init.push(function () {
 });
 
 
-
-
-/*$( document ).ready(function() {
+/*
+init.push(function () {
+    // Setup validation
     $("#jq-validation-form").validate({
-        ignore: '.ignore, .select2-input',
-        focusInvalid: false,
+
         rules: {
-            'code': {
+            'email': {
                 required: true,
                 email: true
-            },
-            'jq-validation-select': {
-                required: true
             }
         }
     });
-});*/
+});
+*/
+
+

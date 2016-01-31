@@ -28,12 +28,12 @@
         <div class="col-sm-6">
             {!! Form::label('account_type', 'Account Type:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::select('account_type', array('asset'=>'Asset','liability'=>'Liability','income'=>'Income','expenses'=>'Expenses'),Input::old('account_type'),['class' => 'form-control','required']) !!}
+            {!! Form::select('account_type', array(''=>'Select Account Type','asset'=>'Asset','liability'=>'Liability','income'=>'Income','expenses'=>'Expenses'),Input::old('account_type'),['class' => 'form-control','required']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('account_usage', 'Account Usage:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::select('account_usage', array('ledger'=>'Ledger','ap'=>'Ap','ar'=>'Ar'),Input::old('account_usage'),['class' => 'form-control','required']) !!}
+            {!! Form::select('account_usage', array(''=>'Select Account Usage','ledger'=>'Ledger','ap'=>'Ap','ar'=>'Ar'),Input::old('account_usage'),['class' => 'form-control','required']) !!}
         </div>
     </div>
 </div>
@@ -52,7 +52,7 @@
         <div class="col-sm-6">
             {!! Form::label('analytical_code', 'Analytical Code:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::select('analytical_code', array('cash'=>'Cash','non-cash'=>'Non Cash'),Input::old('analytical_code'),['class' => 'form-control','required']) !!}
+            {!! Form::select('analytical_code', array(''=>'Select Analytical Code','cash'=>'Cash','non-cash'=>'Non Cash'),Input::old('analytical_code'),['class' => 'form-control','required']) !!}
         </div>
     </div>
 </div>

@@ -39,8 +39,8 @@ class ChartOfAccountsController extends Controller
         }else{
             $data = ChartOfAccounts::where('status','active')->orderBy('id', 'DESC')->paginate(50);
         }
-        $group_one_id = GroupOne::lists('title','id');
-        $branch_id = Branch::lists('title','id');
+        $group_one_id = [''=>'Select Group One'] + GroupOne::lists('title','id')->all();
+        $branch_id = [''=>'Select Branch'] + Branch::lists('title','id')->all();
 
         return view('accounts::chart_of_accounts.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'group_one_id'=> $group_one_id, 'branch_id'=> $branch_id]);
     }

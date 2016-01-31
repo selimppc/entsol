@@ -55,11 +55,11 @@
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('contact_person', 'Contact Person:', ['class' => 'control-label']) !!}
-            {!! Form::text('contact_person', null, ['id'=>'contact_person', 'class' => 'form-control']) !!}
+            {!! Form::text('contact_person', null, ['id'=>'contact_person', 'class' => 'form-control','required']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('phone', 'Phone:', ['class' => 'control-label']) !!}
-            {!! Form::text('phone', null, ['id'=>'phone', 'class' => 'form-control']) !!}
+            {!! Form::input('number','phone', null, ['id'=>'phone', 'class' => 'form-control','required']) !!}
         </div>
     </div>
 </div>
@@ -68,7 +68,7 @@
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('mobile', 'Mobile:', ['class' => 'control-label']) !!}
-            {!! Form::text('mobile', null, ['id'=>'mobile', 'class' => 'form-control']) !!}
+            {!! Form::input('number','mobile', null, ['id'=>'mobile', 'class' => 'form-control']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('fax', 'Fax:', ['class' => 'control-label']) !!}
@@ -81,7 +81,7 @@
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('email', 'Email:', ['class' => 'control-label']) !!}
-            {!! Form::email('email', null, ['id'=>'email', 'class' => 'form-control']) !!}
+            {!! Form::email('email', null, ['id'=>'email', 'class' => 'form-control','required']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
