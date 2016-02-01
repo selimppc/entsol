@@ -5,33 +5,6 @@
 
 @section('content')
 
-    {{--<script>
-        $(document).ready(function(){
-            $("#ac-search").autocomplete({
-
-                source: function (request, response) {
-                    $.ajax({
-
-                        url: "{{URL('search/autocomplete')}}",
-                        data: {
-                            account_code: this.term
-                        },
-                        success: function (data) {
-
-                            // data must be an array containing 0 or more items
-                            console.log("[SUCCESS] " + data.length + " item(s)");
-                            //response(data);
-                            response( $.map( data, function( item ) {
-                                return {
-                                    value: item.code
-                                };
-                            }));
-                        },
-                    });
-                },
-            });
-        });
-    </script>--}}
         <!-- page start-->
 <div class="row">
     <div class="col-sm-12">
@@ -88,12 +61,6 @@
                                     <td>{{$values->base_amount}}</td>
                                     <td>{{isset($values->relBranch->title)?$values->relBranch->title:''}}</td>
                                     <td>{{ucfirst($values->status)}}
-                                      @if($values->status == 'active')&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="{{ route('status-voucher-detail', $values->id) }}" class="" title="Inactivate this Status" onclick="return confirm('Are you sure to Inactive status?')"><i class="fa  fa-minus-square"></i></a>
-                                      @else
-                                            &nbsp;
-                                            <a href="{{ route('status-voucher-detail', $values->id) }}" class="" title="Activate This Status" onclick="return confirm('Are you sure to Active status?')"><i class="fa fa-plus-square"></i></a>
-                                      @endif
                                     </td>
                                     <td>
                                         <a href="{{ route('view-voucher-detail', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>

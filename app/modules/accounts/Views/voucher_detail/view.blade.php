@@ -4,8 +4,28 @@
 </div>
 
 <div class="modal-body">
-    <div style="padding: 30px;">
-        <table id="" class="table table-bordered table-hover table-striped">
+    <div style="padding:15px;">
+        <table class="table table-bordered table-hover table-striped">
+            <h4 class="text-center">Journal Voucher</h4>
+            <tr>
+                <th class="col-lg-4">Voucher Number</th>
+                <td>{{ isset($data->relVoucherHead->voucher_number)?$data->relVoucherHead->voucher_number:''}}</td>
+            </tr>
+            <tr>
+                <th class="col-lg-4">Account Type</th>
+                <td>{{ isset($data->relVoucherHead->account_type)?$data->relVoucherHead->account_type:''}}</td>
+            </tr>
+            <tr>
+                <th class="col-lg-4">Branch</th>
+                <td>{{ isset($data->relVoucherHead->relBranch->title)?$data->relVoucherHead->relBranch->title:''}}</td>
+            </tr>
+            <tr>
+                <th class="col-lg-4">Status</th>
+                <td>{{ isset($data->relVoucherHead->status)?$data->relVoucherHead->status:''}}</td>
+            </tr>
+        </table>
+        <table class="table table-bordered table-hover table-striped">
+            <h4 class="text-center">Voucher Detail</h4>
             <tr>
                 <th class="col-lg-4">Voucher Number</th>
                 <td>{{ isset($data->relVoucherHead->voucher_number)?$data->relVoucherHead->voucher_number:''}}</td>
@@ -51,6 +71,7 @@
                 <td>{{ isset($data->status)?$data->status:'' }}</td>
             </tr>
         </table>
+
     </div>
 </div>
 

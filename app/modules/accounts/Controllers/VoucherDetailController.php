@@ -89,8 +89,8 @@ class VoucherDetailController extends Controller
                 'sub_account_code'=> $input['sub_account_code'],
                 'currency_id'=> $input['currency_id'],
                 'exchange_rate'=> $currency_data['exchange_rate'],
-                #'prime_amount'=> $input['amount']+$input['amount'],
-                 #'base_amount'=> '',
+                'prime_amount'=> $input['amount'],
+                'base_amount'=> $input['amount'],
                 'branch_id'=> $input['branch_id'],
                 'note'=> $input['note'],
                 'status'=> $input['status'],
@@ -109,7 +109,7 @@ class VoucherDetailController extends Controller
 
     public function show($id)
     {
-        $pageTitle = 'Show the detail';
+        $pageTitle = 'Show the details Of Journal Voucher';
         $data = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('id',$id)->first();
 
         return view('accounts::voucher_detail.view', ['data' => $data, 'pageTitle'=> $pageTitle]);

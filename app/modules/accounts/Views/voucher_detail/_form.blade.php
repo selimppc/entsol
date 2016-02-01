@@ -56,11 +56,12 @@
             {!! Form::label('amount', 'Amount(Debit/Credit):', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small><br>
             <strong class="narration">For credit add minus sign(-) before numeric digit(s).</strong>
-            {!! Form::text('amount', Input::old('amount'), ['data-placement'=>"left" ,'class' => 'form-control','title'=>'For credit add minus sign(-) before numeric digit(s).']) !!}
+            {!! Form::text('amount', Input::old('amount'), ['class' => 'form-control','required']) !!}
         </div>
         <div class="col-sm-6">
+            <br>
             {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
-            <small class="required">(Required)</small><br><br>
+            <small class="required">(Required)</small>
             {!! Form::Select('status',array('active'=>'Active','inactive'=>'Inactive'),Input::old('status'),['class'=>'form-control ','required']) !!}
         </div>
     </div>
