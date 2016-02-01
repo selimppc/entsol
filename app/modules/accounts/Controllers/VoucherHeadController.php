@@ -156,7 +156,7 @@ class VoucherHeadController extends Controller
                 Session::flash('danger',$ex->getMessage());
             }
         }else{
-            Session::flash('message', "Voucher Details Data Found");
+            Session::flash('message', "Voucher Details Data Found ! You Can Not Delete This Voucher Number");
         }
         return redirect()->back();
     }
