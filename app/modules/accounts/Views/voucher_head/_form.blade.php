@@ -3,7 +3,7 @@
         <div class="col-sm-6">
             {!! Form::label('account_type', 'Account Type:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::Select('account_type',array('journal-voucher'=>'Journal Voucher','account-payable'=>'Account Payable','account-receivable'=>'Account Receivable','account-adjustment'=>'account Adjustment','receipt-voucher'=>'Receipt Voucher','reverse-entry'=>'Reverse Entry'),Input::old('account_type'),['class'=>'form-control ','required']) !!}
+            {!! Form::Select('account_type',array('journal-voucher'=>'Journal Voucher'),Input::old('account_type'),['class'=>'form-control ','required']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('voucher_number', 'Voucher Number:', ['class' => 'control-label']) !!}
@@ -19,7 +19,7 @@
             {!! Form::label('date', 'Date:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
             <div class="input-group date">
-                {!! Form::text('date', null, ['class' => 'form-control bs-datepicker-component','required']) !!}
+                {!! Form::text('date', date('Y/m/d'), ['class' => 'form-control bs-datepicker-component','required']) !!}
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
             </div>
         </div>
@@ -35,7 +35,8 @@
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('year', 'Year:', ['class' => 'control-label']) !!}
-            {!! Form::selectrange('year',2016,2030, Input::old('year'),['class' => 'form-control','required']) !!}
+            {{--old('date', Carbon\Carbon::today()->format('Y/m/d'))--}}
+            {!! Form::selectrange('year',2016,2030, Input::old('year', date('Y/m/d')),['class' => 'form-control','required']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('period', 'Period:', ['class' => 'control-label']) !!}

@@ -28,7 +28,7 @@ class VoucherHeadController extends Controller
 
    public function index(){
 
-       $pageTitle = 'Journal Voucher';
+       $pageTitle = 'Journal Voucher Informations';
        $model = new VoucherHead();
        if($this->isPostRequest()){
 
