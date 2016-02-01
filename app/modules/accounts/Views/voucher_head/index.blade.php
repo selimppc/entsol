@@ -11,8 +11,8 @@
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>
-                <a class="btn btn-xs btn-primary pull-right" data-toggle="modal" href="#addData" title="Add">
-                    <strong>Add+</strong>
+                <a class="btn btn-xs btn-primary pull-right" data-toggle="modal" href="#addData" title="Add Journal Voucher">
+                    <strong>Add Journal Voucher</strong>
                 </a>
             </div>
 
@@ -106,7 +106,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel">Add Voucher Head</h4>
+                <h4 class="modal-title" id="myModalLabel">Add Journal Voucher Informations</h4>
             </div>
             <div class="modal-body">
                 {!! Form::open(['route' => 'voucher-head-store','id' => 'jq-validation-form']) !!}

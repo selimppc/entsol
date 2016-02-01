@@ -3,7 +3,7 @@
         <div class="col-sm-6">
             {!! Form::label('account_type', 'Account Type:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::Select('account_type',array(''=>'Select Account Type','account-payable'=>'Account Payable','account-receivable'=>'Account Receivable','account-adjustment'=>'account Adjustment','journal-voucher'=>'Journal Voucher','receipt-voucher'=>'Receipt Voucher','reverse-entry'=>'Reverse Entry'),Input::old('account_type'),['class'=>'form-control ','required']) !!}
+            {!! Form::Select('account_type',array('journal-voucher'=>'Journal Voucher','account-payable'=>'Account Payable','account-receivable'=>'Account Receivable','account-adjustment'=>'account Adjustment','receipt-voucher'=>'Receipt Voucher','reverse-entry'=>'Reverse Entry'),Input::old('account_type'),['class'=>'form-control ','required']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('voucher_number', 'Voucher Number:', ['class' => 'control-label']) !!}
