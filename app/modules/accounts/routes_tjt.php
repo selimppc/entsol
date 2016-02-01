@@ -71,6 +71,11 @@ Route::any('delete-voucher-detail/{id}', [
     'uses' => 'VoucherDetailController@delete'
 ]);
 
+Route::any('destroy-voucher-detail/{id}', [
+    'as' => 'destroy-voucher-detail',
+    'uses' => 'VoucherDetailController@destroy'
+]);
+
 Route::any('status-voucher-detail/{id}', [
     'as' => 'status-voucher-detail',
     'uses' => 'VoucherDetailController@change_status'
