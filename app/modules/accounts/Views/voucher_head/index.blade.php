@@ -74,16 +74,16 @@
                                     <td>{{$values->note}}</td>
                                     <td>{{ ucfirst($values->status) }}</td>
                                     <td>
-                                        @if($values->status == 'open')
-                                        <a href="{{ route('view-voucher-head', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('edit-voucher-head', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Edit"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('delete-voucher-head', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Delete"><i class="fa fa-trash-o"></i></a>
+                                        @if($values->status == 'posted')
+                                            <a href="{{ route('view-voucher-head', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
                                         @else
                                             <a href="{{ route('view-voucher-head', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
+                                            <a href="{{ route('edit-voucher-head', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Edit"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ route('delete-voucher-head', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Delete"><i class="fa fa-trash-o"></i></a>
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('voucher-detail', $values->id) }}" class="btn btn-info btn-xs" title="Voucher-Details">V-Details</a>
+                                        <a href="{{ route('voucher-detail', $values->id) }}" class="btn btn-info btn-xs" title="voucher-details">v-details</a>
                                     </td>
                                     <td>&nbsp;</td>
                                 </tr>

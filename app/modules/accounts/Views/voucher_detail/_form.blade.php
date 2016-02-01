@@ -23,10 +23,12 @@
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('sub_account_code', 'Sub Account Code:', ['class' => 'control-label']) !!}
-            <small>(Optional)</small>
+            <small>(Optional)</small><br>
+            <small class="narration">Resource Person/Organization</small>
             {!! Form::text('sub_account_code', Input::old('sub_account_code'), ['class' => 'form-control']) !!}
         </div>
         <div class="col-sm-6">
+            <br>
             {!! Form::label('branch_id', 'Branch:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
             {!! Form::Select('branch_id', $branch_data, Input::old('branch_id'),['class' => 'form-control','required']) !!}
@@ -55,7 +57,7 @@
         <div class="col-sm-6">
             {!! Form::label('amount', 'Amount(Debit/Credit):', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small><br>
-            <strong class="narration">For credit add minus sign(-) before numeric digit(s).</strong>
+            <small class="narration">For credit add minus sign(-) before numeric digit(s).</small>
             {!! Form::text('amount', Input::old('amount'), ['class' => 'form-control','required']) !!}
         </div>
         <div class="col-sm-6">
