@@ -10,7 +10,7 @@
     <div class="col-sm-12">
         <div class="panel">
             <div class="panel-heading">
-                <span class="panel-title">{{ $pageTitle }} ({{isset($voucher_data->voucher_number)?$voucher_data->voucher_number:''}})</span>
+                <span class="panel-title">{{ $pageTitle }} (V/N : {{isset($voucher_data->voucher_number)?$voucher_data->voucher_number:''}})</span>
                 <a class="btn btn-xs btn-primary pull-right" data-toggle="modal" href="#addData" title="Add">
                     <strong>Add Voucher Detail</strong>
                 </a>

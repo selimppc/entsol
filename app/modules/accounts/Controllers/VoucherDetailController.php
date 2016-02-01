@@ -30,7 +30,7 @@ class VoucherDetailController extends Controller
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-   public function index($id){
+   public function index($id,$voucher_number,$status){
 
        $pageTitle = 'Journal Voucher Detail';
        $model = new VoucherDetail();
@@ -68,7 +68,7 @@ class VoucherDetailController extends Controller
        $currency_data = [''=>'Select Currency'] + Currency::lists('title','id')->all();
        $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
 
-       return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'model'=>$model,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'voucher_data'=>$voucher_data,'id'=>$id]);
+       return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'model'=>$model,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'id'=>$id,'status'=>$status,'voucher_number'=>$voucher_number]);
    }
 
     public function store(VoucherDetailRequest $request){
