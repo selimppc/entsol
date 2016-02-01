@@ -36,11 +36,11 @@
         <div class="col-sm-6">
             {!! Form::label('year', 'Year:', ['class' => 'control-label']) !!}
             {{--old('date', Carbon\Carbon::today()->format('Y/m/d'))--}}
-            {!! Form::selectrange('year',2016,2030, Input::old('year', date('Y/m/d')),['class' => 'form-control','required']) !!}
+            {!! Form::selectrange('year',2010,2030, Input::old('year', date('Y')),['class' => 'form-control','required']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('period', 'Period:', ['class' => 'control-label']) !!}
-            {!! Form::selectrange('period', 1,12,Input::old('year'),['class' => 'form-control','required']) !!}
+            {!! Form::selectrange('period', 1,12,Input::old('period', date('m')),['class' => 'form-control','required']) !!}
         </div>
     </div>
 </div>
@@ -55,7 +55,7 @@
         <div class="col-sm-6">
             {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::Select('status',array('open'=>'Open','posted'=>'Posted','balanced'=>'Balanced','suspend'=>'Suspend','active'=>'Active','inactive'=>'Inactive','cancel'=>'Cancel'),Input::old('status'),['class'=>'form-control ','required']) !!}
+            {!! Form::Select('status',array('open'=>'Open'),Input::old('status'),['class'=>'form-control ','required']) !!}
         </div>
     </div>
 </div>
