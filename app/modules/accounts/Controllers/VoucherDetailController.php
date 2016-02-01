@@ -60,7 +60,7 @@ class VoucherDetailController extends Controller
            $model = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('voucher_head_id',$id)->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
        }
 
-       //get vouncher-number data...
+       //get vouncher data...
 
        $voucher_data = VoucherHead::where('id',$id)->first();
 
@@ -68,7 +68,7 @@ class VoucherDetailController extends Controller
        $currency_data = [''=>'Select Currency'] + Currency::lists('title','id')->all();
        $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
 
-       return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'model'=>$model,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'id'=>$id,'status'=>$status,'voucher_number'=>$voucher_number]);
+       return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'model'=>$model,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'id'=>$id,'status'=>$status,'voucher_number'=>$voucher_number,'voucher_data'=>$voucher_data]);
    }
 
     public function store(VoucherDetailRequest $request){

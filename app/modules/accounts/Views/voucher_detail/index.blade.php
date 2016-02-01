@@ -10,10 +10,12 @@
     <div class="col-sm-12">
         <div class="panel">
             <div class="panel-heading">
-                <span class="panel-title">{{ $pageTitle }} (V/N : {{isset($voucher_data->voucher_number)?$voucher_data->voucher_number:''}})</span>
-                <a class="btn btn-xs btn-primary pull-right" data-toggle="modal" href="#addData" title="Add">
-                    <strong>Add Voucher Detail</strong>
-                </a>
+                <span class="panel-title">{{ $pageTitle }} ({{isset($voucher_number)?$voucher_number:''}})</span>
+                @if($status !='posted')
+                    <a class="btn btn-xs btn-primary pull-right" data-toggle="modal" href="#addData" title="Add">
+                       <strong>Add Voucher Detail</strong>
+                    </a>
+                @endif
             </div>
 
             <div class="panel-body">
@@ -63,20 +65,38 @@
                                     </td>
                                     <td>
                                         <a href="{{ route('view-voucher-detail', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
+                                        @if($status !='posted')
                                         <a href="{{ route('edit-voucher-detail', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Edit"><i class="fa fa-edit"></i></a>
                                         <a href="{{ route('delete-voucher-detail', $values->id) }}" class="btn btn-default btn-xs" onclick="return confirm('Are you sure to Cancel?')" title="Cancel"><i class="fa fa-minus"></i></a>
                                         <a href="{{ route('destroy-voucher-detail', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Delete"><i class="fa fa-trash-o"></i></a>
+                                         @endif
                                     </td>
                                 </tr>
                             @endforeach
                         @endif
-
                         </tbody>
                     </table>
 
                 </div>
                     {{--<span class="pull-left">{!! str_replace('/?', '?', $model->render()) !!} </span>--}}
                 <a class="pull-right btn btn-xs btn-primary" href="{{ URL::route('voucher-head')}}"> <i class="fa fa-arrow-circle-left"></i> Back To Journal Voucher</a>
+                <div>
+                    @if(isset($status))
+                        @if($status != 'balanced')
+                            <h4 class="required">
+                                * The journal must balance ie. debits equal to credits before it can be processed.
+                            </h4>
+                        @else
+                            <h5>
+                                <h4 class="success">
+                                    The journal Balanced.
+                                    <a href="">POST to Ledger</a>
+                                </h4>
+
+                            </h5>
+                        @endif
+                    @endif
+                </div>
             </div>
         </div>
     </div>
@@ -88,7 +108,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel">Journal Voucher Detail ( Voucher Number: {{isset($voucher_data->voucher_number)?$voucher_data->voucher_number:''}})</h4>
+                <h4 class="modal-title" id="myModalLabel">Journal Voucher Detail # {{isset($voucher_number)?$voucher_number:''}}</h4>
             </div>
             <div class="modal-body modal-backdrop">
                 {!! Form::open(['route' => 'store-voucher-detail','id' => 'jq-validation-form']) !!}
