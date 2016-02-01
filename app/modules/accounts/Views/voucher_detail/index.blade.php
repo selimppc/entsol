@@ -55,8 +55,7 @@
                             @foreach($model as $values)
                                 <tr class="gradeX">
                                     <td>{{isset($values->relVoucherHead->voucher_number)?$values->relVoucherHead->voucher_number:''}}</td>
-                                    <td>{{isset($values->relChartOfAccounts->title)?$values->relChartOfAccounts->title:''}} ( {{isset($values->relChartOfAccounts->account_code)?$values['account_code']:''}})</td>
-                                    {{--<td>{{isset($values->relChartOfAccounts->account_code)?$values['account_code']:''}}</td>--}}
+                                    <td>{{isset($values->relChartOfAccounts->title)?$values->relChartOfAccounts->title:''}}  ({{isset($values->relChartOfAccounts->account_code)?$values->relChartOfAccounts->account_code:''}})</td>
                                     <td>{{isset($values->relCurrency->title)?$values->relCurrency->title:''}} ({{isset($values->relCurrency->exchange_rate)?$values->relCurrency->exchange_rate:''}})</td>
                                     <td>{{$values->base_amount}}</td>
                                     <td>{{isset($values->relBranch->title)?$values->relBranch->title:''}}</td>
