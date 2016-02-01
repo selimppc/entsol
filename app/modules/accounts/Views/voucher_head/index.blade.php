@@ -47,13 +47,16 @@
                         <thead>
                         <tr>
                             <th> Voucher Number </th>
-                            <th> Account Type </th>
                             <th> Date </th>
                             <th> Reference </th>
                             <th> Year </th>
+                            <th> Period </th>
                             <th> Branch </th>
+                            <th> Note </th>
                             <th> Status </th>
                             <th> Action </th>
+                            <th> V.Details </th>
+                            <th> Report </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -63,25 +66,22 @@
                                     <td>
                                         <a href="{{ URL::route('voucher-detail',$values->id) }}" class="link-text-decoration" title="voucher-detail"><strong>{{$values->voucher_number}}</strong></a>
                                     </td>
-                                    <td>{{$values->account_type}}</td>
                                     <td>{{$values->date}}</td>
                                     <td>{{$values->reference}}</td>
                                     <td>{{$values->year}}</td>
-                                    <td>{{isset($values->relBranch->code)?$values->relBranch->code:''}}</td>
-                                    <td>{{ucfirst($values->status)}}
-                                      @if($values->status == 'active')&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="{{ route('status-voucher-head', $values->id) }}" class="" title="Inactivate this Status" onclick="return confirm('Are you sure to Inactive status?')"><i class="fa  fa-minus-square"></i></a>
-                                      @else
-                                            &nbsp;
-                                            <a href="{{ route('status-voucher-head', $values->id) }}" class="" title="Activate This Status" onclick="return confirm('Are you sure to Active status?')"><i class="fa fa-plus-square"></i></a>
-                                      @endif
-                                    </td>
+                                    <td>{{$values->period}}</td>
+                                    <td>{{isset($values->relBranch->title)?$values->relBranch->title:''}}</td>
+                                    <td>{{$values->note}}</td>
+                                    <td>{{ ucfirst($values->status) }}</td>
                                     <td>
                                         <a href="{{ route('view-voucher-head', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
                                         <a href="{{ route('edit-voucher-head', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Edit"><i class="fa fa-edit"></i></a>
                                         <a href="{{ route('delete-voucher-head', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Delete"><i class="fa fa-trash-o"></i></a>
+                                    </td>
+                                    <td>
                                         <a href="{{ route('voucher-detail', $values->id) }}" class="btn btn-info btn-xs" title="Voucher-Details">V-Details</a>
                                     </td>
+                                    <td>&nbsp;</td>
                                 </tr>
                             @endforeach
                         @endif
