@@ -83,7 +83,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('voucher-detail', $values->id) }}" class="btn btn-info btn-xs" title="voucher-details">v-details</a>
+                                        <a href="{{ route('voucher-detail', $values->id, $values->voucher_number, $values->status) }}" class="btn btn-info btn-xs" title="voucher-details">v-details</a>
                                     </td>
                                     <td>&nbsp;</td>
                                 </tr>
