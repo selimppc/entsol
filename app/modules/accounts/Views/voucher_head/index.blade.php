@@ -64,7 +64,7 @@
                             @foreach($model as $values)
                                 <tr>
                                     <td>
-                                        <a href="{{ URL::route('voucher-detail',$values->id) }}" class="link-text-decoration" title="voucher-detail"><strong>{{$values->voucher_number}}</strong></a>
+                                        <a href="{{ route('voucher-detail',['id'=>$values->id,'voucher_number'=>$values->voucher_number,'status'=>$values->status]) }}" class="link-text-decoration" title="voucher-detail"><strong>{{$values->voucher_number}}</strong></a>
                                     </td>
                                     <td>{{$values->date}}</td>
                                     <td>{{$values->reference}}</td>
@@ -83,7 +83,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('voucher-detail', $values->id) }}" class="btn btn-info btn-xs" title="voucher-details">v-details</a>
+                                        <a href="{{ route('voucher-detail',['id'=>$values->id,'voucher_number'=>$values->voucher_number,'status'=>$values->status]) }}" class="btn btn-info btn-xs" title="voucher-details">v-details</a>
                                     </td>
                                     <td>&nbsp;</td>
                                 </tr>

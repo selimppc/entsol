@@ -43,7 +43,7 @@ Route::any('status-voucher-head/{id}', [
 
 //Voucher Head Detail.......
 
-Route::any('voucher-detail/{id}', [
+Route::any('voucher-detail/{id}/{voucher_number}/{status}', [
     'as' => 'voucher-detail',
     'uses' => 'VoucherDetailController@index'
 ]);

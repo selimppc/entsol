@@ -25,8 +25,8 @@
         </div>
         <div class="col-sm-6">
             {!! Form::label('reference', 'Reference:', ['class' => 'control-label']) !!}
-            <small class="narration">(Narration)</small>
-            {!! Form::text('reference', null, ['class' => 'form-control','required']) !!}
+            <small class="narration">(Narration for Journal Voucher Informations)</small>
+            {!! Form::text('reference', null, ['class' => 'form-control']) !!}
         </div>
     </div>
 </div>
@@ -64,6 +64,7 @@
     <div class="row">
         <div class="col-sm-12">
             {!! Form::label('note', 'Note:', ['class' => 'control-label']) !!}
+            <small class="narration">(Note for Journal Voucher Informations)</small>
             {!! Form::textarea('note', null, ['class' => 'form-control','size' => '12x3']) !!}
         </div>
     </div>
