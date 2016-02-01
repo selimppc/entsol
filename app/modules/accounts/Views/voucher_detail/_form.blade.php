@@ -14,7 +14,7 @@
         </div>
         <div class="col-sm-6">
             {!! Form::label('account_code', 'Account Code:', ['class' => 'control-label']) !!}
-            {!! Form::text('account_code', Input::old('account_code'), ['class' => 'form-control']) !!}
+            {!! Form::text('account_code', Input::old('account_code'), ['class' => 'form-control','readonly']) !!}
         </div>
     </div>
 </div>
@@ -44,7 +44,7 @@
         <div class="col-sm-6">
             {!! Form::label('exchange_rate', 'Exchange Rate:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::input('number','exchange_rate', Input::old('exchange_rate'), ['class' => 'form-control']) !!}
+            {!! Form::input('number','exchange_rate', Input::old('exchange_rate'), ['class' => 'form-control','readonly']) !!}
         </div>
     </div>
 </div>

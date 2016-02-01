@@ -75,10 +75,27 @@ class VoucherDetailController extends Controller
 
         $input = $request->all();
 
+        $voucher_data = VoucherHead::where('id',$input['voucher_head_id'])->first();
+        $coa_data = ChartOfAccounts::where('id',$input['coa_id'])->first();
+        $currency_data = Currency::where('id',$input['currency_id'])->first();
         /* Transaction Start Here */
         DB::beginTransaction();
         try {
-            VoucherDetail::create($input);
+            $input_data = [
+                'voucher_head_id'=>$input['voucher_head_id'],
+                'voucher_number'=> $voucher_data['voucher_number'],
+                'coa_id'=> $input['coa_id'],
+                'account_code'=> $coa_data['account_code'],
+                'sub_account_code'=> $input['sub_account_code'],
+                'currency_id'=> $input['currency_id'],
+                'exchange_rate'=> $currency_data['exchange_rate'],
+                #'prime_amount'=> $input['amount']+$input['amount'],
+                 #'base_amount'=> '',
+                'branch_id'=> $input['branch_id'],
+                'note'=> $input['note'],
+                'status'=> $input['status'],
+            ];
+            VoucherDetail::create($input_data);
 
             DB::commit();
             Session::flash('message', 'Successfully added!');
