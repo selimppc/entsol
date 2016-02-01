@@ -11,7 +11,7 @@
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>
-                <a class="btn btn-primary btn-xs pull-right" data-toggle="modal" href="#addData" title="Add">
+                <a class="btn btn-primary btn-xs pull-right" data-toggle="modal" href="#addData" title="Add Group One">
                     <strong>Add Group One</strong>
                 </a>
             </div>
@@ -76,7 +76,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel">Add Group One</h4>
+                <h4 class="modal-title" id="myModalLabel">Add Group One Information</h4>
             </div>
             <div class="modal-body">
                 {!! Form::open(['route' => 'store-group-one','class' => 'form-horizontal','id' => 'jq-validation-form']) !!}
