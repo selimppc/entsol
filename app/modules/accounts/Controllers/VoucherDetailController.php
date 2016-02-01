@@ -32,7 +32,7 @@ class VoucherDetailController extends Controller
 
    public function index($id){
 
-       $pageTitle = 'Voucher Head Detail';
+       $pageTitle = 'Journal Voucher Detail';
        $model = new VoucherDetail();
        if($this->isPostRequest()){
 
@@ -210,5 +210,23 @@ class VoucherDetailController extends Controller
         }
         #print_r($results);exit;
         return Response::json($results);
+    }
+
+    public function destroy($id){
+
+        $model = VoucherDetail::findOrFail($id);
+
+        DB::beginTransaction();
+        try {
+            $model->delete();
+            DB::commit();
+            Session::flash('message', "Successfully Deleted.");
+        }
+        catch (Exception $ex){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('danger',$ex->getMessage());
+        }
+        return redirect()->back();
     }
 }

@@ -10,9 +10,9 @@
     <div class="col-sm-12">
         <div class="panel">
             <div class="panel-heading">
-                <span class="panel-title">{{ $pageTitle }}</span>
+                <span class="panel-title">{{ $pageTitle }} ({{isset($voucher_data->voucher_number)?$voucher_data->voucher_number:''}})</span>
                 <a class="btn btn-xs btn-primary pull-right" data-toggle="modal" href="#addData" title="Add">
-                    <strong>Add+</strong>
+                    <strong>Add Voucher Detail</strong>
                 </a>
             </div>
 
@@ -64,7 +64,8 @@
                                     <td>
                                         <a href="{{ route('view-voucher-detail', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
                                         <a href="{{ route('edit-voucher-detail', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Edit"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('delete-voucher-detail', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Delete"><i class="fa fa-trash-o"></i></a>
+                                        <a href="{{ route('delete-voucher-detail', $values->id) }}" class="btn btn-default btn-xs" onclick="return confirm('Are you sure to Cancel?')" title="Cancel"><i class="fa fa-minus"></i></a>
+                                        <a href="{{ route('destroy-voucher-detail', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Delete"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
