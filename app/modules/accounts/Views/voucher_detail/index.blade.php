@@ -81,16 +81,17 @@
                     {{--<span class="pull-left">{!! str_replace('/?', '?', $model->render()) !!} </span>--}}
                 <a class="pull-right btn btn-xs btn-primary" href="{{ URL::route('voucher-head')}}"> <i class="fa fa-arrow-circle-left"></i> Back To Journal Voucher</a>
                 <div>
-                    @if(isset($status))
-                        @if($status != 'balanced')
+                    @if(isset($voucher_data->status))
+                        @if($voucher_data->status != 'balanced')
                             <h4 class="required">
                                 * The journal must balance ie. debits equal to credits before it can be processed.
                             </h4>
                         @else
                             <h5>
-                                <h4 class="success">
+                                <h4 class="narration">
                                     The journal Balanced.
-                                    <a href="">POST to Ledger</a>
+                                    {{--<a href="">POST to Ledger</a>--}}
+                                    <a href="{{route('journal-post',$voucher_number)}}" class="btn btn-success" title="">POST to Ledger</a>
                                 </h4>
 
                             </h5>
