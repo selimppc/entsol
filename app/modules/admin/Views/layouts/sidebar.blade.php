@@ -78,6 +78,9 @@
                     <a tabindex="-1" href="{{route('chart-of-accounts')}}"><span class="mm-text">Chart of Accounts</span></a>
                 </li>
                 <li>
+                    <a tabindex="-1" href="{{route('settings')}}"><span class="mm-text">Settings</span></a>
+                </li>
+                <li>
                     <a tabindex="-1" href="{{route('gl-transaction')}}"><span class="mm-text">Gl Transaction</span></a>
                 </li>
                 <li>

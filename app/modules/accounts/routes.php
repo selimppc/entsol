@@ -193,8 +193,38 @@ Route::group(array('modules'=>'Accounts', 'namespace' => 'App\Modules\Accounts\C
     ]);
 
 
+    /**Settings**/
 
 
+    Route::any("settings", [
+        "as"   => "settings",
+        "uses" => "SettingsController@index"
+    ]);
+
+    Route::any("store-settings", [
+        "as"   => "store-settings",
+        "uses" => "SettingsController@store"
+    ]);
+
+    Route::any("view-settings/{id}", [
+        "as"   => "view-settings",
+        "uses" => "SettingsController@show"
+    ]);
+
+    Route::any("edit-settings/{id}", [
+        "as"   => "edit-settings",
+        "uses" => "SettingsController@edit"
+    ]);
+
+    Route::any("update-settings/{id}", [
+        "as"   => "update-settings",
+        "uses" => "SettingsController@update"
+    ]);
+
+    Route::any("delete-settings/{id}", [
+        "as"   => "delete-settings",
+        "uses" => "SettingsController@delete"
+    ]);
 
 });
 
