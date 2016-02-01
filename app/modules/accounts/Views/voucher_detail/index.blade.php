@@ -48,7 +48,6 @@
                             <th> Currency (Exchange Rate)</th>
                             <th> Amount </th>
                             <th> Branch </th>
-                            <th> Status </th>
                             <th> Action </th>
                         </tr>
                         </thead>
@@ -61,11 +60,10 @@
                                     <td>{{isset($values->relCurrency->title)?$values->relCurrency->title:''}} ({{isset($values->relCurrency->exchange_rate)?$values->relCurrency->exchange_rate:''}})</td>
                                     <td>{{$values->base_amount}}</td>
                                     <td>{{isset($values->relBranch->title)?$values->relBranch->title:''}}</td>
-                                    <td>{{ucfirst($values->status)}}
                                     </td>
                                     <td>
                                         <a href="{{ route('view-voucher-detail', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
-                                        @if($status !='posted')
+                                        @if($voucher_data->status !='posted')
                                         <a href="{{ route('edit-voucher-detail', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Edit"><i class="fa fa-edit"></i></a>
                                         <a href="{{ route('destroy-voucher-detail', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Delete"><i class="fa fa-trash-o"></i></a>
                                          @endif

@@ -100,3 +100,8 @@ Route::any('journal-post/{voucher_number}', [
     'uses' => 'VoucherDetailController@journal_post'
 ]);
 
+Route::get('ajax-account-code', [
+    'as' => 'ajax-account-code',
+    'uses' => 'VoucherDetailController@get_ajax_ac'
+]);
+

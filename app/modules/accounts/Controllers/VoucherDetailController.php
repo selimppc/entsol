@@ -244,4 +244,12 @@ class VoucherDetailController extends Controller
         }
         return redirect()->back();
     }
+
+    public function get_ajax_ac(){
+
+        $input_coa_id = $_GET['coa_id'];
+        $account_code = ChartOfAccounts::where('id',$input_coa_id)->first()->account_code;
+         #dd($account_code);die;
+        return $account_code;
+    }
 }

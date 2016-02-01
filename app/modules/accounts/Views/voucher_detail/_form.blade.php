@@ -10,11 +10,11 @@
         <div class="col-sm-6">
             {!! Form::label('coa_id', 'Chat Of Accounts:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::Select('coa_id', $coa_data, Input::old('coa_id'), ['class' => 'form-control','required']) !!}
+            {!! Form::Select('coa_id', $coa_data, Input::old('coa_id'), ['id'=>'coa-data','class' => 'form-control','required']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('account_code', 'Account Code:', ['class' => 'control-label']) !!}
-            {!! Form::text('account_code', Input::old('account_code'), ['class' => 'form-control','required']) !!}
+            {!! Form::text('account_code', Input::old('account_code'), ['id'=>'coa-code','class' => 'form-control','required']) !!}
         </div>
     </div>
 </div>
@@ -89,3 +89,26 @@
         {{--$( document ).tooltip();--}}
     {{--});--}}
 {{--</script>--}}
+
+<script>
+    var init = [];
+    init.push(function () {
+        $('#coa-data').click(function() {
+            var coa_id =  $('#coa-data').val();
+            alert(coa_id);
+            $.ajax({
+                url: 'ajax-account-code',
+                type: 'GET',
+                data: {coa_id: coa_id },
+                success: function(data){
+                    alert(data);
+                    $('#coa-code').val(data);
+                }
+            });
+        });
+    });
+
+    window.LanderApp.start(init);
+
+
+</script>
