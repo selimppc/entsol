@@ -11,7 +11,7 @@
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>
-                <a class="btn btn-primary btn-xs pull-right" data-toggle="modal" href="#addData" title="Add">
+                <a class="btn btn-primary btn-xs pull-right" data-toggle="modal" href="#addData" title="Add Currency">
                     <strong>Add Currency</strong>
                 </a>
             </div>
@@ -77,7 +77,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel">Add Currency</h4>
+                <h4 class="modal-title" id="myModalLabel">Add Currency Informations</h4>
             </div>
             <div class="modal-body">
                 {!! Form::open(['route' => 'store-currency','id' => 'jq-validation-form']) !!}

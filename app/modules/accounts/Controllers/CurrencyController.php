@@ -31,7 +31,7 @@ class CurrencyController extends Controller
      */
     public function index()
     {
-        $pageTitle = "Currency";
+        $pageTitle = "Currency Informations";
         if($this->isPostRequest()){
             $code = Input::get('code');
             $title = Input::get('title');
@@ -75,7 +75,7 @@ class CurrencyController extends Controller
      */
     public function show($id)
     {//print_r($id);exit;
-        $pageTitle = 'Show the detail';
+        $pageTitle = 'View Currency Informations';
         $data = Currency::where('id',$id)->first();
 
         return view('accounts::currency.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
@@ -89,7 +89,7 @@ class CurrencyController extends Controller
      */
     public function edit($id)
     {
-        $pageTitle = 'Show the detail';
+        $pageTitle = 'Update Currency Informations';
         $data = Currency::where('id',$id)->first();
         return view('accounts::currency.update', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }

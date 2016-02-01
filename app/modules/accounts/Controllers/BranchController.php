@@ -31,7 +31,7 @@ class BranchController extends Controller
      */
     public function index()
     {
-        $pageTitle = "Branch";
+        $pageTitle = "Branch Informations";
         if($this->isPostRequest()){
             $title = Input::get('title');
             $code = Input::get('code');
@@ -85,7 +85,7 @@ class BranchController extends Controller
      */
     public function show($id)
     {//print_r($id);exit;
-        $pageTitle = 'Show the detail';
+        $pageTitle = 'View Branch Informations';
         $data = Branch::where('id',$id)->first();
 
         return view('accounts::branch.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
@@ -99,7 +99,7 @@ class BranchController extends Controller
      */
     public function edit($id)
     {
-        $pageTitle = 'Show the detail';
+        $pageTitle = 'Update Branch Informations';
         $data = Branch::where('id',$id)->first();
         $currency_id = Currency::lists('title','id');
         return view('accounts::branch.update', ['data' => $data, 'pageTitle'=> $pageTitle, 'currency_id'=> $currency_id]);
