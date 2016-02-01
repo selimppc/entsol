@@ -124,7 +124,7 @@ class CreateEntsolTableAccounts extends Migration
             $table->unsignedInteger('period')->nullable();
             $table->unsignedInteger('branch_id')->nullable();
             $table->text('note')->nullable();
-            $table->enum('status',array('active','inactive','cancel'))->nullable();
+            $table->enum('status',array('open','posted','balanced','suspend','active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11)->nullable();
             $table->integer('updated_by', false, 11)->nullable();
             $table->timestamps();

@@ -12,6 +12,7 @@ use App\Branch;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VoucherHeadRequest;
 use App\VoucherHead;
+use App\VoucherDetail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
@@ -138,18 +139,24 @@ class VoucherHeadController extends Controller
     public function delete($id){
 
         $model = VoucherHead::findOrFail($id);
+        $voucher_details_data = VoucherDetail::where('voucher_head_id',$id)->first();
 
-        DB::beginTransaction();
-        try {
-            $model->status = 'cancel';
-            $model->save();
-            DB::commit();
-            Session::flash('message', "Successfully Deleted.");
-        }
-        catch (Exception $ex){
-            //If there are any exceptions, rollback the transaction
-            DB::rollback();
-            Session::flash('danger',$ex->getMessage());
+        if($voucher_details_data == "")
+        {
+            DB::beginTransaction();
+            try {
+                $model->status = 'cancel';
+                $model->save();
+                DB::commit();
+                Session::flash('message', "Successfully Deleted.");
+            }
+            catch (Exception $ex){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger',$ex->getMessage());
+            }
+        }else{
+            Session::flash('message', "Voucher Details Data Found");
         }
         return redirect()->back();
     }
