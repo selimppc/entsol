@@ -32,7 +32,7 @@ class ChartOfAccountsController extends Controller
      */
     public function index()
     {
-        $pageTitle = "Chart Of Accounts";
+        $pageTitle = "Chart Of Accounts Information";
         if($this->isPostRequest()){
             $account_code = Input::get('account_code');
             $data = ChartOfAccounts::where('status','active')->where('account_code','LIKE','%'.$account_code.'%')->orderBy('id', 'DESC')->get();
@@ -78,7 +78,7 @@ class ChartOfAccountsController extends Controller
      */
     public function show($id)
     {//print_r($id);exit;
-        $pageTitle = 'Show the detail';
+        $pageTitle = 'View Chart Of Accounts Information';
         $data = ChartOfAccounts::where('id',$id)->first();
 
         return view('accounts::chart_of_accounts.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
@@ -92,7 +92,7 @@ class ChartOfAccountsController extends Controller
      */
     public function edit($id)
     {
-        $pageTitle = 'Show the detail';
+        $pageTitle = 'Update Chart Of Accounts Information';
         $data = ChartOfAccounts::where('id',$id)->first();
         $group_one_id = GroupOne::lists('title','id');
         $branch_id = Branch::lists('title','id');
