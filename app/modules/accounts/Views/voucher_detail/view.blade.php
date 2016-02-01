@@ -13,7 +13,7 @@
             </tr>
             <tr>
                 <th class="col-lg-4">Account Type</th>
-                <td>{{ isset($data->relVoucherHead->account_type)?$data->relVoucherHead->account_type:''}}</td>
+                <td>{{ isset($data->relVoucherHead->account_type)?ucfirst($data->relVoucherHead->account_type):''}}</td>
             </tr>
             <tr>
                 <th class="col-lg-4">Branch</th>
@@ -26,10 +26,6 @@
         </table>
         <table class="table table-bordered table-hover table-striped">
             <h4 class="text-center">Voucher Detail</h4>
-            <tr>
-                <th class="col-lg-4">Voucher Number</th>
-                <td>{{ isset($data->relVoucherHead->voucher_number)?$data->relVoucherHead->voucher_number:''}}</td>
-            </tr>
             <tr>
                 <th class="col-lg-4">Chart Of Account</th>
                 <td>{{ isset($data->relChartOfAccounts->title)?$data->relChartOfAccounts->title:''}}</td>
@@ -63,12 +59,12 @@
                 <td>{{isset($data->relBranch->title)?$data->relBranch->title:''}}</td>
             </tr>
             <tr>
-                <th class="col-lg-4">note</th>
+                <th class="col-lg-4">Note</th>
                 <td>{{ isset($data->note)?$data->note:'' }}</td>
             </tr>
             <tr>
                 <th class="col-lg-4">Status</th>
-                <td>{{ isset($data->status)?$data->status:'' }}</td>
+                <td>{{ isset($data->status)?ucfirst($data->status):'' }}</td>
             </tr>
         </table>
 
