@@ -70,9 +70,9 @@
                                     <td>{{$values->reference}}</td>
                                     <td>{{$values->year}}</td>
                                     <td>{{$values->period}}</td>
-                                    <td>{{isset($values->relBranch->code)?$values->relBranch->code:''}}</td>
+                                    <td>{{isset($values->relBranch->title)?$values->relBranch->title:''}}</td>
                                     <td>{{$values->note}}</td>
-                                    <td>{{$values->status}}</td>
+                                    <td>{{ ucfirst($values->status) }}</td>
                                     <td>
                                         <a href="{{ route('view-voucher-head', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
                                         <a href="{{ route('edit-voucher-head', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Edit"><i class="fa fa-edit"></i></a>
