@@ -90,4 +90,13 @@ Route::any('search/autocomplete', [
     'as' => 'search-autocomplete',
     'uses' => 'VoucherDetailController@autocomplete'
 ]);
+Route::any('search/autocomplete', [
+    'as' => 'search-autocomplete',
+    'uses' => 'VoucherDetailController@autocomplete'
+]);
+
+Route::any('journal-post/{voucher_number}', [
+    'as' => 'journal-post',
+    'uses' => 'VoucherDetailController@journal_post'
+]);
 

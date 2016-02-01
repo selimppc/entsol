@@ -16,6 +16,7 @@ use App\Http\Requests\VoucherDetailRequest;
 use App\Http\Requests\VoucherHeadRequest;
 use App\VoucherDetail;
 use App\VoucherHead;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
@@ -228,5 +229,19 @@ class VoucherDetailController extends Controller
             Session::flash('danger',$ex->getMessage());
         }
         return redirect()->back();
+    }
+
+    public function journal_post($voucher_number){
+
+        $user_id = Auth::user()->id;
+        #print_r($user_id);exit;
+        try{
+            $result = DB::select('call sp_voucher_post(?,?)',array($voucher_number,$user_id));
+            #$result = DB::statement('call sp_voucher_post(' . DB::raw("$voucher_number") . ',' . DB::raw($user_id) . ')');
+            print_r("OK");
+        }catch (\Exception $e){
+            print_r($e->getMessage());
+        }
+        exit;
     }
 }
