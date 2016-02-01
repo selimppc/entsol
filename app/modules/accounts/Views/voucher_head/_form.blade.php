@@ -3,7 +3,7 @@
         <div class="col-sm-6">
             {!! Form::label('account_type', 'Account Type:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::Select('account_type',array('journal-voucher'=>'Journal Voucher'),Input::old('account_type'),['class'=>'form-control ','required']) !!}
+            {!! Form::Select('account_type',array('journal-voucher'=>'Journal Voucher'),Input::old('account_type'),['class'=>'form-control ']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('voucher_number', 'Voucher Number:', ['class' => 'control-label']) !!}
