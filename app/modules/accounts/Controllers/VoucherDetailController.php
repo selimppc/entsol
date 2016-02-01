@@ -236,7 +236,7 @@ class VoucherDetailController extends Controller
         $user_id = Auth::user()->id;
         #print_r($user_id);exit;
         try{
-            $result = DB::select('call sp_voucher_post(?,?)',array($voucher_number,$user_id));
+            $result = DB::statement('call sp_voucher_post(?,?)',array($voucher_number,$user_id));
             #$result = DB::statement('call sp_voucher_post(' . DB::raw("$voucher_number") . ',' . DB::raw($user_id) . ')');
             print_r("OK");
         }catch (\Exception $e){
