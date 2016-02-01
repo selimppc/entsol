@@ -11,7 +11,7 @@
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }} ({{isset($voucher_number)?$voucher_number:''}})</span>
-                @if($status !='posted')
+                @if($voucher_data->status!='posted')
                     <a class="btn btn-xs btn-primary pull-right" data-toggle="modal" href="#addData" title="Add">
                        <strong>Add Voucher Detail</strong>
                     </a>
@@ -67,7 +67,6 @@
                                         <a href="{{ route('view-voucher-detail', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
                                         @if($status !='posted')
                                         <a href="{{ route('edit-voucher-detail', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Edit"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('delete-voucher-detail', $values->id) }}" class="btn btn-default btn-xs" onclick="return confirm('Are you sure to Cancel?')" title="Cancel"><i class="fa fa-minus"></i></a>
                                         <a href="{{ route('destroy-voucher-detail', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Delete"><i class="fa fa-trash-o"></i></a>
                                          @endif
                                     </td>
@@ -82,19 +81,19 @@
                 <a class="pull-right btn btn-xs btn-primary" href="{{ URL::route('voucher-head')}}"> <i class="fa fa-arrow-circle-left"></i> Back To Journal Voucher</a>
                 <div>
                     @if(isset($voucher_data->status))
-                        @if($voucher_data->status != 'balanced')
+                        @if($voucher_data->status == 'balanced')
+                            <h4 class="narration">
+                                The journal Balanced.
+                                <a href="{{route('journal-post',$voucher_number)}}" class="btn btn-success" title="">POST to Ledger</a>
+                            </h4>
+                        @elseif($voucher_data->status == 'posted')
+                            <h4 class="text-dark-green">
+                                Journal Voucher({{$voucher_number}}) is Posted.
+                            </h4>
+                        @else
                             <h4 class="required">
                                 * The journal must balance ie. debits equal to credits before it can be processed.
                             </h4>
-                        @else
-                            <h5>
-                                <h4 class="narration">
-                                    The journal Balanced.
-                                    {{--<a href="">POST to Ledger</a>--}}
-                                    <a href="{{route('journal-post',$voucher_number)}}" class="btn btn-success" title="">POST to Ledger</a>
-                                </h4>
-
-                            </h5>
                         @endif
                     @endif
                 </div>
