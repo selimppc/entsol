@@ -2,13 +2,13 @@
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('account_type', 'Account Type:', ['class' => 'control-label']) !!}
-            <small class="required">(Required)</small>
-            {!! Form::Select('account_type',array('journal-voucher'=>'Journal Voucher'),Input::old('account_type'),['class'=>'form-control ']) !!}
+            <small class="narration">(Journal Voucher Type Selected)</small>
+            {!! Form::Select('account_type',array('journal-voucher'=>'Journal Voucher'),Input::old('account_type'),['class'=>'form-control','readonly','style'=>'font-weight:bold']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('voucher_number', 'Voucher Number:', ['class' => 'control-label']) !!}
-            <small class="required">(Required)</small>
-            {!! Form::text('voucher_number', @$generate_voucher_number? $generate_voucher_number : Input::old('voucher_number'), ['class' => 'form-control','required','readonly']) !!}
+            <small class="narration">(Auto Generated From Settings)</small>
+            {!! Form::text('voucher_number', @$generate_voucher_number? $generate_voucher_number : Input::old('voucher_number'), ['class' => 'form-control','required','readonly','style'=>'font-weight:bold']) !!}
             {!! Form::hidden('number', @$number? $number : 0) !!}
             {!! Form::hidden('settings_id', @$settings_id? $settings_id : 0) !!}
         </div>
@@ -56,8 +56,8 @@
         </div>
         <div class="col-sm-6">
             {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
-            <small class="required">(Required)</small>
-            {!! Form::Select('status',array('open'=>'Open'),Input::old('status'),['class'=>'form-control ','required']) !!}
+            <small class="narration">(Open status Selected)</small>
+            {!! Form::Select('status',array('open'=>'Open'),Input::old('status'),['class'=>'form-control ','required','readonly']) !!}
         </div>
     </div>
 </div>
