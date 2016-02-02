@@ -144,10 +144,10 @@ class CreateEntsolTableAccounts extends Migration
         Schema::create('ac_voucher_detail', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('voucher_head_id')->nullable();
-            $table->string('voucher_number', 64)->unique();
+            $table->string('voucher_number', 64)->nullable();
             $table->unsignedInteger('coa_id')->nullable();
-            $table->string('account_code', 64)->unique();
-            $table->string('sub_account_code', 64)->unique();
+            $table->string('account_code', 64)->nullable();
+            $table->string('sub_account_code', 64)->nullable();
             $table->unsignedInteger('currency_id')->nullable();
             $table->decimal('exchange_rate', 20,2)->nullable();
             $table->decimal('prime_amount', 20,2)->nullable();
@@ -187,10 +187,10 @@ class CreateEntsolTableAccounts extends Migration
         Schema::create('ac_balance', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('voucher_head_id')->nullable();
-            $table->string('voucher_number', 64)->unique();
+            $table->string('voucher_number', 64)->nullable();
             $table->unsignedInteger('coa_id')->nullable();
-            $table->string('account_code', 64)->unique();
-            $table->string('sub_account_code', 64)->unique();
+            $table->string('account_code', 64)->nullable();
+            $table->string('sub_account_code', 64)->nullable();
             $table->date('date')->nullable();
             $table->unsignedInteger('branch_id')->nullable();
             $table->text('reference')->nullable();
