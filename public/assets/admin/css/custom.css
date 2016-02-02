@@ -45,3 +45,7 @@ body{
 .balanced-text-color{
     color:green;
 }
+.help-text-top{
+    color: lightslategrey;
+    margin-bottom: 5px;
+}

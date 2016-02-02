@@ -107,8 +107,7 @@ Route::any('ajax-account-code', [
     'uses' => 'VoucherDetailController@get_ajax_ac'
 ]);
 
-Route::any('test', [
-    'as' => 'test',
-    'uses' => 'VoucherDetailController@test'
+Route::any('exchange-rate', [
+    'as' => 'exchange-rate',
+    'uses' => 'VoucherDetailController@get_ajax_exchange_rate'
 ]);
-
