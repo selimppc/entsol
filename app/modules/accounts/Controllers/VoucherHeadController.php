@@ -34,7 +34,7 @@ class VoucherHeadController extends Controller
        $settings = Settings::where('status','=','active')->where('type','=','journal-voucher')->first();
 
        $number = $settings['last_number']+$settings['increment'];
-       $generate_voucher_number = $settings['code'].'000000'.$number;
+       $generate_voucher_number = $settings['code'].str_pad($number, 7, '0', STR_PAD_LEFT);
        $settings_id = $settings['id'];
 
        if($this->isPostRequest()){
