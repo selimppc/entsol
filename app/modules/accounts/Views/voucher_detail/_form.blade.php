@@ -1,7 +1,4 @@
 
-{{--<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">--}}
-{{--<script src="//code.jquery.com/jquery-1.10.2.js"></script>--}}
-{{--<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>--}}
 
 {!! Form::hidden('voucher_head_id',$id) !!}
 
@@ -10,7 +7,7 @@
         <div class="col-sm-6">
             {!! Form::label('coa_id', 'Chat Of Accounts:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::Select('coa_id', $coa_data, Input::old('coa_id'), ['id'=>'coa-data','class' => 'form-control','required']) !!}
+            {!! Form::Select('coa_id', $coa_data, Input::old('coa_id'), ['id'=>'123','class' => 'form-control','required']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('account_code', 'Account Code:', ['class' => 'control-label']) !!}
@@ -90,26 +87,5 @@
     {{--});--}}
 {{--</script>--}}
 
-<script>
-    var init = [];
-//    init.push(function () {
-        alert('45454');
-        $('#coa-data').click(function() {
-            var coa_id =  $('#coa-data').val();
-            alert(coa_id);
-            $.ajax({
-                url: 'ajax-account-code',
-                type: 'GET',
-                data: {coa_id: coa_id },
-                success: function(data){
-                    alert(data);
-                    $('#coa-code').val(data);
-                }
-            });
-        });
-//    });
-
-//    window.LanderApp.start(init);
 
 
-</script>
