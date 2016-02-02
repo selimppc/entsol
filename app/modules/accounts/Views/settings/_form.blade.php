@@ -25,7 +25,7 @@
             <div class="col-sm-6">
                 {!! Form::label('last_number', 'Last Number:', ['class' => 'control-label']) !!}
                 <small class="required">(Required)</small>
-                {!! Form::input('number','last_number', null, ['id'=>'last_number', 'class' => 'form-control','required']) !!}
+                {!! Form::input('number','last_number', isset($data->last_number)? Input::old('last_number') : 0 , ['id'=>'last_number', 'class' => 'form-control','required']) !!}
             </div>
         </div>
     </div>
