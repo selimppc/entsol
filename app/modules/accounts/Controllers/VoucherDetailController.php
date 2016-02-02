@@ -247,9 +247,29 @@ class VoucherDetailController extends Controller
 
     public function get_ajax_ac(){
 
-        $input_coa_id = $_GET['coa_id'];
-        $account_code = ChartOfAccounts::where('id',$input_coa_id)->first()->account_code;
-         #dd($account_code);die;
-        return $account_code;
+        $input_coa_id = Input::get('coa_id');
+
+         try{
+              $coa_data = ChartOfAccounts::where('id',$input_coa_id)->first();
+              if($coa_data){
+                  return  Response::make($coa_data['account_code']);
+              }
+        }catch(\Exception $e){
+          return  Response::make($e->getMessage());
+        }
+    }
+
+    public function get_ajax_exchange_rate(){
+
+        $input_curr_id = Input::get('currency_id');
+
+        try{
+            $curr_data = Currency::where('id',$input_curr_id)->first();
+            if($curr_data){
+                return  Response::make($curr_data['exchange_rate']);
+            }
+        }catch(\Exception $e){
+            return  Response::make($e->getMessage());
+        }
     }
 }

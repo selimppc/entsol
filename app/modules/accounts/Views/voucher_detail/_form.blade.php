@@ -1,17 +1,20 @@
-
+<script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.min.js') }}"></script>
 
 {!! Form::hidden('voucher_head_id',$id) !!}
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
+        <div class="help-text-top">
+            <em>You will get account code and exchange rate according to Chart of Accounts and Currency.</em>
+        </div>
         <div class="col-sm-6">
             {!! Form::label('coa_id', 'Chat Of Accounts:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::Select('coa_id', $coa_data, Input::old('coa_id'), ['id'=>'123','class' => 'form-control','required']) !!}
+            {!! Form::Select('coa_id', $coa_data, Input::old('coa_id'), ['id'=>'coa-account','class' => 'form-control','required']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('account_code', 'Account Code:', ['class' => 'control-label']) !!}
-            {!! Form::text('account_code', Input::old('account_code'), ['id'=>'coa-code','class' => 'form-control','required']) !!}
+            {!! Form::text('account_code', Input::old('account_code'), ['id'=>'coa-account-code','class' => 'form-control','readonly','required']) !!}
         </div>
     </div>
 </div>
@@ -38,12 +41,12 @@
         <div class="col-sm-6">
             {!! Form::label('currency_id', 'Currency:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::Select('currency_id', $currency_data, Input::old('currency_id'), ['class' => 'form-control','required']) !!}
+            {!! Form::Select('currency_id', $currency_data, Input::old('currency_id'), ['id'=>'currency-data','class' => 'form-control','required']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('exchange_rate', 'Exchange Rate:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::input('number','exchange_rate', Input::old('exchange_rate'), ['class' => 'form-control','required']) !!}
+            {!! Form::input('number','exchange_rate', Input::old('exchange_rate'), ['id'=>'ex-rate','class' => 'form-control','readonly','required']) !!}
         </div>
     </div>
 </div>
@@ -81,11 +84,5 @@
     <a href="" class=" btn btn-default" style="">Close</a>
 </div>
 
-{{--<script>--}}
-    {{--$(function() {--}}
-        {{--$( document ).tooltip();--}}
-    {{--});--}}
-{{--</script>--}}
-
-
+@include('accounts::voucher_detail._script')
 

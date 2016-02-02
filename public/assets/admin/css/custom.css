@@ -39,3 +39,13 @@ body{
 .text-dark-green{
     color: green;
 }
+.warning-report-text-color{
+   color:#102A54;
+}
+.balanced-text-color{
+    color:green;
+}
+.help-text-top{
+    color: lightslategrey;
+    margin-bottom: 5px;
+}

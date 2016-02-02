@@ -7,6 +7,8 @@
  */
 
 //Voucher Head .......
+
+
 Route::any('voucher-head', [
     'as' => 'voucher-head',
     'uses' => 'VoucherHeadController@index'
@@ -100,8 +102,12 @@ Route::any('journal-post/{voucher_number}', [
     'uses' => 'VoucherDetailController@journal_post'
 ]);
 
-Route::get('ajax-account-code', [
+Route::any('ajax-account-code', [
     'as' => 'ajax-account-code',
     'uses' => 'VoucherDetailController@get_ajax_ac'
 ]);
 
+Route::any('exchange-rate', [
+    'as' => 'exchange-rate',
+    'uses' => 'VoucherDetailController@get_ajax_exchange_rate'
+]);
