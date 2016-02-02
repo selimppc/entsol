@@ -11,7 +11,7 @@
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>
-                <a class="btn btn-primary btn-xs pull-right" data-toggle="modal" href="#addData" title="Add">
+                <a class="btn btn-primary btn-xs pull-right" data-toggle="modal" href="#addData" title="Add Default Offset">
                     <strong>Add Default Offset</strong>
                 </a>
             </div>
@@ -60,7 +60,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel">Add Default Offset</h4>
+                <h4 class="modal-title" id="myModalLabel">Add Default Offset Informations</h4>
             </div>
             <div class="modal-body">
                 {!! Form::open(['route' => 'store-default-offset','id' => 'jq-validation-form']) !!}

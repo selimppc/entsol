@@ -31,7 +31,7 @@ class GroupOneController extends Controller
      */
     public function index()
     {
-        $pageTitle = "Group One";
+        $pageTitle = "Group One Information";
         if($this->isPostRequest()){
             $code = Input::get('code');
             $title = Input::get('title');
@@ -75,7 +75,7 @@ class GroupOneController extends Controller
      */
     public function show($id)
     {//print_r($id);exit;
-        $pageTitle = 'Show the detail';
+        $pageTitle = 'View Group One Information';
         $data = GroupOne::where('id',$id)->first();
 
         return view('accounts::group_one.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
@@ -89,7 +89,7 @@ class GroupOneController extends Controller
      */
     public function edit($id)
     {
-        $pageTitle = 'Show the detail';
+        $pageTitle = 'Update Group One Information';
         $data = GroupOne::where('id',$id)->first();
         return view('accounts::group_one.update', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }

@@ -32,11 +32,11 @@ class DefaultOffsetController extends Controller
      */
     public function index()
     {
-        $pageTitle = "Default Offset";
+        $pageTitle = "Default Offset Informations";
 
         $data = DefaultOffset::where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(50);
-        $year = VoucherHead::getYear();
-        return view('accounts::default_offset.index', ['data' => $data, 'pageTitle'=> $pageTitle,'year'=>$year]);
+        /*$year = VoucherHead::getYear();*/
+        return view('accounts::default_offset.index', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 
     /**
@@ -72,7 +72,7 @@ class DefaultOffsetController extends Controller
      */
     public function show($id)
     {//print_r($id);exit;
-        $pageTitle = 'Show the detail';
+        $pageTitle = 'View Default Offset Informations';
         $data = DefaultOffset::where('id',$id)->first();
 
         return view('accounts::default_offset.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
@@ -86,7 +86,7 @@ class DefaultOffsetController extends Controller
      */
     public function edit($id)
     {
-        $pageTitle = 'Show the detail';
+        $pageTitle = 'Update Default Offset Informations';
         $data = DefaultOffset::where('id',$id)->first();
         return view('accounts::default_offset.update', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }

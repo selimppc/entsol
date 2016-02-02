@@ -92,7 +92,8 @@
 
 <script>
     var init = [];
-    init.push(function () {
+//    init.push(function () {
+        alert('45454');
         $('#coa-data').click(function() {
             var coa_id =  $('#coa-data').val();
             alert(coa_id);
@@ -106,9 +107,9 @@
                 }
             });
         });
-    });
+//    });
 
-    window.LanderApp.start(init);
+//    window.LanderApp.start(init);
 
 
 </script>

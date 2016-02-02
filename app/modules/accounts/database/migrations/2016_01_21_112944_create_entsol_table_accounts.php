@@ -17,8 +17,8 @@ class CreateEntsolTableAccounts extends Migration
          */
         Schema::create('ac_group_one', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code',64)->nullable();
-            $table->string('title', 64)->nullable();
+            $table->string('code',64)->unique();
+            $table->string('title', 64)->unique();
             $table->text('description')->nullable();
             $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11)->nullable();
@@ -34,8 +34,8 @@ class CreateEntsolTableAccounts extends Migration
 
         Schema::create('cm_currency', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code',64)->nullable();
-            $table->string('title',64)->nullable();
+            $table->string('code',64)->unique();
+            $table->string('title',64)->unique();
             $table->text('description')->nullable();
             $table->decimal('exchange_rate',20,2)->nullable();
             $table->enum('status',array('active','inactive','cancel'))->nullable();
@@ -53,8 +53,8 @@ class CreateEntsolTableAccounts extends Migration
 
         Schema::create('cm_branch', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code',64)->nullable();
-            $table->string('title',64)->nullable();
+            $table->string('code',64)->unique();
+            $table->string('title',64)->unique();
             $table->text('description')->nullable();
             $table->unsignedInteger('currency_id')->nullable();
             $table->decimal('exchange_rate', 20,2)->nullable();
@@ -83,8 +83,8 @@ class CreateEntsolTableAccounts extends Migration
 
         Schema::create('ac_chart_of_accounts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('account_code',64)->nullable();
-            $table->string('title',64)->nullable();
+            $table->string('account_code',64)->unique();
+            $table->string('title',64)->unique();
             $table->text('description')->nullable();
             $table->enum('account_type',array('asset','liability','income','expenses'))->nullable();
             $table->enum('account_usage',array('ledger','ap','ar'))->nullable();
@@ -115,7 +115,7 @@ class CreateEntsolTableAccounts extends Migration
 
         Schema::create('ac_voucher_head', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('voucher_number', 64)->nullable();
+            $table->string('voucher_number', 64)->unique();
             $table->enum('account_type',array(
                 'account-payable','account-receivable','account-adjustment','journal-voucher','receipt-voucher','reverse-entry'))->nullable();
             $table->date('date')->nullable();
@@ -144,10 +144,10 @@ class CreateEntsolTableAccounts extends Migration
         Schema::create('ac_voucher_detail', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('voucher_head_id')->nullable();
-            $table->string('voucher_number', 64)->nullable();
+            $table->string('voucher_number', 64)->unique();
             $table->unsignedInteger('coa_id')->nullable();
-            $table->string('account_code', 64)->nullable();
-            $table->string('sub_account_code', 64)->nullable();
+            $table->string('account_code', 64)->unique();
+            $table->string('sub_account_code', 64)->unique();
             $table->unsignedInteger('currency_id')->nullable();
             $table->decimal('exchange_rate', 20,2)->nullable();
             $table->decimal('prime_amount', 20,2)->nullable();
@@ -187,10 +187,10 @@ class CreateEntsolTableAccounts extends Migration
         Schema::create('ac_balance', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('voucher_head_id')->nullable();
-            $table->string('voucher_number', 64)->nullable();
+            $table->string('voucher_number', 64)->unique();
             $table->unsignedInteger('coa_id')->nullable();
-            $table->string('account_code', 64)->nullable();
-            $table->string('sub_account_code', 64)->nullable();
+            $table->string('account_code', 64)->unique();
+            $table->string('sub_account_code', 64)->unique();
             $table->date('date')->nullable();
             $table->unsignedInteger('branch_id')->nullable();
             $table->text('reference')->nullable();
@@ -234,7 +234,7 @@ class CreateEntsolTableAccounts extends Migration
         Schema::create('ac_allocation', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('voucher_head_id')->nullable();
-            $table->string('invoice_number', 64)->nullable();
+            $table->string('invoice_number', 64)->unique();
             $table->date('date')->nullable();
             $table->unsignedInteger('currency_id')->nullable();
             $table->decimal('exchange_rate', 20,2)->nullable();
@@ -262,16 +262,36 @@ class CreateEntsolTableAccounts extends Migration
 
         Schema::create('ac_default_offset', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('offset',64)->nullable();
-            $table->string('pnl_account', 64)->nullable();
+            $table->string('offset',64)->unique();
+            $table->string('pnl_account', 64)->unique();
             $table->unsignedInteger('year')->nullable();
             $table->unsignedInteger('period')->nullable();
             $table->enum('status',array('active','inactive','cancel'))->nullable();
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
+
+        /*
+         * Settings
+         */
+
+        Schema::create('ac_settings', function (Blueprint $table) {
+            $table->increments('id');
+            $table->enum('type',array(
+                'account-payable','account-receivable','account-adjustment','journal-voucher','receipt-voucher','reverse-entry'))->nullable();
+            $table->string('code',64)->unique();
+            $table->string('title',64)->unique();
+            $table->unsignedInteger('last_number')->nullable();
+            $table->unsignedInteger('increment')->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+
 
 
 
