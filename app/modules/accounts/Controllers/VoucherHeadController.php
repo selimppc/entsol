@@ -78,19 +78,21 @@ class VoucherHeadController extends Controller
 
     public function show($id)
     {
-        $pageTitle = 'Show the detail';
+        $pageTitle = 'View Journal Voucher Informations';
         $data = VoucherHead::with('relBranch')->where('id',$id)->first();
+        $voucher_details_data = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('voucher_head_id',$id)->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
 
-        return view('accounts::voucher_head.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
+        return view('accounts::voucher_head.view', ['data' => $data,'voucher_details_data' => $voucher_details_data, 'pageTitle'=> $pageTitle]);
     }
 
     public function edit($id)
     {
-        $pageTitle = 'Show the detail';
-
-        $model = new VoucherHead();
+        $pageTitle = 'Update Journal Voucher Informations';
         $branch_data = Branch::lists('title','id');
-        /*$year = $model->getYear();*/
+
+        /*$model = new VoucherHead();
+        $year = $model->getYear();*/
+
         $data = VoucherHead::findOrFail($id);
         return view('accounts::voucher_head.update', ['data' => $data,'branch_data'=>$branch_data,'pageTitle'=> $pageTitle]);
     }

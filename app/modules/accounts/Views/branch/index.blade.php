@@ -11,7 +11,7 @@
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>
-                <a class="btn btn-primary btn-xs pull-right" data-toggle="modal" href="#addData" title="Add">
+                <a class="btn btn-primary btn-xs pull-right" data-toggle="modal" href="#addData" title="Add Branch">
                     <strong>Add Branch</strong>
                 </a>
             </div>
@@ -86,7 +86,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel">Add Branch</h4>
+                <h4 class="modal-title" id="myModalLabel">Add Branch Informations</h4>
             </div>
             <div class="modal-body">
                 {!! Form::open(['route' => 'store-branch','id' => 'jq-validation-form']) !!}

@@ -2,13 +2,12 @@
 /**
  * Created by PhpStorm.
  * User: etsb
- * Date: 1/25/16
- * Time: 1:45 PM
+ * Date: 2/1/16
+ * Time: 4:29 PM
  */
 
 namespace App\Modules\Accounts\Controllers;
-use App\Branch;
-use App\Currency;
+use App\Settings;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -17,7 +16,7 @@ use Session;
 use Input;
 
 
-class BranchController extends Controller
+class SettingsController extends Controller
 {
     protected function isPostRequest()
     {
@@ -31,25 +30,15 @@ class BranchController extends Controller
      */
     public function index()
     {
-        $pageTitle = "Branch Informations";
+        $pageTitle = "Settings Information";
         if($this->isPostRequest()){
-            $title = Input::get('title');
             $code = Input::get('code');
-            $currency=Input::get('currency_id');
-
-            $data = Branch::with('relCurrency')->whereExists(function ($query) use ($currency) {
-                $query->from('cm_currency')->whereRaw('cm_currency.id = cm_branch.currency_id')
-                    ->where('currency_id',$currency);
-            })->orWhere('title','LIKE', '%'.$title.'%')
-                ->orWhere('code','LIKE', '%'.$code.'%')
-                ->orderby('id','DESC')->paginate(50);
-
-            /*$data = Branch::with('relCurrency')->where('status','!=','cancel')->orWhere('code', 'LIKE', '%'.$code.'%')->orWhere('title', 'LIKE', '%'.$title.'%')->orWhere('currency_id',$currency)->orderBy('id', 'DESC')->paginate(50);*/
+            $title = Input::get('title');
+            $data = Settings::where('status','!=','cancel')->where('code', 'LIKE', '%'.$code.'%')->where('title', 'LIKE', '%'.$title.'%')->orderBy('id', 'DESC')->paginate(50);
         }else{
-            $data = Branch::where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(50);
+            $data = Settings::where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(50);
         }
-        $currency_id =  [''=>'Currency'] + Currency::lists('title','id')->all();
-        return view('accounts::branch.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'currency_id'=> $currency_id]);
+        return view('accounts::settings.index', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 
     /**
@@ -58,14 +47,14 @@ class BranchController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\BranchRequest $request)
+    public function store(Requests\GroupOneRequest $request)
     {
         $input = $request->all();
 
         /* Transaction Start Here */
         DB::beginTransaction();
         try {
-            Branch::create($input);
+            Settings::create($input);
             DB::commit();
             Session::flash('message', 'Successfully added!');
         } catch (\Exception $e) {
@@ -85,10 +74,10 @@ class BranchController extends Controller
      */
     public function show($id)
     {//print_r($id);exit;
-        $pageTitle = 'View Branch Informations';
-        $data = Branch::where('id',$id)->first();
+        $pageTitle = 'View Settings Information';
+        $data = Settings::where('id',$id)->first();
 
-        return view('accounts::branch.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
+        return view('accounts::settings.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 
     /**
@@ -99,10 +88,9 @@ class BranchController extends Controller
      */
     public function edit($id)
     {
-        $pageTitle = 'Update Branch Informations';
-        $data = Branch::where('id',$id)->first();
-        $currency_id = Currency::lists('title','id');
-        return view('accounts::branch.update', ['data' => $data, 'pageTitle'=> $pageTitle, 'currency_id'=> $currency_id]);
+        $pageTitle = 'Update Settings Information';
+        $data = Settings::where('id',$id)->first();
+        return view('accounts::settings.update', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 
     /**
@@ -112,9 +100,9 @@ class BranchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Requests\BranchRequest $request, $id)
+    public function update(Requests\SettingsRequest $request, $id)
     {
-        $model = Branch::where('id',$id)->first();
+        $model = Settings::where('id',$id)->first();
         $input = $request->all();
 
         DB::beginTransaction();
@@ -126,7 +114,7 @@ class BranchController extends Controller
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
-            Session::flash('danger', $e->getMessage());
+            Session::flash('error', $e->getMessage());
         }
         return redirect()->back();
     }
@@ -139,7 +127,7 @@ class BranchController extends Controller
      */
     public function delete($id)
     {
-        $model = Branch::findOrFail($id);
+        $model = Settings::findOrFail($id);
 
         DB::beginTransaction();
         try {
@@ -158,4 +146,5 @@ class BranchController extends Controller
         }
         return redirect()->back();
     }
+
 }

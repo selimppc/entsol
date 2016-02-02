@@ -31,7 +31,7 @@ class VoucherDetailController extends Controller
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-   public function index($id,$voucher_number,$status){
+   public function index($id,$voucher_number){
 
        $pageTitle = 'Journal Voucher Detail';
        $model = new VoucherDetail();
@@ -69,7 +69,7 @@ class VoucherDetailController extends Controller
        $currency_data = [''=>'Select Currency'] + Currency::lists('title','id')->all();
        $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
 
-       return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'model'=>$model,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'id'=>$id,'status'=>$status,'voucher_number'=>$voucher_number,'voucher_data'=>$voucher_data]);
+       return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'model'=>$model,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'id'=>$id,'voucher_number'=>$voucher_number,'voucher_data'=>$voucher_data]);
    }
 
     public function store(VoucherDetailRequest $request){
@@ -236,12 +236,20 @@ class VoucherDetailController extends Controller
         $user_id = Auth::user()->id;
         #print_r($user_id);exit;
         try{
-            $result = DB::statement('call sp_voucher_post(?,?)',array($voucher_number,$user_id));
-            #$result = DB::statement('call sp_voucher_post(' . DB::raw("$voucher_number") . ',' . DB::raw($user_id) . ')');
-            print_r("OK");
+            DB::statement('call sp_voucher_post(?,?)',array($voucher_number,$user_id));
+            Session::flash('message', "Successfully Posted");
+
         }catch (\Exception $e){
-            print_r($e->getMessage());
+            Session::flash('danger',$e->getMessage());
         }
-        exit;
+        return redirect()->back();
+    }
+
+    public function get_ajax_ac(){
+
+        $input_coa_id = $_GET['coa_id'];
+        $account_code = ChartOfAccounts::where('id',$input_coa_id)->first()->account_code;
+         #dd($account_code);die;
+        return $account_code;
     }
 }

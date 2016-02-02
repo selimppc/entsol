@@ -43,7 +43,7 @@ Route::any('status-voucher-head/{id}', [
 
 //Voucher Head Detail.......
 
-Route::any('voucher-detail/{id}/{voucher_number}/{status}', [
+Route::any('voucher-detail/{id}/{voucher_number}', [
     'as' => 'voucher-detail',
     'uses' => 'VoucherDetailController@index'
 ]);
@@ -98,5 +98,10 @@ Route::any('search/autocomplete', [
 Route::any('journal-post/{voucher_number}', [
     'as' => 'journal-post',
     'uses' => 'VoucherDetailController@journal_post'
+]);
+
+Route::get('ajax-account-code', [
+    'as' => 'ajax-account-code',
+    'uses' => 'VoucherDetailController@get_ajax_ac'
 ]);
 
