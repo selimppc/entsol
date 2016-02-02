@@ -11,6 +11,7 @@ namespace App\Modules\Accounts\Controllers;
 use App\Branch;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VoucherHeadRequest;
+use App\Settings;
 use App\VoucherHead;
 use App\VoucherDetail;
 use Illuminate\Support\Facades\DB;
@@ -30,6 +31,12 @@ class VoucherHeadController extends Controller
 
        $pageTitle = 'Journal Voucher Informations';
        $model = new VoucherHead();
+       $settings = Settings::where('status','=','active')->where('type','=','journal-voucher')->first();
+
+       $number = $settings['last_number']+$settings['increment'];
+       $generate_voucher_number = $settings['code'].'000000'.$number;
+       $settings_id = $settings['id'];
+
        if($this->isPostRequest()){
 
            $account_type = Input::get('account_type');
@@ -56,16 +63,19 @@ class VoucherHeadController extends Controller
        $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
 
 
-       return view('accounts::voucher_head.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model]);
+       return view('accounts::voucher_head.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model,'generate_voucher_number'=>$generate_voucher_number,'number'=>$number,'settings_id'=>$settings_id]);
    }
 
     public function store(VoucherHeadRequest $request){
         $input = $request->all();
+
         #print_r($input);exit;
         /* Transaction Start Here */
         DB::beginTransaction();
         try {
             VoucherHead::create($input);
+            Settings::where('id', $input['settings_id'])->update(array('last_number' => $input['number']));
+
             DB::commit();
             Session::flash('message', 'Successfully added!');
         } catch (\Exception $e) {

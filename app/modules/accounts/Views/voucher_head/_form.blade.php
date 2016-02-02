@@ -8,7 +8,9 @@
         <div class="col-sm-6">
             {!! Form::label('voucher_number', 'Voucher Number:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('voucher_number', Input::old('voucher_number'), ['class' => 'form-control','required']) !!}
+            {!! Form::text('voucher_number', @$generate_voucher_number? $generate_voucher_number : Input::old('voucher_number'), ['class' => 'form-control','required','readonly']) !!}
+            {!! Form::hidden('number', @$number? $number : 0) !!}
+            {!! Form::hidden('settings_id', @$settings_id? $settings_id : 0) !!}
         </div>
     </div>
 </div>
