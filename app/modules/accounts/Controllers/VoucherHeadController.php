@@ -14,6 +14,7 @@ use App\Http\Requests\VoucherHeadRequest;
 use App\Settings;
 use App\VoucherHead;
 use App\VoucherDetail;
+use App\Helpers\GenerateNumber;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
@@ -31,11 +32,13 @@ class VoucherHeadController extends Controller
 
        $pageTitle = 'Journal Voucher Informations';
        $model = new VoucherHead();
-       $settings = Settings::where('status','=','active')->where('type','=','journal-voucher')->first();
 
-       $number = $settings['last_number']+$settings['increment'];
-       $generate_voucher_number = $settings['code'].str_pad($number, 7, '0', STR_PAD_LEFT);
-       $settings_id = $settings['id'];
+       $type = 'journal-voucher';
+       $generate_number = GenerateNumber::generate_number($type);
+
+       $generate_voucher_number = $generate_number[0];
+       $settings_id = $generate_number[1];
+       $number = $generate_number[2];
 
        if($this->isPostRequest()){
 
