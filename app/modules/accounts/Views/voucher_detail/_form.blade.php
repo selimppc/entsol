@@ -78,7 +78,10 @@
     </div>
 </div>
 
-
+{!! Form::select('list', array(
+    'Fruits' => array('Orange', 'Apple'),
+    'Food' => array('Chicken', 'Beef'),
+)) !!}
 <div class="form-margin-btn">
     {!! Form::submit('Save Changes', ['class' => 'btn btn-primary']) !!}
     <a href="" class=" btn btn-default" style="">Close</a>

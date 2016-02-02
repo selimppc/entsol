@@ -10,7 +10,8 @@
     <div class="col-sm-12">
         <div class="panel">
             <div class="panel-heading">
-                <span class="panel-title">{{ $pageTitle }} ({{isset($voucher_number)?$voucher_number:''}})</span>
+                <span class="panel-title">{{ $pageTitle }} <strong>({{isset($voucher_number)?$voucher_number:''}})</strong></span>
+
                 @if($voucher_data->status!='posted')
                     <a class="btn btn-xs btn-primary pull-right" data-toggle="modal" href="#addData" title="Add">
                        <strong>Add Voucher Detail</strong>
@@ -77,10 +78,11 @@
                 </div>
                     {{--<span class="pull-left">{!! str_replace('/?', '?', $model->render()) !!} </span>--}}
                 <a class="pull-right btn btn-xs btn-primary" href="{{ URL::route('voucher-head')}}"> <i class="fa fa-arrow-circle-left"></i> Back To Journal Voucher</a>
-                <div>
+                <p>&nbsp;</p>
+                <div class="message-width">
                     @if(isset($voucher_data->status))
                         @if($voucher_data->status == 'balanced')
-                            <h4 class="balanced-text-color text-center" style="background-color:lightblue">
+                            <h4 class="balanced-text-color" style="background-color:lightblue">
                                 <strong>The Journal Voucher is Balanced.</strong>
                                 <a href="{{route('journal-post',$voucher_number)}}" class="btn btn-primary " title=""><strong class="text-center">POST to Ledger</strong></a>
                             </h4>

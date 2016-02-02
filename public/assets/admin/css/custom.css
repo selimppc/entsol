@@ -10,6 +10,9 @@
 .form-margin-btn{
     margin-left: 77%;
 }
+.message-width{
+    /*width:80%;*/
+}
 
 select.input-sm, select.form-group-sm .form-control {
     height: 22px;
@@ -40,7 +43,7 @@ body{
     color: green;
 }
 .warning-report-text-color{
-   color:#102A54;
+   color:crimson;
 }
 .balanced-text-color{
     color:green;

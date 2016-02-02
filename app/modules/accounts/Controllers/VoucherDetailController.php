@@ -233,6 +233,11 @@ class VoucherDetailController extends Controller
 
     public function journal_post($voucher_number){
 
+        /*if(Auth::check()){
+            $user_id = Auth::user()->id;
+        }else{
+
+        }*/
         $user_id = Auth::user()->id;
         #print_r($user_id);exit;
         try{
