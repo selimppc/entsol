@@ -1,4 +1,4 @@
-
+<script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.min.js') }}"></script>
 
 {!! Form::hidden('voucher_head_id',$id) !!}
 
@@ -7,11 +7,11 @@
         <div class="col-sm-6">
             {!! Form::label('coa_id', 'Chat Of Accounts:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::Select('coa_id', $coa_data, Input::old('coa_id'), ['id'=>'123','class' => 'form-control','required']) !!}
+            {!! Form::Select('coa_id', $coa_data, Input::old('coa_id'), ['id'=>'coa-account','class' => 'form-control','required']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('account_code', 'Account Code:', ['class' => 'control-label']) !!}
-            {!! Form::text('account_code', Input::old('account_code'), ['id'=>'coa-code','class' => 'form-control','required']) !!}
+            {!! Form::text('account_code', Input::old('account_code'), ['id'=>'coa-account-code','class' => 'form-control','readonly']) !!}
         </div>
     </div>
 </div>
@@ -81,11 +81,23 @@
     <a href="" class=" btn btn-default" style="">Close</a>
 </div>
 
-{{--<script>--}}
-    {{--$(function() {--}}
-        {{--$( document ).tooltip();--}}
-    {{--});--}}
-{{--</script>--}}
 
 
+<script type="text/javascript">
+
+    $('select[id=coa-account]').change(function () {
+
+        var coa_id =   $(this).val();
+
+        $.ajax({
+            url: "{{Route('ajax-account-code')}}",
+            type: 'POST',
+            data: {_token: '{!! csrf_token() !!}',coa_id: coa_id },
+            success: function(data){
+                $('#coa-account-code').val(data);
+            }
+        });
+    });
+
+</script>
 

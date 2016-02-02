@@ -80,17 +80,18 @@
                 <div>
                     @if(isset($voucher_data->status))
                         @if($voucher_data->status == 'balanced')
-                            <h4 class="narration">
-                                The journal Balanced.
-                                <a href="{{route('journal-post',$voucher_number)}}" class="btn btn-success" title="">POST to Ledger</a>
+                            <h4 class="balanced-text-color text-center" style="background-color:lightblue">
+                                <strong>The Journal Voucher is Balanced.</strong>
+                                <a href="{{route('journal-post',$voucher_number)}}" class="btn btn-primary " title=""><strong class="text-center">POST to Ledger</strong></a>
                             </h4>
                         @elseif($voucher_data->status == 'posted')
                             <h4 class="text-dark-green">
-                                Journal Voucher({{$voucher_number}}) is Posted.
+                                <strong>Journal Voucher({{$voucher_number}}) is Posted.</strong>
                             </h4>
                         @else
-                            <h4 class="required">
-                                * The journal must balance ie. debits equal to credits before it can be processed.
+                            <h4 class="warning-report-text-color">
+                                <strong>WARNING Report :</strong>
+                                <span class="required"><strong>The journal must balance ie. debits equal to credits before it can be processed.</strong></span>
                             </h4>
                         @endif
                     @endif
