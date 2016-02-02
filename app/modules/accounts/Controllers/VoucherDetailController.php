@@ -247,9 +247,15 @@ class VoucherDetailController extends Controller
 
     public function get_ajax_ac(){
 
-        $input_coa_id = $_GET['coa_id'];
-        $account_code = ChartOfAccounts::where('id',$input_coa_id)->first()->account_code;
-         #dd($account_code);die;
-        return $account_code;
+        $input_coa_id = Input::get('coa_id');
+
+         try{
+              $account_code = ChartOfAccounts::where('id',$input_coa_id)->first();
+              if($account_code){
+                  return  Response::make($account_code['account_code']);
+              }
+        }catch(\Exception $e){
+          return  Response::make($e->getMessage());
+        }
     }
 }
