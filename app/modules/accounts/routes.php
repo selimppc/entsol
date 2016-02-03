@@ -6,7 +6,7 @@
  * Time: 5:54 PM
  */
 
-Route::group(array('modules'=>'Accounts', 'namespace' => 'App\Modules\Accounts\Controllers'), function() {
+Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 'App\Modules\Accounts\Controllers'), function() {
     //Your routes belong to this module.
     @include('routes_tjt.php');
 
