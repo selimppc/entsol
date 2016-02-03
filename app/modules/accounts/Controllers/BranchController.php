@@ -32,19 +32,27 @@ class BranchController extends Controller
     public function index()
     {
         $pageTitle = "Branch Informations";
+        $data = new Branch();
+
         if($this->isPostRequest()){
+
             $title = Input::get('title');
             $code = Input::get('code');
             $currency=Input::get('currency_id');
 
-            $data = Branch::with('relCurrency')->whereExists(function ($query) use ($currency) {
-                $query->from('cm_currency')->whereRaw('cm_currency.id = cm_branch.currency_id')
-                    ->where('currency_id',$currency);
-            })->orWhere('title','LIKE', '%'.$title.'%')
-                ->orWhere('code','LIKE', '%'.$code.'%')
-                ->orderby('id','DESC')->paginate(50);
+            $data = $data->with('relCurrency');
 
-            /*$data = Branch::with('relCurrency')->where('status','!=','cancel')->orWhere('code', 'LIKE', '%'.$code.'%')->orWhere('title', 'LIKE', '%'.$title.'%')->orWhere('currency_id',$currency)->orderBy('id', 'DESC')->paginate(50);*/
+            if (isset($title) && !empty($title)) $data ->where('cm_branch.title', 'LIKE', '%'.$title.'%');
+            if (isset($code) && !empty($code)) $data->where('cm_branch.code', 'LIKE', '%'.$code.'%');
+            if (isset($currency) && !empty($currency)) $data->where('cm_branch.currency_id', '=', $currency);
+
+            /*$data = $data->leftJoin('cm_currency as currency', function($query)  use($currency){
+                $query->on('currency.id', '=', 'cm_branch.currency_id');
+                $query->where('currency.id',  '=', $currency);
+            });*/
+
+            $data = $data->paginate(50);
+            //print_r($data['currency_id']);exit;
         }else{
             $data = Branch::where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(50);
         }
