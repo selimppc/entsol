@@ -7,6 +7,7 @@
 
         <!-- page start-->
 <div class="row">
+
     <div class="col-sm-12">
         <div class="panel">
             <div class="panel-heading">
@@ -17,6 +18,11 @@
                        <strong>Add Voucher Detail</strong>
                     </a>
                 @endif
+            </div>
+            <div class="panel-heading help-text-color">
+                <div class="help-text-top">
+                    <em>When Journal Voucher is balanced ,You can <b>Post</b> This Voucher At <b>"Post To Ledger"</b> Button.</em>
+                </div>
             </div>
 
             <div class="panel-body">
