@@ -53,10 +53,10 @@ class VoucherHeadController extends Controller
            if (isset($term_year) && !empty($term_year)) $model->where('ac_voucher_head.year', '=', $term_year);
            if (isset($voucher_number) && !empty($voucher_number)) $model->where('ac_voucher_head.voucher_number', '=', $voucher_number);
 
-           $model = $model->leftJoin('cm_branch as branch', function($query)  use($branch){
+           /*$model = $model->leftJoin('cm_branch as branch', function($query)  use($branch){
                $query->on('branch.id', '=', 'ac_voucher_head.branch_id');
                $query->where('branch.id',  '=', $branch);
-           });
+           });*/
            $model = $model->paginate(50);
        }else{
            $model = VoucherHead::with('relBranch')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(50);
