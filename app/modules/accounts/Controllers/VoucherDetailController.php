@@ -233,19 +233,19 @@ class VoucherDetailController extends Controller
 
     public function journal_post($voucher_number){
 
-        /*if(Auth::check()){
+        if(Auth::check()){
+
             $user_id = Auth::user()->id;
+            #print_r($user_id);exit;
+            try{
+                DB::statement('call sp_voucher_post(?,?)',array($voucher_number,$user_id));
+                Session::flash('message', "Successfully Posted");
+
+            }catch (\Exception $e){
+                Session::flash('danger',$e->getMessage());
+            }
         }else{
-
-        }*/
-        $user_id = Auth::user()->id;
-        #print_r($user_id);exit;
-        try{
-            DB::statement('call sp_voucher_post(?,?)',array($voucher_number,$user_id));
-            Session::flash('message', "Successfully Posted");
-
-        }catch (\Exception $e){
-            Session::flash('danger',$e->getMessage());
+            Session::flash('danger','Please LogIn At First!!');
         }
         return redirect()->back();
     }

@@ -6,7 +6,7 @@
  * Time: 3:59 PM
  */
 
-Route::group(array('modules'=>'Admin', 'namespace' => 'App\Modules\Admin\Controllers'), function() {
+Route::group(array('middleware' => 'auth','modules'=>'Admin', 'namespace' => 'App\Modules\Admin\Controllers'), function() {
     //Your routes belong to this module.
 
 /*Form Components*/
