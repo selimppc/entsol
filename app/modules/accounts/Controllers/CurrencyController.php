@@ -52,6 +52,10 @@ class CurrencyController extends Controller
     {
         $input = $request->all();
 
+        $code = Input::get('code');
+        $code_upper_case = strtoupper($code);
+        $input['code'] = $code_upper_case;
+
         /* Transaction Start Here */
         DB::beginTransaction();
         try {
@@ -105,6 +109,10 @@ class CurrencyController extends Controller
     {
         $model = Currency::where('id',$id)->first();
         $input = $request->all();
+
+        $code = Input::get('code');
+        $code_upper_case = strtoupper($code);
+        $input['code'] = $code_upper_case;
 
         DB::beginTransaction();
         try {

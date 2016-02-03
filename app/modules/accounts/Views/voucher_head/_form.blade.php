@@ -3,7 +3,7 @@
         <div class="col-sm-6">
             {!! Form::label('account_type', 'Account Type:', ['class' => 'control-label']) !!}
             <small class="narration">(Journal Voucher Type Selected)</small>
-            {!! Form::text('account_type', 'journal-voucher', ['class' => 'form-control','required','readonly','style'=>'font-weight:bold']) !!}
+            {!! Form::text('account_type', ucfirst('journal-voucher'), ['class' => 'form-control','required','readonly','style'=>'font-weight:bold']) !!}
             {{--{!! Form::Select('account_type',array('journal-voucher'=>'Journal Voucher'),Input::old('account_type'),['class'=>'form-control','readonly','style'=>'font-weight:bold']) !!}--}}
         </div>
         <div class="col-sm-6">
@@ -58,7 +58,8 @@
         <div class="col-sm-6">
             {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
             <small class="narration">(Open status Selected)</small>
-            {!! Form::Select('status',array('open'=>'Open'),Input::old('status'),['class'=>'form-control ','required','readonly']) !!}
+            {!! Form::text('status', ucfirst('open'), ['class' => 'form-control','required','readonly','style'=>'font-weight:bold']) !!}
+            {{--{!! Form::Select('status',array('open'=>'Open'),Input::old('status'),['class'=>'form-control ','required','readonly']) !!}--}}
         </div>
     </div>
 </div>

@@ -57,7 +57,7 @@
                             @foreach($data as $values)
                                 <tr class="gradeX">
                                     <td>{{$values->code}}</td>
-                                    <td>{{$values->title}}</td>
+                                    <td>{{ucfirst($values->title)}}</td>
                                     <td>{{$values->relCurrency->title}}</td>
                                     <td>{{$values->exchange_rate}}</td>
                                     <td>{{$values->contact_person}}</td>

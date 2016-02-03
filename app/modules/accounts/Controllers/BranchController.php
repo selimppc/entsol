@@ -62,6 +62,10 @@ class BranchController extends Controller
     {
         $input = $request->all();
 
+        $code = Input::get('code');
+        $code_upper_case = strtoupper($code);
+        $input['code'] = $code_upper_case;
+
         /* Transaction Start Here */
         DB::beginTransaction();
         try {
@@ -116,6 +120,10 @@ class BranchController extends Controller
     {
         $model = Branch::where('id',$id)->first();
         $input = $request->all();
+
+        $code = Input::get('code');
+        $code_upper_case = strtoupper($code);
+        $input['code'] = $code_upper_case;
 
         DB::beginTransaction();
         try {
