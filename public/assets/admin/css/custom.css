@@ -30,10 +30,13 @@ body{
 }
 
 .form-control{
-    height: 27px;
+    height: 28px;
     padding: 2px 6px;
     font-size: 12px;
  }
+.input-sm{
+    height: 23px;
+}
 
 .link-text-decoration{
     text-decoration: underline;
@@ -51,4 +54,7 @@ body{
 .help-text-top{
     color: lightslategrey;
     margin-bottom: 5px;
+}
+.help-text-color{
+    background-color:lavenderblush;
 }
