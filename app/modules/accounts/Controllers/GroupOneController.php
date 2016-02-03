@@ -52,6 +52,10 @@ class GroupOneController extends Controller
     {
         $input = $request->all();
 
+        $tittle = Input::get('title');
+        $tittle_upper_case = strtoupper($tittle);
+        $input['title'] = $tittle_upper_case;
+
         /* Transaction Start Here */
         DB::beginTransaction();
         try {
@@ -105,6 +109,10 @@ class GroupOneController extends Controller
     {
         $model = GroupOne::where('id',$id)->first();
         $input = $request->all();
+
+        $tittle = Input::get('title');
+        $tittle_upper_case = strtoupper($tittle);
+        $input['title'] = $tittle_upper_case;
 
         DB::beginTransaction();
         try {

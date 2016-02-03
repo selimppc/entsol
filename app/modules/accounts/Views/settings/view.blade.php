@@ -8,7 +8,7 @@
         <table id="" class="table table-bordered table-hover table-striped">
             <tr>
                 <th class="col-lg-4">Type</th>
-                <td>{{ isset($data->type)?$data->type:''}}</td>
+                <td>{{ isset($data->type)?ucfirst($data->type):''}}</td>
             </tr>
             <tr>
                 <th class="col-lg-4">Code</th>
@@ -16,7 +16,7 @@
             </tr>
             <tr>
                 <th class="col-lg-4">Title</th>
-                <td>{{ isset($data->title)?$data->title:''}}</td>
+                <td>{{ isset($data->title)?ucfirst($data->title):''}}</td>
             </tr>
             <tr>
                 <th class="col-lg-4">Last Number</th>

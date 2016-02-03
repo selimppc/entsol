@@ -52,7 +52,7 @@
                         @if(isset($data))
                             @foreach($data as $values)
                                 <tr class="gradeX">
-                                    <td>{{$values->type}}</td>
+                                    <td>{{ucfirst($values->type)}}</td>
                                     <td>{{$values->code}}</td>
                                     <td>{{$values->title}}</td>
                                     <td>{{$values->last_number}}</td>
