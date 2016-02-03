@@ -19,11 +19,20 @@
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
                 {!! Form::open(['route' => 'chart-of-accounts']) !!}
-                <div class="col-sm-8">
-                    <div class="col-sm-4">
-                        {!! Form::text('account_code',Input::old('account_code'),['class' => 'form-control','placeholder'=>'Account Code']) !!}
+                <div class="col-sm-10">
+                    <div class="col-sm-2">
+                        {!! Form::text('account_code',null,['class' => 'form-control','placeholder'=>'Account Code']) !!}
                     </div>
-                    <div class="col-sm-3 filter-btn">
+                    <div class="col-sm-2">
+                        {!! Form::text('title',null,['class' => 'form-control','placeholder'=>'Title']) !!}
+                    </div>
+                    <div class="col-sm-2">
+                        {!! Form::select('account_type', array(''=>'Select Acc. Type','asset'=>'Asset','liability'=>'Liability','income'=>'Income','expenses'=>'Expenses'),null,['class' => 'form-control']) !!}
+                    </div>
+                    <div class="col-sm-2">
+                        {!! Form::select('account_usage', array(''=>'Select Acc. Usage','ledger'=>'Ledger','ap'=>'Ap','ar'=>'Ar'),null,['class' => 'form-control']) !!}
+                    </div>
+                    <div class="col-sm-2 filter-btn">
                         {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button')) !!}
                     </div>
                 </div>
