@@ -193,7 +193,7 @@ class CreateEntsolTableAccounts extends Migration
             $table->string('sub_account_code', 64)->nullable();
             $table->date('date')->nullable();
             $table->unsignedInteger('branch_id')->nullable();
-            $table->string('branch_name', 64)->nullable();
+            $table->string('branch', 64)->nullable();
             $table->text('reference')->nullable();
             $table->unsignedInteger('year')->nullable();
             $table->unsignedInteger('period')->nullable();
