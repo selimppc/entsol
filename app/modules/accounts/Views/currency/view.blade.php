@@ -12,7 +12,7 @@
             </tr>
             <tr>
                 <th class="col-lg-4">Title</th>
-                <td>{{ isset($data->title)?$data->title:''}}</td>
+                <td>{{ isset($data->title)?ucfirst($data->title):''}}</td>
             </tr>
             <tr>
                 <th class="col-lg-4">Description</th>

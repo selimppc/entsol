@@ -10,6 +10,9 @@
 .form-margin-btn{
     margin-left: 77%;
 }
+.message-width{
+    /*width:80%;*/
+}
 
 select.input-sm, select.form-group-sm .form-control {
     height: 22px;
@@ -27,10 +30,13 @@ body{
 }
 
 .form-control{
-    height: 27px;
+    height: 28px;
     padding: 2px 6px;
     font-size: 12px;
  }
+.input-sm{
+    height: 23px;
+}
 
 .link-text-decoration{
     text-decoration: underline;
@@ -40,7 +46,7 @@ body{
     color: green;
 }
 .warning-report-text-color{
-   color:#102A54;
+   color:crimson;
 }
 .balanced-text-color{
     color:green;
@@ -48,4 +54,7 @@ body{
 .help-text-top{
     color: lightslategrey;
     margin-bottom: 5px;
+}
+.help-text-color{
+    background-color:lavenderblush;
 }

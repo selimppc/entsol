@@ -21,13 +21,13 @@
                 {!! Form::open(['route' => 'branch']) !!}
                 <div class="col-sm-12">
                     <div class="col-sm-3">
-                        {!! Form::text('code',Input::old('code'),['class' => 'form-control','placeholder'=>'Code']) !!}
+                        {!! Form::text('code',null,['class' => 'form-control','placeholder'=>'Code']) !!}
                     </div>
                     <div class="col-sm-3">
-                        {!! Form::text('title',Input::old('title'),['class' => 'form-control','placeholder'=>'Title']) !!}
+                        {!! Form::text('title',null,['class' => 'form-control','placeholder'=>'Title']) !!}
                     </div>
                     <div class="col-sm-3">
-                        {!! Form::Select('currency_id',$currency_id, Input::old('currency_id'),['class' => 'form-control','placeholder'=>'Currency']) !!}
+                        {!! Form::Select('currency_id',$currency_id, null,['class' => 'form-control','placeholder'=>'Select Currency']) !!}
                     </div>
                     <div class="col-sm-3 filter-btn">
                         {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button')) !!}
@@ -57,7 +57,7 @@
                             @foreach($data as $values)
                                 <tr class="gradeX">
                                     <td>{{$values->code}}</td>
-                                    <td>{{$values->title}}</td>
+                                    <td>{{ucfirst($values->title)}}</td>
                                     <td>{{$values->relCurrency->title}}</td>
                                     <td>{{$values->exchange_rate}}</td>
                                     <td>{{$values->contact_person}}</td>

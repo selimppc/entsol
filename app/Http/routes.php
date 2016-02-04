@@ -15,19 +15,24 @@
     return view('welcome');
 });*/
 
+Route::any('post-user-login', [
+    'as' => 'post-user-login',
+    'uses' => 'Auth\AuthController@postLogin'
+]);
+
+
+Route::group(['middleware' => 'auth'], function()
+{
 
 Route::any('/', [
     'as' => 'dashboard',
     'uses' => 'HomeController@dashboard'
 ]);
 
-Route::any('post-user-login', [
-    'as' => 'post-user-login',
-    'uses' => 'Auth\AuthController@postLogin'
-]);
-
 Route::any('dashboard', [
     'as' => 'dashboard',
     'uses' => 'HomeController@dashboard'
 ]);
+
+});
 

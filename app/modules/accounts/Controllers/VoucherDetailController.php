@@ -11,6 +11,7 @@ namespace App\Modules\Accounts\Controllers;
 use App\Branch;
 use App\ChartOfAccounts;
 use App\Currency;
+use App\GroupOne;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VoucherDetailRequest;
 use App\Http\Requests\VoucherHeadRequest;
@@ -65,11 +66,23 @@ class VoucherDetailController extends Controller
 
        $voucher_data = VoucherHead::where('id',$id)->first();
 
-       $coa_data = [''=>'Select Chart Of Accounts'] + ChartOfAccounts::lists('title','id')->all();
+       $results =  ChartOfAccounts::orderBy('account_type', 'ASC')->get();
+
+       $attributes = array();
+       foreach ( $results as $v ) {
+           if ( !isset($attributes[$v->account_type]) ) {
+               $attributes[$v->account_type] = array();
+           }
+           $attributes[$v->account_type][$v->title] = $v->title;
+       }
+//       print_r($attributes);exit;
+
+
+
        $currency_data = [''=>'Select Currency'] + Currency::lists('title','id')->all();
        $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
 
-       return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'model'=>$model,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'id'=>$id,'voucher_number'=>$voucher_number,'voucher_data'=>$voucher_data]);
+       return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'model'=>$model,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'id'=>$id,'voucher_number'=>$voucher_number,'voucher_data'=>$voucher_data,'attributes'=>$attributes]);
    }
 
     public function store(VoucherDetailRequest $request){
@@ -233,14 +246,19 @@ class VoucherDetailController extends Controller
 
     public function journal_post($voucher_number){
 
-        $user_id = Auth::user()->id;
-        #print_r($user_id);exit;
-        try{
-            DB::statement('call sp_voucher_post(?,?)',array($voucher_number,$user_id));
-            Session::flash('message', "Successfully Posted");
+        if(Auth::check()){
 
-        }catch (\Exception $e){
-            Session::flash('danger',$e->getMessage());
+            $user_id = Auth::user()->id;
+            #print_r($user_id);exit;
+            try{
+                DB::statement('call sp_voucher_post(?,?)',array($voucher_number,$user_id));
+                Session::flash('message', "Successfully Posted");
+
+            }catch (\Exception $e){
+                Session::flash('danger',$e->getMessage());
+            }
+        }else{
+            Session::flash('danger','Please LogIn At First!!');
         }
         return redirect()->back();
     }

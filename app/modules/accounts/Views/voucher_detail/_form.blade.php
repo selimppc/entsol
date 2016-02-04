@@ -8,9 +8,33 @@
             <em>You will get account code and exchange rate according to Chart of Accounts and Currency.</em>
         </div>
         <div class="col-sm-6">
-            {!! Form::label('coa_id', 'Chat Of Accounts:', ['class' => 'control-label']) !!}
-            <small class="required">(Required)</small>
-            {!! Form::Select('coa_id', $coa_data, Input::old('coa_id'), ['id'=>'coa-account','class' => 'form-control','required']) !!}
+
+                    {{--<select id="jquery-select2-example" class="form-control select2-offscreen" tabindex="-1">
+                        <option></option>
+                        <optgroup label="Alaskan/Hawaiian Time Zone">
+                            <option value="AK">Alaska</option>
+                            <option value="HI">Hawaii</option>
+                        </optgroup>
+                        <optgroup label="Pacific Time Zone">
+                            <option value="CA">California</option>
+                            <option value="NV">Nevada</option>
+                            <option value="OR">Oregon</option>
+                            <option value="WA">Washington</option>
+                        </optgroup>
+                    </select>--}}
+
+                    <select id="jquery-select2-example" class="form-control select2-offscreen" tabindex="-1">
+                        <option></option>
+                        @foreach ( $attributes as $key => $attr )
+                            <optgroup label="{{strtoupper($key)}}">
+                                @foreach ( $attr as $values )
+                                    <option value="{{$values}}">{{$values}}</option>
+                                @endforeach
+                            </optgroup>
+                        @endforeach
+                    </select>
+
+
         </div>
         <div class="col-sm-6">
             {!! Form::label('account_code', 'Account Code:', ['class' => 'control-label']) !!}
@@ -78,6 +102,10 @@
     </div>
 </div>
 
+{{--{!! Form::select('list', array(
+    'Fruits' => array('Orange', 'Apple'),
+    'Food' => array('Chicken', 'Beef'),
+)) !!}--}}
 
 <div class="form-margin-btn">
     {!! Form::submit('Save Changes', ['class' => 'btn btn-primary']) !!}
@@ -86,3 +114,40 @@
 
 @include('accounts::voucher_detail._script')
 
+
+<script>
+    function movieFormatResult(movie) {
+        var markup = "<table class='movie-result'><tr>";
+        if (movie.posters !== undefined && movie.posters.thumbnail !== undefined) {
+            markup += "<td class='movie-image' style='vertical-align: top'><img src='" + movie.posters.thumbnail + "' style='max-width: 60px; display: inline-block; margin-right: 10px; margin-left: 10px;' /></td>";
+        }
+        markup += "<td class='movie-info'><div class='movie-title' style='font-weight: 600; color: #000; margin-bottom: 6px;'>" + movie.title + "</div>";
+        if (movie.critics_consensus !== undefined) {
+            markup += "<div class='movie-synopsis'>" + movie.critics_consensus + "</div>";
+        }
+        else if (movie.synopsis !== undefined) {
+            markup += "<div class='movie-synopsis'>" + movie.synopsis + "</div>";
+        }
+        markup += "</td></tr></table>";
+        return markup;
+    }
+
+    function movieFormatSelection(movie) {
+        return movie.title;
+    }
+
+    init.push(function () {
+        // Single select
+        $("#jquery-select2-example").select2({
+            allowClear: true,
+            placeholder: "Select a State"
+        });
+
+    });
+</script>
+<script type="text/javascript">
+    init.push(function () {
+        // Javascript code here
+    })
+    window.LanderApp.start(init);
+</script>

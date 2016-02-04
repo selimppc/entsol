@@ -10,7 +10,7 @@
             <h4 class="text-center">Journal Voucher Informations</h4>
             <tr>
                 <th class="col-lg-2">Account Type</th>
-                <td class="col-lg-4">{{ isset($data->account_type)?$data->account_type:''}}</td>
+                <td class="col-lg-4">{{ isset($data->account_type)?	'Journal Voucher' : ''}}</td>
 
                 <th class="col-lg-2">Voucher Number</th>
                 <td class="col-lg-4">{{ isset($data->voucher_number)?$data->voucher_number:''}}</td>
@@ -37,7 +37,7 @@
                 <td class="col-lg-4">{{isset($data->relBranch->code)?$data->relBranch->code:''}}</td>
 
                 <th class="col-lg-2">Status</th>
-                <td class="col-lg-4">{{ isset($data->status)?$data->status:'' }}</td>
+                <td class="col-lg-4">{{ isset($data->status)?'Open' :'' }}</td>
             </tr>
 
             <tr>

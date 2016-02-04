@@ -33,9 +33,29 @@ class ChartOfAccountsController extends Controller
     public function index()
     {
         $pageTitle = "Chart Of Accounts Information";
+
+
         if($this->isPostRequest()){
+
+            $data = new ChartOfAccounts();
+
             $account_code = Input::get('account_code');
-            $data = ChartOfAccounts::where('status','active')->where('account_code','LIKE','%'.$account_code.'%')->orderBy('id', 'DESC')->get();
+            $title = Input::get('title');
+            $account_type = Input::get('account_type');
+            $account_usage = Input::get('account_usage');
+            $group_one_id = Input::get('group_one_id');
+
+            $data = $data->with('relGroupOne');
+
+            if (isset($account_code) && !empty($account_code)) $data = $data ->where('ac_chart_of_accounts.account_code', 'LIKE', '%'.$account_code.'%');
+            if (isset($title) && !empty($title)) $data = $data->where('ac_chart_of_accounts.title', 'LIKE', '%'.$title.'%');
+            if (isset($account_type) && !empty($account_type)) $data = $data->where('ac_chart_of_accounts.account_type', '=', $account_type);
+            if (isset($account_usage) && !empty($account_usage)) $data = $data->where('ac_chart_of_accounts.account_usage', '=', $account_usage);
+            if (isset($group_one_id) && !empty($group_one_id)) $data = $data->where('ac_chart_of_accounts.group_one_id', '=', $group_one_id);
+
+            $data = $data->get();
+
+
         }else{
             $data = ChartOfAccounts::where('status','active')->orderBy('id', 'DESC')->paginate(50);
         }
