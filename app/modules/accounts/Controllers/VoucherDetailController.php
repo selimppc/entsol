@@ -66,8 +66,13 @@ class VoucherDetailController extends Controller
        //get vouncher data...
 
        $voucher_data = VoucherHead::where('id',$id)->first();
+
       /* show chat of accounts according to account-type */
        $results =  ChartOfAccounts::orderBy('account_type', 'ASC')->get();
+
+       #$results = DB::table('ac_chart_of_accounts')->select('id','account_type','title');
+
+        #$new_array = strtoupper($results);
 
        $attributes = array();
        foreach ( $results as $v ) {
@@ -86,7 +91,7 @@ class VoucherDetailController extends Controller
     public function store(VoucherDetailRequest $request){
 
         $input = $request->all();
-
+#print_r($input);exit;
         $voucher_data = VoucherHead::where('id',$input['voucher_head_id'])->first();
         $coa_data = ChartOfAccounts::where('id',$input['coa_id'])->first();
         $currency_data = Currency::where('id',$input['currency_id'])->first();
