@@ -139,7 +139,7 @@ init.push(function () {
 
 /* Use For Bootstrap Popover (Show Guideline :: Button click event for users)*/
 
-$(".pop").popover({ trigger: "manual" , html: true, animation:false})
+$(".btn").popover({ trigger: "manual" , html: true, animation:false})
     .on("mouseenter", function () {
         var _this = this;
         $(this).popover("show");
@@ -155,9 +155,9 @@ $(".pop").popover({ trigger: "manual" , html: true, animation:false})
         }, 300);
     });
 
+/* Use For Bootstrap tooltip (Show Guideline :: every tab press tooltips focus the guideline)*/
 
-
-$(".norm").tooltip();
+$(".form-control").tooltip();
 $('input:disabled, button:disabled').after(function (e) {
     d = $("<div>");
     i = $(this);
