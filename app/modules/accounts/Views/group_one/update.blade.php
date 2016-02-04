@@ -2,7 +2,7 @@
 <link href="{{ URL::asset('assets/admin/css/custom.css') }}" rel="stylesheet" type="text/css" >
 
 <div class="modal-header">
-    <a href="{{ URL::previous() }}" class="close" type="button"> × </a>
+    <a href="{{ URL::previous() }}" class="close" type="button" title="Click X button for close this entry form"> × </a>
     <h4 class="modal-title" id="myModalLabel">{{$pageTitle}}</h4>
 </div>
 

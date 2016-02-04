@@ -137,3 +137,39 @@ init.push(function () {
 */
 
 
+/* Use For Bootstrap Popover (Show Guideline :: Button click event for users)*/
+
+$(".pop").popover({ trigger: "manual" , html: true, animation:false})
+    .on("mouseenter", function () {
+        var _this = this;
+        $(this).popover("show");
+        $(".popover").on("mouseleave", function () {
+            $(_this).popover('hide');
+        });
+    }).on("mouseleave", function () {
+        var _this = this;
+        setTimeout(function () {
+            if (!$(".popover:hover").length) {
+                $(_this).popover("hide");
+            }
+        }, 300);
+    });
+
+
+
+$(".norm").tooltip();
+$('input:disabled, button:disabled').after(function (e) {
+    d = $("<div>");
+    i = $(this);
+    d.css({
+        height: i.outerHeight(),
+        width: i.outerWidth(),
+        position: "absolute",
+    })
+    d.css(i.offset());
+    d.attr("title", i.attr("title"));
+    d.tooltip();
+    return d;
+});
+
+
