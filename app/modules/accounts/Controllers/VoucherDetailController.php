@@ -81,6 +81,7 @@ class VoucherDetailController extends Controller
            }
            $attributes[$v->account_type][$v->id] = $v->title;
        }
+       #print_r($attributes);exit;
 
        $currency_data = [''=>'Select Currency'] + Currency::lists('title','id')->all();
        $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();

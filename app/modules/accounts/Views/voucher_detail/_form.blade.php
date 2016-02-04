@@ -14,27 +14,15 @@
             <small class="required">(Required)</small>
             {{--{!! Form::Select('coa_id', [''=>'Select Chart Of Account']+$attributes,Input::old('coa_id'), ['id'=>'coa-account','class' => 'form-control','required']) !!}--}}
 
-                 <select id="coa_id" class="form-control select2-offscreen" tabindex="-1">
-                        <option></option>
-                        @foreach ( $attributes as $key => $attr )
-                            <optgroup label="{{strtoupper($key)}}">
-                                @foreach ( $attr as $values )
-                                    <option value="{{$values}}">{{$values}}</option>
-                                @endforeach
-                            </optgroup>
-                        @endforeach
-                 </select>
-
-            {{--<select id="jquery-select2-example" class="form-control select2-offscreen" tabindex="-1">
-                       <option></option>
-                        @foreach ( $attributes as $key => $attr )
-                            <optgroup label="{{strtoupper($key)}}">
-                                @foreach ( $attr as $values )
-                                    <option value="{{$values}}">{{$values}}</option>
-                                @endforeach
-                            </optgroup>
-                        @endforeach
-                   </select>--}}
+             <select id="coa_id" name="coa_id" class="coa-account">
+                    @foreach ( $attributes as $key => $attr )
+                        <optgroup label="{{strtoupper($key)}}">
+                            @foreach ( $attr as $id => $values )
+                                <option value="{{$id}}">{{$values}}</option>
+                            @endforeach
+                        </optgroup>
+                    @endforeach
+             </select>
 
         </div>
         <div class="col-sm-6">
@@ -110,40 +98,3 @@
 </div>
 
 @include('accounts::voucher_detail._script')
-
-<script>
-    function movieFormatResult(movie) {
-         var markup = "<table class='movie-result'><tr>";
-         if (movie.posters !== undefined && movie.posters.thumbnail !== undefined) {
-             markup += "<td class='movie-image' style='vertical-align: top'><img src='" + movie.posters.thumbnail + "' style='max-width: 60px; display: inline-block; margin-right: 10px; margin-left: 10px;' /></td>";
-         }
-         markup += "<td class='movie-info'><div class='movie-title' style='font-weight: 600; color: #000; margin-bottom: 6px;'>" + movie.title + "</div>";
-         if (movie.critics_consensus !== undefined) {
-             markup += "<div class='movie-synopsis'>" + movie.critics_consensus + "</div>";
-         }
-         else if (movie.synopsis !== undefined) {
-             markup += "<div class='movie-synopsis'>" + movie.synopsis + "</div>";
-         }
-         markup += "</td></tr></table>";
-         return markup;
-     }
-
-     function movieFormatSelection(movie) {
-         return movie.title;
-     }
-
-    init.push(function () {
-        // Single select
-        $("#coa_id").select2({
-            allowClear: true,
-            placeholder: "Select A Chart Of Account"
-        });
-
-    });
-</script>
-<script type="text/javascript">
-    init.push(function () {
-        // Javascript code here
-    })
-    window.LanderApp.start(init);
-</script>
