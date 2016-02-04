@@ -1,5 +1,4 @@
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.min.js') }}"></script>
-<script type="text/javascript" src="{{ URL::asset('assets/admin/js/custom.min.js') }}"></script>
 
 {!! Form::hidden('voucher_head_id',$id) !!}
 
@@ -11,11 +10,11 @@
 
         <div class="col-sm-6">
 
-           {!! Form::label('coa_id', 'Chat Of Accounts:', ['class' => 'control-label']) !!}
+          {!! Form::label('coa_id', 'Chat Of Accounts:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::Select('coa_id', [''=>'Select Chart Of Account']+$attributes,Input::old('coa_id'), ['id'=>'coa-account','class' => 'form-control','required']) !!}
+            {{--{!! Form::Select('coa_id', [''=>'Select Chart Of Account']+$attributes,Input::old('coa_id'), ['id'=>'coa-account','class' => 'form-control','required']) !!}--}}
 
-                 {{--<select id="jquery-select2-example" class="form-control select2-offscreen" tabindex="-1" value="coa_id">
+                 <select id="coa_id" class="form-control select2-offscreen" tabindex="-1">
                         <option></option>
                         @foreach ( $attributes as $key => $attr )
                             <optgroup label="{{strtoupper($key)}}">
@@ -24,7 +23,7 @@
                                 @endforeach
                             </optgroup>
                         @endforeach
-                    </select>--}}
+                 </select>
 
             {{--<select id="jquery-select2-example" class="form-control select2-offscreen" tabindex="-1">
                        <option></option>
@@ -40,7 +39,7 @@
         </div>
         <div class="col-sm-6">
             {!! Form::label('account_code', 'Account Code:', ['class' => 'control-label']) !!}
-            {!! Form::text('account_code', Input::old('account_code'), ['id'=>'coa-account-code','class' => 'form-control','readonly','required']) !!}
+            {!! Form::text('account_code', Input::old('account_code'), ['id'=>'coa-account-code','class' => 'form-control','','']) !!}
         </div>
     </div>
 </div>
@@ -135,7 +134,7 @@
 
     init.push(function () {
         // Single select
-        $("#jquery-select2-example").select2({
+        $("#coa_id").select2({
             allowClear: true,
             placeholder: "Select A Chart Of Account"
         });
