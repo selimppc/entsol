@@ -11,12 +11,12 @@
         <div class="col-sm-6">
             {!! Form::label('code', 'Code:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('code', null, ['id'=>'code', 'class' => 'form-control','required','autofocus','title'=>'Required and Unique Field : Enter Group One Code, Example :: 101']) !!}
+            {!! Form::text('code', null, ['id'=>'code', 'class' => 'form-control norm','required','autofocus','title'=>'Required and Unique Field : Enter Group One Code, Example :: 101']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('title', null, ['id'=>'title', 'class' => 'form-control','required','title'=>'Required and Unique Field : Enter Group One Title, Example :: FIXED ASSETS']) !!}
+            {!! Form::text('title', null, ['id'=>'title', 'class' => 'form-control norm','required','title'=>'Required and Unique Field : Enter Group One Title, Example :: FIXED ASSETS']) !!}
         </div>
     </div>
 </div>
