@@ -14,15 +14,19 @@
             <small class="required">(Required)</small>
             {{--{!! Form::Select('coa_id', [''=>'Select Chart Of Account']+$attributes,Input::old('coa_id'), ['id'=>'coa-account','class' => 'form-control','required']) !!}--}}
 
-             <select id="coa_id" name="coa_id" class="coa-account">
-                    @foreach ( $attributes as $key => $attr )
-                        <optgroup label="{{strtoupper($key)}}">
-                            @foreach ( $attr as $id => $values )
-                                <option value="{{$id}}">{{$values}}</option>
+                        <select id="coa_id" name="coa_id" class="form-control select2-offscreen" >
+                            @foreach ( $attributes as $key => $attr )
+                                <optgroup label="{{strtoupper($key)}}">
+                                    @foreach ( $attr as $id => $values )
+                                            <option value="{{$id}}" id="">{{$values}}</option>
+                                    @endforeach
+                                </optgroup>
                             @endforeach
-                        </optgroup>
-                    @endforeach
-             </select>
+                        </select>
+
+
+
+
 
         </div>
         <div class="col-sm-6">
@@ -98,3 +102,20 @@
 </div>
 
 @include('accounts::voucher_detail._script')
+
+<script>
+    
+        $('select[id=coa-account]').change(function () {
+            var coa_id = $(this).val();
+            alert(coa_id);
+            $.ajax({
+                url: "{{Route('ajax-account-code')}}",
+                type: 'POST',
+                data: {_token: '{!! csrf_token() !!}', coa_id: coa_id},
+                success: function (data) {
+                    $('#coa-account-code').val(data);
+                }
+            });
+        });
+
+</script>
