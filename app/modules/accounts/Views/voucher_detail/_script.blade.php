@@ -2,21 +2,6 @@
 <script type="text/javascript">
 
     //Coa: account code
-    $('select[class=coa-account]').change(function () {
-
-        var coa_id =   $(this).val();
-
-        $.ajax({
-            url: "{{Route('ajax-account-code')}}",
-            type: 'POST',
-            data: {_token: '{!! csrf_token() !!}',coa_id: coa_id },
-            success: function(data){
-                $('#coa-account-code').val(data);
-            }
-        });
-
-    });
-
     init.push(function () {
         // Single select
         $("#coa_id").select2({
