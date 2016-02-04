@@ -51,7 +51,7 @@ class BranchController extends Controller
                 $query->where('currency.id',  '=', $currency);
             });*/
 
-            $data = $data->paginate(50);
+            $data = $data->get();
             //print_r($data['currency_id']);exit;
         }else{
             $data = Branch::where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(50);

@@ -32,6 +32,9 @@
                     <div class="col-sm-2">
                         {!! Form::select('account_usage', array(''=>'Select Acc. Usage','ledger'=>'Ledger','ap'=>'Ap','ar'=>'Ar'),null,['class' => 'form-control']) !!}
                     </div>
+                    <div class="col-sm-2">
+                        {!! Form::select('group_one_id', $group_one_id,null,['class' => 'form-control']) !!}
+                    </div>
                     <div class="col-sm-2 filter-btn">
                         {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button')) !!}
                     </div>
