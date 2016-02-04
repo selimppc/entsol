@@ -43,13 +43,17 @@ class ChartOfAccountsController extends Controller
             $title = Input::get('title');
             $account_type = Input::get('account_type');
             $account_usage = Input::get('account_usage');
+            $group_one_id = Input::get('group_one_id');
 
-            if (isset($account_code) && !empty($account_code)) $data ->where('ac_chart_of_accounts.account_code', 'LIKE', '%'.$account_code.'%');
-            if (isset($title) && !empty($title)) $data->where('ac_chart_of_accounts.title', 'LIKE', '%'.$title.'%');
-            if (isset($account_type) && !empty($account_type)) $data->where('ac_chart_of_accounts.account_type', '=', $account_type);
-            if (isset($account_usage) && !empty($account_usage)) $data->where('ac_chart_of_accounts.account_usage', '=', $account_usage);
+            $data = $data->with('relGroupOne');
 
-            $data = $data->paginate(50);
+            if (isset($account_code) && !empty($account_code)) $data = $data ->where('ac_chart_of_accounts.account_code', 'LIKE', '%'.$account_code.'%');
+            if (isset($title) && !empty($title)) $data = $data->where('ac_chart_of_accounts.title', 'LIKE', '%'.$title.'%');
+            if (isset($account_type) && !empty($account_type)) $data = $data->where('ac_chart_of_accounts.account_type', '=', $account_type);
+            if (isset($account_usage) && !empty($account_usage)) $data = $data->where('ac_chart_of_accounts.account_usage', '=', $account_usage);
+            if (isset($group_one_id) && !empty($group_one_id)) $data = $data->where('ac_chart_of_accounts.group_one_id', '=', $group_one_id);
+
+            $data = $data->get();
 
 
         }else{
