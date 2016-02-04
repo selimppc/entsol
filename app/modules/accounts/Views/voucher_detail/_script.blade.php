@@ -1,5 +1,7 @@
 
 <script type="text/javascript">
+
+    //Coa: account code
     $('select[id=coa-account]').change(function () {
 
         var coa_id =   $(this).val();
@@ -12,9 +14,10 @@
                 $('#coa-account-code').val(data);
             }
         });
+
     });
 
-
+//currency :exchange rate..
     $('select[id=currency-data]').change(function () {
 
         var currency_id =   $(this).val();

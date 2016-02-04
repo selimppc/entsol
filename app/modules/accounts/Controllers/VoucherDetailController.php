@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class VoucherDetailController extends Controller
 {
@@ -65,19 +66,16 @@ class VoucherDetailController extends Controller
        //get vouncher data...
 
        $voucher_data = VoucherHead::where('id',$id)->first();
-
+      /* show chat of accounts according to account-type */
        $results =  ChartOfAccounts::orderBy('account_type', 'ASC')->get();
 
        $attributes = array();
        foreach ( $results as $v ) {
            if ( !isset($attributes[$v->account_type]) ) {
-               $attributes[$v->account_type] = array();
+              $attributes[$v->account_type] = array();
            }
-           $attributes[$v->account_type][$v->title] = $v->title;
+           $attributes[$v->account_type][$v->id] = $v->title;
        }
-//       print_r($attributes);exit;
-
-
 
        $currency_data = [''=>'Select Currency'] + Currency::lists('title','id')->all();
        $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
