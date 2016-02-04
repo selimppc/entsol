@@ -44,8 +44,8 @@
 
 
 <div class="form-margin-btn">
-    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','title'=>'Click Save Changes button for save Group One Information']) !!}
-    <a href="{{route('group-one')}}" class=" btn btn-default" title="Click Close button for close this entry form">Close</a>
+    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','title'=>'Click Save Changes button for save Group One Information']) !!}
+    <a href="{{route('group-one')}}" class=" btn btn-default" data-placement="top" title="Click Close button for close this entry form">Close</a>
 </div>
 
 </form>

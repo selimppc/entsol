@@ -59,9 +59,9 @@
                                     <td>{{$values->title}}</td>
                                     <td>{{ucfirst($values->status)}}</td>
                                     <td>
-                                        <a href="{{ route('view-group-one', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View details Code : {{$values->code}} informations"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('edit-group-one', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Update Code : {{$values->code}} informations"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('delete-group-one', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Delete Code : {{$values->code}} informations"><i class="fa fa-trash-o"></i></a>
+                                        <a href="{{ route('view-group-one', $values->id) }}" class="btn btn-info btn-xs" data-placement="top" data-toggle="modal" data-target="#etsbModal" title="View details Code : {{$values->code}} informations"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('edit-group-one', $values->id) }}" class="btn btn-primary btn-xs" data-placement="top" data-toggle="modal" data-target="#etsbModal" title="Update Code : {{$values->code}} informations"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('delete-group-one', $values->id) }}" class="btn btn-danger btn-xs" data-placement="top" onclick="return confirm('Are you sure to Delete?')" title="Delete Code : {{$values->code}} informations"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
