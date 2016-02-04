@@ -11,23 +11,29 @@
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>
-                <a class="btn btn-primary btn-xs pull-right" data-toggle="modal" href="#addData" title="Add Group One">
+                <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="left" data-content="Click Add Group One button for new group one entry">
                     <strong>Add Group One</strong>
                 </a>
+            </div>
+
+            <div class="panel-heading help-text-color">
+                <div class="help-text-top">
+                    <em>Group One Informations are <b>Chart of Accounts</b> Main Group .</em>
+                </div>
             </div>
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
                 {!! Form::open(['route' => 'group-one']) !!}
-                <div class="col-sm-8">
-                    <div class="col-sm-4">
-                        {!! Form::text('code',Input::old('code'),['class' => 'form-control','placeholder'=>'Code']) !!}
+                <div class="col-sm-11">
+                    <div class="col-sm-3">
+                        {!! Form::text('code',Input::old('code'),['class' => 'form-control','placeholder'=>'Type Code', 'title'=>'Type your required Group One "Code", Example :: 101, Then Click "Search" Button']) !!}
                     </div>
-                    <div class="col-sm-4">
-                        {!! Form::text('title',Input::old('title'),['class' => 'form-control','placeholder'=>'Title']) !!}
+                    <div class="col-sm-3">
+                        {!! Form::text('title',Input::old('title'),['class' => 'form-control','placeholder'=>'Type Title', 'title'=>'Type your required Group One "Title", Example :: DEPRECIATION or Partial Text :: DEPR, Then Click "Search" Button']) !!}
                     </div>
-                    <div class="col-sm-3 filter-btn">
-                        {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button')) !!}
+                    <div class="col-sm-5 filter-btn">
+                        {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left pop','id'=>'button', 'data-placement'=>'right', 'data-content'=>'Type code or title or both in specific field then click search button for required information')) !!}
                     </div>
                 </div>
                 {!! Form::close() !!}
@@ -51,11 +57,11 @@
                                 <tr class="gradeX">
                                     <td>{{$values->code}}</td>
                                     <td>{{$values->title}}</td>
-                                    <td>{{$values->status}}</td>
+                                    <td>{{ucfirst($values->status)}}</td>
                                     <td>
-                                        <a href="{{ route('view-group-one', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('edit-group-one', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Edit"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('delete-group-one', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Delete"><i class="fa fa-trash-o"></i></a>
+                                        <a href="{{ route('view-group-one', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View details Code : {{$values->code}} informations"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('edit-group-one', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Update Code : {{$values->code}} informations"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('delete-group-one', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Delete Code : {{$values->code}} informations"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -71,11 +77,11 @@
 <!-- page end-->
 
 
-<div id="addData" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+<div id="addData" class="modal fade" tabindex="" role="dialog" style="display: none;">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="Click X button for close this entry form">×</button>
                 <h4 class="modal-title" id="myModalLabel">Add Group One Information</h4>
             </div>
             <div class="modal-body">

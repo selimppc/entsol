@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <a href="{{ URL::previous() }}" class="close" type="button"> × </a>
+    <a href="{{ URL::previous() }}" class="close" type="button" title="Click X button for close this entry form"> × </a>
     <h4 class="modal-title" id="myModalLabel">{{$pageTitle}}</h4>
 </div>
 
@@ -16,18 +16,18 @@
             </tr>
             <tr>
                 <th class="col-lg-4">Description</th>
-                <td>{{ isset($data->description)?$data->description:'' }}</td>
+                <td>{{ isset($data->description)?ucfirst($data->description):'' }}</td>
             </tr>
             <tr>
                 <th class="col-lg-4">Status</th>
-                <td>{{ isset($data->status)?$data->status:'' }}</td>
+                <td>{{ isset($data->status)?ucfirst($data->status):'' }}</td>
             </tr>
         </table>
     </div>
 </div>
 
 <div class="modal-footer">
-    <a href="{{ URL::previous()}}" class="btn btn-default" type="button"> Close </a>
+    <a href="{{ URL::previous()}}" class="btn btn-default" type="button" title="Click Close button for close this entry form"> Close </a>
 </div>
 
 
