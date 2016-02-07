@@ -11,7 +11,7 @@
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>
-                <a class="btn btn-primary btn-xs pull-right" data-toggle="modal" href="#addData" title="Add Currency">
+                <a class="btn btn-primary btn-xs pull-right" data-toggle="modal" href="#addData" data-placement="left" data-content="click add currency button for new currency entry">
                     <strong>Add Currency</strong>
                 </a>
             </div>
@@ -21,13 +21,13 @@
                 {!! Form::open(['route' => 'currency']) !!}
                 <div class="col-sm-8">
                     <div class="col-sm-4">
-                        {!! Form::text('code',Input::old('code'),['class' => 'form-control','placeholder'=>'Code']) !!}
+                        {!! Form::text('code',Input::old('code'),['class' => 'form-control','placeholder'=>'Select Code', 'title'=>'type your required currency "code", example :: BDT, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-4">
-                        {!! Form::text('title',Input::old('title'),['class' => 'form-control','placeholder'=>'Title']) !!}
+                        {!! Form::text('title',Input::old('title'),['class' => 'form-control','placeholder'=>'Select Title', 'title'=>'type your required currency "title", example :: bangladeshi taka, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-3 filter-btn">
-                        {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button')) !!}
+                        {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button', 'data-placement'=>'top', 'data-content'=>'type code or title or both in specific field then click search button for required information')) !!}
                     </div>
                 </div>
                 {!! Form::close() !!}
@@ -51,13 +51,13 @@
                             @foreach($data as $values)
                                 <tr class="gradeX">
                                     <td>{{$values->code}}</td>
-                                    <td>{{ucfirst($values->title)}}</td>
+                                    <td>{{$values->title}}</td>
                                     <td>{{$values->exchange_rate}}</td>
-                                    <td>{{$values->	status}}</td>
+                                    <td>{{ucfirst($values->	status)}}</td>
                                     <td>
-                                        <a href="{{ route('view-currency', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('edit-currency', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Edit"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('delete-currency', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Delete"><i class="fa fa-trash-o"></i></a>
+                                        <a href="{{ route('view-currency', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="View : {{$values->title}} informations"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('edit-currency', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="Update : {{$values->title}} informations"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('delete-currency', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" data-placement="top" data-content="Delete : {{$values->title}} informations"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -76,7 +76,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
                 <h4 class="modal-title" id="myModalLabel">Add Currency Informations</h4>
             </div>
             <div class="modal-body">

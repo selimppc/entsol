@@ -11,7 +11,7 @@
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>
-                <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="left" data-content="Click Add Group One button for new group one entry">
+                <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="left" data-content="click add group one button for new group one entry">
                     <strong>Add Group One</strong>
                 </a>
             </div>
@@ -27,13 +27,13 @@
                 {!! Form::open(['route' => 'group-one']) !!}
                 <div class="col-sm-11">
                     <div class="col-sm-3">
-                        {!! Form::text('code',Input::old('code'),['class' => 'form-control','placeholder'=>'Type Code', 'title'=>'Type your required Group One "Code", Example :: 101, Then Click "Search" Button']) !!}
+                        {!! Form::text('code',Input::old('code'),['class' => 'form-control','placeholder'=>'Type Code', 'title'=>'type your required group One "code", example :: 101, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-3">
-                        {!! Form::text('title',Input::old('title'),['class' => 'form-control','placeholder'=>'Type Title', 'title'=>'Type your required Group One "Title", Example :: DEPRECIATION or Partial Text :: DEPR, Then Click "Search" Button']) !!}
+                        {!! Form::text('title',Input::old('title'),['class' => 'form-control','placeholder'=>'Type Title', 'title'=>'type your required group One "title", example :: depreciation or partial text :: depr, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-5 filter-btn">
-                        {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left pop','id'=>'button', 'data-placement'=>'right', 'data-content'=>'Type code or title or both in specific field then click search button for required information')) !!}
+                        {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left pop','id'=>'button', 'data-placement'=>'right', 'data-content'=>'type code or title or both in specific field then click search button for required information')) !!}
                     </div>
                 </div>
                 {!! Form::close() !!}
@@ -81,7 +81,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="Click X button for close this entry form">×</button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
                 <h4 class="modal-title" id="myModalLabel">Add Group One Information</h4>
             </div>
             <div class="modal-body">

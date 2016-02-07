@@ -11,12 +11,12 @@
         <div class="col-sm-6">
             {!! Form::label('code', 'Code:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('code', null, ['id'=>'code', 'class' => 'form-control','required','autofocus','title'=>'Required and Unique Field : Enter Group One Code, Example :: 101']) !!}
+            {!! Form::text('code', null, ['id'=>'code', 'class' => 'form-control','required','autofocus','title'=>'required and unique field : enter group one code, example :: 101']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('title', null, ['id'=>'title', 'class' => 'form-control','required', 'style'=>'text-transform:uppercase','title'=>'Required and Unique Field : Enter Group One Title, Example :: FIXED ASSETS']) !!}
+            {!! Form::text('title', null, ['id'=>'title', 'class' => 'form-control','required', 'style'=>'text-transform:uppercase','title'=>'required and unique field : enter group one title, example :: fixed assets']) !!}
         </div>
     </div>
 </div>
@@ -25,7 +25,7 @@
     <div class="row">
         <div class="col-sm-12">
             {!! Form::label('description', 'Description:', ['class' => 'control-label']) !!}
-            {!! Form::textarea('description', null, ['id'=>'description', 'class' => 'form-control','size' => '12x3','title'=>'Optional Field : Enter Descriptions about group one code']) !!}
+            {!! Form::textarea('description', null, ['id'=>'description', 'class' => 'form-control','size' => '12x3','title'=>'optional field : enter descriptions about group one code']) !!}
         </div>
     </div>
 </div>
@@ -35,7 +35,7 @@
         <div class="col-sm-12">
             {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::select('status', array('active'=>'Active','inactive'=>'Inactive','cancel'=>'Cancel'),Input::old('status'),['class' => 'form-control','required','title'=>'Required Field : Choose Active option']) !!}
+            {!! Form::select('status', array('active'=>'Active','inactive'=>'Inactive','cancel'=>'Cancel'),Input::old('status'),['class' => 'form-control','required','title'=>'required field : choose active option']) !!}
         </div>
     </div>
 </div>
@@ -44,8 +44,8 @@
 
 
 <div class="form-margin-btn">
-    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'Click Save Changes button for save Group One Information']) !!}
-    <a href="{{route('group-one')}}" class=" btn btn-default" data-placement="top" data-content="Click Close button for close this entry form">Close</a>
+    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save group one information']) !!}
+    <a href="{{route('group-one')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
 </div>
 
 </form>
