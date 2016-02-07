@@ -21,10 +21,10 @@
                 {!! Form::open(['route' => 'settings']) !!}
                 <div class="col-sm-8">
                     <div class="col-sm-4">
-                        {!! Form::text('code',Input::old('code'),['class' => 'form-control','placeholder'=>'Type Code', 'title'=>'type your required settings "code", example :: -JV, then click "search" button']) !!}
+                        {!! Form::text('code',Input::old('code'),['class' => 'form-control','placeholder'=>'type code', 'title'=>'type your required settings "code", example :: -JV, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-4">
-                        {!! Form::text('title',Input::old('title'),['class' => 'form-control','placeholder'=>'Type Title', 'title'=>'type your required settings "title", example :: journal voucher, then click "search" button']) !!}
+                        {!! Form::text('title',Input::old('title'),['class' => 'form-control','placeholder'=>'type title', 'title'=>'type your required settings "title", example :: journal voucher, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-3 filter-btn">
                         {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button', 'data-placement'=>'top', 'data-content'=>'type code or title or both in specific field then click search button for required information')) !!}

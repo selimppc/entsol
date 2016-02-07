@@ -11,7 +11,7 @@
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>
-                <a class="btn btn-xs btn-primary pull-right" data-toggle="modal" href="#addData" title="Add Journal Voucher">
+                <a class="btn btn-xs btn-primary pull-right" data-toggle="modal" href="#addData" data-placement="left" data-content="click add journal voucher button for new journal voucher entry">
                     <strong>Add Journal Voucher</strong>
                 </a>
             </div>
@@ -20,21 +20,21 @@
     {{-------------- Filter :Starts -------------------------------------------}}
                     {!! Form::open(['method' => '','route' => 'voucher-head']) !!}
                     <div class="col-sm-12">
+                        {{--<div class="col-sm-3">
+                            {!! Form::Select('account_type',array(''=>'Select Account Type','account-payable'=>'Account Payable','account-receivable'=>'Account Receivable','account-adjustment'=>'account Adjustment','journal-voucher'=>'Journal Voucher','receipt-voucher'=>'Receipt Voucher','reverse-entry'=>'Reverse Entry'),Input::old('account_type'),['class'=>'form-control', 'title'=>'select your require  journal voucher "account type", example :: account payable, then click "search" button']) !!}
+                        </div>--}}
+                        <div class="col-sm-2">
+                            {!! Form::text('voucher_number', Input::old('voucher_number'),['class' => 'form-control','placeholder'=>'type voucher number', 'title'=>'type your require "voucher number", example :: JV-0000001, then click "search" button']) !!}
+                        </div>
                         <div class="col-sm-3">
-                            {!! Form::Select('account_type',array(''=>'Select Account Type','account-payable'=>'Account Payable','account-receivable'=>'Account Receivable','account-adjustment'=>'account Adjustment','journal-voucher'=>'Journal Voucher','receipt-voucher'=>'Receipt Voucher','reverse-entry'=>'Reverse Entry'),Input::old('account_type'),['class'=>'form-control ']) !!}
+                            {!! Form::Select('branch_id',$branch_data, Input::old('branch_id'),['class' => 'form-control', 'title'=>'select your require "branch", example :: Main Branch, then click "search" button']) !!}
                         </div>
                         <div class="col-sm-2">
-                            {!! Form::text('voucher_number', Input::old('voucher_number'),['class' => 'form-control','placeholder'=>'voucher number']) !!}
-                        </div>
-                        <div class="col-sm-3">
-                            {!! Form::Select('branch_id',$branch_data, Input::old('branch_id'),['class' => 'form-control']) !!}
-                        </div>
-                        <div class="col-sm-2">
-                            {!! Form::selectrange('year', 2016,2030, Input::old('year'),['class' => 'form-control']) !!}
+                            {!! Form::selectrange('year', 2016,2030, Input::old('year'),['class' => 'form-control', 'title'=>'select your require "year", example :: 2016, then click "search" button']) !!}
                         </div>
 
-                        <div class="col-sm-2 srch-btn">
-                            {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs')) !!}
+                        <div class="col-sm-4 srch-btn">
+                            {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs', 'data-placement'=>'right', 'data-content'=>'type voucher or select branch or both in specific field then click search button for required information')) !!}
                         </div>
                     </div>
                     {!! Form::close() !!}
@@ -64,7 +64,7 @@
                             @foreach($model as $values)
                                 <tr>
                                     <td>
-                                        <a href="{{ route('voucher-detail',['id'=>$values->id,'voucher_number'=>$values->voucher_number]) }}" class="link-text-decoration" title="voucher-detail"><strong>{{$values->voucher_number}}</strong></a>
+                                        <a href="{{ route('voucher-detail',['id'=>$values->id,'voucher_number'=>$values->voucher_number]) }}" class="link-text-decoration" title="click for voucher-detail page"><strong>{{$values->voucher_number}}</strong></a>
                                     </td>
                                     <td>{{$values->date}}</td>
                                     <td>{{$values->reference}}</td>
@@ -75,15 +75,15 @@
                                     <td>{{ ucfirst($values->status) }}</td>
                                     <td>
                                         @if($values->status == 'posted')
-                                            <a href="{{ route('view-voucher-head', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
+                                            <a href="{{ route('view-voucher-head', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="View : {{$values->voucher_number}} informations"><i class="fa fa-eye"></i></a>
                                         @else
-                                            <a href="{{ route('view-voucher-head', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
-                                            <a href="{{ route('edit-voucher-head', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Edit"><i class="fa fa-edit"></i></a>
-                                            <a href="{{ route('delete-voucher-head', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Delete"><i class="fa fa-trash-o"></i></a>
+                                            <a href="{{ route('view-voucher-head', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="View : {{$values->voucher_number}} informations"><i class="fa fa-eye"></i></a>
+                                            <a href="{{ route('edit-voucher-head', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="Update : {{$values->voucher_number}} informations"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ route('delete-voucher-head', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" data-placement="top" data-content="Delete : {{$values->voucher_number}} informations"><i class="fa fa-trash-o"></i></a>
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('voucher-detail',['id'=>$values->id,'voucher_number'=>$values->voucher_number]) }}" class="btn btn-info btn-xs" title="voucher-details">v-details</a>
+                                        <a href="{{ route('voucher-detail',['id'=>$values->id,'voucher_number'=>$values->voucher_number]) }}" class="btn btn-info btn-xs" data-placement="top" data-content="click for voucher details page">v-details</a>
                                     </td>
                                     <td>&nbsp;</td>
                                 </tr>
@@ -101,11 +101,11 @@
 </div>
 <!-- page end-->
 
-<div id="addData" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+<div id="addData" class="modal fade" tabindex="" role="dialog" style="display: none;">
     <div class="modal-dialog modal-lg" style="z-index:1050">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
                 <h4 class="modal-title" id="myModalLabel">Add Journal Voucher Informations</h4>
             </div>
             <div class="modal-body">
