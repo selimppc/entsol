@@ -11,7 +11,7 @@
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>
-                <a class="btn btn-primary btn-xs pull-right" data-toggle="modal" href="#addData" title="Add Settings">
+                <a class="btn btn-primary btn-xs pull-right" data-toggle="modal" href="#addData" data-placement="left" data-content="click add settings button for new settings entry">
                     <strong>Add Settings</strong>
                 </a>
             </div>
@@ -21,13 +21,13 @@
                 {!! Form::open(['route' => 'settings']) !!}
                 <div class="col-sm-8">
                     <div class="col-sm-4">
-                        {!! Form::text('code',Input::old('code'),['class' => 'form-control','placeholder'=>'Code']) !!}
+                        {!! Form::text('code',Input::old('code'),['class' => 'form-control','placeholder'=>'Type Code', 'title'=>'type your required settings "code", example :: -JV, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-4">
-                        {!! Form::text('title',Input::old('title'),['class' => 'form-control','placeholder'=>'Title']) !!}
+                        {!! Form::text('title',Input::old('title'),['class' => 'form-control','placeholder'=>'Type Title', 'title'=>'type your required settings "title", example :: journal voucher, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-3 filter-btn">
-                        {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button')) !!}
+                        {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button', 'data-placement'=>'top', 'data-content'=>'type code or title or both in specific field then click search button for required information')) !!}
                     </div>
                 </div>
                 {!! Form::close() !!}
@@ -57,11 +57,11 @@
                                     <td>{{$values->title}}</td>
                                     <td>{{$values->last_number}}</td>
                                     <td>{{$values->increment}}</td>
-                                    <td>{{$values->status}}</td>
+                                    <td>{{ucfirst($values->status)}}</td>
                                     <td>
-                                        <a href="{{ route('view-settings', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('edit-settings', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Edit"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('delete-settings', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Delete"><i class="fa fa-trash-o"></i></a>
+                                        <a href="{{ route('view-settings', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="View : {{$values->title}} informations"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('edit-settings', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="Update : {{$values->title}} informations"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('delete-settings', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" data-placement="top" data-content="Delete : {{$values->title}} informations"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -77,11 +77,11 @@
 <!-- page end-->
 
 
-<div id="addData" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+<div id="addData" class="modal fade" tabindex="" role="dialog" style="display: none;">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
                 <h4 class="modal-title" id="myModalLabel">Add Settings Information</h4>
             </div>
             <div class="modal-body">
