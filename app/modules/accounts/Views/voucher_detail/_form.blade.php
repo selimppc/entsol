@@ -1,4 +1,5 @@
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/admin/js/custom.min.js') }}"></script>
 
 {!! Form::hidden('voucher_head_id',$id) !!}
 
@@ -10,28 +11,24 @@
 
         <div class="col-sm-6">
 
-          {!! Form::label('coa_id', 'Chat Of Accounts:', ['class' => 'control-label']) !!}
+            {!! Form::label('coa_id', 'Chat Of Accounts:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {{--{!! Form::Select('coa_id', [''=>'Select Chart Of Account']+$attributes,Input::old('coa_id'), ['id'=>'coa-account','class' => 'form-control','required']) !!}--}}
+          {{--  {!! Form::Select('coa_id', [''=>'Select Chart Of Account']+$attributes,Input::old('coa_id'), ['id'=>'coa-account','class' => 'form-control','required']) !!}--}}
 
-                        <select id="coa_id" name="coa_id" class="form-control select2-offscreen" >
-                            @foreach ( $attributes as $key => $attr )
-                                <optgroup label="{{strtoupper($key)}}">
-                                    @foreach ( $attr as $id => $values )
-                                            <option value="{{$id}}" id="">{{$values}}</option>
-                                    @endforeach
-                                </optgroup>
-                            @endforeach
-                        </select>
-
-
-
-
+            <select id="coa_id" name="coa_id" class="form-control select2-offscreen">
+                @foreach ( $attributes as $key => $attr )
+                    <optgroup label="{{strtoupper($key)}}">
+                        @foreach ( $attr as $id => $values )
+                            <option value="{{$id}}">{{$values}}</option>
+                        @endforeach
+                    </optgroup>
+                @endforeach
+            </select>
 
         </div>
         <div class="col-sm-6">
             {!! Form::label('account_code', 'Account Code:', ['class' => 'control-label']) !!}
-            {!! Form::text('account_code', Input::old('account_code'), ['id'=>'coa-account-code','class' => 'form-control','','']) !!}
+            {!! Form::text('account_code', Input::old('account_code'), ['id'=>'auto-search-ac','class' => 'form-control']) !!}
         </div>
     </div>
 </div>
@@ -68,7 +65,6 @@
     </div>
 </div>
 
-
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         <div class="col-sm-6">
@@ -89,12 +85,17 @@
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         <div class="col-sm-12">
-           {!! Form::label('note', 'Note:', ['class' => 'control-label']) !!}
-           {!! Form::textarea('note', null, ['class' => 'form-control','size' => '12x3']) !!}
+            {!! Form::label('note', 'Note:', ['class' => 'control-label']) !!}
+            {!! Form::textarea('note', null, ['class' => 'form-control','size' => '12x3']) !!}
         </div>
     </div>
 </div>
 
+<div class="ui-widget">
+    <p>Type two letter for e.g:ja,sc etc</p>
+    <label for="automplete-3">Tags: </label>
+    <input id="automplete-3">
+</div>
 
 <div class="form-margin-btn">
     {!! Form::submit('Save Changes', ['class' => 'btn btn-primary']) !!}
@@ -103,19 +104,8 @@
 
 @include('accounts::voucher_detail._script')
 
+
 <script>
-    
-        $('select[id=coa-account]').change(function () {
-            var coa_id = $(this).val();
-            alert(coa_id);
-            $.ajax({
-                url: "{{Route('ajax-account-code')}}",
-                type: 'POST',
-                data: {_token: '{!! csrf_token() !!}', coa_id: coa_id},
-                success: function (data) {
-                    $('#coa-account-code').val(data);
-                }
-            });
-        });
+
 
 </script>

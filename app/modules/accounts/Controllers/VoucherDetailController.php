@@ -33,61 +33,74 @@ class VoucherDetailController extends Controller
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-   public function index($id,$voucher_number){
+    public function index($id,$voucher_number){
 
-       $pageTitle = 'Journal Voucher Detail';
-       $model = new VoucherDetail();
-       if($this->isPostRequest()){
+        $pageTitle = 'Journal Voucher Detail';
+        $model = new VoucherDetail();
+        if($this->isPostRequest()){
 
-           $search_branch = Input::get('branch_id');
-           $search_curr = Input::get('currency_id');
-           $search_acc_code = Input::get('account_code');
+            $search_branch = Input::get('branch_id');
+            $search_curr = Input::get('currency_id');
+            $search_acc_code = Input::get('account_code');
 
-           $model = $model->with('relVoucherHead','relChartOfAccounts','relCurrency');
-           if (isset($search_branch) && !empty($search_branch)) $model ->where('ac_voucher_detail.branch_id', '=', $search_branch);
-           if (isset($search_curr) && !empty($search_curr)) $model->where('ac_voucher_detail.currency_id', '=', $search_curr);
-           if (isset($search_acc_code) && !empty($search_acc_code)) $model->where('ac_voucher_detail.account_code', '=', $search_acc_code);
-           #$model = $model->get();
-           #print_r($model);exit;
-           $model = $model->leftJoin('cm_currency as cur', function($query)  use($search_curr){
-               $query->on('cur.id', '=', 'ac_voucher_detail.currency_id');
-               $query->where('cur.id',  '=', $search_curr);
-           });
-           $model = $model->leftJoin('cm_branch as branch', function($query)  use($search_branch){
-               $query->on('branch.id', '=', 'ac_voucher_detail.branch_id');
-               $query->where('branch.id',  '=', $search_branch);
-           });
-           $model = $model->get();
-           #print_r($model);exit;
-       }else{
-           $model = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('voucher_head_id',$id)->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
-       }
+            $model = $model->with('relVoucherHead','relChartOfAccounts','relCurrency');
+            if (isset($search_branch) && !empty($search_branch)) $model ->where('ac_voucher_detail.branch_id', '=', $search_branch);
+            if (isset($search_curr) && !empty($search_curr)) $model->where('ac_voucher_detail.currency_id', '=', $search_curr);
+            if (isset($search_acc_code) && !empty($search_acc_code)) $model->where('ac_voucher_detail.account_code', '=', $search_acc_code);
+            #$model = $model->get();
+            #print_r($model);exit;
+            $model = $model->leftJoin('cm_currency as cur', function($query)  use($search_curr){
+                $query->on('cur.id', '=', 'ac_voucher_detail.currency_id');
+                $query->where('cur.id',  '=', $search_curr);
+            });
+            $model = $model->leftJoin('cm_branch as branch', function($query)  use($search_branch){
+                $query->on('branch.id', '=', 'ac_voucher_detail.branch_id');
+                $query->where('branch.id',  '=', $search_branch);
+            });
+            $model = $model->get();
+            #print_r($model);exit;
+        }else{
+            $model = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('voucher_head_id',$id)->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
+        }
 
-       //get vouncher data...
+        //get vouncher data...
 
-       $voucher_data = VoucherHead::where('id',$id)->first();
+        $voucher_data = VoucherHead::where('id',$id)->first();
 
-      /* show chat of accounts according to account-type */
-       $results =  ChartOfAccounts::orderBy('account_type', 'ASC')->get();
+        /* show chat of accounts according to account-type */
+        $results =  ChartOfAccounts::with('relGroupOne')->orderBy('account_type', 'ASC')->get();
 
-       #$results = DB::table('ac_chart_of_accounts')->select('id','account_type','title');
+        /*$results = ChartOfAccounts
+            ::join('ac_group_one', 'ac_group_one.id', '=', 'ac_chart_of_accounts.group_one_id')
+            ->select('ac_chart_of_accounts.id as id','ac_chart_of_accounts.title as title','ac_chart_of_accounts.account_code','ac_chart_of_accounts.account_type', 'ac_group_one.id as g_id', 'ac_group_one.title as g_title')
 
-        #$new_array = strtoupper($results);
+            ->get();*/
+        /*foreach ( $results as $v ) {
+            if ( !isset($attributes[$v->account_type]) ) {
+                $attributes[$v->account_type] = array();
+            }
+            $attributes[$v->account_type][$v->id] = $v->title;
+            $attributes[$v->account_type][$v->g_title][$v->id] = $v->title;
+        }*/
 
-       $attributes = array();
-       foreach ( $results as $v ) {
-           if ( !isset($attributes[$v->account_type]) ) {
-              $attributes[$v->account_type] = array();
-           }
-           $attributes[$v->account_type][$v->id] = $v->title;
-       }
-       #print_r($attributes);exit;
+        #print_r($results);exit;
 
-       $currency_data = [''=>'Select Currency'] + Currency::lists('title','id')->all();
-       $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
+        $attributes = array();
+        foreach ( $results as $v ) {
+            if ( !isset($attributes[$v->account_type]) ) {
+                $attributes[$v->account_type] = array();
+            }
+            $attributes[$v->account_type][$v->id] = $v->title;
+            $attributes[$v->account_type][$v->id] = $v->title;
+        }
 
-       return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'model'=>$model,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'id'=>$id,'voucher_number'=>$voucher_number,'voucher_data'=>$voucher_data,'attributes'=>$attributes]);
-   }
+        #print_r($attributes);exit;
+
+        $currency_data = [''=>'Select Currency'] + Currency::lists('title','id')->all();
+        $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
+
+        return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'model'=>$model,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'id'=>$id,'voucher_number'=>$voucher_number,'voucher_data'=>$voucher_data,'attributes'=>$attributes]);
+    }
 
     public function store(VoucherDetailRequest $request){
 
@@ -271,13 +284,13 @@ class VoucherDetailController extends Controller
 
         $input_coa_id = Input::get('coa_id');
 
-         try{
-              $coa_data = ChartOfAccounts::where('id',$input_coa_id)->first();
-              if($coa_data){
-                  return  Response::make($coa_data['account_code']);
-              }
+        try{
+            $coa_data = ChartOfAccounts::where('id',$input_coa_id)->first();
+            if($coa_data){
+                return  Response::make($coa_data['account_code']);
+            }
         }catch(\Exception $e){
-          return  Response::make($e->getMessage());
+            return  Response::make($e->getMessage());
         }
     }
 
@@ -293,5 +306,22 @@ class VoucherDetailController extends Controller
         }catch(\Exception $e){
             return  Response::make($e->getMessage());
         }
+    }
+
+    public function test(){
+
+        return view('accounts::voucher_detail.test');
+    }
+
+    public function list_coa(){
+
+        $coa_data = Input::get('account_code');
+       #print_r($coa_data);exit('12345');
+
+       $coa = DB::table('ac_chart_of_accounts')
+            ->where('title', 'LIKE', '%' . $coa_data . '%')
+            ->get('ac_chart_of_accounts.title');
+       print_r($coa);
+        #return $coa  ;
     }
 }

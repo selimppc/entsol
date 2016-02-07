@@ -7,6 +7,15 @@
  */
 
 //Voucher Head .......
+Route::any('test', [
+    'as' => 'test',
+    'uses' => 'VoucherDetailController@test'
+]);
+
+Route::any('coa-list', [
+    'as' => 'coa-list',
+    'uses' => 'VoucherDetailController@list_coa'
+]);
 
 Route::any('voucher-head', [
     'as' => 'voucher-head',
