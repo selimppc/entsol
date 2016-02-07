@@ -6,33 +6,29 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use JasperPHP\JasperPHP as JasperPHP;
+use Jaspersoft\Client\Client;
 
 class AcReportsController extends Controller
 {
-
     public function test_report(){
-        $jasper = new JasperPHP;
+        $c = new Client(
+            "http://localhost:8080/jasperserver",
+            "jasperadmin",
+            "jasperadmin",
+            "entsol"
+        );
 
-        // Compile a JRXML to Jasper
-       $data = $jasper->compile('app/modules/accounts/Reports/ac_chart_of_ac.jrxml')->execute();
+        // Store service for several calls
+        $js = $c->jobService();
+        $js->getJobs("/entsol/Reports/chart_of_account_list");
 
-        print_r($data);exit("OK");
-
-        // Process a Jasper file to PDF and RTF (you can use directly the .jrxml)
-        $jasper->process('app/modules/accounts/Reports/ac_chart_of_ac.jrxml',
-            false,
-            array("pdf", "rtf"),
-            array("php_version" => "xxx")
-        )->execute();
-
-        // List the parameters from a Jasper file.
-        $array = $jasper->list_parameters('app/modules/accounts/Reports/ac_chart_of_ac.jrxml'
-        )->execute();
+        // Or access service methods directly
+        $c->jobService()->getJobs("/entsol/Reports/chart_of_account_list");
 
 
-        print_r($array);exit();
+        $info = $c->serverInfo();
 
-        return view('welcome');
+        print_r($info);
+
     }
 }

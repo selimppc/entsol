@@ -1,24 +1,38 @@
-<script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.min.js') }}"></script>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>jQuery UI Autocomplete functionality</title>
+    <script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('assets/admin/js/custom.min.js') }}"></script>
 
-<div class="row">
-    <div class="col-sm-6">
-        {!! Form::label('coa_id', 'Chat Of Accounts:', ['class' => 'control-label']) !!}
-        <small class="required">(Required)</small>
-        {!! Form::Select('coa_id', $coa_data, Input::old('coa_id'), ['id'=>'coa-account','class' => 'form-control','required']) !!}
-    </div>
-    <div class="col-sm-6">
-        {!! Form::label('account_code', 'Account Code:', ['class' => 'control-label']) !!}
-        {!! Form::text('account_code', Input::old('account_code'), ['class' => 'form-control','required']) !!}
-    </div>
-</div>
+    <!-- Javascript -->
+    <script>
 
-<script type="text/javascript">
-//    $(document).ready(function(){
-
-        $('#coa-account').click(function () {
-            alert( "123456" );
+        $(document).ready(function(){
+            $("#auto-search-ac").change(function(){
+                var account_code = $(this).val();
+                $.ajax({
+                    url: '{{Route('coa-list')}}',
+                    type: 'POST',
+                    data: {_token: '{!! csrf_token() !!}',account_code: account_code },
+                    success: function(data)
+                    {
+                        alert(data);
+                    }
+                });
+         });
         });
 
-//    });
 
-</script>
+
+    </script>
+</head>
+<body>
+<!-- HTML -->
+<div class="ui-widget">
+    {!! Form::label('account_code', 'Account Code:', ['class' => 'control-label']) !!}
+    {!! Form::text('account_code', Input::old('account_code'), ['id'=>'auto-search-ac','class' => 'form-control']) !!}
+</div>
+</body>
+</html>
