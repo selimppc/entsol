@@ -72,7 +72,7 @@
 </div>
 <!-- page end-->
 
-<div id="addData" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+<div id="addData" class="modal fade" tabindex="" role="dialog" style="display: none;">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
