@@ -42,13 +42,13 @@ class VoucherHeadController extends Controller
 
        if($this->isPostRequest()){
 
-           $account_type = Input::get('account_type');
+           /*$account_type = Input::get('account_type');*/
            $branch = Input::get('branch_id');
            $voucher_number = Input::get('voucher_number');
            $term_year = Input::get('year');
 
            $model = $model->with('relBranch');
-           if (isset($account_type) && !empty($account_type)) $model ->where('ac_voucher_head.account_type', '=', $account_type);
+           /*if (isset($account_type) && !empty($account_type)) $model ->where('ac_voucher_head.account_type', '=', $account_type);*/
            if (isset($branch) && !empty($branch)) $model->where('ac_voucher_head.branch_id', '=', $branch);
            if (isset($term_year) && !empty($term_year)) $model->where('ac_voucher_head.year', '=', $term_year);
            if (isset($voucher_number) && !empty($voucher_number)) $model->where('ac_voucher_head.voucher_number', '=', $voucher_number);

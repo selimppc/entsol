@@ -21,13 +21,13 @@
                 {!! Form::open(['route' => 'branch']) !!}
                 <div class="col-sm-12">
                     <div class="col-sm-3">
-                        {!! Form::text('code',null,['class' => 'form-control','placeholder'=>'Type Code', 'title'=>'type your require branch "code", example :: Main, then click "search" button']) !!}
+                        {!! Form::text('code',null,['class' => 'form-control','placeholder'=>'type code', 'title'=>'type your require branch "code", example :: Main, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-3">
-                        {!! Form::text('title',null,['class' => 'form-control','placeholder'=>'Type Title', 'title'=>'type your require branch "title", example :: Main Branch, then click "search" button']) !!}
+                        {!! Form::text('title',null,['class' => 'form-control','placeholder'=>'type title', 'title'=>'type your require branch "title", example :: Main Branch, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-3">
-                        {!! Form::Select('currency_id',$currency_id, null,['class' => 'form-control','placeholder'=>'Select Currency', 'title'=>'select your required branch "currency", example :: Bangladeshi Taka, then click "search" button']) !!}
+                        {!! Form::Select('currency_id',$currency_id, null,['class' => 'form-control','placeholder'=>'select currency', 'title'=>'select your required branch "currency", example :: Bangladeshi Taka, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-3 filter-btn">
                         {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button', 'data-placement'=>'right', 'data-content'=>'type code or title or both in specific field then click search button for required information')) !!}
