@@ -16,6 +16,12 @@
                 </a>
             </div>
 
+            <div class="panel-heading help-text-color">
+                <div class="help-text-top">
+                    <em>These currency informations are used in <b>Branch and journal voucher details page</b>.</em>
+                </div>
+            </div>
+
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
                 {!! Form::open(['route' => 'currency']) !!}
