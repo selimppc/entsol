@@ -21,10 +21,10 @@
                 {!! Form::open(['route' => 'branch']) !!}
                 <div class="col-sm-12">
                     <div class="col-sm-3">
-                        {!! Form::text('code',null,['class' => 'form-control','placeholder'=>'Code', 'title'=>'type your required branch "code", example :: Main, then click "search" button']) !!}
+                        {!! Form::text('code',null,['class' => 'form-control','placeholder'=>'Type Code', 'title'=>'type your require branch "code", example :: Main, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-3">
-                        {!! Form::text('title',null,['class' => 'form-control','placeholder'=>'Title', 'title'=>'type your required branch "title", example :: Main Branch, then click "search" button']) !!}
+                        {!! Form::text('title',null,['class' => 'form-control','placeholder'=>'Type Title', 'title'=>'type your require branch "title", example :: Main Branch, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-3">
                         {!! Form::Select('currency_id',$currency_id, null,['class' => 'form-control','placeholder'=>'Select Currency', 'title'=>'select your required branch "currency", example :: Bangladeshi Taka, then click "search" button']) !!}

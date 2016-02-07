@@ -11,7 +11,7 @@
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>
-                <a class="btn btn-primary btn-xs pull-right" data-toggle="modal" href="#addData" title="Add COA">
+                <a class="btn btn-primary btn-xs pull-right" data-toggle="modal" href="#addData" data-placement="left" data-content="click add COA button for new chart of accounts entry">
                     <strong>Add COA</strong>
                 </a>
             </div>
@@ -21,22 +21,22 @@
                 {!! Form::open(['route' => 'chart-of-accounts']) !!}
                 <div class="col-sm-10">
                     <div class="col-sm-2">
-                        {!! Form::text('account_code',null,['class' => 'form-control','placeholder'=>'Account Code']) !!}
+                        {!! Form::text('account_code',null,['class' => 'form-control','placeholder'=>'Type Account Code', 'title'=>'type your require "Account Code", example :: 101-004']) !!}
                     </div>
                     <div class="col-sm-2">
-                        {!! Form::text('title',null,['class' => 'form-control','placeholder'=>'Title']) !!}
+                        {!! Form::text('title',null,['class' => 'form-control','placeholder'=>'Type Title', 'title'=>'type your require "title", example :: Medical & Lab equipment']) !!}
                     </div>
                     <div class="col-sm-2">
-                        {!! Form::select('account_type', array(''=>'Select Acc. Type','asset'=>'Asset','liability'=>'Liability','income'=>'Income','expenses'=>'Expenses'),null,['class' => 'form-control']) !!}
+                        {!! Form::select('account_type', array(''=>'Select Acc. Type','asset'=>'Asset','liability'=>'Liability','income'=>'Income','expenses'=>'Expenses'),null,['class' => 'form-control', 'title'=>'select your require "account type", example :: Asset']) !!}
                     </div>
                     <div class="col-sm-2">
-                        {!! Form::select('account_usage', array(''=>'Select Acc. Usage','ledger'=>'Ledger','ap'=>'Ap','ar'=>'Ar'),null,['class' => 'form-control']) !!}
+                        {!! Form::select('account_usage', array(''=>'Select Acc. Usage','ledger'=>'Ledger','ap'=>'Ap','ar'=>'Ar'),null,['class' => 'form-control', 'title'=>'select your require "account usage", example :: Leger']) !!}
                     </div>
                     <div class="col-sm-2">
-                        {!! Form::select('group_one_id', $group_one_id,null,['class' => 'form-control']) !!}
+                        {!! Form::select('group_one_id', $group_one_id,null,['class' => 'form-control', 'title'=>'select your require "Group", example :: Cash & Bank']) !!}
                     </div>
                     <div class="col-sm-2 filter-btn">
-                        {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button')) !!}
+                        {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button', 'data-placement'=>'right', 'data-content'=>'type code or title or both in specific field then click search button for required information')) !!}
                     </div>
                 </div>
                 {!! Form::close() !!}
@@ -68,11 +68,11 @@
                                     <td>{{$values->account_usage}}</td>
                                     <td>{{$values->relGroupOne->title}}</td>
                                     <td>{{$values->relBranch->title}}</td>
-                                    <td>{{$values->status}}</td>
+                                    <td>{{ucfirst($values->status)}}</td>
                                     <td>
-                                        <a href="{{ route('view-chart-of-accounts', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" title="View"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('edit-chart-of-accounts', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" title="Edit"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('delete-chart-of-accounts', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" title="Delete"><i class="fa fa-trash-o"></i></a>
+                                        <a href="{{ route('view-chart-of-accounts', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="View : {{$values->title}} informations"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('edit-chart-of-accounts', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="Update : {{$values->title}} informations"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('delete-chart-of-accounts', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" data-placement="top" data-content="Delete : {{$values->title}} informations"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -87,11 +87,11 @@
 </div>
 <!-- page end-->
 
-<div id="addData" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+<div id="addData" class="modal fade" tabindex="" role="dialog" style="display: none;">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
                 <h4 class="modal-title" id="myModalLabel">Add Chart Of Accounts Information</h4>
             </div>
             <div class="modal-body">
