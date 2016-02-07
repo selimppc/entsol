@@ -16,7 +16,7 @@
         <div class="col-sm-6">
             {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('title', null, ['id'=>'title', 'class' => 'form-control','required','title'=>'Required and Unique Field : Enter Group One Title, Example :: FIXED ASSETS']) !!}
+            {!! Form::text('title', null, ['id'=>'title', 'class' => 'form-control','required', 'style'=>'text-transform:uppercase','title'=>'Required and Unique Field : Enter Group One Title, Example :: FIXED ASSETS']) !!}
         </div>
     </div>
 </div>
@@ -44,8 +44,8 @@
 
 
 <div class="form-margin-btn">
-    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','title'=>'Click Save Changes button for save Group One Information']) !!}
-    <a href="{{route('group-one')}}" class=" btn btn-default" data-placement="top" title="Click Close button for close this entry form">Close</a>
+    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'Click Save Changes button for save Group One Information']) !!}
+    <a href="{{route('group-one')}}" class=" btn btn-default" data-placement="top" data-content="Click Close button for close this entry form">Close</a>
 </div>
 
 </form>
