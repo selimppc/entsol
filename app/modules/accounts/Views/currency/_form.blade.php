@@ -4,12 +4,12 @@
         <div class="col-sm-6">
             {!! Form::label('code', 'Code:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('code', null, ['id'=>'code', 'class' => 'form-control', 'style'=>'text-transform:uppercase','required','autofocus','title'=>'required and unique field : enter currency code, example :: BDT']) !!}
+            {!! Form::text('code', null, ['id'=>'code', 'class' => 'form-control', 'style'=>'text-transform:uppercase','required','autofocus','title'=>'enter currency code, example :: BDT']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('title', null, ['id'=>'title', 'class' => 'form-control', 'style'=>'text-transform:capitalize','required','title'=>'required and unique field : enter currency title, example :: bangladeshi taka']) !!}
+            {!! Form::text('title', null, ['id'=>'title', 'class' => 'form-control', 'style'=>'text-transform:capitalize','required','title'=>'enter currency title, example :: bangladeshi taka']) !!}
         </div>
     </div>
 </div>
@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-sm-12">
             {!! Form::label('description', 'Description:', ['class' => 'control-label']) !!}
-            {!! Form::textarea('description', null, ['id'=>'description', 'class' => 'form-control','size' => '12x3','title'=>'optional field : enter descriptions about currency code']) !!}
+            {!! Form::textarea('description', null, ['id'=>'description', 'class' => 'form-control','size' => '12x3','title'=>'enter descriptions about currency code']) !!}
         </div>
     </div>
 </div>
@@ -27,12 +27,12 @@
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('exchange_rate', 'Exchange Rate:', ['class' => 'control-label']) !!}
-            {!! Form::input('number', 'exchange_rate', null, ['id'=>'exchange_rate', 'class' => 'form-control', 'step'=>'any','title'=>'required and unique field : : enter exchange rate for currency code']) !!}
+            {!! Form::input('number', 'exchange_rate', null, ['id'=>'exchange_rate', 'class' => 'form-control', 'step'=>'any','title'=>'enter exchange rate for currency code']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::Select('status',array('active'=>'Active','inactive'=>'Inactive','cancel'=>'Cancel'),Input::old('status'),['class'=>'form-control ','required','title'=>'required field : choose active option']) !!}
+            {!! Form::Select('status',array('active'=>'Active','inactive'=>'Inactive','cancel'=>'Cancel'),Input::old('status'),['class'=>'form-control ','required','title'=>'choose active option']) !!}
         </div>
     </div>
 </div>

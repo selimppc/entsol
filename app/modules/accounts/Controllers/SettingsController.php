@@ -51,6 +51,14 @@ class SettingsController extends Controller
     {
         $input = $request->all();
 
+        $code = Input::get('code');
+        $code_upper_case = strtoupper($code);
+        $input['code'] = $code_upper_case;
+
+        $title = Input::get('title');
+        $title_upper_case = ucwords($title);
+        $input['title'] = $title_upper_case;
+
         /* Transaction Start Here */
         DB::beginTransaction();
         try {
@@ -104,6 +112,14 @@ class SettingsController extends Controller
     {
         $model = Settings::where('id',$id)->first();
         $input = $request->all();
+
+        $code = Input::get('code');
+        $code_upper_case = strtoupper($code);
+        $input['code'] = $code_upper_case;
+
+        $title = Input::get('title');
+        $title_upper_case = ucwords($title);
+        $input['title'] = $title_upper_case;
 
         DB::beginTransaction();
         try {

@@ -11,12 +11,12 @@
         <div class="col-sm-6">
             {!! Form::label('code', 'Code:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('code', null, ['id'=>'code', 'class' => 'form-control','required','autofocus','title'=>'required and unique field : enter group one code, example :: 101']) !!}
+            {!! Form::text('code', null, ['id'=>'code', 'class' => 'form-control','required','autofocus','title'=>'enter group one code, example :: 101']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('title', null, ['id'=>'title', 'class' => 'form-control','required', 'style'=>'text-transform:uppercase','title'=>'required and unique field : enter group one title, example :: fixed assets']) !!}
+            {!! Form::text('title', null, ['id'=>'title', 'class' => 'form-control','required', 'style'=>'text-transform:uppercase','title'=>'enter group one title, example :: fixed assets']) !!}
         </div>
     </div>
 </div>
@@ -25,7 +25,7 @@
     <div class="row">
         <div class="col-sm-12">
             {!! Form::label('description', 'Description:', ['class' => 'control-label']) !!}
-            {!! Form::textarea('description', null, ['id'=>'description', 'class' => 'form-control','size' => '12x3','title'=>'optional field : enter descriptions about group one code']) !!}
+            {!! Form::textarea('description', null, ['id'=>'description', 'class' => 'form-control','size' => '12x3','title'=>'enter descriptions about group one code']) !!}
         </div>
     </div>
 </div>
@@ -35,7 +35,7 @@
         <div class="col-sm-12">
             {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::select('status', array('active'=>'Active','inactive'=>'Inactive','cancel'=>'Cancel'),Input::old('status'),['class' => 'form-control','required','title'=>'required field : choose active option']) !!}
+            {!! Form::select('status', array('active'=>'Active','inactive'=>'Inactive','cancel'=>'Cancel'),Input::old('status'),['class' => 'form-control','required','title'=>'choose active option']) !!}
         </div>
     </div>
 </div>
