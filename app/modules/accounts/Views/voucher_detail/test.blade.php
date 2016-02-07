@@ -18,7 +18,7 @@
                     data: {_token: '{!! csrf_token() !!}',account_code: account_code },
                     success: function(data)
                     {
-                        alert(data);
+                       // alert(data);
                     }
                 });
          });

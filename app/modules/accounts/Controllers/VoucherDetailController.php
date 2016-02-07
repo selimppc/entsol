@@ -320,8 +320,8 @@ class VoucherDetailController extends Controller
 
        $coa = DB::table('ac_chart_of_accounts')
             ->where('title', 'LIKE', '%' . $coa_data . '%')
-            ->get('ac_chart_of_accounts.title');
-       print_r($coa);
-        #return $coa  ;
+            ->select('ac_chart_of_accounts.title')->get();
+       #print_r($coa);
+        
     }
 }
