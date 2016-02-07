@@ -1,87 +1,38 @@
 <?php
 
-namespace App\Http\Controllers\App\Modules\Accounts\Controllers;
+namespace App\Modules\Accounts\Controllers;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use JasperPHP\JasperPHP as JasperPHP;
 
 class AcReportsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    public function test_report(){
+        $jasper = new JasperPHP;
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        // Compile a JRXML to Jasper
+       $data = $jasper->compile('app/modules/accounts/Reports/ac_chart_of_ac.jrxml')->execute();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        print_r($data);exit("OK");
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        // Process a Jasper file to PDF and RTF (you can use directly the .jrxml)
+        $jasper->process('app/modules/accounts/Reports/ac_chart_of_ac.jrxml',
+            false,
+            array("pdf", "rtf"),
+            array("php_version" => "xxx")
+        )->execute();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        // List the parameters from a Jasper file.
+        $array = $jasper->list_parameters('app/modules/accounts/Reports/ac_chart_of_ac.jrxml'
+        )->execute();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+
+        print_r($array);exit();
+
+        return view('welcome');
     }
 }

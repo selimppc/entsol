@@ -226,5 +226,16 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
         "uses" => "SettingsController@delete"
     ]);
 
+
+
+    /*
+     * TODO:: Reports
+     */
+
+    Route::any("test-report", [
+        "as"   => "test-report",
+        "uses" => "AcReportsController@test_report"
+    ]);
+
 });
 

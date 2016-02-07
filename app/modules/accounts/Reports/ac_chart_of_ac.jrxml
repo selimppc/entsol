@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="am_chacclist" pageWidth="595" pageHeight="842" columnWidth="513" leftMargin="54" rightMargin="28" topMargin="43" bottomMargin="36" uuid="5dc7a833-2216-4847-89d2-8f8fe7125809">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="pType" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     vw_chart_of_ac.`account_type`,
+     vw_chart_of_ac.`group_one`,
+     vw_chart_of_ac.`account_code`,
+     vw_chart_of_ac.`account_title`,
+     vw_chart_of_ac.`account_usage`,
+     vw_chart_of_ac.`status`,
+     vw_chart_of_ac.`account_type`,
+     vw_chart_of_ac.`group_one`,
+     vw_chart_of_ac.`account_code`,
+     vw_chart_of_ac.`account_title`,
+     vw_chart_of_ac.`account_usage`,
+     vw_chart_of_ac.`status`
+FROM
+     `vw_chart_of_ac` vw_chart_of_ac
+WHERE CASE WHEN $P{pType}<>'' THEN vw_chart_of_ac.`account_type`=$P{pType} ELSE vw_chart_of_ac.`account_type`>'' END
+ORDER BY
+     account_type ASC,
+     group_one ASC]]>
+	</queryString>
+	<field name="account_type" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="group_one" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="account_code" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="account_title" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="account_usage" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="AccType">
+		<groupExpression><![CDATA[$F{account_type}]]></groupExpression>
+		<groupHeader>
+			<band height="28">
+				<textField>
+					<reportElement uuid="6bb2b333-c19d-4a5f-952b-33714f916cb0" x="0" y="0" width="225" height="28"/>
+					<textElement>
+						<font size="16" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{account_type}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="GroupOne">
+		<groupExpression><![CDATA[$F{group_one}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement uuid="08dcd70a-abb4-40a5-9ef4-d30a32d5d92e" x="0" y="0" width="306" height="20"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{group_one}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="38" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="de199071-d37a-45a9-8025-ce62150ee1f5" x="0" y="0" width="387" height="38"/>
+				<textElement>
+					<font size="26" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Chart of Account List]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="8ef4b866-f6a8-4ac3-b298-7776dad29129" x="0" y="5" width="48" height="20"/>
+				<box>
+					<bottomPen lineWidth="2.0"/>
+				</box>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dd0b023c-f95d-43f0-869e-68b789a2985d" x="48" y="5" width="372" height="20"/>
+				<box>
+					<bottomPen lineWidth="2.0"/>
+				</box>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="31e49c84-61c2-4dbc-86ba-b80543d834c1" x="420" y="5" width="46" height="20"/>
+				<box>
+					<bottomPen lineWidth="2.0"/>
+				</box>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Usage]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1f8958f9-6d45-419d-823e-68e193e2e180" x="466" y="5" width="47" height="20"/>
+				<box>
+					<bottomPen lineWidth="2.0"/>
+				</box>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="104324f6-4b8f-43a5-abcf-b5b4f369c024" x="0" y="0" width="68" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{account_code}]]></textFieldExpression>
+				<anchorNameExpression><![CDATA[$F{account_type}]]></anchorNameExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="6bb79345-f025-4404-b2c5-9f8256af08ba" x="68" y="0" width="352" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{account_title}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b8e78db0-4b46-4731-8589-0f0097e15b22" x="420" y="0" width="43" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{account_usage}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="95c7d99f-6b7c-4df4-a118-f9269e933cd0" x="466" y="0" width="47" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement uuid="6281f229-969a-4b65-a038-35092bce4b5e" x="0" y="6" width="377" height="17"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["This powered by etnsol"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="348dc302-847d-4719-9d87-6023e0791161" x="410" y="6" width="80" height="17"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="8d46cd7a-afba-4bf0-a8d3-3d6f3af8d9fe" x="490" y="6" width="23" height="17"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="2011ec27-5167-43aa-ace4-78e109ec93d0" x="0" y="5" width="513" height="1"/>
+			</line>
+		</band>
+	</pageFooter>
+</jasperReport>
