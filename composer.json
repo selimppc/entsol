@@ -8,7 +8,7 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
         "illuminate/html": "5.*",
-        "cossou/jasperphp": "~2"
+        "jaspersoft/rest-client": "v2.0.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
