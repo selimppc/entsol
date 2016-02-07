@@ -52,7 +52,7 @@
             </tr>
             <tr>
                 <th class="col-lg-4">Status</th>
-                <td>{{ isset($data->status)?$data->status:'' }}</td>
+                <td>{{ isset($data->status)?ucfirst($data->status):'' }}</td>
             </tr>
         </table>
     </div>

@@ -21,10 +21,10 @@
                 {!! Form::open(['route' => 'currency']) !!}
                 <div class="col-sm-8">
                     <div class="col-sm-4">
-                        {!! Form::text('code',Input::old('code'),['class' => 'form-control','placeholder'=>'Select Code', 'title'=>'type your required currency "code", example :: BDT, then click "search" button']) !!}
+                        {!! Form::text('code',Input::old('code'),['class' => 'form-control','placeholder'=>'Type Code', 'title'=>'type your required currency "code", example :: BDT, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-4">
-                        {!! Form::text('title',Input::old('title'),['class' => 'form-control','placeholder'=>'Select Title', 'title'=>'type your required currency "title", example :: bangladeshi taka, then click "search" button']) !!}
+                        {!! Form::text('title',Input::old('title'),['class' => 'form-control','placeholder'=>'Type Title', 'title'=>'type your required currency "title", example :: bangladeshi taka, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-3 filter-btn">
                         {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button', 'data-placement'=>'top', 'data-content'=>'type code or title or both in specific field then click search button for required information')) !!}
@@ -72,7 +72,7 @@
 </div>
 <!-- page end-->
 
-<div id="addData" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+<div id="addData" class="modal fade" tabindex="" role="dialog" style="display: none;">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
