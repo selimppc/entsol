@@ -195,10 +195,9 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
 
     /**Settings**/
 
-
-    Route::any("settings", [
-        "as"   => "settings",
-        "uses" => "SettingsController@index"
+    Route::get('settings', [
+        'as' => 'settings',
+        'uses' => 'SettingsController@index'
     ]);
 
     Route::any("store-settings", [
