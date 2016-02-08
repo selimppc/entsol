@@ -19,11 +19,6 @@ use Input;
 class CurrencyController extends Controller
 {
 
-    protected function isPostRequest()
-    {
-        return Input::server("REQUEST_METHOD") == "POST";
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -32,13 +27,9 @@ class CurrencyController extends Controller
     public function index()
     {
         $pageTitle = "Currency Informations";
-        if($this->isPostRequest()){
-            $code = Input::get('code');
-            $title = Input::get('title');
-            $data = Currency::where('status','!=','cancel')->where('code', 'LIKE', '%'.$code.'%')->where('title', 'LIKE', '%'.$title.'%')->orderBy('id', 'DESC')->paginate(50);
-        }else{
-            $data = Currency::where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(50);
-        }
+        $code = Input::get('code');
+        $title = Input::get('title');
+        $data = Currency::where('status','!=','cancel')->where('code', 'LIKE', '%'.$code.'%')->where('title', 'LIKE', '%'.$title.'%')->orderBy('id', 'DESC')->get();
         return view('accounts::currency.index', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 

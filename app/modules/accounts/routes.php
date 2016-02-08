@@ -81,9 +81,9 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
 
     /**Currency**/
 
-    Route::any("currency", [
-        "as"   => "currency",
-        "uses" => "CurrencyController@index"
+    Route::get('currency', [
+        'as' => 'currency',
+        'uses' => 'CurrencyController@index'
     ]);
 
     Route::any("store-currency", [

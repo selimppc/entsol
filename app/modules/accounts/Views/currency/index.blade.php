@@ -18,7 +18,7 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['route' => 'currency']) !!}
+                {!! Form::open(['method' =>'GET','url'=>'/currency']) !!}
                 <div class="col-sm-8">
                     <div class="col-sm-4">
                         {!! Form::text('code',Input::old('code'),['class' => 'form-control','placeholder'=>'type code', 'title'=>'type your required currency "code", example :: BDT, then click "search" button']) !!}
