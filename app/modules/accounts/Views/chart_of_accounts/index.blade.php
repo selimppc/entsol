@@ -10,7 +10,7 @@
     <div class="col-sm-12">
         <div class="panel">
             <div class="panel-heading">
-                <span class="panel-title">{{ $pageTitle }}</span>
+                <span class="panel-title">{{ $pageTitle }}</span></span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>we add new chart of accounts entry <br> update and delete chart of accounts<br> from this page</em>">(?)</span>
                 <a class="btn btn-primary btn-xs pull-right" data-toggle="modal" href="#addData" data-placement="left" data-content="click add COA button for new chart of accounts entry">
                     <strong>Add COA</strong>
                 </a>
@@ -49,13 +49,13 @@
                         <thead>
                         <tr>
                             <th> Account Code </th>
-                            <th> Title </th>
+                            <th> Title &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="chart of accounts full name">(?)</span></th>
                             <th> Account Type </th>
                             <th> Account Usage </th>
                             <th> Group One Title </th>
                             <th> Branch Title </th>
-                            <th> Status </th>
-                            <th> Action </th>
+                            <th width="9%"> Status&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="you can change status from update page">(?)</span></th>
+                            <th> Action &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="view : click for details informations<br>update : click for update informations<br>delete : click for delete informations">(?)</span></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -70,9 +70,9 @@
                                     <td>{{$values->relBranch->title}}</td>
                                     <td>{{ucfirst($values->status)}}</td>
                                     <td>
-                                        <a href="{{ route('view-chart-of-accounts', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="View : {{$values->title}} informations"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('edit-chart-of-accounts', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="Update : {{$values->title}} informations"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('delete-chart-of-accounts', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" data-placement="top" data-content="Delete : {{$values->title}} informations"><i class="fa fa-trash-o"></i></a>
+                                        <a href="{{ route('view-chart-of-accounts', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="view"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('edit-chart-of-accounts', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="update"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('delete-chart-of-accounts', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" data-placement="top" data-content="delete"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -92,7 +92,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
-                <h4 class="modal-title" id="myModalLabel">Add Chart Of Accounts Information</h4>
+                <h4 class="modal-title" id="myModalLabel">Add Chart Of Accounts Information &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
             </div>
             <div class="modal-body">
                 {!! Form::open(['route' => 'store-chart-of-accounts','id' => 'jq-validation-form']) !!}
