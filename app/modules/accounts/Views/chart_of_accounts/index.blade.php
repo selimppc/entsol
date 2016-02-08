@@ -18,19 +18,19 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['route' => 'chart-of-accounts']) !!}
+                {!! Form::open(['method' =>'GET','url'=>'/chart-of-accounts']) !!}
                 <div class="col-sm-10">
                     <div class="col-sm-2">
-                        {!! Form::text('account_code',null,['class' => 'form-control','placeholder'=>'Type Account Code', 'title'=>'type your require "Account Code", example :: 101-004']) !!}
+                        {!! Form::text('account_code',null,['class' => 'form-control','placeholder'=>'account code', 'title'=>'type your require "Account Code", example :: 101-004']) !!}
                     </div>
                     <div class="col-sm-2">
-                        {!! Form::text('title',null,['class' => 'form-control','placeholder'=>'Type Title', 'title'=>'type your require "title", example :: Medical & Lab equipment']) !!}
+                        {!! Form::text('title',null,['class' => 'form-control','placeholder'=>'type title', 'title'=>'type your require "title", example :: Medical & Lab equipment']) !!}
                     </div>
                     <div class="col-sm-2">
-                        {!! Form::select('account_type', array(''=>'Select Acc. Type','asset'=>'Asset','liability'=>'Liability','income'=>'Income','expenses'=>'Expenses'),null,['class' => 'form-control', 'title'=>'select your require "account type", example :: Asset']) !!}
+                        {!! Form::select('account_type', array(''=>'account type','asset'=>'Asset','liability'=>'Liability','income'=>'Income','expenses'=>'Expenses'),null,['class' => 'form-control', 'title'=>'select your require "account type", example :: Asset']) !!}
                     </div>
                     <div class="col-sm-2">
-                        {!! Form::select('account_usage', array(''=>'Select Acc. Usage','ledger'=>'Ledger','ap'=>'Ap','ar'=>'Ar'),null,['class' => 'form-control', 'title'=>'select your require "account usage", example :: Leger']) !!}
+                        {!! Form::select('account_usage', array(''=>'account usage','ledger'=>'Ledger','ap'=>'Ap','ar'=>'Ar'),null,['class' => 'form-control', 'title'=>'select your require "account usage", example :: Leger']) !!}
                     </div>
                     <div class="col-sm-2">
                         {!! Form::select('group_one_id', $group_one_id,null,['class' => 'form-control', 'title'=>'select your require "Group", example :: Cash & Bank']) !!}
@@ -54,7 +54,7 @@
                             <th> Account Usage </th>
                             <th> Group One Title </th>
                             <th> Branch Title </th>
-                            <th width="9%"> Status&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="you can change status from update page">(?)</span></th>
+                            <th> Status&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="you can change status from update page">(?)</span></th>
                             <th> Action &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="view : click for details informations<br>update : click for update informations<br>delete : click for delete informations">(?)</span></th>
                         </tr>
                         </thead>

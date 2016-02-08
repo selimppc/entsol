@@ -147,7 +147,7 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
 
     /**Chart of Accounts**/
 
-    Route::any("chart-of-accounts", [
+    Route::get("chart-of-accounts", [
         "as"   => "chart-of-accounts",
         "uses" => "ChartOfAccountsController@index"
     ]);
