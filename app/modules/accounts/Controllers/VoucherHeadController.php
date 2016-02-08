@@ -61,12 +61,14 @@ class VoucherHeadController extends Controller
             $branch_id = Input::get('branch_id');
             $voucher_number = Input::get('voucher_number');
             $year = Input::get('year');
+            $period = Input::get('period');
             $date = Input::get('date');
             $status = Input::get('status');
 
             $model = $model->with('relBranch');
             if (isset($branch_id) && !empty($branch_id)) $model->where('ac_voucher_head.branch_id', '=', $branch_id);
             if (isset($year) && !empty($year)) $model->where('ac_voucher_head.year', '=', $year);
+            if (isset($period) && !empty($period)) $model->where('ac_voucher_head.period', '=', $period);
             if (isset($voucher_number) && !empty($voucher_number)) $model->where('ac_voucher_head.voucher_number', 'LIKE', '%'.$voucher_number.'%');
             if (isset($date) && !empty($date)) $model->where('ac_voucher_head.date', '=', $date);
             if (isset($status) && !empty($status)) $model->where('ac_voucher_head.status', '=', $status);
