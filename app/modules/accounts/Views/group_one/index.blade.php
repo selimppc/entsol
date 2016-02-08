@@ -10,16 +10,10 @@
     <div class="col-sm-12">
         <div class="panel">
             <div class="panel-heading">
-                <span class="panel-title">{{ $pageTitle }}</span>
+                <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>Group One Informations are <b>Chart of Accounts</b> Main Group .</em>">(?)</span>
                 <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="left" data-content="click add group one button for new group one entry">
                     <strong>Add Group One</strong>
                 </a>
-            </div>
-
-            <div class="panel-heading help-text-color">
-                <div class="help-text-top">
-                    <em>Group One Informations are <b>Chart of Accounts</b> Main Group .</em>
-                </div>
             </div>
 
             <div class="panel-body">
@@ -59,9 +53,9 @@
                                     <td>{{$values->title}}</td>
                                     <td>{{ucfirst($values->status)}}</td>
                                     <td>
-                                        <a href="{{ route('view-group-one', $values->id) }}" class="btn btn-info btn-xs" data-placement="top" data-toggle="modal" data-target="#etsbModal" data-content="View : {{$values->title}} informations"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('edit-group-one', $values->id) }}" class="btn btn-primary btn-xs" data-placement="top" data-toggle="modal" data-target="#etsbModal" data-content="Update : {{$values->title}} informations"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('delete-group-one', $values->id) }}" class="btn btn-danger btn-xs" data-placement="top" onclick="return confirm('Are you sure to Delete?')" data-content="Delete : {{$values->title}} informations"><i class="fa fa-trash-o"></i></a>
+                                        <a href="{{ route('view-group-one', $values->id) }}" class="btn btn-info btn-xs" data-placement="top" data-toggle="modal" data-target="#etsbModal" data-content="View"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('edit-group-one', $values->id) }}" class="btn btn-primary btn-xs" data-placement="top" data-toggle="modal" data-target="#etsbModal" data-content="Update"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('delete-group-one', $values->id) }}" class="btn btn-danger btn-xs" data-placement="top" onclick="return confirm('Are you sure to Delete?')" data-content="Delete"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -22,14 +22,14 @@
             {!! Form::label('date', 'Date:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
             <div class="input-group date">
-                {!! Form::text('date', date('Y/m/d'), ['class' => 'form-control bs-datepicker-component','required','autofocus','title'=>'select journal voucher date']) !!}
+                {!! Form::text('date', date('Y/m/d'), ['class' => 'form-control bs-datepicker-component','required','title'=>'select journal voucher date']) !!}
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
             </div>
         </div>
         <div class="col-sm-6">
             {!! Form::label('reference', 'Reference:', ['class' => 'control-label']) !!}
             <small class="narration">(Narration for Journal Voucher Informations)</small>
-            {!! Form::text('reference', null, ['class' => 'form-control','title'=>'enter narration for journal voucher informations']) !!}
+            {!! Form::text('reference', null, ['class' => 'form-control','autofocus','title'=>'enter narration for journal voucher informations']) !!}
         </div>
     </div>
 </div>
