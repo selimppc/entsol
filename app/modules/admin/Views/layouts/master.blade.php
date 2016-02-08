@@ -33,6 +33,36 @@
         </div>
 
         <div id="content-wrapper">
+
+            <ul class="breadcrumb breadcrumb-page">
+                <div class="breadcrumb-label text-light-gray">You are here: </div>
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="{{route('dashboard')}}">Home</a>
+                </li>
+                @for($i = 1; $i <= count(Request::segments()); $i++)
+                    <li>
+                        <a href="">{{Request::segment($i)}}</a>
+                    </li>
+                @endfor
+            </ul>
+
+            {{--<ul class="page-breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="{{route('dashboard')}}">Home</a>
+                    <i class="fa fa-angle-right"></i>
+                </li>
+                @for($i = 0; $i <= count(Request::segments()); $i++)
+                    <li>
+                        <a href="">{{Request::segment($i)}}</a>
+                        @if($i < count(Request::segments()) & $i > 0)
+                            {!!'<i class="fa fa-angle-right"></i>'!!}
+                        @endif
+                    </li>
+                @endfor
+            </ul>--}}
+
             @if($errors->any())
                 <ul class="alert alert-danger">
                     @foreach($errors->all() as $error)
