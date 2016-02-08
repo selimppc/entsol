@@ -18,7 +18,7 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['route' => 'settings']) !!}
+                {!! Form::open(['method' =>'GET','url'=>'/settings']) !!}
                 <div class="col-sm-8">
                     <div class="col-sm-4">
                         {!! Form::text('code',Input::old('code'),['class' => 'form-control','placeholder'=>'type code', 'title'=>'type your required settings "code", example :: -JV, then click "search" button']) !!}

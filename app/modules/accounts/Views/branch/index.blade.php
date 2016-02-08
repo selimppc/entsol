@@ -18,7 +18,7 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['route' => 'branch']) !!}
+                {!! Form::open(['method' =>'GET','url'=>'/branch']) !!}
                 <div class="col-sm-12">
                     <div class="col-sm-3">
                         {!! Form::text('code',null,['class' => 'form-control','placeholder'=>'type code', 'title'=>'type your require branch "code", example :: Main, then click "search" button']) !!}

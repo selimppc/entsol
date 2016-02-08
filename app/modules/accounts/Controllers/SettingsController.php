@@ -18,11 +18,6 @@ use Input;
 
 class SettingsController extends Controller
 {
-    protected function isPostRequest()
-    {
-        return Input::server("REQUEST_METHOD") == "POST";
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -31,13 +26,9 @@ class SettingsController extends Controller
     public function index()
     {
         $pageTitle = "Settings Information";
-        if($this->isPostRequest()){
-            $code = Input::get('code');
-            $title = Input::get('title');
-            $data = Settings::where('status','!=','cancel')->where('code', 'LIKE', '%'.$code.'%')->where('title', 'LIKE', '%'.$title.'%')->orderBy('id', 'DESC')->paginate(50);
-        }else{
-            $data = Settings::where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(50);
-        }
+        $code = Input::get('code');
+        $title = Input::get('title');
+        $data = Settings::where('status','!=','cancel')->where('code', 'LIKE', '%'.$code.'%')->where('title', 'LIKE', '%'.$title.'%')->orderBy('id', 'DESC')->get();
         return view('accounts::settings.index', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 

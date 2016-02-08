@@ -16,9 +16,9 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
 
     /**Group One**/
 
-    Route::any("group-one", [
-        "as"   => "group-one",
-        "uses" => "GroupOneController@index"
+    Route::get('group-one', [
+        'as' => 'group-one',
+        'uses' => 'GroupOneController@index'
     ]);
 
     Route::any("store-group-one", [
@@ -81,9 +81,9 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
 
     /**Currency**/
 
-    Route::any("currency", [
-        "as"   => "currency",
-        "uses" => "CurrencyController@index"
+    Route::get('currency', [
+        'as' => 'currency',
+        'uses' => 'CurrencyController@index'
     ]);
 
     Route::any("store-currency", [
@@ -114,7 +114,7 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
 
     /**Branch**/
 
-    Route::any("branch", [
+    Route::get("branch", [
         "as"   => "branch",
         "uses" => "BranchController@index"
     ]);
@@ -147,7 +147,7 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
 
     /**Chart of Accounts**/
 
-    Route::any("chart-of-accounts", [
+    Route::get("chart-of-accounts", [
         "as"   => "chart-of-accounts",
         "uses" => "ChartOfAccountsController@index"
     ]);
@@ -195,10 +195,9 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
 
     /**Settings**/
 
-
-    Route::any("settings", [
-        "as"   => "settings",
-        "uses" => "SettingsController@index"
+    Route::get('settings', [
+        'as' => 'settings',
+        'uses' => 'SettingsController@index'
     ]);
 
     Route::any("store-settings", [

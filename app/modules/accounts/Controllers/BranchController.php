@@ -19,11 +19,6 @@ use Input;
 
 class BranchController extends Controller
 {
-    protected function isPostRequest()
-    {
-        return Input::server("REQUEST_METHOD") == "POST";
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -34,28 +29,16 @@ class BranchController extends Controller
         $pageTitle = "Branch Informations";
         $data = new Branch();
 
-        if($this->isPostRequest()){
+        $title = Input::get('title');
+        $code = Input::get('code');
+        $currency=Input::get('currency_id');
 
-            $title = Input::get('title');
-            $code = Input::get('code');
-            $currency=Input::get('currency_id');
+        $data = $data->with('relCurrency');
+        if (isset($title) && !empty($title)) $data ->where('cm_branch.title', 'LIKE', '%'.$title.'%');
+        if (isset($code) && !empty($code)) $data->where('cm_branch.code', 'LIKE', '%'.$code.'%');
+        if (isset($currency) && !empty($currency)) $data->where('cm_branch.currency_id', '=', $currency);
+        $data = $data->get();
 
-            $data = $data->with('relCurrency');
-
-            if (isset($title) && !empty($title)) $data ->where('cm_branch.title', 'LIKE', '%'.$title.'%');
-            if (isset($code) && !empty($code)) $data->where('cm_branch.code', 'LIKE', '%'.$code.'%');
-            if (isset($currency) && !empty($currency)) $data->where('cm_branch.currency_id', '=', $currency);
-
-            /*$data = $data->leftJoin('cm_currency as currency', function($query)  use($currency){
-                $query->on('currency.id', '=', 'cm_branch.currency_id');
-                $query->where('currency.id',  '=', $currency);
-            });*/
-
-            $data = $data->get();
-            //print_r($data['currency_id']);exit;
-        }else{
-            $data = Branch::where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(50);
-        }
         $currency_id =  [''=>'Currency'] + Currency::lists('title','id')->all();
         return view('accounts::branch.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'currency_id'=> $currency_id]);
     }

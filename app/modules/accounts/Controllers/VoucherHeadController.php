@@ -23,11 +23,6 @@ use Illuminate\Support\Facades\Session;
 class VoucherHeadController extends Controller
 {
 
-    protected function isPostRequest()
-    {
-        return Input::server("REQUEST_METHOD") == "POST";
-    }
-
    public function index(){
 
        $pageTitle = 'Journal Voucher Informations';
@@ -40,32 +35,24 @@ class VoucherHeadController extends Controller
        $settings_id = $generate_number[1];
        $number = $generate_number[2];
 
-       if($this->isPostRequest()){
+       /*$account_type = Input::get('account_type');*/
+       $branch = Input::get('branch_id');
+       $voucher_number = Input::get('voucher_number');
+       $term_year = Input::get('year');
+       $date = Input::get('date');
+       $status = Input::get('status');
 
-           /*$account_type = Input::get('account_type');*/
-           $branch = Input::get('branch_id');
-           $voucher_number = Input::get('voucher_number');
-           $term_year = Input::get('year');
-
-           $model = $model->with('relBranch');
-           /*if (isset($account_type) && !empty($account_type)) $model ->where('ac_voucher_head.account_type', '=', $account_type);*/
-           if (isset($branch) && !empty($branch)) $model->where('ac_voucher_head.branch_id', '=', $branch);
-           if (isset($term_year) && !empty($term_year)) $model->where('ac_voucher_head.year', '=', $term_year);
-           if (isset($voucher_number) && !empty($voucher_number)) $model->where('ac_voucher_head.voucher_number', '=', $voucher_number);
-
-           /*$model = $model->leftJoin('cm_branch as branch', function($query)  use($branch){
-               $query->on('branch.id', '=', 'ac_voucher_head.branch_id');
-               $query->where('branch.id',  '=', $branch);
-           });*/
-           $model = $model->paginate(50);
-       }else{
-           $model = VoucherHead::with('relBranch')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(50);
-       }
+       $model = $model->with('relBranch');
+       /*if (isset($account_type) && !empty($account_type)) $model ->where('ac_voucher_head.account_type', '=', $account_type);*/
+       if (isset($branch) && !empty($branch)) $model->where('ac_voucher_head.branch_id', '=', $branch);
+       if (isset($term_year) && !empty($term_year)) $model->where('ac_voucher_head.year', '=', $term_year);
+       if (isset($voucher_number) && !empty($voucher_number)) $model->where('ac_voucher_head.voucher_number', '=', $voucher_number);
+       if (isset($date) && !empty($date)) $model->where('ac_voucher_head.date', '=', $date);
+       if (isset($status) && !empty($status)) $model->where('ac_voucher_head.status', '=', $status);
+       $model = $model->get();
 
        //$year = VoucherHead::getYear();
        $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
-
-
        return view('accounts::voucher_head.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model,'generate_voucher_number'=>$generate_voucher_number,'number'=>$number,'settings_id'=>$settings_id]);
    }
 

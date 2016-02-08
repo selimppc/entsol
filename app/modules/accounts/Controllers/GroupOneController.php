@@ -19,10 +19,10 @@ use Input;
 class GroupOneController extends Controller
 {
 
-    protected function isPostRequest()
+    /*protected function isPostRequest()
     {
         return Input::server("REQUEST_METHOD") == "POST";
-    }
+    }*/
 
     /**
      * Display a listing of the resource.
@@ -32,13 +32,9 @@ class GroupOneController extends Controller
     public function index()
     {
         $pageTitle = "Group One Information";
-        if($this->isPostRequest()){
-            $code = Input::get('code');
-            $title = Input::get('title');
-            $data = GroupOne::where('status','!=','cancel')->where('code', 'LIKE', '%'.$code.'%')->where('title', 'LIKE', '%'.$title.'%')->orderBy('id', 'DESC')->paginate(50);
-        }else{
-            $data = GroupOne::where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(50);
-        }
+        $code = Input::get('code');
+        $title = Input::get('title');
+        $data = GroupOne::where('status','!=','cancel')->where('code', 'LIKE', '%'.$code.'%')->where('title', 'LIKE', '%'.$title.'%')->orderBy('id', 'DESC')->get();
         return view('accounts::group_one.index', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 
