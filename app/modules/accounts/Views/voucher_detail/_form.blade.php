@@ -1,5 +1,5 @@
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.min.js') }}"></script>
-{{--<script type="text/javascript" src="{{ URL::asset('assets/admin/js/custom.min.js') }}"></script>--}}
+<script type="text/javascript" src="{{ URL::asset('assets/admin/js/custom.min.js') }}"></script>
 
 {!! Form::hidden('voucher_head_id',$id) !!}
 
@@ -91,12 +91,6 @@
     </div>
 </div>
 
-<div class="ui-widget">
-    <p>Type two letter for e.g:ja,sc etc</p>
-    <label for="automplete-3">Tags: </label>
-    <input id="automplete-3">
-</div>
-
 <div class="form-margin-btn">
     {!! Form::submit('Save Changes', ['class' => 'btn btn-primary']) !!}
     <a href="" class=" btn btn-default" style="">Close</a>
@@ -105,7 +99,3 @@
 @include('accounts::voucher_detail._script')
 
 
-<script>
-
-
-</script>

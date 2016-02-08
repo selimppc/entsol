@@ -1,6 +1,12 @@
 
 <script type="text/javascript">
 
+    $("#auto-search-ac").autocomplete({
+        source: "{{Route('coa-list')}}",
+        minLength: 2,
+    });
+
+
     //Coa: account code
     /*$('select[id=coa-account]').change(function () {
         var coa_id = $(this).val();

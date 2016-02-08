@@ -315,13 +315,21 @@ class VoucherDetailController extends Controller
 
     public function list_coa(){
 
-        $coa_data = Input::get('account_code');
+        $coa_data = Input::get('term');
        #print_r($coa_data);exit('12345');
+
 
        $coa = DB::table('ac_chart_of_accounts')
             ->where('title', 'LIKE', '%' . $coa_data . '%')
-            ->select('ac_chart_of_accounts.title')->get();
-       #print_r($coa);
-        
+            ->orWhere('account_code', 'LIKE', '%' . $coa_data . '%')
+            ->select('ac_chart_of_accounts.title','ac_chart_of_accounts.account_code')->get();
+        #print_r($coa);exit;
+
+        foreach ( $coa as $query ){
+
+            $data[] = array('value' => $query->title,'code'=>$query->account_code);
+        }
+        return Response::json($data);
+
     }
 }

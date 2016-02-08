@@ -10,29 +10,20 @@
     <script>
 
         $(document).ready(function(){
-            $("#auto-search-ac").change(function(){
-                var account_code = $(this).val();
-                $.ajax({
-                    url: '{{Route('coa-list')}}',
-                    type: 'POST',
-                    data: {_token: '{!! csrf_token() !!}',account_code: account_code },
-                    success: function(data)
-                    {
-                       // alert(data);
-                    }
-                });
-         });
+            $("#auto-search-ac").autocomplete({
+                source: "{{Route('coa-list')}}",
+                minLength: 2,
+            });
         });
-
-
 
     </script>
 </head>
 <body>
 <!-- HTML -->
-<div class="ui-widget">
+<div class="">
     {!! Form::label('account_code', 'Account Code:', ['class' => 'control-label']) !!}
-    {!! Form::text('account_code', Input::old('account_code'), ['id'=>'auto-search-ac','class' => 'form-control']) !!}
+    {!! Form::text('account_code', Input::old('account_code'), ['id'=>'auto-search-ac','class' => '']) !!}
 </div>
+
 </body>
 </html>
