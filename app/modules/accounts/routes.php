@@ -114,7 +114,7 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
 
     /**Branch**/
 
-    Route::any("branch", [
+    Route::get("branch", [
         "as"   => "branch",
         "uses" => "BranchController@index"
     ]);
