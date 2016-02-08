@@ -18,10 +18,10 @@
 
    init.push(function () {
         // Single select
-        /*$("#coa_id").select2({
+        $("#coa_id").select2({
             allowClear: true,
             placeholder: "Select A Chart Of Account"
-        });*/
+        });
 
     });
 
