@@ -58,3 +58,7 @@ body{
 .help-text-color{
     background-color:lavenderblush;
 }
+
+.ui-autocomplete{
+    z-index:1151 !important;
+}

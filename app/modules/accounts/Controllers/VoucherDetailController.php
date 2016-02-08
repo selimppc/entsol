@@ -319,16 +319,21 @@ class VoucherDetailController extends Controller
        #print_r($coa_data);exit('12345');
 
 
-       $coa = DB::table('ac_chart_of_accounts')
+
+
+        $coa = DB::table('ac_chart_of_accounts')
             ->where('title', 'LIKE', '%' . $coa_data . '%')
             ->orWhere('account_code', 'LIKE', '%' . $coa_data . '%')
-            ->select('ac_chart_of_accounts.title','ac_chart_of_accounts.account_code')->get();
-        #print_r($coa);exit;
+            ->select(DB::raw('CONCAT(ac_chart_of_accounts.account_code, ":", " ",ac_chart_of_accounts.title) AS title','ac_chart_of_accounts.account_code','ac_chart_of_accounts.title'))
+//            >select('CONCAT(ac_chart_of_accounts.account_code."-".ac_chart_of_accounts.title)','ac_chart_of_accounts.account_code')
+
+            ->get();
 
         foreach ( $coa as $query ){
-
-            $data[] = array('value' => $query->title,'code'=>$query->account_code);
+            #print_r($query);exit;
+            $data[] = array('value' => $query->title);
         }
+        #print_r($data);
         return Response::json($data);
 
     }
