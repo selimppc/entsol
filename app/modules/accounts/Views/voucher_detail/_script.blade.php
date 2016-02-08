@@ -5,7 +5,6 @@
         source: "{{Route('coa-list')}}",
         minLength: 1,
         select: function( event, ui ) {
-            $('#auto-search-ac').val(ui.item.code);
             $('#auto-search-ac').val(ui.item.value);
         }
     });

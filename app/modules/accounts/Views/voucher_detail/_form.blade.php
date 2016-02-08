@@ -9,13 +9,13 @@
             <em>You will get account code and exchange rate according to Chart of Accounts and Currency.</em>
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-sm-12">
 
             {!! Form::label('coa_id', 'Chat Of Accounts:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-          {{--  {!! Form::Select('coa_id', [''=>'Select Chart Of Account']+$attributes,Input::old('coa_id'), ['id'=>'coa-account','class' => 'form-control','required']) !!}--}}
-
-            <select id="coa_id" name="coa_id" class="form-control select2-offscreen">
+            {!! Form::text('coa_id', Input::old('coa_id'), ['id'=>'auto-search-ac','class' => 'form-control']) !!}
+            {!! Form::hidden('coa_id','coa_id') !!}
+            {{--<select id="coa_id" name="coa_id" class="form-control select2-offscreen">
                 @foreach ( $attributes as $key => $attr )
                     <optgroup label="{{strtoupper($key)}}">
                         @foreach ( $attr as $id => $values )
@@ -23,12 +23,7 @@
                         @endforeach
                     </optgroup>
                 @endforeach
-            </select>
-
-        </div>
-        <div class="col-sm-6">
-            {!! Form::label('account_code', 'Account Code:', ['class' => 'control-label']) !!}
-            {!! Form::text('account_code', Input::old('account_code'), ['id'=>'auto-search-ac','class' => 'form-control']) !!}
+            </select>--}}
         </div>
     </div>
 </div>
