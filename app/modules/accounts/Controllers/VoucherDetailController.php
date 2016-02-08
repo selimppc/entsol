@@ -105,7 +105,7 @@ class VoucherDetailController extends Controller
     public function store(VoucherDetailRequest $request){
 
         $input = $request->all();
-#print_r($input);exit;
+print_r($input);exit;
         $voucher_data = VoucherHead::where('id',$input['voucher_head_id'])->first();
         $coa_data = ChartOfAccounts::where('id',$input['coa_id'])->first();
         $currency_data = Currency::where('id',$input['currency_id'])->first();
@@ -324,16 +324,13 @@ class VoucherDetailController extends Controller
         $coa = DB::table('ac_chart_of_accounts')
             ->where('title', 'LIKE', '%' . $coa_data . '%')
             ->orWhere('account_code', 'LIKE', '%' . $coa_data . '%')
-            ->select(DB::raw('CONCAT(ac_chart_of_accounts.account_code, ":", " ",ac_chart_of_accounts.title) AS title','ac_chart_of_accounts.account_code','ac_chart_of_accounts.title'))
-//            >select('CONCAT(ac_chart_of_accounts.account_code."-".ac_chart_of_accounts.title)','ac_chart_of_accounts.account_code')
-
+            ->select(DB::raw('CONCAT(ac_chart_of_accounts.account_code, ":", " ",ac_chart_of_accounts.title) AS title, ac_chart_of_accounts.id as coa_id'))
             ->get();
 
         foreach ( $coa as $query ){
-            #print_r($query);exit;
-            $data[] = array('value' => $query->title);
+            $data[] = array('value' => $query->title,
+                'coa_id' => $query->coa_id);
         }
-        #print_r($data);
         return Response::json($data);
 
     }
