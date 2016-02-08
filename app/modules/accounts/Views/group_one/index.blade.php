@@ -18,7 +18,8 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['route' => 'group-one']) !!}
+                {!! Form::open(['method' =>'GET','url'=>'/group-one']) !!}
+                {{--{!! Form::open(['route' => 'group-one']) !!}--}}
                 <div class="col-sm-11">
                     <div class="col-sm-3">
                         {!! Form::text('code',Input::old('code'),['class' => 'form-control','placeholder'=>'type code', 'title'=>'type your required group One "code", example :: 101, then click "search" button']) !!}

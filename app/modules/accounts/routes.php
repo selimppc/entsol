@@ -16,9 +16,9 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
 
     /**Group One**/
 
-    Route::any("group-one", [
-        "as"   => "group-one",
-        "uses" => "GroupOneController@index"
+    Route::get('group-one', [
+        'as' => 'group-one',
+        'uses' => 'GroupOneController@index'
     ]);
 
     Route::any("store-group-one", [
