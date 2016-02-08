@@ -58,15 +58,16 @@ class UserRole extends Migration
             $table->engine = 'InnoDB';
         });
         Schema::table('role_user', function($table) {
-            $table->foreign('role_id')->references('id')->on('user_role_head');
+            $table->foreign('role_id')->references('id')->on('role_user');
+            $table->foreign('user_id')->references('id')->on('user');
         });
 
         /*permissions*/
 
         Schema::create('permissions', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('title', 64)->nullable();
             $table->string('slug',64)->nullable();
-            $table->enum('status', ['active', 'inactive'])->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -84,8 +85,9 @@ class UserRole extends Migration
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
-        Schema::table('user_profile', function($table) {
-            $table->foreign('user_id')->references('id')->on('user');
+        Schema::table('permission_role', function($table) {
+            $table->foreign('permission_id')->references('id')->on('permissions');
+            $table->foreign('role_id')->references('id')->on('role');
         });
 
         /*role_head*/
@@ -214,8 +216,12 @@ class UserRole extends Migration
     public function down()
     {
         Schema::drop('user');
-        Schema::drop('user_role_head');
-        Schema::drop('user_role_detail');
+        Schema::drop('role');
+        Schema::drop('role_user');
+        Schema::drop('permissions');
+        Schema::drop('permission_role');
+        //Schema::drop('user_role_head');
+        //Schema::drop('user_role_detail');
         Schema::drop('user_profile');
         Schema::drop('user_meta');
         Schema::drop('user_image');
