@@ -111,7 +111,7 @@
 <!-- page end-->
 
 <div id="addData" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
-    <div class="modal-dialog modal-lg" style="width: 80%;">
+    <div class="modal-dialog modal-lg search-z-index" style="width: 80%;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -146,12 +146,6 @@
     </script>
 @endif
 --}}
-
-<style>
-    .ui-autocomplete{
-        z-index:1151 !important;
-    }
-</style>
 
 @stop
 
