@@ -82,29 +82,29 @@ class AuthController extends Controller
             return redirect()->route('dashboard');
         }else{
             try{
+                $field = filter_var($data['email'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
                 $attempt = Auth::attempt([
-                    'email' => $request->get('email'),
+                    $field => $request->get('email'),
                     'password' => $request->get('password'),
                 ]);
-                $user_data_exists = User::where('email', $data['email'])->exists();
+                $user_data_exists = User::where($field, $data['email'])->exists();
 
                 if($user_data_exists){
-                    $user_data = User::where('email', $data['email'])->first();
-                }
-
-                if ($attempt) {
-                    Session::put('email', $user_data->email);
-                    Session::flash('message', "Successfully  Logged In.");
-
-                    return redirect()->route('dashboard');
+                    $user_data = User::where($field, $data['email'])->first();
+                    if ($attempt) {
+                        Session::put('email', $user_data->email);
+                        Session::flash('message', "Successfully  Logged In.");
+                        return redirect()->route('dashboard');
+                    }else{
+                        Session::flash('danger', "Password Inorrect.Please Try Again");
+                    }
                 }else{
-                    Session::flash('danger', "Email Address / Password InCorrect.Please Try Again");
-                    return redirect()->route('get-user-login');
+                    Session::flash('danger', "Email does not exists.Please Try Again");
                 }
             }catch(Exception $e){
                 Session::flash('error', $e->getMessage());
-                return redirect()->route('get-user-login');
             }
+            return redirect('get-user-login')->withInput();
         }
     }
 }

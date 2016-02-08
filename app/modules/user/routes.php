@@ -20,6 +20,21 @@ Route::any('create-sign-up', [
     'uses' => 'UserController@create_sign_up'
 ]);
 
+Route::any('forget-password-view', [
+    'as' => 'forget-password-view',
+    'uses' => 'UserController@forget_password_view'
+]);
+
+Route::any('forget-password', [
+    'as' => 'forget-password',
+    'uses' => 'UserController@forget_password'
+]);
+
+Route::any('password-reset-confirm/{reset_password_token}', [
+    'as' => 'password-reset-confirm',
+    'uses' => 'UserController@password_reset_confirm'
+]);
+
 Route::any('signup', [
     'as' => 'signup',
     'uses' => 'UserController@store_signup_info'
