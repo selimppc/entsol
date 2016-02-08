@@ -17,7 +17,7 @@ Route::any('coa-list', [
     'uses' => 'VoucherDetailController@list_coa'
 ]);
 
-Route::get('voucher-head', [
+Route::any('voucher-head', [
     'as' => 'voucher-head',
     'uses' => 'VoucherHeadController@index'
 ]);
@@ -118,6 +118,16 @@ Route::any('ajax-account-code', [
 Route::any('exchange-rate', [
     'as' => 'exchange-rate',
     'uses' => 'VoucherDetailController@get_ajax_exchange_rate'
+]);
+
+
+/*
+ * TODO :: search voucher
+ * */
+
+Route::get('search-voucher', [
+    'as' => 'search-voucher',
+    'uses' => 'VoucherHeadController@search_voucher'
 ]);
 
 

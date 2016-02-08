@@ -18,26 +18,26 @@
 
             <div class="panel-body">
     {{-------------- Filter :Starts -------------------------------------------}}
-                    {!! Form::open(['method' =>'GET','url'=>'/voucher-head']) !!}
+                    {!! Form::open(['method' =>'GET','url'=>'/search-voucher']) !!}
                     <div class="col-sm-12">
                         {{--<div class="col-sm-3">
                             {!! Form::Select('account_type',array(''=>'Select Account Type','account-payable'=>'Account Payable','account-receivable'=>'Account Receivable','account-adjustment'=>'account Adjustment','journal-voucher'=>'Journal Voucher','receipt-voucher'=>'Receipt Voucher','reverse-entry'=>'Reverse Entry'),Input::old('account_type'),['class'=>'form-control', 'title'=>'select your require  journal voucher "account type", example :: account payable, then click "search" button']) !!}
                         </div>--}}
                         <div class="col-sm-2">
-                            {!! Form::text('voucher_number', Input::old('voucher_number'),['class' => 'form-control','placeholder'=>'type voucher number', 'title'=>'type your require "voucher number", example :: JV-0000001, then click "search" button']) !!}
+                            {!! Form::text('voucher_number', @Input::get('voucher_number')? Input::get('voucher_number') : null,['class' => 'form-control','placeholder'=>'type voucher number', 'title'=>'type your require "voucher number", example :: JV-0000001, then click "search" button']) !!}
                         </div>
                         <div class="col-sm-2">
-                            {!! Form::text('date', Input::old('date'), ['class' => 'form-control bs-datepicker-component','placeholder'=>'select date','title'=>'select your require "journal voucher date", example :: 2016/02/10, then click "search" button']) !!}
+                            {!! Form::text('date', @Input::get('date')? Input::get('date') : null, ['class' => 'form-control bs-datepicker-component','placeholder'=>'select date','title'=>'select your require "journal voucher date", example :: 2016/02/10, then click "search" button']) !!}
 
                         </div>
                         <div class="col-sm-2">
-                            {!! Form::Select('branch_id',$branch_data, Input::old('branch_id'),['class' => 'form-control', 'title'=>'select your require "branch", example :: Main Branch, then click "search" button']) !!}
+                            {!! Form::Select('branch_id',$branch_data, @Input::get('branch_id')? Input::get('branch_id') : null,['class' => 'form-control', 'title'=>'select your require "branch", example :: Main Branch, then click "search" button']) !!}
                         </div>
                         <div class="col-sm-2">
-                            {!! Form::selectrange('year', 2016,2030, Input::old('year'),['class' => 'form-control', 'title'=>'select your require "year", example :: 2016, then click "search" button']) !!}
+                            {!! Form::selectrange('year', 2016,2030, @Input::get('year')? Input::get('year') : null,['class' => 'form-control', 'title'=>'select your require "year", example :: 2016, then click "search" button']) !!}
                         </div>
                         <div class="col-sm-2">
-                            {!! Form::Select('status',array(''=>'select status','open'=>'Open','posted'=>'Posted','balanced'=>'Balanced','suspend'=>'Suspend','active'=>'Active','inactive'=>'Inactive'),Input::old('status'),['class'=>'form-control', 'title'=>'select your require "status", example :: open, then click "search" button']) !!}
+                            {!! Form::Select('status',array(''=>'select status','open'=>'Open','posted'=>'Posted','balanced'=>'Balanced','suspend'=>'Suspend','active'=>'Active','inactive'=>'Inactive'),@Input::get('status')? Input::get('status') : null,['class'=>'form-control', 'title'=>'select your require "status", example :: open, then click "search" button']) !!}
                         </div>
 
                         <div class="col-sm-2 srch-btn">
