@@ -40,9 +40,9 @@
                         <thead>
                         <tr>
                             <th> Code </th>
-                            <th> Title </th>
-                            <th> Status </th>
-                            <th> Action </th>
+                            <th> Title &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="accounting group full name">(?)</span></th>
+                            <th> Status &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="you can change status from update page">(?)</span></th>
+                            <th> Action &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="view : click for details informations<br>update : click for update informations<br>delete : click for delete informations">(?)</span></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -53,9 +53,9 @@
                                     <td>{{$values->title}}</td>
                                     <td>{{ucfirst($values->status)}}</td>
                                     <td>
-                                        <a href="{{ route('view-group-one', $values->id) }}" class="btn btn-info btn-xs" data-placement="top" data-toggle="modal" data-target="#etsbModal" data-content="View"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('edit-group-one', $values->id) }}" class="btn btn-primary btn-xs" data-placement="top" data-toggle="modal" data-target="#etsbModal" data-content="Update"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('delete-group-one', $values->id) }}" class="btn btn-danger btn-xs" data-placement="top" onclick="return confirm('Are you sure to Delete?')" data-content="Delete"><i class="fa fa-trash-o"></i></a>
+                                        <a href="{{ route('view-group-one', $values->id) }}" class="btn btn-info btn-xs" data-placement="top" data-toggle="modal" data-target="#etsbModal" data-content="view"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('edit-group-one', $values->id) }}" class="btn btn-primary btn-xs" data-placement="top" data-toggle="modal" data-target="#etsbModal" data-content="update"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('delete-group-one', $values->id) }}" class="btn btn-danger btn-xs" data-placement="top" onclick="return confirm('Are you sure to Delete?')" data-content="delete"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -76,7 +76,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
-                <h4 class="modal-title" id="myModalLabel">Add Group One Information</h4>
+                <h4 class="modal-title" id="myModalLabel">Add Group One Information <span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="3">(?)</font> </span></h4>
             </div>
             <div class="modal-body">
                 {!! Form::open(['route' => 'store-group-one','class' => 'form-horizontal','id' => 'jq-validation-form']) !!}
