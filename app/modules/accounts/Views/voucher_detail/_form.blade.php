@@ -1,5 +1,5 @@
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.min.js') }}"></script>
-<script type="text/javascript" src="{{ URL::asset('assets/admin/js/custom.min.js') }}"></script>
+{{--<script type="text/javascript" src="{{ URL::asset('assets/admin/js/custom.min.js') }}"></script>--}}
 
 {!! Form::hidden('voucher_head_id',$id) !!}
 
