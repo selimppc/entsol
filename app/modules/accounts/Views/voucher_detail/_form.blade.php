@@ -11,10 +11,10 @@
 
         <div class="col-sm-12">
 
-            {!! Form::label('coa_id', 'Chat Of Accounts:', ['class' => 'control-label']) !!}
+            {!! Form::label('ac_title', 'Chat Of Accounts:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('coa_id', Input::old('coa_id'), ['id'=>'auto-search-ac','class' => 'form-control']) !!}
-            {!! Form::hidden('coa_id','coa_id') !!}
+            {!! Form::text('ac_title', Input::old('coa_id'), ['id'=>'auto-search-ac','class' => 'form-control']) !!}
+            {!! Form::hidden('coa_id',null, ['id'=>'coa-id-val']) !!}
             {{--<select id="coa_id" name="coa_id" class="form-control select2-offscreen">
                 @foreach ( $attributes as $key => $attr )
                     <optgroup label="{{strtoupper($key)}}">
