@@ -22,11 +22,17 @@ use Illuminate\Support\Facades\Session;
 
 class VoucherHeadController extends Controller
 {
+    protected function isGetRequest()
+    {
+        return Input::server("REQUEST_METHOD") == "GET";
+    }
 
    public function index(){
 
        $pageTitle = 'Journal Voucher Informations';
        $model = new VoucherHead();
+
+       if($this->isGetRequest()){
 
        $type = 'journal-voucher';
        $generate_number = GenerateNumber::generate_number($type);
@@ -36,20 +42,23 @@ class VoucherHeadController extends Controller
        $number = $generate_number[2];
 
        /*$account_type = Input::get('account_type');*/
-       $branch = Input::get('branch_id');
+       $branch_id = Input::get('branch_id');
        $voucher_number = Input::get('voucher_number');
-       $term_year = Input::get('year');
+       $year = Input::get('year');
        $date = Input::get('date');
        $status = Input::get('status');
 
        $model = $model->with('relBranch');
        /*if (isset($account_type) && !empty($account_type)) $model ->where('ac_voucher_head.account_type', '=', $account_type);*/
-       if (isset($branch) && !empty($branch)) $model->where('ac_voucher_head.branch_id', '=', $branch);
-       if (isset($term_year) && !empty($term_year)) $model->where('ac_voucher_head.year', '=', $term_year);
-       if (isset($voucher_number) && !empty($voucher_number)) $model->where('ac_voucher_head.voucher_number', '=', $voucher_number);
+       if (isset($branch_id) && !empty($branch_id)) $model->where('ac_voucher_head.branch_id', '=', $branch_id);
+       if (isset($year) && !empty($year)) $model->where('ac_voucher_head.year', '=', $year);
+       if (isset($voucher_number) && !empty($voucher_number)) $model->where('ac_voucher_head.voucher_number', 'LIKE', '%'.$voucher_number.'%');
        if (isset($date) && !empty($date)) $model->where('ac_voucher_head.date', '=', $date);
        if (isset($status) && !empty($status)) $model->where('ac_voucher_head.status', '=', $status);
        $model = $model->get();
+       }else{
+           $model = $model->with('relBranch')->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
+       }
 
        //$year = VoucherHead::getYear();
        $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
