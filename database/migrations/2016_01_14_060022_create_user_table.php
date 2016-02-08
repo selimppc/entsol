@@ -133,6 +133,22 @@ class CreateUserTable extends Migration
         Schema::table('user_image', function($table) {
             $table->foreign('user_id')->references('id')->on('user');
         });
+
+        Schema::create('user_reset_password', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('user_id')->nullable();
+            $table->string('reset_password_token', 32)->nullable();
+            $table->string('reset_password_expire', 32)->nullable();
+            $table->string('reset_password_time', 32)->nullable();
+            $table->unsignedInteger('status')->nullable();
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+        Schema::table('user_reset_password', function($table) {
+            $table->foreign('user_id')->references('id')->on('user');
+        });
     }
 
     /**
@@ -148,5 +164,6 @@ class CreateUserTable extends Migration
         Schema::drop('user_profile');
         Schema::drop('user_meta');
         Schema::drop('user_image');
+        Schema::drop('user_reset_password');
     }
 }

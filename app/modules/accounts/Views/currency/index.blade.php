@@ -10,16 +10,10 @@
     <div class="col-sm-12">
         <div class="panel">
             <div class="panel-heading">
-                <span class="panel-title">{{ $pageTitle }}</span>
+                <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>These currency informations are used in <b>Branch and journal voucher details page</b>.</em>">(?)</span>
                 <a class="btn btn-primary btn-xs pull-right" data-toggle="modal" href="#addData" data-placement="left" data-content="click add currency button for new currency entry">
                     <strong>Add Currency</strong>
                 </a>
-            </div>
-
-            <div class="panel-heading help-text-color">
-                <div class="help-text-top">
-                    <em>These currency informations are used in <b>Branch and journal voucher details page</b>.</em>
-                </div>
             </div>
 
             <div class="panel-body">
@@ -46,10 +40,10 @@
                         <thead>
                         <tr>
                             <th> Code </th>
-                            <th> Title </th>
+                            <th> Title &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="currency full name">(?)</span></th>
                             <th> Exchange Rate </th>
-                            <th> Status </th>
-                            <th> Action </th>
+                            <th> Status &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="you can change status from update page">(?)</span></th>
+                            <th> Action &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="view : click for details informations<br>update : click for update informations<br>delete : click for delete informations">(?)</span></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -61,9 +55,9 @@
                                     <td>{{$values->exchange_rate}}</td>
                                     <td>{{ucfirst($values->	status)}}</td>
                                     <td>
-                                        <a href="{{ route('view-currency', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="View : {{$values->title}} informations"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('edit-currency', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="Update : {{$values->title}} informations"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('delete-currency', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" data-placement="top" data-content="Delete : {{$values->title}} informations"><i class="fa fa-trash-o"></i></a>
+                                        <a href="{{ route('view-currency', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="view"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('edit-currency', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="update"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('delete-currency', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" data-placement="top" data-content="delete"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -83,7 +77,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
-                <h4 class="modal-title" id="myModalLabel">Add Currency Informations</h4>
+                <h4 class="modal-title" id="myModalLabel">Add Currency Informations <span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
             </div>
             <div class="modal-body">
                 {!! Form::open(['route' => 'store-currency','id' => 'jq-validation-form']) !!}

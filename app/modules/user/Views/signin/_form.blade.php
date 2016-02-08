@@ -57,7 +57,7 @@
             </div>
 
             <div class="form-group">
-                {!! Form::email('email', null, ['class' => 'form-control input-lg','required','placeholder'=>'Username or email']) !!}
+                {!! Form::text('email', Input::old('email'), ['class' => 'form-control input-lg','required','placeholder'=>'Username or email','autofocus']) !!}
             </div>
 
             <div class="form-group">
@@ -65,16 +65,16 @@
             </div>
             <div class="form-actions">
                 <input type="submit" value="SIGN IN" class="signin-btn bg-primary">
-                <a href="#" class="forgot-password" id="forgot-password-link">Forgot your password?</a>
+                <a href="{{ route('forget-password-view') }}" class="forgot-password" id="forgot-password-link">Forgot your password?</a>
             </div> <!-- / .form-actions -->
         {!! Form::close() !!}
         <!-- / Form -->
 
         <!-- "Sign In with" block -->
-        <div class="signin-with">
+        {{--<div class="signin-with">
             <!-- Facebook -->
             <a href="#" class="signin-with-btn" style="background:#4f6faa;background:rgba(79, 111, 170, .8);">Sign In with <span>Facebook</span></a>
-        </div>
+        </div>--}}
         <!-- / "Sign In with" block -->
 
         <!-- Password reset form -->
@@ -106,6 +106,6 @@
 <!-- / Container -->
 
 <div class="not-a-member">
-    Not a member? <a href="create-sign-up">Sign up now</a>
+    Not a member? <a href="{{ route('create-sign-up') }}">Sign up now</a>
 </div>
 @stop

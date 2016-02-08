@@ -1,12 +1,3 @@
-<form class="form-horizontal" id="jq-validation-form">
-
-<div class="panel-heading help-text-color">
-    <div class="help-text-top">
-        <em>Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>
-    </div>
-</div>
-
-
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         <div class="col-sm-6">
@@ -52,4 +43,3 @@
     <a href="{{route('currency')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
 </div>
 
-</form>
