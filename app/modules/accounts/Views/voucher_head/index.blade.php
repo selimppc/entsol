@@ -54,7 +54,7 @@
                             <th> Branch </th>
                             <th> Note </th>
                             <th> Status </th>
-                            <th> Action &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="view : click for details informations<br>update : click for update informations<br>delete : click for delete informations">(?)</span></th>
+                            <th> Action &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="1. when status open/suspend/balanced you can view, update, delete all actions<br>2. when status posted you can only view information">(?)</span></th>
                             <th> V.Details &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="left" data-content="<em>click voucher details to go voucher details page</em>">(?)</span></th>
                             <th> Reports </th>
                         </tr>
