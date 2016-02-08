@@ -17,7 +17,7 @@ Route::any('coa-list', [
     'uses' => 'VoucherDetailController@list_coa'
 ]);
 
-Route::any('voucher-head', [
+Route::get('voucher-head', [
     'as' => 'voucher-head',
     'uses' => 'VoucherHeadController@index'
 ]);
