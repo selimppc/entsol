@@ -85,27 +85,27 @@ class VoucherDetailController extends Controller
 
         #print_r($results);exit;
 
-        $attributes = array();
+        /*$attributes = array();
         foreach ( $results as $v ) {
             if ( !isset($attributes[$v->account_type]) ) {
                 $attributes[$v->account_type] = array();
             }
             $attributes[$v->account_type][$v->id] = $v->title;
             $attributes[$v->account_type][$v->id] = $v->title;
-        }
+        }*/
 
         #print_r($attributes);exit;
 
         $currency_data = [''=>'Select Currency'] + Currency::lists('title','id')->all();
         $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
 
-        return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'model'=>$model,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'id'=>$id,'voucher_number'=>$voucher_number,'voucher_data'=>$voucher_data,'attributes'=>$attributes]);
+        return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'model'=>$model,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'id'=>$id,'voucher_number'=>$voucher_number,'voucher_data'=>$voucher_data]);
     }
 
     public function store(VoucherDetailRequest $request){
 
         $input = $request->all();
-print_r($input);exit;
+#print_r($input);exit;
         $voucher_data = VoucherHead::where('id',$input['voucher_head_id'])->first();
         $coa_data = ChartOfAccounts::where('id',$input['coa_id'])->first();
         $currency_data = Currency::where('id',$input['currency_id'])->first();

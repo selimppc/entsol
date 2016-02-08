@@ -9,4 +9,14 @@
            @include('accounts::voucher_detail._form')
         {!! Form::close() !!}
     </div>
+    <script>
+
+        init.push(function () {
+            // Javascript code here
+        })
+        window.LanderApp.start(init);
+    </script>
+
+    @include('accounts::voucher_detail._script')
+
 
