@@ -18,7 +18,7 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['method' =>'GET','url'=>'/branch']) !!}
+                {!! Form::open(['method' =>'GET','url'=>'/index-permission']) !!}
                 <div id="index-search">
                     <div class="col-sm-3">
                         {!! Form::text('title',@Input::get('title')? Input::get('title') : null,['class' => 'form-control','placeholder'=>'type title', 'title'=>'type your require permission "title", example :: Main, then click "search" button']) !!}
@@ -74,7 +74,7 @@
             </div>
             <div class="modal-body">
                 {!! Form::open(['route' => 'store-permission','id' => 'jq-validation-form']) !!}
-                @include('accounts::branch._form')
+                @include('user::permission._form')
                 {!! Form::close() !!}
             </div> <!-- / .modal-body -->
         </div> <!-- / .modal-content -->

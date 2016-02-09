@@ -12,25 +12,25 @@ Route::any('index-permission', [
 
 Route::any('store-permission', [
     'as' => 'store-permission',
-    'uses' => 'PermissionController@add'
+    'uses' => 'PermissionController@store'
 ]);
 
-Route::any('show-permission/{id}', [
-    'as' => 'show-permission',
+Route::any('view-permission/{id}', [
+    'as' => 'view-permission',
     'uses' => 'PermissionController@show'
 ]);
 
-Route::any('edit-permission', [
+Route::any('edit-permission/{id}', [
     'as' => 'edit-permission',
     'uses' => 'PermissionController@edit'
 ]);
 
-Route::any('update-permission', [
+Route::any('update-permission/{id}', [
     'as' => 'update-permission',
     'uses' => 'PermissionController@update'
 ]);
 
-Route::any('delete-permission', [
+Route::any('delete-permission/{id}', [
     'as' => 'delete-permission',
     'uses' => 'PermissionController@destroy'
 ]);

@@ -31,8 +31,26 @@ class PermissionController extends Controller
         return view('user::permission.index', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 
-    public function add(){
-        //
+    public function store(Requests\PermissionRequest $request){
+        $input = $request->all();
+
+        $title = Input::get('title');
+        $title_upper_case = ucwords($title);
+        $input['title'] = $title_upper_case;
+
+        /* Transaction Start Here */
+        DB::beginTransaction();
+        try {
+            Permission::create($input);
+            DB::commit();
+            Session::flash('message', 'Successfully added!');
+        } catch (\Exception $e) {
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', $e->getMessage());
+        }
+
+        return redirect()->back();
     }
     /**
      * Display the specified resource.
@@ -42,7 +60,10 @@ class PermissionController extends Controller
      */
     public function show($id)
     {
-        exit('Ok');
+        $pageTitle = 'View Permission';
+        $data = Permission::where('id',$id)->first();
+
+        return view('user::permission.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 
     /**
@@ -53,7 +74,9 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pageTitle = 'Update Permission Informations';
+        $data = Permission::where('id',$id)->first();
+        return view('user::permission.update', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 
     /**
@@ -63,9 +86,27 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\PermissionRequest $request, $id)
     {
-        //
+        $model = Permission::where('id',$id)->first();
+        $input = $request->all();
+
+        $title = Input::get('title');
+        $title_upper_case = ucwords($title);
+        $input['title'] = $title_upper_case;
+
+        DB::beginTransaction();
+        try {
+            $model->update($input);
+            DB::commit();
+            Session::flash('message', "Successfully Updated");
+        }
+        catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('danger', $e->getMessage());
+        }
+        return redirect()->back();
     }
 
     /**
@@ -76,6 +117,18 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $model = Permission::findOrFail($id);
+
+        DB::beginTransaction();
+        try {
+            $model->delete();
+            DB::commit();
+            Session::flash('message', "Successfully Deleted.");
+
+        } catch(\Exception $e) {
+            DB::rollback();
+            Session::flash('danger',$e->getMessage());
+        }
+        return redirect()->back();
     }
 }

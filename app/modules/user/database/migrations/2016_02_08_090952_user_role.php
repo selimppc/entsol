@@ -74,6 +74,7 @@ class UserRole extends Migration
             $table->increments('id');
             $table->string('title', 64)->nullable();
             $table->string('slug',64)->nullable();
+            $table->text('description')->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
