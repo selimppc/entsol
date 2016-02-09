@@ -10,8 +10,8 @@
     <div class="col-sm-12">
         <div class="panel">
             <div class="panel-heading">
-                <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>we can show all accounting branch in this page<br> and add new branch, update, delete from this page</em>">(?)</span>
-                <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="left" data-content="click add branch button for new branch entry">
+                <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>we can show all user in this page<br> and add new user, update, delete from this page</em>">(?)</span>
+                <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="left" data-content="click add user button for new user entry">
                     <strong>Add User</strong>
                 </a>
             </div>
@@ -21,10 +21,10 @@
                 {!! Form::open(['method' =>'GET','url'=>'/user_index']) !!}
                 <div class="col-sm-12">
                     <div class="col-sm-3">
-                        {!! Form::text('username',null,['class' => 'form-control','placeholder'=>'type username', 'title'=>'type your require branch "code", example :: Main, then click "search" button']) !!}
+                        {!! Form::text('username',null,['class' => 'form-control','placeholder'=>'type username', 'title'=>'type your require user "username", example :: admin, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-3">
-                        {!! Form::text('email',null,['class' => 'form-control','placeholder'=>'type email', 'title'=>'type your require branch "title", example :: Main Branch, then click "search" button']) !!}
+                        {!! Form::text('email',null,['class' => 'form-control','placeholder'=>'type email', 'title'=>'type your require user "title", example :: Main Branch, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-3 filter-btn">
                         {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button', 'data-placement'=>'right', 'data-content'=>'type code or title or both in specific field then click search button for required information')) !!}
@@ -62,7 +62,6 @@
                                 </tr>
                             @endforeach
                         @endif
-
                         </tbody>
                     </table>
                 </div>
@@ -80,7 +79,7 @@
                 <h4 class="modal-title" id="myModalLabel">Add User Informations <span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['route' => 'store-branch','id' => 'jq-validation-form']) !!}
+                {!! Form::open(['route' => 'add-user','id' => 'jq-validation-form']) !!}
                 @include('user::user._form')
                 {!! Form::close() !!}
             </div> <!-- / .modal-body -->

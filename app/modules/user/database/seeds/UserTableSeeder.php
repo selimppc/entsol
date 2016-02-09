@@ -23,6 +23,7 @@ class UserTableSeeder extends Seeder
                 'username' => $user[0],
                 'email' => $user[1],
                 'password' => $user[2],
+                'branch_id' => Null,
                 'auth_key' => '',
                 'access_token' => '',
                 'csrf_token' => '',

@@ -23,6 +23,7 @@ class UserRole extends Migration
             $table->string('access_token', 256)->nullable();
             $table->string('csrf_token', 64)->nullable();
             $table->string('ip_address', 32)->nullable();
+            $table->unsignedInteger('branch_id')->nullable();
             $table->dateTime('last_visit')->nullable();
             $table->unsignedInteger('role_id')->nullable();
             $table->string('remember_token',64)->nullable();
@@ -31,6 +32,9 @@ class UserRole extends Migration
             $table->integer('updated_by', false, 11);
             $table->timestamps();
             $table->engine = 'InnoDB';
+        });
+        Schema::table('user', function($table) {
+            $table->foreign('branch_id')->references('id')->on('cm_branch');
         });
 
         /*role*/
