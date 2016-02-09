@@ -84,6 +84,10 @@ Route::get('user-logout', [
     'uses' => 'UserController@logout'
 ]);
 
+Route::any('add-user', [
+    'as' => 'add-user',
+    'uses' => 'UserController@add_user'
+]);
 });
 
 

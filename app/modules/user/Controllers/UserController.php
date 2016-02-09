@@ -160,7 +160,7 @@ class UserController extends Controller
     }
 
     public function add_user(){
-        //
+       exit('223434');
     }
     /**
      * Display the specified resource.
