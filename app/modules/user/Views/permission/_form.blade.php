@@ -23,7 +23,7 @@
     </div>
 </div>
 
-<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+{{--<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('currency_id', 'Currency:', ['class' => 'control-label']) !!}
@@ -40,7 +40,7 @@
             {!! Form::input('number', 'exchange_rate', null, ['id'=>'exchange_rate', 'class' => 'form-control', 'step'=>'any','required','title'=>'enter exchange rate for selected currency']) !!}
         </div>
     </div>
-</div>
+</div>--}}
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">

@@ -10,8 +10,8 @@ Route::any('index-permission', [
     'uses' => 'PermissionController@index'
 ]);
 
-Route::any('add-permission', [
-    'as' => 'add-permission',
+Route::any('store-permission', [
+    'as' => 'store-permission',
     'uses' => 'PermissionController@add'
 ]);
 

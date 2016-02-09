@@ -2,6 +2,7 @@
 #namespace App\Modules\Web\Controllers;
 namespace App\Modules\User\Controllers;
 
+use App\Permission;
 use App\User;
 use App\UserResetPassword;
 use Illuminate\Http\Request;
@@ -25,10 +26,9 @@ class PermissionController extends Controller
     public function index()
     {
         $pageTitle = "Permission List";
-        $username = Input::get('username');
-        $email = Input::get('email');
-        $data = User::where('status','!=','cancel')->where('username', 'LIKE', '%'.$username.'%')->where('email', 'LIKE', '%'.$email.'%')->orderBy('id', 'DESC')->get();
-        return view('user::user.index', ['data' => $data, 'pageTitle'=> $pageTitle]);
+        $title = Input::get('title');
+        $data = Permission::where('title', 'LIKE', '%'.$title.'%')->orderBy('id', 'DESC')->get();
+        return view('user::permission.index', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 
     public function add(){
