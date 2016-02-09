@@ -149,7 +149,7 @@ class VoucherDetailController extends Controller
 
     public function edit($id)
     {
-        $pageTitle = 'Show the detail';
+        $pageTitle = 'Edit Voucher Detail';
 
         $data = VoucherDetail::with('relChartOfAccounts')->findOrFail($id);
 
@@ -222,28 +222,6 @@ class VoucherDetailController extends Controller
         return redirect()->back();
     }
 
-    public function search(){
-        return view('accounts::voucher_detail.autocomplete');
-    }
-
-    public function autocomplete(){
-        $term = Input::get('account_code');
-        #print_r($term);exit;
-        $results = array();
-
-        $queries = DB::table('ac_chart_of_accounts')
-            ->where('account_code', 'LIKE', '%'.$term.'%')
-            ->get();
-        #print_r($queries);exit;
-
-        foreach ($queries as $query)
-        {
-            $results[] = ['account_code'=>$query->account_code];
-        }
-        #print_r($results);exit;
-        return Response::json($results);
-    }
-
     public function destroy($id){
 
         $model = VoucherDetail::findOrFail($id);
@@ -309,18 +287,9 @@ class VoucherDetailController extends Controller
         }
     }
 
-    public function test(){
-
-        return view('accounts::voucher_detail.test');
-    }
-
-    public function list_coa(){
+    public function get_autocomplete_search_coa(){
 
         $coa_data = Input::get('term');
-       #print_r($coa_data);exit('12345');
-
-
-
 
         $coa = DB::table('ac_chart_of_accounts')
             ->where('title', 'LIKE', '%' . $coa_data . '%')

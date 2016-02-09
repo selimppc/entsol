@@ -14,7 +14,7 @@ Route::any('test', [
 
 Route::any('coa-list', [
     'as' => 'coa-list',
-    'uses' => 'VoucherDetailController@list_coa'
+    'uses' => 'VoucherDetailController@get_autocomplete_search_coa'
 ]);
 
 Route::any('voucher-head', [
