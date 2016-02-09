@@ -68,7 +68,7 @@ class VoucherDetailController extends Controller
         $voucher_data = VoucherHead::where('id',$id)->first();
 
         /* show chat of accounts according to account-type */
-        
+
         /*$results =  ChartOfAccounts::with('relGroupOne')->orderBy('account_type', 'ASC')->get();
 
         $results = ChartOfAccounts
