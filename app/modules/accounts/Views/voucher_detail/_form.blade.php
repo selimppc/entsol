@@ -5,15 +5,12 @@
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
-        <div class="help-text-top">
-            <em>You will get account code and exchange rate according to Chart of Accounts and Currency.</em>
-        </div>
 
         <div class="col-sm-12">
 
             {!! Form::label('ac_title', 'Chat Of Accounts:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('ac_title', Input::old('coa_id'), ['id'=>'auto-search-ac','class' => 'form-control','placeholder'=>'Type Chart of account OR account-code']) !!}
+            {!! Form::text('ac_title', Input::old('coa_id'), ['id'=>'auto-search-ac','class' => 'form-control','placeholder'=>'Search Chart of account OR account-code']) !!}
             {!! Form::hidden('coa_id',null, ['id'=>'coa-id-val']) !!}
             {{--<select id="coa_id" name="coa_id" class="form-control select2-offscreen">
                 @foreach ( $attributes as $key => $attr )
