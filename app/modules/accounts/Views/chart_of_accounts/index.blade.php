@@ -19,7 +19,7 @@
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
                 {!! Form::open(['method' =>'GET','url'=>'/chart-of-accounts']) !!}
-                <div class="col-sm-10">
+                <div class="col-sm-11">
                     <div class="col-sm-2">
                         {!! Form::text('account_code',null,['class' => 'form-control','placeholder'=>'account code', 'title'=>'type your require "Account Code", example :: 101-004']) !!}
                     </div>
@@ -35,7 +35,7 @@
                     <div class="col-sm-2">
                         {!! Form::select('group_one_id', $group_one_id,null,['class' => 'form-control', 'title'=>'select your require "Group", example :: Cash & Bank']) !!}
                     </div>
-                    <div class="col-sm-2 filter-btn">
+                    <div class="col-sm-1 filter-btn">
                         {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button', 'data-placement'=>'right', 'data-content'=>'type code or title or both in specific field then click search button for required information')) !!}
                     </div>
                 </div>

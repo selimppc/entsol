@@ -39,11 +39,11 @@
                         <div class="col-sm-1">
                             {!! Form::selectrange('period', 1,12, @Input::get('period')? Input::get('period') : null,['class' => 'form-control', 'title'=>'select your require "period", example :: 6 (june), then click "search" button']) !!}
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             {!! Form::Select('status',array(''=>'status','open'=>'Open','posted'=>'Posted','balanced'=>'Balanced','suspend'=>'Suspend','active'=>'Active','inactive'=>'Inactive'),@Input::get('status')? Input::get('status') : null,['class'=>'form-control', 'title'=>'select your require "status", example :: open, then click "search" button']) !!}
                         </div>
 
-                        <div class="col-sm-2 srch-btn">
+                        <div class="col-sm-1 srch-btn">
                             {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs', 'data-placement'=>'right', 'data-content'=>'type voucher or select branch or both in specific field then click search button for required information')) !!}
                         </div>
                     </div>
