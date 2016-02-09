@@ -131,3 +131,10 @@ Route::get('search-voucher', [
 ]);
 
 
+Route::get('search-voucher-details/{id}/{voucher_number}', [
+    'as' => 'search-voucher-details',
+    'uses' => 'VoucherDetailController@search_voucher_details'
+]);
+
+
+
