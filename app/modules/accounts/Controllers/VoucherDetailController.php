@@ -68,9 +68,10 @@ class VoucherDetailController extends Controller
         $voucher_data = VoucherHead::where('id',$id)->first();
 
         /* show chat of accounts according to account-type */
-        $results =  ChartOfAccounts::with('relGroupOne')->orderBy('account_type', 'ASC')->get();
+        
+        /*$results =  ChartOfAccounts::with('relGroupOne')->orderBy('account_type', 'ASC')->get();
 
-        /*$results = ChartOfAccounts
+        $results = ChartOfAccounts
             ::join('ac_group_one', 'ac_group_one.id', '=', 'ac_chart_of_accounts.group_one_id')
             ->select('ac_chart_of_accounts.id as id','ac_chart_of_accounts.title as title','ac_chart_of_accounts.account_code','ac_chart_of_accounts.account_type', 'ac_group_one.id as g_id', 'ac_group_one.title as g_title')
 
@@ -150,7 +151,7 @@ class VoucherDetailController extends Controller
     {
         $pageTitle = 'Show the detail';
 
-        $data = VoucherDetail::findOrFail($id);
+        $data = VoucherDetail::with('relChartOfAccounts')->findOrFail($id);
 
         $coa_data = ChartOfAccounts::lists('title','id');
         $currency_data = Currency::lists('title','id');
