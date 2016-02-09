@@ -8,7 +8,7 @@
 
 Route::group(array('modules'=>'User', 'namespace' => 'App\Modules\User\Controllers'), function() {
     //Your routes belong to this module.
-
+include 'routes_permission.php';
 Route::any('index-user', [
     'as' => 'index-user',
     'uses' => 'UserController@index'
