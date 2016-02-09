@@ -37,7 +37,7 @@
                             {!! Form::selectrange('year', 2016,2030, @Input::get('year')? Input::get('year') : null,['class' => 'form-control', 'title'=>'select your require "year", example :: 2016, then click "search" button']) !!}
                         </div>
                         <div class="col-sm-1">
-                            {!! Form::selectrange('period', 1,12, @Input::get('period')? Input::get('period') : null,['class' => 'form-control', 'title'=>'select your require "period", example :: 6 (june), then click "search" button']) !!}
+                            {!! Form::Select('period', array(''=>'select','1'=>'1','2'=>'2','3'=>'3','4'=>'4','5'=>'5','6'=>'6','7'=>'7','8'=>'8','9'=>'9','10'=>'10','11'=>'11','12'=>'12'), @Input::get('period')? Input::get('period') : null,['class' => 'form-control', 'title'=>'select your require "period", example :: 6 (june), then click "search" button']) !!}
                         </div>
                         <div class="col-sm-2">
                             {!! Form::Select('status',array(''=>'status','open'=>'Open','posted'=>'Posted','balanced'=>'Balanced','suspend'=>'Suspend','active'=>'Active','inactive'=>'Inactive'),@Input::get('status')? Input::get('status') : null,['class'=>'form-control', 'title'=>'select your require "status", example :: open, then click "search" button']) !!}

@@ -21,10 +21,10 @@
                 {!! Form::open(['method' =>'GET','url'=>'/currency']) !!}
                 <div class="col-sm-8">
                     <div class="col-sm-3">
-                        {!! Form::text('code',Input::old('code'),['class' => 'form-control','placeholder'=>'type code', 'title'=>'type your required currency "code", example :: BDT, then click "search" button']) !!}
+                        {!! Form::text('code',@Input::get('code')? Input::get('code') : null,['class' => 'form-control','placeholder'=>'type code', 'title'=>'type your required currency "code", example :: BDT, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-3">
-                        {!! Form::text('title',Input::old('title'),['class' => 'form-control','placeholder'=>'type title', 'title'=>'type your required currency "title", example :: bangladeshi taka, then click "search" button']) !!}
+                        {!! Form::text('title',@Input::get('title')? Input::get('title') : null,['class' => 'form-control','placeholder'=>'type title', 'title'=>'type your required currency "title", example :: bangladeshi taka, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-2 filter-btn">
                         {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button', 'data-placement'=>'top', 'data-content'=>'type code or title or both in specific field then click search button for required information')) !!}

@@ -22,10 +22,10 @@
                 {{--{!! Form::open(['route' => 'group-one']) !!}--}}
                 <div class="col-sm-9">
                     <div class="col-sm-3">
-                        {!! Form::text('code',Input::old('code'),['class' => 'form-control','placeholder'=>'type code', 'title'=>'type your required group One "code", example :: 101, then click "search" button']) !!}
+                        {!! Form::text('code',@Input::get('code')? Input::get('code') : null,['class' => 'form-control','placeholder'=>'type code', 'title'=>'type your required group One "code", example :: 101, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-3">
-                        {!! Form::text('title',Input::old('title'),['class' => 'form-control','placeholder'=>'type title', 'title'=>'type your required group One "title", example :: depreciation or partial text :: depr, then click "search" button']) !!}
+                        {!! Form::text('title',@Input::get('title')? Input::get('title') : null,['class' => 'form-control','placeholder'=>'type title', 'title'=>'type your required group One "title", example :: depreciation or partial text :: depr, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-3 filter-btn">
                         {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left pop','id'=>'button', 'data-placement'=>'right', 'data-content'=>'type code or title or both in specific field then click search button for required information')) !!}

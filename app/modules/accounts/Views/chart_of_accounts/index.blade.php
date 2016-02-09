@@ -21,19 +21,19 @@
                 {!! Form::open(['method' =>'GET','url'=>'/chart-of-accounts']) !!}
                 <div class="col-sm-11">
                     <div class="col-sm-2">
-                        {!! Form::text('account_code',null,['class' => 'form-control','placeholder'=>'account code', 'title'=>'type your require "Account Code", example :: 101-004']) !!}
+                        {!! Form::text('account_code',@Input::get('account_code')? Input::get('account_code') : null,['class' => 'form-control','placeholder'=>'account code', 'title'=>'type your require "Account Code", example :: 101-004']) !!}
                     </div>
                     <div class="col-sm-2">
-                        {!! Form::text('title',null,['class' => 'form-control','placeholder'=>'type title', 'title'=>'type your require "title", example :: Medical & Lab equipment']) !!}
+                        {!! Form::text('title',@Input::get('title')? Input::get('title') : null,['class' => 'form-control','placeholder'=>'type title', 'title'=>'type your require "title", example :: Medical & Lab equipment']) !!}
                     </div>
                     <div class="col-sm-2">
-                        {!! Form::select('account_type', array(''=>'account type','asset'=>'Asset','liability'=>'Liability','income'=>'Income','expenses'=>'Expenses'),null,['class' => 'form-control', 'title'=>'select your require "account type", example :: Asset']) !!}
+                        {!! Form::select('account_type', array(''=>'select account type','asset'=>'Asset','liability'=>'Liability','income'=>'Income','expenses'=>'Expenses'),@Input::get('account_type')? Input::get('account_type') : null,['class' => 'form-control', 'title'=>'select your require "account type", example :: Asset']) !!}
                     </div>
                     <div class="col-sm-2">
-                        {!! Form::select('account_usage', array(''=>'account usage','ledger'=>'Ledger','ap'=>'Ap','ar'=>'Ar'),null,['class' => 'form-control', 'title'=>'select your require "account usage", example :: Leger']) !!}
+                        {!! Form::select('account_usage', array(''=>'select account usage','ledger'=>'Ledger','ap'=>'Ap','ar'=>'Ar'),@Input::get('account_usage')? Input::get('account_usage') : null,['class' => 'form-control', 'title'=>'select your require "account usage", example :: Leger']) !!}
                     </div>
                     <div class="col-sm-2">
-                        {!! Form::select('group_one_id', $group_one_id,null,['class' => 'form-control', 'title'=>'select your require "Group", example :: Cash & Bank']) !!}
+                        {!! Form::select('group_one_id', $group_one_id,@Input::get('group_one_id')? Input::get('group_one_id') : null,['class' => 'form-control', 'title'=>'select your require "Group", example :: Cash & Bank']) !!}
                     </div>
                     <div class="col-sm-1 filter-btn">
                         {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button', 'data-placement'=>'right', 'data-content'=>'type code or title or both in specific field then click search button for required information')) !!}
