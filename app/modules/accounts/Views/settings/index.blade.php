@@ -19,7 +19,7 @@
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
                 {!! Form::open(['method' =>'GET','url'=>'/settings']) !!}
-                <div class="col-sm-8">
+                <div id="index-search">
                     <div class="col-sm-3">
                         {!! Form::text('code',@Input::get('code')? Input::get('code') : null,['class' => 'form-control','placeholder'=>'type code', 'title'=>'type your required settings "code", example :: -JV, then click "search" button']) !!}
                     </div>

@@ -20,7 +20,8 @@
                 {{-------------- Filter :Starts -------------------------------------------}}
                 {!! Form::open(['method' =>'GET','url'=>'/group-one']) !!}
                 {{--{!! Form::open(['route' => 'group-one']) !!}--}}
-                <div class="col-sm-9">
+
+                <div id="index-search">
                     <div class="col-sm-3">
                         {!! Form::text('code',@Input::get('code')? Input::get('code') : null,['class' => 'form-control','placeholder'=>'type code', 'title'=>'type your required group One "code", example :: 101, then click "search" button']) !!}
                     </div>
@@ -31,6 +32,8 @@
                         {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left pop','id'=>'button', 'data-placement'=>'right', 'data-content'=>'type code or title or both in specific field then click search button for required information')) !!}
                     </div>
                 </div>
+
+
                 {!! Form::close() !!}
                 <p> &nbsp;</p>
                 <p> &nbsp;</p>
