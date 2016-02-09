@@ -8,7 +8,36 @@
 
 Route::group(array('modules'=>'User', 'namespace' => 'App\Modules\User\Controllers'), function() {
     //Your routes belong to this module.
+include 'routes_permission.php';
+Route::any('index-user', [
+    'as' => 'index-user',
+    'uses' => 'UserController@index'
+]);
 
+Route::any('add-user', [
+    'as' => 'add-user',
+    'uses' => 'UserController@add_user'
+]);
+
+Route::any('show-user/{id}', [
+    'as' => 'show-user',
+    'uses' => 'UserController@show_user'
+]);
+
+Route::any('edit-user', [
+    'as' => 'edit-user',
+    'uses' => 'UserController@edit_user'
+]);
+
+Route::any('update-user', [
+    'as' => 'update-user',
+    'uses' => 'UserController@update_user'
+]);
+
+Route::any('delete-user', [
+    'as' => 'delete-user',
+    'uses' => 'UserController@destroy_user'
+]);
 
 Route::any('user', [
     'as' => 'user',
@@ -55,6 +84,10 @@ Route::get('user-logout', [
     'uses' => 'UserController@logout'
 ]);
 
+Route::any('add-user', [
+    'as' => 'add-user',
+    'uses' => 'UserController@add_user'
+]);
 });
 
 

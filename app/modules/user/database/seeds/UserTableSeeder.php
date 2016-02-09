@@ -12,7 +12,7 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         DB::statement("SET foreign_key_checks = 0");
-        DB::table('user')->delete();
+        DB::table('user')->truncate();
 
         $users = array(
             array('admin', 'admin@admin.com', Hash::make('admin'),'127.0.1.1','2015-08-27 16:33:22')
@@ -23,6 +23,7 @@ class UserTableSeeder extends Seeder
                 'username' => $user[0],
                 'email' => $user[1],
                 'password' => $user[2],
+                'branch_id' => Null,
                 'auth_key' => '',
                 'access_token' => '',
                 'csrf_token' => '',
@@ -30,6 +31,7 @@ class UserTableSeeder extends Seeder
                 'last_visit' => $user[4],
                 'role_id' => Null,
                 'remember_token' => '',
+                'status' => 'active',
                 'created_at' => new DateTime,
                 'updated_at' => new DateTime
             ));

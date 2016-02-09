@@ -16,11 +16,6 @@ use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
-    public function index()
-    {
-       return view('user::user.index');
-    }
-
     public function create_sign_up()
     {
         return view('user::signup._form');
@@ -149,16 +144,33 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    /**
+     * Display the specified resource.
+     *
+     * @param
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $pageTitle = "User List";
+        $username = Input::get('username');
+        $email = Input::get('email');
+        $data = User::where('status','!=','cancel')->where('username', 'LIKE', '%'.$username.'%')->where('email', 'LIKE', '%'.$email.'%')->orderBy('id', 'DESC')->get();
+        return view('user::user.index', ['data' => $data, 'pageTitle'=> $pageTitle]);
+    }
 
+    public function add_user(){
+       exit('223434');
+    }
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show_user($id)
     {
-        //
+        exit('Ok');
     }
 
     /**
@@ -167,7 +179,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit_user($id)
     {
         //
     }
@@ -179,7 +191,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update_user(Request $request, $id)
     {
         //
     }
@@ -190,7 +202,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy_user($id)
     {
         //
     }

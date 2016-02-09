@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
 use Jaspersoft\Client\Client;
 
 class AcReportsController extends Controller
@@ -15,20 +16,34 @@ class AcReportsController extends Controller
             "http://localhost:8080/jasperserver",
             "jasperadmin",
             "jasperadmin",
-            "entsol"
+            ""
         );
 
-        // Store service for several calls
-        $js = $c->jobService();
-        $js->getJobs("/entsol/Reports/chart_of_account_list");
+        //TODO:: Get report in HTML
+        $report = $c->reportService()->runReport('/reports/samples/AllAccounts', 'html');
+        echo $report;
 
-        // Or access service methods directly
-        $c->jobService()->getJobs("/entsol/Reports/chart_of_account_list");
+        //TODO:: Get report in PDF
+        $report = $c->reportService()->runReport('/reports/samples/AllAccounts', 'pdf');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Description: File Transfer');
+        header('Content-Disposition: attachment; filename=report.pdf');
+        header('Content-Transfer-Encoding: binary');
+        header('Content-Length: ' . strlen($report));
+        header('Content-Type: application/pdf');
+        echo $report;
 
 
-        $info = $c->serverInfo();
 
-        print_r($info);
+        //TODO:: reports with Input Control
+        $controls = array(
+            'Country_multi_select' => array('USA', 'Mexico'),
+            'Cascading_state_multi_select' => array('CA', 'OR')
+        );
+        $report = $c->reportService()->runReport('/reports/samples/Cascading_multi_select_report', 'html', null, null, $controls);
+        echo $report;
 
+        
     }
 }

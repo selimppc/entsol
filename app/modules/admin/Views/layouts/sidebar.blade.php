@@ -44,6 +44,12 @@
             <a href="#"><i class="menu-icon fa fa-user-md"></i><span class="mm-text">User</span></a>
             <ul>
                 <li>
+                    <a tabindex="-1" href="{{route('index-user')}}"><span class="mm-text">User List</span></a>
+                </li>
+                <li>
+                    <a tabindex="-1" href="{{route('index-permission')}}"><span class="mm-text">Permission</span></a>
+                </li>
+                <li>
                     <a tabindex="-1" href="{{route('create-sign-up')}}"><span class="mm-text">Sign Up</span></a>
                 </li>
                 <li>
