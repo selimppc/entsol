@@ -2,6 +2,7 @@
 #namespace App\Modules\Web\Controllers;
 namespace App\Modules\User\Controllers;
 
+use App\Branch;
 use App\User;
 use App\UserResetPassword;
 use Illuminate\Http\Request;
@@ -155,8 +156,10 @@ class UserController extends Controller
         $pageTitle = "User List";
         $username = Input::get('username');
         $email = Input::get('email');
-        $data = User::where('status','!=','cancel')->where('username', 'LIKE', '%'.$username.'%')->where('email', 'LIKE', '%'.$email.'%')->orderBy('id', 'DESC')->get();
-        return view('user::user.index', ['data' => $data, 'pageTitle'=> $pageTitle]);
+        $data = User::orderBy('id', 'DESC')->get();
+        $branch_data =  Branch::lists('title','id');
+
+        return view('user::user.index', ['data' => $data, 'pageTitle'=> $pageTitle,'branch_data'=>$branch_data]);
     }
 
     public function add_user(){

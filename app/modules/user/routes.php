@@ -88,6 +88,23 @@ Route::any('add-user', [
     'as' => 'add-user',
     'uses' => 'UserController@add_user'
 ]);
+
+/*Role */
+
+Route::any('role', [
+    'as' => 'role',
+    'uses' => 'RoleController@index'
+]);
+
+Route::any('store-role', [
+    'as' => 'store-role',
+    'uses' => 'RoleController@store_role'
+]);
+
+Route::any('role-view/{slug}', [
+    'as' => 'role-view',
+    'uses' => 'RoleController@show'
+]);
 });
 
 
