@@ -39,7 +39,7 @@ class BranchController extends Controller
         if (isset($currency) && !empty($currency)) $data->where('cm_branch.currency_id', '=', $currency);
         $data = $data->get();
 
-        $currency_id =  [''=>'Currency'] + Currency::lists('title','id')->all();
+        $currency_id =  [''=>'select currency'] + Currency::lists('title','id')->all();
         return view('accounts::branch.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'currency_id'=> $currency_id]);
     }
 
