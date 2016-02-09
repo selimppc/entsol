@@ -20,10 +20,13 @@
                 {{-------------- Filter :Starts -------------------------------------------}}
                 {!! Form::open(['method' =>'GET','url'=>'/settings']) !!}
                 <div id="index-search">
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
+                        {!! Form::Select('type',array(''=>'select accounts type','account-payable'=>'Account Payable','account-receivable'=>'Account Receivable','account-adjustment'=>'Account Adjustment','journal-voucher'=>'Journal Voucher','receipt-voucher'=>'Receipt Voucher','reverse-entry'=>'Reverse Entry'),@Input::get('type')? Input::get('type') : null,['class'=>'form-control ','title'=>'select your required "account type", example :: journal voucher, then click "search" button']) !!}
+                    </div>
+                    <div class="col-sm-2">
                         {!! Form::text('code',@Input::get('code')? Input::get('code') : null,['class' => 'form-control','placeholder'=>'type code', 'title'=>'type your required settings "code", example :: -JV, then click "search" button']) !!}
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         {!! Form::text('title',@Input::get('title')? Input::get('title') : null,['class' => 'form-control','placeholder'=>'type title', 'title'=>'type your required settings "title", example :: journal voucher, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-2 filter-btn">

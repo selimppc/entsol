@@ -26,9 +26,15 @@ class SettingsController extends Controller
     public function index()
     {
         $pageTitle = "Settings Information";
+        $data = new Settings();
         $code = Input::get('code');
         $title = Input::get('title');
-        $data = Settings::where('status','!=','cancel')->where('code', 'LIKE', '%'.$code.'%')->where('title', 'LIKE', '%'.$title.'%')->orderBy('id', 'DESC')->get();
+        $type = Input::get('type');
+        if (isset($code) && !empty($code)) $data = $data->where('code', 'LIKE', '%'.$code.'%');
+        if (isset($title) && !empty($title)) $data = $data->where('title', 'LIKE', '%'.$title.'%');
+        if (isset($type) && !empty($type)) $data = $data->where('type', 'LIKE', '%'.$type.'%');
+        $data = $data->get();
+
         return view('accounts::settings.index', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 

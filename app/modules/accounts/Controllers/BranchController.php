@@ -31,16 +31,16 @@ class BranchController extends Controller
 
         $title = Input::get('title');
         $code = Input::get('code');
-        $currency=Input::get('currency_id');
+        $currency_id=Input::get('currency_id');
 
         $data = $data->with('relCurrency');
         if (isset($title) && !empty($title)) $data ->where('cm_branch.title', 'LIKE', '%'.$title.'%');
         if (isset($code) && !empty($code)) $data->where('cm_branch.code', 'LIKE', '%'.$code.'%');
-        if (isset($currency) && !empty($currency)) $data->where('cm_branch.currency_id', '=', $currency);
+        if (isset($currency_id) && !empty($currency_id)) $data->where('cm_branch.currency_id', '=', $currency_id);
         $data = $data->get();
 
-        $currency_id =  [''=>'select currency'] + Currency::lists('title','id')->all();
-        return view('accounts::branch.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'currency_id'=> $currency_id]);
+        $currency_list =  [''=>'select currency'] + Currency::lists('title','id')->all();
+        return view('accounts::branch.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'currency_id'=> $currency_list]);
     }
 
     /**
