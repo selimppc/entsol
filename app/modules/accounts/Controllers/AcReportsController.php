@@ -62,10 +62,14 @@ class AcReportsController extends Controller
     }
 
 
+    public function account_reports(){
+
+        return view('accounts::reports.reports_dashboard');
+
+    }
 
 
 
 
 
-    
 }

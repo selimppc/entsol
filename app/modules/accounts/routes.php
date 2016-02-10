@@ -236,5 +236,11 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
         "uses" => "AcReportsController@test_report"
     ]);
 
+
+    Route::get('account-reports', [
+        'as' => 'account-reports',
+        'uses' => 'AcReportsController@account_reports'
+    ]);
+
 });
 
