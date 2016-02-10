@@ -11,8 +11,8 @@
                 <td>{{ isset($data->relRole->title)?$data->relRole->title:''}}</td>
             </tr>
             <tr>
-                <th class="col-lg-4">Permission</th>
-                <td>{{ isset($data->relPermission->title)?$data->relPermission->title:''}}</td>
+                <th class="col-lg-4">User</th>
+                <td>{{ isset($data->relUser->username)?$data->relUser->username:''}}</td>
             </tr>
             <tr>
                 <th class="col-lg-4">Status</th>

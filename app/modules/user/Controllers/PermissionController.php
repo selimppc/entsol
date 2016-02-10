@@ -56,7 +56,7 @@ class PermissionController extends Controller
             }
         }
 
-        return redirect()->back();
+        return redirect()->route('index-permission');
     }
     /**
      * Display the specified resource.
@@ -113,7 +113,7 @@ class PermissionController extends Controller
             DB::rollback();
             Session::flash('danger', $e->getMessage());
         }
-        return redirect()->back();
+        return redirect()->route('index-permission');
     }
 
     /**
@@ -136,6 +136,6 @@ class PermissionController extends Controller
             DB::rollback();
             Session::flash('danger',$e->getMessage());
         }
-        return redirect()->back();
+        return redirect()->route('index-permission');
     }
 }
