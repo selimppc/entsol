@@ -66,7 +66,7 @@ class ReverseVoucherDetailController extends Controller
             if (isset($id) && !empty($id)) $model = $model->where('ac_voucher_detail.voucher_head_id', '=', $id);
             if (isset($voucher_number) && !empty($voucher_number)) $model = $model->where('ac_voucher_detail.voucher_number', '=', $voucher_number);
 
-            $model = $model->get();
+            $model = $model->where('voucher_head_id',$id)->get();
             #print_r($model);exit;
         }else{
             $model = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('voucher_head_id',$id)->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
@@ -99,8 +99,8 @@ class ReverseVoucherDetailController extends Controller
                 'sub_account_code'=> $input['sub_account_code'],
                 'currency_id'=> $input['currency_id'],
                 'exchange_rate'=> $currency_data['exchange_rate'],
-                'prime_amount'=> $input['amount'],
-                'base_amount'=> $input['amount'],
+                'prime_amount'=> $input['prime_amount'],
+                'base_amount'=> $input['prime_amount'],
                 'branch_id'=> $input['branch_id'],
                 'note'=> $input['note'],
                 'status'=> $input['status'],
@@ -155,8 +155,8 @@ class ReverseVoucherDetailController extends Controller
                 'sub_account_code'=> $input['sub_account_code'],
                 'currency_id'=> $input['currency_id'],
                 'exchange_rate'=> $currency_data['exchange_rate'],
-                'prime_amount'=> $input['amount'],
-                'base_amount'=> $input['amount'],
+                'prime_amount'=> $input['prime_amount'],
+                'base_amount'=> $input['prime_amount'],
                 'branch_id'=> $input['branch_id'],
                 'note'=> $input['note'],
                 'status'=> $input['status'],

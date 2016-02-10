@@ -63,7 +63,7 @@
             {!! Form::label('amount', 'Amount(Debit/Credit):', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small><br>
             <small class="narration">For credit add minus sign(-) before numeric digit(s).</small>
-            {!! Form::text('amount', Input::old('amount'), ['class' => 'form-control','required','title'=>"enter debit/credit amount : for debit amount enter (+) value example : 100, for credit amount enter (-) value example : -100"]) !!}
+            {!! Form::text('prime_amount', Input::old('prime_amount'), ['class' => 'form-control','required','title'=>"enter debit/credit amount : for debit amount enter (+) value example : 100, for credit amount enter (-) value example : -100"]) !!}
         </div>
         <div class="col-sm-6">
             <br>

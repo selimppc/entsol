@@ -106,7 +106,7 @@ class VoucherDetailController extends Controller
                 $query->on('branch.id', '=', 'ac_voucher_detail.branch_id');
                 $query->where('branch.id',  '=', $search_branch);
             });*/
-            $model = $model->get();
+            $model = $model->where('voucher_head_id',$id)->get();
             #print_r($model);exit;
         }else{
             $model = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('voucher_head_id',$id)->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
@@ -139,8 +139,8 @@ class VoucherDetailController extends Controller
                 'sub_account_code'=> $input['sub_account_code'],
                 'currency_id'=> $input['currency_id'],
                 'exchange_rate'=> $currency_data['exchange_rate'],
-                'prime_amount'=> $input['amount'],
-                'base_amount'=> $input['amount'],
+                'prime_amount'=> $input['prime_amount'],
+                'base_amount'=> $input['prime_amount'],
                 'branch_id'=> $input['branch_id'],
                 'note'=> $input['note'],
                 'status'=> $input['status'],

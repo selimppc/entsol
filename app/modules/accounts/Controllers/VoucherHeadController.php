@@ -72,7 +72,7 @@ class VoucherHeadController extends Controller
             if (isset($voucher_number) && !empty($voucher_number)) $model->where('ac_voucher_head.voucher_number', 'LIKE', '%'.$voucher_number.'%');
             if (isset($date) && !empty($date)) $model->where('ac_voucher_head.date', '=', $date);
             if (isset($status) && !empty($status)) $model->where('ac_voucher_head.status', '=', $status);
-            $model = $model->get();
+            $model = $model->where('account_type','journal-voucher')->get();
         }else{
             $model = $model->with('relBranch')->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
         }

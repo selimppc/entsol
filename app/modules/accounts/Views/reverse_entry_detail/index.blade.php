@@ -11,10 +11,10 @@
     <div class="col-sm-12">
         <div class="panel">
             <div class="panel-heading">
-                <span class="panel-title">{{ $pageTitle }} <strong>({{isset($voucher_number)?$voucher_number:''}})</strong></span>&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>When Journal Voucher is balanced ,You can <b>Post</b> This Voucher At <b>'Post To Ledger'</b> Button.</em>">(?)</span>
+                <span class="panel-title">{{ $pageTitle }} <strong>({{isset($voucher_number)?$voucher_number:''}})</strong></span>&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>When Reverse Entry is balanced ,You can <b>Post</b> This Voucher At <b>'Post To Ledger'</b> Button.</em>">(?)</span>
 
                 @if($voucher_data->status!='posted')
-                    <a class="btn btn-xs btn-primary pull-right" data-toggle="modal" href="#addData" data-placement="left" data-content="click add voucher detail button for voucher debit and credit amount entry">
+                    <a class="btn btn-xs btn-primary pull-right" data-toggle="modal" href="#addData" data-placement="left" data-content="click 'add reverse detail' button for reverse debit and credit amount entry">
                        <strong>Add Reverse Detail</strong>
                     </a>
                 @endif
