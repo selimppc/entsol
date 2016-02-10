@@ -37,17 +37,23 @@ class PermissionController extends Controller
         $title = Input::get('title');
         $title_upper_case = ucwords($title);
         $input['title'] = $title_upper_case;
+        $input['slug'] = str_slug(strtolower($input['title']));
+        $permission_exists = Permission::where('slug',$input['slug'])->exists();
 
-        /* Transaction Start Here */
-        DB::beginTransaction();
-        try {
-            Permission::create($input);
-            DB::commit();
-            Session::flash('message', 'Successfully added!');
-        } catch (\Exception $e) {
-            //If there are any exceptions, rollback the transaction`
-            DB::rollback();
-            Session::flash('danger', $e->getMessage());
+        if($permission_exists){
+            Session::flash('danger',' Already Exists.');
+        }else{
+            /* Transaction Start Here */
+            DB::beginTransaction();
+            try {
+                Permission::create($input);
+                DB::commit();
+                Session::flash('message', 'Successfully added!');
+            } catch (\Exception $e) {
+                //If there are any exceptions, rollback the transaction`
+                DB::rollback();
+                Session::flash('danger', $e->getMessage());
+            }
         }
 
         return redirect()->back();
@@ -58,10 +64,10 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
         $pageTitle = 'View Permission';
-        $data = Permission::where('id',$id)->first();
+        $data = Permission::where('slug',$slug)->first();
 
         return view('user::permission.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
@@ -72,10 +78,10 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
         $pageTitle = 'Update Permission Informations';
-        $data = Permission::where('id',$id)->first();
+        $data = Permission::where('slug',$slug)->first();
         return view('user::permission.update', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 
@@ -86,14 +92,15 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Requests\PermissionRequest $request, $id)
+    public function update(Requests\PermissionRequest $request, $slug)
     {
-        $model = Permission::where('id',$id)->first();
+        $model = Permission::where('slug',$slug)->first();
         $input = $request->all();
 
         $title = Input::get('title');
         $title_upper_case = ucwords($title);
         $input['title'] = $title_upper_case;
+        $input['slug'] = str_slug(strtolower($input['title']));
 
         DB::beginTransaction();
         try {
@@ -115,9 +122,9 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        $model = Permission::findOrFail($id);
+        $model = Permission::where('slug',$slug)->first();
 
         DB::beginTransaction();
         try {

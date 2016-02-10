@@ -6,13 +6,6 @@
             <small class="required">(Required)</small>
             {!! Form::text('title', null, ['id'=>'title', 'class' => 'form-control','required','required', 'style'=>'text-transform:capitalize','required','title'=>'enter permission title, example :: Branch Permission']) !!}
         </div>
-        <div class="row">
-            <div class="col-sm-6">
-                {!! Form::label('slug', 'Slug:', ['class' => 'control-label']) !!}
-                <small class="required">(Required)</small>
-                {!! Form::text('slug', null, ['id'=>'slug', 'class' => 'form-control','required','required', 'style'=>'text-transform:capitalize','required','title'=>'enter permission slug']) !!}
-            </div>
-        </div>
     </div>
 </div>
 
