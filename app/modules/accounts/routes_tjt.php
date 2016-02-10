@@ -137,4 +137,41 @@ Route::get('search-voucher-details/{id}/{voucher_number}', [
 ]);
 
 
+/*------------------------------Reverse Voucher--------------------------*/
+
+Route::any('reverse-voucher', [
+    'as' => 'reverse-voucher',
+    'uses' => 'ReverseVoucherHeadController@index'
+]);
+
+Route::any('store-reverse-voucher', [
+    'as' => 'store-reverse-voucher',
+    'uses' => 'ReverseVoucherHeadController@store'
+]);
+
+Route::any('view-reverse-voucher/{id}', [
+    'as' => 'view-reverse-voucher',
+    'uses' => 'ReverseVoucherHeadController@show'
+]);
+Route::any('edit-reverse-voucher/{id}', [
+    'as' => 'edit-reverse-voucher',
+    'uses' => 'ReverseVoucherHeadController@edit'
+]);
+Route::any('update-reverse-voucher/{id}', [
+    'as' => 'update-reverse-voucher',
+    'uses' => 'ReverseVoucherHeadController@update'
+]);
+
+Route::any('delete-reverse-voucher/{id}', [
+    'as' => 'delete-reverse-voucher',
+    'uses' => 'ReverseVoucherHeadController@delete'
+]);
+
+Route::any('status-reverse-voucher/{id}', [
+    'as' => 'status-reverse-voucher',
+    'uses' => 'ReverseVoucherHeadController@change_status'
+]);
+
+
+
 
