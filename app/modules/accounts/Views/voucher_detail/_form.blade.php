@@ -10,7 +10,7 @@
 
             {!! Form::label('ac_title', 'Chat Of Accounts:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('ac_title', Input::old('coa_id'), ['id'=>'auto-search-ac','class' => 'form-control','placeholder'=>'Search Chart of account OR account-code','autofocus','title'=>'type your require chart of account "code" or "title" then select one and press enter']) !!}
+            {!! Form::text('ac_title', Input::old('coa_id'), ['id'=>'auto-search-ac','class' => 'form-control','placeholder'=>'Search By Name of Chart of account OR account-code','autofocus','title'=>'type your require chart of account "code" or "title" then select one and press enter']) !!}
             {!! Form::hidden('coa_id',null, ['id'=>'coa-id-val']) !!}
             {{--<select id="coa_id" name="coa_id" class="form-control select2-offscreen">
                 @foreach ( $attributes as $key => $attr )

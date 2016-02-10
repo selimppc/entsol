@@ -45,22 +45,15 @@ class VoucherDetailController extends Controller
 
         /* show chat of accounts according to account-type */
 
-        /*$results =  ChartOfAccounts::with('relGroupOne')->orderBy('account_type', 'ASC')->get();
+        /*$results =  ChartOfAccounts::orderBy('account_type', 'ASC')->get();*/
 
-        $results = ChartOfAccounts
+        /*$results = ChartOfAccounts
             ::join('ac_group_one', 'ac_group_one.id', '=', 'ac_chart_of_accounts.group_one_id')
             ->select('ac_chart_of_accounts.id as id','ac_chart_of_accounts.title as title','ac_chart_of_accounts.account_code','ac_chart_of_accounts.account_type', 'ac_group_one.id as g_id', 'ac_group_one.title as g_title')
 
             ->get();*/
-        /*foreach ( $results as $v ) {
-            if ( !isset($attributes[$v->account_type]) ) {
-                $attributes[$v->account_type] = array();
-            }
-            $attributes[$v->account_type][$v->id] = $v->title;
-            $attributes[$v->account_type][$v->g_title][$v->id] = $v->title;
-        }*/
 
-        #print_r($results);exit;
+        #print_r($attributes);exit;
 
         /*$attributes = array();
         foreach ( $results as $v ) {
@@ -330,14 +323,26 @@ class VoucherDetailController extends Controller
         $coa = DB::table('ac_chart_of_accounts')
             ->where('title', 'LIKE', '%' . $coa_data . '%')
             ->orWhere('account_code', 'LIKE', '%' . $coa_data . '%')
-            ->select(DB::raw('CONCAT(ac_chart_of_accounts.account_code, ":", " ",ac_chart_of_accounts.title) AS title, ac_chart_of_accounts.id as coa_id'))
+            ->select(DB::raw('CONCAT(ac_chart_of_accounts.account_code, ":", " ",ac_chart_of_accounts.title) AS title, ac_chart_of_accounts.id as coa_id,ac_chart_of_accounts.account_type'))
             ->get();
 
-        foreach ( $coa as $query ){
-            $data[] = array('value' => $query->title,
-                'coa_id' => $query->coa_id);
+        foreach($coa as $values){
+            $data[] = array('value' => $values->title,
+                'coa_id' => $values->coa_id);
         }
-        return Response::json($data);
+/////////////////////////////////////////////////////////////////////////////////////////////
+        $results =  ChartOfAccounts::orderBy('account_type', 'ASC')->get();
+
+        $attributes = array();
+        foreach ( $results as $v ) {
+            if ( !isset($attributes[$v->account_type]) ) {
+                $attributes[$v->account_type] = array();
+            }
+            $attributes[$v->account_type][$v->coa_id] = $v->title;
+        }
+        #print_r($attributes);exit;
+
+        return Response::json($attributes);
 
     }
 }
