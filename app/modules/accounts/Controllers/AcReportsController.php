@@ -10,6 +10,9 @@ use App\Http\Controllers\Controller;
 use Jaspersoft\Client\Client;
 
 use App\Branch;
+use DB;
+use Session;
+use Input;
 
 class AcReportsController extends Controller
 {
@@ -71,8 +74,20 @@ class AcReportsController extends Controller
 
     public function trial_balance(){
 
+        $c = new Client(
+            "http://192.168.2.182:8080/jasperserver",
+            "jasperadmin",
+            "jasperadmin",
+            ""
+        );
+
         $pBranch = Input::get('pBranch');
         $pFromDate = Input::get('pFromDate');
+        $pToDate = Input::get('pToDate');
+
+        $report = $c->reportService()->runReport('/reports/samples/AllAccounts', 'html');
+        echo $report;
+        exit();
 
 
     }
