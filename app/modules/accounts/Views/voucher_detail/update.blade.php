@@ -14,7 +14,7 @@
 
                     {!! Form::label('ac_title', 'Chat Of Accounts:', ['class' => 'control-label']) !!}
                     <small class="required">(Required)</small>
-                    {!! Form::text('ac_title', isset($data->relChartOfAccounts->title)?$data->relChartOfAccounts->title:'', ['id'=>'update-auto-search-ac','class' => 'form-control','placeholder'=>'Search Chart of account OR account-code','autofocus','title'=>'type your require chart of account "code" or "title" then select one and press enter']) !!}
+                    {!! Form::text('ac_title', isset($data->relChartOfAccounts->title)?$data->relChartOfAccounts->title:'', ['id'=>'update-auto-search-ac','class' => 'form-control','placeholder'=>'Search By Name of Chart of account OR account-code','autofocus','title'=>'type your require chart of account "code" or "title" then select one and press enter']) !!}
                     {!! Form::hidden('coa_id',null, ['id'=>'ac-coa-id-val']) !!}
                 </div>
             </div>
