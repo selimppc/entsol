@@ -166,7 +166,7 @@
             </div>
             <div class="modal-body">
                 {!! Form::open(['route' => 'gl-pnl-sheet','class' => 'form-horizontal','id' => 'jq-validation-form']) !!}
-                @include('accounts::reports.gl_single_voucher')
+                @include('accounts::reports.gl_pnl_sheet')
                 {!! Form::close() !!}
             </div>
         </div>

@@ -91,6 +91,10 @@ class AcReportsController extends Controller
 
     }
 
+    public function gl_pnl_sheet(){
+
+    }
+
 
 
 

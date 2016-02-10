@@ -263,5 +263,10 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
         'uses' => 'AcReportsController@gl_single_voucher'
     ]);
 
+    Route::any('gl-pnl-sheet', [
+        'as' => 'gl-pnl-sheet',
+        'uses' => 'AcReportsController@gl_pnl_sheet'
+    ]);
+
 });
 
