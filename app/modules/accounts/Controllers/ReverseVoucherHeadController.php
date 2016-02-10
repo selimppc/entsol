@@ -31,7 +31,7 @@ class ReverseVoucherHeadController extends Controller
 
        $pageTitle = 'Reverse Entry Informations';
        $model = new VoucherHead();
-       $model = $model->with('relBranch')->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
+       $model = $model->with('relBranch')->where('account_type','reverse-entry')->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
 
        $type = 'reverse-entry';
        $generate_number = GenerateNumber::generate_number($type);

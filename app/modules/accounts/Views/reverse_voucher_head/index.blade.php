@@ -74,7 +74,7 @@
                             @foreach($model as $values)
                                 <tr>
                                     <td>
-                                        <a href="{{ route('voucher-detail',['id'=>$values->id,'voucher_number'=>$values->voucher_number]) }}" class="link-text-decoration" title="click for voucher-detail page"><strong>{{$values->voucher_number}}</strong></a>
+                                        <a href="{{ route('reverse-detail',['id'=>$values->id,'voucher_number'=>$values->voucher_number]) }}" class="link-text-decoration" title="click for voucher-detail page"><strong>{{$values->voucher_number}}</strong></a>
                                     </td>
                                     <td>{{$values->date}}</td>
                                     <td>{{$values->reference}}</td>
@@ -93,7 +93,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('voucher-detail',['id'=>$values->id,'voucher_number'=>$values->voucher_number]) }}" class="btn btn-info btn-xs" data-placement="top" data-content="reverse details">rev-details</a>
+                                        <a href="{{ route('reverse-detail',['id'=>$values->id,'voucher_number'=>$values->voucher_number]) }}" class="btn btn-info btn-xs" data-placement="top" data-content="reverse details">rev-details</a>
                                     </td>
                                     <td>&nbsp;</td>
                                 </tr>

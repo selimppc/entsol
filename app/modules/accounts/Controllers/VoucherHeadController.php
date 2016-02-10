@@ -31,7 +31,7 @@ class VoucherHeadController extends Controller
 
        $pageTitle = 'Journal Voucher Informations';
        $model = new VoucherHead();
-       $model = $model->with('relBranch')->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
+       $model = $model->with('relBranch')->where('account_type','journal-voucher')->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
 
        $type = 'journal-voucher';
        $generate_number = GenerateNumber::generate_number($type);

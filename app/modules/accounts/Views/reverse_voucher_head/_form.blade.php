@@ -3,7 +3,7 @@
         <div class="col-sm-6">
             {!! Form::label('account_type', 'Account Type:', ['class' => 'control-label']) !!}
             <small class="narration">(Journal Voucher Type Selected)</small>
-            {!! Form::text('account_type', ucfirst('reverse-voucher'), ['class' => 'form-control','required','readonly','style'=>'font-weight:bold']) !!}
+            {!! Form::text('account_type', ucfirst('reverse-entry'), ['class' => 'form-control','required','readonly','style'=>'font-weight:bold']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('voucher_number', 'Voucher Number:', ['class' => 'control-label']) !!}

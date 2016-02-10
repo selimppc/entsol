@@ -167,10 +167,37 @@ Route::any('delete-reverse-voucher/{id}', [
     'uses' => 'ReverseVoucherHeadController@delete'
 ]);
 
-Route::any('status-reverse-voucher/{id}', [
-    'as' => 'status-reverse-voucher',
-    'uses' => 'ReverseVoucherHeadController@change_status'
+
+/*-----------------------------------Reverse Details--------------------------*/
+
+Route::any('reverse-detail/{id}/{voucher_number}', [
+    'as' => 'reverse-detail',
+    'uses' => 'ReverseVoucherDetailController@index'
 ]);
+
+Route::any('store-reverse-detail', [
+    'as' => 'store-reverse-detail',
+    'uses' => 'ReverseVoucherDetailController@store'
+]);
+
+Route::any('view-reverse-detail/{id}', [
+    'as' => 'view-reverse-detail',
+    'uses' => 'ReverseVoucherDetailController@show'
+]);
+Route::any('edit-reverse-detail/{id}', [
+    'as' => 'edit-reverse-detail',
+    'uses' => 'ReverseVoucherDetailController@edit'
+]);
+Route::any('update-reverse-detail/{id}', [
+    'as' => 'update-reverse-detail',
+    'uses' => 'ReverseVoucherDetailController@update'
+]);
+
+Route::any('delete-reverse-detail/{id}', [
+    'as' => 'delete-reverse-detail',
+    'uses' => 'ReverseVoucherDetailController@delete'
+]);
+
 
 
 
