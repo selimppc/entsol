@@ -1,6 +1,6 @@
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
-        <div class="col-sm-10" style="margin-left:150px;">
+        <div class="col-sm-10">
             <div class="col-sm-3">
                 {!! Form::label('Branch', 'Branch:', ['class' => 'control-label']) !!}
                 {!! Form::select('pBranch', $branch_id,Input::old('pBranch'),['class' => 'form-control','required','title'=>'select  branch, example :: Main Branch']) !!}
@@ -15,18 +15,17 @@
             </div>
         </div>
     </div>
-
-    <p> &nbsp; </p>
-
-    <div class="row">
-        <div class="col-sm-6" style="margin-left: 650px;">
-            {!! Form::submit('PDF Report', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save chart of accounts information']) !!}
-            <a href="{{route('account-reports')}}" class=" btn btn-primary" data-placement="top" data-content="click close button for close this entry form">PDF Report</a>
-        </div>
-    </div>
 </div>
 
 <p> &nbsp; </p>
+
+<div class="modal-footer">
+    {!! Form::submit('PDF Report', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save chart of accounts information']) !!}
+    <a href="{{route('account-reports')}}" class=" btn btn-primary" data-placement="top" data-content="click close button for close this entry form">PDF Report</a>
+    <a href="{{route('account-reports')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
+</div>
+
+
 
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/datepicker.js') }}"></script>
 

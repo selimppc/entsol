@@ -252,5 +252,21 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
         'uses' => 'AcReportsController@trial_balance_all'
     ]);
 
+    Route::any('gl-transaction', [
+        'as' => 'gl-transaction',
+        'uses' => 'AcReportsController@gl_transaction'
+    ]);
+
+
+    Route::any('gl-single-voucher', [
+        'as' => 'gl-single-voucher',
+        'uses' => 'AcReportsController@gl_single_voucher'
+    ]);
+
+    Route::any('gl-pnl-sheet', [
+        'as' => 'gl-pnl-sheet',
+        'uses' => 'AcReportsController@gl_pnl_sheet'
+    ]);
+
 });
 

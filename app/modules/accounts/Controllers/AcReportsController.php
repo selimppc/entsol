@@ -83,6 +83,19 @@ class AcReportsController extends Controller
     }
 
 
+    public function gl_transaction(){
+
+    }
+
+    public function gl_single_voucher(){
+
+    }
+
+    public function gl_pnl_sheet(){
+
+    }
+
+
 
 
 
