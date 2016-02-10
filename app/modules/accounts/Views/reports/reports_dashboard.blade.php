@@ -58,14 +58,14 @@
                     <hr class="panel-wide">
 
                     <h6 class="text-light-gray text-semibold text-xs text-center" style="margin:20px 0 10px 0;">Chart of Accounts</h6>
-                    <a class="btn btn-primary" data-toggle="modal" href="#addData">
+                    <a class="btn btn-primary" data-toggle="modal" href="#addChartofAccounts">
                         <strong>Chart of Accounts</strong>
                     </a>
 
                     <hr class="panel-wide">
 
                     <h6 class="text-light-gray text-semibold text-xs text-center" style="margin:20px 0 10px 0;">Balance Sheet</h6>
-                    <a class="btn btn-primary" data-toggle="modal" href="#addData">
+                    <a class="btn btn-primary" data-toggle="modal" href="#addBalanceSheet">
                         <strong>Balance Sheet</strong>
                     </a>
 
@@ -167,6 +167,43 @@
             <div class="modal-body">
                 {!! Form::open(['route' => 'gl-pnl-sheet','class' => 'form-horizontal','id' => 'jq-validation-form']) !!}
                 @include('accounts::reports.gl_pnl_sheet')
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Chart of Accounts -->
+
+<div id="addChartofAccounts" class="modal fade" tabindex="" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-lg" style="z-index:1050">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
+                <h4 class="modal-title" id="myModalLabel">Chart of Accounts</h4>
+            </div>
+            <div class="modal-body">
+                {!! Form::open(['route' => 'chart-of-accounts-report','class' => 'form-horizontal','id' => 'jq-validation-form']) !!}
+                @include('accounts::reports.chart_of_accounts_report')
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Balance Sheet -->
+
+<div id="addBalanceSheet" class="modal fade" tabindex="" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-lg" style="z-index:1050">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
+                <h4 class="modal-title" id="myModalLabel">Balance Sheet</h4>
+            </div>
+            <div class="modal-body">
+                {!! Form::open(['route' => 'balance-sheet','class' => 'form-horizontal','id' => 'jq-validation-form']) !!}
+                @include('accounts::reports.balance_sheet')
                 {!! Form::close() !!}
             </div>
         </div>

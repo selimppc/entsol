@@ -268,5 +268,16 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
         'uses' => 'AcReportsController@gl_pnl_sheet'
     ]);
 
+
+    Route::any('chart-of-accounts-report', [
+        'as' => 'chart-of-accounts-report',
+        'uses' => 'AcReportsController@chart_of_accounts_report'
+    ]);
+
+    Route::any('balance-sheet', [
+        'as' => 'balance-sheet',
+        'uses' => 'AcReportsController@balance_sheet'
+    ]);
+
 });
 

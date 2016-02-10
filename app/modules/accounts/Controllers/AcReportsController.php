@@ -95,6 +95,15 @@ class AcReportsController extends Controller
 
     }
 
+    public function chart_of_accounts_report(){
+
+    }
+
+
+    public function balance_sheet(){
+
+    }
+
 
 
 
