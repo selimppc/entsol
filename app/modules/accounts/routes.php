@@ -247,5 +247,10 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
         'uses' => 'AcReportsController@trial_balance'
     ]);
 
+    Route::any('trial-balance-all', [
+        'as' => 'trial-balance-all',
+        'uses' => 'AcReportsController@trial_balance_all'
+    ]);
+
 });
 

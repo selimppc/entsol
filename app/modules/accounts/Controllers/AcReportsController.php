@@ -71,7 +71,14 @@ class AcReportsController extends Controller
 
     public function trial_balance(){
 
+        $pBranch = Input::get('pBranch');
+        $pFromDate = Input::get('pFromDate');
 
+
+    }
+
+
+    public function trial_balance_all(){
 
     }
 
