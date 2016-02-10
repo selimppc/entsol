@@ -47,6 +47,12 @@
                     <a tabindex="-1" href="{{route('index-user')}}"><span class="mm-text">User List</span></a>
                 </li>
                 <li>
+                    <a tabindex="-1" href="{{route('role')}}"><span class="mm-text">Role</span></a>
+                </li>
+                <li>
+                    <a tabindex="-1" href="{{route('index-role-user')}}"><span class="mm-text">Role User</span></a>
+                </li>
+                <li>
                     <a tabindex="-1" href="{{route('index-permission')}}"><span class="mm-text">Permission</span></a>
                 </li>
                 <li>
@@ -70,6 +76,9 @@
             <ul class="mmc-dropdown-delay animated fadeInLeft">
                 <li>
                     <a tabindex="-1" href="{{route('voucher-head')}}"><span class="mm-text">Journal Voucher</span></a>
+                </li>
+                <li>
+                    <a tabindex="-1" href="{{route('reverse-voucher')}}"><span class="mm-text">Reverse Entry</span></a>
                 </li>
                 <li>
                     <a tabindex="-1" href="{{route('group-one')}}"><span class="mm-text">Group One</span></a>

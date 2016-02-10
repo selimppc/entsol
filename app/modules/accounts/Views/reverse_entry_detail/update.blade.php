@@ -5,7 +5,7 @@
     </div>
 
     <div class="modal-body">
-        {!! Form::model($data, ['method' => 'PATCH', 'route'=> ['update-voucher-detail', $data->id]]) !!}
+        {!! Form::model($data, ['method' => 'PATCH', 'route'=> ['update-reverse-detail', $data->id]]) !!}
         <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
             {!! Form::hidden('voucher_head_id',isset($data->voucher_head_id)?$data->voucher_head_id:'') !!}
             <div class="row">

@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
-class VoucherDetailController extends Controller
+class ReverseVoucherDetailController extends Controller
 {
 
     protected function isGetRequest()
@@ -35,54 +35,23 @@ class VoucherDetailController extends Controller
 
     public function index($id,$voucher_number){
 
-        $pageTitle = 'Journal Voucher Detail';
+        $pageTitle = 'Reverse Detail';
         $model = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('voucher_head_id',$id)->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
-
 
         //get vouncher data...
 
         $voucher_data = VoucherHead::where('id',$id)->first();
 
-        /* show chat of accounts according to account-type */
-
-        /*$results =  ChartOfAccounts::with('relGroupOne')->orderBy('account_type', 'ASC')->get();
-
-        $results = ChartOfAccounts
-            ::join('ac_group_one', 'ac_group_one.id', '=', 'ac_chart_of_accounts.group_one_id')
-            ->select('ac_chart_of_accounts.id as id','ac_chart_of_accounts.title as title','ac_chart_of_accounts.account_code','ac_chart_of_accounts.account_type', 'ac_group_one.id as g_id', 'ac_group_one.title as g_title')
-
-            ->get();*/
-        /*foreach ( $results as $v ) {
-            if ( !isset($attributes[$v->account_type]) ) {
-                $attributes[$v->account_type] = array();
-            }
-            $attributes[$v->account_type][$v->id] = $v->title;
-            $attributes[$v->account_type][$v->g_title][$v->id] = $v->title;
-        }*/
-
-        #print_r($results);exit;
-
-        /*$attributes = array();
-        foreach ( $results as $v ) {
-            if ( !isset($attributes[$v->account_type]) ) {
-                $attributes[$v->account_type] = array();
-            }
-            $attributes[$v->account_type][$v->id] = $v->title;
-            $attributes[$v->account_type][$v->id] = $v->title;
-        }*/
-
-        #print_r($attributes);exit;
-
         $currency_data = [''=>'Select Currency'] + Currency::lists('title','id')->all();
         $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
 
-        return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'model'=>$model,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'id'=>$id,'voucher_number'=>$voucher_number,'voucher_data'=>$voucher_data]);
+        return view('accounts::reverse_entry_detail.index',['pageTitle'=>$pageTitle,'model'=>$model,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'id'=>$id,'voucher_number'=>$voucher_number,'voucher_data'=>$voucher_data]);
     }
 
 
-    public function search_voucher_details($id,$voucher_number){
+    public function search_reverse_details($id,$voucher_number){
 
-        $pageTitle = 'Journal Voucher Detail';
+        $pageTitle = 'Reverse Detail';
         $model = new VoucherDetail();
         if($this->isGetRequest()){
 
@@ -96,16 +65,7 @@ class VoucherDetailController extends Controller
             if (isset($account_code) && !empty($account_code)) $model = $model->where('ac_voucher_detail.account_code', 'LIKE', '%'.$account_code.'%');
             if (isset($id) && !empty($id)) $model = $model->where('ac_voucher_detail.voucher_head_id', '=', $id);
             if (isset($voucher_number) && !empty($voucher_number)) $model = $model->where('ac_voucher_detail.voucher_number', '=', $voucher_number);
-            #$model = $model->get();
-            #print_r($model);exit;
-            /*$model = $model->leftJoin('cm_currency as cur', function($query)  use($search_curr){
-                $query->on('cur.id', '=', 'ac_voucher_detail.currency_id');
-                $query->where('cur.id',  '=', $search_curr);
-            });
-            $model = $model->leftJoin('cm_branch as branch', function($query)  use($search_branch){
-                $query->on('branch.id', '=', 'ac_voucher_detail.branch_id');
-                $query->where('branch.id',  '=', $search_branch);
-            });*/
+
             $model = $model->where('voucher_head_id',$id)->get();
             #print_r($model);exit;
         }else{
@@ -118,7 +78,7 @@ class VoucherDetailController extends Controller
         $currency_data = [''=>'Select Currency'] + Currency::lists('title','id')->all();
         $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
 
-        return view('accounts::voucher_detail.index',['pageTitle'=>$pageTitle,'model'=>$model,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'voucher_number'=>$voucher_number,'voucher_data'=>$voucher_data]);
+        return view('accounts::reverse_entry_detail.index',['pageTitle'=>$pageTitle,'model'=>$model,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'voucher_number'=>$voucher_number,'voucher_data'=>$voucher_data]);
     }
 
     public function store(VoucherDetailRequest $request){
@@ -159,36 +119,34 @@ class VoucherDetailController extends Controller
 
     public function show($id)
     {
-        $pageTitle = 'Show the details Of Journal Voucher';
+        $pageTitle = 'Reverse Details';
         $data = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('id',$id)->first();
 
-        return view('accounts::voucher_detail.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
+        return view('accounts::reverse_entry_detail.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 
     public function edit($id)
     {
-        $pageTitle = 'Edit Voucher Detail';
+        $pageTitle = 'Edit Reverse Detail';
 
         $data = VoucherDetail::with('relChartOfAccounts')->findOrFail($id);
-
         $coa_data = ChartOfAccounts::lists('title','id');
         $currency_data = Currency::lists('title','id');
         $branch_data =  Branch::lists('title','id');
 
-        return view('accounts::voucher_detail.update', ['data' => $data,'branch_data'=>$branch_data,'pageTitle'=> $pageTitle,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'id'=>$id]);
+        return view('accounts::reverse_entry_detail.update', ['data' => $data,'branch_data'=>$branch_data,'pageTitle'=> $pageTitle,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'id'=>$id,]);
     }
 
     public function update(VoucherDetailRequest $request, $id)
     {
         $model = VoucherDetail::findOrFail($id);
         $input = $request->all();
+
         $voucher_data = VoucherHead::where('id',$input['voucher_head_id'])->first();
         $coa_data = ChartOfAccounts::where('id',$input['coa_id'])->first();
         $currency_data = Currency::where('id',$input['currency_id'])->first();
-
         DB::beginTransaction();
         try {
-
             $input_data = [
                 'voucher_head_id'=>$input['voucher_head_id'],
                 'voucher_number'=> $voucher_data['voucher_number'],
@@ -197,38 +155,16 @@ class VoucherDetailController extends Controller
                 'sub_account_code'=> $input['sub_account_code'],
                 'currency_id'=> $input['currency_id'],
                 'exchange_rate'=> $currency_data['exchange_rate'],
-                'prime_amount'=> $input['amount'],
-                'base_amount'=> $input['amount'],
+                'prime_amount'=> $input['prime_amount'],
+                'base_amount'=> $input['prime_amount'],
                 'branch_id'=> $input['branch_id'],
                 'note'=> $input['note'],
                 'status'=> $input['status'],
             ];
+
             $model->update($input_data);
             DB::commit();
             Session::flash('message', "Successfully Updated");
-        }
-        catch ( Exception $e ){
-            //If there are any exceptions, rollback the transaction
-            DB::rollback();
-            Session::flash('error', $e->getMessage());
-        }
-        return redirect()->back();
-    }
-
-    public function change_status($id)
-    {
-        $model = VoucherDetail::findOrFail($id);
-
-        DB::beginTransaction();
-        try {
-            if($model->status =='active'){
-                $model->status = 'inactive';
-            }else{
-                $model->status = 'active';
-            }
-            $model->save();
-            DB::commit();
-            Session::flash('message', "Successfully Changed Status.");
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction

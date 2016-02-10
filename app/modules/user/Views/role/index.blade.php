@@ -18,8 +18,8 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['method' =>'GET','url'=>'/group-one']) !!}
-                {{--{!! Form::open(['route' => 'group-one']) !!}--}}
+                {{--{!! Form::open(['method' =>'GET','url'=>'/group-one']) !!}
+                --}}{{--{!! Form::open(['route' => 'group-one']) !!}--}}{{--
 
                 <div id="index-search">
                     <div class="col-sm-3">
@@ -34,7 +34,7 @@
                 </div>
 
 
-                {!! Form::close() !!}
+                {!! Form::close() !!}--}}
                 <p> &nbsp;</p>
                 <p> &nbsp;</p>
 
@@ -43,8 +43,8 @@
                     <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
                         <thead>
                         <tr>
-                            <th> Title &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="accounting group full name">(?)</span></th>
-                            <th> Status &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="you can change status from update page">(?)</span></th>
+                            <th> Title </th>
+                            <th> Status</th>
                             <th> Action &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="view : click for details informations<br>update : click for update informations<br>delete : click for delete informations">(?)</span></th>
                         </tr>
                         </thead>
@@ -55,9 +55,9 @@
                                     <td>{{$values->title}}</td>
                                     <td>{{ucfirst($values->status)}}</td>
                                     <td>
-                                        <a href="{{ route('role-view', $values->id) }}" class="btn btn-info btn-xs" data-placement="top" data-toggle="modal" data-target="#etsbModal" data-content="view"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('edit-group-one', $values->id) }}" class="btn btn-primary btn-xs" data-placement="top" data-toggle="modal" data-target="#etsbModal" data-content="update"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('delete-group-one', $values->id) }}" class="btn btn-danger btn-xs" data-placement="top" onclick="return confirm('Are you sure to Delete?')" data-content="delete"><i class="fa fa-trash-o"></i></a>
+                                        <a href="{{ route('view-role', $values->slug) }}" class="btn btn-info btn-xs" data-placement="top" data-toggle="modal" data-target="#etsbModal" data-content="view"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('edit-role', $values->slug) }}" class="btn btn-primary btn-xs" data-placement="top" data-toggle="modal" data-target="#etsbModal" data-content="update"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('delete-role', $values->slug) }}" class="btn btn-danger btn-xs" data-placement="top" onclick="return confirm('Are you sure to Delete?')" data-content="delete"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

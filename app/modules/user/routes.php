@@ -101,10 +101,57 @@ Route::any('store-role', [
     'uses' => 'RoleController@store_role'
 ]);
 
-Route::any('role-view/{slug}', [
-    'as' => 'role-view',
+Route::any('view-role/{slug}', [
+    'as' => 'view-role',
     'uses' => 'RoleController@show'
 ]);
+
+Route::any('edit-role/{slug}', [
+    'as' => 'edit-role',
+    'uses' => 'RoleController@edit'
+]);
+
+Route::any('update-role/{slug}', [
+    'as' => 'update-role',
+    'uses' => 'RoleController@update'
+]);
+
+Route::any('delete-role/{slug}', [
+    'as' => 'delete-role',
+    'uses' => 'RoleController@destroy'
+]);
+
+    /*Role User*/
+
+    Route::any('index-role-user', [
+        'as' => 'index-role-user',
+        'uses' => 'RoleUserController@index'
+    ]);
+
+    Route::any('store-role-user', [
+        'as' => 'store-role-user',
+        'uses' => 'RoleUserController@store'
+    ]);
+
+    Route::any('view-role-user/{id}', [
+        'as' => 'view-role-user',
+        'uses' => 'RoleUserController@show'
+    ]);
+
+    Route::any('edit-role-user/{id}', [
+        'as' => 'edit-role-user',
+        'uses' => 'RoleUserController@edit'
+    ]);
+
+    Route::any('update-role-user/{id}', [
+        'as' => 'update-role-user',
+        'uses' => 'RoleUserController@update'
+    ]);
+
+    Route::any('delete-role-user/{id}', [
+        'as' => 'delete-role-user',
+        'uses' => 'RoleUserController@destroy'
+    ]);
 });
 
 
