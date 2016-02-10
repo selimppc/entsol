@@ -99,7 +99,7 @@
                     <a tabindex="-1" href="{{route('settings')}}"><span class="mm-text">Settings</span></a>
                 </li>
                 <li>
-                    <a tabindex="-1" href="{{route('account-reports')}}"><span class="mm-text">Account Reports</span></a>
+                    <a tabindex="-1" href="{{route('account-reports')}}"><span class="mm-text">Reports</span></a>
                 </li>
                 <li>
                     <a tabindex="-1" href="{{route('gl-transaction')}}"><span class="mm-text">Gl Transaction</span></a>
