@@ -237,9 +237,19 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
     ]);
 
 
-    Route::get('account-reports', [
+    Route::any('account-reports', [
         'as' => 'account-reports',
         'uses' => 'AcReportsController@account_reports'
+    ]);
+
+    Route::any('trial-balance', [
+        'as' => 'trial-balance',
+        'uses' => 'AcReportsController@trial_balance'
+    ]);
+
+    Route::any('trial-balance-all', [
+        'as' => 'trial-balance-all',
+        'uses' => 'AcReportsController@trial_balance_all'
     ]);
 
 });

@@ -1,0 +1,37 @@
+<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+    <div class="row">
+        <div class="col-sm-10" style="margin-left:150px;">
+            <div class="col-sm-3">
+                {!! Form::label('Branch', 'Branch:', ['class' => 'control-label']) !!}
+                {!! Form::select('pBranch', $branch_id,Input::old('pBranch'),['class' => 'form-control','required','title'=>'select  branch, example :: Main Branch']) !!}
+            </div>
+            <div class="col-sm-3">
+                {!! Form::label('FromDate', 'FromDate:', ['class' => 'control-label']) !!}
+                {!! Form::text('pFromDate', date('Y/m/d'), ['class' => 'form-control bs-datepicker-component','required','title'=>'select from date']) !!}
+            </div>
+            <div class="col-sm-3">
+                {!! Form::label('ToDate', 'ToDate:', ['class' => 'control-label']) !!}
+                {!! Form::text('pToDate', date('Y/m/d'), ['class' => 'form-control bs-datepicker-component','required','title'=>'select to date']) !!}
+            </div>
+        </div>
+    </div>
+
+    <p> &nbsp; </p>
+
+    <div class="row">
+        <div class="col-sm-6" style="margin-left: 650px;">
+            {!! Form::submit('PDF Report', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save chart of accounts information']) !!}
+            <a href="{{route('account-reports')}}" class=" btn btn-primary" data-placement="top" data-content="click close button for close this entry form">PDF Report</a>
+        </div>
+    </div>
+</div>
+
+<p> &nbsp; </p>
+
+<script type="text/javascript" src="{{ URL::asset('assets/admin/js/datepicker.js') }}"></script>
+
+
+
+
+
+
