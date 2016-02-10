@@ -257,5 +257,11 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
         'uses' => 'AcReportsController@gl_transaction'
     ]);
 
+
+    Route::any('gl-single-voucher', [
+        'as' => 'gl-single-voucher',
+        'uses' => 'AcReportsController@gl_single_voucher'
+    ]);
+
 });
 

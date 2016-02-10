@@ -34,7 +34,7 @@
                         <hr class="panel-wide">
 
                         <h6 class="text-light-gray text-semibold text-xs text-center" style="margin:20px 0 10px 0;">General Ledger Single Voucher</h6>
-                        <a class="btn btn-primary" data-toggle="modal" href="#addData">
+                        <a class="btn btn-primary" data-toggle="modal" href="#addGlSingleVoucher">
                             <strong>GL Single Voucher</strong>
                         </a>
                     </div>
@@ -51,7 +51,7 @@
                 <div class="panel-body no-padding-t text-center">
 
                     <h6 class="text-light-gray text-semibold text-xs text-center" style="margin:20px 0 10px 0;">General Ledger Profit and Loss Statement</h6>
-                    <a class="btn btn-primary" data-toggle="modal" href="#addData">
+                    <a class="btn btn-primary" data-toggle="modal" href="#addGlPnlSheet">
                         <strong>GL Pnl Sheet</strong>
                     </a>
 
@@ -136,6 +136,42 @@
 </div>
 
 
+<!-- Modal GL Single Voucher -->
+
+<div id="addGlSingleVoucher" class="modal fade" tabindex="" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-lg" style="z-index:1050">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
+                <h4 class="modal-title" id="myModalLabel">General Ledger Single Voucher</h4>
+            </div>
+            <div class="modal-body">
+                {!! Form::open(['route' => 'gl-single-voucher','class' => 'form-horizontal','id' => 'jq-validation-form']) !!}
+                @include('accounts::reports.gl_single_voucher')
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal GL Pnl Sheet -->
+
+<div id="addGlPnlSheet" class="modal fade" tabindex="" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-lg" style="z-index:1050">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
+                <h4 class="modal-title" id="myModalLabel">General Ledger Profit & Loss Sheet</h4>
+            </div>
+            <div class="modal-body">
+                {!! Form::open(['route' => 'gl-pnl-sheet','class' => 'form-horizontal','id' => 'jq-validation-form']) !!}
+                @include('accounts::reports.gl_single_voucher')
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
