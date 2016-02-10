@@ -4,11 +4,10 @@ namespace App\Modules\Accounts\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
+
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests;
 use Jaspersoft\Client\Client;
-
 use App\Branch;
 use DB;
 use Session;
@@ -72,7 +71,24 @@ class AcReportsController extends Controller
         return view('accounts::reports.reports_dashboard', ['branch_id'=> $branch_id]);
     }
 
-    public function trial_balance(){
+    public function trial_balance(Request $requests){
+
+
+        $data = $requests->all();
+
+        $controls = array(
+            'pDate' => $data['custom_date'],
+            'Cascading_state_multi_select' => array('CA', 'OR')
+        );
+
+        if(@$data['[PDF]']=='PDF Report'){
+            echo "PDF";
+        }else if(@$data['[Excel]']=='Excel Report'){
+            echo "Excel";
+        }
+
+        print_r("----");
+        exit("OK");
 
         $c = new Client(
             "http://192.168.2.182:8080/jasperserver",
