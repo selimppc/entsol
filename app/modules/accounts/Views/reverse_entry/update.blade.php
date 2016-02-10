@@ -7,7 +7,7 @@
     <div class="modal-body">
         {!! Form::model($data, ['method' => 'PATCH', 'route'=> ['update-voucher-head', $data->id]]) !!}
 
-        @include('accounts::reverse_voucher_head._form')
+        @include('accounts::reverse_entry._form')
         {!! Form::close() !!}
     </div>
 

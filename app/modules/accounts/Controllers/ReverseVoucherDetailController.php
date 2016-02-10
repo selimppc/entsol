@@ -49,7 +49,7 @@ class ReverseVoucherDetailController extends Controller
     }
 
 
-    public function search_voucher_details($id,$voucher_number){
+    public function search_reverse_details($id,$voucher_number){
 
         $pageTitle = 'Reverse Detail';
         $model = new VoucherDetail();
@@ -65,16 +65,7 @@ class ReverseVoucherDetailController extends Controller
             if (isset($account_code) && !empty($account_code)) $model = $model->where('ac_voucher_detail.account_code', 'LIKE', '%'.$account_code.'%');
             if (isset($id) && !empty($id)) $model = $model->where('ac_voucher_detail.voucher_head_id', '=', $id);
             if (isset($voucher_number) && !empty($voucher_number)) $model = $model->where('ac_voucher_detail.voucher_number', '=', $voucher_number);
-            #$model = $model->get();
-            #print_r($model);exit;
-            /*$model = $model->leftJoin('cm_currency as cur', function($query)  use($search_curr){
-                $query->on('cur.id', '=', 'ac_voucher_detail.currency_id');
-                $query->where('cur.id',  '=', $search_curr);
-            });
-            $model = $model->leftJoin('cm_branch as branch', function($query)  use($search_branch){
-                $query->on('branch.id', '=', 'ac_voucher_detail.branch_id');
-                $query->where('branch.id',  '=', $search_branch);
-            });*/
+
             $model = $model->get();
             #print_r($model);exit;
         }else{
@@ -139,12 +130,11 @@ class ReverseVoucherDetailController extends Controller
         $pageTitle = 'Edit Reverse Detail';
 
         $data = VoucherDetail::with('relChartOfAccounts')->findOrFail($id);
-
         $coa_data = ChartOfAccounts::lists('title','id');
         $currency_data = Currency::lists('title','id');
         $branch_data =  Branch::lists('title','id');
 
-        return view('accounts::reverse_entry_detail.update', ['data' => $data,'branch_data'=>$branch_data,'pageTitle'=> $pageTitle,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'id'=>$id]);
+        return view('accounts::reverse_entry_detail.update', ['data' => $data,'branch_data'=>$branch_data,'pageTitle'=> $pageTitle,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'id'=>$id,]);
     }
 
     public function update(VoucherDetailRequest $request, $id)
@@ -152,9 +142,27 @@ class ReverseVoucherDetailController extends Controller
         $model = VoucherDetail::findOrFail($id);
         $input = $request->all();
 
+        $voucher_data = VoucherHead::where('id',$input['voucher_head_id'])->first();
+        $coa_data = ChartOfAccounts::where('id',$input['coa_id'])->first();
+        $currency_data = Currency::where('id',$input['currency_id'])->first();
         DB::beginTransaction();
         try {
-            $model->update($input);
+            $input_data = [
+                'voucher_head_id'=>$input['voucher_head_id'],
+                'voucher_number'=> $voucher_data['voucher_number'],
+                'coa_id'=> $input['coa_id'],
+                'account_code'=> $coa_data['account_code'],
+                'sub_account_code'=> $input['sub_account_code'],
+                'currency_id'=> $input['currency_id'],
+                'exchange_rate'=> $currency_data['exchange_rate'],
+                'prime_amount'=> $input['amount'],
+                'base_amount'=> $input['amount'],
+                'branch_id'=> $input['branch_id'],
+                'note'=> $input['note'],
+                'status'=> $input['status'],
+            ];
+
+            $model->update($input_data);
             DB::commit();
             Session::flash('message', "Successfully Updated");
         }

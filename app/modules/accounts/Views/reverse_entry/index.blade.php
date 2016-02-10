@@ -18,13 +18,13 @@
 
             <div class="panel-body">
     {{-------------- Filter :Starts -------------------------------------------}}
-                    {!! Form::open(['method' =>'GET','url'=>'/search-voucher']) !!}
+                    {!! Form::open(['method' =>'GET','url'=>'/search-reverse_entry']) !!}
                     <div id="index-search">
                         {{--<div class="col-sm-3">
                             {!! Form::Select('account_type',array(''=>'Select Account Type','account-payable'=>'Account Payable','account-receivable'=>'Account Receivable','account-adjustment'=>'account Adjustment','journal-voucher'=>'Journal Voucher','receipt-voucher'=>'Receipt Voucher','reverse-entry'=>'Reverse Entry'),Input::old('account_type'),['class'=>'form-control', 'title'=>'select your require  journal voucher "account type", example :: account payable, then click "search" button']) !!}
                         </div>--}}
                         <div class="col-sm-2 pull-left">
-                            {!! Form::text('voucher_number', @Input::get('voucher_number')? Input::get('voucher_number') : null,['class' => 'form-control','placeholder'=>'type voucher number', 'title'=>'type your require "voucher number", example :: JV-0000001, then click "search" button']) !!}
+                            {!! Form::text('voucher_number', @Input::get('voucher_number')? Input::get('voucher_number') : null,['class' => 'form-control','placeholder'=>'type reverse number', 'title'=>'type your require "reverse number", example :: JV-0000001, then click "search" button']) !!}
                         </div>
                         <div class="col-sm-2">
                             {!! Form::text('date', @Input::get('date')? Input::get('date') : null, ['class' => 'form-control bs-datepicker-component','placeholder'=>'select date','title'=>'select your require "journal voucher date", example :: 2016/02/10, then click "search" button']) !!}
@@ -33,11 +33,11 @@
                         <div class="col-sm-2">
                             {!! Form::Select('branch_id',$branch_data, @Input::get('branch_id')? Input::get('branch_id') : null,['class' => 'form-control', 'title'=>'select your require "branch", example :: Main Branch, then click "search" button']) !!}
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-1">
                             {!! Form::selectrange('year', 2016,2030, @Input::get('year')? Input::get('year') : null,['class' => 'form-control', 'title'=>'select your require "year", example :: 2016, then click "search" button']) !!}
                         </div>
-                        <div class="col-sm-1">
-                            {!! Form::Select('period', array(''=>'select','1'=>'1','2'=>'2','3'=>'3','4'=>'4','5'=>'5','6'=>'6','7'=>'7','8'=>'8','9'=>'9','10'=>'10','11'=>'11','12'=>'12'), @Input::get('period')? Input::get('period') : null,['class' => 'form-control', 'title'=>'select your require "period", example :: 6 (june), then click "search" button']) !!}
+                        <div class="col-sm-2">
+                            {!! Form::Select('period', array(''=>'Period','1'=>'1','2'=>'2','3'=>'3','4'=>'4','5'=>'5','6'=>'6','7'=>'7','8'=>'8','9'=>'9','10'=>'10','11'=>'11','12'=>'12'), @Input::get('period')? Input::get('period') : null,['class' => 'form-control', 'title'=>'select your require "period", example :: 6 (june), then click "search" button']) !!}
                         </div>
                         <div class="col-sm-2">
                             {!! Form::Select('status',array(''=>'status','open'=>'Open','posted'=>'Posted','balanced'=>'Balanced','suspend'=>'Suspend','active'=>'Active','inactive'=>'Inactive'),@Input::get('status')? Input::get('status') : null,['class'=>'form-control', 'title'=>'select your require "status", example :: open, then click "search" button']) !!}
@@ -120,7 +120,7 @@
             </div>
             <div class="modal-body">
                 {!! Form::open(['route' => 'store-reverse-voucher','id' => 'jq-validation-form']) !!}
-                @include('accounts::reverse_voucher_head._form')
+                @include('accounts::reverse_entry._form')
                 {!! Form::close() !!}
             </div> <!-- / .modal-body -->
         </div> <!-- / .modal-content -->

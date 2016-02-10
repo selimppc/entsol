@@ -167,6 +167,11 @@ Route::any('delete-reverse-voucher/{id}', [
     'uses' => 'ReverseVoucherHeadController@delete'
 ]);
 
+Route::get('search-reverse_entry', [
+    'as' => 'search-reverse_entry',
+    'uses' => 'ReverseVoucherHeadController@search_reverse_entry'
+]);
+
 
 /*-----------------------------------Reverse Details--------------------------*/
 
@@ -198,7 +203,10 @@ Route::any('delete-reverse-detail/{id}', [
     'uses' => 'ReverseVoucherDetailController@delete'
 ]);
 
-
+Route::get('search-reverse-details/{id}/{voucher_number}', [
+    'as' => 'search-reverse-details',
+    'uses' => 'ReverseVoucherDetailController@search_reverse_details'
+]);
 
 
 

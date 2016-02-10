@@ -41,10 +41,10 @@ class ReverseVoucherHeadController extends Controller
        $number = $generate_number[2];
 
        $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
-       return view('accounts::reverse_voucher_head.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model,'generate_voucher_number'=>$generate_voucher_number,'number'=>$number,'settings_id'=>$settings_id]);
+       return view('accounts::reverse_entry.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model,'generate_voucher_number'=>$generate_voucher_number,'number'=>$number,'settings_id'=>$settings_id]);
    }
 
-    public function search_voucher(){
+    public function search_reverse_entry(){
 
         $pageTitle = 'Reverse Entry Informations';
         $model = new VoucherHead();
@@ -72,13 +72,13 @@ class ReverseVoucherHeadController extends Controller
             if (isset($voucher_number) && !empty($voucher_number)) $model->where('ac_voucher_head.voucher_number', 'LIKE', '%'.$voucher_number.'%');
             if (isset($date) && !empty($date)) $model->where('ac_voucher_head.date', '=', $date);
             if (isset($status) && !empty($status)) $model->where('ac_voucher_head.status', '=', $status);
-            $model = $model->get();
+            $model = $model->where('account_type','reverse-entry')->get();
         }else{
             $model = $model->with('relBranch')->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
         }
 
         $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
-        return view('accounts::voucher_head.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model,'generate_voucher_number'=>$generate_voucher_number,'number'=>$number,'settings_id'=>$settings_id]);
+        return view('accounts::reverse_entry.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model,'generate_voucher_number'=>$generate_voucher_number,'number'=>$number,'settings_id'=>$settings_id]);
     }
 
     public function store(VoucherHeadRequest $request){
@@ -107,7 +107,7 @@ class ReverseVoucherHeadController extends Controller
         $data = VoucherHead::with('relBranch')->where('id',$id)->first();
         $voucher_details_data = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('voucher_head_id',$id)->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
 
-        return view('accounts::reverse_voucher_head.view', ['data' => $data,'voucher_details_data' => $voucher_details_data, 'pageTitle'=> $pageTitle]);
+        return view('accounts::reverse_entry.view', ['data' => $data,'voucher_details_data' => $voucher_details_data, 'pageTitle'=> $pageTitle]);
     }
 
     public function edit($id)
@@ -119,7 +119,7 @@ class ReverseVoucherHeadController extends Controller
         $year = $model->getYear();*/
 
         $data = VoucherHead::findOrFail($id);
-        return view('accounts::reverse_voucher_head.update', ['data' => $data,'branch_data'=>$branch_data,'pageTitle'=> $pageTitle]);
+        return view('accounts::reverse_entry.update', ['data' => $data,'branch_data'=>$branch_data,'pageTitle'=> $pageTitle]);
     }
 
     public function update(VoucherHeadRequest $request, $id)
