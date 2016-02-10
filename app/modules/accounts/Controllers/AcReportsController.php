@@ -9,11 +9,13 @@ use App\Http\Controllers\Controller;
 
 use Jaspersoft\Client\Client;
 
+use App\Branch;
+
 class AcReportsController extends Controller
 {
     public function test_report(){
         $c = new Client(
-            "http://localhost:8080/jasperserver",
+            "http://192.168.2.182:8080/jasperserver",
             "jasperadmin",
             "jasperadmin",
             ""
@@ -63,8 +65,13 @@ class AcReportsController extends Controller
 
 
     public function account_reports(){
+        $branch_id = [''=>'Select Branch'] + Branch::lists('title','id')->all();
+        return view('accounts::reports.reports_dashboard', ['branch_id'=> $branch_id]);
+    }
 
-        return view('accounts::reports.reports_dashboard');
+    public function trial_balance(){
+
+
 
     }
 
