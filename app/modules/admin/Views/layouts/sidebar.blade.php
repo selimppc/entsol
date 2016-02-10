@@ -47,6 +47,12 @@
                     <a tabindex="-1" href="{{route('index-user')}}"><span class="mm-text">User List</span></a>
                 </li>
                 <li>
+                    <a tabindex="-1" href="{{route('role')}}"><span class="mm-text">Role</span></a>
+                </li>
+                <li>
+                    <a tabindex="-1" href="{{route('index-role-user')}}"><span class="mm-text">Role User</span></a>
+                </li>
+                <li>
                     <a tabindex="-1" href="{{route('index-permission')}}"><span class="mm-text">Permission</span></a>
                 </li>
                 <li>

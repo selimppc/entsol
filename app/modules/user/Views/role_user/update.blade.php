@@ -8,9 +8,9 @@
 
 <div class="modal-body">
     @section('content_update')
-        {!! Form::model($data, ['method' => 'PATCH', 'route'=> ['update-role', $data->slug]]) !!}
-        @include('user::role._form')
-        {!! Form::close() !!}
+    {!! Form::model($data, ['method' => 'PATCH', 'route'=> ['update-role-user', $data->id]]) !!}
+    @include('user::role_user._form')
+    {!! Form::close() !!}
 </div>
 
 <script>
@@ -22,13 +22,13 @@
                     $(_this).popover('hide');
                 });
             }).on("mouseleave", function () {
-        var _this = this;
-        setTimeout(function () {
-            if (!$(".popover:hover").length) {
-                $(_this).popover("hide");
-            }
-        }, 300);
-    });
+                var _this = this;
+                setTimeout(function () {
+                    if (!$(".popover:hover").length) {
+                        $(_this).popover("hide");
+                    }
+                }, 300);
+            });
 
 
     $(".form-control").tooltip();

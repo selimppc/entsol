@@ -19,8 +19,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $pageTitle = "List Of Role";
-        return view('user::role.index',['pageTitle'=>$pageTitle]);
+        $pageTitle = "List of Role";
+        $data = Role::where('status','!=','cancel')->get();
+        return view('user::role.index',['data'=>$data, 'pageTitle'=>$pageTitle]);
     }
 
 
@@ -48,7 +49,7 @@ class RoleController extends Controller
             Session::flash('danger', $e->getMessage());
         }
 
-        return redirect()->back();
+        return redirect()->route('role');
     }
     /**
      * Display the specified resource.
@@ -59,8 +60,7 @@ class RoleController extends Controller
     public function show($slug)
     {
         $pageTitle = 'Details Of Role';
-        $data = Role::findOrFail($id);
-
+        $data = Role::where('slug',$slug)->first();
         return view('user::role.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 
@@ -70,9 +70,11 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $pageTitle = "Role update";
+        $data = Role::where('slug',$slug)->first();
+        return view('user::role.update', ['data' => $data,'pageTitle'=> $pageTitle]);
     }
 
     /**
@@ -82,9 +84,24 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+        $input = $request->all();
+        $input['slug'] = str_slug(strtolower($input['title']));
+
+        $model = Role::where('slug',$slug)->first();
+        DB::beginTransaction();
+        try {
+            $model->update($input);
+            DB::commit();
+            Session::flash('flash_message', 'Successfully added!');
+        }catch (\Exception $e) {
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('flash_message_error', $e->getMessage());
+        }
+        //}
+        return redirect()->route('role');
     }
 
     /**
@@ -93,8 +110,24 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        $model = Role::where('slug',$slug)->first();
+        DB::beginTransaction();
+        try {
+            if($model->status =='active'){
+                $model->status = 'cancel';
+            }else{
+                $model->status = 'active';
+            }
+            $model->save();
+            DB::commit();
+            Session::flash('message', "Successfully Deleted.");
+
+        } catch(\Exception $e) {
+            DB::rollback();
+            Session::flash('danger',$e->getMessage());
+        }
+        return redirect()->route('role');
     }
 }

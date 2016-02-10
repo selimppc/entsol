@@ -5,6 +5,7 @@ namespace App\Modules\User\Controllers;
 use App\Permission;
 use App\PermissionRole;
 use App\Role;
+use App\RoleUser;
 use App\User;
 use App\UserResetPassword;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
-class PermissionRoleController extends Controller
+class RoleUserController extends Controller
 {
     /**
      * Display the specified resource.
@@ -27,21 +28,21 @@ class PermissionRoleController extends Controller
      */
     public function index()
     {
-        $pageTitle = "Permission Role List";
+        $pageTitle = "Role User List";
         $title = Input::get('title');
-        $data = PermissionRole::where('status', '!=', 'cancel')->orderBy('id', 'DESC')->get();
-        $permission_id = [''=>'Select Permission'] + Permission::lists('title','id')->all();
+        $data = RoleUser::where('status', '!=', 'cancel')->orderBy('id', 'DESC')->get();
+        $user_id = [''=>'Select User'] + User::lists('username','id')->all();
         $role_id = [''=>'Select Role'] + Role::lists('title','id')->all();
-        return view('user::permission_role.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'permission_id'=>$permission_id,'role_id'=>$role_id]);
+        return view('user::role_user.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'user_id'=>$user_id,'role_id'=>$role_id]);
     }
 
-    public function store(Requests\PermissionRoleRequest $request){
+    public function store(Requests\RoleUserRequest $request){
         $input = $request->all();
 
         /* Transaction Start Here */
         DB::beginTransaction();
         try {
-            PermissionRole::create($input);
+            RoleUser::create($input);
             DB::commit();
             Session::flash('message', 'Successfully added!');
         } catch (\Exception $e) {
@@ -50,7 +51,7 @@ class PermissionRoleController extends Controller
             Session::flash('danger', $e->getMessage());
         }
 
-        return redirect()->route('index-permission-role');
+        return redirect()->route('index-role-user');
     }
     /**
      * Display the specified resource.
@@ -60,10 +61,10 @@ class PermissionRoleController extends Controller
      */
     public function show($id)
     {
-        $pageTitle = 'View Permission Role';
-        $data = PermissionRole::where('id',$id)->first();
+        $pageTitle = 'View Role User';
+        $data = RoleUser::where('id',$id)->first();
 
-        return view('user::permission_role.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
+        return view('user::role_user.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 
     /**
@@ -74,11 +75,11 @@ class PermissionRoleController extends Controller
      */
     public function edit($id)
     {
-        $pageTitle = 'Update Permission Informations';
-        $data = PermissionRole::where('id',$id)->first();
-        $permission_id = Permission::lists('title','id');
-        $role_id = [''=>'Select Permission'] + Role::lists('title','id')->all();
-        return view('user::permission_role.update', ['data' => $data, 'pageTitle'=> $pageTitle, 'permission_id' => $permission_id, 'role_id'=>$role_id]);
+        $pageTitle = 'Update Role User Informations';
+        $data = RoleUser::where('id',$id)->first();
+        $user_id = User::lists('username','id');
+        $role_id = Role::lists('title','id');
+        return view('user::role_user.update', ['data' => $data, 'pageTitle'=> $pageTitle, 'user_id' => $user_id, 'role_id'=>$role_id]);
     }
 
     /**
@@ -88,9 +89,9 @@ class PermissionRoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Requests\PermissionRoleRequest $request, $id)
+    public function update(Requests\RoleUserRequest $request, $id)
     {
-        $model = PermissionRole::where('id',$id)->first();
+        $model = RoleUser::where('id',$id)->first();
         $input = $request->all();
 
         DB::beginTransaction();
@@ -104,7 +105,7 @@ class PermissionRoleController extends Controller
             DB::rollback();
             Session::flash('danger', $e->getMessage());
         }
-        return redirect()->route('index-permission-role');
+        return redirect()->route('index-role-user');
     }
 
     /**
@@ -115,7 +116,7 @@ class PermissionRoleController extends Controller
      */
     public function destroy($id)
     {
-        $model = PermissionRole::findOrFail($id);
+        $model = RoleUser::findOrFail($id);
 
         DB::beginTransaction();
         try {
@@ -132,6 +133,6 @@ class PermissionRoleController extends Controller
             DB::rollback();
             Session::flash('danger',$e->getMessage());
         }
-        return redirect()->route('index-permission-role');
+        return redirect()->route('index-role-user');
     }
 }
