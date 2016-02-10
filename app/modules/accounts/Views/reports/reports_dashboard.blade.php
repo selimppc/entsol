@@ -27,7 +27,7 @@
                         <hr class="panel-wide">
 
                         <h6 class="text-light-gray text-semibold text-xs text-center" style="margin:20px 0 10px 0;">General Ledger Transaction</h6>
-                        <a class="btn btn-primary" data-toggle="modal" href="#addData">
+                        <a class="btn btn-primary" data-toggle="modal" href="#addGlTransaction">
                             <strong>GL Transaction</strong>
                         </a>
 
@@ -111,6 +111,24 @@
             <div class="modal-body">
                 {!! Form::open(['route' => 'trial-balance-all','class' => 'form-horizontal','id' => 'jq-validation-form']) !!}
                 @include('accounts::reports.trial_balance_all')
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal GL Transaction -->
+
+<div id="addGlTransaction" class="modal fade" tabindex="" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-lg" style="z-index:1050">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
+                <h4 class="modal-title" id="myModalLabel">General Ledger Transaction</h4>
+            </div>
+            <div class="modal-body">
+                {!! Form::open(['route' => 'gl-transaction','class' => 'form-horizontal','id' => 'jq-validation-form']) !!}
+                @include('accounts::reports.gl_transaction')
                 {!! Form::close() !!}
             </div>
         </div>
