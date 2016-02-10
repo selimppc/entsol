@@ -85,7 +85,7 @@ class AcReportsController extends Controller
         $pFromDate = Input::get('pFromDate');
         $pToDate = Input::get('pToDate');
 
-        $report = $c->reportService()->runReport('/reports/samples/AllAccounts', 'html');
+        $report = $c->reportService()->runReport('/entsol/Reports/ac_trial_balance', 'html');
         echo $report;
         exit();
 
@@ -95,27 +95,115 @@ class AcReportsController extends Controller
 
     public function trial_balance_all(){
 
+        $c = new Client(
+            "http://192.168.2.182:8080/jasperserver",
+            "jasperadmin",
+            "jasperadmin",
+            ""
+        );
+
+        $pBranch = Input::get('pBranch');
+        $pFromDate = Input::get('pFromDate');
+        $pToDate = Input::get('pToDate');
+
+        $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_trialblall', 'html');
+        echo $report;
+        exit();
+
     }
 
 
     public function gl_transaction(){
 
+        $c = new Client(
+            "http://192.168.2.182:8080/jasperserver",
+            "jasperadmin",
+            "jasperadmin",
+            ""
+        );
+
+        $pTrn = Input::get('pTrn');
+        $pBranch = Input::get('pBranch');
+        $pFromDate = Input::get('pFromDate');
+        $pToDate = Input::get('pToDate');
+
+        $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_transaction', 'html');
+        echo $report;
+        exit();
+
     }
 
     public function gl_single_voucher(){
+
+        $c = new Client(
+            "http://192.168.2.182:8080/jasperserver",
+            "jasperadmin",
+            "jasperadmin",
+            ""
+        );
+
+        $pVoucherNo = Input::get('pVoucherNo');
+
+        $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_singlvoucher', 'html');
+        echo $report;
+        exit();
 
     }
 
     public function gl_pnl_sheet(){
 
+        $c = new Client(
+            "http://192.168.2.182:8080/jasperserver",
+            "jasperadmin",
+            "jasperadmin",
+            ""
+        );
+
+        $pYear = Input::get('pYear');
+        $pPeriod = Input::get('pPeriod');
+        $pBranch = Input::get('pBranch');
+        $pStyle = Input::get('pStyle');
+
+        $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_pnlsheet', 'html');
+        echo $report;
+        exit();
+
     }
 
     public function chart_of_accounts_report(){
 
+        $c = new Client(
+            "http://192.168.2.182:8080/jasperserver",
+            "jasperadmin",
+            "jasperadmin",
+            ""
+        );
+
+        $pType = Input::get('pType');
+
+        $report = $c->reportService()->runReport('/entsol/Reports/ac_chart_of_ac', 'html');
+        echo $report;
+        exit();
     }
 
 
     public function balance_sheet(){
+
+        $c = new Client(
+            "http://192.168.2.182:8080/jasperserver",
+            "jasperadmin",
+            "jasperadmin",
+            ""
+        );
+
+        $pYear = Input::get('pYear');
+        $pPeriod = Input::get('pPeriod');
+        $pBranch = Input::get('pBranch');
+        $pStyle = Input::get('pStyle');
+
+        $report = $c->reportService()->runReport('/entsol/Reports/ac_balance_sheet', 'html');
+        echo $report;
+        exit();
 
     }
 
