@@ -161,7 +161,7 @@ class AcReportsController extends Controller
     }
 
 
-    public function gl_transaction(){
+    public function gl_transaction(Request $requests){
 
         $c = new Client(
             "http://192.168.2.182:8080/jasperserver",
@@ -170,15 +170,39 @@ class AcReportsController extends Controller
             ""
         );
 
-        $pTrn = Input::get('pTrn');
-        $pBranch = Input::get('pBranch');
-        $pFromDate = Input::get('pFromDate');
-        $pToDate = Input::get('pToDate');
+        $data = $requests->all();
 
-        $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_transaction', 'html');
-        echo $report;
-        exit();
+        $from_date = date('Y-m-d', strtotime($data['pFromDate']));
+        $to_date = date('Y-m-d', strtotime($data['pToDate']));
 
+        $controls = array(
+            'pTrn' => $data['pTrn'],
+            'pBranch' => $data['pBranch'],
+            'pFromDate' => $from_date,
+            'pToDate' => $to_date
+        );
+
+        if(@$data['PDF']=='PDF Report'){
+            $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_transaction', 'pdf', null, null, $controls);
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Description: File Transfer');
+            header('Content-Disposition: attachment; filename=report.pdf');
+            header('Content-Transfer-Encoding: binary');
+            header('Content-Length: ' . strlen($report));
+            header('Content-Type: application/pdf');
+            echo $report;
+        }else if(@$data['Excel']=='Excel Report'){
+            $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_transaction', 'xls', null, null, $controls);
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Description: File Transfer');
+            header('Content-Disposition: attachment; filename=report.xls');
+            header('Content-Transfer-Encoding: binary');
+            header('Content-Length: ' . strlen($report));
+            header('Content-Type: application/xls');
+            echo $report;
+        }
     }
 
     public function gl_single_voucher(){
