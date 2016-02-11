@@ -98,7 +98,7 @@ class AcReportsController extends Controller
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
-            header('Content-Disposition: attachment; filename=report.pdf');
+            header('Content-Disposition: attachment; filename=trial_balance.pdf');
             header('Content-Transfer-Encoding: binary');
             header('Content-Length: ' . strlen($report));
             header('Content-Type: application/pdf');
@@ -108,7 +108,7 @@ class AcReportsController extends Controller
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
-            header('Content-Disposition: attachment; filename=report.xls');
+            header('Content-Disposition: attachment; filename=trial_balance.xls');
             header('Content-Transfer-Encoding: binary');
             header('Content-Length: ' . strlen($report));
             header('Content-Type: application/xls');
@@ -144,7 +144,7 @@ class AcReportsController extends Controller
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
-            header('Content-Disposition: attachment; filename=report.pdf');
+            header('Content-Disposition: attachment; filename=trial_balance_all.pdf');
             header('Content-Transfer-Encoding: binary');
             header('Content-Length: ' . strlen($report));
             header('Content-Type: application/pdf');
@@ -154,7 +154,7 @@ class AcReportsController extends Controller
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
-            header('Content-Disposition: attachment; filename=report.xls');
+            header('Content-Disposition: attachment; filename=trial_balance_all.xls');
             header('Content-Transfer-Encoding: binary');
             header('Content-Length: ' . strlen($report));
             header('Content-Type: application/xls');
@@ -192,7 +192,7 @@ class AcReportsController extends Controller
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
-            header('Content-Disposition: attachment; filename=report.pdf');
+            header('Content-Disposition: attachment; filename=gl_transaction.pdf');
             header('Content-Transfer-Encoding: binary');
             header('Content-Length: ' . strlen($report));
             header('Content-Type: application/pdf');
@@ -202,7 +202,7 @@ class AcReportsController extends Controller
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
-            header('Content-Disposition: attachment; filename=report.xls');
+            header('Content-Disposition: attachment; filename=gl_transaction.xls');
             header('Content-Transfer-Encoding: binary');
             header('Content-Length: ' . strlen($report));
             header('Content-Type: application/xls');
@@ -283,7 +283,7 @@ class AcReportsController extends Controller
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
-            header('Content-Disposition: attachment; filename=report.pdf');
+            header('Content-Disposition: attachment; filename=pnlsheet.pdf');
             header('Content-Transfer-Encoding: binary');
             header('Content-Length: ' . strlen($report));
             header('Content-Type: application/pdf');
@@ -293,7 +293,7 @@ class AcReportsController extends Controller
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
-            header('Content-Disposition: attachment; filename=report.xls');
+            header('Content-Disposition: attachment; filename=pnlsheet.xls');
             header('Content-Transfer-Encoding: binary');
             header('Content-Length: ' . strlen($report));
             header('Content-Type: application/xls');
@@ -301,7 +301,7 @@ class AcReportsController extends Controller
         }
     }
 
-    public function chart_of_accounts_report(){
+    public function chart_of_accounts_report(Request $requests){
 
         $c = new Client(
             "http://192.168.2.182:8080/jasperserver",
@@ -310,15 +310,39 @@ class AcReportsController extends Controller
             ""
         );
 
-        $pType = Input::get('pType');
+        $data = $requests->all();
 
-        $report = $c->reportService()->runReport('/entsol/Reports/ac_chart_of_ac', 'html');
-        echo $report;
-        exit();
+        $controls = array(
+            'pType' => $data['pType']
+        );
+
+        //print_r($controls);exit;/
+
+        if(@$data['PDF']=='PDF Report'){
+            $report = $c->reportService()->runReport('/entsol/Reports/ac_chart_of_ac', 'pdf', null, null, $controls);
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Description: File Transfer');
+            header('Content-Disposition: attachment; filename=chart_of_accounts.pdf');
+            header('Content-Transfer-Encoding: binary');
+            header('Content-Length: ' . strlen($report));
+            header('Content-Type: application/pdf');
+            echo $report;
+        }else if(@$data['Excel']=='Excel Report'){
+            $report = $c->reportService()->runReport('/entsol/Reports/ac_chart_of_ac', 'xls', null, null, $controls);
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Description: File Transfer');
+            header('Content-Disposition: attachment; filename=chart_of_accounts.xls');
+            header('Content-Transfer-Encoding: binary');
+            header('Content-Length: ' . strlen($report));
+            header('Content-Type: application/xls');
+            echo $report;
+        }
     }
 
 
-    public function balance_sheet(){
+    public function balance_sheet(Request $requests){
 
         $c = new Client(
             "http://192.168.2.182:8080/jasperserver",
@@ -327,14 +351,38 @@ class AcReportsController extends Controller
             ""
         );
 
-        $pYear = Input::get('pYear');
-        $pPeriod = Input::get('pPeriod');
-        $pBranch = Input::get('pBranch');
-        $pStyle = Input::get('pStyle');
+        $data = $requests->all();
 
-        $report = $c->reportService()->runReport('/entsol/Reports/ac_balance_sheet', 'html');
-        echo $report;
-        exit();
+        $controls = array(
+            'pYear' => $data['pYear'],
+            'pPeriod' => $data['pPeriod'],
+            'pBranch' => $data['pBranch'],
+            'pStyle' => $data['pStyle']
+        );
+
+        //print_r($controls);exit;/
+
+        if(@$data['PDF']=='PDF Report'){
+            $report = $c->reportService()->runReport('/entsol/Reports/ac_balance_sheet', 'pdf', null, null, $controls);
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Description: File Transfer');
+            header('Content-Disposition: attachment; filename=balance_sheet.pdf');
+            header('Content-Transfer-Encoding: binary');
+            header('Content-Length: ' . strlen($report));
+            header('Content-Type: application/pdf');
+            echo $report;
+        }else if(@$data['Excel']=='Excel Report'){
+            $report = $c->reportService()->runReport('/entsol/Reports/ac_balance_sheet', 'xls', null, null, $controls);
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Description: File Transfer');
+            header('Content-Disposition: attachment; filename=balance_sheet.xls');
+            header('Content-Transfer-Encoding: binary');
+            header('Content-Length: ' . strlen($report));
+            header('Content-Type: application/xls');
+            echo $report;
+        }
 
     }
 

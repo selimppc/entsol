@@ -204,15 +204,20 @@
 <div id="addChartofAccounts" class="modal fade" tabindex="" role="dialog" style="display: none;">
     <div class="modal-dialog modal-lg" style="z-index:1050">
         <div class="modal-content">
+            {!! Form::open(['route' => 'chart-of-accounts-report','class' => 'form-horizontal','id' => 'jq-validation-form']) !!}
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
                 <h4 class="modal-title" id="myModalLabel">Chart of Accounts</h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['route' => 'chart-of-accounts-report','class' => 'form-horizontal','id' => 'jq-validation-form']) !!}
                 @include('accounts::reports.chart_of_accounts_report')
-                {!! Form::close() !!}
             </div>
+            <div class="modal-footer">
+                {!! Form::submit('PDF Report', ['name'=>'PDF', 'class' => 'btn btn-primary']) !!}
+                {!! Form::submit('Excel Report', ['name'=>'Excel', 'class' => 'btn btn-primary']) !!}
+                <a href="{{route('account-reports')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
+            </div>
+            {!! Form::close() !!}
         </div>
     </div>
 </div>
@@ -222,15 +227,20 @@
 <div id="addBalanceSheet" class="modal fade" tabindex="" role="dialog" style="display: none;">
     <div class="modal-dialog modal-lg" style="z-index:1050">
         <div class="modal-content">
+            {!! Form::open(['route' => 'balance-sheet','class' => 'form-horizontal','id' => 'jq-validation-form']) !!}
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
                 <h4 class="modal-title" id="myModalLabel">Balance Sheet</h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['route' => 'balance-sheet','class' => 'form-horizontal','id' => 'jq-validation-form']) !!}
                 @include('accounts::reports.balance_sheet')
-                {!! Form::close() !!}
             </div>
+            <div class="modal-footer">
+                {!! Form::submit('PDF Report', ['name'=>'PDF', 'class' => 'btn btn-primary']) !!}
+                {!! Form::submit('Excel Report', ['name'=>'Excel', 'class' => 'btn btn-primary']) !!}
+                <a href="{{route('account-reports')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
+            </div>
+            {!! Form::close() !!}
         </div>
     </div>
 </div>
