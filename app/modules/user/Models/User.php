@@ -29,7 +29,7 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $fillable = [
-        'username','email','password','auth_key','access_token','csrf_token','ip_address',    'last_visit','role_id'
+        'username','email','password','auth_key','access_token','csrf_token','ip_address','branch_id','last_visit','role_id','expire_date','status'
     ];
 
     /**
@@ -38,4 +38,12 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function relBranch(){
+        return $this->belongsTo('App\Branch', 'branch_id', 'id');
+    }
+
+    public function relRole(){
+        return $this->belongsTo('App\Role', 'role_id', 'id');
+    }
 }

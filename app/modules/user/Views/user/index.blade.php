@@ -11,7 +11,7 @@
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>we can show all user in this page<br> and add new user, update, delete from this page</em>">(?)</span>
-                <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="left" data-content="click add user button for new user entry">
+                <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="left" data-content="click 'add user' button to add new user">
                     <strong>Add User</strong>
                 </a>
             </div>
@@ -39,7 +39,7 @@
                     <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
                         <thead>
                         <tr>
-                            <th> id </th>
+                            {{--<th> id </th>--}}
                             <th> Username </th>
                             <th> email </th>
                             <th> Status &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="you can change status from update page">(?)</span></th>
@@ -50,7 +50,7 @@
                         @if(isset($data))
                             @foreach($data as $values)
                                 <tr class="gradeX">
-                                    <td>{{$values->id}}</td>
+                                    {{--<td>{{$values->id}}</td>--}}
                                     <td>{{ucfirst($values->username)}}</td>
                                     <td>{{$values->email}}</td>
                                     <td>{{ucfirst($values->status)}}</td>
@@ -65,6 +65,7 @@
                         </tbody>
                     </table>
                 </div>
+                <span class="pull-left">{!! str_replace('/?', '?', $data->render()) !!} </span>
             </div>
         </div>
     </div>
@@ -72,7 +73,7 @@
 <!-- page end-->
 
 <div id="addData" class="modal fade" tabindex="" role="dialog" style="display: none;">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg" style="z-index:1050">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
@@ -91,8 +92,8 @@
 
 <!-- Modal  -->
 
-<div class="modal fade" id="etsbModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade" id="etsbModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="z-index:1050">
         <div class="modal-content">
 
         </div>
