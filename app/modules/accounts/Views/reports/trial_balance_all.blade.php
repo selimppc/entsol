@@ -3,7 +3,7 @@
         <div class="col-sm-10">
             <div class="col-sm-3">
                 {!! Form::label('Branch', 'Branch:', ['class' => 'control-label']) !!}
-                {!! Form::select('pBranch', $branch_id,Input::old('pBranch'),['class' => 'form-control','required','title'=>'select  branch, example :: Main Branch']) !!}
+                {!! Form::select('pBranch', $branch_id,null,['class' => 'form-control','required','title'=>'select  branch, example :: Main Branch']) !!}
             </div>
             <div class="col-sm-3">
                 {!! Form::label('FromDate', 'FromDate:', ['class' => 'control-label']) !!}
@@ -16,3 +16,4 @@
         </div>
     </div>
 </div>
+

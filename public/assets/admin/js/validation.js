@@ -79,6 +79,8 @@ init.push(function () {
             },
             'status': {
                 required: true
+            },'pBranch': {
+                required: true
             },
 
             'jq-validation-multiselect': {
