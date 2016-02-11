@@ -67,7 +67,7 @@ class AcReportsController extends Controller
 
 
     public function account_reports(){
-        $branch_id = [''=>'Select Branch'] + Branch::lists('title','id')->all();
+        $branch_id = [''=>'Select Branch'] + Branch::lists('title','title')->all();
         return view('accounts::reports.reports_dashboard', ['branch_id'=> $branch_id]);
     }
 
@@ -188,6 +188,7 @@ class AcReportsController extends Controller
 
         if(@$data['PDF']=='PDF Report'){
             $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_transaction', 'pdf', null, null, $controls);
+
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
@@ -219,13 +220,63 @@ class AcReportsController extends Controller
         );
 
         $data = $requests->all();
-        
         $controls = array(
             'pVoucherNo' => $data['pVoucherNo']
         );
 
         if(@$data['PDF']=='PDF Report'){
-            $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_singlvoucher', 'pdf', null, null, $controls);
+            try {
+                $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_singlvoucher', 'pdf', null, null, $controls);
+                header('Cache-Control: must-revalidate');
+                header('Pragma: public');
+                header('Content-Description: File Transfer');
+                header('Content-Disposition: attachment; filename=single_voucher.pdf');
+                header('Content-Transfer-Encoding: binary');
+                header('Content-Length: ' . strlen($report));
+                header('Content-Type: application/pdf');
+                echo $report;
+            } catch (\Exception $e) {
+                Session::flash('danger', $e->getMessage());
+            }
+            return redirect()->back();
+
+        }else if(@$data['Excel']=='Excel Report'){
+            try {
+            $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_singlvoucher', 'xls', null, null, $controls);
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Description: File Transfer');
+            header('Content-Disposition: attachment; filename=single_voucher.xls');
+            header('Content-Transfer-Encoding: binary');
+            header('Content-Length: ' . strlen($report));
+            header('Content-Type: application/xls');
+            echo $report;
+            } catch (\Exception $e) {
+                Session::flash('danger', $e->getMessage());
+            }
+            return redirect()->back();
+        }
+    }
+
+    public function gl_pnl_sheet(Request $requests){
+
+        $c = new Client(
+            "http://192.168.2.182:8080/jasperserver",
+            "jasperadmin",
+            "jasperadmin",
+            ""
+        );
+
+        $data = $requests->all();
+        $controls = array(
+            'pYear' => $data['pYear'],
+            'pPeriod' => $data['pPeriod'],
+            'pBranch' => $data['pBranch'],
+            'pStyle' => $data['pStyle']
+        );
+
+        if(@$data['PDF']=='PDF Report'){
+            $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_pnlsheet', 'pdf', null, null, $controls);
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
@@ -235,7 +286,7 @@ class AcReportsController extends Controller
             header('Content-Type: application/pdf');
             echo $report;
         }else if(@$data['Excel']=='Excel Report'){
-            $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_singlvoucher', 'xls', null, null, $controls);
+            $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_pnlsheet', 'xls', null, null, $controls);
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
@@ -245,26 +296,6 @@ class AcReportsController extends Controller
             header('Content-Type: application/xls');
             echo $report;
         }
-    }
-
-    public function gl_pnl_sheet(){
-
-        $c = new Client(
-            "http://192.168.2.182:8080/jasperserver",
-            "jasperadmin",
-            "jasperadmin",
-            ""
-        );
-
-        $pYear = Input::get('pYear');
-        $pPeriod = Input::get('pPeriod');
-        $pBranch = Input::get('pBranch');
-        $pStyle = Input::get('pStyle');
-
-        $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_pnlsheet', 'html');
-        echo $report;
-        exit();
-
     }
 
     public function chart_of_accounts_report(){
