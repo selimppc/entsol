@@ -406,7 +406,7 @@ class AcReportsController extends Controller
         header('Cache-Control: must-revalidate');
         header('Pragma: public');
         header('Content-Description: File Transfer');
-        header('Content-Disposition: attachment; filename=balance_sheet.pdf');
+        header('Content-Disposition: attachment; filename=single_voucher_'.$voucher_number.'pdf');
         header('Content-Transfer-Encoding: binary');
         header('Content-Length: ' . strlen($report));
         header('Content-Type: application/pdf');
@@ -431,7 +431,7 @@ class AcReportsController extends Controller
         header('Cache-Control: must-revalidate');
         header('Pragma: public');
         header('Content-Description: File Transfer');
-        header('Content-Disposition: attachment; filename=balance_sheet.xls');
+        header('Content-Disposition: attachment; filename=single_voucher_'.$voucher_number.'.xls');
         header('Content-Transfer-Encoding: binary');
         header('Content-Length: ' . strlen($report));
         header('Content-Type: application/xls');
