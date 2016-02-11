@@ -252,9 +252,9 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
         'uses' => 'AcReportsController@trial_balance_all'
     ]);
 
-    Route::any('gl-transaction', [
-        'as' => 'gl-transaction',
-        'uses' => 'AcReportsController@gl_transaction'
+    Route::any('gl-transaction-report', [
+        'as' => 'gl-transaction-report',
+        'uses' => 'AcReportsController@gl_transaction_report'
     ]);
 
 

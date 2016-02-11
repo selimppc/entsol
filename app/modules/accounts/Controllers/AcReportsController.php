@@ -163,7 +163,7 @@ class AcReportsController extends Controller
     }
 
 
-    public function gl_transaction(Request $requests){
+    public function gl_transaction_report(Request $requests){
 
         $c = new Client(
             "http://192.168.2.182:8080/jasperserver",
