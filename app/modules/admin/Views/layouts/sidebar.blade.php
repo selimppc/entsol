@@ -113,7 +113,7 @@
                     <a tabindex="-1" href="{{route('default-offset')}}"><span class="mm-text">Default Offset</span></a>
                 </li>
                 <li>
-                    <a tabindex="-1" href="{{route('gl-transaction')}}"><span class="mm-text">Gl Transaction</span></a>
+                    <a tabindex="-1" href="{{route('gl-transaction')}}"><span class="mm-text">GL Transaction</span></a>
                 </li>
                 <li>
                     <a tabindex="-1" href="{{route('voucher-history')}}"><span class="mm-text">Voucher History</span></a>
