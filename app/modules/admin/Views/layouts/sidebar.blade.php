@@ -44,7 +44,7 @@
             <a href="#"><i class="menu-icon fa fa-user-md"></i><span class="mm-text">User</span></a>
             <ul>
                 <li>
-                    <a tabindex="-1" href="{{route('index-user')}}"><span class="mm-text">User List</span></a>
+                    <a tabindex="-1" href="{{route('user-list')}}"><span class="mm-text">User List</span></a>
                 </li>
                 <li>
                     <a tabindex="-1" href="{{route('role')}}"><span class="mm-text">Role</span></a>

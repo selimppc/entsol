@@ -15,7 +15,7 @@ class UserTableSeeder extends Seeder
         DB::table('user')->truncate();
 
         $users = array(
-            array('admin', 'admin@admin.com', Hash::make('admin'),'127.0.1.1','2015-08-27 16:33:22')
+            array('admin', 'admin@admin.com', Hash::make('admin'),'127.0.1.1','2015-08-27 16:33:22','2020-08-27 16:33:22')
         );
 
         foreach($users as $user) {
@@ -23,13 +23,14 @@ class UserTableSeeder extends Seeder
                 'username' => $user[0],
                 'email' => $user[1],
                 'password' => $user[2],
-                'branch_id' => Null,
+                'branch_id' => 1,
                 'auth_key' => '',
                 'access_token' => '',
                 'csrf_token' => '',
                 'ip_address' => $user[3],
                 'last_visit' => $user[4],
-                'role_id' => Null,
+                'role_id' => 1,
+                'expire_date' => $user[5],
                 'remember_token' => '',
                 'status' => 'active',
                 'created_at' => new DateTime,

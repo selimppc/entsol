@@ -12,30 +12,6 @@ class UserRole extends Migration
      */
     public function up()
     {
-        /*user*/
-
-        Schema::create('user', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('username', 64)->nullable();
-            $table->string('email', 64)->unique();
-            $table->string('password', 64)->nullable();
-            $table->string('auth_key', 128)->nullable();
-            $table->string('access_token', 256)->nullable();
-            $table->string('csrf_token', 64)->nullable();
-            $table->string('ip_address', 32)->nullable();
-            $table->unsignedInteger('branch_id')->nullable();
-            $table->dateTime('last_visit')->nullable();
-            $table->unsignedInteger('role_id')->nullable();
-            $table->string('remember_token',64)->nullable();
-            $table->enum('status',array('active','inactive','cancel'))->nullable();
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
-            $table->timestamps();
-            $table->engine = 'InnoDB';
-        });
-        Schema::table('user', function($table) {
-            $table->foreign('branch_id')->references('id')->on('cm_branch');
-        });
 
         /*role*/
 
@@ -48,6 +24,32 @@ class UserRole extends Migration
             $table->integer('updated_by', false, 11);
             $table->timestamps();
             $table->engine = 'InnoDB';
+        });
+        /*user*/
+
+        Schema::create('user', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('username', 64)->nullable();
+            $table->string('email', 64)->unique();
+            $table->string('password', 64)->nullable();
+            $table->string('auth_key', 128)->nullable();
+            $table->string('access_token', 256)->nullable();
+            $table->string('csrf_token', 64)->nullable();
+            $table->string('ip_address', 32)->nullable();
+            $table->unsignedInteger('branch_id')->nullable();
+            $table->date('last_visit')->nullable();
+            $table->unsignedInteger('role_id')->nullable();
+            $table->date('expire_date')->nullable();
+            $table->string('remember_token',64)->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+        Schema::table('user', function($table) {
+            $table->foreign('branch_id')->references('id')->on('cm_branch');
+            $table->foreign('role_id')->references('id')->on('role');
         });
 
         /*role_user*/

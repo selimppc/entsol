@@ -9,9 +9,10 @@
 Route::group(array('modules'=>'User', 'namespace' => 'App\Modules\User\Controllers'), function() {
     //Your routes belong to this module.
 include 'routes_permission.php';
-Route::any('index-user', [
-    'as' => 'index-user',
-    'uses' => 'UserController@index'
+
+Route::any('user-list', [
+'as' => 'user-list',
+'uses' => 'UserController@index'
 ]);
 
 Route::any('add-user', [
@@ -19,30 +20,31 @@ Route::any('add-user', [
     'uses' => 'UserController@add_user'
 ]);
 
+Route::any('search-user', [
+    'as' => 'search-user',
+    'uses' => 'UserController@search_user'
+]);
+
 Route::any('show-user/{id}', [
     'as' => 'show-user',
     'uses' => 'UserController@show_user'
 ]);
 
-Route::any('edit-user', [
+Route::any('edit-user/{id}', [
     'as' => 'edit-user',
     'uses' => 'UserController@edit_user'
 ]);
 
-Route::any('update-user', [
+Route::any('update-user/{id}', [
     'as' => 'update-user',
     'uses' => 'UserController@update_user'
 ]);
 
-Route::any('delete-user', [
+Route::any('delete-user/{id}', [
     'as' => 'delete-user',
     'uses' => 'UserController@destroy_user'
 ]);
 
-Route::any('user', [
-    'as' => 'user',
-    'uses' => 'UserController@index'
-]);
 
 Route::any('create-sign-up', [
     'as' => 'create-sign-up',

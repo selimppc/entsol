@@ -3,6 +3,7 @@
 namespace App\Modules\User\Controllers;
 
 use App\Branch;
+use App\Role;
 use App\User;
 use App\UserResetPassword;
 use Illuminate\Http\Request;
@@ -17,6 +18,11 @@ use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
+
+    protected function isGetRequest()
+    {
+        return Input::server("REQUEST_METHOD") == "GET";
+    }
     public function create_sign_up()
     {
         return view('user::signup._form');
@@ -154,16 +160,65 @@ class UserController extends Controller
     public function index()
     {
         $pageTitle = "User List";
-        $username = Input::get('username');
-        $email = Input::get('email');
-        $data = User::orderBy('id', 'DESC')->get();
-        $branch_data =  Branch::lists('title','id');
+        $model = User::with('relBranch','relRole')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(30);
+        $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
+        $role =  [''=>'Select Role'] +  Role::lists('title','id')->all();
 
-        return view('user::user.index', ['data' => $data, 'pageTitle'=> $pageTitle,'branch_data'=>$branch_data]);
+        return view('user::user.index', ['model' => $model, 'pageTitle'=> $pageTitle,'branch_data'=>$branch_data,'role'=>$role]);
     }
 
-    public function add_user(){
-       exit('223434');
+    public function search_user(){
+
+        $pageTitle = 'User Informations';
+        $model = new User();
+
+        if($this->isGetRequest()){
+            $branch_id = Input::get('branch_id');
+            $role_id = Input::get('role_id');
+
+            $model = $model->with('relBranch','relRole');
+            if (isset($branch_id) && !empty($branch_id)) $model->where('user.branch_id', '=', $branch_id);
+            if (isset($role_id) && !empty($role_id)) $model->where('user.role_id', '=', $role_id);
+
+            $model = $model->where('status','!=','cancel')->paginate(30);
+        }else{
+            $model = $model->with('relBranch','relRole')->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
+        }
+
+        $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
+        $role =  [''=>'Select Role'] +  Role::lists('title','id')->all();
+
+        return view('user::user.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model,'branch_data'=>$branch_data,'role'=>$role]);
+    }
+
+    public function add_user(Requests\UserRequest $request){
+
+        $input = $request->all();
+        /* Transaction Start Here */
+        DB::beginTransaction();
+        try {
+            $input_data = [
+                'username'=>$input['username'],
+                'email'=>$input['email'],
+                'password'=>Hash::make($input['password']),
+                'csrf_token'=> str_random(30),
+                'ip_address'=> getHostByName(getHostName()),
+                'branch_id'=> $input['branch_id'],
+                'role_id'=> $input['role_id'],
+                'expire_date'=> $input['expire_date'],
+                'status'=> 'active',
+            ];
+
+            User::create($input_data);
+
+            DB::commit();
+            Session::flash('message', 'Successfully added!');
+        } catch (\Exception $e) {
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', $e->getMessage());
+        }
+        return redirect()->back();
     }
     /**
      * Display the specified resource.
@@ -173,7 +228,10 @@ class UserController extends Controller
      */
     public function show_user($id)
     {
-        exit('Ok');
+        $pageTitle = 'User Informations';
+        $data = User::with('relBranch','relRole')->where('id',$id)->first();
+#print_r($data);exit;
+        return view('user::user.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 
     /**
@@ -184,7 +242,14 @@ class UserController extends Controller
      */
     public function edit_user($id)
     {
-        //
+        $pageTitle = 'Edit User Information';
+
+        $data = User::findOrFail($id);
+
+        $branch_data =  Branch::lists('title','id');
+        $role =  Role::lists('title','id');
+
+        return view('user::user.update', ['pageTitle'=>$pageTitle,'data' => $data,'branch_data'=>$branch_data,'role'=>$role]);
     }
 
     /**
@@ -194,9 +259,35 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update_user(Request $request, $id)
+    public function update_user(Requests\UserRequest $request, $id)
     {
-        //
+        $input = $request->all();
+        $model = User::findOrFail($id);
+
+        DB::beginTransaction();
+        try {
+
+            $input_data = [
+                'username'=>$input['username'],
+                'email'=>$input['email'],
+                'password'=>Hash::make($input['password']),
+                'csrf_token'=> str_random(30),
+                'ip_address'=> getHostByName(getHostName()),
+                'branch_id'=> $input['branch_id'],
+                'role_id'=> $input['role_id'],
+                'expire_date'=> $input['expire_date'],
+                'status'=> 'active',
+            ];
+            $model->update($input_data);
+            DB::commit();
+            Session::flash('message', "Successfully Updated");
+        }
+        catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('error', $e->getMessage());
+        }
+        return redirect()->back();
     }
 
     /**
@@ -207,6 +298,20 @@ class UserController extends Controller
      */
     public function destroy_user($id)
     {
-        //
+        $model = User::where('id',$id)->first();
+        DB::beginTransaction();
+        try {
+            if($model->status =='active'){
+                $model->status = 'cancel';
+            }
+            $model->save();
+            DB::commit();
+            Session::flash('message', "Successfully Deleted.");
+
+        } catch(\Exception $e) {
+            DB::rollback();
+            Session::flash('danger',$e->getMessage());
+        }
+        return redirect()->route('user-list');
     }
 }
