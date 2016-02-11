@@ -8,7 +8,7 @@
         <div class="col-sm-6">
             {!! Form::label('code', 'Code:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('code', null, ['id'=>'code', 'class' => 'form-control','required', 'style'=>'text-transform:uppercase','title'=>'enter settings code, example :: -JV']) !!}
+            {!! Form::text('code', null, ['id'=>'code', 'class' => 'form-control','maxlength'=>'4','minlength'=>'4','required', 'style'=>'text-transform:uppercase','title'=>'enter settings code, example :: -JV']) !!}
         </div>
     </div>
 </div>

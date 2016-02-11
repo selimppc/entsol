@@ -30,7 +30,7 @@ class SettingsRequest extends Request
     public function rules()
     {
         return [
-            'code' => 'required|max:64',
+            'code' => 'required|min:4',
             'title' => 'required|max:64',
             'type' => 'required',
             'last_number' => 'required',
