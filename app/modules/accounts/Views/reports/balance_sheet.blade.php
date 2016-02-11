@@ -7,7 +7,7 @@
             </div>
             <div class="col-sm-3">
                 {!! Form::label('pPeriod', 'Period:', ['class' => 'control-label']) !!}
-                {!! Form::Select('pPeriod', array(''=>'select','1'=>'1','2'=>'2','3'=>'3','4'=>'4','5'=>'5','6'=>'6','7'=>'7','8'=>'8','9'=>'9','10'=>'10','11'=>'11','12'=>'12'), null,['class' => 'form-control', 'title'=>'select your require "period", example :: 6 (june), then click "search" button']) !!}
+                {!! Form::Select('pPeriod', array(''=>'select','1'=>'1','2'=>'2','3'=>'3','4'=>'4','5'=>'5','6'=>'6','7'=>'7','8'=>'8','9'=>'9','10'=>'10','11'=>'11','12'=>'12'), null,['class' => 'form-control','required', 'title'=>'select your require "period", example :: 6 (june), then click "search" button']) !!}
             </div>
             <div class="col-sm-3">
                 {!! Form::label('Branch', 'Branch:', ['class' => 'control-label']) !!}
@@ -15,7 +15,7 @@
             </div>
             <div class="col-sm-3">
                 {!! Form::label('pStyle', 'Style:', ['class' => 'control-label']) !!}
-                {!! Form::text('pStyle', null, ['id'=>'pStyle', 'class' => 'form-control','required','title'=>'enter Style']) !!}
+                {!! Form::Select('pStyle', array(''=>'select','Summary'=>'Summary','Detail'=>'Detail'), null,['class' => 'form-control','required', 'title'=>'select style']) !!}
             </div>
         </div>
     </div>
