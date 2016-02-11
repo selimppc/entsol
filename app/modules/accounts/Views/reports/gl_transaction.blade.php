@@ -3,7 +3,7 @@
         <div class="col-sm-12">
             <div class="col-sm-2">
                 {!! Form::label('pTrn', 'PTrn:', ['class' => 'control-label']) !!}
-                {!! Form::text('pTrn', null, ['id'=>'pTrn', 'class' => 'form-control','required','title'=>'enter pTrn']) !!}
+                {!! Form::Select('pTrn', array(''=>'select','JV--'=>'Journal Voucher','REV-'=>'Reverse Entry'), null,['class' => 'form-control','required', 'title'=>'select status']) !!}
             </div>
             <div class="col-sm-2">
                 {!! Form::label('Branch', 'Branch:', ['class' => 'control-label']) !!}
