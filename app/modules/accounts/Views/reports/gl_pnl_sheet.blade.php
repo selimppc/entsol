@@ -3,7 +3,7 @@
         <div class="col-sm-12">
             <div class="col-sm-3">
                 {!! Form::label('(pYear', 'Year:', ['class' => 'control-label']) !!}
-                {!! Form::selectrange('(pYear', 2016,2030, null,['class' => 'form-control', 'title'=>'select your require "year", example :: 2016, then click "search" button']) !!}
+                {!! Form::selectrange('pYear', 2016,2030, null,['class' => 'form-control', 'title'=>'select your require "year", example :: 2016, then click "search" button']) !!}
             </div>
             <div class="col-sm-3">
                 {!! Form::label('pPeriod', 'Period:', ['class' => 'control-label']) !!}

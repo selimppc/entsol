@@ -237,8 +237,8 @@ class AcReportsController extends Controller
                 echo $report;
             } catch (\Exception $e) {
                 Session::flash('danger', $e->getMessage());
+                return redirect()->back();
             }
-            return redirect()->back();
 
         }else if(@$data['Excel']=='Excel Report'){
             try {
@@ -253,8 +253,8 @@ class AcReportsController extends Controller
             echo $report;
             } catch (\Exception $e) {
                 Session::flash('danger', $e->getMessage());
+                return redirect()->back();
             }
-            return redirect()->back();
         }
     }
 
@@ -268,12 +268,15 @@ class AcReportsController extends Controller
         );
 
         $data = $requests->all();
+
         $controls = array(
             'pYear' => $data['pYear'],
             'pPeriod' => $data['pPeriod'],
             'pBranch' => $data['pBranch'],
             'pStyle' => $data['pStyle']
         );
+
+        //print_r($controls);exit;/
 
         if(@$data['PDF']=='PDF Report'){
             $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_pnlsheet', 'pdf', null, null, $controls);
