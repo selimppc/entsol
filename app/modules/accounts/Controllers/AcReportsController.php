@@ -180,6 +180,7 @@ class AcReportsController extends Controller
         $controls = array(
             'pTrn' => $data['pTrn'],
             'pBranch' => $data['pBranch'],
+            'pStatus' => $data['pStatus'],
             'pFromDate' => $from_date,
             'pToDate' => $to_date
         );

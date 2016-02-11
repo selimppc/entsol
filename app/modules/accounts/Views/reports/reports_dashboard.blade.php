@@ -227,7 +227,7 @@
 <div id="addBalanceSheet" class="modal fade" tabindex="" role="dialog" style="display: none;">
     <div class="modal-dialog modal-lg" style="z-index:1050">
         <div class="modal-content">
-            {!! Form::open(['route' => 'balance-sheet','class' => 'form-horizontal','id' => 'jq-validation-form','target' => '_blank']) !!}
+            {!! Form::open(['route' => 'balance-sheet','class' => 'form-horizontal','target' => '_blank']) !!}
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
                 <h4 class="modal-title" id="myModalLabel">Balance Sheet</h4>
@@ -247,7 +247,6 @@
 
 
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/datepicker.js') }}"></script>
-
 
 
 @stop
