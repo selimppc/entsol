@@ -73,23 +73,6 @@ class AcReportsController extends Controller
 
     public function trial_balance(Request $requests){
 
-
-        $data = $requests->all();
-
-        $controls = array(
-            'pDate' => $data['custom_date'],
-            'Cascading_state_multi_select' => array('CA', 'OR')
-        );
-
-        if(@$data['[PDF]']=='PDF Report'){
-            echo "PDF";
-        }else if(@$data['[Excel]']=='Excel Report'){
-            echo "Excel";
-        }
-
-        print_r("----");
-        exit("OK");
-
         $c = new Client(
             "http://192.168.2.182:8080/jasperserver",
             "jasperadmin",
@@ -97,15 +80,40 @@ class AcReportsController extends Controller
             ""
         );
 
-        $pBranch = Input::get('pBranch');
-        $pFromDate = Input::get('pFromDate');
-        $pToDate = Input::get('pToDate');
+        $data = $requests->all();
 
-        $report = $c->reportService()->runReport('/entsol/Reports/ac_trial_balance', 'html');
-        echo $report;
-        exit();
+        $from_date = date('Y-m-d', strtotime($data['pFromDate']));
+        $to_date = date('Y-m-d', strtotime($data['pToDate']));
 
+        $controls = array(
+            'pBranch' => $data['pBranch'],
+            'pFromDate' => $from_date,
+            'pToDate' => $to_date
+        );
 
+        //print_r($from_date);exit;
+
+        if(@$data['PDF']=='PDF Report'){
+            $report = $c->reportService()->runReport('/entsol/Reports/ac_trial_balance', 'pdf', null, null, $controls);
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Description: File Transfer');
+            header('Content-Disposition: attachment; filename=report.pdf');
+            header('Content-Transfer-Encoding: binary');
+            header('Content-Length: ' . strlen($report));
+            header('Content-Type: application/pdf');
+            echo $report;
+        }else if(@$data['Excel']=='Excel Report'){
+            $report = $c->reportService()->runReport('/entsol/Reports/ac_trial_balance', 'xls', null, null, $controls);
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Description: File Transfer');
+            header('Content-Disposition: attachment; filename=report.xls');
+            header('Content-Transfer-Encoding: binary');
+            header('Content-Length: ' . strlen($report));
+            header('Content-Type: application/xls');
+            echo $report;
+        }
     }
 
 
