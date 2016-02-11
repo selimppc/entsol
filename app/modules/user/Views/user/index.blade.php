@@ -18,13 +18,13 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['method' =>'GET','url'=>'/user_index']) !!}
+                {!! Form::open(['method' =>'GET','url'=>'/search-user']) !!}
                 <div class="col-sm-12">
                     <div class="col-sm-3">
-                        {!! Form::text('username',null,['class' => 'form-control','placeholder'=>'type username', 'title'=>'type your require user "username", example :: admin, then click "search" button']) !!}
+                        {!! Form::Select('branch_id',$branch_data, @Input::get('branch_id')? Input::get('branch_id') : null,['class' => 'form-control', 'title'=>'select your require "branch", example :: Main Branch, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-3">
-                        {!! Form::text('email',null,['class' => 'form-control','placeholder'=>'type email', 'title'=>'type your require user "title", example :: Main Branch, then click "search" button']) !!}
+                        {!! Form::Select('role_id',$role, @Input::get('role_id')? Input::get('role_id') : null,['class' => 'form-control', 'title'=>'select your require "role", example :: admin, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-3 filter-btn">
                         {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button', 'data-placement'=>'right', 'data-content'=>'type code or title or both in specific field then click search button for required information')) !!}
@@ -47,8 +47,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @if(isset($data))
-                            @foreach($data as $values)
+                        @if(isset($model))
+                            @foreach($model as $values)
                                 <tr class="gradeX">
                                     {{--<td>{{$values->id}}</td>--}}
                                     <td>{{ucfirst($values->username)}}</td>
@@ -65,7 +65,7 @@
                         </tbody>
                     </table>
                 </div>
-                <span class="pull-left">{!! str_replace('/?', '?', $data->render()) !!} </span>
+                <span class="pull-left">{!! str_replace('/?', '?', $model->render()) !!} </span>
             </div>
         </div>
     </div>

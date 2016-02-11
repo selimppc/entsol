@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
+
+    protected function isGetRequest()
+    {
+        return Input::server("REQUEST_METHOD") == "GET";
+    }
     public function create_sign_up()
     {
         return view('user::signup._form');
@@ -155,11 +160,35 @@ class UserController extends Controller
     public function index()
     {
         $pageTitle = "User List";
-        $data = User::where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(30);
-        $branch_data =  Branch::lists('title','id');
-        $role =  Role::lists('title','id');
+        $model = User::with('relBranch','relRole')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(30);
+        $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
+        $role =  [''=>'Select Role'] +  Role::lists('title','id')->all();
 
-        return view('user::user.index', ['data' => $data, 'pageTitle'=> $pageTitle,'branch_data'=>$branch_data,'role'=>$role]);
+        return view('user::user.index', ['model' => $model, 'pageTitle'=> $pageTitle,'branch_data'=>$branch_data,'role'=>$role]);
+    }
+
+    public function search_user(){
+
+        $pageTitle = 'User Informations';
+        $model = new User();
+
+        if($this->isGetRequest()){
+            $branch_id = Input::get('branch_id');
+            $role_id = Input::get('role_id');
+
+            $model = $model->with('relBranch','relRole');
+            if (isset($branch_id) && !empty($branch_id)) $model->where('user.branch_id', '=', $branch_id);
+            if (isset($role_id) && !empty($role_id)) $model->where('user.role_id', '=', $role_id);
+
+            $model = $model->where('status','!=','cancel')->paginate(30);
+        }else{
+            $model = $model->with('relBranch','relRole')->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
+        }
+
+        $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
+        $role =  [''=>'Select Role'] +  Role::lists('title','id')->all();
+
+        return view('user::user.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model,'branch_data'=>$branch_data,'role'=>$role]);
     }
 
     public function add_user(Requests\UserRequest $request){

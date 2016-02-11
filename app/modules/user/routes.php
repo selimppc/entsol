@@ -20,6 +20,11 @@ Route::any('add-user', [
     'uses' => 'UserController@add_user'
 ]);
 
+Route::any('search-user', [
+    'as' => 'search-user',
+    'uses' => 'UserController@search_user'
+]);
+
 Route::any('show-user/{id}', [
     'as' => 'show-user',
     'uses' => 'UserController@show_user'
