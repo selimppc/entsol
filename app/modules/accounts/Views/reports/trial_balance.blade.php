@@ -7,11 +7,11 @@
             </div>
             <div class="col-sm-3">
                 {!! Form::label('FromDate', 'FromDate:', ['class' => 'control-label']) !!}
-                {!! Form::text('pFromDate', date('Y/m/d'), ['class' => 'form-control bs-datepicker-component','required','title'=>'select from date']) !!}
+                {!! Form::text('pFromDate', date('Y/m/d'), ['class' => 'form-control bs-datepicker-example','required','title'=>'select from date']) !!}
             </div>
             <div class="col-sm-3">
                 {!! Form::label('ToDate', 'ToDate:', ['class' => 'control-label']) !!}
-                {!! Form::text('pToDate', date('Y/m/d'), ['class' => 'form-control bs-datepicker-component','required','title'=>'select to date']) !!}
+                {!! Form::text('pToDate', date('Y/m/d'), ['class' => 'form-control bs-datepicker-example','required','title'=>'select to date']) !!}
             </div>
         </div>
     </div>
