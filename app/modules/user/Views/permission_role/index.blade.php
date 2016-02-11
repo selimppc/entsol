@@ -35,7 +35,6 @@
                     <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
                         <thead>
                         <tr>
-                            <th> Id </th>
                             <th> Role </th>
                             <th> Permission </th>
                             <th> Action &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="view : click for details informations<br>update : click for update informations<br>delete : click for delete informations">(?)</span></th>
@@ -45,7 +44,6 @@
                         @if(isset($data))
                             @foreach($data as $values)
                                 <tr class="gradeX">
-                                    <td>{{$values->id}}</td>
                                     <td>{{ucfirst($values->relRole->title)}}</td>
                                     <td>{{ucfirst($values->relPermission->title)}}</td>
                                     <td>
