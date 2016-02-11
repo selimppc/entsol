@@ -190,8 +190,8 @@ class VoucherDetailController extends Controller
                 'sub_account_code'=> $input['sub_account_code'],
                 'currency_id'=> $input['currency_id'],
                 'exchange_rate'=> $currency_data['exchange_rate'],
-                'prime_amount'=> $input['amount'],
-                'base_amount'=> $input['amount'],
+                'prime_amount'=> $input['prime_amount'],
+                'base_amount'=> $input['prime_amount'],
                 'branch_id'=> $input['branch_id'],
                 'note'=> $input['note'],
                 'status'=> $input['status'],
@@ -323,26 +323,32 @@ class VoucherDetailController extends Controller
         $coa = DB::table('ac_chart_of_accounts')
             ->where('title', 'LIKE', '%' . $coa_data . '%')
             ->orWhere('account_code', 'LIKE', '%' . $coa_data . '%')
-            ->select(DB::raw('CONCAT(ac_chart_of_accounts.account_code, ":", " ",ac_chart_of_accounts.title) AS title, ac_chart_of_accounts.id as coa_id,ac_chart_of_accounts.account_type'))
+            ->select(DB::raw('CONCAT(ac_chart_of_accounts.account_code, ":", " ",ac_chart_of_accounts.title) AS title, ac_chart_of_accounts.id as coa_id'))
             ->get();
+       #print_r($coa);exit;
 
-        foreach($coa as $values){
-            $data[] = array('value' => $values->title,
-                'coa_id' => $values->coa_id);
+        foreach($coa as $v){
+            $data[] = array('value'=>$v->title,
+                'coa_id' => $v->coa_id);
         }
-/////////////////////////////////////////////////////////////////////////////////////////////
-        $results =  ChartOfAccounts::orderBy('account_type', 'ASC')->get();
+
+        /*$results =  ChartOfAccounts::orderBy('account_type', 'ASC')->get();
 
         $attributes = array();
-        foreach ( $results as $v ) {
+        foreach ( $coa as $v ) {
             if ( !isset($attributes[$v->account_type]) ) {
                 $attributes[$v->account_type] = array();
             }
             $attributes[$v->account_type][$v->coa_id] = $v->title;
-        }
-        #print_r($attributes);exit;
+//            $attributes[$v->account_type][$v->coa_id] = $v->title;
+        }*/
+       #print_r($attributes);exit('333');
 
-        return Response::json($attributes);
+        return Response::json($data);
 
+    }
+
+    public function test(){
+        return view("accounts::voucher_detail.test");
     }
 }
