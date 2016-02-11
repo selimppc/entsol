@@ -2,10 +2,12 @@
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('username', 'UserName:', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
             {!! Form::text('username',Input::old('username'),['class' => 'form-control','placeholder'=>'User Name','required', 'title'=>'Enter User Name']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('email', 'Email Address:', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
             {!! Form::email('email',Input::old('email'),['class' => 'form-control','placeholder'=>'Email Address','required', 'title'=>'Enter User Email Address']) !!}
         </div>
     </div>
@@ -15,6 +17,7 @@
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('password', 'Password:', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
             {!! Form::password('password',['class' => 'form-control','required','placeholder'=>'Password','title'=>'Enter User Password']) !!}
         </div>
 
@@ -40,6 +43,15 @@
                 {!! Form::text('expire_date', Input::old('expire_date'), ['class' => 'form-control bs-datepicker-component','required','title'=>'select expire date']) !!}
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
             </div>
+        </div>
+    </div>
+</div>
+<div class="form-group form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+    <div class="row">
+        <div class="col-sm-12">
+            {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
+            <small class="narration">(Inactive status Selected)</small>
+            {!! Form::Select('status',array('inactive'=>'Inactive','active'=>'active','cancel'=>'Cancel'),Input::old('status'),['class'=>'form-control ','required']) !!}
         </div>
     </div>
 </div>

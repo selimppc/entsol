@@ -20,11 +20,18 @@
                 {{-------------- Filter :Starts -------------------------------------------}}
                 {!! Form::open(['method' =>'GET','url'=>'/search-user']) !!}
                 <div class="col-sm-12">
+                    <div class="col-sm-2">
+                        {!! Form::text('username', @Input::get('username')? Input::get('username') : null, ['class' => 'form-control','placeholder'=>'select username','title'=>'type your require "username" then click "search" button']) !!}
+
+                    </div>
                     <div class="col-sm-3">
                         {!! Form::Select('branch_id',$branch_data, @Input::get('branch_id')? Input::get('branch_id') : null,['class' => 'form-control', 'title'=>'select your require "branch", example :: Main Branch, then click "search" button']) !!}
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         {!! Form::Select('role_id',$role, @Input::get('role_id')? Input::get('role_id') : null,['class' => 'form-control', 'title'=>'select your require "role", example :: admin, then click "search" button']) !!}
+                    </div>
+                    <div class="col-sm-2">
+                        {!! Form::Select('status',array(''=>'Status','inactive'=>'Inactive','active'=>'active','cancel'=>'Cancel'),@Input::get('status')? Input::get('status') : null,['class'=>'form-control', 'title'=>'select your require "status", example :: open, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-3 filter-btn">
                         {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button', 'data-placement'=>'right', 'data-content'=>'type code or title or both in specific field then click search button for required information')) !!}
@@ -32,17 +39,19 @@
                 </div>
                 {!! Form::close() !!}
                 <p> &nbsp;</p>
-                <p> &nbsp;</p>
 
-                {{-------------- Filter :Ends -------------------------------------------}}
+                {{------------- Filter :Ends -------------------------------------------}}
                 <div class="table-primary">
                     <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
                         <thead>
                         <tr>
                             {{--<th> id </th>--}}
                             <th> Username </th>
-                            <th> email </th>
+                            <th> Email </th>
+                            <th> Branch </th>
+                            <th> User Role </th>
                             <th> Status &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="you can change status from update page">(?)</span></th>
+                            <th> Expire Date </th>
                             <th> Action &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="view : click for details informations<br>update : click for update informations<br>delete : click for delete informations">(?)</span></th>
                         </tr>
                         </thead>
@@ -53,7 +62,10 @@
                                     {{--<td>{{$values->id}}</td>--}}
                                     <td>{{ucfirst($values->username)}}</td>
                                     <td>{{$values->email}}</td>
+                                    <td>{{isset($values->relBranch->title)?$values->relBranch->title:''}}</td>
+                                    <td>{{isset($values->relRole->title)?$values->relRole->title:''}}</td>
                                     <td>{{ucfirst($values->status)}}</td>
+                                    <td>{{$values->expire_date}}</td>
                                     <td>
                                         <a href="{{ route('show-user', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="view"><i class="fa fa-eye"></i></a>
                                         <a href="{{ route('edit-user', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="update"><i class="fa fa-edit"></i></a>
@@ -109,6 +121,7 @@
         $(function(){
             $("#addData").modal('show');
         });
+
     </script>
 @endif
 

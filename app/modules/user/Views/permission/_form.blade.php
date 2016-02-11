@@ -1,10 +1,10 @@
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-12">
             {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('title', null, ['id'=>'title', 'class' => 'form-control','required','required', 'style'=>'text-transform:capitalize','required','title'=>'enter permission title, example :: Branch Permission']) !!}
+            {!! Form::text('title',Input::old('title'), ['id'=>'title', 'class' => 'form-control','required','required', 'style'=>'text-transform:capitalize','required','title'=>'enter permission title, example :: Branch Permission']) !!}
         </div>
     </div>
 </div>

@@ -10,6 +10,17 @@ Route::group(array('modules'=>'User', 'namespace' => 'App\Modules\User\Controlle
     //Your routes belong to this module.
 include 'routes_permission.php';
 
+    /*Route::get('routes', function() {
+        \Artisan::call('route:list');
+        return \Artisan::output();
+    });*/
+    /*Route::get('routes', function() {
+        $routeCollection = Route::getRoutes();
+
+        foreach ($routeCollection as $value) {
+            echo $value->getPath() .'<br>';
+        }
+    });*/
 Route::any('user-list', [
 'as' => 'user-list',
 'uses' => 'UserController@index'

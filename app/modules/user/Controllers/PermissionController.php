@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
 class PermissionController extends Controller
@@ -27,6 +28,12 @@ class PermissionController extends Controller
     {
         $pageTitle = "Permission List";
         $title = Input::get('title');
+        /*$routeCollection = Route::getRoutes();
+
+        foreach ($routeCollection as $value) {
+            $routes_list[] = $value->getPath();
+        }*/
+
         $data = Permission::where('title', 'LIKE', '%'.$title.'%')->orderBy('id', 'DESC')->get();
         return view('user::permission.index', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }

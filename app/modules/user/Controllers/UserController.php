@@ -9,6 +9,7 @@ use App\UserResetPassword;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -166,6 +167,11 @@ class UserController extends Controller
 
         return view('user::user.index', ['model' => $model, 'pageTitle'=> $pageTitle,'branch_data'=>$branch_data,'role'=>$role]);
     }
+    /*public function getRoutes(){
+        \Artisan::call('route:list');
+        return \Artisan::output();
+    }*/
+
 
     public function search_user(){
 
@@ -175,10 +181,14 @@ class UserController extends Controller
         if($this->isGetRequest()){
             $branch_id = Input::get('branch_id');
             $role_id = Input::get('role_id');
+            $username = Input::get('username');
+            $status = Input::get('status');
 
             $model = $model->with('relBranch','relRole');
             if (isset($branch_id) && !empty($branch_id)) $model->where('user.branch_id', '=', $branch_id);
             if (isset($role_id) && !empty($role_id)) $model->where('user.role_id', '=', $role_id);
+            if (isset($username) && !empty($username)) $model->where('user.username', '=', $username);
+            if (isset($status) && !empty($status)) $model->where('user.status', '=', $status);
 
             $model = $model->where('status','!=','cancel')->paginate(30);
         }else{
@@ -206,7 +216,7 @@ class UserController extends Controller
                 'branch_id'=> $input['branch_id'],
                 'role_id'=> $input['role_id'],
                 'expire_date'=> $input['expire_date'],
-                'status'=> 'active',
+                'status'=> $input['status'],
             ];
 
             User::create($input_data);
@@ -276,7 +286,7 @@ class UserController extends Controller
                 'branch_id'=> $input['branch_id'],
                 'role_id'=> $input['role_id'],
                 'expire_date'=> $input['expire_date'],
-                'status'=> 'active',
+                'status'=> $input['status'],
             ];
             $model->update($input_data);
             DB::commit();

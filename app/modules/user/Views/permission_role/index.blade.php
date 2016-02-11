@@ -29,7 +29,6 @@
                 </div>
                 {!! Form::close() !!}--}}
                 <p> &nbsp;</p>
-                <p> &nbsp;</p>
 
                 {{-------------- Filter :Ends -------------------------------------------}}
                 <div class="table-primary">
