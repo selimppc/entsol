@@ -279,5 +279,17 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
         'uses' => 'AcReportsController@balance_sheet'
     ]);
 
+    Route::any('pdf-single-voucher/{voucher_number}', [
+        'as' => 'pdf-single-voucher',
+        'uses' => 'AcReportsController@pdf_single_voucher'
+    ]);
+
+    Route::any('xls-single-voucher/{voucher_number}', [
+        'as' => 'xls-single-voucher',
+        'uses' => 'AcReportsController@xls_single_voucher'
+    ]);
+
+
+
 });
 

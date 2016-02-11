@@ -388,6 +388,59 @@ class AcReportsController extends Controller
     }
 
 
+    public function pdf_single_voucher($voucher_number){
+
+        $c = new Client(
+            "http://192.168.2.182:8080/jasperserver",
+            "jasperadmin",
+            "jasperadmin",
+            ""
+        );
+
+        $controls = array(
+            'pVoucherNo'=>$voucher_number
+        );
+
+        $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_singlvoucher', 'pdf', null, null, $controls);
+
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Description: File Transfer');
+        header('Content-Disposition: attachment; filename=balance_sheet.pdf');
+        header('Content-Transfer-Encoding: binary');
+        header('Content-Length: ' . strlen($report));
+        header('Content-Type: application/pdf');
+        echo $report;
+
+    }
+
+    public function xls_single_voucher($voucher_number){
+
+        $c = new Client(
+            "http://192.168.2.182:8080/jasperserver",
+            "jasperadmin",
+            "jasperadmin",
+            ""
+        );
+
+        $controls = array(
+            'pVoucherNo'=>$voucher_number
+        );
+
+        $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_singlvoucher', 'xls', null, null, $controls);
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Description: File Transfer');
+        header('Content-Disposition: attachment; filename=balance_sheet.xls');
+        header('Content-Transfer-Encoding: binary');
+        header('Content-Length: ' . strlen($report));
+        header('Content-Type: application/xls');
+        echo $report;
+
+
+    }
+
+
 
 
 

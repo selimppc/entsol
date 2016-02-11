@@ -95,7 +95,10 @@
                                     <td>
                                         <a href="{{ route('voucher-detail',['id'=>$values->id,'voucher_number'=>$values->voucher_number]) }}" class="btn btn-info btn-xs" data-placement="top" data-content="voucher details">v-details</a>
                                     </td>
-                                    <td>&nbsp;</td>
+                                    <td>
+                                        <a href="{{ route('pdf-single-voucher',['voucher_number'=>$values->voucher_number]) }}" class="btn btn-primary btn-xs" data-placement="top" data-content="voucher details">PDF</a>
+                                        <a href="{{ route('xls-single-voucher',['voucher_number'=>$values->voucher_number]) }}" class="btn btn-primary btn-xs" data-placement="top" data-content="voucher details">XLS</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         @endif
