@@ -282,7 +282,7 @@ class CreateEntsolTableAccounts extends Migration
             $table->increments('id');
             $table->enum('type',array(
                 'account-payable','account-receivable','account-adjustment','journal-voucher','receipt-voucher','reverse-entry'))->nullable();
-            $table->string('code',64)->unique();
+            $table->string('code',4)->unique();
             $table->string('title',64)->unique();
             $table->unsignedInteger('last_number')->nullable();
             $table->unsignedInteger('increment')->nullable();
