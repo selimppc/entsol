@@ -34,11 +34,12 @@
                 <li>
                     <a tabindex="-1" href="{{URL::to('content-page')}}"><span class="mm-text">Content Page Sample</span></a>
                 </li>
+                <li class="">
+                    <a href="{{URL::to('reg-sample')}}"><i class="menu-icon fa fa-barcode"></i><span class="mm-text mmc-dropdown-delay animated fadeIn">Registration Form Sample</span></a>
+                </li>
             </ul>
         </li>
-        <li class="">
-            <a href="{{URL::to('reg-sample')}}"><i class="menu-icon fa fa-barcode"></i><span class="mm-text mmc-dropdown-delay animated fadeIn">Registration Form Sample</span></a>
-        </li>
+
 
         <li class="mm-dropdown">
             <a href="#"><i class="menu-icon fa fa-user-md"></i><span class="mm-text">User</span></a>
@@ -70,16 +71,9 @@
             </ul>
         </li>
 
-
         <li class="mm-dropdown">
-            <a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text mmc-dropdown-delay animated fadeIn">Accounts Module</span></a>
-            <ul class="mmc-dropdown-delay animated fadeInLeft">
-                <li>
-                    <a tabindex="-1" href="{{route('voucher-head')}}"><span class="mm-text">Journal Voucher</span></a>
-                </li>
-                <li>
-                    <a tabindex="-1" href="{{route('reverse-voucher')}}"><span class="mm-text">Reverse Entry</span></a>
-                </li>
+            <a href="#"><i class="menu-icon fa fa-columns"></i><span class="mm-text">Master Setup </span></a>
+            <ul>
                 <li>
                     <a tabindex="-1" href="{{route('group-one')}}"><span class="mm-text">Group One</span></a>
                 </li>
@@ -89,17 +83,34 @@
                 <li>
                     <a tabindex="-1" href="{{route('currency')}}"><span class="mm-text">Currency</span></a>
                 </li>
+            </ul>
+        </li>
+
+
+        <li class="mm-dropdown">
+            <a href="#"><i class="fa fa-usd"></i><i class="fa fa-usd"></i> <span class="mm-text mmc-dropdown-delay animated fadeIn">General Ledger</span></a>
+            <ul class="mmc-dropdown-delay animated fadeInLeft">
+                <li>
+                    <a tabindex="-1" href="{{route('chart-of-accounts')}}"><i class="fa fa-list-alt"></i> <span class="mm-text">Chart of Accounts</span></a>
+                </li>
+                <li>
+                    <a tabindex="-1" href="{{route('voucher-head')}}"><i class="fa fa-money"></i> <span class="mm-text">Journal Voucher</span></a>
+                </li>
+                <li>
+                    <a tabindex="-1" href="{{route('reverse-voucher')}}"><i class="fa fa-money"></i> <span class="mm-text">Reverse Entry</span></a>
+                </li>
+
+                <li>
+                    <a tabindex="-1" href="{{route('settings')}}"><i class="fa  fa-gear"></i> <span class="mm-text">Settings</span></a>
+                </li>
+                <li>
+                    <a tabindex="-1" href="{{route('account-reports')}}"><i class="fa fa-clipboard"></i> <span class="mm-text">Reports</span></a>
+                </li>
+
+                <li> ------------------------------ </li>
+
                 <li>
                     <a tabindex="-1" href="{{route('default-offset')}}"><span class="mm-text">Default Offset</span></a>
-                </li>
-                <li>
-                    <a tabindex="-1" href="{{route('chart-of-accounts')}}"><span class="mm-text">Chart of Accounts</span></a>
-                </li>
-                <li>
-                    <a tabindex="-1" href="{{route('settings')}}"><span class="mm-text">Settings</span></a>
-                </li>
-                <li>
-                    <a tabindex="-1" href="{{route('account-reports')}}"><span class="mm-text">Reports</span></a>
                 </li>
                 <li>
                     <a tabindex="-1" href="{{route('gl-transaction')}}"><span class="mm-text">Gl Transaction</span></a>
@@ -107,6 +118,7 @@
                 <li>
                     <a tabindex="-1" href="{{route('voucher-history')}}"><span class="mm-text">Voucher History</span></a>
                 </li>
+
             </ul>
         </li>
 
