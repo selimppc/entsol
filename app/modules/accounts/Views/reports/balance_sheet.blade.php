@@ -10,7 +10,7 @@
                 {!! Form::Select('pPeriod', array(''=>'select','1'=>'1','2'=>'2','3'=>'3','4'=>'4','5'=>'5','6'=>'6','7'=>'7','8'=>'8','9'=>'9','10'=>'10','11'=>'11','12'=>'12'), null,['class' => 'form-control','required', 'title'=>'select your require "period", example :: 6 (june), then click "search" button']) !!}
             </div>
             <div class="col-sm-3">
-                {!! Form::label('Branch', 'Branch:', ['class' => 'control-label']) !!}
+                {!! Form::label('pBranch', 'Branch:', ['class' => 'control-label']) !!}
                 {!! Form::select('pBranch', $branch_id,Input::old('pBranch'),['class' => 'form-control','required','title'=>'select  Branch']) !!}
             </div>
             <div class="col-sm-3">
