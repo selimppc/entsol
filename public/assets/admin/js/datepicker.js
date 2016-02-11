@@ -15,5 +15,12 @@ init.push(function () {
         autoclose: true,
     });
 
+    $('.bs-datepicker-example').datepicker({
+        format: 'yyyy/mm/dd',
+        autoclose: true,
+    });
+
+
+
 });
 /*----------Date picker------------*/

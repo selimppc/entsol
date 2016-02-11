@@ -91,7 +91,7 @@ class AcReportsController extends Controller
             'pToDate' => $to_date
         );
 
-        //print_r($from_date);exit;
+        //print_r($controls);exit;
 
         if(@$data['PDF']=='PDF Report'){
             $report = $c->reportService()->runReport('/entsol/Reports/ac_trial_balance', 'pdf', null, null, $controls);
@@ -136,6 +136,8 @@ class AcReportsController extends Controller
             'pFromDate' => $from_date,
             'pToDate' => $to_date
         );
+
+        //print_r($controls);exit;
 
         if(@$data['PDF']=='PDF Report'){
             $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_trialblall', 'pdf', null, null, $controls);
@@ -182,6 +184,8 @@ class AcReportsController extends Controller
             'pToDate' => $to_date
         );
 
+        //print_r($controls);exit;
+
         if(@$data['PDF']=='PDF Report'){
             $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_transaction', 'pdf', null, null, $controls);
             header('Cache-Control: must-revalidate');
@@ -205,7 +209,7 @@ class AcReportsController extends Controller
         }
     }
 
-    public function gl_single_voucher(){
+    public function gl_single_voucher(Request $requests){
 
         $c = new Client(
             "http://192.168.2.182:8080/jasperserver",
@@ -214,12 +218,33 @@ class AcReportsController extends Controller
             ""
         );
 
-        $pVoucherNo = Input::get('pVoucherNo');
+        $data = $requests->all();
+        
+        $controls = array(
+            'pVoucherNo' => $data['pVoucherNo']
+        );
 
-        $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_singlvoucher', 'html');
-        echo $report;
-        exit();
-
+        if(@$data['PDF']=='PDF Report'){
+            $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_singlvoucher', 'pdf', null, null, $controls);
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Description: File Transfer');
+            header('Content-Disposition: attachment; filename=report.pdf');
+            header('Content-Transfer-Encoding: binary');
+            header('Content-Length: ' . strlen($report));
+            header('Content-Type: application/pdf');
+            echo $report;
+        }else if(@$data['Excel']=='Excel Report'){
+            $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_singlvoucher', 'xls', null, null, $controls);
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Description: File Transfer');
+            header('Content-Disposition: attachment; filename=report.xls');
+            header('Content-Transfer-Encoding: binary');
+            header('Content-Length: ' . strlen($report));
+            header('Content-Type: application/xls');
+            echo $report;
+        }
     }
 
     public function gl_pnl_sheet(){
