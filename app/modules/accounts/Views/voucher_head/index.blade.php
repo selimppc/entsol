@@ -96,8 +96,10 @@
                                         <a href="{{ route('voucher-detail',['id'=>$values->id,'voucher_number'=>$values->voucher_number]) }}" class="btn btn-info btn-xs" data-placement="top" data-content="voucher details">v-details</a>
                                     </td>
                                     <td>
+                                        @if($values->status == 'posted')
                                         <a href="{{ route('pdf-single-voucher',['voucher_number'=>$values->voucher_number]) }}" data-placement="top" data-content="PDF">{!! HTML::image('assets/admin/img/pdf-icon.png', 'PDF', array('style' => 'width: 20px; border: 1px solid #aaa')) !!} </a> &nbsp;
                                         <a href="{{ route('xls-single-voucher',['voucher_number'=>$values->voucher_number]) }}" data-placement="top" data-content="XLS">{!! HTML::image('assets/admin/img/xls-icon.png', 'XLS', array('style' => 'width: 20px')) !!}</a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
