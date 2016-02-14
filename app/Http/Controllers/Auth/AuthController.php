@@ -89,13 +89,15 @@ class AuthController extends Controller
 
                 if($user_data_exists){
                     $user_data = User::where($field, $data['email'])->first();
-                    if($user_data->status =='inactive'){
-                        $link = "{{route('forget-password-view')}}";
+                    //inactive user
+                    if($user_data->status ==''){
+
+                      /* $link = "{{route('/forget-password-view')}}";
                         $a_link = "<a href=".$link.">ok</a>";
                         #echo $a_link;exit;
                         Session::flash('danger',  $a_link);
 
-                        return redirect()->route('get-user-login');
+                        return view('user::signin.inactive_user_msg',['link'=>$a_link]);*/
                     }else{
                         $attempt = Auth::attempt([
                             $field => $request->get('email'),
@@ -106,7 +108,7 @@ class AuthController extends Controller
                             Session::flash('message', "Successfully  Logged In.");
                             return redirect()->route('dashboard');
                         }else{
-                            Session::flash('danger', "Password Inorrect.Please Try Again");
+                            Session::flash('danger', "Password Incorrect.Please Try Again");
                         }
                     }
                 }else{

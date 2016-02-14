@@ -15,6 +15,11 @@
     return view('welcome');
 });*/
 
+Route::any('inactive-user', [
+    'as' => 'inactive-user',
+    'uses' => 'UserController@postLogin'
+]);
+
 Route::any('post-user-login', [
     'as' => 'post-user-login',
     'uses' => 'Auth\AuthController@postLogin'

@@ -231,7 +231,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
                                 <img src="{{URL::to('assets/admin/img/avatar1.jpg')}}" alt="User Image">
-                                <span>User</span>
+                                <span>{!! isset(Auth::user()->username) ? strtoupper(Auth::user()->username) : '' !!}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="user-profile">Profile <span class="label label-warning pull-right">new</span></a></li>

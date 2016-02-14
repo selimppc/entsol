@@ -5,6 +5,7 @@ namespace App\Modules\User\Controllers;
 use App\Branch;
 use App\Role;
 use App\User;
+use App\UserProfile;
 use App\UserResetPassword;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
@@ -175,10 +177,7 @@ class UserController extends Controller
         #echo '13v2';exit;
         return redirect()->route('get-user-login');
     }
-    public function create_profile()
-    {
-        return view('user::profile.index');
-    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -357,5 +356,31 @@ class UserController extends Controller
             Session::flash('danger',$e->getMessage());
         }
         return redirect()->route('user-list');
+    }
+
+    public function create_profile()
+    {
+        if(Auth::check())
+        {
+            $user_id = Auth::user()->id;
+            return view('user::profile.index',['user_id'=>$user_id]);
+        }
+    }
+    public function user_info($user_id,$value){
+
+        #print_r($value);exit;
+        if(Auth::check())
+        {
+            if($value =='profile'){
+                $data = UserProfile::where('user_id', '=', $user_id)->first();
+            }elseif($value =='meta'){
+                $data = User::where('user_id', '=', $user_id)->first();
+            }elseif($value =='acc-settings'){
+                $data = User::where('user_id', '=', $user_id)->first();
+            }
+            return Response::json($data);
+//            $countryList = [''=>'Please Select'] + Country::lists('title', 'id')->all();
+        }
+
     }
 }

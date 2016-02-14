@@ -169,6 +169,11 @@ Route::any('delete-role/{slug}', [
         'as' => 'delete-role-user',
         'uses' => 'RoleUserController@destroy'
     ]);
+
+    Route::any('user-info/{user_id}/{value}', [
+        'as' => 'user-info',
+        'uses' => 'UserController@user_info'
+    ]);
 });
 
 
