@@ -37,7 +37,7 @@
                 <td class="col-lg-4">{{isset($data->relBranch->code)?$data->relBranch->code:''}}</td>
 
                 <th class="col-lg-2">Status</th>
-                <td class="col-lg-4">{{ isset($data->status)?'Open' :'' }}</td>
+                <td class="col-lg-4">{{ isset($data->status)?ucfirst($data->status) :'' }}</td>
             </tr>
 
             <tr>

@@ -14,7 +14,7 @@ use App\Http\Requests\VoucherHeadRequest;
 use App\Settings;
 use App\VoucherHead;
 use App\VoucherDetail;
-use App\Helpers\GenerateNumber;
+use App\Modules\Accounts\Helpers\GenerateNumber;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
@@ -34,7 +34,7 @@ class VoucherHeadController extends Controller
        $model = $model->with('relBranch')->where('account_type','journal-voucher')->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
 
        $type = 'journal-voucher';
-       $generate_number = \App\Modules\Accounts\Helpers\GenerateNumber::generate_number($type);
+       $generate_number = GenerateNumber::generate_number($type);
 
        $generate_voucher_number = $generate_number[0];
        $settings_id = $generate_number[1];

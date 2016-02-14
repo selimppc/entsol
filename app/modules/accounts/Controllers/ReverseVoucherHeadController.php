@@ -14,7 +14,7 @@ use App\Http\Requests\VoucherHeadRequest;
 use App\Settings;
 use App\VoucherHead;
 use App\VoucherDetail;
-use App\Helpers\GenerateNumber;
+use App\Modules\Accounts\Helpers\GenerateNumber;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
