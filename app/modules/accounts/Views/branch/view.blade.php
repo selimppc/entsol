@@ -16,7 +16,7 @@
             </tr>
             <tr>
                 <th class="col-lg-4">Description</th>
-                <td>{{ isset($data->description)?$data->description:''}}</td>
+                <td>{{ isset($data->description)?ucfirst($data->description):''}}</td>
             </tr>
             <tr>
                 <th class="col-lg-4">Currency</th>
@@ -28,11 +28,11 @@
             </tr>
             <tr>
                 <th class="col-lg-4">Contact Person</th>
-                <td>{{ isset($data->contact_person)?$data->contact_person:'' }}</td>
+                <td>{{ isset($data->contact_person)?ucfirst($data->contact_person):'' }}</td>
             </tr>
             <tr>
                 <th class="col-lg-4">Billing Address</th>
-                <td>{{ isset($data->billing_address)?$data->billing_address:'' }}</td>
+                <td>{{ isset($data->billing_address)?ucfirst($data->billing_address):'' }}</td>
             </tr>
             <tr>
                 <th class="col-lg-4">Phone</th>

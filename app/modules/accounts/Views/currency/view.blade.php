@@ -16,7 +16,7 @@
             </tr>
             <tr>
                 <th class="col-lg-4">Description</th>
-                <td>{{ isset($data->description)?$data->description:'' }}</td>
+                <td>{{ isset($data->description)?ucfirst($data->description):'' }}</td>
             </tr>
             <tr>
                 <th class="col-lg-4">Exchange Rate</th>

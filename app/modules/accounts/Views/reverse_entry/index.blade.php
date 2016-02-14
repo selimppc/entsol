@@ -77,11 +77,11 @@
                                         <a href="{{ route('reverse-detail',['id'=>$values->id,'voucher_number'=>$values->voucher_number]) }}" class="link-text-decoration" title="click for voucher-detail page"><strong>{{$values->voucher_number}}</strong></a>
                                     </td>
                                     <td>{{$values->date}}</td>
-                                    <td>{{$values->reference}}</td>
+                                    <td>{{ucfirst($values->reference)}}</td>
                                     <td>{{$values->year}}</td>
                                     <td>{{$values->period}}</td>
                                     <td>{{isset($values->relBranch->title)?$values->relBranch->title:''}}</td>
-                                    <td>{{$values->note}}</td>
+                                    <td>{{ucfirst($values->note)}}</td>
                                     <td>{{ ucfirst($values->status) }}</td>
                                     <td>
                                         @if($values->status == 'posted')

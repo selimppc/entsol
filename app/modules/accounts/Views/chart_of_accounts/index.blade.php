@@ -64,8 +64,8 @@
                                 <tr class="gradeX">
                                     <td>{{$values->account_code}}</td>
                                     <td>{{$values->title}}</td>
-                                    <td>{{$values->account_type}}</td>
-                                    <td>{{$values->account_usage}}</td>
+                                    <td>{{ucfirst($values->account_type)}}</td>
+                                    <td>{{ucfirst($values->account_usage)}}</td>
                                     <td>{{$values->relGroupOne->title}}</td>
                                     <td>{{$values->relBranch->title}}</td>
                                     <td>{{ucfirst($values->status)}}</td>

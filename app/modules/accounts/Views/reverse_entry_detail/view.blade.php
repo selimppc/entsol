@@ -21,7 +21,7 @@
             </tr>
             <tr>
                 <th class="col-lg-4">Status</th>
-                <td>{{ isset($data->relVoucherHead->status)?$data->relVoucherHead->status:''}}</td>
+                <td>{{ isset($data->relVoucherHead->status)?ucfirst($data->relVoucherHead->status):''}}</td>
             </tr>
         </table>
         <table class="table table-bordered table-hover table-striped">
@@ -36,7 +36,7 @@
             </tr>
             <tr>
                 <th class="col-lg-4">Sub Account Code</th>
-                <td>{{ isset($data->sub_account_code)?$data->sub_account_code:'' }}</td>
+                <td>{{ isset($data->sub_account_code)?ucfirst($data->sub_account_code):'' }}</td>
             </tr>
             <tr>
                 <th class="col-lg-4">Currency</th>
@@ -60,7 +60,7 @@
             </tr>
             <tr>
                 <th class="col-lg-4">Note</th>
-                <td>{{ isset($data->note)?$data->note:'' }}</td>
+                <td>{{ isset($data->note)?ucfirst($data->note):'' }}</td>
             </tr>
             <tr>
                 <th class="col-lg-4">Status</th>

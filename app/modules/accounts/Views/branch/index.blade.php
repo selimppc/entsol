@@ -60,7 +60,7 @@
                                     <td>{{ucfirst($values->title)}}</td>
                                     <td>{{$values->relCurrency->title}}</td>
                                     <td>{{$values->exchange_rate}}</td>
-                                    <td>{{$values->contact_person}}</td>
+                                    <td>{{ucfirst($values->contact_person)}}</td>
                                     <td>{{$values->email}}</td>
                                     <td>{{ucfirst($values->status)}}</td>
                                     <td>

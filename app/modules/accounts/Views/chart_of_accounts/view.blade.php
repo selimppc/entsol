@@ -16,15 +16,15 @@
             </tr>
             <tr>
                 <th class="col-lg-4">Description</th>
-                <td>{{ isset($data->description)?$data->description:''}}</td>
+                <td>{{ isset($data->description)?ucfirst($data->description):''}}</td>
             </tr>
             <tr>
                 <th class="col-lg-4">Account Type</th>
-                <td>{{ isset($data->account_type)?$data->account_type:''}}</td>
+                <td>{{ isset($data->account_type)?ucfirst($data->account_type):''}}</td>
             </tr>
             <tr>
                 <th class="col-lg-4">Account Usage</th>
-                <td>{{ isset($data->account_usage)?$data->account_usage:''}}</td>
+                <td>{{ isset($data->account_usage)?ucfirst($data->account_usage):''}}</td>
             </tr>
             <tr>
                 <th class="col-lg-4">Group One Title</th>
@@ -32,7 +32,7 @@
             </tr>
             <tr>
                 <th class="col-lg-4">Analytical Code</th>
-                <td>{{ isset($data->analytical_code)?$data->analytical_code:'' }}</td>
+                <td>{{ isset($data->analytical_code)?ucfirst($data->analytical_code):'' }}</td>
             </tr>
             <tr>
                 <th class="col-lg-4">Branch</th>
