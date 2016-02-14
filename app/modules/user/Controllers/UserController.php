@@ -63,9 +63,12 @@ class UserController extends Controller
     public function forget_password()
     {
         $email = Input::get('email');
+
         $user_exists = DB::table('user')->where('email', '=', $email)->exists();
         if($user_exists){
+
             $user = DB::table('user')->where('email', '=', $email)->first();
+            #print_r($user);exit;
             $model = new UserResetPassword();
             $model->user_id = $user->id;
             $model->reset_password_token = str_random(30);
@@ -74,30 +77,34 @@ class UserController extends Controller
             $model->reset_password_time = date('Y-m-d h:i:s', time());
             $model->status = 2;
             if($model->save()) {
+
                 try{
-                    Mail::send('user::forgot_password.email_notification', array('link' =>$token),
+                    Mail::send('user::forget_password.email_notification', array('link'=>$token,'user'=>$user),
                         function($message) use ($user)
                         {
-                            $message->from('test@edutechsolutionsbd.com', 'User Password Set Notification');
+                            $message->from('tanin09008@gmail.com', 'User Password Set Notification');
                             //$message->from('tanintjt.1990@gmail.com', 'AFFIFACT');
                             $message->to($user->email);
-                            $message->cc('devdhaka404@gmail.com', 'Tanin');
-                            $message->replyTo('devdhaka405@gmail.com','forgot password Request');
+                            $message->replyTo('tanin09008@gmail.com','forgot password Request');
                             $message->subject('Forgot Password Reset Mail');
                         });
-                    Session::flash('flash_message', 'Sent email to reset password. Please check your email!');
+
+                    #print_r($user);exit;
+                    Session::flash('message', 'Successfully sent email to reset password. Please check your email!');
                 }catch (\Exception $e){
-                    Session::flash('flash_message_error', 'Email does not Send!');
+
+                    Session::flash('error', $e->getMessage());
                 }
             }else{
-                Session::flash('flash_message_error', 'Does not Save!');
+                Session::flash('error', 'Does not Save!');
             }
         }else{
-            Session::flash('flash_message_error', 'The Specified Email address Is not Listed On Your Account. Please Try Again.');
+            Session::flash('error', 'The Specified Email address Is not Listed On Your Account. Please Try Again.');
         }
-        return redirect()->route('get-user-login');
+        return redirect()->back();
     }
     public function password_reset_confirm($reset_password_token){
+
         $user = UserResetPassword::where('reset_password_token','=',$reset_password_token)->first();
         $current_time = date('Y-m-d h:i:s', time());
         if(isset($user)) {
@@ -109,21 +116,48 @@ class UserController extends Controller
             ];
             if ($data['reset_password_expire'] > $current_time && $data['status'] == 2) {
                 $id =  isset($user->id) ?$data['user_id']:'';
-                return view('user.forgot_password.reset_password_form',['id'=>$id]);
+                return view('user::forget_password.reset_password_form',['id'=>$id]);
             }
             if($data['reset_password_expire'] < $current_time){
-                Session::flash('flash_message_error', 'Time Expired.Please Try Again.');
+                Session::flash('error', 'Time Expired.Please Try Again.');
                 return redirect()->back();
             }
             if($data['status'] == 0) {
-                Session::flash('flash_message_error', 'You can Not Access To This link.Please Try Again.');
+                Session::flash('error', 'You can Not Access To This link.Please Try Again.');
                 return redirect()->back();
             }
         }else{
-            Session::flash('flash_message_error', 'Invalid Password Reset Link.Please Try Again.');
+            Session::flash('error', 'Invalid Password Reset Link.Please Try Again.');
             return redirect()->route('get-user-login');
         }
         return redirect()->route('get-user-login');
+    }
+
+    public function save_new_password(Request $request)
+    {
+        $data = $request->all();
+        $data['password'] = Hash::make($data['password']);
+        $id = $data['id'];
+
+        $user_id = DB::table('user_reset_password')->where('id', '=', $id)->first();
+
+        $model = User::findOrFail($user_id->user_id);
+        DB::beginTransaction();
+        try {
+            //update status and password
+            if($model->fill($data)->save()){
+                DB::table('user_reset_password')->where('user_id', '=', $user_id->user_id)->update(array('status' => 0));
+            }
+            DB::commit();
+            Session::flash('message','You have reset your password successfully. You may signin now.');
+            return redirect()->route('get-user-login');
+        }
+        catch ( \Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('error', "Invalid Request! Please Try Again.");
+        }
+//            return redirect()->back();
     }
 
     public function getLogin()

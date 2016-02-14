@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'driver' => env('MAIL_DRIVER', 'smtp'),
+    /*'driver' => env('MAIL_DRIVER', 'smtp'),*/
 
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    /*'host' => env('MAIL_HOST', 'smtp.mailgun.org'),*/
 
     /*
     |--------------------------------------------------------------------------
@@ -41,7 +41,7 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 587),
+    /*'port' => env('MAIL_PORT', 587),*/
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    /*'from' => ['address' => null, 'name' => null],*/
 
     /*
     |--------------------------------------------------------------------------
@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+    /*'encryption' => env('MAIL_ENCRYPTION', 'tls'),*/
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME'),
+   /* 'username' => env('MAIL_USERNAME'),*/
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'password' => env('MAIL_PASSWORD'),
+   /* 'password' => env('MAIL_PASSWORD'),*/
 
     /*
     |--------------------------------------------------------------------------
@@ -106,7 +106,7 @@ return [
     |
     */
 
-    'sendmail' => '/usr/sbin/sendmail -bs',
+    /*'sendmail' => '/usr/sbin/sendmail -bs',*/
 
     /*
     |--------------------------------------------------------------------------
@@ -119,6 +119,16 @@ return [
     |
     */
 
+    'driver' => 'smtp',
+    'host' => 'smtp.gmail.com',
+    'port' => 465,
+    'from' => array('address' => 'tanin09008@gmail.com', 'name' => 'Edu Tech Solutions'),
+    'encryption' => 'ssl',
+    'username' => 'tanin09008@gmail.com',
+    'password' => 'tanvir123',
+    'sendmail' => '/usr/sbin/sendmail -bs',
     'pretend' => false,
+
+   /* 'pretend' => false,*/
 
 ];
