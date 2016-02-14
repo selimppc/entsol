@@ -192,7 +192,7 @@ class UserController extends Controller
 
             $model = $model->where('status','!=','cancel')->paginate(30);
         }else{
-            $model = $model->with('relBranch','relRole')->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
+            $model = $model->with('relBranch','relRole')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(30);
         }
 
         $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();

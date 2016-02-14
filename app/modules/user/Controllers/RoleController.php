@@ -20,7 +20,7 @@ class RoleController extends Controller
     public function index()
     {
         $pageTitle = "List of Role";
-        $data = Role::where('status','!=','cancel')->get();
+        $data = Role::where('status','!=','cancel')->paginate(30);
         return view('user::role.index',['data'=>$data, 'pageTitle'=>$pageTitle]);
     }
 

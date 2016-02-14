@@ -29,7 +29,7 @@ class PermissionRoleController extends Controller
     {
         $pageTitle = "Permission Role List";
         $title = Input::get('title');
-        $data = PermissionRole::where('status', '!=', 'cancel')->orderBy('id', 'DESC')->get();
+        $data = PermissionRole::where('status', '!=', 'cancel')->orderBy('id', 'DESC')->paginate(30);
         $permission_id = [''=>'Select Permission'] + Permission::lists('title','id')->all();
         $role_id = [''=>'Select Role'] + Role::lists('title','id')->all();
         return view('user::permission_role.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'permission_id'=>$permission_id,'role_id'=>$role_id]);

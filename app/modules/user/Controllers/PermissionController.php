@@ -36,7 +36,7 @@ class PermissionController extends Controller
             $routes_list[] = Str::lower($value->getPath());
         }*/
 
-        $data = Permission::where('title', 'LIKE', '%'.$title.'%')->orderBy('id', 'DESC')->get();
+        $data = Permission::where('title', 'LIKE', '%'.$title.'%')->orderBy('id', 'DESC')->paginate(30);
         return view('user::permission.index', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 
