@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Helpers;
+namespace App\Modules\Accounts\Helpers;
 use App\Settings;
 
 /**
  * Created by PhpStorm.
  * User: etsb
- * Date: 2/2/16
- * Time: 3:02 PM
+ * Date: 2/14/16
+ * Time: 9:33 AM
  */
 class GenerateNumber
 {
