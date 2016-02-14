@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="col-sm-1 srch-btn">
-                            {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs', 'data-placement'=>'right', 'data-content'=>'type voucher or select branch or both in specific field then click search button for required information')) !!}
+                            {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs', 'data-placement'=>'left', 'data-content'=>'type voucher or select branch or both in specific field then click search button for required information')) !!}
                         </div>
                     </div>
                     {!! Form::close() !!}
@@ -56,7 +56,7 @@
                     <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
                         <thead>
                         <tr>
-                            <th> Voucher Number &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="left" data-content="<em>these are system generated unique voucher number<br>click voucher number to go voucher details page</em>">(?)</span></th>
+                            <th> Voucher Number &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="<em>these are system generated unique voucher number<br>click voucher number to go voucher details page</em>">(?)</span></th>
                             <th> Date </th>
                             <th> Reference </th>
                             <th> Year </th>
@@ -65,7 +65,7 @@
                             <th> Note </th>
                             <th> Status </th>
                             <th> Action &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="1. when status open/suspend/balanced you can view, update, delete all actions<br>2. when status posted you can only view information">(?)</span></th>
-                            <th> V.Details &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="left" data-content="<em>click voucher details to go voucher details page</em>">(?)</span></th>
+                            <th> V.Details &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="<em>click voucher details to go voucher details page</em>">(?)</span></th>
                             <th> Reports </th>
                         </tr>
                         </thead>
@@ -74,7 +74,11 @@
                             @foreach($model as $values)
                                 <tr>
                                     <td>
+                                        @if($values->status == 'posted')
+                                            <a href="{{ route('view-voucher-head', $values->id) }}" class="link-text-decoration" data-toggle="modal" data-target="#etsbModal" title="click for voucher-view page"><strong>{{$values->voucher_number}}</strong></a>
+                                        @else
                                         <a href="{{ route('voucher-detail',['id'=>$values->id,'voucher_number'=>$values->voucher_number]) }}" class="link-text-decoration" title="click for voucher-detail page"><strong>{{$values->voucher_number}}</strong></a>
+                                        @endif
                                     </td>
                                     <td>{{$values->date}}</td>
                                     <td>{{ucfirst($values->reference)}}</td>

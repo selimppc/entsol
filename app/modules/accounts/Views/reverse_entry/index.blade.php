@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="col-sm-1 srch-btn">
-                            {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs', 'data-placement'=>'right', 'data-content'=>'type voucher or select branch or both in specific field then click search button for required information')) !!}
+                            {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs', 'data-placement'=>'left', 'data-content'=>'type voucher or select branch or both in specific field then click search button for required information')) !!}
                         </div>
                     </div>
                     {!! Form::close() !!}
