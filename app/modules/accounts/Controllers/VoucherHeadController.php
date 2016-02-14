@@ -34,7 +34,7 @@ class VoucherHeadController extends Controller
        $model = $model->with('relBranch')->where('account_type','journal-voucher')->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
 
        $type = 'journal-voucher';
-       $generate_number = GenerateNumber::generate_number($type);
+       $generate_number = \App\Modules\Accounts\Helpers\GenerateNumber::generate_number($type);
 
        $generate_voucher_number = $generate_number[0];
        $settings_id = $generate_number[1];
