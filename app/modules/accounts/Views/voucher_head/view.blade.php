@@ -21,7 +21,7 @@
                 <td class="col-lg-4">{{ isset($data->date)?$data->date:''}}</td>
 
                 <th class="col-lg-2">Reference</th>
-                <td class="col-lg-4">{{ isset($data->reference)?$data->reference:'' }}</td>
+                <td class="col-lg-4">{{ isset($data->reference)?ucfirst($data->reference):'' }}</td>
             </tr>
 
             <tr>
@@ -37,12 +37,12 @@
                 <td class="col-lg-4">{{isset($data->relBranch->code)?$data->relBranch->code:''}}</td>
 
                 <th class="col-lg-2">Status</th>
-                <td class="col-lg-4">{{ isset($data->status)?'Open' :'' }}</td>
+                <td class="col-lg-4">{{ isset($data->status)?ucfirst($data->status) :'' }}</td>
             </tr>
 
             <tr>
                 <th class="col-lg-2">Note</th>
-                <td colspan="3">{{ isset($data->note)?$data->note:'' }}</td>
+                <td colspan="3">{{ isset($data->note)?ucfirst($data->note):'' }}</td>
             </tr>
         </table>
 
@@ -58,7 +58,6 @@
                 <th> Currency (Exchange Rate)</th>
                 <th> Amount </th>
                 <th> Branch </th>
-                <th> Status </th>
             </tr>
             </thead>
             <tbody>
@@ -70,7 +69,6 @@
                         <td>{{isset($values->relCurrency->title)?$values->relCurrency->title:''}} ({{isset($values->relCurrency->exchange_rate)?$values->relCurrency->exchange_rate:''}})</td>
                         <td>{{$values->base_amount}}</td>
                         <td>{{isset($values->relBranch->title)?$values->relBranch->title:''}}</td>
-                        <td>{{ucfirst($values->status)}}
                     </tr>
                 @endforeach
             @endif

@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="col-sm-1 srch-btn">
-                            {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs', 'data-placement'=>'right', 'data-content'=>'type voucher or select branch or both in specific field then click search button for required information')) !!}
+                            {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs', 'data-placement'=>'left', 'data-content'=>'type voucher or select branch or both in specific field then click search button for required information')) !!}
                         </div>
                     </div>
                     {!! Form::close() !!}
@@ -77,11 +77,11 @@
                                         <a href="{{ route('reverse-detail',['id'=>$values->id,'voucher_number'=>$values->voucher_number]) }}" class="link-text-decoration" title="click for voucher-detail page"><strong>{{$values->voucher_number}}</strong></a>
                                     </td>
                                     <td>{{$values->date}}</td>
-                                    <td>{{$values->reference}}</td>
+                                    <td>{{ucfirst($values->reference)}}</td>
                                     <td>{{$values->year}}</td>
                                     <td>{{$values->period}}</td>
                                     <td>{{isset($values->relBranch->title)?$values->relBranch->title:''}}</td>
-                                    <td>{{$values->note}}</td>
+                                    <td>{{ucfirst($values->note)}}</td>
                                     <td>{{ ucfirst($values->status) }}</td>
                                     <td>
                                         @if($values->status == 'posted')

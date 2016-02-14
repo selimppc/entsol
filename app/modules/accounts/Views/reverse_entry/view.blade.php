@@ -20,7 +20,7 @@
                 <td class="col-lg-4">{{ isset($data->date)?$data->date:''}}</td>
 
                 <th class="col-lg-2">Reference</th>
-                <td class="col-lg-4">{{ isset($data->reference)?$data->reference:'' }}</td>
+                <td class="col-lg-4">{{ isset($data->reference)?ucfirst($data->reference):'' }}</td>
             </tr>
 
             <tr>
@@ -41,7 +41,7 @@
 
             <tr>
                 <th class="col-lg-2">Note</th>
-                <td colspan="3">{{ isset($data->note)?$data->note:'' }}</td>
+                <td colspan="3">{{ isset($data->note)?ucfirst($data->note):'' }}</td>
             </tr>
         </table>
 
