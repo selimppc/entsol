@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
+use URL;
+use HTML;
 use Mockery\CountValidator\Exception;
 use Validator;
 use Input;
@@ -83,20 +85,29 @@ class AuthController extends Controller
         }else{
             try{
                 $field = filter_var($data['email'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-                $attempt = Auth::attempt([
-                    $field => $request->get('email'),
-                    'password' => $request->get('password'),
-                ]);
                 $user_data_exists = User::where($field, $data['email'])->exists();
 
                 if($user_data_exists){
                     $user_data = User::where($field, $data['email'])->first();
-                    if ($attempt) {
-                        Session::put('email', $user_data->email);
-                        Session::flash('message', "Successfully  Logged In.");
-                        return redirect()->route('dashboard');
+                    if($user_data->status =='inactive'){
+                        $link = "{{route('forget-password-view')}}";
+                        $a_link = "<a href=".$link.">ok</a>";
+                        #echo $a_link;exit;
+                        Session::flash('danger',  $a_link);
+
+                        return redirect()->route('get-user-login');
                     }else{
-                        Session::flash('danger', "Password Inorrect.Please Try Again");
+                        $attempt = Auth::attempt([
+                            $field => $request->get('email'),
+                            'password' => $request->get('password'),
+                        ]);
+                        if ($attempt) {
+                            Session::put('email', $user_data->email);
+                            Session::flash('message', "Successfully  Logged In.");
+                            return redirect()->route('dashboard');
+                        }else{
+                            Session::flash('danger', "Password Inorrect.Please Try Again");
+                        }
                     }
                 }else{
                     Session::flash('danger', "Email does not exists.Please Try Again");

@@ -77,6 +77,10 @@ Route::any('password-reset-confirm/{reset_password_token}', [
     'uses' => 'UserController@password_reset_confirm'
 ]);
 
+Route::any('user-save-new-password',
+    ['as'=>'user-save-new-password',
+        'uses'=>'UserController@save_new_password']);
+
 Route::any('signup', [
     'as' => 'signup',
     'uses' => 'UserController@store_signup_info'

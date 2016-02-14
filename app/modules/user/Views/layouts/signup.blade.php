@@ -54,7 +54,8 @@
         <!-- Background overlay -->
         <div class="overlay"></div>
         <!-- Replace this with your bg image -->
-        <img src="assets/user/img/signin-bg-1.jpg" alt="">
+        <img src=" {{URL::to('assets/user/img/signin-bg-1.jpg')}}" alt="">
+
     </div>
 <!-- / Page background -->
 
