@@ -5,7 +5,7 @@
 </head>
 <body>
 <div class="span6 well">
-    @if($user->status=="inactive")
+    @if($user->last_visit==Null)
         <div>
             <p><strong>You can reset your password :</strong></p>
             {{ URL::to('password-reset-confirm/'.$link) }}.
