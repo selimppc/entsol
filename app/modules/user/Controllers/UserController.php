@@ -164,12 +164,12 @@ class UserController extends Controller
 
     public function getLogin()
     {
-        if(Session::has('email')) {
+        /*if(Session::has('email')) {
             return redirect()->route('dashboard');
         }
-        else{
+        else{*/
             return view('user::signin._form');
-        }
+      /*}*/
     }
 
     public function logout() {
@@ -368,15 +368,15 @@ class UserController extends Controller
         if(Auth::check())
         {
             $user_id = Auth::user()->id;
-            return view('user::user_info.index',['user_id'=>$user_id]);
+            $countryList = array('' => 'Please Select') + Country::lists('title', 'id');
+            return view('user::user_info.index',['user_id'=>$user_id,'countryList'=>$countryList]);
         }
     }
     public function user_info($user_id,$value){
-
         #print_r($value);exit;
         if(Auth::check())
         {
-            if($value =='user_info'){
+            if($value =='profile'){
                 $data = UserProfile::where('user_id', '=', $user_id)->first();
             }elseif($value =='meta'){
                 $data = User::where('user_id', '=', $user_id)->first();
