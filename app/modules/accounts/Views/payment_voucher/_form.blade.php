@@ -21,14 +21,14 @@
             {!! Form::label('date', 'Date:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
             <div class="input-group date">
-                {!! Form::text('date', date('Y/m/d'), ['class' => 'form-control bs-datepicker-component','required','title'=>'select journal voucher date']) !!}
+                {!! Form::text('date', @$generate_voucher_number? date('Y/m/d') : Input::old('date'), ['class' => 'form-control bs-datepicker-component','required','title'=>'select payment voucher date']) !!}
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
             </div>
         </div>
         <div class="col-sm-6">
             {!! Form::label('reference', 'Reference:', ['class' => 'control-label']) !!}
             <small class="narration">(Narration for Journal Voucher Informations)</small>
-            {!! Form::text('reference', null, ['class' => 'form-control','autofocus','title'=>'enter narration for journal voucher informations']) !!}
+            {!! Form::text('reference', Input::old('reference'), ['class' => 'form-control','autofocus','title'=>'enter narration for payment voucher informations']) !!}
         </div>
     </div>
 </div>
@@ -38,11 +38,11 @@
         <div class="col-sm-6">
             {!! Form::label('year', 'Year:', ['class' => 'control-label']) !!}
             {{--old('date', Carbon\Carbon::today()->format('Y/m/d'))--}}
-            {!! Form::selectrange('year',2010,2030, Input::old('year', date('Y')),['class' => 'form-control','required','title'=>'select journal voucher year']) !!}
+            {!! Form::selectrange('year',2010,2030, @$generate_voucher_number? Input::old('year', date('Y')) : Input::old('year'),['class' => 'form-control','required','title'=>'select payment voucher year']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('period', 'Period:', ['class' => 'control-label']) !!}
-            {!! Form::selectrange('period', 1,12,Input::old('period', date('m')),['class' => 'form-control','required','title'=>'select journal voucher month']) !!}
+            {!! Form::selectrange('period', 1,12,@$generate_voucher_number? Input::old('period', date('m')) : Input::old('period'),['class' => 'form-control','required','title'=>'select payment voucher month']) !!}
         </div>
     </div>
 </div>
@@ -52,7 +52,7 @@
         <div class="col-sm-6">
             {!! Form::label('branch_id', 'Branch:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::Select('branch_id', $branch_data, Input::old('branch_id'),['class' => 'form-control','required','title'=>'select journal voucher branch']) !!}
+            {!! Form::Select('branch_id', $branch_data, Input::old('branch_id'),['class' => 'form-control','required','title'=>'select payment voucher branch']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
@@ -68,7 +68,7 @@
         <div class="col-sm-12">
             {!! Form::label('note', 'Note:', ['class' => 'control-label']) !!}
             <small class="narration">(Note for Journal Voucher Informations)</small>
-            {!! Form::textarea('note', null, ['class' => 'form-control','size' => '12x3','title'=>'enter journal voucher note']) !!}
+            {!! Form::textarea('note', Input::old('note'), ['class' => 'form-control','size' => '12x3','title'=>'enter payment voucher note']) !!}
         </div>
     </div>
 </div>

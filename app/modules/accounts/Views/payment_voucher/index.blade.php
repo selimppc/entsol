@@ -21,10 +21,10 @@
                 {!! Form::open(['method' =>'GET','url'=>'/search-payment-voucher']) !!}
                 <div id="index-search">
                     <div class="col-sm-2 pull-left">
-                        {!! Form::text('voucher_number', @Input::get('voucher_number')? Input::get('voucher_number') : null,['class' => 'form-control','placeholder'=>'type reverse number', 'title'=>'type your require "reverse number", example :: JV-0000001, then click "search" button']) !!}
+                        {!! Form::text('voucher_number', @Input::get('voucher_number')? Input::get('voucher_number') : null,['class' => 'form-control','placeholder'=>'type voucher number', 'title'=>'type your require "voucher number", example :: PAY-0000001, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-2">
-                        {!! Form::text('date', @Input::get('date')? Input::get('date') : null, ['class' => 'form-control bs-datepicker-component','placeholder'=>'select date','title'=>'select your require "journal voucher date", example :: 2016/02/10, then click "search" button']) !!}
+                        {!! Form::text('date', @Input::get('date')? Input::get('date') : null, ['class' => 'form-control bs-datepicker-component','placeholder'=>'select date','title'=>'select your require "payment voucher date", example :: 2016/02/10, then click "search" button']) !!}
 
                     </div>
                     <div class="col-sm-2">
@@ -53,7 +53,7 @@
                     <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
                         <thead>
                         <tr>
-                            <th>Voucher # Number &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="left" data-content="<em>these are system generated unique reverse number<br>click voucher number to go payment voucher details page</em>">(?)</span></th>
+                            <th>Voucher # Number &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="left" data-content="<em>these are system generated unique payment voucher number<br>click voucher number to go payment voucher details page</em>">(?)</span></th>
                             <th> Date </th>
                             <th> Reference </th>
                             <th> Year </th>
