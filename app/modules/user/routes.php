@@ -174,6 +174,11 @@ Route::any('delete-role/{slug}', [
         'as' => 'user-info',
         'uses' => 'UserController@user_info'
     ]);
+
+    Route::any('inactive-user-dashboard', [
+        'as' => 'inactive-user-dashboard',
+        'uses' => 'UserController@inactive_user_dashboard'
+    ]);
 });
 
 

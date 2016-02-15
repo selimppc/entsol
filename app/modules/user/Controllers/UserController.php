@@ -138,18 +138,21 @@ class UserController extends Controller
 
     public function save_new_password(Request $request)
     {
-        $data = $request->all();
-        $data['password'] = Hash::make($data['password']);
-        $id = $data['id'];
 
-        $user_id = DB::table('user_reset_password')->where('id', '=', $id)->first();
+        $data = $request->all();
+        $user_id = DB::table('user_reset_password')->where('id', '=', $data['id'])->first();
 
         $model = User::findOrFail($user_id->user_id);
 
         DB::beginTransaction();
         try {
             //update status and password
-            if($model->update($data)){
+            date_default_timezone_set("Asia/Dacca");
+            $user_update_data =[
+                'password'=>Hash::make($data['password']),
+                'last_visit'=>date('Y-m-d h:i:s', time()),
+            ];
+            if($model->update($user_update_data)){
                 DB::table('user_reset_password')->where('user_id', '=', $user_id->user_id)->update(array('status' => 0));
             }
             DB::commit();
@@ -389,5 +392,9 @@ class UserController extends Controller
 //            $countryList = [''=>'Please Select'] + Country::lists('title', 'id')->all();
         }
 
+    }
+
+    public function inactive_user_dashboard(){
+        return view('user::user_info.inactive_user_dashboard');
     }
 }
