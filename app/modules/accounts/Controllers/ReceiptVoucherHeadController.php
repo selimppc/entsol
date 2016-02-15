@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: etsb
  * Date: 2/15/16
- * Time: 10:17 AM
+ * Time: 1:02 PM
  */
 
 namespace App\Modules\Accounts\Controllers;
@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 
 
-class PaymentVoucherHeadController extends Controller
+class ReceiptVoucherHeadController extends Controller
 {
     protected function isGetRequest()
     {
@@ -30,11 +30,11 @@ class PaymentVoucherHeadController extends Controller
 
     public function index(){
 
-        $pageTitle = 'Payment Voucher Informations';
+        $pageTitle = 'Receipt Voucher Informations';
         $model = new VoucherHead();
-        $model = $model->with('relBranch')->where('account_type','payment-voucher')->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
+        $model = $model->with('relBranch')->where('account_type','receipt-voucher')->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
 
-        $type = 'payment-voucher';
+        $type = 'receipt-voucher';
         $generate_number = GenerateNumber::generate_number($type);
 
         $generate_voucher_number = $generate_number[0];
@@ -42,17 +42,17 @@ class PaymentVoucherHeadController extends Controller
         $number = $generate_number[2];
 
         $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
-        return view('accounts::payment_voucher.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model,'generate_voucher_number'=>$generate_voucher_number,'number'=>$number,'settings_id'=>$settings_id]);
+        return view('accounts::receipt_voucher.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model,'generate_voucher_number'=>$generate_voucher_number,'number'=>$number,'settings_id'=>$settings_id]);
     }
 
-    public function search_payment_voucher(){
+    public function search_reverse_entry(){
 
-        $pageTitle = 'Payment Voucher Informations';
+        $pageTitle = 'Receipt Voucher Informations';
         $model = new VoucherHead();
 
         if($this->isGetRequest()){
 
-            $type = 'payment-voucher';
+            $type = 'receipt-voucher';
             $generate_number = GenerateNumber::generate_number($type);
 
             $generate_voucher_number = $generate_number[0];
@@ -73,13 +73,13 @@ class PaymentVoucherHeadController extends Controller
             if (isset($voucher_number) && !empty($voucher_number)) $model->where('ac_voucher_head.voucher_number', 'LIKE', '%'.$voucher_number.'%');
             if (isset($date) && !empty($date)) $model->where('ac_voucher_head.date', '=', $date);
             if (isset($status) && !empty($status)) $model->where('ac_voucher_head.status', '=', $status);
-            $model = $model->where('account_type','payment-voucher')->get();
+            $model = $model->where('account_type','receipt-voucher')->get();
         }else{
             $model = $model->with('relBranch')->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
         }
 
         $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
-        return view('accounts::payment_voucher.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model,'generate_voucher_number'=>$generate_voucher_number,'number'=>$number,'settings_id'=>$settings_id]);
+        return view('accounts::receipt_voucher.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model,'generate_voucher_number'=>$generate_voucher_number,'number'=>$number,'settings_id'=>$settings_id]);
     }
 
     public function store(VoucherHeadRequest $request){
@@ -104,23 +104,23 @@ class PaymentVoucherHeadController extends Controller
 
     public function show($id)
     {
-        $pageTitle = 'Payment Voucher Informations';
+        $pageTitle = 'Receipt Voucher Informations';
         $data = VoucherHead::with('relBranch')->where('id',$id)->first();
         $voucher_details_data = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('voucher_head_id',$id)->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
 
-        return view('accounts::payment_voucher.view', ['data' => $data,'voucher_details_data' => $voucher_details_data, 'pageTitle'=> $pageTitle]);
+        return view('accounts::receipt_voucher.view', ['data' => $data,'voucher_details_data' => $voucher_details_data, 'pageTitle'=> $pageTitle]);
     }
 
     public function edit($id)
     {
-        $pageTitle = 'Update Payment Voucher Informations';
+        $pageTitle = 'Update Receipt Voucher Informations';
         $branch_data = Branch::lists('title','id');
 
         /*$model = new VoucherHead();
         $year = $model->getYear();*/
 
         $data = VoucherHead::findOrFail($id);
-        return view('accounts::payment_voucher.update', ['data' => $data,'branch_data'=>$branch_data,'pageTitle'=> $pageTitle]);
+        return view('accounts::receipt_voucher.update', ['data' => $data,'branch_data'=>$branch_data,'pageTitle'=> $pageTitle]);
     }
 
     public function update(VoucherHeadRequest $request, $id)

@@ -330,36 +330,36 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
 
     Route::any('payment-detail/{id}/{voucher_number}', [
          'as' => 'payment-detail',
-         'uses' => 'ReverseVoucherDetailController@index'
+         'uses' => 'PaymentVoucherDetailController@index'
      ]);
 
-       /*  Route::any('store-reverse-detail', [
-         'as' => 'store-reverse-detail',
-         'uses' => 'ReverseVoucherDetailController@store'
+    Route::any('store-payment-detail', [
+         'as' => 'store-payment-detail',
+         'uses' => 'PaymentVoucherDetailController@store'
      ]);
 
-     Route::any('view-reverse-detail/{id}', [
-         'as' => 'view-reverse-detail',
-         'uses' => 'ReverseVoucherDetailController@show'
+     Route::any('view-payment-detail/{id}', [
+         'as' => 'view-payment-detail',
+         'uses' => 'PaymentVoucherDetailController@show'
      ]);
-     Route::any('edit-reverse-detail/{id}', [
-         'as' => 'edit-reverse-detail',
-         'uses' => 'ReverseVoucherDetailController@edit'
+     Route::any('edit-payment-detail/{id}', [
+         'as' => 'edit-payment-detail',
+         'uses' => 'PaymentVoucherDetailController@edit'
      ]);
-     Route::any('update-reverse-detail/{id}', [
-         'as' => 'update-reverse-detail',
-         'uses' => 'ReverseVoucherDetailController@update'
-     ]);
-
-     Route::any('delete-reverse-detail/{id}', [
-         'as' => 'delete-reverse-detail',
-         'uses' => 'ReverseVoucherDetailController@delete'
+     Route::any('update-payment-detail/{id}', [
+         'as' => 'update-payment-detail',
+         'uses' => 'PaymentVoucherDetailController@update'
      ]);
 
-     Route::get('search-reverse-details/{id}/{voucher_number}', [
-         'as' => 'search-reverse-details',
-         'uses' => 'ReverseVoucherDetailController@search_reverse_details'
-     ]);*/
+     Route::any('delete-payment-detail/{id}', [
+         'as' => 'delete-payment-detail',
+         'uses' => 'PaymentVoucherDetailController@delete'
+     ]);
+
+     Route::get('search-payment-details/{id}/{voucher_number}', [
+         'as' => 'search-payment-details',
+         'uses' => 'PaymentVoucherDetailController@search_payment_details'
+     ]);
 
 
     /*------------------------------Receipt Voucher--------------------------*/
@@ -369,69 +369,69 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
         'uses' => 'ReceiptVoucherHeadController@index'
     ]);
 
-    /*Route::any('store-reverse-voucher', [
-        'as' => 'store-reverse-voucher',
-        'uses' => 'ReverseVoucherHeadController@store'
+    Route::any('store-receipt-voucher', [
+        'as' => 'store-receipt-voucher',
+        'uses' => 'ReceiptVoucherHeadController@store'
     ]);
 
-    Route::any('view-reverse-voucher/{id}', [
-        'as' => 'view-reverse-voucher',
-        'uses' => 'ReverseVoucherHeadController@show'
+    Route::any('view-receipt-voucher/{id}', [
+        'as' => 'view-receipt-voucher',
+        'uses' => 'ReceiptVoucherHeadController@show'
     ]);
-    Route::any('edit-reverse-voucher/{id}', [
-        'as' => 'edit-reverse-voucher',
-        'uses' => 'ReverseVoucherHeadController@edit'
+    Route::any('edit-receipt-voucher/{id}', [
+        'as' => 'edit-receipt-voucher',
+        'uses' => 'ReceiptVoucherHeadController@edit'
     ]);
-    Route::any('update-reverse-voucher/{id}', [
-        'as' => 'update-reverse-voucher',
-        'uses' => 'ReverseVoucherHeadController@update'
-    ]);
-
-    Route::any('delete-reverse-voucher/{id}', [
-        'as' => 'delete-reverse-voucher',
-        'uses' => 'ReverseVoucherHeadController@delete'
+    Route::any('update-receipt-voucher/{id}', [
+        'as' => 'update-receipt-voucher',
+        'uses' => 'ReceiptVoucherHeadController@update'
     ]);
 
-    Route::get('search-reverse_entry', [
-        'as' => 'search-reverse_entry',
-        'uses' => 'ReverseVoucherHeadController@search_reverse_entry'
-    ]);*/
+    Route::any('delete-receipt-voucher/{id}', [
+        'as' => 'delete-receipt-voucher',
+        'uses' => 'ReceiptVoucherHeadController@delete'
+    ]);
+
+    Route::get('search-receipt-voucher', [
+        'as' => 'search-receipt-voucher',
+        'uses' => 'ReceiptVoucherHeadController@search_receipt_voucher'
+    ]);
 
 
     /*-----------------------------------Receipt Details--------------------------*/
 
-    /* Route::any('reverse-detail/{id}/{voucher_number}', [
-         'as' => 'reverse-detail',
-         'uses' => 'ReverseVoucherDetailController@index'
+     Route::any('receipt-detail/{id}/{voucher_number}', [
+         'as' => 'receipt-detail',
+         'uses' => 'ReceiptVoucherDetailController@index'
      ]);
 
-        Route::any('store-reverse-detail', [
-         'as' => 'store-reverse-detail',
-         'uses' => 'ReverseVoucherDetailController@store'
+     Route::any('store-receipt-detail', [
+         'as' => 'store-receipt-detail',
+         'uses' => 'ReceiptVoucherDetailController@store'
      ]);
 
-     Route::any('view-reverse-detail/{id}', [
-         'as' => 'view-reverse-detail',
-         'uses' => 'ReverseVoucherDetailController@show'
+     Route::any('view-receipt-detail/{id}', [
+         'as' => 'view-receipt-detail',
+         'uses' => 'ReceiptVoucherDetailController@show'
      ]);
-     Route::any('edit-reverse-detail/{id}', [
-         'as' => 'edit-reverse-detail',
-         'uses' => 'ReverseVoucherDetailController@edit'
+     Route::any('edit-receipt-detail/{id}', [
+         'as' => 'edit-receipt-detail',
+         'uses' => 'ReceiptVoucherDetailController@edit'
      ]);
-     Route::any('update-reverse-detail/{id}', [
-         'as' => 'update-reverse-detail',
-         'uses' => 'ReverseVoucherDetailController@update'
-     ]);
-
-     Route::any('delete-reverse-detail/{id}', [
-         'as' => 'delete-reverse-detail',
-         'uses' => 'ReverseVoucherDetailController@delete'
+     Route::any('update-receipt-detail/{id}', [
+         'as' => 'update-receipt-detail',
+         'uses' => 'ReceiptVoucherDetailController@update'
      ]);
 
-     Route::get('search-reverse-details/{id}/{voucher_number}', [
-         'as' => 'search-reverse-details',
-         'uses' => 'ReverseVoucherDetailController@search_reverse_details'
-     ]);*/
+     Route::any('delete-receipt-detail/{id}', [
+         'as' => 'delete-receipt-detail',
+         'uses' => 'ReceiptVoucherDetailController@delete'
+     ]);
+
+     Route::get('search-receipt-details/{id}/{voucher_number}', [
+         'as' => 'search-receipt-details',
+         'uses' => 'ReceiptVoucherDetailController@search_receipt_details'
+     ]);
 
 
 
