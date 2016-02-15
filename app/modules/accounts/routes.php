@@ -294,46 +294,46 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
 
     Route::any('payment-voucher', [
         'as' => 'payment-voucher',
-        'uses' => 'ReverseVoucherHeadController@index'
+        'uses' => 'PaymentVoucherHeadController@index'
     ]);
 
-    /*Route::any('store-reverse-voucher', [
-        'as' => 'store-reverse-voucher',
-        'uses' => 'ReverseVoucherHeadController@store'
+    Route::any('store-payment-voucher', [
+        'as' => 'store-payment-voucher',
+        'uses' => 'PaymentVoucherHeadController@store'
     ]);
 
-    Route::any('view-reverse-voucher/{id}', [
-        'as' => 'view-reverse-voucher',
-        'uses' => 'ReverseVoucherHeadController@show'
+    Route::any('view-payment-voucher/{id}', [
+        'as' => 'view-payment-voucher',
+        'uses' => 'PaymentVoucherHeadController@show'
     ]);
-    Route::any('edit-reverse-voucher/{id}', [
-        'as' => 'edit-reverse-voucher',
-        'uses' => 'ReverseVoucherHeadController@edit'
+    Route::any('edit-payment-voucher/{id}', [
+        'as' => 'edit-payment-voucher',
+        'uses' => 'PaymentVoucherHeadController@edit'
     ]);
-    Route::any('update-reverse-voucher/{id}', [
-        'as' => 'update-reverse-voucher',
-        'uses' => 'ReverseVoucherHeadController@update'
-    ]);
-
-    Route::any('delete-reverse-voucher/{id}', [
-        'as' => 'delete-reverse-voucher',
-        'uses' => 'ReverseVoucherHeadController@delete'
+    Route::any('update-payment-voucher/{id}', [
+        'as' => 'update-payment-voucher',
+        'uses' => 'PaymentVoucherHeadController@update'
     ]);
 
-    Route::get('search-reverse_entry', [
-        'as' => 'search-reverse_entry',
-        'uses' => 'ReverseVoucherHeadController@search_reverse_entry'
-    ]);*/
+    Route::any('delete-payment-voucher/{id}', [
+        'as' => 'delete-payment-voucher',
+        'uses' => 'PaymentVoucherHeadController@delete'
+    ]);
+
+    Route::get('search-payment-voucher', [
+        'as' => 'search-payment-voucher',
+        'uses' => 'PaymentVoucherHeadController@search_payment_voucher'
+    ]);
 
 
     /*-----------------------------------Payment Details--------------------------*/
 
-    /* Route::any('reverse-detail/{id}/{voucher_number}', [
-         'as' => 'reverse-detail',
+    Route::any('payment-detail/{id}/{voucher_number}', [
+         'as' => 'payment-detail',
          'uses' => 'ReverseVoucherDetailController@index'
      ]);
 
-        Route::any('store-reverse-detail', [
+       /*  Route::any('store-reverse-detail', [
          'as' => 'store-reverse-detail',
          'uses' => 'ReverseVoucherDetailController@store'
      ]);
@@ -366,7 +366,7 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
 
     Route::any('receipt-voucher', [
         'as' => 'receipt-voucher',
-        'uses' => 'ReverseVoucherHeadController@index'
+        'uses' => 'ReceiptVoucherHeadController@index'
     ]);
 
     /*Route::any('store-reverse-voucher', [

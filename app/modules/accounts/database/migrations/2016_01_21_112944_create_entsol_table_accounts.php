@@ -117,7 +117,7 @@ class CreateEntsolTableAccounts extends Migration
             $table->increments('id');
             $table->string('voucher_number', 64)->unique();
             $table->enum('account_type',array(
-                'account-payable','account-receivable','account-adjustment','journal-voucher','receipt-voucher','reverse-entry'))->nullable();
+                'account-payable','account-receivable','account-adjustment','journal-voucher','payment-voucher','receipt-voucher','reverse-entry'))->nullable();
             $table->date('date')->nullable();
             $table->text('reference')->nullable();
             $table->unsignedInteger('year')->nullable();
