@@ -91,9 +91,9 @@ Route::get('get-user-login', [
     'uses' => 'UserController@getLogin'
 ]);
 
-Route::any('user-profile', [
-    'as' => 'user-profile',
-    'uses' => 'UserController@create_profile'
+Route::any('user_info', [
+    'as' => 'user_info',
+    'uses' => 'UserController@create_user_info'
 ]);
 
 Route::get('user-logout', [

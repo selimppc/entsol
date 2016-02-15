@@ -164,7 +164,12 @@ class UserController extends Controller
 
     public function getLogin()
     {
-        return view('user::signin._form');
+        if(Session::has('email')) {
+            return redirect()->route('dashboard');
+        }
+        else{
+            return view('user::signin._form');
+        }
     }
 
     public function logout() {
@@ -358,12 +363,12 @@ class UserController extends Controller
         return redirect()->route('user-list');
     }
 
-    public function create_profile()
+    public function create_user_info()
     {
         if(Auth::check())
         {
             $user_id = Auth::user()->id;
-            return view('user::profile.index',['user_id'=>$user_id]);
+            return view('user::user_info.index',['user_id'=>$user_id]);
         }
     }
     public function user_info($user_id,$value){
@@ -371,7 +376,7 @@ class UserController extends Controller
         #print_r($value);exit;
         if(Auth::check())
         {
-            if($value =='profile'){
+            if($value =='user_info'){
                 $data = UserProfile::where('user_id', '=', $user_id)->first();
             }elseif($value =='meta'){
                 $data = User::where('user_id', '=', $user_id)->first();
