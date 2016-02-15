@@ -91,11 +91,6 @@ Route::get('get-user-login', [
     'uses' => 'UserController@getLogin'
 ]);
 
-Route::any('user_info', [
-    'as' => 'user_info',
-    'uses' => 'UserController@create_user_info'
-]);
-
 Route::get('user-logout', [
     'as' => 'user-logout',
     'uses' => 'UserController@logout'
@@ -168,6 +163,11 @@ Route::any('delete-role/{slug}', [
     Route::any('delete-role-user/{id}', [
         'as' => 'delete-role-user',
         'uses' => 'RoleUserController@destroy'
+    ]);
+
+    Route::any('create-user-info', [
+        'as' => 'create-user-info',
+        'uses' => 'UserController@create_user_info'
     ]);
 
     Route::any('user-info/{user_id}/{value}', [

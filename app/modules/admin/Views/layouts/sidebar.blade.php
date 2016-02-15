@@ -66,7 +66,7 @@
                     <a tabindex="-1" href="{{route('get-user-login')}}"><span class="mm-text">Sign In</span></a>
                 </li>
                 <li>
-                    <a tabindex="-1" href="{{route('user-profile')}}"><span class="mm-text">Profile</span></a>
+                    <a tabindex="-1" href="{{route('create-user-info')}}"><span class="mm-text">Profile</span></a>
                 </li>
             </ul>
         </li>
