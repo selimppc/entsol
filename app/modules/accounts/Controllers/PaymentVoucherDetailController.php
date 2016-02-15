@@ -49,7 +49,7 @@ class PaymentVoucherDetailController extends Controller
     }
 
 
-    public function search_reverse_details($id,$voucher_number){
+    public function search_payment_details($id,$voucher_number){
 
         $pageTitle = 'Payment Voucher Detail Information';
         $model = new VoucherDetail();
