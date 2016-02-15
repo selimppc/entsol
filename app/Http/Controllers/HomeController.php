@@ -17,6 +17,7 @@ class HomeController extends Controller
      */
     public function dashboard()
     {
+        $pageTitle = 'ENTSOL - Dashboard';
         if(Session::has('email')) {
             if(Auth::user()->status =='inactive')
             {
@@ -25,11 +26,11 @@ class HomeController extends Controller
                 #echo $a_link;exit;
                 return view('admin::layouts.inactive_user_dashboard',['a_link'=>$a_link]);
             }else{
-                return view('admin::layouts.dashboard');
+                return view('admin::layouts.dashboard',['pageTitle'=>$pageTitle]);
             }
        }
        else{
-            return view('user::signin._form');
+            return view('user::signin._form',['pageTitle'=>$pageTitle]);
        }
     }
 
