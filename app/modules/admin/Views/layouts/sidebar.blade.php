@@ -99,6 +99,12 @@
                 <li>
                     <a tabindex="-1" href="{{route('reverse-voucher')}}"><i class="fa fa-money"></i> <span class="mm-text">Reverse Entry</span></a>
                 </li>
+                <li>
+                    <a tabindex="-1" href="{{route('payment-voucher')}}"><i class="fa fa-money"></i> <span class="mm-text">Payment Voucher</span></a>
+                </li>
+                <li>
+                    <a tabindex="-1" href="{{route('receipt-voucher')}}"><i class="fa fa-money"></i> <span class="mm-text">Receipt Voucher</span></a>
+                </li>
 
                 <li>
                     <a tabindex="-1" href="{{route('settings')}}"><i class="fa  fa-gear"></i> <span class="mm-text">Settings</span></a>
