@@ -49,9 +49,9 @@ class ReceiptVoucherDetailController extends Controller
     }
 
 
-    public function search_reverse_details($id,$voucher_number){
+    public function search_receipt_details($id,$voucher_number){
 
-        $pageTitle = 'Payment Voucher Detail Information';
+        $pageTitle = 'Receipt Voucher Detail Information';
         $model = new VoucherDetail();
         if($this->isGetRequest()){
 
@@ -78,7 +78,7 @@ class ReceiptVoucherDetailController extends Controller
         $currency_data = [''=>'Select Currency'] + Currency::lists('title','id')->all();
         $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
 
-        return view('accounts::payment_voucher_detail.index',['pageTitle'=>$pageTitle,'model'=>$model,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'voucher_number'=>$voucher_number,'voucher_data'=>$voucher_data]);
+        return view('accounts::receipt_voucher_detail.index',['pageTitle'=>$pageTitle,'model'=>$model,'currency_data'=>$currency_data,'branch_data'=>$branch_data,'id'=>$id,'voucher_number'=>$voucher_number,'voucher_data'=>$voucher_data]);
     }
 
     public function store(VoucherDetailRequest $request){
@@ -119,22 +119,22 @@ class ReceiptVoucherDetailController extends Controller
 
     public function show($id)
     {
-        $pageTitle = 'Payment Voucher Detail Information';
+        $pageTitle = 'Receipt Voucher Detail Information';
         $data = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('id',$id)->first();
 
-        return view('accounts::payment_voucher_detail.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
+        return view('accounts::receipt_voucher_detail.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 
     public function edit($id)
     {
-        $pageTitle = 'Edit Payment Voucher Detail Information';
+        $pageTitle = 'Edit Receipt Voucher Detail Information';
 
         $data = VoucherDetail::with('relChartOfAccounts')->findOrFail($id);
         $coa_data = ChartOfAccounts::lists('title','id');
         $currency_data = Currency::lists('title','id');
         $branch_data =  Branch::lists('title','id');
 
-        return view('accounts::payment_voucher_detail.update', ['data' => $data,'branch_data'=>$branch_data,'pageTitle'=> $pageTitle,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'id'=>$id,]);
+        return view('accounts::receipt_voucher_detail.update', ['data' => $data,'branch_data'=>$branch_data,'pageTitle'=> $pageTitle,'coa_data'=>$coa_data,'currency_data'=>$currency_data,'id'=>$id,]);
     }
 
     public function update(VoucherDetailRequest $request, $id)

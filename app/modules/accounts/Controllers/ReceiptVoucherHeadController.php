@@ -45,7 +45,7 @@ class ReceiptVoucherHeadController extends Controller
         return view('accounts::receipt_voucher.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model,'generate_voucher_number'=>$generate_voucher_number,'number'=>$number,'settings_id'=>$settings_id]);
     }
 
-    public function search_reverse_entry(){
+    public function search_receipt_voucher(){
 
         $pageTitle = 'Receipt Voucher Informations';
         $model = new VoucherHead();
