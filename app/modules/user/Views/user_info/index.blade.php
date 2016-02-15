@@ -77,27 +77,10 @@
                         <li class="active"><a href="" data-target="#profile" class="media_node span" id="new_tab" data-toggle="ajax-tab" rel="tooltip">Profile</a></li>
                         <li><a href="{{route('user-info',['user_id'=>$user_id,'value'=>'meta'])}}" data-target="#meta" class="media_node span" id="open_tab" data-toggle="ajax-tab" rel="tooltip"> Meta Information</a></li>
                         <li><a href="{{route('user-info',['user_id'=>$user_id,'value'=>'acc-settings'])}}" data-target="#acc-settings" class="media_node span" id="replied_tab" data-toggle="ajax-tab" rel="tooltip">Account Settings</a></li>
-
                     </ul>
 
                     <div class="tab-content tab-content-bordered panel-padding">
                         <div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-board">
-
-                            <div class="comment">
-                                <img src="assets/user/img/avatar.jpg" alt="" class="comment-avatar">
-                                <div class="comment-body">
-                                    <form action="#" id="leave-comment-form" class="comment-text no-padding no-border">
-                                        <textarea class="form-control" rows="1"></textarea>
-                                        <div class="expanding-input-hidden" style="margin-top: 10px;">
-                                            <label class="checkbox-inline pull-left">
-                                                <input type="checkbox" class="px">
-                                                <span class="lbl">Private message</span>
-                                            </label>
-                                            <button class="btn btn-primary pull-right">Leave Message</button>
-                                        </div>
-                                    </form>
-                                </div> <!-- / .comment-body -->
-                            </div>
 
                             <hr class="no-panel-padding-h panel-wide">
 
@@ -116,16 +99,9 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="{{ URL::asset('assets/user/js/custom.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('assets/admin/js/bootstrap.min.js') }}"></script>
-
-
 
     <script>
         $(document).ready(function(){
-            $(function(){
-
                 $('[data-toggle="ajax-tab"]').click(function(e) {
                     var $this = $(this),
                             loadurl = $this.attr('href'),
@@ -144,14 +120,12 @@
                         url : 'user-info/user_id',
                         dataType: 'json'
                     }).done(function (data) {
-                        $('#profile').html(data);
+                        $('#user_info').html(data);
                     }).fail(function () {
-                        alert('Posts could not be loaded.');
+                       //alert('Posts could not be loaded.');
                         return false;
                     });
                 });
-            });
         });
-
 </script>
 @stop

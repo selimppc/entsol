@@ -62,7 +62,7 @@
         $('#country').select2({ allowClear: true, placeholder: 'Select a country...' }).change(function(){
             $(this).valid();
         });
-        $("#wizard-profile").validate({
+        $("#wizard-user_info").validate({
             ignore: '.ignore, .select2-input',
             focusInvalid: true,
             rules: {
@@ -83,7 +83,7 @@
                 }
             }
         });
-        $('#wizard-profile').on('submit', function () {
+        $('#wizard-user_info').on('submit', function () {
             if ($(this).valid()) {
                 $('#wizard-forms').pixelWizard('nextStep');
             }
