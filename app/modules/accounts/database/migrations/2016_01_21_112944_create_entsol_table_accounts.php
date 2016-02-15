@@ -361,6 +361,29 @@ class CreateEntsolTableAccounts extends Migration
                 JOIN `entsol`.`ac_chart_of_accounts` `b` ON ((`a`.`coa_id` = `b`.`id`)))
         )'
         );
+
+
+
+
+        /*
+         * View Chart Of Accounts
+         */
+
+        DB::statement( 'CREATE VIEW vw_chart_of_ac AS (
+            SELECT
+              `a`.`id`              AS `id`,
+              `a`.`account_type`    AS `account_type`,
+              CONCAT(`b`.`code`,\'-\',`b`.`title`) AS `group_one`,
+              `a`.`account_code`    AS `account_code`,
+              `a`.`title`           AS `account_title`,
+              `a`.`account_usage`   AS `account_usage`,
+              `a`.`analytical_code` AS `analytical_code`,
+              `a`.`status`          AS `status`
+            FROM (`ac_chart_of_accounts` `a`
+               LEFT JOIN `ac_group_one` `b`
+                 ON ((`a`.`group_one_id` = `b`.`id`)))
+        )'
+        );
     }
 
     /**
@@ -381,5 +404,6 @@ class CreateEntsolTableAccounts extends Migration
         Schema::drop('ac_default_offset');
         Schema::drop('vw_gl_trn');
         Schema::drop('vw_voucher');
+        Schema::drop('vw_chart_of_ac');
     }
 }

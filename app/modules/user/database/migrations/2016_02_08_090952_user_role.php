@@ -37,9 +37,9 @@ class UserRole extends Migration
             $table->string('csrf_token', 64)->nullable();
             $table->string('ip_address', 32)->nullable();
             $table->unsignedInteger('branch_id')->nullable();
-            $table->date('last_visit')->nullable();
+            $table->dateTime('last_visit')->nullable();
             $table->unsignedInteger('role_id')->nullable();
-            $table->date('expire_date')->nullable();
+            $table->dateTime('expire_date')->nullable();
             $table->string('remember_token',64)->nullable();
             $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);

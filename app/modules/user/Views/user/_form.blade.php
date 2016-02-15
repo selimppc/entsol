@@ -51,7 +51,7 @@
         <div class="col-sm-12">
             {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
             <small class="narration">(Inactive status Selected)</small>
-            {!! Form::Select('status',array('inactive'=>'Inactive','active'=>'active','cancel'=>'Cancel'),Input::old('status'),['class'=>'form-control ','required']) !!}
+            {!! Form::Select('status',array('active'=>'Active','inactive'=>'Inactive','cancel'=>'Cancel'),Input::old('status'),['class'=>'form-control ','required']) !!}
         </div>
     </div>
 </div>
