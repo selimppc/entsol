@@ -19,12 +19,9 @@ class HomeController extends Controller
     {
         $pageTitle = 'ENTSOL - Dashboard';
         if(Session::has('email')) {
-            if(Auth::user()->status =='inactive')
+            if(is_null(Auth::user()->last_visit))
             {
-                $link = "{{route('/forget-password-view')}}";
-                $a_link = "<a href=".$link.">ok</a>";
-                #echo $a_link;exit;
-                return view('admin::layouts.inactive_user_dashboard',['a_link'=>$a_link]);
+                return view('user::user_info.inactive_user_dashboard',['pageTitle'=>$pageTitle]);
             }else{
                 return view('admin::layouts.dashboard',['pageTitle'=>$pageTitle]);
             }

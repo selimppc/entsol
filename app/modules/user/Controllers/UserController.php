@@ -3,6 +3,7 @@
 namespace App\Modules\User\Controllers;
 
 use App\Branch;
+use App\Country;
 use App\Role;
 use App\User;
 use App\UserProfile;
@@ -145,15 +146,10 @@ class UserController extends Controller
 
         $model = User::findOrFail($user_id->user_id);
 
-        $input_user_data = [
-           'password' => $data['password'],
-            'status' => 'active'
-        ];
-
         DB::beginTransaction();
         try {
             //update status and password
-            if($model->update($input_user_data)){
+            if($model->update($data)){
                 DB::table('user_reset_password')->where('user_id', '=', $user_id->user_id)->update(array('status' => 0));
             }
             DB::commit();
@@ -374,7 +370,7 @@ class UserController extends Controller
         if(Auth::check())
         {
             $user_id = Auth::user()->id;
-            $countryList = array('' => 'Please Select') + Country::lists('title', 'id');
+            $countryList = array('' => 'Please Select') + Country::lists('title', 'id')->all();
             return view('user::user_info.index',['user_id'=>$user_id,'countryList'=>$countryList]);
         }
     }
