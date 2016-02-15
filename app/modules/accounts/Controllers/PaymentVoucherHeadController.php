@@ -32,7 +32,7 @@ class PaymentVoucherHeadController extends Controller
 
         $pageTitle = 'Payment Voucher Informations';
         $model = new VoucherHead();
-        $model = $model->with('relBranch')->where('account_type','account-payable')->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
+        $model = $model->with('relBranch')->where('account_type','payment-voucher')->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
 
         $type = 'payment-voucher';
         $generate_number = GenerateNumber::generate_number($type);
@@ -73,7 +73,7 @@ class PaymentVoucherHeadController extends Controller
             if (isset($voucher_number) && !empty($voucher_number)) $model->where('ac_voucher_head.voucher_number', 'LIKE', '%'.$voucher_number.'%');
             if (isset($date) && !empty($date)) $model->where('ac_voucher_head.date', '=', $date);
             if (isset($status) && !empty($status)) $model->where('ac_voucher_head.status', '=', $status);
-            $model = $model->where('account_type','account-payable')->get();
+            $model = $model->where('account_type','payment-voucher')->get();
         }else{
             $model = $model->with('relBranch')->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
         }
@@ -161,7 +161,7 @@ class PaymentVoucherHeadController extends Controller
             DB::rollback();
             Session::flash('error', $e->getMessage());
         }
-        return redirect()->route('reverse-voucher');
+        return redirect()->route('payment-voucher');
     }
 
     public function delete($id){
