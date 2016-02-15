@@ -74,35 +74,35 @@
                 <div class="profile-content">
 
                     <ul id="profile-tabs" class="nav nav-tabs">
-                        <li class="active"><a href="" data-target="#profile" class="media_node span" id="new_tab" data-toggle="ajax-tab" rel="tooltip">Profile</a></li>
+                        <li class="active"><a href="{{route('user-info',['user_id'=>$user_id,'value'=>'profile'])}}" data-target="#profile" class="media_node" id="new_tab" data-toggle="ajax-tab" rel="tooltip">Profile</a></li>
                         <li><a href="{{route('user-info',['user_id'=>$user_id,'value'=>'meta'])}}" data-target="#meta" class="media_node span" id="open_tab" data-toggle="ajax-tab" rel="tooltip"> Meta Information</a></li>
-                        <li><a href="{{route('user-info',['user_id'=>$user_id,'value'=>'acc-settings'])}}" data-target="#acc-settings" class="media_node span" id="replied_tab" data-toggle="ajax-tab" rel="tooltip">Account Settings</a></li>
+                        <li><a href="{{route('user-info',['user_id'=>$user_id,'value'=>'acc-settings'])}}" data-target="#acc-settings" class="media_node" id="replied_tab" data-toggle="ajax-tab" rel="tooltip">Account Settings</a></li>
                     </ul>
 
                     <div class="tab-content tab-content-bordered panel-padding">
-                        <div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-board">
-
-                            <hr class="no-panel-padding-h panel-wide">
 
                             <div class="tab-pane active" id="profile">
-
+                                <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="left" data-content="click add profile button to add">
+                                    <strong>Add Profile</strong>
+                                </a>
+                                profile
                             </div>
-                        </div> <!-- / .tab-pane -->
                         <div class="tab-pane" id="meta">
-
+meta
                         </div>
                         <div class="tab-pane" id="acc-settings">
-
+account
                         </div>
                     </div> <!-- / .tab-content -->
                 </div>
             </div>
         </div>
     </div>
-
+    <script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.min.js') }}"></script>
     <script>
         $(document).ready(function(){
                 $('[data-toggle="ajax-tab"]').click(function(e) {
+                    //alert('hggfhgh');
                     var $this = $(this),
                             loadurl = $this.attr('href'),
                             targ = $this.attr('data-target');
@@ -128,4 +128,21 @@
                 });
         });
 </script>
+
+    <div id="addData" class="modal fade" tabindex="" role="dialog" style="display: none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Add Profile Informations <span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
+                </div>
+                <div class="modal-body">
+                    {!! Form::open(['route' => 'store-branch','id' => 'jq-validation-form']) !!}
+                    @include('user::user_info.profile._form')
+                    {!! Form::close() !!}
+                </div> <!-- / .modal-body -->
+            </div> <!-- / .modal-content -->
+        </div> <!-- / .modal-dialog -->
+    </div>
+    <!-- modal -->
 @stop

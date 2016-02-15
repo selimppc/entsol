@@ -28,10 +28,10 @@
                         {!! Form::Select('branch_id',$branch_data, @Input::get('branch_id')? Input::get('branch_id') : null,['class' => 'form-control', 'title'=>'select your require "branch", example :: Main Branch, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-2">
-                        {!! Form::Select('role_id',$role, @Input::get('role_id')? Input::get('role_id') : null,['class' => 'form-control', 'title'=>'select your require "role", example :: admin, then click "search" button']) !!}
+                        {!! Form::Select('role_id',($role), @Input::get('role_id')? Input::get('role_id') : null,['class' => 'form-control', 'title'=>'select your require "role", example :: admin, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-2">
-                        {!! Form::Select('status',array(''=>'Status','inactive'=>'Inactive','active'=>'active','cancel'=>'Cancel'),@Input::get('status')? Input::get('status') : null,['class'=>'form-control', 'title'=>'select your require "status", example :: open, then click "search" button']) !!}
+                        {!! Form::Select('status',array(''=>'Status','inactive'=>'Inactive','active'=>'Active','cancel'=>'Cancel'),@Input::get('status')? Input::get('status') : null,['class'=>'form-control', 'title'=>'select your require "status", example :: open, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-3 filter-btn">
                         {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button', 'data-placement'=>'right', 'data-content'=>'type code or title or both in specific field then click search button for required information')) !!}
@@ -62,8 +62,8 @@
                                     {{--<td>{{$values->id}}</td>--}}
                                     <td>{{ucfirst($values->username)}}</td>
                                     <td>{{$values->email}}</td>
-                                    <td>{{isset($values->relBranch->title)?$values->relBranch->title:''}}</td>
-                                    <td>{{isset($values->relRole->title)?$values->relRole->title:''}}</td>
+                                    <td>{{isset($values->relBranch->title)?ucfirst($values->relBranch->title):''}}</td>
+                                    <td>{{isset($values->relRole->title)?ucfirst($values->relRole->title):''}}</td>
                                     <td>{{ucfirst($values->status)}}</td>
                                     <td>{{$values->expire_date}}</td>
                                     <td>
