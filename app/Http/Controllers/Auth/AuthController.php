@@ -101,7 +101,7 @@ class AuthController extends Controller
                         Session::flash('danger', "Password Inorrect.Please Try Again");
                     }
                 }else{
-                    Session::flash('danger', "Email does not exists.Please Try Again");
+                    Session::flash('danger', "UserName/Email does not exists.Please Try Again");
                 }
             }catch(Exception $e){
                 Session::flash('error', $e->getMessage());
