@@ -38,11 +38,11 @@
         <div class="col-sm-6">
             {!! Form::label('year', 'Year:', ['class' => 'control-label']) !!}
             {{--old('date', Carbon\Carbon::today()->format('Y/m/d'))--}}
-            {!! Form::selectrange('year',2010,2030, Input::old('year'),['class' => 'form-control','required','title'=>'select payment voucher year']) !!}
+            {!! Form::selectrange('year',2010,2030, @$generate_voucher_number? Input::old('year', date('Y')) : Input::old('year'),['class' => 'form-control','required','title'=>'select payment voucher year']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('period', 'Period:', ['class' => 'control-label']) !!}
-            {!! Form::selectrange('period', 1,12,Input::old('period'),['class' => 'form-control','required','title'=>'select payment voucher month']) !!}
+            {!! Form::selectrange('period', 1,12,@$generate_voucher_number? Input::old('period', date('m')) : Input::old('period'),['class' => 'form-control','required','title'=>'select payment voucher month']) !!}
         </div>
     </div>
 </div>
