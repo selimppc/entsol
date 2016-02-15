@@ -74,7 +74,11 @@
                             @foreach($model as $values)
                                 <tr>
                                     <td>
+                                        @if($values->status == 'posted')
+                                            <a href="{{ route('view-reverse-voucher', $values->id) }}" class="link-text-decoration" data-toggle="modal" data-target="#etsbModal" title="click for voucher-view page"><strong>{{$values->voucher_number}}</strong></a>
+                                        @else
                                         <a href="{{ route('reverse-detail',['id'=>$values->id,'voucher_number'=>$values->voucher_number]) }}" class="link-text-decoration" title="click for voucher-detail page"><strong>{{$values->voucher_number}}</strong></a>
+                                        @endif
                                     </td>
                                     <td>{{$values->date}}</td>
                                     <td>{{ucfirst($values->reference)}}</td>
