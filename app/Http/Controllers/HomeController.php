@@ -17,12 +17,18 @@ class HomeController extends Controller
      */
     public function dashboard()
     {
+        $pageTitle = 'ENTSOL - Dashboard';
         if(Session::has('email')) {
-            return view('admin::layouts.dashboard');
-        }
-        else{
-            return view('user::signin._form');
-        }
+            if(is_null(Auth::user()->last_visit))
+            {
+                return view('user::user_info.inactive_user_dashboard',['pageTitle'=>$pageTitle]);
+            }else{
+                return view('admin::layouts.dashboard',['pageTitle'=>$pageTitle]);
+            }
+       }
+       else{
+            return view('user::signin._form',['pageTitle'=>$pageTitle]);
+       }
     }
 
     /**

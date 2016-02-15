@@ -281,7 +281,7 @@ class CreateEntsolTableAccounts extends Migration
         Schema::create('ac_settings', function (Blueprint $table) {
             $table->increments('id');
             $table->enum('type',array(
-                'account-payable','account-receivable','account-adjustment','journal-voucher','receipt-voucher','reverse-entry'))->nullable();
+                'account-payable','account-receivable','account-adjustment','journal-voucher','payment-voucher','receipt-voucher','reverse-entry'))->nullable();
             $table->string('code',4)->unique();
             $table->string('title',64)->unique();
             $table->unsignedInteger('last_number')->nullable();

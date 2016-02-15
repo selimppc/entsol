@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use URL;
 use HTML;
 use Mockery\CountValidator\Exception;
@@ -74,6 +75,9 @@ class AuthController extends Controller
 
     public function postLogin(Request $request)
     {
+        date_default_timezone_set("Asia/Dacca");
+        $time = date('Y-m-d h:i:s', time());
+
         $data = Input::all();
 
         if(Auth::check()){
@@ -94,6 +98,7 @@ class AuthController extends Controller
                 if($user_data_exists){
                     $user_data = User::where($field, $data['email'])->first();
                     if ($attempt) {
+                        DB::table('user')->where('id', '=', $user_data->id)->update(array('last_visit' =>$time));
                         Session::put('email', $user_data->email);
                         Session::flash('message', "Successfully  Logged In.");
                         return redirect()->route('dashboard');
@@ -101,7 +106,7 @@ class AuthController extends Controller
                         Session::flash('danger', "Password Inorrect.Please Try Again");
                     }
                 }else{
-                    Session::flash('danger', "Email does not exists.Please Try Again");
+                    Session::flash('danger', "UserName/Email does not exists.Please Try Again");
                 }
             }catch(Exception $e){
                 Session::flash('error', $e->getMessage());
