@@ -5,7 +5,7 @@
     </div>
 
     <div class="modal-body">
-        {!! Form::model($data, ['method' => 'PATCH', 'route'=> ['update-voucher-head', $data->id]]) !!}
+        {!! Form::model($data, ['method' => 'PATCH', 'route'=> ['update-reverse-voucher', $data->id]]) !!}
 
         @include('accounts::reverse_entry._form')
         {!! Form::close() !!}

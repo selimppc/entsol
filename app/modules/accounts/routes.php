@@ -325,6 +325,11 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
         'uses' => 'PaymentVoucherHeadController@search_payment_voucher'
     ]);
 
+    Route::any('payment-voucher-history/{id}', [
+        'as' => 'payment-voucher-history',
+        'uses' => 'PaymentVoucherHeadController@payment_voucher_history'
+    ]);
+
 
     /*-----------------------------------Payment Details--------------------------*/
 

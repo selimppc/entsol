@@ -24,10 +24,10 @@
                             {!! Form::Select('account_type',array(''=>'Select Account Type','account-payable'=>'Account Payable','account-receivable'=>'Account Receivable','account-adjustment'=>'account Adjustment','journal-voucher'=>'Journal Voucher','receipt-voucher'=>'Receipt Voucher','reverse-entry'=>'Reverse Entry'),Input::old('account_type'),['class'=>'form-control', 'title'=>'select your require  journal voucher "account type", example :: account payable, then click "search" button']) !!}
                         </div>--}}
                         <div class="col-sm-2 pull-left">
-                            {!! Form::text('voucher_number', @Input::get('voucher_number')? Input::get('voucher_number') : null,['class' => 'form-control','placeholder'=>'type reverse number', 'title'=>'type your require "reverse number", example :: JV-0000001, then click "search" button']) !!}
+                            {!! Form::text('voucher_number', @Input::get('voucher_number')? Input::get('voucher_number') : null,['class' => 'form-control','placeholder'=>'type reverse number', 'title'=>'type your require "reverse number", example :: REV-0000001, then click "search" button']) !!}
                         </div>
                         <div class="col-sm-2">
-                            {!! Form::text('date', @Input::get('date')? Input::get('date') : null, ['class' => 'form-control bs-datepicker-component','placeholder'=>'select date','title'=>'select your require "journal voucher date", example :: 2016/02/10, then click "search" button']) !!}
+                            {!! Form::text('date', @Input::get('date')? Input::get('date') : null, ['class' => 'form-control bs-datepicker-component','placeholder'=>'select date','title'=>'select your require "reverse voucher date", example :: 2016/02/10, then click "search" button']) !!}
 
                         </div>
                         <div class="col-sm-2">
@@ -97,7 +97,11 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('reverse-detail',['id'=>$values->id,'voucher_number'=>$values->voucher_number]) }}" class="btn btn-info btn-xs" data-placement="top" data-content="reverse details">rev-details</a>
+                                        @if($values->status == 'posted')
+                                            <a href="{{ route('reverse-voucher-history',['id'=>$values->id]) }}" class="btn btn-info btn-xs" data-placement="top" data-content="voucher details">rev-details</a>
+                                        @else
+                                            <a href="{{ route('reverse-detail',['id'=>$values->id,'voucher_number'=>$values->voucher_number]) }}" class="btn btn-info btn-xs" data-placement="top" data-content="reverse details">rev-details</a>
+                                        @endif
                                     </td>
                                     <td>
                                         @if($values->status == 'posted')
@@ -125,7 +129,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
-                <h4 class="modal-title" id="myModalLabel">Add Reverse Entry Informations &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>system fill account type and voucher number <br> Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
+                <h4 class="modal-title" id="myModalLabel">{{ $pageTitle }} &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>system fill account type and voucher number <br> Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
             </div>
             <div class="modal-body">
                 {!! Form::open(['route' => 'store-reverse-voucher','id' => 'jq-validation-form']) !!}

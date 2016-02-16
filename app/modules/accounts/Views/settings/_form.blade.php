@@ -8,7 +8,7 @@
         <div class="col-sm-6">
             {!! Form::label('code', 'Code:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('code', null, ['id'=>'code', 'class' => 'form-control','maxlength'=>'4','minlength'=>'4','required', 'style'=>'text-transform:uppercase','title'=>'enter settings code, example :: -JV']) !!}
+            {!! Form::text('code', Input::old('code'), ['id'=>'code', 'class' => 'form-control','maxlength'=>'4','minlength'=>'4','required', 'style'=>'text-transform:uppercase','title'=>'enter settings code, example :: -JV']) !!}
         </div>
     </div>
 </div>
@@ -18,7 +18,7 @@
         <div class="col-sm-6">
             {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('title', null, ['id'=>'title', 'class' => 'form-control','required', 'style'=>'text-transform:capitalize','title'=>'enter settings title, example :: journal voucher']) !!}
+            {!! Form::text('title', Input::old('title'), ['id'=>'title', 'class' => 'form-control','required', 'style'=>'text-transform:capitalize','title'=>'enter settings title, example :: journal voucher']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('last_number', 'Last Number:', ['class' => 'control-label']) !!}
@@ -33,7 +33,7 @@
         <div class="col-sm-6">
             {!! Form::label('increment', 'Increment:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::input('number','increment', null, ['id'=>'increment', 'class' => 'form-control','required','title'=>'enter settings increment, example :: increment number add last number then generate next number']) !!}
+            {!! Form::input('number','increment', Input::old('increment'), ['id'=>'increment', 'class' => 'form-control','required','title'=>'enter settings increment, example :: increment number add last number then generate next number']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}

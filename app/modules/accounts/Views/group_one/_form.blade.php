@@ -3,12 +3,12 @@
         <div class="col-sm-6">
             {!! Form::label('code', 'Code:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('code', null, ['id'=>'code', 'class' => 'form-control','required','autofocus','title'=>'enter group one code, example :: 101']) !!}
+            {!! Form::text('code', Input::old('code'), ['id'=>'code', 'class' => 'form-control','required','autofocus','title'=>'enter group one code, example :: 101']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('title', null, ['id'=>'title', 'class' => 'form-control','required', 'style'=>'text-transform:uppercase','title'=>'enter group one title, example :: fixed assets']) !!}
+            {!! Form::text('title', Input::old('title'), ['id'=>'title', 'class' => 'form-control','required', 'style'=>'text-transform:uppercase','title'=>'enter group one title, example :: fixed assets']) !!}
         </div>
     </div>
 </div>
@@ -17,7 +17,7 @@
     <div class="row">
         <div class="col-sm-12">
             {!! Form::label('description', 'Description:', ['class' => 'control-label']) !!}
-            {!! Form::textarea('description', null, ['id'=>'description', 'class' => 'form-control','size' => '12x3','title'=>'enter descriptions about group one code']) !!}
+            {!! Form::textarea('description', Input::old('description'), ['id'=>'description', 'class' => 'form-control','size' => '12x3','title'=>'enter descriptions about group one code']) !!}
         </div>
     </div>
 </div>

@@ -35,7 +35,7 @@ class ReceiptVoucherDetailController extends Controller
 
     public function index($id,$voucher_number){
 
-        $pageTitle = 'Receipt Voucher Detail Information';
+        $pageTitle = 'Receipt Voucher Details Information';
         $model = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('voucher_head_id',$id)->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
 
         //get vouncher data...
@@ -51,7 +51,7 @@ class ReceiptVoucherDetailController extends Controller
 
     public function search_receipt_details($id,$voucher_number){
 
-        $pageTitle = 'Receipt Voucher Detail Information';
+        $pageTitle = 'Receipt Voucher Details Information';
         $model = new VoucherDetail();
         if($this->isGetRequest()){
 
@@ -119,7 +119,7 @@ class ReceiptVoucherDetailController extends Controller
 
     public function show($id)
     {
-        $pageTitle = 'Receipt Voucher Detail Information';
+        $pageTitle = 'View Receipt Voucher Details Information';
         $data = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('id',$id)->first();
 
         return view('accounts::receipt_voucher_detail.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
@@ -127,7 +127,7 @@ class ReceiptVoucherDetailController extends Controller
 
     public function edit($id)
     {
-        $pageTitle = 'Edit Receipt Voucher Detail Information';
+        $pageTitle = 'Update Receipt Voucher Details Information';
 
         $data = VoucherDetail::with('relChartOfAccounts')->findOrFail($id);
         $coa_data = ChartOfAccounts::lists('title','id');

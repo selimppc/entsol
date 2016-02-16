@@ -104,7 +104,7 @@ class ReceiptVoucherHeadController extends Controller
 
     public function show($id)
     {
-        $pageTitle = 'Receipt Voucher Informations';
+        $pageTitle = 'View Receipt Voucher Informations';
         $data = VoucherHead::with('relBranch')->where('id',$id)->first();
         $voucher_details_data = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('voucher_head_id',$id)->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
 

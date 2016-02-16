@@ -15,6 +15,7 @@ use App\Settings;
 use App\VoucherHead;
 use App\VoucherDetail;
 use App\Modules\Accounts\Helpers\GenerateNumber;
+use App\VoucherHistory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
@@ -103,7 +104,7 @@ class ReverseVoucherHeadController extends Controller
 
     public function show($id)
     {
-        $pageTitle = 'Reverse Entry Informations';
+        $pageTitle = 'View Reverse Entry Informations';
         $data = VoucherHead::with('relBranch')->where('id',$id)->first();
         $voucher_details_data = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('voucher_head_id',$id)->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
 
@@ -186,5 +187,14 @@ class ReverseVoucherHeadController extends Controller
             Session::flash('message', "Voucher Details Data Found ! You Can Not Delete This Voucher Number");
         }
         return redirect()->back();
+    }
+
+
+    public function reverse_voucher_history($id)
+    {
+        $pageTitle = "Reverse Voucher History";
+        $data = VoucherHistory::where('voucher_head_id',$id)->orderBy('voucher_head_id', 'DESC')->get();
+
+        return view('accounts::reverse_entry.reverse_voucher_history', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 }

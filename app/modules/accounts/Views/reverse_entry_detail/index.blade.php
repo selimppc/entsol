@@ -87,17 +87,17 @@
                     @if(isset($voucher_data->status))
                         @if($voucher_data->status == 'balanced')
                             <h4 class="balanced-text-color" style="background-color:lightblue">
-                                <strong>The Journal Voucher is Balanced.</strong>
+                                <strong>The Reverse Voucher is Balanced.</strong>
                                 <a href="{{route('journal-post',$voucher_number)}}" class="btn btn-primary " title=""><strong class="text-center">POST to Ledger</strong></a>
                             </h4>
                         @elseif($voucher_data->status == 'posted')
                             <h4 class="text-dark-green">
-                                <strong>Journal Voucher({{$voucher_number}}) is Posted.</strong>
+                                <strong>Reverse Voucher({{$voucher_number}}) is Posted.</strong>
                             </h4>
                         @else
                             <h4 class="warning-report-text-color">
                                 <strong>WARNING Report :</strong>
-                                <span class="required"><strong>The journal must balance ie. debits equal to credits before it can be processed.</strong></span>
+                                <span class="required"><strong>The reverse voucher must balance ie. debits equal to credits before it can be processed.</strong></span>
                             </h4>
                         @endif
                     @endif
@@ -113,7 +113,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
-                <h4 class="modal-title" id="myModalLabel">Reverse Entry Detail # {{isset($voucher_number)?$voucher_number:''}}&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field.<b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
+                <h4 class="modal-title" id="myModalLabel">{{ $pageTitle }} # {{isset($voucher_number)?$voucher_number:''}}&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field.<b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
             </div>
             <div class="modal-body modal-backdrop">
                 {!! Form::open(['route' => 'store-reverse-detail','id' => 'jq-validation-form']) !!}

@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('account_type', 'Account Type:', ['class' => 'control-label']) !!}
-            <small class="narration">(Journal Voucher Type Selected)</small>
+            <small class="narration">(Payment Voucher Type Selected)</small>
             {!! Form::text('account_type', ucfirst('payment-voucher'), ['class' => 'form-control','required','readonly','style'=>'font-weight:bold']) !!}
         </div>
         <div class="col-sm-6">
@@ -27,7 +27,7 @@
         </div>
         <div class="col-sm-6">
             {!! Form::label('reference', 'Reference:', ['class' => 'control-label']) !!}
-            <small class="narration">(Narration for Journal Voucher Informations)</small>
+            <small class="narration">(Narration for Payment Voucher Informations)</small>
             {!! Form::text('reference', Input::old('reference'), ['class' => 'form-control','autofocus','title'=>'enter narration for payment voucher informations']) !!}
         </div>
     </div>
@@ -57,7 +57,7 @@
         <div class="col-sm-6">
             {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
             <small class="narration">(Open status Selected)</small>
-            {!! Form::text('status', ucfirst('open'), ['class' => 'form-control','required','readonly','style'=>'font-weight:bold']) !!}
+            {!! Form::text('status', @$generate_voucher_number? ucfirst('open') : Input::old('status'), ['class' => 'form-control','required','readonly','style'=>'font-weight:bold']) !!}
             {{--{!! Form::Select('status',array('open'=>'Open'),Input::old('status'),['class'=>'form-control ','required','readonly']) !!}--}}
         </div>
     </div>
@@ -67,7 +67,7 @@
     <div class="row">
         <div class="col-sm-12">
             {!! Form::label('note', 'Note:', ['class' => 'control-label']) !!}
-            <small class="narration">(Note for Journal Voucher Informations)</small>
+            <small class="narration">(Note for Payment Voucher Informations)</small>
             {!! Form::textarea('note', Input::old('note'), ['class' => 'form-control','size' => '12x3','title'=>'enter payment voucher note']) !!}
         </div>
     </div>
