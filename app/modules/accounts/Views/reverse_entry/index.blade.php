@@ -97,7 +97,11 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('reverse-detail',['id'=>$values->id,'voucher_number'=>$values->voucher_number]) }}" class="btn btn-info btn-xs" data-placement="top" data-content="reverse details">rev-details</a>
+                                        @if($values->status == 'posted')
+                                            <a href="{{ route('reverse-voucher-history',['id'=>$values->id]) }}" class="btn btn-info btn-xs" data-placement="top" data-content="voucher details">rev-details</a>
+                                        @else
+                                            <a href="{{ route('reverse-detail',['id'=>$values->id,'voucher_number'=>$values->voucher_number]) }}" class="btn btn-info btn-xs" data-placement="top" data-content="reverse details">rev-details</a>
+                                        @endif
                                     </td>
                                     <td>
                                         @if($values->status == 'posted')

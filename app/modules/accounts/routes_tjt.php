@@ -180,6 +180,11 @@ Route::get('search-reverse_entry', [
     'uses' => 'ReverseVoucherHeadController@search_reverse_entry'
 ]);
 
+Route::any('reverse-voucher-history/{id}', [
+    'as' => 'reverse-voucher-history',
+    'uses' => 'ReverseVoucherHeadController@reverse_voucher_history'
+]);
+
 
 /*-----------------------------------Reverse Details--------------------------*/
 
