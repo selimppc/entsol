@@ -84,3 +84,7 @@ body{
 #report-button .text-xs{
     font-size: 13px;
 }
+.radio-margin-left{
+    margin-left: 4%;
+}
+
