@@ -15,6 +15,7 @@ use App\Settings;
 use App\VoucherHead;
 use App\VoucherDetail;
 use App\Modules\Accounts\Helpers\GenerateNumber;
+use App\VoucherHistory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
@@ -187,5 +188,13 @@ class ReceiptVoucherHeadController extends Controller
             Session::flash('message', "Voucher Details Data Found ! You Can Not Delete This Voucher Number");
         }
         return redirect()->back();
+    }
+
+    public function receipt_voucher_history($id)
+    {
+        $pageTitle = "Receipt Voucher History";
+        $data = VoucherHistory::where('voucher_head_id',$id)->orderBy('voucher_head_id', 'DESC')->get();
+
+        return view('accounts::receipt_voucher.receipt_voucher_history', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 }
