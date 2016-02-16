@@ -4,12 +4,12 @@
         <div class="col-sm-6">
             {!! Form::label('account_code', 'Account Code:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('account_code', null, ['id'=>'account_code', 'class' => 'form-control','required','autofocus','title'=>'enter account code, example :: 101-004']) !!}
+            {!! Form::text('account_code', Input::old('account_code'), ['id'=>'account_code', 'class' => 'form-control','required','autofocus','title'=>'enter account code, example :: 101-004']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('title', null, ['id'=>'title', 'class' => 'form-control','required', 'style'=>'text-transform:capitalize','title'=>'enter title, example :: Medical & Lab equipment']) !!}
+            {!! Form::text('title', Input::old('title'), ['id'=>'title', 'class' => 'form-control','required', 'style'=>'text-transform:capitalize','title'=>'enter title, example :: Medical & Lab equipment']) !!}
         </div>
     </div>
 </div>
@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-sm-12">
             {!! Form::label('description', 'Description:', ['class' => 'control-label']) !!}
-            {!! Form::textarea('description', null, ['id'=>'description', 'class' => 'form-control','size' => '12x3','title'=>'enter descriptions of chart of accounts']) !!}
+            {!! Form::textarea('description', Input::old('description'), ['id'=>'description', 'class' => 'form-control','size' => '12x3','title'=>'enter descriptions of chart of accounts']) !!}
         </div>
     </div>
 </div>

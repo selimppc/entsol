@@ -57,7 +57,7 @@
                                 <tr class="gradeX">
                                     <td>{{ucfirst($values->type)}}</td>
                                     <td>{{$values->code}}</td>
-                                    <td>{{$values->title}}</td>
+                                    <td>{{ucfirst($values->title)}}</td>
                                     <td>{{$values->last_number}}</td>
                                     <td>{{$values->increment}}</td>
                                     <td>{{ucfirst($values->status)}}</td>
@@ -85,7 +85,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
-                <h4 class="modal-title" id="myModalLabel">Add Settings Information <span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
+                <h4 class="modal-title" id="myModalLabel">{{ $pageTitle }} <span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
             </div>
             <div class="modal-body">
                 {!! Form::open(['route' => 'store-settings','class' => 'form-horizontal','id' => 'jq-validation-form']) !!}
