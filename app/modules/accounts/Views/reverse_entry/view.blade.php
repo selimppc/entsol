@@ -49,7 +49,7 @@
 
         <div class="table-primary">
         <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
-            <h4 class="text-center">Journal Voucher Detail Informations</h4>
+            <h4 class="text-center">Reverse Voucher Detail Informations</h4>
             <thead>
             <tr>
                 <th>Voucher Number </th>

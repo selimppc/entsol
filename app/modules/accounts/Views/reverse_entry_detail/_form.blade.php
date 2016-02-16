@@ -88,6 +88,6 @@
     <a href="" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form" style="">Close</a>
 </div>
 
-@include('accounts::voucher_detail._script')
+@include('accounts::reverse_entry_detail._script')
 
 

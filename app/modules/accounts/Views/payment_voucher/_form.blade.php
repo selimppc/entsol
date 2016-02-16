@@ -57,7 +57,7 @@
         <div class="col-sm-6">
             {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
             <small class="narration">(Open status Selected)</small>
-            {!! Form::text('status', ucfirst('open'), ['class' => 'form-control','required','readonly','style'=>'font-weight:bold']) !!}
+            {!! Form::text('status', @$generate_voucher_number? ucfirst('open') : Input::old('status'), ['class' => 'form-control','required','readonly','style'=>'font-weight:bold']) !!}
             {{--{!! Form::Select('status',array('open'=>'Open'),Input::old('status'),['class'=>'form-control ','required','readonly']) !!}--}}
         </div>
     </div>
