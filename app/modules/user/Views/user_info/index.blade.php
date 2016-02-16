@@ -5,10 +5,7 @@
 
 @section('content')
     <div class="row theme-default main-menu-animated page-profile">
-        <!-- 5. $PROFILE ===================================================================================
 
-                Profile
-        -->
         <div class="profile-full-name">
             <span class="text-semibold">User</span>'s profile
         </div>

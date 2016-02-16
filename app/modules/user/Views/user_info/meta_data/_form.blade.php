@@ -5,11 +5,12 @@
         <div class="col-sm-6">
             {!! Form::label('fathers_name', 'Father Name:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('fathers_name', Input::old('fathers_name'), ['class' => 'form-control', 'required'=>'required']) !!}
+            {!! Form::text('fathers_name', Input::old('fathers_name'), ['class' => 'form-control','required']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('mothers_name', 'Mother Name:', ['class' => 'control-label']) !!}
-            {!! Form::text('mothers_name',Input::old('mothers_name'), ['id'=>'middle_name', 'class' => 'form-control']) !!}
+            <small class="required">(Required)</small>
+            {!! Form::text('mothers_name',Input::old('mothers_name'), ['id'=>'middle_name', 'class' => 'form-control','required']) !!}
         </div>
     </div>
 </div>
@@ -32,7 +33,7 @@
             <div class="form-inline">
 
                 <div class="radio">
-                    {!! Form::radio('freedom_fighter', '1', (Input::old('freedom_fighter') == '1'), array('id'=>'1', 'class'=>'radio')) !!}
+                    {!! Form::radio('freedom_fighter', '1', (Input::old('freedom_fighter') == '1'), array('id'=>'1', 'class'=>'radio','required')) !!}
                     {!! Form::label('freedom_fighter', 'Yes') !!}
                 </div>
                 <div class="radio">
@@ -64,12 +65,12 @@
         <div class="col-sm-6">
             {!! Form::label('national_id', 'National ID#:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('national_id', Input::old('national_id'), ['class' => 'form-control','required'=>'required']) !!}
+            {!! Form::text('national_id', Input::old('national_id'), ['class' => 'form-control']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('driving_licence', 'Driving Licence:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('driving_licence',Input::old('driving_licence'), [ 'class' => 'form-control','required']) !!}
+            {!! Form::text('driving_licence',Input::old('driving_licence'), [ 'class' => 'form-control']) !!}
         </div>
     </div>
 </div>
@@ -79,7 +80,7 @@
         <div class="col-sm-6">
             {!! Form::label('passport', 'Passport:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('passport', Input::old('passport'), ['class' => 'form-control','required'=>'required']) !!}
+            {!! Form::text('passport', Input::old('passport'), ['class' => 'form-control']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('place_of_birth', 'Place Of Birth:', ['class' => 'control-label']) !!}
@@ -96,7 +97,7 @@
             <small class="required">(Required)</small>
             {!! Form::select('marital_status', array('' => 'Select one',
              'single' => 'Single', 'married' => 'Married','divorsed'=>'Divorsed'), Input::old('marital_status'),
-             array('class' => 'form-control')) !!}
+             array('class' => 'form-control','required')) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('nationality', 'Nationality:', ['class' => 'control-label']) !!}
@@ -137,5 +138,6 @@
 </div>
 <div class="form-margin-btn">
     {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save branch information']) !!}
-    <a href="{{route('create-user-info')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
+    {{--<a href="{{route('create-user-info')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>--}}
+    <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true" data-placement="top" data-content="click close button for close this entry form">Close</button>
 </div>

@@ -199,6 +199,16 @@ Route::any('delete-role/{slug}', [
         'as' => 'store-meta-data',
         'uses' => 'UserController@store_meta_data'
     ]);
+
+    Route::any('edit-meta-data/{id}', [
+        'as' => 'edit-meta-data',
+        'uses' => 'UserController@edit_meta_data'
+    ]);
+
+    Route::any('update-meta-data/{id}', [
+        'as' => 'update-meta-data',
+        'uses' => 'UserController@update_meta_data'
+    ]);
 });
 
 

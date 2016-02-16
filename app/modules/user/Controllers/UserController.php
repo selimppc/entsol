@@ -435,7 +435,7 @@ class UserController extends Controller
 
         $pageTitle = 'Edit User Profile Information';
 
-        $data = User::findOrFail($id);
+        $data = UserProfile::findOrFail($id);
         $user_id = Auth::user()->id;
         $countryList = array('' => 'Please Select') + Country::lists('title', 'id')->all();
 
@@ -478,4 +478,34 @@ class UserController extends Controller
         }
         return redirect()->route('create-user-info');
     }
+
+    public function edit_meta_data($id){
+
+        $pageTitle = 'Edit Biographical Information';
+
+        $data = UserMeta::findOrFail($id);
+        $user_id = Auth::user()->id;
+
+        return view('user::user_info.meta_data.update', ['pageTitle'=>$pageTitle,'data' => $data,'user_id'=>$user_id]);
+    }
+
+    public function update_meta_data(Request $request,$id){
+
+        $input = $request->all();
+
+        $model= UserMeta::findOrFail($id);
+        /* Transaction Start Here */
+        DB::beginTransaction();
+        try {
+            $model->update($input);
+            DB::commit();
+            Session::flash('message', 'Successfully Updated!');
+        } catch (\Exception $e) {
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', $e->getMessage());
+        }
+        return redirect()->back();
+    }
+
 }
