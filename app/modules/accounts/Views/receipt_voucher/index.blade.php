@@ -10,7 +10,7 @@
     <div class="col-sm-12">
         <div class="panel">
             <div class="panel-heading">
-                <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>receipt voucher page contain :<br>voucher(payment) type<br>auto generated voucher number<br>date, year, period<br>and branch name</em>">(?)</span>
+                <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>receipt voucher page contain :<br>voucher(receipt) type<br>auto generated voucher number<br>date, year, period<br>and branch name</em>">(?)</span>
                 <a class="btn btn-xs btn-primary pull-right" data-toggle="modal" href="#addData" data-placement="left" data-content="click 'add receipt voucher button' for new receipt voucher entry">
                     <strong>Add Receipt Voucher</strong>
                 </a>
@@ -21,10 +21,10 @@
                 {!! Form::open(['method' =>'GET','url'=>'/search-receipt-voucher']) !!}
                 <div id="index-search">
                     <div class="col-sm-2 pull-left">
-                        {!! Form::text('voucher_number', @Input::get('voucher_number')? Input::get('voucher_number') : null,['class' => 'form-control','placeholder'=>'type reverse number', 'title'=>'type your require "reverse number", example :: JV-0000001, then click "search" button']) !!}
+                        {!! Form::text('voucher_number', @Input::get('voucher_number')? Input::get('voucher_number') : null,['class' => 'form-control','placeholder'=>'type receipt number', 'title'=>'type your require "receipt number", example :: REC-0000001, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-2">
-                        {!! Form::text('date', @Input::get('date')? Input::get('date') : null, ['class' => 'form-control bs-datepicker-component','placeholder'=>'select date','title'=>'select your require "journal voucher date", example :: 2016/02/10, then click "search" button']) !!}
+                        {!! Form::text('date', @Input::get('date')? Input::get('date') : null, ['class' => 'form-control bs-datepicker-component','placeholder'=>'select date','title'=>'select your require "receipt voucher date", example :: 2016/02/10, then click "search" button']) !!}
 
                     </div>
                     <div class="col-sm-2">
@@ -122,7 +122,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
-                <h4 class="modal-title" id="myModalLabel">Add Receipt Voucher Informations &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>system fill account type and voucher number <br> Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
+                <h4 class="modal-title" id="myModalLabel">{{ $pageTitle }} &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>system fill account type and voucher number <br> Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
             </div>
             <div class="modal-body">
                 {!! Form::open(['route' => 'store-receipt-voucher','id' => 'jq-validation-form']) !!}
