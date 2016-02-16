@@ -37,6 +37,64 @@ class UserTableSeeder extends Seeder
                 'updated_at' => new DateTime
             ));
         }
+        /* RolesSeeder */
+       /* DB::table('role')->truncate();
+        DB::table('role')->insert([
+            'id' => 1,
+            'title' => 'Manage users',
+            'slug' => 'manage-users',
+            'status' => 'active'
+        ]);*/
+
+        /* PermissionsSeeder */
+        DB::table('permissions')->truncate();
+        DB::table('permissions')->insert([
+            'id' => 1,
+            'title' => 'User add',
+            'slug' => 'user-add',
+            'description' => NULL,
+        ]);
+
+        DB::table('permissions')->insert([
+            'id' => 2,
+            'title' => 'User edit',
+            'slug' => 'user-edit',
+            'description' => NULL,
+        ]);
+
+        DB::table('permissions')->insert([
+            'id' => 3,
+            'title' => 'User delete',
+            'slug' => 'user-delete',
+            'description' => NULL,
+        ]);
+
+        /* PermissionRoleSeeder */
+        DB::table('permission_role')->truncate();
+        DB::table('permission_role')->insert([
+            'permission_id' => 1,
+            'role_id' => 1,
+            'status' => 'active'
+        ]);
+        DB::table('permission_role')->insert([
+            'permission_id' => 2,
+            'role_id' => 1,
+            'status' => 'active'
+        ]);
+        DB::table('permission_role')->insert([
+            'permission_id' => 3,
+            'role_id' => 1,
+            'status' => 'active'
+        ]);
+
+        /* RoleUserSeeder */
+        DB::table('role_user')->truncate();
+        DB::table('role_user')->insert([
+            'id' => NULL,
+            'role_id' => 1,
+            'user_id' => 1, // user_id must be in a table of users
+            'status' => 'active'
+        ]);
 
     }
 }

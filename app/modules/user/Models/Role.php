@@ -18,4 +18,10 @@ class Role extends Model
     protected $fillable = [
        'title','slug','status'
     ];
+    public function users(){
+        return $this->belongsToMany('App\User');
+    }
+    public function permissions(){
+        return $this->belongsToMany('App\Permission');
+    }
 }

@@ -38,4 +38,8 @@ class Permission extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function roles(){
+        return $this->belongsToMany('App\Role');
+    }
 }
