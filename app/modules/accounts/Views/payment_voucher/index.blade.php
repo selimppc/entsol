@@ -94,7 +94,12 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('payment-detail',['id'=>$values->id,'voucher_number'=>$values->voucher_number]) }}" class="btn btn-info btn-xs" data-placement="top" data-content="payment details">payment-details</a>
+                                        @if($values->status == 'posted')
+                                            <a href="{{ route('payment-voucher-history',['id'=>$values->id]) }}" class="btn btn-info btn-xs" data-placement="top" data-content="voucher details">payment-details</a>
+                                        @else
+                                            <a href="{{ route('payment-detail',['id'=>$values->id,'voucher_number'=>$values->voucher_number]) }}" class="btn btn-info btn-xs" data-placement="top" data-content="payment details">payment-details</a>
+
+                                        @endif
                                     </td>
                                     <td>
                                         @if($values->status == 'posted')
