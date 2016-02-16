@@ -6,6 +6,7 @@ use App\Branch;
 use App\Country;
 use App\Role;
 use App\User;
+use App\UserMeta;
 use App\UserProfile;
 use App\UserResetPassword;
 use Illuminate\Http\Request;
@@ -26,6 +27,10 @@ class UserController extends Controller
     protected function isGetRequest()
     {
         return Input::server("REQUEST_METHOD") == "GET";
+    }
+    protected function isPostRequest()
+    {
+        return Input::server("REQUEST_METHOD") == "POST";
     }
     public function create_sign_up()
     {
@@ -377,24 +382,130 @@ class UserController extends Controller
             return view('user::user_info.index',['user_id'=>$user_id,'countryList'=>$countryList]);
         }
     }
-    public function user_info($user_id,$value){
-        #print_r($value);exit;
-        if(Auth::check())
-        {
-            if($value =='profile'){
-                $data = UserProfile::where('user_id', '=', $user_id)->first();
-            }elseif($value =='meta'){
-                $data = User::where('user_id', '=', $user_id)->first();
-            }elseif($value =='acc-settings'){
-                $data = User::where('user_id', '=', $user_id)->first();
+    public function user_info($value){
+
+        $user_id = Auth::user()->id;
+
+        /*if($this->isPostRequest()){*/
+        try{
+            if($value == 'profile'){
+                $data = UserProfile::with('relUser','relCountry')->where('user_id',$user_id)->first();
+                return Response::json(view('user::user_info.profile.ajax_profile_data', ['data' => $data])->render());
             }
-            return Response::json($data);
-//            $countryList = [''=>'Please Select'] + Country::lists('title', 'id')->all();
+            if($value == 'meta'){
+                $data = UserMeta::with('relUser')->where('user_id',$user_id)->first();
+                return Response::json(view('user::user_info.meta_data.ajax_meta_data', ['data' => $data])->render());
+            }
+
+
+        }catch(\Exception $e){
+            return Response::json($e);
         }
+
+      /*}else{
+            return Response::json('only for ajax request!');
+        }*/
 
     }
 
     public function inactive_user_dashboard(){
         return view('user::user_info.inactive_user_dashboard');
     }
+
+
+    public function store_user_profile(Requests\UserProfileRequest $request){
+
+        $input = $request->all();
+
+            /* Transaction Start Here */
+            DB::beginTransaction();
+            try {
+                UserProfile::create($input);
+                DB::commit();
+                Session::flash('message', 'Successfully added!');
+            } catch (\Exception $e) {
+                //If there are any exceptions, rollback the transaction`
+                DB::rollback();
+                Session::flash('danger', $e->getMessage());
+            }
+        return redirect()->route('create-user-info');
+    }
+
+    public function edit_user_profile($id){
+
+        $pageTitle = 'Edit User Profile Information';
+
+        $data = UserProfile::findOrFail($id);
+        $user_id = Auth::user()->id;
+        $countryList = array('' => 'Please Select') + Country::lists('title', 'id')->all();
+
+        return view('user::user_info.profile.update', ['pageTitle'=>$pageTitle,'data' => $data,'user_id'=>$user_id,'countryList'=>$countryList]);
+    }
+
+    public function update_user_profile(Requests\UserProfileRequest $request,$id){
+
+        $input = $request->all();
+
+        $model= UserProfile::findOrFail($id);
+        /* Transaction Start Here */
+        DB::beginTransaction();
+        try {
+            $model->update($input);
+            DB::commit();
+            Session::flash('message', 'Successfully Updated!');
+        } catch (\Exception $e) {
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', $e->getMessage());
+        }
+        return redirect()->route('create-user-info');
+    }
+
+    public function store_meta_data(Request $request){
+
+        $input = $request->all();
+
+        /* Transaction Start Here */
+        DB::beginTransaction();
+        try {
+            UserMeta::create($input);
+            DB::commit();
+            Session::flash('message', 'Successfully added!');
+        } catch (\Exception $e) {
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', $e->getMessage());
+        }
+        return redirect()->route('create-user-info');
+    }
+
+    public function edit_meta_data($id){
+
+        $pageTitle = 'Edit Biographical Information';
+
+        $data = UserMeta::findOrFail($id);
+        $user_id = Auth::user()->id;
+
+        return view('user::user_info.meta_data.update', ['pageTitle'=>$pageTitle,'data' => $data,'user_id'=>$user_id]);
+    }
+
+    public function update_meta_data(Request $request,$id){
+
+        $input = $request->all();
+
+        $model= UserMeta::findOrFail($id);
+        /* Transaction Start Here */
+        DB::beginTransaction();
+        try {
+            $model->update($input);
+            DB::commit();
+            Session::flash('message', 'Successfully Updated!');
+        } catch (\Exception $e) {
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', $e->getMessage());
+        }
+        return redirect()->back();
+    }
+
 }

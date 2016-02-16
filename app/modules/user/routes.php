@@ -170,7 +170,7 @@ Route::any('delete-role/{slug}', [
         'uses' => 'UserController@create_user_info'
     ]);
 
-    Route::any('user-info/{user_id}/{value}', [
+    Route::any('user-info/{value}', [
         'as' => 'user-info',
         'uses' => 'UserController@user_info'
     ]);
@@ -178,6 +178,36 @@ Route::any('delete-role/{slug}', [
     Route::any('inactive-user-dashboard', [
         'as' => 'inactive-user-dashboard',
         'uses' => 'UserController@inactive_user_dashboard'
+    ]);
+
+    Route::any('store-user-profile', [
+        'as' => 'store-user-profile',
+        'uses' => 'UserController@store_user_profile'
+    ]);
+
+    Route::any('edit-user-profile/{id}', [
+        'as' => 'edit-user-profile',
+        'uses' => 'UserController@edit_user_profile'
+    ]);
+
+    Route::any('update-user-profile/{id}', [
+        'as' => 'update-user-profile',
+        'uses' => 'UserController@update_user_profile'
+    ]);
+
+    Route::any('store-meta-data', [
+        'as' => 'store-meta-data',
+        'uses' => 'UserController@store_meta_data'
+    ]);
+
+    Route::any('edit-meta-data/{id}', [
+        'as' => 'edit-meta-data',
+        'uses' => 'UserController@edit_meta_data'
+    ]);
+
+    Route::any('update-meta-data/{id}', [
+        'as' => 'update-meta-data',
+        'uses' => 'UserController@update_meta_data'
     ]);
 });
 

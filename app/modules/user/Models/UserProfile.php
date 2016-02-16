@@ -23,4 +23,7 @@ class UserProfile extends Model
     public function relUser(){
         return $this->belongsTo('App\User', 'user_id', 'id');
     }
+    public function relCountry(){
+        return $this->belongsTo('App\Country', 'country_id', 'id');
+    }
 }
