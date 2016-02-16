@@ -7,6 +7,8 @@
  */
 
 //Voucher Head .......
+
+
 Route::any('test', [
     'as' => 'test',
     'uses' => 'VoucherDetailController@test'
@@ -48,6 +50,12 @@ Route::any('delete-voucher-head/{id}', [
 Route::any('status-voucher-head/{id}', [
     'as' => 'status-voucher-head',
     'uses' => 'VoucherHeadController@change_status'
+]);
+
+
+Route::any('journal-voucher-history/{id}', [
+    'as' => 'journal-voucher-history',
+    'uses' => 'VoucherHeadController@journal_voucher_history'
 ]);
 
 
