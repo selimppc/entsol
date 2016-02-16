@@ -7,7 +7,7 @@
 
 
 <div class="modal-body">
-    {!! Form::model($data, ['method' => 'PATCH', 'route'=> ['update-meta-data', $data->id]]) !!}
+    {!! Form::model($data, ['method' => 'PATCH', 'route'=> ['update-meta-data', $data->id],'files'=>'true']) !!}
          @include('user::user_info.meta_data._form')
     {!! Form::close() !!}
 </div>

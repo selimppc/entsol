@@ -76,6 +76,16 @@
         </div>
     </div>
 </div>
+
+{{--<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+    <div class="row">
+        <div class="col-sm-12">
+            {!! Form::label('image', 'Image:', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
+            {!! Form::file('image',Input::old('image'), [ 'class' => 'form-control','required']) !!}
+        </div>
+    </div>
+</div>--}}
 <p> &nbsp; </p>
 
 <div class="form-margin-btn">

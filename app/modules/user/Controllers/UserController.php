@@ -378,8 +378,9 @@ class UserController extends Controller
         if(Auth::check())
         {
             $user_id = Auth::user()->id;
+            $profile_data = UserProfile::where('user_id',$user_id)->first();
             $countryList = array('' => 'Please Select') + Country::lists('title', 'id')->all();
-            return view('user::user_info.index',['user_id'=>$user_id,'countryList'=>$countryList]);
+            return view('user::user_info.index',['user_id'=>$user_id,'countryList'=>$countryList,'profile_data'=>$profile_data]);
         }
     }
     public function user_info($value){
@@ -396,7 +397,11 @@ class UserController extends Controller
                 $data = UserMeta::with('relUser')->where('user_id',$user_id)->first();
                 return Response::json(view('user::user_info.meta_data.ajax_meta_data', ['data' => $data])->render());
             }
-
+            if($value == 'acc-settings'){
+                $profile_data = UserProfile::with('relUser','relCountry')->where('user_id',$user_id)->first();
+                $user_data = User::with('relRole')->where('id',$user_id)->first();
+                return Response::json(view('user::user_info.account_settings._ajax_data', ['user_data' => $user_data,'profile_data'=>$profile_data])->render());
+            }
 
         }catch(\Exception $e){
             return Response::json($e);
@@ -417,6 +422,24 @@ class UserController extends Controller
 
         $input = $request->all();
 
+
+        /*if(isset($input['image']))
+        {
+             //Images destination
+                $img_dir = "uploads/user_images/" . date("h-m-y");
+            // Create folders if they don't exist
+
+            if ( !file_exists($img_dir) ) {
+                $oldmask = umask(0);  // helpful when used in linux server
+                mkdir ($img_dir, 0777);
+            }
+            $imagefile= Input::file('image');
+            $destinationPath = 'uploads/user_images/';
+            $file_original_name = $imagefile->getClientOriginalName();
+            $file_name = rand(11111, 99999) . $file_original_name;
+            $imagefile->move($destinationPath, $file_name);
+            $model->image = 'uploads/user_images/'.$file_name;
+        }*/
             /* Transaction Start Here */
             DB::beginTransaction();
             try {

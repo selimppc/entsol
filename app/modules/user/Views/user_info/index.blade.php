@@ -7,7 +7,7 @@
     <div class="row theme-default main-menu-animated page-profile">
 
         <div class="profile-full-name">
-            <span class="text-semibold">User</span>'s profile
+            <span class="text-semibold">{{isset($profile_data->first_name)?$profile_data->first_name:''}} {{isset($profile_data->middle_name)?$profile_data->middle_name:''}} {{isset($profile_data->last_name)?$profile_data->last_name:''}}</span>
         </div>
         <div class="profile-row">
             <div class="left-col">
