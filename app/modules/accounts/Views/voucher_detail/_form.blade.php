@@ -78,7 +78,7 @@
     <div class="row">
         <div class="col-sm-12">
             {!! Form::label('note', 'Note:', ['class' => 'control-label']) !!}
-            {!! Form::textarea('note', null, ['class' => 'form-control','size' => '12x3','title'=>'enter note for voucher details information']) !!}
+            {!! Form::textarea('note', Input::old('note'), ['class' => 'form-control','size' => '12x3','title'=>'enter note for voucher details information']) !!}
         </div>
     </div>
 </div>
