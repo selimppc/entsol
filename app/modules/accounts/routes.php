@@ -402,6 +402,11 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
         'uses' => 'ReceiptVoucherHeadController@search_receipt_voucher'
     ]);
 
+    Route::any('receipt-voucher-history/{id}', [
+        'as' => 'receipt-voucher-history',
+        'uses' => 'ReceiptVoucherHeadController@receipt_voucher_history'
+    ]);
+
 
     /*-----------------------------------Receipt Details--------------------------*/
 
