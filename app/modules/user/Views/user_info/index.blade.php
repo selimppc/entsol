@@ -19,10 +19,13 @@
                         @else
                             {{"No Image Found"}}
                         @endif
-
                     </div>
                     <br>
-                    <a href="#" class="btn btn-primary">Add/Edit Profile Picture</a>
+                    @if(isset($user_image))
+                    <a href="{{route('edit-profile-image',$user_id)}}" class="btn btn-primary" data-placement="top" data-toggle="modal" data-target="#editImageModal">Edit Profile Picture</a>
+                    @else
+                        <a data-toggle="modal" href="#addImageModal" class="btn btn-primary" data-placement="top" data-toggle="modal" >Add Profile Picture</a>
+                    @endif
                    <p>&nbsp;</p>
                     <a href="#" class="btn btn-success"><i class="fa fa-check"></i>&nbsp;&nbsp;Following</a>&nbsp;&nbsp;
                     <a href="#" class="btn"><i class="fa fa-comment"></i></a>
@@ -183,4 +186,32 @@ account
             </div> <!-- / .modal-content -->
         </div> <!-- / .modal-dialog -->
     </div>
+
+    <!-- Modal  -->
+
+    <div id="addImageModal" class="modal fade" tabindex="" role="dialog" style="display: none;">
+        <div class="modal-dialog" style="z-index: 1050">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Change Password<span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
+                </div>
+                <div class="modal-body">
+                    {!! Form::open(['route' => 'profile-image','id' => 'jq-validation-form']) !!}
+                         @include('user::user_info.profile_image.add_image')
+                    {!! Form::close() !!}
+                </div> <!-- / .modal-body -->
+            </div> <!-- / .modal-content -->
+        </div> <!-- / .modal-dialog -->
+    </div>
+
+
+    <div class="modal fade" id="editImageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="z-index: 1050">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+    <!-- modal -->
 @stop

@@ -191,7 +191,7 @@ Route::any('delete-role/{slug}', [
         'uses' => 'UserController@edit_user_profile'
     ]);
 
-    Route::any('update-user-profile/{id}', [
+    Route::any('update-user-profile/{id}/{user_image_id}', [
         'as' => 'update-user-profile',
         'uses' => 'UserController@update_user_profile'
     ]);
@@ -222,4 +222,17 @@ Route::any('update-password', [
     'uses' => 'UserController@update_password'
 ]);
 
+Route::any('profile-image', [
+    'as' => 'profile-image',
+    'uses' => 'UserController@store_profile_image'
+]);
 
+Route::any('edit-profile-image/{user_id}', [
+    'as' => 'edit-profile-image',
+    'uses' => 'UserController@edit_profile_image'
+]);
+
+Route::any('check', [
+    'as' => 'check',
+    'uses' => 'CheckController@check'
+]);

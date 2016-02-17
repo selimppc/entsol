@@ -422,7 +422,7 @@ class UserController extends Controller
     }
 
 
-    public function store_user_profile(Request $request){
+    public function store_user_profile(Requests\UserProfileRequest $request){
 
         $input = $request->all();
 
@@ -495,27 +495,132 @@ class UserController extends Controller
         $data = UserProfile::findOrFail($id);
         $user_id = Auth::user()->id;
         $countryList = array('' => 'Please Select') + Country::lists('title', 'id')->all();
-
-        return view('user::user_info.profile.update', ['pageTitle'=>$pageTitle,'data' => $data,'user_id'=>$user_id,'countryList'=>$countryList]);
+        $user_image = UserImage::where('user_id',$user_id)->first();
+        return view('user::user_info.profile.update', ['pageTitle'=>$pageTitle,'data' => $data,'user_id'=>$user_id,'countryList'=>$countryList,'user_image'=>$user_image,'user_image_id'=>$user_image->id]);
     }
 
-    public function update_user_profile(Requests\UserProfileRequest $request,$id){
+    public function update_user_profile(Requests\UserProfileRequest $request,$id,$user_image_id){
+
 
         $input = $request->all();
 
-        $model= UserProfile::findOrFail($id);
-        /* Transaction Start Here */
+        $image_model = UserImage::findOrFail($user_image_id);
+        $profile_model = UserProfile::findOrFail($id);
+
         DB::beginTransaction();
         try {
-            $model->update($input);
+            $profile_model->update($input);
             DB::commit();
-            Session::flash('message', 'Successfully Updated!');
-        } catch (\Exception $e) {
-            //If there are any exceptions, rollback the transaction`
+            Session::flash('message', "Successfully Added");
+        }
+        catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
             DB::rollback();
-            Session::flash('danger', $e->getMessage());
+            Session::flash('error', 'Profile Information Do not Added');
+        }
+
+        $image = Input::file('image');
+
+        if(count($image)>0){
+            $file_type_required = 'png,jpeg,jpg';
+            $destinationPath = 'uploads/user_image/';
+
+            $uploadfolder = 'uploads/';
+
+            if ( !file_exists($uploadfolder) ) {
+                $oldmask = umask(0);  // helpful when used in linux server
+                mkdir ($uploadfolder, 0777);
+            }
+
+            if ( !file_exists($destinationPath) ) {
+                $oldmask = umask(0);  // helpful when used in linux server
+                mkdir ($destinationPath, 0777);
+            }
+
+            $file_name = UserController::image_upload($image,$file_type_required,$destinationPath);
+            #print_r($file_name);exit;
+            if($file_name != '') {
+//                unlink($model->image);
+//                unlink($model->thumbnail);
+                $input['image'] = $file_name[0];
+                $input['thumbnail'] = $file_name[1];
+            }
+            else{
+                Session::flash('error', 'Some thing error in image file type! Please Try again');
+                return redirect()->back();
+            }
+            DB::beginTransaction();
+            try {
+                $image_model->update($input);
+                DB::commit();
+                Session::flash('message', "Successfully added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('error', " Profile Image Do Not added");
+            }
         }
         return redirect()->route('create-user-info');
+    }
+
+    public function store_profile_image(Request $request){
+
+        $input = $request->all();
+
+        $image_model = new UserImage();
+
+        $image = Input::file('image');
+
+        if(count($image)>0){
+            $file_type_required = 'png,jpeg,jpg';
+            $destinationPath = 'uploads/user_image/';
+
+            $uploadfolder = 'uploads/';
+
+            if ( !file_exists($uploadfolder) ) {
+                $oldmask = umask(0);  // helpful when used in linux server
+                mkdir ($uploadfolder, 0777);
+            }
+
+            if ( !file_exists($destinationPath) ) {
+                $oldmask = umask(0);  // helpful when used in linux server
+                mkdir ($destinationPath, 0777);
+            }
+
+            $file_name = UserController::image_upload($image,$file_type_required,$destinationPath);
+            #print_r($file_name);exit;
+            if($file_name != '') {
+//                unlink($model->image);
+//                unlink($model->thumbnail);
+                $input['image'] = $file_name[0];
+                $input['thumbnail'] = $file_name[1];
+            }
+            else{
+                Session::flash('error', 'Some thing error in image file type! Please Try again');
+                return redirect()->back();
+            }
+            DB::beginTransaction();
+            try {
+                $image_model->create($input);
+                DB::commit();
+                Session::flash('message', "Successfully added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('error', " Profile Image Do Not added");
+            }
+        }
+        return redirect()->back();
+    }
+
+    public function edit_profile_image($user_id){
+
+        $pageTitle = 'Edit User Profile Picture';
+
+        $user_image = UserImage::where('user_id',$user_id)->first();
+        return view('user::user_info.profile.update', ['pageTitle'=>$pageTitle,'user_id'=>$user_id,'user_image'=>$user_image]);
     }
 
     public function store_meta_data(Request $request){
@@ -656,5 +761,7 @@ class UserController extends Controller
         }
     }
 
-
+public function abc(){
+    echo '12345';exit;
+}
 }

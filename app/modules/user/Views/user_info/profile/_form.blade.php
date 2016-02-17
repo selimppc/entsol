@@ -81,11 +81,12 @@
     <div class="row">
         <div class="col-sm-12">
             {!! Form::label('image', 'Image:', ['class' => 'control-label']) !!}
-            <small class="required">(Required)</small>
+            @if(isset($user_image))
+                <img src="{{ URL::to($user_image->thumbnail) }}" width="100px" height="100px">
+            @endif
             {!! Form::file('image',Input::old('image'), [ 'class' => 'form-control','required']) !!}
         </div>
     </div>
-
 </div>
 
 <div class="form-margin-btn">
