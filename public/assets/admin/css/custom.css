@@ -87,4 +87,12 @@ body{
 .radio-margin-left{
     margin-left: 4%;
 }
-
+.page-profile .profile-block {
+    margin-top: -3px;
+}
+.page-profile .profile-photo {
+    padding: 3px 6px;
+    /*display: inline-block;
+    margin-bottom: 10px;
+    border-radius: 999999px;*/
+}
