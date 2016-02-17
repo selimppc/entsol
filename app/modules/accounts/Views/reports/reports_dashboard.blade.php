@@ -71,9 +71,9 @@
 
                     <hr class="panel-wide">
 
-                    <h6 class="text-light-gray text-semibold text-xs text-center" style="margin:20px 0 10px 0;">pending to generate...</h6>
-                    <a class="btn btn-primary" data-toggle="modal" href="#addData">
-                        <strong>pending to generate..</strong>
+                    <h6 class="text-light-gray text-semibold text-xs text-center" style="margin:20px 0 10px 0;">Ledger Balance by A/C</h6>
+                    <a class="btn btn-primary" data-toggle="modal" href="#addLedgerBalance">
+                        <strong>Ledger Balance by A/C</strong>
                     </a>
                 </div>
             </div>
@@ -234,6 +234,31 @@
             </div>
             <div class="modal-body">
                 @include('accounts::reports.balance_sheet')
+            </div>
+            <div class="modal-footer">
+                {!! Form::submit('PDF Report', ['name'=>'PDF', 'class' => 'btn btn-primary']) !!}
+                {!! Form::submit('Excel Report', ['name'=>'Excel', 'class' => 'btn btn-primary']) !!}
+                <a href="{{route('account-reports')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
+            </div>
+            {!! Form::close() !!}
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal Ledger Balance -->
+
+<div id="addLedgerBalance" class="modal fade" tabindex="" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-lg" style="z-index:1050">
+        <div class="modal-content">
+            {!! Form::open(['route' => 'ledger-balance-ac','class' => 'form-horizontal','target' => '_blank']) !!}
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
+                <h4 class="modal-title" id="myModalLabel">Ledger Balance by A/C</h4>
+            </div>
+            <div class="modal-body">
+                @include('accounts::reports.ledger_balance_ac')
             </div>
             <div class="modal-footer">
                 {!! Form::submit('PDF Report', ['name'=>'PDF', 'class' => 'btn btn-primary']) !!}
