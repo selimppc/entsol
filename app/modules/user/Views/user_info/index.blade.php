@@ -13,8 +13,17 @@
             <div class="left-col">
                 <div class="profile-block">
                     <div class="panel profile-photo">
-                        <img src="assets/user/img/avatar.jpg" alt="">
-                    </div><br>
+                        {{--<img src="assets/user/img/avatar.jpg" alt="">--}}
+                        @if(isset($user_image))
+                            <img src="{{ URL::to($user_image->thumbnail) }}">
+                        @else
+                            {{"No Image Found"}}
+                        @endif
+
+                    </div>
+                    <br>
+                    <a href="#" class="btn btn-primary">Add/Edit Profile Picture</a>
+                   <p>&nbsp;</p>
                     <a href="#" class="btn btn-success"><i class="fa fa-check"></i>&nbsp;&nbsp;Following</a>&nbsp;&nbsp;
                     <a href="#" class="btn"><i class="fa fa-comment"></i></a>
                 </div>

@@ -3,7 +3,10 @@
 namespace App\Modules\User\Controllers;
 
 use App\Branch;
+use App\UserImage;
+use Validator;
 use App\Country;
+use App\Helpers\ImageResize;
 use App\Role;
 use App\User;
 use App\UserMeta;
@@ -379,8 +382,9 @@ class UserController extends Controller
         {
             $user_id = Auth::user()->id;
             $profile_data = UserProfile::where('user_id',$user_id)->first();
+            $user_image = UserImage::where('user_id',$user_id)->first();
             $countryList = array('' => 'Please Select') + Country::lists('title', 'id')->all();
-            return view('user::user_info.index',['user_id'=>$user_id,'countryList'=>$countryList,'profile_data'=>$profile_data]);
+            return view('user::user_info.index',['user_id'=>$user_id,'countryList'=>$countryList,'profile_data'=>$profile_data,'user_image'=>$user_image]);
         }
     }
     public function user_info($value){
@@ -418,40 +422,70 @@ class UserController extends Controller
     }
 
 
-    public function store_user_profile(Requests\UserProfileRequest $request){
+    public function store_user_profile(Request $request){
 
         $input = $request->all();
 
+        $image_model = new UserImage();
+        $profile_model = new UserProfile();
 
-        /*if(isset($input['image']))
-        {
-             //Images destination
-                $img_dir = "uploads/user_images/" . date("h-m-y");
-            // Create folders if they don't exist
+#print_r($image);exit;
 
-            if ( !file_exists($img_dir) ) {
+        DB::beginTransaction();
+        try {
+            $profile_model->create($input);
+            DB::commit();
+            Session::flash('message', "Successfully Added");
+        }
+        catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('error', 'Profile Information Do not Added');
+        }
+
+        $image = Input::file('image');
+
+        if(count($image)>0){
+            $file_type_required = 'png,jpeg,jpg';
+            $destinationPath = 'uploads/user_image/';
+
+            $uploadfolder = 'uploads/';
+
+            if ( !file_exists($uploadfolder) ) {
                 $oldmask = umask(0);  // helpful when used in linux server
-                mkdir ($img_dir, 0777);
+                mkdir ($uploadfolder, 0777);
             }
-            $imagefile= Input::file('image');
-            $destinationPath = 'uploads/user_images/';
-            $file_original_name = $imagefile->getClientOriginalName();
-            $file_name = rand(11111, 99999) . $file_original_name;
-            $imagefile->move($destinationPath, $file_name);
-            $model->image = 'uploads/user_images/'.$file_name;
-        }*/
-            /* Transaction Start Here */
+
+            if ( !file_exists($destinationPath) ) {
+                $oldmask = umask(0);  // helpful when used in linux server
+                mkdir ($destinationPath, 0777);
+            }
+
+            $file_name = UserController::image_upload($image,$file_type_required,$destinationPath);
+            #print_r($file_name);exit;
+            if($file_name != '') {
+//                unlink($model->image);
+//                unlink($model->thumbnail);
+                $input['image'] = $file_name[0];
+                $input['thumbnail'] = $file_name[1];
+            }
+            else{
+                Session::flash('error', 'Some thing error in image file type! Please Try again');
+                return redirect()->back();
+            }
             DB::beginTransaction();
             try {
-                UserProfile::create($input);
+                $image_model->create($input);
                 DB::commit();
-                Session::flash('message', 'Successfully added!');
-            } catch (\Exception $e) {
-                //If there are any exceptions, rollback the transaction`
-                DB::rollback();
-                Session::flash('danger', $e->getMessage());
+                Session::flash('message', "Successfully added");
             }
-        return redirect()->route('create-user-info');
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('error', " Profile Image Do Not added");
+            }
+        }
+        return redirect()->back();
     }
 
     public function edit_user_profile($id){
@@ -576,7 +610,51 @@ class UserController extends Controller
         return redirect()->back();
     }
 
+    public function image_upload($image,$file_type_required,$destinationPath){
+        if ($image != '') {
 
+            $img_name = ($_FILES['image']['name']);
+            $random_number = rand(111, 999);
+
+            $thumb_name = 'thumb_50x50_'.$random_number.'_'.$img_name;
+
+            $newWidth=200;
+            $targetFile=$destinationPath.$thumb_name;
+            $originalFile=$image;
+
+            $resizedImages 	= ImageResize::resize($newWidth, $targetFile,$originalFile);
+
+            $thumb_image_destination=$destinationPath;
+            $thumb_image_name=$thumb_name;
+
+            //$rules = array('image' => 'required|mimes:png,jpeg,jpg');
+            $rules = array('image' => 'required|mimes:'.$file_type_required);
+            $validator = Validator::make(array('image' => $image), $rules);
+            if ($validator->passes()) {
+                // Files destination
+                //$destinationPath = 'uploads/slider_image/';
+                // Create folders if they don't exist
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 0777, true);
+                }
+                $image_original_name = $image->getClientOriginalName();
+                $image_name = rand(11111, 99999) . $image_original_name;
+                $upload_success = $image->move($destinationPath, $image_name);
+
+                $file=array($destinationPath . $image_name, $thumb_image_destination.$thumb_image_name);
+
+                if ($upload_success) {
+                    return $file_name = $file;
+                }
+                else{
+                    return $file_name = '';
+                }
+            }
+            else{
+                return $file_name = '';
+            }
+        }
+    }
 
 
 }
