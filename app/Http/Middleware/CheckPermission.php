@@ -11,17 +11,17 @@ class CheckPermission
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
+     * @param  \Optional  $permission
      * @return mixed
      */
     public function handle($request, Closure $next, $permission = null)
     {
         If(!App('Illuminate\Contracts\Auth\Guard')->guest()){
+
             If($request->user()->can_access($permission)){
-               // exit('Ok permitted');
                 return $next($request);
-            }
-            else{
-                return redirect('dashboard');
+            }else{
+                return response('Unauthorized.', 401);
             }
         }
         //return redirect()->route('dashboard');

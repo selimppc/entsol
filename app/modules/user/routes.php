@@ -22,8 +22,9 @@ include 'routes_permission.php';
         }
     });*/
 Route::any('user-list', [
-'as' => 'user-list',
-'uses' => 'UserController@index'
+    'middleware' => 'acl:selim',
+    'as' => 'user-list',
+    'uses' => 'UserController@index'
 ]);
 
 Route::any('add-user', [
