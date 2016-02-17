@@ -69,10 +69,10 @@ class User extends Model implements AuthenticatableContract,
     public function relBranch(){
         return $this->belongsTo('App\Branch', 'branch_id', 'id');
     }
-
-    /*public function relRole(){
+/*This function only used for getting role information*/
+    public function relRoleInfo(){
         return $this->belongsTo('App\Role', 'role_id', 'id');
-    }*/
+    }
 
     public function relRole(){
         return $this->belongsToMany('App\Role');

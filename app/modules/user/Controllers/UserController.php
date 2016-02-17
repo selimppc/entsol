@@ -399,7 +399,7 @@ class UserController extends Controller
             }
             if($value == 'acc-settings'){
                 $profile_data = UserProfile::with('relUser','relCountry')->where('user_id',$user_id)->first();
-                $user_data = User::with('relRole')->where('id',$user_id)->first();
+                $user_data = User::with('relRoleInfo')->where('id',$user_id)->first();
                 return Response::json(view('user::user_info.account_settings._ajax_data', ['user_data' => $user_data,'profile_data'=>$profile_data])->render());
             }
 
