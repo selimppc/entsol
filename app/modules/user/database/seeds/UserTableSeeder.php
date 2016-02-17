@@ -50,22 +50,8 @@ class UserTableSeeder extends Seeder
         DB::table('permissions')->truncate();
         DB::table('permissions')->insert([
             'id' => 1,
-            'title' => 'User add',
-            'slug' => 'user-add',
-            'description' => NULL,
-        ]);
-
-        DB::table('permissions')->insert([
-            'id' => 2,
-            'title' => 'User edit',
-            'slug' => 'user-edit',
-            'description' => NULL,
-        ]);
-
-        DB::table('permissions')->insert([
-            'id' => 3,
-            'title' => 'User delete',
-            'slug' => 'user-delete',
+            'title' => 'User list',
+            'slug' => 'user-list',
             'description' => NULL,
         ]);
 
@@ -73,16 +59,6 @@ class UserTableSeeder extends Seeder
         DB::table('permission_role')->truncate();
         DB::table('permission_role')->insert([
             'permission_id' => 1,
-            'role_id' => 1,
-            'status' => 'active'
-        ]);
-        DB::table('permission_role')->insert([
-            'permission_id' => 2,
-            'role_id' => 1,
-            'status' => 'active'
-        ]);
-        DB::table('permission_role')->insert([
-            'permission_id' => 3,
             'role_id' => 1,
             'status' => 'active'
         ]);

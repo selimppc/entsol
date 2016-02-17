@@ -22,7 +22,7 @@ include 'routes_permission.php';
         }
     });*/
 Route::any('user-list', [
-    'middleware' => 'acl:selim',
+    'middleware' => 'acl:user-list',
     'as' => 'user-list',
     'uses' => 'UserController@index'
 ]);

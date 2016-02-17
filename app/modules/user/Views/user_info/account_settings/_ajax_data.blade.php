@@ -6,7 +6,7 @@
 
                         <section class="col-lg-12">
                             <div class="col-lg-3">
-                            <p><strong>User Role : </strong>{{isset($user_data->relRole->title)?ucfirst($user_data->relRole->title):''}}</p>
+                            <p><strong>User Role : </strong>{{isset($user_data->relRoleInfo->title)?ucfirst($user_data->relRoleInfo->title):''}}</p>
                                 <p><strong>Branch :</strong> {{isset($user_data->relBranch->title)?ucfirst($user_data->relBranch->title):''}}
                                 </p>
                             </div>
