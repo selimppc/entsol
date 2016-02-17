@@ -1,0 +1,41 @@
+
+<div class="form-group form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+    <div class="row">
+        {!! Form::label('pass', 'Old Password') !!}
+        {!! Form::password('pass',['class' => 'form-control','placeholder'=>'Enter Old Password','required','name'=>'pass']) !!}
+    </div>
+</div>
+<div class="form-group form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+    <div class="row">
+        {!! Form::label('password', 'New Password') !!}
+        {!! Form::password('password',['class' => 'form-control','placeholder'=>'Enter New Password','required','name'=>'password']) !!}
+    </div>
+</div>
+<div class="form-group form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+    <div class="row">
+        {!! Form::label('confirm_password', 'Confirm Password') !!}
+        {!! Form::password('confirm_password', ['class' => 'form-control','placeholder'=>'Re-Enter New Password','required','id'=>'confirm_password','name'=>'confirm_password','onkeyup'=>"validation()"]) !!}
+    <span id='message'></span>
+   </div>
+</div>
+
+
+<p> &nbsp; </p>
+
+<div class="footer-form-margin-btn">
+    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button to save password']) !!}&nbsp;
+    <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true" data-placement="top" data-content="click close button for close this entry form">Close</button>
+</div>
+
+
+<script>
+
+    function validation() {
+        $('#confirm_password').on('keyup', function () {
+            if ($(this).val() == $('#password').val()) {
+                $('#message').html('');
+            } else $('#message').html('confirm password do not match with new password,please check.').css('color', 'red');
+        });
+    }
+
+</script>

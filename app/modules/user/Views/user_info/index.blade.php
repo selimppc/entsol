@@ -158,4 +158,20 @@ account
         </div> <!-- / .modal-dialog -->
     </div>
     <!-- modal -->
+
+    <div id="passwordModal" class="modal fade" tabindex="" role="dialog" style="display: none;">
+        <div class="modal-dialog" style="z-index: 1050">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Change Password<span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
+                </div>
+                <div class="modal-body">
+                    {!! Form::open(['route' => 'update-password','id' => 'jq-validation-form']) !!}
+                              @include('user::change_password._password_form')
+                    {!! Form::close() !!}
+                </div> <!-- / .modal-body -->
+            </div> <!-- / .modal-content -->
+        </div> <!-- / .modal-dialog -->
+    </div>
 @stop
