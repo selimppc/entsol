@@ -98,7 +98,8 @@
                                     </td>
                                     <td>
                                         @if($values->status == 'posted')
-                                            <a href="{{ route('reverse-voucher-history',['id'=>$values->id]) }}" class="btn btn-info btn-xs" data-placement="top" data-content="voucher details">rev-details</a>
+                                            <a href="{{ route('view-reverse-voucher', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="reverse voucher details">rev-details</a>
+                                            {{--<a href="{{ route('reverse-voucher-history',['id'=>$values->id]) }}" class="btn btn-info btn-xs" data-placement="top" data-content="voucher details">rev-details</a>--}}
                                         @else
                                             <a href="{{ route('reverse-detail',['id'=>$values->id,'voucher_number'=>$values->voucher_number]) }}" class="btn btn-info btn-xs" data-placement="top" data-content="reverse details">rev-details</a>
                                         @endif

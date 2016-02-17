@@ -295,6 +295,12 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
     ]);
 
 
+    Route::any('coa-list-report', [
+        'as' => 'coa-list-report',
+        'uses' => 'AcReportsController@get_autocomplete_search_coa'
+    ]);
+
+
     /*------------------------------Payment Voucher--------------------------*/
 
     Route::any('payment-voucher', [

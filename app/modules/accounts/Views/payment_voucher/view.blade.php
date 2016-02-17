@@ -49,25 +49,36 @@
 
             <div class="table-primary">
                 <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
-                    <h4 class="text-center">Payment Voucher Detail Informations</h4>
                     <thead>
                     <tr>
-                        <th>Voucher Number </th>
-                        <th>COA(Account Code) </th>
-                        <th> Currency (Exchange Rate)</th>
-                        <th> Amount </th>
-                        <th> Branch </th>
+                        <th> Voucher Number </th>
+                        <th> Coa </th>
+                        <th> Account Code </th>
+                        <th> Title </th>
+                        <th> Sub Account Code </th>
+                        <th> Currency </th>
+                        <th> Exchange Rate </th>
+                        <th> Prime Debit </th>
+                        <th> Prime Credit </th>
+                        <th> Base Debit </th>
+                        <th> Base Credit </th>
                     </tr>
                     </thead>
                     <tbody>
                     @if(isset($voucher_details_data))
                         @foreach($voucher_details_data as $values)
                             <tr class="gradeX">
-                                <td>{{isset($values->relVoucherHead->voucher_number)?$values->relVoucherHead->voucher_number:''}}</td>
-                                <td>{{isset($values->relChartOfAccounts->title)?$values->relChartOfAccounts->title:''}}  ({{isset($values->relChartOfAccounts->account_code)?$values->relChartOfAccounts->account_code:''}})</td>
-                                <td>{{isset($values->relCurrency->title)?$values->relCurrency->title:''}} ({{isset($values->relCurrency->exchange_rate)?$values->relCurrency->exchange_rate:''}})</td>
-                                <td>{{$values->base_amount}}</td>
-                                <td>{{isset($values->relBranch->title)?$values->relBranch->title:''}}</td>
+                                <td>{{$values->voucher_number}}</td>
+                                <td>{{$values->relChartOfAccounts->title}}</td>
+                                <td>{{$values->account_code}}</td>
+                                <td>{{$values->	title}}</td>
+                                <td>{{$values->	sub_account_code}}</td>
+                                <td>{{$values->relCurrency->title}}</td>
+                                <td>{{$values->exchange_rate}}</td>
+                                <td>{{$values->	prime_debit}}</td>
+                                <td>{{$values->	prime_credit}}</td>
+                                <td>{{$values->	base_debit}}</td>
+                                <td>{{$values->	base_credit}}</td>
                             </tr>
                         @endforeach
                     @endif

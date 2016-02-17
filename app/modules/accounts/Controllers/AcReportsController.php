@@ -12,6 +12,8 @@ use App\Branch;
 use DB;
 use Session;
 use Input;
+use Illuminate\Support\Facades\Response;
+
 
 class AcReportsController extends Controller
 {
@@ -398,33 +400,34 @@ class AcReportsController extends Controller
 
         $data = $requests->all();
 
-        print_r($data);exit;
+        $from_date = date('Y-m-d', strtotime($data['pFromDate']));
+        $to_date = date('Y-m-d', strtotime($data['pToDate']));
 
         $controls = array(
-            'pYear' => $data['pYear'],
-            'pPeriod' => $data['pPeriod'],
+            'pAccountCode' => $data['pAccountCode'],
             'pBranch' => $data['pBranch'],
-            'pStyle' => $data['pStyle']
+            'pFromDate' => $from_date,
+            'pToDate' => $to_date
         );
 
-        //print_r($controls);exit;/
+        //print_r($controls);exit;
 
         if(@$data['PDF']=='PDF Report'){
-            $report = $c->reportService()->runReport('/entsol/Reports/ac_balance_sheet', 'pdf', null, null, $controls);
+            $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_account_report', 'pdf', null, null, $controls);
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
-            header('Content-Disposition: attachment; filename=ledger_balance_ac_'.$data['pYear'].'_'.$data['pPeriod'].'.pdf');
+            header('Content-Disposition: attachment; filename=ledger_balance_ac_'.$data['pAccountCode'].'.pdf');
             header('Content-Transfer-Encoding: binary');
             header('Content-Length: ' . strlen($report));
             header('Content-Type: application/pdf');
             echo $report;
         }else if(@$data['Excel']=='Excel Report'){
-            $report = $c->reportService()->runReport('/entsol/Reports/ac_balance_sheet', 'xls', null, null, $controls);
+            $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_account_report', 'xls', null, null, $controls);
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
-            header('Content-Disposition: attachment; filename=ledger_balance_ac_'.$data['pYear'].'_'.$data['pPeriod'].'.xls');
+            header('Content-Disposition: attachment; filename=ledger_balance_ac_'.$data['pAccountCode'].'.xls');
             header('Content-Transfer-Encoding: binary');
             header('Content-Length: ' . strlen($report));
             header('Content-Type: application/xls');
@@ -487,7 +490,22 @@ class AcReportsController extends Controller
     }
 
 
+    public function get_autocomplete_search_coa(){
 
+        $coa_data = Input::get('term');
 
+        $coa = DB::table('ac_chart_of_accounts')
+            ->where('title', 'LIKE', '%' . $coa_data . '%')
+            ->orWhere('account_code', 'LIKE', '%' . $coa_data . '%')
+            ->select(DB::raw('CONCAT(ac_chart_of_accounts.account_code, ":", " ",ac_chart_of_accounts.title) AS title, ac_chart_of_accounts.title as coa_title'))
+            ->get();
+        #print_r($coa);exit;
+
+        foreach($coa as $v){
+            $data[] = array('value'=>$v->title,
+                'coa_title' => $v->coa_title);
+        }
+        return Response::json($data);
+    }
 
 }

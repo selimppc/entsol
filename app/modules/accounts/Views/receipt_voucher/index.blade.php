@@ -95,7 +95,8 @@
                                     </td>
                                     <td>
                                         @if($values->status == 'posted')
-                                            <a href="{{ route('receipt-voucher-history',['id'=>$values->id]) }}" class="btn btn-info btn-xs" data-placement="top" data-content="voucher details">receipt-details</a>
+                                            <a href="{{ route('view-receipt-voucher', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="receipt voucher details">receipt-details</a>
+                                            {{--<a href="{{ route('receipt-voucher-history',['id'=>$values->id]) }}" class="btn btn-info btn-xs" data-placement="top" data-content="voucher details">receipt-details</a>--}}
                                         @else
                                             <a href="{{ route('receipt-detail',['id'=>$values->id,'voucher_number'=>$values->voucher_number]) }}" class="btn btn-info btn-xs" data-placement="top" data-content="payment details">receipt-details</a>
                                         @endif

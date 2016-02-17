@@ -6,8 +6,8 @@
         <div class="col-sm-12">
             <div class="col-sm-4">
                 {!! Form::label('account_code_title', 'Chat Of Accounts:', ['class' => 'control-label']) !!}
-                {!! Form::text('account_code_title', Input::old('coa_id'), ['id'=>'auto-search-ac','class' => 'form-control','required','placeholder'=>'search by name of Chart of account/account-code','title'=>'type your require chart of account "code" or "title"']) !!}
-                {!! Form::hidden('coa_id',null, ['id'=>'coa-id-val']) !!}
+                {!! Form::text('account_code_title', Input::old('pAccountCode'), ['id'=>'auto-search-ac','class' => 'form-control','required','placeholder'=>'search by name of Chart of account/account-code','title'=>'type your require chart of account "code" or "title"']) !!}
+                {!! Form::hidden('pAccountCode',null, ['id'=>'coa-id-val']) !!}
             </div>
             <div class="col-sm-2">
                 {!! Form::label('pBranch', 'Branch:', ['class' => 'control-label']) !!}
@@ -26,4 +26,4 @@
 </div>
 
 
-@include('accounts::voucher_detail._script')
+@include('accounts::reports._script')

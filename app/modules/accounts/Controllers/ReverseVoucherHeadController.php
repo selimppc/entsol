@@ -106,7 +106,8 @@ class ReverseVoucherHeadController extends Controller
     {
         $pageTitle = 'View Reverse Entry Informations';
         $data = VoucherHead::with('relBranch')->where('id',$id)->first();
-        $voucher_details_data = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('voucher_head_id',$id)->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
+        /*$voucher_details_data = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('voucher_head_id',$id)->where('status','!=','cancel')->orderBy('id', 'DESC')->get();*/
+        $voucher_details_data = VoucherHistory::where('voucher_head_id',$id)->orderBy('voucher_head_id', 'DESC')->get();
 
         return view('accounts::reverse_entry.view', ['data' => $data,'voucher_details_data' => $voucher_details_data, 'pageTitle'=> $pageTitle]);
     }
