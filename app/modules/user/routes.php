@@ -212,6 +212,14 @@ Route::any('delete-role/{slug}', [
     ]);
 });
 
+Route::any('change-password-view', [
+    'as' => 'change-password-view',
+    'uses' => 'UserController@change_user_password_view'
+]);
 
+Route::any('update-password', [
+    'as' => 'update-password',
+    'uses' => 'UserController@update_password'
+]);
 
 

@@ -531,4 +531,52 @@ class UserController extends Controller
         return redirect()->back();
     }
 
+    public function change_user_password_view()
+    {
+        return view('user.change_password._form');
+    }
+
+    public function update_password()
+    {
+        if(Auth::check())
+        {
+            $input = Input::all();
+
+            if($input['confirm_password']==$input['password']) {
+                $hash_check = Hash::check($input['pass'], User::findOrNew(Auth::user()->id)->password);
+
+                if ($hash_check > 0) {
+                    $model = User::findOrNew(Auth::user()->id);
+                    $model->password = Hash::make($input['password']);
+                    /* Transaction Start Here */
+                    DB::beginTransaction();
+                    try {
+                        $model->save();
+
+                        DB::commit();
+                        Session::flash('message', "Successfully Updated Your Password");
+
+                    } catch (Exception $e) {
+                        //If there are any exceptions, rollback the transaction
+                        DB::rollback();
+                        Session::flash('error',$e->getMessage());
+                    }
+                } else {
+                    Session::flash('error', "Your old password is not correct !");
+                }
+            }
+            else{
+                Session::flash('error', "Password and Confirm Password Does not match !");
+            }
+        }
+        else
+        {
+            Session::flash('error', "Please Login !" );
+        }
+        return redirect()->back();
+    }
+
+
+
+
 }

@@ -13,7 +13,13 @@
                             <div class="col-lg-6">
                                 @if(isset($user_data))
                                     <li><p>User Name : <b>{{isset($user_data->username)?$user_data->username:''}}</b></p></li>
-                                    <li><p>Password : <a href=""data-toggle="modal" data-target="#modal"><ins>Change Password</ins></a></p></li>
+                                    <li>
+                                        <p>
+                                            Password : <a data-toggle="modal" href="#passwordModal">
+                                                <ins> Change Password</ins>
+                                            </a>
+                                        </p>
+                                    </li>
                                     <li><p>Email Address : {{isset($user_data->email)?$user_data->email:''}}</p></li>
                                 @else
                                     {{"No data found !"}}
