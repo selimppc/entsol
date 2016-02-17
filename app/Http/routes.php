@@ -39,5 +39,10 @@ Route::any('dashboard', [
     'uses' => 'HomeController@dashboard'
 ]);
 
+    Route::any('all_routes_uri', [
+        'as' => 'all_routes_uri',
+        'uses' => 'HomeController@all_routes_uri'
+    ]);
+
 });
 
