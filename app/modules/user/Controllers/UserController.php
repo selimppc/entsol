@@ -809,7 +809,4 @@ class UserController extends Controller
         }
     }
 
-public function abc(){
-    echo '12345';exit;
-}
 }
