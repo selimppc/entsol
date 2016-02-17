@@ -279,6 +279,11 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
         'uses' => 'AcReportsController@balance_sheet'
     ]);
 
+    Route::any('ledger-balance-ac', [
+        'as' => 'ledger-balance-ac',
+        'uses' => 'AcReportsController@ledger_balance_ac'
+    ]);
+
     Route::any('pdf-single-voucher/{voucher_number}', [
         'as' => 'pdf-single-voucher',
         'uses' => 'AcReportsController@pdf_single_voucher'

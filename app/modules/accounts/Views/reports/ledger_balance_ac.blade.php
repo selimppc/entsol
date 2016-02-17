@@ -1,9 +1,13 @@
+<script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/admin/js/custom.min.js') }}"></script>
+
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         <div class="col-sm-12">
-            <div class="col-sm-2">
-                {!! Form::label('pTrn', 'Account Type:', ['class' => 'control-label']) !!}
-                {!! Form::Select('pTrn', array(''=>'select','JV--'=>'Journal Voucher','REV-'=>'Reverse Entry','PAY-'=>'Payment Voucher','REC-'=>'Receipt Voucher'), null,['class' => 'form-control','required', 'title'=>'select status']) !!}
+            <div class="col-sm-4">
+                {!! Form::label('account_code_title', 'Chat Of Accounts:', ['class' => 'control-label']) !!}
+                {!! Form::text('account_code_title', Input::old('coa_id'), ['id'=>'auto-search-ac','class' => 'form-control','required','placeholder'=>'search by name of Chart of account/account-code','title'=>'type your require chart of account "code" or "title"']) !!}
+                {!! Form::hidden('coa_id',null, ['id'=>'coa-id-val']) !!}
             </div>
             <div class="col-sm-2">
                 {!! Form::label('pBranch', 'Branch:', ['class' => 'control-label']) !!}
@@ -17,10 +21,9 @@
                 {!! Form::label('pToDate', 'To Date:', ['class' => 'control-label']) !!}
                 {!! Form::text('pToDate', date('Y/m/d'), ['class' => 'form-control bs-datepicker-example','required','title'=>'select to date']) !!}
             </div>
-            <div class="col-sm-2">
-                {!! Form::label('pStatus', 'Status:', ['class' => 'control-label']) !!}
-                {!! Form::Select('pStatus', array(''=>'select','Open'=>'Open','Balanced'=>'Balanced','Suspend'=>'Suspend','Posted'=>'Posted'), null,['class' => 'form-control','required', 'title'=>'select status']) !!}
-            </div>
         </div>
     </div>
 </div>
+
+
+@include('accounts::voucher_detail._script')
