@@ -22,6 +22,7 @@ class CheckPermission
                 return $next($request);
             }else{
                 return response('Unauthorized.', 401);
+                #return $next($permission, 401);
             }
         }
         //return redirect()->route('dashboard');
