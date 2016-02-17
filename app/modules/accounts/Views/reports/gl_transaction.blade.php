@@ -3,7 +3,7 @@
         <div class="col-sm-12">
             <div class="col-sm-2">
                 {!! Form::label('pTrn', 'Account Type:', ['class' => 'control-label']) !!}
-                {!! Form::Select('pTrn', array(''=>'select','JV--'=>'Journal Voucher','REV-'=>'Reverse Entry'), null,['class' => 'form-control','required', 'title'=>'select status']) !!}
+                {!! Form::Select('pTrn', array(''=>'select','JV--'=>'Journal Voucher','REV-'=>'Reverse Entry','PAY-'=>'Payment Voucher','REC-'=>'Receipt Voucher'), null,['class' => 'form-control','required', 'title'=>'select status']) !!}
             </div>
             <div class="col-sm-2">
                 {!! Form::label('pBranch', 'Branch:', ['class' => 'control-label']) !!}
