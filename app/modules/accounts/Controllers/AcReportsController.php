@@ -404,10 +404,10 @@ class AcReportsController extends Controller
         $to_date = date('Y-m-d', strtotime($data['pToDate']));
 
         $controls = array(
-            'coa' => $data['pCoaTitle'],
-            'branch' => $data['pBranch'],
-            'fromDate' => $from_date,
-            'toDate' => $to_date
+            'pAccountCode' => $data['pAccountCode'],
+            'pBranch' => $data['pBranch'],
+            'pFromDate' => $from_date,
+            'pToDate' => $to_date
         );
 
         //print_r($controls);exit;
@@ -417,7 +417,7 @@ class AcReportsController extends Controller
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
-            header('Content-Disposition: attachment; filename=ledger_balance_ac_'.$data['pCoaTitle'].'.pdf');
+            header('Content-Disposition: attachment; filename=ledger_balance_ac_'.$data['pAccountCode'].'.pdf');
             header('Content-Transfer-Encoding: binary');
             header('Content-Length: ' . strlen($report));
             header('Content-Type: application/pdf');
@@ -427,7 +427,7 @@ class AcReportsController extends Controller
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
-            header('Content-Disposition: attachment; filename=ledger_balance_ac_'.$data['pCoaTitle'].'.xls');
+            header('Content-Disposition: attachment; filename=ledger_balance_ac_'.$data['pAccountCode'].'.xls');
             header('Content-Transfer-Encoding: binary');
             header('Content-Length: ' . strlen($report));
             header('Content-Type: application/xls');
