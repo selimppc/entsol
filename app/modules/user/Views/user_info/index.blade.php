@@ -17,12 +17,12 @@
                         @if(isset($user_image))
                             <img src="{{ URL::to($user_image->thumbnail) }}">
                         @else
-                            {{"No Image Found"}}
+                            <img src="{{ URL::to('/assets/img/default.jpg') }}" width="100px" height="100px">
                         @endif
                     </div>
                     <br>
                     @if(isset($user_image))
-                    <a href="{{route('edit-profile-image',$user_id)}}" class="btn btn-primary" data-placement="top" data-toggle="modal" data-target="#editImageModal">Edit Profile Picture</a>
+                    <a href="{{route('edit-profile-image',$user_image->id)}}" class="btn btn-primary" data-placement="top" data-toggle="modal" data-target="#editImageModal">Edit Profile Picture</a>
                     @else
                         <a data-toggle="modal" href="#addImageModal" class="btn btn-primary" data-placement="top" data-toggle="modal" >Add Profile Picture</a>
                     @endif
@@ -197,7 +197,8 @@ account
                     <h4 class="modal-title" id="myModalLabel">Change Password<span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['route' => 'profile-image','id' => 'jq-validation-form']) !!}
+                    {!! Form::open(['route' => 'store-profile-image','id' => 'jq-validation-form','files'=>'true']) !!}
+                         {!! Form::hidden('user_id',isset($user_id)?$user_id:'') !!}
                          @include('user::user_info.profile_image.add_image')
                     {!! Form::close() !!}
                 </div> <!-- / .modal-body -->

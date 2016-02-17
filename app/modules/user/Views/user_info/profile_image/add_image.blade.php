@@ -3,8 +3,8 @@
     <div class="row">
         <div class="col-sm-12">
             {!! Form::label('image', 'Image:', ['class' => 'control-label']) !!}
-            @if(isset($user_image))
-                <img src="{{ URL::to($user_image->thumbnail) }}" width="100px" height="100px">
+            @if(isset($model))
+                <img src="{{ URL::to($model->thumbnail) }}" width="100px" height="100px">
             @endif
             {!! Form::file('image',Input::old('image'), [ 'class' => 'form-control','required']) !!}
         </div>
