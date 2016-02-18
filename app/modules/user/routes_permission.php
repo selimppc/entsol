@@ -15,27 +15,33 @@ Route::any('store-permission', [
     'uses' => 'PermissionController@store'
 ]);
 
-Route::any('view-permission/{slug} ', [
+Route::any('view-permission/{route_url} ', [
     'as' => 'view-permission',
     'uses' => 'PermissionController@show'
 ]);
 
-Route::any('edit-permission/{slug} ', [
+Route::any('edit-permission/{route_url} ', [
     'as' => 'edit-permission',
     'uses' => 'PermissionController@edit'
 ]);
 
-Route::any('update-permission/{slug} ', [
+Route::any('update-permission/{route_url} ', [
     'as' => 'update-permission',
     'uses' => 'PermissionController@update'
 ]);
 
-Route::any('delete-permission/{slug} ', [
+Route::any('delete-permission/{route_url} ', [
     'as' => 'delete-permission',
     'uses' => 'PermissionController@destroy'
 ]);
 
 
+Route::any('route-in-permission', [
+    'as' => 'route-in-permission',
+    'uses' => 'PermissionController@route_in_permission'
+]);
+
+//permission role route---------------------
 Route::any('index-permission-role', [
     'as' => 'index-permission-role',
     'uses' => 'PermissionRoleController@index'

@@ -48,12 +48,12 @@ class UserTableSeeder extends Seeder
 
         /* PermissionsSeeder */
         DB::table('permissions')->truncate();
-        DB::table('permissions')->insert([
+        /*DB::table('permissions')->insert([
             'id' => 1,
             'title' => 'User list',
-            'route' => 'user-list',
+            'route_url' => 'user-list',
             'description' => NULL,
-        ]);
+        ]);*/
 
         /* PermissionRoleSeeder */
         DB::table('permission_role')->truncate();

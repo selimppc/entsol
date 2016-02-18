@@ -46,8 +46,8 @@ class PermissionController extends Controller
         $title = Input::get('title');
         $title_upper_case = ucwords($title);
         $input['title'] = $title_upper_case;
-        $input['route'] = str_slug(strtolower($input['title']));
-        $permission_exists = Permission::where('route',$input['route'])->exists();
+        $input['route_url'] = str_slug(strtolower($input['title']));
+        $permission_exists = Permission::where('route_url',$input['route_url'])->exists();
 
         if($permission_exists){
             Session::flash('danger',' Already Exists.');
@@ -70,13 +70,13 @@ class PermissionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $route_url
      * @return \Illuminate\Http\Response
      */
-    public function show($route)
+    public function show($route_url)
     {
         $pageTitle = 'View Permission';
-        $data = Permission::where('route',$route)->first();
+        $data = Permission::where('route_url',$route_url)->first();
 
         return view('user::permission.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
@@ -84,13 +84,13 @@ class PermissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $route_url
      * @return \Illuminate\Http\Response
      */
-    public function edit($route)
+    public function edit($route_url)
     {
         $pageTitle = 'Update Permission Informations';
-        $data = Permission::where('route',$route)->first();
+        $data = Permission::where('route_url',$route_url)->first();
         return view('user::permission.update', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 
@@ -98,18 +98,18 @@ class PermissionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  string  $route_url
      * @return \Illuminate\Http\Response
      */
-    public function update(Requests\PermissionRequest $request, $route)
+    public function update(Requests\PermissionRequest $request, $route_url)
     {
-        $model = Permission::where('route',$route)->first();
+        $model = Permission::where('route_url',$route_url)->first();
         $input = $request->all();
 
         $title = Input::get('title');
         $title_upper_case = ucwords($title);
         $input['title'] = $title_upper_case;
-        $input['route'] = str_slug(strtolower($input['title']));
+        $input['route_url'] = str_slug(strtolower($input['title']));
 
         DB::beginTransaction();
         try {
@@ -128,12 +128,12 @@ class PermissionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  string  $route_url
      * @return \Illuminate\Http\Response
      */
-    public function destroy($route)
+    public function destroy($route_url)
     {
-        $model = Permission::where('route',$route)->first();
+        $model = Permission::where('route_url',$route_url)->first();
 
         DB::beginTransaction();
         try {
@@ -144,6 +144,34 @@ class PermissionController extends Controller
         } catch(\Exception $e) {
             DB::rollback();
             Session::flash('danger',$e->getMessage());
+        }
+        return redirect()->route('index-permission');
+    }
+    /**
+     * Store the specified resource .
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function route_in_permission(){
+        $routeCollection = Route::getRoutes();
+
+        foreach ($routeCollection as $value) {
+            $routes_list[] = Str::lower($value->getPath());
+        }
+        foreach ($routes_list as $item) {
+            $model = new Permission();
+            $model->title = $item;
+            $model->route_url = $item;
+            DB::beginTransaction();
+            try {
+                $model->save();
+                DB::commit();
+                Session::flash('message', "Successfully Add all route_url in permission table.");
+
+            } catch(\Exception $e) {
+                DB::rollback();
+                Session::flash('danger',$e->getMessage());
+            }
         }
         return redirect()->route('index-permission');
     }
