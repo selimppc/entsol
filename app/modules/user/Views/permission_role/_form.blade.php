@@ -23,6 +23,13 @@
 </div>
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
         <div class="row">
+            {{--<div class="form-group col-sm-12">
+                {!! Form::label('permission_id', 'Select Permission :', ['class' => 'control-label']) !!}
+                <div class="col-sm-12">
+                    {!! Form::radio('permission_id','1',$permission_id) !!}
+                        <input type="radio" value="Hello" name="permission_id">
+                </div>
+            </div>--}}
             <div class="col-sm-6">
                 {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
                 <small class="required">(Required)</small>
