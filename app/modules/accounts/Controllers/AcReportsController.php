@@ -17,6 +17,18 @@ use Illuminate\Support\Facades\Response;
 
 class AcReportsController extends Controller
 {
+
+
+    private function connection(){
+        $c = new Client(
+            "http://192.168.2.182:8080/jasperserver",
+            "jasperadmin",
+            "jasperadmin",
+            ""
+        );
+        return $c;
+    }
+
     public function test_report(){
         $c = new Client(
             "http://192.168.2.182:8080/jasperserver",
@@ -75,12 +87,7 @@ class AcReportsController extends Controller
 
     public function trial_balance(Request $requests){
 
-        $c = new Client(
-            "http://192.168.2.182:8080/jasperserver",
-            "jasperadmin",
-            "jasperadmin",
-            ""
-        );
+        $c = $this->connection();
 
         $data = $requests->all();
 
@@ -121,12 +128,7 @@ class AcReportsController extends Controller
 
     public function trial_balance_all(Request $requests){
 
-        $c = new Client(
-            "http://192.168.2.182:8080/jasperserver",
-            "jasperadmin",
-            "jasperadmin",
-            ""
-        );
+        $c = $this->connection();
 
         $data = $requests->all();
 
@@ -167,12 +169,7 @@ class AcReportsController extends Controller
 
     public function gl_transaction_report(Request $requests){
 
-        $c = new Client(
-            "http://192.168.2.182:8080/jasperserver",
-            "jasperadmin",
-            "jasperadmin",
-            ""
-        );
+        $c = $this->connection();
 
         $data = $requests->all();
 
@@ -215,12 +212,7 @@ class AcReportsController extends Controller
 
     public function gl_single_voucher(Request $requests){
 
-        $c = new Client(
-            "http://192.168.2.182:8080/jasperserver",
-            "jasperadmin",
-            "jasperadmin",
-            ""
-        );
+        $c = $this->connection();
 
         $data = $requests->all();
         $controls = array(
@@ -263,12 +255,7 @@ class AcReportsController extends Controller
 
     public function gl_pnl_sheet(Request $requests){
 
-        $c = new Client(
-            "http://192.168.2.182:8080/jasperserver",
-            "jasperadmin",
-            "jasperadmin",
-            ""
-        );
+        $c = $this->connection();
 
         $data = $requests->all();
 
@@ -306,12 +293,7 @@ class AcReportsController extends Controller
 
     public function chart_of_accounts_report(Request $requests){
 
-        $c = new Client(
-            "http://192.168.2.182:8080/jasperserver",
-            "jasperadmin",
-            "jasperadmin",
-            ""
-        );
+        $c = $this->connection();
 
         $data = $requests->all();
 
@@ -347,12 +329,7 @@ class AcReportsController extends Controller
 
     public function balance_sheet(Request $requests){
 
-        $c = new Client(
-            "http://192.168.2.182:8080/jasperserver",
-            "jasperadmin",
-            "jasperadmin",
-            ""
-        );
+        $c = $this->connection();
 
         $data = $requests->all();
 
@@ -391,12 +368,7 @@ class AcReportsController extends Controller
 
     public function ledger_balance_ac(Request $requests){
 
-        $c = new Client(
-            "http://192.168.2.182:8080/jasperserver",
-            "jasperadmin",
-            "jasperadmin",
-            ""
-        );
+        $c = $this->connection();
 
         $data = $requests->all();
 
@@ -439,12 +411,7 @@ class AcReportsController extends Controller
 
     public function pdf_single_voucher($voucher_number){
 
-        $c = new Client(
-            "http://192.168.2.182:8080/jasperserver",
-            "jasperadmin",
-            "jasperadmin",
-            ""
-        );
+        $c = $this->connection();
 
         $controls = array(
             'pVoucherNo'=>$voucher_number
@@ -465,12 +432,7 @@ class AcReportsController extends Controller
 
     public function xls_single_voucher($voucher_number){
 
-        $c = new Client(
-            "http://192.168.2.182:8080/jasperserver",
-            "jasperadmin",
-            "jasperadmin",
-            ""
-        );
+        $c = $this->connection();
 
         $controls = array(
             'pVoucherNo'=>$voucher_number

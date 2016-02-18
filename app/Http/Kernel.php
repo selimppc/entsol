@@ -26,7 +26,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'acl' =>\App\Http\Middleware\CheckPermission::class,
+        'acl_access' =>\App\Http\Middleware\CheckPermission::class,
 
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
