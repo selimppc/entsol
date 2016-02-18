@@ -48,29 +48,29 @@ class UserTableSeeder extends Seeder
 
         /* PermissionsSeeder */
         DB::table('permissions')->truncate();
-        DB::table('permissions')->insert([
+        /*DB::table('permissions')->insert([
             'id' => 1,
             'title' => 'User list',
-            'route' => 'user-list',
+            'route_url' => 'user-list',
             'description' => NULL,
-        ]);
+        ]);*/
 
         /* PermissionRoleSeeder */
         DB::table('permission_role')->truncate();
-        DB::table('permission_role')->insert([
+        /*DB::table('permission_role')->insert([
             'permission_id' => 1,
             'role_id' => 1,
             'status' => 'active'
-        ]);
+        ]);*/
 
         /* RoleUserSeeder */
         DB::table('role_user')->truncate();
-        DB::table('role_user')->insert([
+        /*DB::table('role_user')->insert([
             'id' => NULL,
             'role_id' => 1,
             'user_id' => 1, // user_id must be in a table of users
             'status' => 'active'
-        ]);
+        ]);*/
 
     }
 }

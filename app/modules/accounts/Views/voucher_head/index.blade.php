@@ -157,7 +157,6 @@
         $(function(){
             $("#addData").modal('show');
         });
-
     </script>
 @endif
 

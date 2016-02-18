@@ -61,7 +61,7 @@ class User extends Model implements AuthenticatableContract,
         $permissions = $this->relRole->load('permissions')->fetch('permissions')->toArray();
 
         return array_map('strtolower', array_unique(array_flatten(array_map(function($permission){
-            return array_pluck($permission, 'route');
+            return array_pluck($permission, 'route_url');
 
         }, $permissions))));
     }
