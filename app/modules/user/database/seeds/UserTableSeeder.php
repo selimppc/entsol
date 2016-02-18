@@ -51,7 +51,7 @@ class UserTableSeeder extends Seeder
         DB::table('permissions')->insert([
             'id' => 1,
             'title' => 'User list',
-            'slug' => 'user-list',
+            'route' => 'user-list',
             'description' => NULL,
         ]);
 

@@ -46,8 +46,8 @@ class PermissionController extends Controller
         $title = Input::get('title');
         $title_upper_case = ucwords($title);
         $input['title'] = $title_upper_case;
-        $input['slug'] = str_slug(strtolower($input['title']));
-        $permission_exists = Permission::where('slug',$input['slug'])->exists();
+        $input['route'] = str_slug(strtolower($input['title']));
+        $permission_exists = Permission::where('route',$input['route'])->exists();
 
         if($permission_exists){
             Session::flash('danger',' Already Exists.');
@@ -73,10 +73,10 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($route)
     {
         $pageTitle = 'View Permission';
-        $data = Permission::where('slug',$slug)->first();
+        $data = Permission::where('route',$route)->first();
 
         return view('user::permission.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
@@ -87,10 +87,10 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($route)
     {
         $pageTitle = 'Update Permission Informations';
-        $data = Permission::where('slug',$slug)->first();
+        $data = Permission::where('route',$route)->first();
         return view('user::permission.update', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 
@@ -101,15 +101,15 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Requests\PermissionRequest $request, $slug)
+    public function update(Requests\PermissionRequest $request, $route)
     {
-        $model = Permission::where('slug',$slug)->first();
+        $model = Permission::where('route',$route)->first();
         $input = $request->all();
 
         $title = Input::get('title');
         $title_upper_case = ucwords($title);
         $input['title'] = $title_upper_case;
-        $input['slug'] = str_slug(strtolower($input['title']));
+        $input['route'] = str_slug(strtolower($input['title']));
 
         DB::beginTransaction();
         try {
@@ -131,9 +131,9 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy($route)
     {
-        $model = Permission::where('slug',$slug)->first();
+        $model = Permission::where('route',$route)->first();
 
         DB::beginTransaction();
         try {
