@@ -5,6 +5,7 @@ use App\User;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use URL;
 use HTML;
 use Mockery\CountValidator\Exception;
@@ -74,8 +75,42 @@ class AuthController extends Controller
     }
 
     /*password reset before login by inactive user*/
-    public function reset_password(){
-        return view('user::reset_password._form');
+    public function reset_password($user_id){
+
+        return view('user::reset_password._form',['user_id'=>$user_id]);
+    }
+
+    public function update_new_password(Request $request){
+
+        $input = $request->all();
+        date_default_timezone_set("Asia/Dacca");
+
+            if($input['confirm_password']==$input['password']) {
+
+                    $model = User::findOrNew($input['user_id']);
+                    $model->password = Hash::make($input['password']);
+                    $model->last_visit = date('Y-m-d h:i:s', time());
+                    /* Transaction Start Here */
+                    DB::beginTransaction();
+                    try {
+                        $model->save();
+
+                        DB::commit();
+
+                        /*Session::flash('message', "Successfully Reset Your Password. You May Signin Now. <a href='get-user-login'>signin from here</a>");*/
+                        Session::flash('message','Successfully Reset Your Password. Now You Can Login Here.');
+                        return redirect()->route('get-user-login');
+
+                    } catch (Exception $e) {
+                        //If there are any exceptions, rollback the transaction
+                        DB::rollback();
+                        Session::flash('error',$e->getMessage());
+                    }
+            }
+            else{
+                Session::flash('error', "Password and Confirm Password Does not match !");
+            }
+        return redirect()->back();
     }
 
     public function getLogin()
@@ -108,10 +143,15 @@ class AuthController extends Controller
                     $user_data = User::where($field, $data['email'])->first();
 
                     if($user_data->last_visit==Null){
+
                        #return redirect()->route('inactive-user-dashboard');
                         Session::flash('info', "Your account is inactive.To activate your account you should reset your password.");
-                        return redirect()->route('reset-password');
+
+                        return redirect()->route('reset-password',['user_id'=>$user_data->id]);
+
                     }else{
+                        date_default_timezone_set("Asia/Dacca");
+                        DB::table('user')->where('id', '=', $user_data->id)->update(array('last_visit' =>date('Y-m-d h:i:s', time())));
                         $attempt = Auth::attempt([
                             $field => $request->get('email'),
                             'password' => $request->get('password'),
