@@ -17,30 +17,16 @@
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-6">
             {!! Form::label('fathers_occupation', 'Fathers Occupation:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
             {!! Form::text('fathers_occupation', Input::old('fathers_occupation'), ['id'=>'last_name', 'class' => 'form-control','required'=>'required']) !!}
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             {!! Form::label('fathers_phone', 'Fathers Phone:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('fathers_phone',Input::old('fathers_phone'), ['id'=>'state', 'class' => 'form-control','required']) !!}
-        </div>
-        <div class="col-sm-3">
-            {!! Form::label('freedom_fighter', 'Freedom Fighter:', ['class' => 'control-label']) !!}
-            <small class="required">(Required)</small>
-            <div class="form-inline">
-
-                <div class="radio">
-                    {!! Form::radio('freedom_fighter', '1', (Input::old('freedom_fighter') == '1'), array('id'=>'1', 'class'=>'radio','required')) !!}
-                    {!! Form::label('freedom_fighter', 'Yes') !!}
-                </div>
-                <div class="radio">
-                    {!! Form::radio('freedom_fighter', '0', (Input::old('freedom_fighter') == '0'), array('id'=>'0', 'class'=>'radio')) !!}
-                    {!!Form::label('freedom_fighter', 'No')  !!}
-                </div>
-            </div>
+            {!! Form::text('fathers_phone',Input::old('fathers_phone'), ['class' => 'form-control','required']) !!}
+            <span id='message'></span>
         </div>
     </div>
 </div>
@@ -55,7 +41,8 @@
         <div class="col-sm-6">
             {!! Form::label('mothers_phone', 'Mother Phone:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('mothers_phone',Input::old('mothers_phone'), [ 'class' => 'form-control','required']) !!}
+            {!! Form::text('mothers_phone',Input::old('mothers_phone'), ['class' => 'form-control','required']) !!}
+            <span id='message'></span>
         </div>
     </div>
 </div>
@@ -65,11 +52,10 @@
         <div class="col-sm-6">
             {!! Form::label('national_id', 'National ID#:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('national_id', Input::old('national_id'), ['class' => 'form-control']) !!}
+            {!! Form::text('national_id', Input::old('national_id'), ['class' => 'form-control','required']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('driving_licence', 'Driving Licence:', ['class' => 'control-label']) !!}
-            <small class="required">(Required)</small>
             {!! Form::text('driving_licence',Input::old('driving_licence'), [ 'class' => 'form-control']) !!}
         </div>
     </div>
@@ -79,7 +65,6 @@
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('passport', 'Passport:', ['class' => 'control-label']) !!}
-            <small class="required">(Required)</small>
             {!! Form::text('passport', Input::old('passport'), ['class' => 'form-control']) !!}
         </div>
         <div class="col-sm-6">
@@ -114,11 +99,6 @@
             <small class="required">(Required)</small>
             {!! Form::text('religion', Input::old('religion'), ['class' => 'form-control','required'=>'required']) !!}
         </div>
-        <div class="col-sm-6">
-            {!! Form::label('signature', 'Signature:', ['class' => 'control-label']) !!}
-            <small class="required">(Required)</small>
-            {!! Form::file('signature',Input::old('signature'), [ 'class' => 'form-control','required']) !!}
-        </div>
     </div>
 </div>
 
@@ -136,8 +116,49 @@
         </div>
     </div>
 </div>
+
+<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+    <div class="row">
+        <div class="col-sm-3">
+            {!! Form::label('freedom_fighter', 'Freedom Fighter:', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
+            <div class="form-inline">
+
+                <div class="radio">
+                    {!! Form::radio('freedom_fighter', '1', (Input::old('freedom_fighter') == '1'), array('id'=>'1', 'class'=>'radio','required')) !!}
+                    {!! Form::label('freedom_fighter', 'Yes') !!}
+                </div>
+                <div class="radio">
+                    {!! Form::radio('freedom_fighter', '0', (Input::old('freedom_fighter') == '0'), array('id'=>'0', 'class'=>'radio')) !!}
+                    {!!Form::label('freedom_fighter', 'No')  !!}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                {!! Form::label('signature', 'Signature:', ['class' => 'control-label']) !!}
+                <small class="required">(Required)</small>
+                {!! Form::file('signature',Input::old('signature'), [ 'class' => 'form-control','required'=>'required']) !!}
+            </div>
+        </div>
+    </div>
+</div>
 <div class="form-margin-btn">
     {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save branch information']) !!}
-    {{--<a href="{{route('create-user-info')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>--}}
+
     <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true" data-placement="top" data-content="click close button for close this entry form">Close</button>
 </div>
+
+{{--
+<script>
+    $('#add-phone').change( function () {
+        var code =$(this).val();
+        if (isNaN(code)) {
+            $('#message').html('Please Insert Numeric Digits Only!!').css('color', 'red');
+
+        } else
+            $('#message').html('');
+    });
+
+</script>
+--}}

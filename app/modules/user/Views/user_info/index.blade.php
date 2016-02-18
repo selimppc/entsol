@@ -140,7 +140,7 @@ account
                     <h4 class="modal-title" id="myModalLabel">Add Meta Information<span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['route' => 'store-meta-data','id' => 'jq-validation-form','files'=>'true']) !!}
+                    {!! Form::open(['route' => 'store-meta-data','id' => 'meta-data-validation','files'=>'true']) !!}
                     @include('user::user_info.meta_data._form')
                     {!! Form::close() !!}
                 </div> <!-- / .modal-body -->
