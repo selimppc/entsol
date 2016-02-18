@@ -22,33 +22,11 @@
                     </div>
                     <br>
                     @if(isset($user_image))
-                    <a href="{{route('edit-profile-image',$user_image->id)}}" class="btn btn-primary" data-placement="top" data-toggle="modal" data-target="#editImageModal">Edit Profile Picture</a>
+                    <a href="{{route('edit-profile-image',$user_image->id)}}" class="btn btn-primary btn-xs" data-placement="top" data-toggle="modal" data-target="#editImageModal">Edit Picture</a>
                     @else
-                        <a data-toggle="modal" href="#addImageModal" class="btn btn-primary" data-placement="top" data-toggle="modal" >Add Profile Picture</a>
+                        <a data-toggle="modal" href="#addImageModal" class="btn btn-primary btn-xs" data-placement="top" data-toggle="modal" >Add Picture</a>
                     @endif
                    <p>&nbsp;</p>
-                    <a href="#" class="btn btn-success"><i class="fa fa-check"></i>&nbsp;&nbsp;Following</a>&nbsp;&nbsp;
-                    <a href="#" class="btn"><i class="fa fa-comment"></i></a>
-                </div>
-
-                <div class="panel panel-transparent">
-                    <div class="panel-heading">
-                        <span class="panel-title">About me</span>
-                    </div>
-                    <div class="panel-body">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et <a href="#">dolore magna</a> aliqua.
-                    </div>
-                </div>
-
-                <div class="panel panel-transparent">
-                    <div class="panel-heading">
-                        <span class="panel-title">Statistics</span>
-                    </div>
-                    <div class="list-group">
-                        <a href="#" class="list-group-item"><strong>126</strong> Likes</a>
-                        <a href="#" class="list-group-item"><strong>579</strong> Followers</a>
-                        <a href="#" class="list-group-item"><strong>100</strong> Following</a>
-                    </div>
                 </div>
 
                 <div class="panel panel-transparent profile-skills">
