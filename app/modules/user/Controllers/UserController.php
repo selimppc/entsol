@@ -305,7 +305,7 @@ class UserController extends Controller
     {
         $pageTitle = 'Edit User Information';
 
-        $data = User::findOrFail($id);
+        $data = User::with('relBranch')->findOrFail($id);
 
         $branch_data =  Branch::lists('title','id');
         $role =  Role::lists('title','id');
