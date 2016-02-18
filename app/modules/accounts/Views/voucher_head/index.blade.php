@@ -158,6 +158,16 @@
             $("#addData").modal('show');
         });
 
+
+
+
+        $(document).ready(function() {
+            $('#jq-datatables-example').DataTable( {
+                order: [[ 0, 'desc' ]]
+            } );
+
+        } );
+
     </script>
 @endif
 
