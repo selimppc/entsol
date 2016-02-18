@@ -5,16 +5,16 @@
         <div class="col-sm-4">
             {!! Form::label('first_name', 'First Name:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('first_name', Input::old('first_name'), ['id'=>'first_name', 'class' => 'form-control', 'required'=>'required']) !!}
+            {!! Form::text('first_name', Input::old('first_name'), ['id'=>'first_name', 'class' => 'form-control', 'required'=>'required','title'=>'Enter Your First Name']) !!}
         </div>
         <div class="col-sm-4">
             {!! Form::label('middle_name', 'Middle Name:', ['class' => 'control-label']) !!}
-            {!! Form::text('middle_name',Input::old('middle_name'), ['id'=>'middle_name', 'class' => 'form-control']) !!}
+            {!! Form::text('middle_name',Input::old('middle_name'), ['id'=>'middle_name', 'class' => 'form-control','title'=>'Enter Your Middle Name']) !!}
         </div>
         <div class="col-sm-4">
             {!! Form::label('last_name', 'Last Name:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('last_name', Input::old('last_name'), ['id'=>'last_name', 'class' => 'form-control','required'=>'required']) !!}
+            {!! Form::text('last_name', Input::old('last_name'), ['id'=>'last_name', 'class' => 'form-control','required'=>'required','title'=>'Enter Your Last Name']) !!}
         </div>
     </div>
 </div>
@@ -24,12 +24,12 @@
         <div class="col-sm-6">
             {!! Form::label('city', 'City:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('city',Input::old('city'), ['id'=>'city', 'class' => 'form-control','required']) !!}
+            {!! Form::text('city',Input::old('city'), ['id'=>'city', 'class' => 'form-control','required','title'=>'Enter Your City Name']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('state', 'State:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('state',Input::old('state'), ['id'=>'state', 'class' => 'form-control','required']) !!}
+            {!! Form::text('state',Input::old('state'), ['id'=>'state', 'class' => 'form-control','required','title'=>'Enter Your State Name']) !!}
         </div>
     </div>
 </div>
@@ -39,12 +39,12 @@
         <div class="col-sm-6">
             {!! Form::label('country_id', 'Country') !!}
             <small class="required">(Required)</small>
-            {!!Form::select('country_id',$countryList,Input::old('country_id'),['class'=>'form-control','required'])  !!}
+            {!!Form::select('country_id',$countryList,Input::old('country_id'),['class'=>'form-control','required','title'=>'Select Country Name'])  !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('zip_code', 'Zip Code') !!}
             <small class="required">(Required)</small>
-            {!! Form::text('zip_code', Input::old('zip_code'),array('id'=>'zip-code','class' => 'form-control','required')) !!}
+            {!! Form::text('zip_code', Input::old('zip_code'),array('id'=>'zip-code','class' => 'form-control','required','title'=>'Enter Zip Code(minimum 4 digits)','minlength'=>4,'maxlength'=>5)) !!}
             <span id='message'></span>
         </div>
     </div>
@@ -67,11 +67,11 @@
             <div class="form-inline">
 
                 <div class="radio">
-                    {!! Form::radio('gender', 'male', (Input::old('gender') == 'male'), array('id'=>'male','class'=>'radio')) !!}
+                    {!! Form::radio('gender', 'male', (Input::old('gender') == 'male'), array('id'=>'male','class'=>'radio','title'=>'Select Gender')) !!}
                     {!! Form::label('male', 'Male') !!}
                 </div>
                 <div class="radio radio-margin-left">
-                    {!! Form::radio('gender', 'female', (Input::old('gender') == 'female'), array('id'=>'female', 'class'=>'radio')) !!}
+                    {!! Form::radio('gender', 'female', (Input::old('gender') == 'female'), array('id'=>'female', 'class'=>'radio','title'=>'Select Gender')) !!}
                     {!! Form::label('female', 'Female') !!}
                 </div>
             </div>
@@ -83,10 +83,11 @@
     <div class="row">
         <div class="col-sm-12">
             {!! Form::label('image', 'Image:', ['class' => 'control-label']) !!}
+            <p class="narration">System will allow these types of image(png,gif,jpeg,jpg Format) </p>
             @if(isset($user_image))
                 <img src="{{ URL::to($user_image->thumbnail) }}" width="100px" height="100px">
             @endif
-            {!! Form::file('image',Input::old('image'), [ 'class' => 'form-control','required']) !!}
+            {!! Form::file('image',Input::old('image'), [ 'class' => 'form-control','required','title'=>'Add Profile Image only png,gif,jpeg,jpg Format']) !!}
         </div>
     </div>
 </div>
@@ -102,7 +103,7 @@
         $('#zip-code').change( function () {
             var code =$(this).val();
             if (isNaN(code)) {
-                $('#message').html('Incorrect zip code!!').css('color', 'red');
+                $('#message').html('Incorrect !!Please Insert Only Numeric Digits.').css('color', 'red');
 
             } else
                 $('#message').html('');

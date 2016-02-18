@@ -492,15 +492,16 @@ class UserController extends Controller
         $user_id = Auth::user()->id;
         $countryList = array('' => 'Please Select') + Country::lists('title', 'id')->all();
         $user_image = UserImage::where('user_id',$user_id)->first();
-        return view('user::user_info.profile.update', ['pageTitle'=>$pageTitle,'data' => $data,'user_id'=>$user_id,'countryList'=>$countryList,'user_image'=>$user_image,'user_image_id'=>$user_image->id]);
+//        $user_image_id = ($user_image->id)?$user_image->id:'';
+        return view('user::user_info.profile.update', ['pageTitle'=>$pageTitle,'data' => $data,'user_id'=>$user_id,'countryList'=>$countryList,'user_image'=>$user_image]);
     }
 
-    public function update_user_profile(Requests\UserProfileRequest $request,$id,$user_image_id){
-
+    public function update_user_profile(Requests\UserProfileRequest $request,$id){
 
         $input = $request->all();
-
-        $image_model = UserImage::findOrFail($user_image_id);
+        $user_id = Auth::user()->id;
+        $user_image_id = UserImage::where('user_id',$user_id)->first();
+        $image_model = $user_image_id ? UserImage::findOrFail($user_image_id):new UserImage();
         $profile_model = UserProfile::findOrFail($id);
 
         DB::beginTransaction();
@@ -626,7 +627,7 @@ class UserController extends Controller
         $image = Input::file('image');
 
         if(count($image)>0){
-            $file_type_required = 'png,jpeg,jpg';
+            $file_type_required = 'png,gif,jpeg,jpg';
             $destinationPath = 'uploads/user_image/';
 
             $uploadfolder = 'uploads/';

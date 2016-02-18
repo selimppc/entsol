@@ -2,7 +2,8 @@
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         <div class="col-sm-12">
-            {!! Form::label('image', 'Image:', ['class' => 'control-label']) !!}
+            {!! Form::label('image', 'Profile Picture:', ['class' => 'control-label']) !!}
+            <p class="narration">System will allow these types of image(png,gif,jpeg,jpg Format) </p>
             @if(isset($model))
                 <img src="{{ URL::to($model->thumbnail) }}" width="100px" height="100px">
             @endif
