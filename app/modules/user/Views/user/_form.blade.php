@@ -45,7 +45,12 @@
             {!! Form::label('expire_date', 'Expire Date:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
             <div class="input-group date">
-                {!! Form::text('expire_date', Input::old('expire_date'), ['class' => 'form-control bs-datepicker-component','required','title'=>'select expire date']) !!}
+                @if(isset($data->expire_date))
+                    {!! Form::text('expire_date', Input::old('expire_date'), ['class' => 'form-control bs-datepicker-component','required','title'=>'select expire date']) !!}
+                @else
+                    {!! Form::text('expire_date', $days, ['class' => 'form-control bs-datepicker-component','required','title'=>'select expire date']) !!}
+                 @endif
+
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
             </div>
         </div>

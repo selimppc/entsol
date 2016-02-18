@@ -12,8 +12,12 @@ use App\Http\Controllers\Controller;
 
 class TestController extends Controller
 {
-    public function index()
+    public function date_test()
     {
-        echo "OK";
+        /*date_default_timezone_set("Asia/Dacca");*/
+        $i=30;
+        $add_days = +$i.' days';
+        $days= date('Y/m/d H:i:s', strtotime($add_days, strtotime(date('Y/m/d H:i:s'))));
+        print_r($days);exit;
     }
 }
