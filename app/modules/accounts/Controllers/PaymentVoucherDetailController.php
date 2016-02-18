@@ -91,6 +91,8 @@ class PaymentVoucherDetailController extends Controller
         /* Transaction Start Here */
         DB::beginTransaction();
         try {
+            $base_amount = $input['prime_amount']*$currency_data['exchange_rate'];
+
             $input_data = [
                 'voucher_head_id'=>$input['voucher_head_id'],
                 'voucher_number'=> $voucher_data['voucher_number'],
@@ -100,7 +102,7 @@ class PaymentVoucherDetailController extends Controller
                 'currency_id'=> $input['currency_id'],
                 'exchange_rate'=> $currency_data['exchange_rate'],
                 'prime_amount'=> $input['prime_amount'],
-                'base_amount'=> $input['prime_amount'],
+                'base_amount'=> $base_amount,
                 'branch_id'=> $input['branch_id'],
                 'note'=> $input['note'],
                 'status'=> $input['status'],
@@ -147,6 +149,8 @@ class PaymentVoucherDetailController extends Controller
         $currency_data = Currency::where('id',$input['currency_id'])->first();
         DB::beginTransaction();
         try {
+            $base_amount = $input['prime_amount']*$currency_data['exchange_rate'];
+
             $input_data = [
                 'voucher_head_id'=>$input['voucher_head_id'],
                 'voucher_number'=> $voucher_data['voucher_number'],
@@ -156,7 +160,7 @@ class PaymentVoucherDetailController extends Controller
                 'currency_id'=> $input['currency_id'],
                 'exchange_rate'=> $currency_data['exchange_rate'],
                 'prime_amount'=> $input['prime_amount'],
-                'base_amount'=> $input['prime_amount'],
+                'base_amount'=> $base_amount,
                 'branch_id'=> $input['branch_id'],
                 'note'=> $input['note'],
                 'status'=> $input['status'],

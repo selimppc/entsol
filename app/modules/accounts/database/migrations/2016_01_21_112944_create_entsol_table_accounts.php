@@ -37,7 +37,7 @@ class CreateEntsolTableAccounts extends Migration
             $table->string('code',64)->unique();
             $table->string('title',64)->unique();
             $table->text('description')->nullable();
-            $table->decimal('exchange_rate',20,2)->nullable();
+            $table->decimal('exchange_rate',20,6)->nullable();
             $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11)->nullable();
             $table->integer('updated_by', false, 11)->nullable();
@@ -57,7 +57,7 @@ class CreateEntsolTableAccounts extends Migration
             $table->string('title',64)->unique();
             $table->text('description')->nullable();
             $table->unsignedInteger('currency_id')->nullable();
-            $table->decimal('exchange_rate', 20,2)->nullable();
+            $table->decimal('exchange_rate', 20,6)->nullable();
             $table->string('contact_person', 64)->nullable();
             $table->text('billing_address')->nullable();
             $table->string('phone', 64)->nullable();
@@ -149,9 +149,9 @@ class CreateEntsolTableAccounts extends Migration
             $table->string('account_code', 64)->nullable();
             $table->string('sub_account_code', 64)->nullable();
             $table->unsignedInteger('currency_id')->nullable();
-            $table->decimal('exchange_rate', 20,2)->nullable();
-            $table->decimal('prime_amount', 20,2)->nullable();
-            $table->decimal('base_amount', 20,2)->nullable();
+            $table->decimal('exchange_rate', 20,6)->nullable();
+            $table->decimal('prime_amount', 20,6)->nullable();
+            $table->decimal('base_amount', 20,6)->nullable();
             $table->unsignedInteger('branch_id')->nullable();
             $table->text('note')->nullable();
             $table->enum('status',array('active','inactive','cancel'))->nullable();
@@ -198,9 +198,9 @@ class CreateEntsolTableAccounts extends Migration
             $table->unsignedInteger('year')->nullable();
             $table->unsignedInteger('period')->nullable();
             $table->unsignedInteger('currency_id')->nullable();
-            $table->decimal('exchange_rate', 20,2)->nullable();
-            $table->decimal('prime_amount', 20,2)->nullable();
-            $table->decimal('base_amount', 20,2)->nullable();
+            $table->decimal('exchange_rate', 20,6)->nullable();
+            $table->decimal('prime_amount', 20,6)->nullable();
+            $table->decimal('base_amount', 20,6)->nullable();
             $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11)->nullable();
             $table->integer('updated_by', false, 11)->nullable();
@@ -238,9 +238,9 @@ class CreateEntsolTableAccounts extends Migration
             $table->string('invoice_number', 64)->unique();
             $table->date('date')->nullable();
             $table->unsignedInteger('currency_id')->nullable();
-            $table->decimal('exchange_rate', 20,2)->nullable();
-            $table->decimal('prime_amount', 20,2)->nullable();
-            $table->decimal('base_amount', 20,2)->nullable();
+            $table->decimal('exchange_rate', 20,6)->nullable();
+            $table->decimal('prime_amount', 20,6)->nullable();
+            $table->decimal('base_amount', 20,6)->nullable();
             $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11)->nullable();
             $table->integer('updated_by', false, 11)->nullable();

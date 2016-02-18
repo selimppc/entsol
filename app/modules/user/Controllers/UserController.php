@@ -206,7 +206,12 @@ class UserController extends Controller
         $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
         $role =  [''=>'Select Role'] +  Role::lists('title','id')->all();
 
-        return view('user::user.index', ['model' => $model, 'pageTitle'=> $pageTitle,'branch_data'=>$branch_data,'role'=>$role]);
+        /*set 30days for expire-date to user*/
+        $i=30;
+        $add_days = +$i.' days';
+        $days= date('Y/m/d H:i:s', strtotime($add_days, strtotime(date('Y/m/d H:i:s'))));
+
+        return view('user::user.index', ['model' => $model, 'pageTitle'=> $pageTitle,'branch_data'=>$branch_data,'role'=>$role,'days'=>$days]);
     }
     /*public function getRoutes(){
         \Artisan::call('route:list');

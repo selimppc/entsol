@@ -159,7 +159,8 @@ class AuthController extends Controller
                         if ($attempt) {
                             Session::put('email', $user_data->email);
                             Session::flash('message', "Successfully  Logged In.");
-                            return redirect()->route('dashboard');
+                            #return redirect()->route('dashboard');
+                            return redirect()->intended('dashboard');
                         }else{
                             Session::flash('danger', "Password Incorrect.Please Try Again");
                         }
