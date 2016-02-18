@@ -30,7 +30,11 @@
                             </tr>
                             <tr>
                                 <th>Is Freedom Fighter</th>
-                                <td>{{ isset($data->fathers_name)?$data->fathers_name : ''}}</td>
+                                <td>
+                                    @if(isset($data->freedom_fighter))
+                                      {{ $data['freedom_fighter']==1 ? 'Yes' : 'No'}}
+                                    @endif
+                                </td>
                             </tr>
                             <tr>
                                 <th>Mother Occupation</th>
@@ -76,6 +80,17 @@
                                 <th>Permanent Address</th>
                                 <td>{{ isset($data->mothers_name)?$data->mothers_name:''}}</td>
                             </tr>
+                        <tr>
+                            <th>Signature</th>
+                                <td>
+                                @if(isset($data->signature))
+                                    <img src="{{ URL::to($data->signature) }}">
+                                @else
+                                    <img src="{{ URL::to('/assets/img/default.jpg') }}" width="80px" height="80px">
+                                @endif
+                                </td>
+
+                        </tr>
                     </table>
                         @else
                         {{'No data Found'}}

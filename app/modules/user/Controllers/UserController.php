@@ -671,6 +671,29 @@ class UserController extends Controller
 
         $input = $request->all();
 
+
+        $image = Input::file('signature');
+
+        if(count($image)>0) {
+
+            $rules = array('file' => 'required|mimes:png,gif,jpeg,txt,pdf,doc,jpg,docx,pptx,ppt,pub');
+            $validator = Validator::make(array('file' => $image), $rules);
+            if ($validator->passes()) {
+                // Files destination
+                $destinationPath = 'uploads/user_image/';
+
+                // Create folders if they don't exist
+                if ( !file_exists($destinationPath) ) {
+                    $oldmask = umask(0);  // helpful when used in linux server
+                    mkdir ($destinationPath, 0777);
+                }
+
+                $file_original_name = $image->getClientOriginalName();
+                $file_name = rand(11111, 99999) . $file_original_name;
+                $upload_success = $image->move($destinationPath, $file_name);
+                $input['signature'] = 'uploads/user_image/' . $file_name;
+            }
+        }
         /* Transaction Start Here */
         DB::beginTransaction();
         try {
@@ -700,6 +723,29 @@ class UserController extends Controller
         $input = $request->all();
 
         $model= UserMeta::findOrFail($id);
+
+        $image = Input::file('signature');
+
+        if(count($image)>0) {
+
+            $rules = array('file' => 'required|mimes:png,gif,jpeg,txt,pdf,doc,jpg,docx,pptx,ppt,pub');
+            $validator = Validator::make(array('file' => $image), $rules);
+            if ($validator->passes()) {
+                // Files destination
+                $destinationPath = 'uploads/user_image/';
+
+                // Create folders if they don't exist
+                if ( !file_exists($destinationPath) ) {
+                    $oldmask = umask(0);  // helpful when used in linux server
+                    mkdir ($destinationPath, 0777);
+                }
+
+                $file_original_name = $image->getClientOriginalName();
+                $file_name = rand(11111, 99999) . $file_original_name;
+                $upload_success = $image->move($destinationPath, $file_name);
+                $input['signature'] = 'uploads/user_image/' . $file_name;
+            }
+        }
         /* Transaction Start Here */
         DB::beginTransaction();
         try {
@@ -760,8 +806,8 @@ class UserController extends Controller
     }
 
     public function image_upload($image,$file_type_required,$destinationPath){
-        if ($image != '') {
 
+        if ($image != '') {
             $img_name = ($_FILES['image']['name']);
             $random_number = rand(111, 999);
 

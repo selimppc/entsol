@@ -44,7 +44,8 @@
         <div class="col-sm-6">
             {!! Form::label('zip_code', 'Zip Code') !!}
             <small class="required">(Required)</small>
-            {!! Form::text('zip_code', Input::old('zip_code'),array('class' => 'form-control','required')) !!}
+            {!! Form::text('zip_code', Input::old('zip_code'),array('id'=>'zip-code','class' => 'form-control','required')) !!}
+            <span id='message'></span>
         </div>
     </div>
 </div>
@@ -59,13 +60,14 @@
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
             </div>
         </div>
+
         <div class="col-sm-6">
             {!! Form::label('gender', 'Gender:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
             <div class="form-inline">
 
                 <div class="radio">
-                    {!! Form::radio('gender', 'male', (Input::old('gender') == 'male'), array('id'=>'male', 'class'=>'radio')) !!}
+                    {!! Form::radio('gender', 'male', (Input::old('gender') == 'male'), array('id'=>'male','class'=>'radio')) !!}
                     {!! Form::label('male', 'Male') !!}
                 </div>
                 <div class="radio radio-margin-left">
@@ -95,3 +97,15 @@
 </div>
 
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/datepicker.js') }}"></script>
+
+<script>
+        $('#zip-code').change( function () {
+            var code =$(this).val();
+            if (isNaN(code)) {
+                $('#message').html('Incorrect zip code!!').css('color', 'red');
+
+            } else
+                $('#message').html('');
+        });
+
+</script>
