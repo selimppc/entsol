@@ -10,7 +10,7 @@
                 {!! Form::text('role_id', 'No role available',['id'=>'role_id','class' => 'form-control','required','disabled']) !!}
             @endif
         </div>
-            <div class="col-sm-6">
+           {{-- <div class="col-sm-6">
                 {!! Form::label('permission_id', 'Permission :', ['class' => 'control-label']) !!}
                 <small class="required">(Required)</small>
                 @if(count($permission_id)>0)
@@ -18,18 +18,21 @@
                 @else
                     {!! Form::text('permission_id', 'No Permission available',['id'=>'permission_id','class' => 'form-control','required','disabled']) !!}
                 @endif
-            </div>
+            </div>--}}
         </div>
 </div>
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
         <div class="row">
-            {{--<div class="form-group col-sm-12">
+            <div class="form-group col-sm-12">
                 {!! Form::label('permission_id', 'Select Permission :', ['class' => 'control-label']) !!}
                 <div class="col-sm-12">
-                    {!! Form::radio('permission_id','1',$permission_id) !!}
-                        <input type="radio" value="Hello" name="permission_id">
+                    {!! Form::select('permission_id[]',$permission_id,null,['class' => 'form-control','id'=>'permission_list','required'=>'required','multiple' => 'multiple']) !!}
+                   {{-- @foreach ( $permission_id as $permissions )
+                        {!! Form::label($permissions,  $permissions) !!}
+                        {!! Form::checkbox( 'permission_id[]',$permissions,['id' => $permissions]) !!}
+                    @endforeach--}}
                 </div>
-            </div>--}}
+            </div>
             <div class="col-sm-6">
                 {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
                 <small class="required">(Required)</small>
@@ -53,3 +56,8 @@
     {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save permission role information']) !!}
     <a href="{{route('index-permission-role')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
 </div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.bootstrap-duallistbox.js') }}"></script>
+<script type="text/javascript">
+    $("#permission_list").bootstrapDualListbox();
+</script>

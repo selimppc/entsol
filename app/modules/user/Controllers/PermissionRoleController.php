@@ -28,28 +28,33 @@ class PermissionRoleController extends Controller
     public function index()
     {
         $pageTitle = "Permission Role List";
-        $title = Input::get('title');
+        $role_name = Input::get('role_name');
         $data = PermissionRole::where('status', '!=', 'cancel')->orderBy('id', 'DESC')->paginate(30);
-        $permission_id = [''=>'Select Permission'] + Permission::lists('title','id')->all();
+        $permission_id = Permission::lists('title','id')->all();
         $role_id = [''=>'Select Role'] + Role::lists('title','id')->all();
         return view('user::permission_role.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'permission_id'=>$permission_id,'role_id'=>$role_id]);
     }
 
     public function store(Requests\PermissionRoleRequest $request){
         $input = $request->all();
-
-        /* Transaction Start Here */
-        DB::beginTransaction();
-        try {
-            PermissionRole::create($input);
-            DB::commit();
-            Session::flash('message', 'Successfully added!');
-        } catch (\Exception $e) {
-            //If there are any exceptions, rollback the transaction`
-            DB::rollback();
-            Session::flash('danger', $e->getMessage());
+        $permission_id = $input['permission_id'];
+        foreach ($permission_id as $p_id) {
+            $model = new PermissionRole;
+            $model->role_id = $input['role_id'];
+            $model->permission_id = $p_id;
+            $model->status = $input['status'];
+            /* Transaction Start Here */
+            DB::beginTransaction();
+            try {
+                $model->save();
+                DB::commit();
+                Session::flash('message', 'Successfully added!');
+            } catch (\Exception $e) {
+                //If there are any exceptions, rollback the transaction`
+                DB::rollback();
+                Session::flash('danger', $e->getMessage());
+            }
         }
-
         return redirect()->route('index-permission-role');
     }
     /**
@@ -77,7 +82,7 @@ class PermissionRoleController extends Controller
         $pageTitle = 'Update Permission Informations';
         $data = PermissionRole::where('id',$id)->first();
         $permission_id = Permission::lists('title','id');
-        $role_id = [''=>'Select Permission'] + Role::lists('title','id')->all();
+        $role_id = [''=>'Select Role'] + Role::lists('title','id')->all();
         return view('user::permission_role.update', ['data' => $data, 'pageTitle'=> $pageTitle, 'permission_id' => $permission_id, 'role_id'=>$role_id]);
     }
 
@@ -119,12 +124,7 @@ class PermissionRoleController extends Controller
 
         DB::beginTransaction();
         try {
-            if($model->status =='active'){
-                $model->status = 'cancel';
-            }else{
-                $model->status = 'active';
-            }
-            $model->save();
+            $model->delete();
             DB::commit();
             Session::flash('message', "Successfully Deleted.");
 

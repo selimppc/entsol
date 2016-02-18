@@ -50,31 +50,31 @@ Route::any('route-in-permission', [
 
 //permission role route---------------------
 Route::any('index-permission-role', [
-    'middleware' => 'acl_access:index-permission-role',
+    //'middleware' => 'acl_access:index-permission-role',
     'as' => 'index-permission-role',
     'uses' => 'PermissionRoleController@index'
 ]);
 
 Route::any('store-permission-role', [
-    'middleware' => 'acl_access:store-permission-role',
+    //'middleware' => 'acl_access:store-permission-role',
     'as' => 'store-permission-role',
     'uses' => 'PermissionRoleController@store'
 ]);
 
 Route::any('view-permission-role/{id}', [
-    'middleware' => 'acl_access:view-permission-role/{id}',
+    //'middleware' => 'acl_access:view-permission-role/{id}',
     'as' => 'view-permission-role',
     'uses' => 'PermissionRoleController@show'
 ]);
 
 Route::any('edit-permission-role/{id}', [
-    'middleware' => 'acl_access:edit-permission-role/{id}',
+    //'middleware' => 'acl_access:edit-permission-role/{id}',
     'as' => 'edit-permission-role',
     'uses' => 'PermissionRoleController@edit'
 ]);
 
 Route::any('update-permission-role/{id}', [
-    'middleware' => 'acl_access:update-permission-role/{id}',
+    //'middleware' => 'acl_access:update-permission-role/{id}',
     'as' => 'update-permission-role',
     'uses' => 'PermissionRoleController@update'
 ]);

@@ -19,16 +19,17 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {{--{!! Form::open(['method' =>'GET','url'=>'/index-permission-role']) !!}
+                {!! Form::open(['method' =>'GET','url'=>'/index-permission-role']) !!}
                 <div id="index-search">
                     <div class="col-sm-3">
-                        {!! Form::text('title',@Input::get('title')? Input::get('title') : null,['class' => 'form-control','placeholder'=>'type title', 'title'=>'type your require permission "title", example :: Main, then click "search" button']) !!}
+                        {!! Form::text('role_name',@Input::get('role_name')? Input::get('role_name') : null,['class' => 'form-control','placeholder'=>'type role name', 'title'=>'type your require role "name", example :: Admin, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-2 filter-btn">
-                        {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button', 'data-placement'=>'right', 'data-content'=>'type code or title or both in specific field then click search button for required information')) !!}
+                        {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button', 'data-placement'=>'right', 'data-content'=>'type role name in specific field then click search button for required information')) !!}
                     </div>
                 </div>
-                {!! Form::close() !!}--}}
+                {!! Form::close() !!}
+                <p> &nbsp;</p>
                 <p> &nbsp;</p>
 
                 {{-------------- Filter :Ends -------------------------------------------}}
@@ -49,8 +50,8 @@
                                     <td>{{ucfirst($values->relPermission->title)}}</td>
                                     <td>
                                         <a href="{{ route('view-permission-role', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="view"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('edit-permission-role', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="update"><i class="fa fa-edit"></i></a>
-                                        {{--<a href="{{ route('delete-permission-role', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" data-placement="top" data-content="delete"><i class="fa fa-trash-o"></i></a>--}}
+                                        {{--<a href="{{ route('edit-permission-role', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="update"><i class="fa fa-edit"></i></a>--}}
+                                        <a href="{{ route('delete-permission-role', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" data-placement="top" data-content="delete"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
