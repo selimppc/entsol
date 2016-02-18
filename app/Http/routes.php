@@ -21,9 +21,14 @@
 ]);*/
 
 /*reset password route for first-time login */
-Route::any('reset-password', [
+Route::any('reset-password/{user_id}', [
     'as' => 'reset-password',
     'uses' => 'Auth\AuthController@reset_password'
+]);
+
+Route::any('update-new-password', [
+    'as' => 'update-new-password',
+    'uses' => 'Auth\AuthController@update_new_password'
 ]);
 
 Route::get('get-user-login', [
