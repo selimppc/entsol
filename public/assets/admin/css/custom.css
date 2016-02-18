@@ -96,3 +96,11 @@ body{
     margin-bottom: 10px;
     border-radius: 999999px;*/
 }
+
+.DT-per-page {
+    /* border-right: 1px solid #eee; */
+    /* margin-right: 10px; */
+    height: -30px;
+    /* padding-right: 10px; */
+    white-space: nowrap;
+}
