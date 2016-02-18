@@ -10,7 +10,7 @@
     <div class="col-sm-12">
         <div class="panel">
             <div class="panel-heading">
-                <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>we can show all permission in this page<br> and add new permission, update, delete from this page</em>">(?)</span>
+                <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>we can show all permission in this page</em>">(?)</span>
                 <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="{{ route('route-in-permission') }}" data-placement="left" data-content="click to entry all route_url in permission list">Add All Route in Permission list
                 </a>
             </div>
@@ -56,7 +56,7 @@
                         </tbody>
                     </table>
                 </div>
-                <span class="pull-left">{!! str_replace('/?', '?', $data->render()) !!} </span>
+                <span class="pull-right">{!! str_replace('/?', '?', $data->render()) !!} </span>
             </div>
         </div>
     </div>
