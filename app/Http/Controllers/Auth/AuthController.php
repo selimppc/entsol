@@ -73,6 +73,21 @@ class AuthController extends Controller
         ]);
     }
 
+    /*password reset before login by inactive user*/
+    public function reset_password(){
+        return view('user::reset_password._form');
+    }
+
+    public function getLogin()
+    {
+        if(Session::has('email')) {
+            return view('admin::layouts.dashboard');
+        }
+        else{
+            return view('user::signin._form');
+        }
+    }
+
     public function postLogin(Request $request)
     {
         $data = Input::all();
@@ -91,9 +106,11 @@ class AuthController extends Controller
 
                 if($user_data_exists){
                     $user_data = User::where($field, $data['email'])->first();
-                    #print_r($user_data);exit;
+
                     if($user_data->last_visit==Null){
-                       return redirect()->route('inactive-user-dashboard');
+                       #return redirect()->route('inactive-user-dashboard');
+                        Session::flash('info', "Your account is inactive.To activate your account you should reset your password.");
+                        return redirect()->route('reset-password');
                     }else{
                         $attempt = Auth::attempt([
                             $field => $request->get('email'),

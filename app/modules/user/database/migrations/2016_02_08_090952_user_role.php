@@ -75,7 +75,7 @@ class UserRole extends Migration
         Schema::create('permissions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title', 64)->nullable();
-            $table->string('slug',64)->nullable();
+            $table->string('route_url',64)->nullable();
             $table->text('description')->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);

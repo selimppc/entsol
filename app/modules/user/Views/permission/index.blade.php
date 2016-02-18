@@ -11,8 +11,7 @@
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>we can show all permission in this page<br> and add new permission, update, delete from this page</em>">(?)</span>
-                <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="left" data-content="click add permission button for new permission entry">
-                    <strong>Add Permission</strong>
+                <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="{{ route('route-in-permission') }}" data-placement="left" data-content="click to entry all route_url in permission list">Add All Route in Permission list
                 </a>
             </div>
 
@@ -46,9 +45,9 @@
                                 <tr class="gradeX">
                                     <td>{{ucfirst($values->title)}}</td>
                                     <td>
-                                        <a href="{{ route('view-permission', $values->slug) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="view"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('edit-permission', $values->slug) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="update"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('delete-permission', $values->slug) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" data-placement="top" data-content="delete"><i class="fa fa-trash-o"></i></a>
+                                        <a href="{{ route('view-permission', $values->route_url) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="view"><i class="fa fa-eye"></i></a>
+                                        {{--<a href="{{ route('edit-permission', $values->route_url) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="update"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('delete-permission', $values->route_url) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" data-placement="top" data-content="delete"><i class="fa fa-trash-o"></i></a>--}}
                                     </td>
                                 </tr>
                             @endforeach

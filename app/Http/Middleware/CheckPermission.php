@@ -21,8 +21,15 @@ class CheckPermission
             If($request->user()->can_access($permission)){
                 return $next($request);
             }else{
-                return response('Unauthorized.', 401);
+                #return response('Unauthorized.', 401);
                 #return $next($permission, 401);
+
+                return response([
+                    'error' => [
+                        'code' => 'INSUFFICIENT_ROLE',
+                        'description' => 'You are not authorized to access this resource.'
+                    ]
+                ], 401);
             }
         }
         //return redirect()->route('dashboard');

@@ -87,11 +87,6 @@ Route::any('signup', [
     'uses' => 'UserController@store_signup_info'
 ]);
 
-Route::get('get-user-login', [
-    'as' => 'get-user-login',
-    'uses' => 'UserController@getLogin'
-]);
-
 Route::get('user-logout', [
     'as' => 'user-logout',
     'uses' => 'UserController@logout'
@@ -236,5 +231,5 @@ Route::any('update-profile-image/{user_image_id}', [
     'uses' => 'UserController@update_profile_image'
 ]);
 
-    
+
 });

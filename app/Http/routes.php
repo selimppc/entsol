@@ -15,9 +15,20 @@
     return view('welcome');
 });*/
 
-Route::any('inactive-user', [
+/*Route::any('inactive-user', [
     'as' => 'inactive-user',
     'uses' => 'UserController@postLogin'
+]);*/
+
+/*reset password route for first-time login */
+Route::any('reset-password', [
+    'as' => 'reset-password',
+    'uses' => 'Auth\AuthController@reset_password'
+]);
+
+Route::get('get-user-login', [
+    'as' => 'get-user-login',
+    'uses' => 'Auth\AuthController@getLogin'
 ]);
 
 Route::any('post-user-login', [

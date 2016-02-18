@@ -29,7 +29,7 @@ class Permission extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $fillable = [
-        'title','slug','description'
+        'title','route_url','description'
     ];
 
     /**

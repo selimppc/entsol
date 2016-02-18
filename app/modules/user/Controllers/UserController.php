@@ -175,16 +175,6 @@ class UserController extends Controller
 //            return redirect()->back();
     }
 
-    public function getLogin()
-    {
-       if(Session::has('email')) {
-           return view('admin::layouts.dashboard');
-        }
-        else{
-            return view('user::signin._form');
-      }
-    }
-
     public function logout() {
         #exit('43324');
         Auth::logout();
@@ -255,6 +245,7 @@ class UserController extends Controller
     public function add_user(Requests\UserRequest $request){
 
         $input = $request->all();
+        date_default_timezone_set("Asia/Dacca");
         /* Transaction Start Here */
         DB::beginTransaction();
         try {
@@ -305,7 +296,7 @@ class UserController extends Controller
     {
         $pageTitle = 'Edit User Information';
 
-        $data = User::findOrFail($id);
+        $data = User::with('relBranch')->findOrFail($id);
 
         $branch_data =  Branch::lists('title','id');
         $role =  Role::lists('title','id');
