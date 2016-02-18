@@ -40,36 +40,9 @@
             </ul>
         </li>
 
-
-        <li class="mm-dropdown">
-            <a href="#"><i class="menu-icon fa fa-user-md"></i><span class="mm-text">User</span></a>
-            <ul>
-                <li>
-                    <a tabindex="-1" href="{{route('user-list')}}"><span class="mm-text">User List</span></a>
-                </li>
-                <li>
-                    <a tabindex="-1" href="{{route('role')}}"><span class="mm-text">Role</span></a>
-                </li>
-                <li>
-                    <a tabindex="-1" href="{{route('index-role-user')}}"><span class="mm-text">Role User</span></a>
-                </li>
-                <li>
-                    <a tabindex="-1" href="{{route('index-permission')}}"><span class="mm-text">Permission</span></a>
-                </li>
-                <li>
-                    <a tabindex="-1" href="{{route('index-permission-role')}}"><span class="mm-text">Permission Role</span></a>
-                </li>
-                <li>
-                    <a tabindex="-1" href="{{route('create-sign-up')}}"><span class="mm-text">Sign Up</span></a>
-                </li>
-                <li>
-                    <a tabindex="-1" href="{{route('get-user-login')}}"><span class="mm-text">Sign In</span></a>
-                </li>
-                <li>
-                    <a tabindex="-1" href="{{route('create-user-info')}}"><span class="mm-text">Profile</span></a>
-                </li>
-            </ul>
-        </li>
+        @if(file_exists('/var/www/html/entsol/app/modules/user/Views/layouts/user_sidebar.blade.php'))
+            @include('user::layouts.user_sidebar');
+        @endif
 
         <li class="mm-dropdown">
             <a href="#"><i class="menu-icon fa fa-columns"></i><span class="mm-text">Master Setup </span></a>
