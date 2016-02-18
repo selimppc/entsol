@@ -133,7 +133,7 @@ class VoucherDetailController extends Controller
                 'currency_id'=> $input['currency_id'],
                 'exchange_rate'=> $currency_data['exchange_rate'],
                 'prime_amount'=> $input['prime_amount'],
-                'base_amount'=> $input['prime_amount'],
+                'base_amount'=> ($input['prime_amount']*$currency_data['exchange_rate']),
                 'branch_id'=> $input['branch_id'],
                 'note'=> $input['note'],
                 'status'=> $input['status'],
