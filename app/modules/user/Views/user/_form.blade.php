@@ -24,7 +24,12 @@
         <div class="col-sm-6">
             {!! Form::label('branch_id', 'Branch:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::Select('branch_id', $branch_data, Input::old('branch_id'),['class' => 'form-control','required','title'=>'select branch name']) !!}
+            @if(isset($data->branch_id))
+                {!! Form::text('branch_id',isset($data->relBranch->title)?$data->relBranch->title:'' ,['class' => 'form-control','required','title'=>'select branch name','readonly']) !!}
+            @else
+                {!! Form::Select('branch_id', $branch_data, Input::old('branch_id'),['class' => 'form-control','required','title'=>'select branch name']) !!}
+            @endif
+
         </div>
     </div>
 </div>
