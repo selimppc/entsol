@@ -36,7 +36,7 @@
                         <thead>
                         <tr>
                             <th> Title </th>
-                            <th> Action &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="view : click for details informations<br>update : click for update informations<br>delete : click for delete informations">(?)</span></th>
+                            <th> Action &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="view : click for details informations">(?)</span></th>
                         </tr>
                         </thead>
                         <tbody>
