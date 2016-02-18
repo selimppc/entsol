@@ -158,23 +158,21 @@ class PermissionController extends Controller
         foreach ($routeCollection as $value) {
             $routes_list[] = Str::lower($value->getPath());
         }
-        $permission = Permission::get()->toArray();
         foreach ($routes_list as $route) {
-            $model = new Permission();
-            foreach ($permission as $perm) {
-                if($route != $perm['route_url']){
-                    $model->title = $route;
-                    $model->route_url = $route;
-                    DB::beginTransaction();
-                    try {
-                        $model->save();
-                        DB::commit();
-                        Session::flash('message', "Successfully Add all route_url in permission table.");
+            $permission_exists = Permission::where('route_url','=',$route)->exists();
+            if(!$permission_exists){
+                $model = new Permission();
+                $model->title = $route;
+                $model->route_url = $route;
+                DB::beginTransaction();
+                try {
+                    $model->save();
+                    DB::commit();
+                    Session::flash('message', "Successfully Add all route_url in permission table.");
 
-                    } catch(\Exception $e) {
-                        DB::rollback();
-                        Session::flash('danger',$e->getMessage());
-                    }
+                } catch(\Exception $e) {
+                    DB::rollback();
+                    Session::flash('danger',$e->getMessage());
                 }
             }
         }
