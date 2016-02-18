@@ -92,7 +92,9 @@
 <script type="text/javascript">
     /*--------data table-----------*/
     init.push(function () {
-        $('#jq-datatables-example').dataTable();
+        $('#jq-datatables-example').dataTable({
+            "aaSorting": [[ 0, "desc" ]]
+        });
         $('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Filter...');
     });
 
