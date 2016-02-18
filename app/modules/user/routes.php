@@ -188,13 +188,13 @@ Route::any('delete-role/{slug}', [
     ]);
 
     Route::any('create-user-info', [
-//        'middleware' => 'acl_access:create-user-info',
+        'middleware' => 'acl_access:create-user-info',
         'as' => 'create-user-info',
         'uses' => 'UserController@create_user_info'
     ]);
 
     Route::any('user-info/{value}', [
-//        'middleware' => 'acl_access:user-info/{value}',
+       'middleware' => 'acl_access:user-info/{value}',
         'as' => 'user-info',
         'uses' => 'UserController@user_info'
     ]);
@@ -206,37 +206,37 @@ Route::any('delete-role/{slug}', [
     ]);
 
     Route::any('store-user-profile', [
-//        'middleware' => 'acl_access:store-user-profile',
+        'middleware' => 'acl_access:store-user-profile',
         'as' => 'store-user-profile',
         'uses' => 'UserController@store_user_profile'
     ]);
 
     Route::any('edit-user-profile/{id}', [
-//        'middleware' => 'acl_access:edit-user-profile/{id}',
+        'middleware' => 'acl_access:edit-user-profile/{id}',
         'as' => 'edit-user-profile',
         'uses' => 'UserController@edit_user_profile'
     ]);
 
     Route::any('update-user-profile/{id}', [
-//        'middleware' => 'acl_access:update-user-profile/{id}/{user_image_id}',
+        'middleware' => 'acl_access:update-user-profile/{id}/{user_image_id}',
         'as' => 'update-user-profile',
         'uses' => 'UserController@update_user_profile'
     ]);
 
     Route::any('store-meta-data', [
-//        'middleware' => 'acl_access:store-meta-data',
+        'middleware' => 'acl_access:store-meta-data',
         'as' => 'store-meta-data',
         'uses' => 'UserController@store_meta_data'
     ]);
 
     Route::any('edit-meta-data/{id}', [
-//        'middleware' => 'acl_access:edit-meta-data/{id}',
+        'middleware' => 'acl_access:edit-meta-data/{id}',
         'as' => 'edit-meta-data',
         'uses' => 'UserController@edit_meta_data'
     ]);
 
     Route::any('update-meta-data/{id}', [
-//        'middleware' => 'acl_access:update-meta-data/{id}',
+        'middleware' => 'acl_access:update-meta-data/{id}',
         'as' => 'update-meta-data',
         'uses' => 'UserController@update_meta_data'
     ]);
@@ -255,18 +255,18 @@ Route::any('update-password', [
 ]);
 
 Route::any('store-profile-image', [
-//    'middleware' => 'acl_access:store-profile-image',
+    'middleware' => 'acl_access:store-profile-image',
     'as' => 'store-profile-image',
     'uses' => 'UserController@store_profile_image'
 ]);
 
 Route::any('edit-profile-image/{user_image_id}', [
-//    'middleware' => 'acl_access:edit-profile-image/{user_image_id}',
+    'middleware' => 'acl_access:edit-profile-image/{user_image_id}',
     'as' => 'edit-profile-image',
     'uses' => 'UserController@edit_profile_image'
 ]);
 Route::any('update-profile-image/{user_image_id}', [
-//    'middleware' => 'acl_access:update-profile-image/{user_image_id}',
+    'middleware' => 'acl_access:update-profile-image/{user_image_id}',
     'as' => 'update-profile-image',
     'uses' => 'UserController@update_profile_image'
 ]);
