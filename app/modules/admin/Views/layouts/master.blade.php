@@ -93,7 +93,8 @@
     /*--------data table-----------*/
     init.push(function () {
         $('#jq-datatables-example').dataTable({
-            "aaSorting": [[ 0, "desc" ]]
+            "aaSorting": [[ 0, "desc" ]],
+            "bPaginate": false,
         });
         $('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Filter...');
     });
