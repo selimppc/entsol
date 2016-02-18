@@ -236,5 +236,5 @@ Route::any('update-profile-image/{user_image_id}', [
     'uses' => 'UserController@update_profile_image'
 ]);
 
-    
+
 });
