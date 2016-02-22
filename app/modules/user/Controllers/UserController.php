@@ -230,7 +230,7 @@ class UserController extends Controller
             $username = Input::get('username');
             $status = Input::get('status');
 
-            $model = $model->with('relBranch','relRole');
+            $model = $model->with('relBranch','relRoleInfo');
             if (isset($branch_id) && !empty($branch_id)) $model->where('user.branch_id', '=', $branch_id);
             if (isset($role_id) && !empty($role_id)) $model->where('user.role_id', '=', $role_id);
             if (isset($username) && !empty($username)) $model->where('user.username', '=', $username);
@@ -238,13 +238,18 @@ class UserController extends Controller
 
             $model = $model->where('status','!=','cancel')->paginate(30);
         }else{
-            $model = $model->with('relBranch','relRole')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(30);
+            $model = $model->with('relBranch','relRoleInfo')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(30);
         }
+
+        $i=30;
+        $add_days = +$i.' days';
+        $days= date('Y/m/d H:i:s', strtotime($add_days, strtotime(date('Y/m/d H:i:s'))));
 
         $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
         $role =  [''=>'Select Role'] +  Role::lists('title','id')->all();
 
-        return view('user::user.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model,'branch_data'=>$branch_data,'role'=>$role]);
+
+        return view('user::user.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model,'branch_data'=>$branch_data,'role'=>$role,'days'=>$days]);
     }
 
     public function add_user(Requests\UserRequest $request){
