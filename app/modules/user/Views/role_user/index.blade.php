@@ -12,7 +12,10 @@
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>we can show all user role in this page<br> and add new user role, update from this page</em>">(?)</span>
                 <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="left" data-content="click add user role button for select user and give new role">
-                    <strong>Add User Role</strong>
+                    <strong>Add New User Role</strong>
+                </a>
+                <a class="btn btn-primary btn-xs pull-right pop" href="{{route('role')}}" data-placement="left" data-content="Back to role page" style="margin-right: 10px;">
+                    <strong>Back</strong>
                 </a>
             </div>
 

@@ -13,6 +13,8 @@
                 <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>we can show all permission in this page</em>">(?)</span>
                 <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="{{ route('route-in-permission') }}" data-placement="left" data-content="click to entry all route_url in permission list">Add All Route in Permission list
                 </a>
+                <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="{{ route('index-permission-role') }}" data-placement="left" data-content="click to add or change permission role" style="margin-right: 10px;">Permission in Role Page
+                </a>
             </div>
 
             <div class="panel-body">
