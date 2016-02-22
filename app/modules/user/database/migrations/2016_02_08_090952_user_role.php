@@ -64,7 +64,8 @@ class UserRole extends Migration
             $table->integer('updated_by', false, 11);
             $table->timestamps();
             $table->engine = 'InnoDB';
-            $table->unique(['role_id', 'user_id']);
+            //$table->unique(['role_id', 'user_id']);
+            $table->unsignedInteger("role_id")->unique("user_id");
         });
         Schema::table('role_user', function($table) {
             $table->foreign('role_id')->references('id')->on('role_user');
