@@ -5,7 +5,7 @@
             {!! Form::label('role_id', 'Role :', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
             @if(count($role_id)>0)
-                {!! Form::select('role_id', $role_id,Input::old('role_id'),['class' => 'form-control','autofocus','required','title'=>'select  role']) !!}
+                {!! Form::select('role_id', $role_id,Input::old('role_id'),['class' => 'form-control', 'style'=>'text-transform:capitalize','autofocus','required','title'=>'select  role']) !!}
             @else
                 {!! Form::text('role_id', 'No role available',['id'=>'role_id','class' => 'form-control','autofocus','required','disabled']) !!}
             @endif
@@ -13,7 +13,7 @@
             {!! Form::label('user_id', 'User :', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
             @if(count($user_id)>0)
-                {!! Form::select('user_id', $user_id,Input::old('user_id'),['class' => 'form-control','required','title'=>'select  user']) !!}
+                {!! Form::select('user_id', $user_id,Input::old('user_id'),['class' => 'form-control', 'style'=>'text-transform:capitalize','required','title'=>'select  user']) !!}
             @else
                 {!! Form::text('user_id', 'No User available',['id'=>'user_id','class' => 'form-control','required','disabled']) !!}
             @endif

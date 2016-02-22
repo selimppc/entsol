@@ -99,14 +99,20 @@
         });
         $('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Filter...');
     });
-
     init.push(function () {
         $('.bs-datepicker-component').datepicker();
     });
-
     init.push(function () {
         // Javascript code here
     })
     window.LanderApp.start(init);
+
+    //sidebar open in menu items in nav;
+    var url = window.location;
+    // Will only work if string in href matches with location
+    $('ul.navigation li ul li a[href="'+ url +'"]').parent().parent().parent().addClass('open');
+    $('ul.navigation li ul li a[href="'+ url +'"]').addClass('active');
+
+
 
 </script>
