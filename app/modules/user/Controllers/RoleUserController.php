@@ -28,7 +28,7 @@ class RoleUserController extends Controller
      */
     public function index()
     {
-        $pageTitle = "Role User List";
+        $pageTitle = "Role User Informations";
         $title = Input::get('title');
         $data = RoleUser::where('status', '!=', 'cancel')->orderBy('id', 'DESC')->paginate(30);
         $user_id = [''=>'Select User'] + User::lists('username','id')->all();
@@ -61,7 +61,7 @@ class RoleUserController extends Controller
      */
     public function show($id)
     {
-        $pageTitle = 'View Role User';
+        $pageTitle = 'View Role User Informations';
         $data = RoleUser::where('id',$id)->first();
 
         return view('user::role_user.view', ['data' => $data, 'pageTitle'=> $pageTitle]);

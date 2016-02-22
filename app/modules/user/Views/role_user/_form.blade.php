@@ -5,9 +5,9 @@
             {!! Form::label('role_id', 'Role :', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
             @if(count($role_id)>0)
-                {!! Form::select('role_id', $role_id,Input::old('role_id'),['class' => 'form-control','required','title'=>'select  role']) !!}
+                {!! Form::select('role_id', $role_id,Input::old('role_id'),['class' => 'form-control','autofocus','required','title'=>'select  role']) !!}
             @else
-                {!! Form::text('role_id', 'No role available',['id'=>'role_id','class' => 'form-control','required','disabled']) !!}
+                {!! Form::text('role_id', 'No role available',['id'=>'role_id','class' => 'form-control','autofocus','required','disabled']) !!}
             @endif
 
             {!! Form::label('user_id', 'User :', ['class' => 'control-label']) !!}
@@ -37,6 +37,6 @@
 <p> &nbsp; </p>
 
 <div class="footer-form-margin-btn">
-    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save user role information']) !!}
+    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save role user information']) !!}
     <a href="{{route('index-role-user')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
 </div>

@@ -31,7 +31,8 @@ class RoleUserRequest extends Request
     public function rules()
     {
         return [
-            //'title' => 'required|max:64',
+            'role_id'   => 'required|unique:role_user,role_id,',
+            'user_id'   => 'required|unique:role_user,user_id,',
         ];
     }
 }
