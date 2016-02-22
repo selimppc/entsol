@@ -9,7 +9,8 @@
 namespace App\Http\Requests;
 
 
-use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Input;
 
 class UserRequest extends Request
 {
