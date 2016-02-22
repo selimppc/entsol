@@ -14,9 +14,12 @@
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>we can show all permission in this page<br> and add new permission, update from this page</em>">(?)</span>
                 <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="left" data-content="click add permission role button for new permission of a role">
-                    <strong>Add Permission Role</strong>
+                    <strong>Add New Permission Role</strong>
                 </a>
                 <input type="submit" id="deleteBatch" value="Delete Selected Permission Role" style="display: none;">
+                <a class="btn btn-primary btn-xs pull-right pop" href="{{route('index-permission')}}" data-placement="left" data-content="Back to Permission Page" style="margin-right: 10px;">
+                    <strong>Back</strong>
+                </a>
             </div>
 
 

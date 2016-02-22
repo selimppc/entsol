@@ -8,22 +8,22 @@
         <table id="" class="table table-bordered table-hover table-striped">
             <tr>
                 <th class="col-lg-4">Role</th>
-                <td>{{ isset($data->relRole->title)?$data->relRole->title:''}}</td>
+                <td>{{ isset($data->relRole->title)?ucfirst($data->relRole->title):''}}</td>
             </tr>
             <tr>
                 <th class="col-lg-4">User</th>
-                <td>{{ isset($data->relUser->username)?$data->relUser->username:''}}</td>
+                <td>{{ isset($data->relUser->username)?ucfirst($data->relUser->username):''}}</td>
             </tr>
             <tr>
                 <th class="col-lg-4">Status</th>
-                <td>{{ isset($data->status)?$data->status:''}}</td>
+                <td>{{ isset($data->status)?ucfirst($data->status):''}}</td>
             </tr>
         </table>
     </div>
 </div>
 
 <div class="modal-footer">
-    <a href="{{route('index-permission-role')}}" class="btn btn-default" type="button" data-placement="top" data-content="click close button for close this entry form"> Close </a>
+    <a href="{{ URL::previous()}}" class="btn btn-default" type="button" data-placement="top" data-content="click close button for close this entry form"> Close </a>
 </div>
 
 
