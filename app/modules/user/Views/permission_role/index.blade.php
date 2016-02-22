@@ -16,7 +16,7 @@
                 <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="left" data-content="click add permission role button for new permission of a role">
                     <strong>Add Permission Role</strong>
                 </a>
-                <input type="submit" value="Delete Selected Permission Role">
+                <input type="submit" id="deleteBatch" value="Delete Selected Permission Role" style="display: none;">
             </div>
 
 
@@ -106,6 +106,17 @@
 
     $("#checkAll").change(function () {
         $("input:checkbox").prop('checked', $(this).prop("checked"));
+        if($(this).prop("checked") == true){
+            $("#deleteBatch").show();
+        }
+        else{
+            $("#deleteBatch").hide();
+        }
+    });
+    $("table input:checkbox").on('change',function(){
+        if($(this).prop("checked") == true){
+            $("#deleteBatch").show();
+        }
     });
 </script>
 
