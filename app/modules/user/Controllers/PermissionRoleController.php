@@ -120,17 +120,34 @@ class PermissionRoleController extends Controller
      */
     public function destroy($id)
     {
-        $model = PermissionRole::findOrFail($id);
+        if($pr_ids = Input::get('pr_ids')){
+            print_r($pr_ids);
+            foreach ($pr_ids as $id) {
+                $model = PermissionRole::findOrFail($id);
+                DB::beginTransaction();
+                try {
+                    $model->delete();
+                    DB::commit();
+                    Session::flash('message', "Successfully Deleted.");
 
-        DB::beginTransaction();
-        try {
-            $model->delete();
-            DB::commit();
-            Session::flash('message', "Successfully Deleted.");
+                } catch(\Exception $e) {
+                    DB::rollback();
+                    Session::flash('danger',$e->getMessage());
+                }
+            }
+        }else{
+            $model = PermissionRole::findOrFail($id);
 
-        } catch(\Exception $e) {
-            DB::rollback();
-            Session::flash('danger',$e->getMessage());
+            DB::beginTransaction();
+            try {
+                $model->delete();
+                DB::commit();
+                Session::flash('message', "Successfully Deleted.");
+
+            } catch(\Exception $e) {
+                DB::rollback();
+                Session::flash('danger',$e->getMessage());
+            }
         }
         return redirect()->route('index-permission-role');
     }

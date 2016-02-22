@@ -9,6 +9,9 @@
 namespace App\Http\Requests;
 
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Input;
+
 class UserRequest extends Request
 {
 
@@ -29,8 +32,27 @@ class UserRequest extends Request
      */
     public function rules()
     {
-        return [
-            'email' => 'required|email|unique:user',
-        ];
+
+        $id = Request::input('id')?Request::input('id'):'';
+
+//print_r($id);exit;
+
+        if($id == null)
+        {
+
+            return [
+                'email'   => 'required|unique:user,email,' . $id,
+                'username'   => 'required|unique:user,username,' . $id
+            ];
+
+        }else{
+            return [
+
+
+            ];
+
+        }
+
+
     }
 }

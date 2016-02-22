@@ -286,7 +286,7 @@ class UserController extends Controller
     public function show_user($id)
     {
         $pageTitle = 'User Informations';
-        $data = User::with('relBranch','relRole')->where('id',$id)->first();
+        $data = User::with('relBranch','relRoleInfo')->where('id',$id)->first();
 #print_r($data);exit;
         return view('user::user.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
@@ -335,6 +335,7 @@ class UserController extends Controller
                 'expire_date'=> $input['expire_date'],
                 'status'=> $input['status'],
             ];
+            //print_r($input_data);exit;
             $model->update($input_data);
             DB::commit();
             Session::flash('message', "Successfully Updated");

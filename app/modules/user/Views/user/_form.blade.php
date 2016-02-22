@@ -3,7 +3,7 @@
         <div class="col-sm-6">
             {!! Form::label('username', 'UserName:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('username',Input::old('username'),['class' => 'form-control','placeholder'=>'User Name','required', 'title'=>'Enter User Name']) !!}
+            {!! Form::text('username',Input::old('username'),['class' => 'form-control','placeholder'=>'User Name','required','autofocus', 'title'=>'Enter User Name']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('email', 'Email Address:', ['class' => 'control-label']) !!}
@@ -40,7 +40,8 @@
             {!! Form::label('branch_id', 'Branch:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
             @if(isset($data->branch_id))
-                {!! Form::text('branch_id',isset($data->relBranch->title)?$data->relBranch->title:'' ,['class' => 'form-control','required','title'=>'select branch name','readonly']) !!}
+                {!! Form::text('branch_title',isset($data->relBranch->title)?$data->relBranch->title:'' ,['class' => 'form-control','required','title'=>'select branch name','readonly']) !!}
+                {!! Form::hidden('branch_id', $data->relBranch->id) !!}
             @else
                 {!! Form::Select('branch_id', $branch_data, Input::old('branch_id'),['class' => 'form-control','required','title'=>'select branch name']) !!}
             @endif

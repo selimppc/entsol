@@ -30,7 +30,7 @@ class RoleRequest extends Request
     public function rules()
     {
         return [
-            'title' => 'required',
+            'title'   => 'required|unique:role,title,',
             'slug' => 'unique:role',
         ];
     }

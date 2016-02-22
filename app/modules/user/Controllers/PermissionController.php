@@ -175,6 +175,9 @@ class PermissionController extends Controller
                     Session::flash('danger',$e->getMessage());
                 }
             }
+            else{
+                Session::flash('message', "All route already exists. No new route found");
+            }
         }
         return redirect()->route('index-permission');
     }
