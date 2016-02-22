@@ -11,14 +11,32 @@
 |
 */
 
-/*Route::get('/', function () {
+Route::get('welcome', function () {
     return view('welcome');
-});*/
+});
+
 
 /*Route::any('inactive-user', [
     'as' => 'inactive-user',
     'uses' => 'UserController@postLogin'
 ]);*/
+
+/*reset password route for first-time login */
+Route::any('reset-password/{user_id}', [
+    'as' => 'reset-password',
+    'uses' => 'Auth\AuthController@reset_password'
+]);
+
+Route::any('update-new-password', [
+    'as' => 'update-new-password',
+    'uses' => 'Auth\AuthController@update_new_password'
+]);
+
+/*Route::any('new-user-dashboard', [
+    'as' => 'new-user-dashboard',
+    'uses' => 'HomeController@dashboard'
+]);*/
+
 
 Route::get('get-user-login', [
     'as' => 'get-user-login',
@@ -42,17 +60,6 @@ Route::any('/', [
 Route::any('dashboard', [
     'as' => 'dashboard',
     'uses' => 'HomeController@dashboard'
-]);
-
-/*reset password route for first-time login */
-Route::any('reset-password', [
-    'as' => 'reset-password',
-    'uses' => 'Auth\AuthController@reset_password'
-]);
-
-Route::any('update-new-password', [
-    'as' => 'update-new-password',
-    'uses' => 'Auth\AuthController@update_new_password'
 ]);
 
 Route::any('all_routes_uri', [
