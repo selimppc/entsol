@@ -104,3 +104,7 @@ body{
     /* padding-right: 10px; */
     white-space: nowrap;
 }
+
+.navigation a.active{
+    font-weight: bold;
+}
