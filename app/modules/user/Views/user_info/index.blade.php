@@ -108,7 +108,7 @@ account
                 }).done(function (data) {
                     $('#profile').html(data);
                 }).fail(function () {
-                    alert('Posts could not be loaded.');
+//                    alert('Posts could not be loaded.');
                     return false;
                 });
             });

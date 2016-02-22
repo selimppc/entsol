@@ -492,7 +492,8 @@ class UserController extends Controller
         $user_id = Auth::user()->id;
         $countryList = array('' => 'Please Select') + Country::lists('title', 'id')->all();
         $user_image = UserImage::where('user_id',$user_id)->first();
-//        $user_image_id = ($user_image->id)?$user_image->id:'';
+        #$user_image_id = ($user_image->id)?$user_image->id:'';
+
         return view('user::user_info.profile.update', ['pageTitle'=>$pageTitle,'data' => $data,'user_id'=>$user_id,'countryList'=>$countryList,'user_image'=>$user_image]);
     }
 
@@ -500,8 +501,9 @@ class UserController extends Controller
 
         $input = $request->all();
         $user_id = Auth::user()->id;
-        $user_image_id = UserImage::where('user_id',$user_id)->first();
-        $image_model = $user_image_id ? UserImage::findOrFail($user_image_id):new UserImage();
+
+//        print_r($user_image_id);exit;
+//        $image_model = $user_image_id ? UserImage::findOrFail($user_image_id):new UserImage();
         $profile_model = UserProfile::findOrFail($id);
 
         DB::beginTransaction();
@@ -548,7 +550,16 @@ class UserController extends Controller
             }
             DB::beginTransaction();
             try {
-                $image_model->update($input);
+//                $image_model = $user_image_id ? UserImage::findOrFail($user_image_id):new UserImage();
+                $user_image_exists = UserImage::where('user_id',$user_id)->exists();
+                if($user_image_exists){
+                    $user_image = UserImage::where('user_id',$user_id)->first();
+                    $image_model = UserImage::findOrFail($user_image['id']);
+                }else{
+                    $image_model = new UserImage();
+                }
+                
+                $image_model->fill($input)->save();
                 DB::commit();
                 Session::flash('message', "Successfully added");
             }
