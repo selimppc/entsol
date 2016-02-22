@@ -19,7 +19,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $pageTitle = "List of Role";
+        $pageTitle = "List of Role Informations";
         $data = Role::where('status','!=','cancel')->paginate(30);
         return view('user::role.index',['data'=>$data, 'pageTitle'=>$pageTitle]);
     }
@@ -59,7 +59,7 @@ class RoleController extends Controller
      */
     public function show($slug)
     {
-        $pageTitle = 'Details Of Role';
+        $pageTitle = 'View Role Informations';
         $data = Role::where('slug',$slug)->first();
         return view('user::role.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
@@ -72,7 +72,7 @@ class RoleController extends Controller
      */
     public function edit($slug)
     {
-        $pageTitle = "Role update";
+        $pageTitle = "Update Role Informations";
         $data = Role::where('slug',$slug)->first();
         return view('user::role.update', ['data' => $data,'pageTitle'=> $pageTitle]);
     }

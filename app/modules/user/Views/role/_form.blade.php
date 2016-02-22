@@ -2,10 +2,10 @@
     <div class="row">
 
             {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
-            {!! Form::text('title',Input::old('title'),['class' => 'form-control','placeholder'=>'Role Name','required', 'title'=>'Enter Role Name']) !!}
+            {!! Form::text('title',Input::old('title'),['class' => 'form-control','placeholder'=>'Role Name','required','autofocus', 'title'=>'Enter Role Name']) !!}
 
             {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
-            <small class="narration">(Open status Selected)</small>
+            <small class="narration">(Active status Selected)</small>
         {!! Form::Select('status',array('active'=>'Active','inactive'=>'Inactive'),Input::old('status'),['class'=>'form-control ','required']) !!}
 
     </div>

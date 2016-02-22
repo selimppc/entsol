@@ -39,7 +39,7 @@ class UserRequest extends Request
 
         if($id == null)
         {
-            
+
             return [
                 'email'   => 'required|unique:user,email,' . $id,
                 'username'   => 'required|unique:user,username,' . $id
