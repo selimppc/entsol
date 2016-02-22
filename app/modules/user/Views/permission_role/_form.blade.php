@@ -10,15 +10,6 @@
                 {!! Form::text('role_id', 'No role available',['id'=>'role_id','class' => 'form-control','required','disabled']) !!}
             @endif
         </div>
-           {{-- <div class="col-sm-6">
-                {!! Form::label('permission_id', 'Permission :', ['class' => 'control-label']) !!}
-                <small class="required">(Required)</small>
-                @if(count($permission_id)>0)
-                    {!! Form::select('permission_id', $permission_id,Input::old('permission_id'),['class' => 'form-control','required','title'=>'select  permission']) !!}
-                @else
-                    {!! Form::text('permission_id', 'No Permission available',['id'=>'permission_id','class' => 'form-control','required','disabled']) !!}
-                @endif
-            </div>--}}
         </div>
 </div>
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
@@ -27,10 +18,6 @@
                 {!! Form::label('permission_id', 'Select Permission :', ['class' => 'control-label']) !!}
                 <div class="col-sm-12">
                     {!! Form::select('permission_id[]',$permission_id,null,['class' => 'form-control','id'=>'permission_list','required'=>'required','multiple' => 'multiple']) !!}
-                   {{-- @foreach ( $permission_id as $permissions )
-                        {!! Form::label($permissions,  $permissions) !!}
-                        {!! Form::checkbox( 'permission_id[]',$permissions,['id' => $permissions]) !!}
-                    @endforeach--}}
                 </div>
             </div>
             <div class="col-sm-6">
@@ -40,15 +27,6 @@
             </div>
         </div>
 </div>
-{{--
-<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
-    <div class="row">
-        <div class="col-sm-12">
-            {!! Form::label('description', 'Description:', ['class' => 'control-label']) !!}
-            {!! Form::textarea('description', null, ['id'=>'description', 'class' => 'form-control','size' => '12x3','title'=>'enter descriptions about permission']) !!}
-        </div>
-    </div>
-</div>--}}
 
 <p> &nbsp; </p>
 
