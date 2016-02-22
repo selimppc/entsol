@@ -3,7 +3,7 @@
         <div class="col-sm-6">
             {!! Form::label('username', 'UserName:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('username',Input::old('username'),['class' => 'form-control','placeholder'=>'User Name','required', 'title'=>'Enter User Name']) !!}
+            {!! Form::text('username',Input::old('username'),['class' => 'form-control','placeholder'=>'User Name','required','autofocus', 'title'=>'Enter User Name']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('email', 'Email Address:', ['class' => 'control-label']) !!}

@@ -286,7 +286,7 @@ class UserController extends Controller
     public function show_user($id)
     {
         $pageTitle = 'User Informations';
-        $data = User::with('relBranch','relRole')->where('id',$id)->first();
+        $data = User::with('relBranch','relRoleInfo')->where('id',$id)->first();
 #print_r($data);exit;
         return view('user::user.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }

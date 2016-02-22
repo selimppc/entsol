@@ -9,6 +9,8 @@
 namespace App\Http\Requests;
 
 
+use Illuminate\Routing\Route;
+
 class UserRequest extends Request
 {
 
@@ -29,8 +31,10 @@ class UserRequest extends Request
      */
     public function rules()
     {
+        $email = Route::input('email')?Route::input('email'):'';
+
         return [
-            'email' => 'required|email|unique:user',
+            'email' => 'required|email|unique:user'.$email,
         ];
     }
 }
