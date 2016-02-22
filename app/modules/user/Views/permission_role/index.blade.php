@@ -6,7 +6,7 @@
 @section('content')
 
 <!-- form open for batch delete -->
-{!!  Form::open(['route' => ['delete-permission-role',$id = null]]) !!}
+{!!  Form::open(['route' => ['delete-permission-role']]) !!}
 <!-- page start-->
 <div class="row">
     <div class="col-sm-12">
@@ -16,6 +16,7 @@
                 <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="left" data-content="click add permission role button for new permission of a role">
                     <strong>Add Permission Role</strong>
                 </a>
+                <input type="submit" value="Delete Selected Permission Role">
             </div>
 
 
@@ -36,10 +37,10 @@
 
                 {{-------------- Filter :Ends -------------------------------------------}}
                 <div class="table-primary">
-                    <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
+                    <table id="jq-datatables-example" cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" >
                         <thead>
                         <tr>
-                            <th> Select <span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="Select checkbox for batch delete permission-role">(?)</span></th>
+                            <th><input type="checkbox" id="checkAll"></th>
                             <th> Role </th>
                             <th> Permission </th>
                             <th> Action &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="view : click for details information<br>update : click for update information">(?)</span></th>
@@ -49,12 +50,11 @@
                         @if(isset($data))
                             @foreach($data as $values)
                                 <tr class="gradeX">
-                                    <td><input type="checkbox" name="pr_ids[]"  class="myCheckbox" value="{{ $values->id }}"></td>
+                                    <td><input type="checkbox" name="pr_ids[]" value="{{ $values->id }}"></td>
                                     <td>{{ucfirst($values->relRole->title)}}</td>
                                     <td>{{ucfirst($values->relPermission->title)}}</td>
                                     <td>
                                         <a href="{{ route('view-permission-role', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="view"><i class="fa fa-eye"></i></a>
-                                        {{--<a href="{{ route('edit-permission-role', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="update"><i class="fa fa-edit"></i></a>--}}
                                         <a href="{{ route('delete-permission-role', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" data-placement="top" data-content="delete"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
@@ -102,7 +102,12 @@
 </div>
 
 <!-- modal -->
+<script>
 
+    $("#checkAll").change(function () {
+        $("input:checkbox").prop('checked', $(this).prop("checked"));
+    });
+</script>
 
 <!--script for this page only-->
 @if($errors->any())
