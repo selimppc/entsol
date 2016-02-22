@@ -4,7 +4,7 @@
     </IfModule>
 
     RewriteEngine On
-    #RewriteBase /entsol/public/
+    RewriteBase /entsol/public/
 
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
