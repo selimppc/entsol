@@ -335,6 +335,7 @@ class UserController extends Controller
                 'expire_date'=> $input['expire_date'],
                 'status'=> $input['status'],
             ];
+            //print_r($input_data);exit;
             $model->update($input_data);
             DB::commit();
             Session::flash('message', "Successfully Updated");

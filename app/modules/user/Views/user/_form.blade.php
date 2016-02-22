@@ -40,7 +40,8 @@
             {!! Form::label('branch_id', 'Branch:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
             @if(isset($data->branch_id))
-                {!! Form::text('branch_id',isset($data->relBranch->title)?$data->relBranch->title:'' ,['class' => 'form-control','required','title'=>'select branch name','readonly']) !!}
+                {!! Form::text('branch_title',isset($data->relBranch->title)?$data->relBranch->title:'' ,['class' => 'form-control','required','title'=>'select branch name','readonly']) !!}
+                {!! Form::hidden('branch_id', $data->relBranch->id) !!}
             @else
                 {!! Form::Select('branch_id', $branch_data, Input::old('branch_id'),['class' => 'form-control','required','title'=>'select branch name']) !!}
             @endif

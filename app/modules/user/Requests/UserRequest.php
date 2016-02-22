@@ -32,10 +32,25 @@ class UserRequest extends Request
      */
     public function rules()
     {
-        $email = Route::input('email')?Route::input('email'):'';
 
-        return [
-            'email' => 'required|email|unique:user'.$email,
-        ];
+        $id = Request::input('id')?Request::input('id'):'';
+
+//print_r($id);exit;
+
+        if($id == null)
+        {
+            return [
+                'email' => 'required|email|unique:user',
+            ];
+
+        }else{
+            return [
+
+
+            ];
+
+        }
+
+
     }
 }

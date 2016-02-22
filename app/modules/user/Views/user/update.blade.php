@@ -8,6 +8,7 @@
 
 <div class="modal-body">
         {!! Form::model($data, ['method' => 'PATCH', 'route'=> ['update-user', $data->id]]) !!}
+        {!! Form::hidden('id', $data->id) !!}
         @include('user::user._form')
         {!! Form::close() !!}
 </div>
