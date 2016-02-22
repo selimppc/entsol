@@ -95,13 +95,13 @@ class AuthController extends Controller
                     DB::beginTransaction();
                     try {
                         $model->save();
-
                         DB::commit();
 
-                        Session::flash('message','Successfully Reset Your Password.');
+                        Auth::logout();
+                        Session::flush(); //delete the session
 
-                        return redirect()->route('dashboard');
-
+                        Session::flash('message','Successfully Reset Your Password.You May Login Now.');
+                        return redirect()->route('get-user-login');
                     } catch (Exception $e) {
                         //If there are any exceptions, rollback the transaction
                         DB::rollback();
@@ -144,17 +144,22 @@ class AuthController extends Controller
                 if($check_password){
                     #exit('ok');
                     if($user_data->last_visit!=NULL){
-                        $attempt = Auth::attempt([
-                            $field => $request->get('email'),
-                            'password' => $request->get('password'),
-                        ]);
-                        if($attempt){
-                            DB::table('user')->where('id', '=', $user_data->id)->update(array('last_visit' =>date('Y-m-d h:i:s', time())));
-                            Session::put('email', $user_data->email);
-                            Session::flash('message', "Successfully  Logged In.");
-                            return redirect()->intended('dashboard');
+                        if($user_data->expire_date < date('Y-m-d h:i:s', time())){
+                            DB::table('user')->where('id', '=', $user_data->id)->update(array('status' =>'inactive'));
+                            Session::flash('message', "Login Activation Time Is Expired.You Can Contact With System-Admin To Reactivate Account.");
                         }else{
-                            Session::flash('danger', "Password Incorrect.Please Try Again");
+                            $attempt = Auth::attempt([
+                                $field => $request->get('email'),
+                                'password' => $request->get('password'),
+                            ]);
+                            if($attempt){
+                                DB::table('user')->where('id', '=', $user_data->id)->update(array('last_visit' =>date('Y-m-d h:i:s', time())));
+                                Session::put('email', $user_data->email);
+                                Session::flash('message', "Successfully  Logged In.");
+                                return redirect()->intended('dashboard');
+                            }else{
+                                Session::flash('danger', "Password Incorrect.Please Try Again");
+                            }
                         }
                     }else{
                         Session::flash('info', "Your account is inactive.To activate your account you should reset your password.");

@@ -93,7 +93,9 @@
         @yield('content')
     </div>
     <div class="have-account">
-        Already have an account? <a href="{{Route('get-user-login')}}">Sign In</a>
+        @if(!isset($user_id))
+            Already have an account? <a href="{{Route('get-user-login')}}">Sign In</a>
+        @endif
     </div>
 <!-- Get jQuery from Google CDN -->
 <!--[if !IE]> -->
