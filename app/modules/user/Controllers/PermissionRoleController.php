@@ -120,6 +120,10 @@ class PermissionRoleController extends Controller
      */
     public function destroy($id)
     {
+        if($pr_id = Input::get('pr_ids')){
+            print_r($pr_id);
+            exit();
+        }
         $model = PermissionRole::findOrFail($id);
 
         DB::beginTransaction();

@@ -5,7 +5,9 @@
 
 @section('content')
 
-        <!-- page start-->
+<!-- form open for batch delete -->
+{!!  Form::open(['route' => ['delete-permission-role',$id = null]]) !!}
+<!-- page start-->
 <div class="row">
     <div class="col-sm-12">
         <div class="panel">
@@ -37,6 +39,7 @@
                     <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
                         <thead>
                         <tr>
+                            <th> Select <span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="Select checkbox for batch delete permission-role">(?)</span></th>
                             <th> Role </th>
                             <th> Permission </th>
                             <th> Action &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="view : click for details information<br>update : click for update information">(?)</span></th>
@@ -46,6 +49,7 @@
                         @if(isset($data))
                             @foreach($data as $values)
                                 <tr class="gradeX">
+                                    <td><input type="checkbox" name="pr_ids[]"  class="myCheckbox" value="{{ $values->id }}"></td>
                                     <td>{{ucfirst($values->relRole->title)}}</td>
                                     <td>{{ucfirst($values->relPermission->title)}}</td>
                                     <td>
@@ -66,6 +70,8 @@
     </div>
 </div>
 <!-- page end-->
+<!-- form close for bathc delete -->
+{!! Form::close() !!}
 
 <div id="addData" class="modal fade" tabindex="" role="dialog" style="display: none;">
     <div class="modal-dialog modal-lg">
