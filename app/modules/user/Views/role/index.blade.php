@@ -14,6 +14,9 @@
                 <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="left" data-content="click add role button for new role entry">
                     <strong>Add Role</strong>
                 </a>
+                <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="left" data-content="Add or update role user">
+                    <strong>Role User Page</strong>
+                </a>
             </div>
 
             <div class="panel-body">

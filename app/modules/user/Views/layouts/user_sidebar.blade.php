@@ -1,5 +1,5 @@
 <?php  ?>
-<li class="mm-dropdown open active mm-dropdown-root">
+<li class="mm-dropdown open mm-dropdown-root ">
     <a href="#"><i class="menu-icon fa fa-user-md"></i><span class="mm-text">User</span></a>
     <ul>
         <li class="active">
