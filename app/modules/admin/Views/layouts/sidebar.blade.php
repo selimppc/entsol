@@ -40,8 +40,8 @@
             </ul>
         </li>
 
-        @if(file_exists('/var/www/html/entsol/app/modules/user/Views/layouts/user_sidebar.blade.php'))
-            @include('user::layouts.user_sidebar');
+        @if(file_exists(app_path().'/modules/user/Views/layouts/user_sidebar.blade.php'))
+            @include('user::layouts.user_sidebar')
         @endif
 
         <li class="mm-dropdown">
@@ -59,8 +59,8 @@
             </ul>
         </li>
 
-        @if(file_exists('/var/www/html/entsol/app/modules/accounts/Views/layouts/ac_sidebar.blade.php'))
-            @include('accounts::layouts.ac_sidebar');
+        @if(file_exists(app_path().'/modules/accounts/Views/layouts/ac_sidebar.blade.php'))
+            @include('accounts::layouts.ac_sidebar')
         @endif
 
 
