@@ -20,17 +20,6 @@
     'uses' => 'UserController@postLogin'
 ]);*/
 
-/*reset password route for first-time login */
-Route::any('reset-password/{user_id}', [
-    'as' => 'reset-password',
-    'uses' => 'Auth\AuthController@reset_password'
-]);
-
-Route::any('update-new-password', [
-    'as' => 'update-new-password',
-    'uses' => 'Auth\AuthController@update_new_password'
-]);
-
 Route::get('get-user-login', [
     'as' => 'get-user-login',
     'uses' => 'Auth\AuthController@getLogin'
@@ -55,10 +44,21 @@ Route::any('dashboard', [
     'uses' => 'HomeController@dashboard'
 ]);
 
-    Route::any('all_routes_uri', [
-        'as' => 'all_routes_uri',
-        'uses' => 'HomeController@all_routes_uri'
-    ]);
+/*reset password route for first-time login */
+Route::any('reset-password', [
+    'as' => 'reset-password',
+    'uses' => 'Auth\AuthController@reset_password'
+]);
+
+Route::any('update-new-password', [
+    'as' => 'update-new-password',
+    'uses' => 'Auth\AuthController@update_new_password'
+]);
+
+Route::any('all_routes_uri', [
+    'as' => 'all_routes_uri',
+    'uses' => 'HomeController@all_routes_uri'
+]);
 
 });
 

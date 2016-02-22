@@ -75,9 +75,14 @@ class AuthController extends Controller
     }
 
     /*password reset before login by inactive user*/
-    public function reset_password($user_id){
+    public function reset_password(){
 
-        return view('user::reset_password._form',['user_id'=>$user_id]);
+        if(Auth::check()){
+            return view('user::reset_password._form');
+        }else{
+            return redirect()->route('get-user-login');
+        }
+
     }
 
     public function update_new_password(Request $request){
@@ -87,7 +92,7 @@ class AuthController extends Controller
 
             if($input['confirm_password']==$input['password']) {
 
-                    $model = User::findOrNew($input['user_id']);
+                    $model = User::findOrNew(Auth::user()->id);
                     $model->password = Hash::make($input['password']);
                     $model->last_visit = date('Y-m-d h:i:s', time());
                     /* Transaction Start Here */
@@ -97,9 +102,9 @@ class AuthController extends Controller
 
                         DB::commit();
 
-                        /*Session::flash('message', "Successfully Reset Your Password. You May Signin Now. <a href='get-user-login'>signin from here</a>");*/
-                        Session::flash('message','Successfully Reset Your Password. Now You Can Login Here.');
-                        return redirect()->route('get-user-login');
+                        Session::flash('message','Successfully Reset Your Password.');
+
+                        return redirect()->route('dashboard');
 
                     } catch (Exception $e) {
                         //If there are any exceptions, rollback the transaction
@@ -126,11 +131,12 @@ class AuthController extends Controller
     public function postLogin(Request $request)
     {
         $data = Input::all();
+        date_default_timezone_set("Asia/Dacca");
 
         if(Auth::check()){
 
             Session::put('email', isset(Auth::user()->get()->id));
-            Session::flash('flash_message', "You Have Already Logged In.");
+            Session::flash('message', "You Have Already Logged In.");
 
             return redirect()->route('dashboard');
         }else{
@@ -142,29 +148,24 @@ class AuthController extends Controller
                 if($user_data_exists){
                     $user_data = User::where($field, $data['email'])->first();
 
-                    if($user_data->last_visit==Null){
+                            $attempt = Auth::attempt([
+                                $field => $request->get('email'),
+                                'password' => $request->get('password'),
+                            ]);
+                                  if ($attempt) {
+                                      if($user_data->last_visit==Null){
+                                          Session::flash('info', "Your account is inactive.To activate your account you should reset your password.");
+                                          return redirect()->route('reset-password');
+                                      }else{
+                                          DB::table('user')->where('id', '=', $user_data->id)->update(array('last_visit' =>date('Y-m-d h:i:s', time())));
+                                          Session::put('email', $user_data->email);
 
-                       #return redirect()->route('inactive-user-dashboard');
-                        Session::flash('info', "Your account is inactive.To activate your account you should reset your password.");
-
-                        return redirect()->route('reset-password',['user_id'=>$user_data->id]);
-
-                    }else{
-                        date_default_timezone_set("Asia/Dacca");
-                        DB::table('user')->where('id', '=', $user_data->id)->update(array('last_visit' =>date('Y-m-d h:i:s', time())));
-                        $attempt = Auth::attempt([
-                            $field => $request->get('email'),
-                            'password' => $request->get('password'),
-                        ]);
-                        if ($attempt) {
-                            Session::put('email', $user_data->email);
-                            Session::flash('message', "Successfully  Logged In.");
-                            #return redirect()->route('dashboard');
-                            return redirect()->intended('dashboard');
-                        }else{
-                            Session::flash('danger', "Password Incorrect.Please Try Again");
-                        }
-                    }
+                                          Session::flash('message', "Successfully  Logged In.");
+                                          return redirect()->intended('dashboard');
+                                      }
+                                  }else{
+                                      Session::flash('danger', "Password Incorrect.Please Try Again");
+                                  }
                 }else{
                     Session::flash('danger', "UserName/Email does not exists.Please Try Again");
                 }

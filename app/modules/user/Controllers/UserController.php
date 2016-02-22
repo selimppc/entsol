@@ -558,7 +558,7 @@ class UserController extends Controller
                 }else{
                     $image_model = new UserImage();
                 }
-                
+
                 $image_model->fill($input)->save();
                 DB::commit();
                 Session::flash('message', "Successfully added");
