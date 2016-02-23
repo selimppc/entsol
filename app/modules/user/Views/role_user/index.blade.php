@@ -11,26 +11,28 @@
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>we can show all role user in this page<br> and add new role user, update ole user from this page</em>">(?)</span>
-                <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="left" data-content="click add user role button for select user and give new role">
+                <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="top" data-content="click add user role button for select user and give new role">
                     <strong>Add New Role User</strong>
                 </a>
-                <a class="btn btn-primary btn-xs pull-right pop" href="{{route('role')}}" data-placement="left" data-content="Back to role page" style="margin-right: 10px;">
-                    <strong>Back</strong>
+                <a class="btn btn-default btn-xs pull-right pop" href="{{route('role')}}" data-placement="left" data-content="Click to redirect in role page" style="margin-right: 10px;">
+                    <strong>Back to Role Page</strong>
                 </a>
             </div>
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {{--{!! Form::open(['method' =>'GET','url'=>'/index-permission-role']) !!}
+                {{--{!! Form::open(['method' =>'GET','url'=>'/index-role-user']) !!}
                 <div id="index-search">
                     <div class="col-sm-3">
-                        {!! Form::text('title',@Input::get('title')? Input::get('title') : null,['class' => 'form-control','placeholder'=>'type title', 'title'=>'type your require permission "title", example :: Main, then click "search" button']) !!}
+                        {!! Form::text('role_name',@Input::get('role-name')? Input::get('role_name') : null,['class' => 'form-control','placeholder'=>'Type Role name', 'title'=>'Type your require role name, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-2 filter-btn">
                         {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button', 'data-placement'=>'right', 'data-content'=>'type code or title or both in specific field then click search button for required information')) !!}
                     </div>
                 </div>
-                {!! Form::close() !!}--}}
+                {!! Form::close() !!}
+                <p> &nbsp;</p>
+                <p> &nbsp;</p>--}}
 
                 {{-------------- Filter :Ends -------------------------------------------}}
                 <div class="table-primary">
