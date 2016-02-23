@@ -39,19 +39,23 @@ class RoleUserController extends Controller
 
     public function store(Requests\RoleUserRequest $request){
         $input = $request->all();
+        $role_user_exists = RoleUser::where('user_id',$input['user_id'])->where('role_id',$input['role_id'])->exists();
+        if(!$role_user_exists){
+            /* Transaction Start Here */
+            DB::beginTransaction();
+            try {
+                RoleUser::create($input);
+                DB::commit();
+                Session::flash('message', 'Successfully added!');
+            } catch (\Exception $e) {
+                //If there are any exceptions, rollback the transaction`
+                DB::rollback();
+                Session::flash('danger', $e->getMessage());
+            }
 
-        /* Transaction Start Here */
-        DB::beginTransaction();
-        try {
-            RoleUser::create($input);
-            DB::commit();
-            Session::flash('message', 'Successfully added!');
-        } catch (\Exception $e) {
-            //If there are any exceptions, rollback the transaction`
-            DB::rollback();
-            Session::flash('danger', $e->getMessage());
+        }else{
+            Session::flash('danger','User role already exists.');
         }
-
         return redirect()->route('index-role-user');
     }
     /**

@@ -16,7 +16,7 @@
                 <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="left" data-content="click add permission role button for new permission of a role">
                     <strong>Add New Permission Role</strong>
                 </a>
-                <input type="submit" id="deleteBatch" value="Delete Selected Permission Role" style="display: none;">
+                <input type="submit" id="deleteBatch" class="btn btn-primary btn-xs" value="Delete Selected Permission Role" style="display: none;">
                 <a class="btn btn-primary btn-xs pull-right pop" href="{{route('index-permission')}}" data-placement="left" data-content="Back to Permission Page" style="margin-right: 10px;">
                     <strong>Back</strong>
                 </a>
