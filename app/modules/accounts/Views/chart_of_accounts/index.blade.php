@@ -27,7 +27,7 @@
                         {!! Form::text('title',@Input::get('title')? Input::get('title') : null,['class' => 'form-control','placeholder'=>'type title', 'title'=>'type your require "title", example :: Medical & Lab equipment']) !!}
                     </div>
                     <div class="col-sm-2">
-                        {!! Form::select('account_type', array(''=>'select account type','asset'=>'Asset','liability'=>'Liability','income'=>'Income','expenses'=>'Expenses'),@Input::get('account_type')? Input::get('account_type') : null,['class' => 'form-control', 'title'=>'select your require "account type", example :: Asset']) !!}
+                        {!! Form::select('account_type', array(''=>'select account type','asset'=>'Asset','liability'=>'Liability','income'=>'Income','expenses'=>'Expenses','revenues'=>'Revenues'),@Input::get('account_type')? Input::get('account_type') : null,['class' => 'form-control', 'title'=>'select your require "account type", example :: Asset']) !!}
                     </div>
                     <div class="col-sm-2">
                         {!! Form::select('account_usage', array(''=>'select account usage','ledger'=>'Ledger','ap'=>'Ap','ar'=>'Ar'),@Input::get('account_usage')? Input::get('account_usage') : null,['class' => 'form-control', 'title'=>'select your require "account usage", example :: Leger']) !!}

@@ -8,14 +8,14 @@
 <div class="form-group form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         {!! Form::label('password', 'New Password') !!}
-        {!! Form::password('password',['class' => 'form-control','placeholder'=>'Enter New Password','required','name'=>'password','title'=>'Enter New Password']) !!}
+        {!! Form::password('password',['id'=>'cc-password','class' => 'form-control','placeholder'=>'Enter New Password','required','name'=>'password','title'=>'Enter New Password']) !!}
     </div>
 </div>
 <div class="form-group form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         {!! Form::label('confirm_password', 'Confirm Password') !!}
-        {!! Form::password('confirm_password', ['class' => 'form-control','placeholder'=>'Re-Enter New Password','required','id'=>'confirm_password','name'=>'confirm_password','onkeyup'=>"validation()",'title'=>'Enter Confirm Password That Must Be Match With New Passowrd.']) !!}
-    <span id='message'></span>
+        {!! Form::password('confirm_password', ['class' => 'form-control','placeholder'=>'Re-Enter New Password','required','id'=>'ss-password','name'=>'confirm_password','onkeyup'=>"validation()",'title'=>'Enter Confirm Password That Must Be Match With New Passowrd.']) !!}
+    <span id='span-message'></span>
    </div>
 </div>
 
@@ -31,10 +31,10 @@
 <script>
 
     function validation() {
-        $('#confirm_password').on('keyup', function () {
-            if ($(this).val() == $('#password').val()) {
-                $('#message').html('');
-            } else $('#message').html('confirm password do not match with new password,please check.').css('color', 'red');
+        $('#ss-password').on('keyup', function () {
+            if ($(this).val() == $('#cc-password').val()) {
+                $('#span-message').html('');
+            } else $('#span-message').html('confirm password do not match with new password,please check.').css('color', 'red');
         });
     }
 
