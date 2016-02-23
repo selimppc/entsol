@@ -21,15 +21,12 @@
             <div>
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">Home</a>
+                        <a href="{{Route('dashboard')}}">Home</a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports</a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">First item</a></li>
-                            <li><a href="#">Second item</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Third item</a></li>
+                            <li><a href="{{Route('account-reports')}}">Account Report</a></li>
                         </ul>
                     </li>
                 </ul> <!-- / .navbar-nav -->
