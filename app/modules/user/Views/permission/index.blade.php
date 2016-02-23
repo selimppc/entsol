@@ -11,7 +11,7 @@
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>we can show all permission in this page</em>">(?)</span>
-                <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="{{ route('route-in-permission') }}" data-placement="top" data-content="click to entry all route_url in permission list" onclick="return confirm('Are you sure to Delete?')">Add Routes in Permission list
+                <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="{{ route('route-in-permission') }}" data-placement="top" data-content="click to entry all route_url in permission list" onclick="return confirm('Are you sure to Add all routes in permission list?')">Add Routes in Permission list
                 </a>
                 <a class="btn btn-info btn-xs pull-right pop" data-toggle="modal" href="{{ route('index-permission-role') }}" data-placement="left" data-content="click to redirect in permission role page" style="margin-right: 10px;">Go to Permission Role Page
                 </a>
