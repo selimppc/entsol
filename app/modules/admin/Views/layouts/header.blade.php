@@ -38,12 +38,6 @@
                     <ul class="nav navbar-nav pull-right right-navbar-nav">
 
                         <li class="nav-icon-btn nav-icon-btn-danger dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="label">5</span>
-                                <i class="nav-icon fa fa-bullhorn"></i>
-                                <span class="small-screen-text">Notifications</span>
-                            </a>
-
                             <!-- NOTIFICATIONS -->
 
                             <!-- Javascript -->
@@ -97,12 +91,6 @@
                             </div> <!-- / .dropdown-menu -->
                         </li>
                         <li class="nav-icon-btn nav-icon-btn-success dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="label">10</span>
-                                <i class="nav-icon fa fa-envelope"></i>
-                                <span class="small-screen-text">Income messages</span>
-                            </a>
-
                             <!-- MESSAGES -->
 
                             <!-- Javascript -->
