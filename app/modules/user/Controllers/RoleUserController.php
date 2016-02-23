@@ -30,6 +30,12 @@ class RoleUserController extends Controller
     {
         $pageTitle = "Role User Informations";
         $role_name = Input::get('role_name');
+        if($role_name != NULL){
+            $data = DB::table('role_user')
+                ->join('role', 'role_user.role_id', '=', 'role.id')
+                ->where('role.title', 'LIKE', '%'.$role_name.'%')
+                ->paginate(30);
+        }
         $data = RoleUser::where('status', '!=', 'cancel')->orderBy('id', 'DESC')->paginate(30);
         $user_id = [''=>'Select User'] + User::lists('username','id')->all();
 

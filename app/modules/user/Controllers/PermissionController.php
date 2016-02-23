@@ -73,10 +73,10 @@ class PermissionController extends Controller
      * @param  string  $route_url
      * @return \Illuminate\Http\Response
      */
-    public function show($route_url)
+    public function show($id)
     {
         $pageTitle = 'View Permission';
-        $data = Permission::where('route_url',$route_url)->first();
+        $data = Permission::where('id',$id)->first();
 
         return view('user::permission.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
@@ -87,10 +87,10 @@ class PermissionController extends Controller
      * @param  string  $route_url
      * @return \Illuminate\Http\Response
      */
-    public function edit($route_url)
+    public function edit($id)
     {
         $pageTitle = 'Update Permission Informations';
-        $data = Permission::where('route_url',$route_url)->first();
+        $data = Permission::where('id',$id)->first();
         return view('user::permission.update', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 
@@ -101,9 +101,9 @@ class PermissionController extends Controller
      * @param  string  $route_url
      * @return \Illuminate\Http\Response
      */
-    public function update(Requests\PermissionRequest $request, $route_url)
+    public function update(Requests\PermissionRequest $request, $id)
     {
-        $model = Permission::where('route_url',$route_url)->first();
+        $model = Permission::where('route_url',$id)->first();
         $input = $request->all();
 
         $title = Input::get('title');
@@ -131,9 +131,9 @@ class PermissionController extends Controller
      * @param  string  $route_url
      * @return \Illuminate\Http\Response
      */
-    public function destroy($route_url)
+    public function destroy($id)
     {
-        $model = Permission::where('route_url',$route_url)->first();
+        $model = Permission::where('route_url',$id)->first();
 
         DB::beginTransaction();
         try {

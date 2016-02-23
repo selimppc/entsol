@@ -17,26 +17,26 @@ Route::any('store-permission', [
     'uses' => 'PermissionController@store'
 ]);
 
-Route::any('view-permission/{route_url}', [
-    'middleware' => 'acl_access:view-permission/{route_url}',
+Route::any('view-permission/{id}', [
+    'middleware' => 'acl_access:view-permission/{id}',
     'as' => 'view-permission',
     'uses' => 'PermissionController@show'
 ]);
 
-Route::any('edit-permission/{route_url}', [
-    'middleware' => 'acl_access:edit-permission/{route_url}',
+Route::any('edit-permission/{id}', [
+    'middleware' => 'acl_access:edit-permission/{id}',
     'as' => 'edit-permission',
     'uses' => 'PermissionController@edit'
 ]);
 
-Route::any('update-permission/{route_url}', [
-    'middleware' => 'acl_access:update-permission/{route_url}',
+Route::any('update-permission/{id}', [
+    'middleware' => 'acl_access:update-permission/{id}',
     'as' => 'update-permission',
     'uses' => 'PermissionController@update'
 ]);
 
-Route::any('delete-permission/{route_url}', [
-    'middleware' => 'acl_access:delete-permission/{route_url}',
+Route::any('delete-permission/{id}', [
+    'middleware' => 'acl_access:delete-permission/{id}',
     'as' => 'delete-permission',
     'uses' => 'PermissionController@destroy'
 ]);
