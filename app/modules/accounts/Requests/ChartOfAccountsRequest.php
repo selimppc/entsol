@@ -31,7 +31,7 @@ class ChartOfAccountsRequest extends Request
     {
         return [
             'account_code' => 'required|max:64',
-            'title' => 'required|max:64',
+            'title' => 'required|max:128',
             'account_type' => 'required',
             'account_usage' => 'required',
             'analytical_code' => 'required',
