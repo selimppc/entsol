@@ -5,7 +5,7 @@
         <!-- Form -->
 <div class="signup-form">
 
-    {!! Form::open(['route' => 'forget-password','id'=>'signup-form_id']) !!}
+    {!! Form::open(['route' => 'forget-password']) !!}
 
         <div class="signup-text">
             <span>Enter Your Email</span>
@@ -23,4 +23,3 @@
 </div>
 
 @stop
-

@@ -21,7 +21,7 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {{--{!! Form::open(['method' =>'GET','url'=>'/index-role-user']) !!}
+                {!! Form::open(['method' =>'GET','url'=>'/index-role-user']) !!}
                 <div id="index-search">
                     <div class="col-sm-3">
                         {!! Form::text('role_name',@Input::get('role-name')? Input::get('role_name') : null,['class' => 'form-control','placeholder'=>'Type Role name', 'title'=>'Type your require role name, then click "search" button']) !!}
@@ -32,7 +32,7 @@
                 </div>
                 {!! Form::close() !!}
                 <p> &nbsp;</p>
-                <p> &nbsp;</p>--}}
+                <p> &nbsp;</p>
 
                 {{-------------- Filter :Ends -------------------------------------------}}
                 <div class="table-primary">
