@@ -84,7 +84,7 @@ class CreateEntsolTableAccounts extends Migration
         Schema::create('ac_chart_of_accounts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('account_code',64)->unique();
-            $table->string('title',64)->unique();
+            $table->string('title',128)->unique();
             $table->text('description')->nullable();
             $table->enum('account_type',array('asset','liability','income','expenses'))->nullable();
             $table->enum('account_usage',array('ledger','ap','ar'))->nullable();
