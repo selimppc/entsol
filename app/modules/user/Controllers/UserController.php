@@ -39,7 +39,7 @@ class UserController extends Controller
     {
         return view('user::signup._form');
     }
-    public function store_signup_info(Request $request)
+    public function store_signup_info(Requests\UserRequest $request)
     {
         $input = $request->all();
 
