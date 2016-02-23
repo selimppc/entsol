@@ -29,8 +29,11 @@
                     <div class="col-sm-3">
                         {!! Form::text('role_name',@Input::get('role_name')? Input::get('role_name') : null,['class' => 'form-control','placeholder'=>'Type role name', 'title'=>'Type your require role "name", then click "search" button']) !!}
                     </div>
+                    <div class="col-sm-3">
+                        {!! Form::text('permission_name',@Input::get('permission_name')? Input::get('permission_name') : null,['class' => 'form-control','placeholder'=>'Type permission name', 'title'=>'Type your require "permission name", then click "search" button']) !!}
+                    </div>
                     <div class="col-sm-2 filter-btn">
-                        {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button', 'data-placement'=>'right', 'data-content'=>'type role name in specific field then click search button for required information')) !!}
+                        {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button', 'data-placement'=>'right', 'data-content'=>'Type role name and permission name in specific field then click search button for required information')) !!}
                     </div>
                 </div>
                 {!! Form::close() !!}
