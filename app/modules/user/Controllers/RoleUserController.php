@@ -30,13 +30,23 @@ class RoleUserController extends Controller
     {
         $pageTitle = "Role User Informations";
         $role_name = Input::get('role_name');
-        if($role_name != NULL){
-            $data = DB::table('role_user')
-                ->join('role', 'role_user.role_id', '=', 'role.id')
-                ->where('role.title', 'LIKE', '%'.$role_name.'%')
-                ->paginate(30);
+        $username = Input::get('username');
+        /*$data = RoleUser::join('role','role.id','=','role_id')
+                ->join('user','user.id','=','user_id')
+                ->where('role.title', 'LIKE', '%'.isset($role_name) && !empty($role_name).'%')
+                ->where('user.username', 'LIKE', '%'.isset($username) && !empty($username).'%')
+                ->paginate(30);*/
+        $data = new RoleUser();
+        $data = $data->join('role','role.id','=','role_id');
+        $data = $data->join('user','user.id','=','user_id');
+        if(isset($role_name) && !empty($role_name)){
+            $data = $data->where('role.title', 'LIKE', '%'.$role_name.'%');
         }
-        $data = RoleUser::where('status', '!=', 'cancel')->orderBy('id', 'DESC')->paginate(30);
+        if(isset($username) && !empty($username)){
+            $data = $data->where('user.username', 'LIKE', '%'.$username.'%');
+        }
+        $data = $data->paginate(30);
+        //$data = RoleUser::where('status', '!=', 'cancel')->orderBy('id', 'DESC')->paginate(30);
         $user_id = [''=>'Select User'] + User::lists('username','id')->all();
 
         $role_id = [''=>'Select Role'] + Role::lists('title','id')->all();
