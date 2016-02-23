@@ -29,7 +29,7 @@ class RoleUserController extends Controller
     public function index()
     {
         $pageTitle = "Role User Informations";
-        $title = Input::get('title');
+        $role_name = Input::get('role_name');
         $data = RoleUser::where('status', '!=', 'cancel')->orderBy('id', 'DESC')->paginate(30);
         $user_id = [''=>'Select User'] + User::lists('username','id')->all();
 

@@ -11,33 +11,30 @@
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>all user role define from this page, example : system-user or admin</em>">(?)</span>
-                <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="left" data-content="click add role button for new role entry">
+                <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="top" data-content="click add role button for new role entry">
                     <strong>Add Role</strong>
                 </a>
-                <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="{{ route('index-role-user') }}" data-placement="left" data-content="Add or update role user" style="margin-right: 10px;">
-                    <strong>Role User Page</strong>
+                <a class="btn btn-info btn-xs pull-right pop" data-toggle="modal" href="{{ route('index-role-user') }}" data-placement="left" data-content="Add or update role user" style="margin-right: 10px;">
+                    <strong>Go to Role User Page</strong>
                 </a>
             </div>
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {{--{!! Form::open(['method' =>'GET','url'=>'/group-one']) !!}
-                --}}{{--{!! Form::open(['route' => 'group-one']) !!}--}}{{--
+                {!! Form::open(['route' => 'role']) !!}
 
                 <div id="index-search">
                     <div class="col-sm-3">
-                        {!! Form::text('code',@Input::get('code')? Input::get('code') : null,['class' => 'form-control','placeholder'=>'type code', 'title'=>'type your required group One "code", example :: 101, then click "search" button']) !!}
-                    </div>
-                    <div class="col-sm-3">
-                        {!! Form::text('title',@Input::get('title')? Input::get('title') : null,['class' => 'form-control','placeholder'=>'type title', 'title'=>'type your required group One "title", example :: depreciation or partial text :: depr, then click "search" button']) !!}
+                        {!! Form::text('title',@Input::get('title')? Input::get('title') : null,['class' => 'form-control','placeholder'=>'Type title', 'title'=>'Type your required Role title "title", then click "search" button']) !!}
                     </div>
                     <div class="col-sm-3 filter-btn">
                         {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left pop','id'=>'button', 'data-placement'=>'right', 'data-content'=>'type code or title or both in specific field then click search button for required information')) !!}
                     </div>
                 </div>
+                <p> &nbsp;</p>
+                <p> &nbsp;</p>
 
-
-                {!! Form::close() !!}--}}
+                {!! Form::close() !!}
 
                 {{-------------- Filter :Ends -------------------------------------------}}
                 <div class="table-primary">
