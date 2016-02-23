@@ -33,7 +33,7 @@
         <div class="col-sm-6">
             {!! Form::label('role_id', 'User Role:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::Select('role_id',$role, Input::old('role_id'),['class' => 'form-control','required','title'=>'select role name']) !!}
+            {!! Form::Select('role_id',$role, Input::old('role_id'),['style'=>'text-transform:capitalize','class' => 'form-control','required','title'=>'select role name']) !!}
         </div>
 
         <div class="col-sm-6">
