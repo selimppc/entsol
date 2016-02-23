@@ -86,7 +86,7 @@ class CreateEntsolTableAccounts extends Migration
             $table->string('account_code',64)->unique();
             $table->string('title',128)->unique();
             $table->text('description')->nullable();
-            $table->enum('account_type',array('asset','liability','income','expenses'))->nullable();
+            $table->enum('account_type',array('asset','liability','income','expenses','revenues'))->nullable();
             $table->enum('account_usage',array('ledger','ap','ar'))->nullable();
             $table->unsignedInteger('group_one_id')->nullable();
             $table->enum('analytical_code',array('cash','non-cash'))->nullable();

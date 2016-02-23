@@ -28,7 +28,7 @@
         <div class="col-sm-6">
             {!! Form::label('account_type', 'Account Type:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::select('account_type', array(''=>'Select Account Type','asset'=>'Asset','liability'=>'Liability','income'=>'Income','expenses'=>'Expenses'),Input::old('account_type'),['class' => 'form-control','required','title'=>'select  account type, example :: Asset']) !!}
+            {!! Form::select('account_type', array(''=>'Select Account Type','asset'=>'Asset','liability'=>'Liability','income'=>'Income','expenses'=>'Expenses','revenues'=>'Revenues'),Input::old('account_type'),['class' => 'form-control','required','title'=>'select  account type, example :: Asset']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('account_usage', 'Account Usage:', ['class' => 'control-label']) !!}
