@@ -51,17 +51,17 @@
 
         @endif
 
-        {!! Form::open(['route' => 'post-user-login']) !!}
+        {!! Form::open(['route' => 'post-user-login','id'=>'login-data-validation']) !!}
             <div class="signin-text">
                 <span>Sign In to your account</span>
             </div>
 
             <div class="form-group">
-                {!! Form::text('email', Input::old('email'), ['class' => 'form-control input-lg','required','placeholder'=>'Username or email','autofocus']) !!}
+                {!! Form::text('email', Input::old('email'), ['class' => 'form-control input-lg','required','placeholder'=>'Username or email','autofocus','title'=>'Enter Email Address']) !!}
             </div>
 
             <div class="form-group">
-                {!! Form::password('password', ['class'=>'form-control input-lg', 'placeholder'=>'Password', 'required'=>'required']) !!}
+                {!! Form::password('password', ['class'=>'form-control input-lg', 'placeholder'=>'Password', 'required'=>'required','title'=>'Enter Password']) !!}
             </div>
             <div class="form-actions">
                 <input type="submit" value="SIGN IN" class="signin-btn bg-primary">

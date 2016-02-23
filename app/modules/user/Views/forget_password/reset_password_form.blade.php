@@ -4,7 +4,7 @@
         <!-- Form -->
 <div class="signup-form">
 
-    {!! Form::open(['route' => 'user-save-new-password']) !!}
+    {!! Form::open(['route' => 'user-save-new-password','id'=>'forgot-data-validation']) !!}
 
     <div class="signup-text">
         <span>Forgot Password</span>
@@ -20,7 +20,7 @@
     </div>
 
     <div class="form-actions">
-        <input type="submit" value="SUBMIT" class="signup-btn bg-primary" id="abc">
+        <input type="submit" value="SUBMIT" class="signup-btn bg-primary">
     </div>
     {!! Form::close() !!}
             <!-- / Form -->

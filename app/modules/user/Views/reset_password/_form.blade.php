@@ -5,7 +5,7 @@
         <!-- Form -->
 <div class="signup-form">
 
-    {!! Form::open(['route' => 'update-new-password']) !!}
+    {!! Form::open(['route' => 'update-new-password','id'=>'reset-new-data-validation']) !!}
     {!! Form::hidden('user_id',$user_id) !!}
 
     <div class="signup-text">
