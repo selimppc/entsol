@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use App\Helpers\LogFileHelper;
 
 class PermissionController extends Controller
 {
@@ -58,10 +59,12 @@ class PermissionController extends Controller
                 Permission::create($input);
                 DB::commit();
                 Session::flash('message', 'Successfully added!');
+                LogFileHelper::log_info('permission', $message = 'Successfully added!', $input);
             } catch (\Exception $e) {
                 //If there are any exceptions, rollback the transaction`
                 DB::rollback();
                 Session::flash('danger', $e->getMessage());
+                LogFileHelper::log_info('permission', $message = 'Failed!', $e->getMessage());
             }
         }
 
