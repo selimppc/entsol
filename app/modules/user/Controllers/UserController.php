@@ -385,8 +385,9 @@ class UserController extends Controller
             $user_id = Auth::user()->id;
             $profile_data = UserProfile::where('user_id',$user_id)->first();
             $user_image = UserImage::where('user_id',$user_id)->first();
+            $user = User::where('id',$user_id)->first();
             $countryList = array('' => 'Please Select') + Country::lists('title', 'id')->all();
-            return view('user::user_info.index',['user_id'=>$user_id,'countryList'=>$countryList,'profile_data'=>$profile_data,'user_image'=>$user_image]);
+            return view('user::user_info.index',['user_id'=>$user_id,'countryList'=>$countryList,'profile_data'=>$profile_data,'user_image'=>$user_image,'user'=>$user]);
         }
     }
     public function user_info($value){
