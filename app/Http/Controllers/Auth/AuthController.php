@@ -148,6 +148,7 @@ class AuthController extends Controller
                             $field => $request->get('email'),
                             'password' => $request->get('password'),
                         ]);
+                        
                         if($attempt){
                             DB::table('user')->where('id', '=', $user_data->id)->update(array('last_visit' =>date('Y-m-d h:i:s', time())));
                             Session::put('email', $user_data->email);
