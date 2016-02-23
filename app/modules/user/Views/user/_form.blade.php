@@ -72,7 +72,7 @@
 </div>
 
 <div class="form-margin-btn">
-    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save role information']) !!}
+    {!! Form::submit('Save changes', ['id'=>'btn-disabled','class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save role information']) !!}
     <a href="{{route('user-list')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
 </div>
 
@@ -84,8 +84,13 @@
     function validation() {
         $('#re-password').on('keyup', function () {
             if ($(this).val() == $('#user-password').val()) {
+
                 $('#show-message').html('');
-            } else $('#show-message').html('confirm password do not match with new password,please check.').css('color', 'red');
+                document.getElementById("btn-disabled").disabled = false;
+                return false;
+            }
+            else $('#show-message').html('confirm password do not match with new password,please check.').css('color', 'red');
+            document.getElementById("btn-disabled").disabled = true;
         });
     }
 

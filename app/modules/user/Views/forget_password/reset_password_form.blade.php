@@ -7,7 +7,7 @@
     {!! Form::open(['route' => 'user-save-new-password','id' => 'jq-validation-form']) !!}
 
     <div class="signup-text">
-        <span>Reset Password</span>
+        <span>Forgot Password</span>
     </div>
     {!! Form::hidden('id', $id, array('class'=>'form-control')) !!}
     <div class="form-group">
@@ -26,3 +26,4 @@
 </div>
 
 @stop
+
