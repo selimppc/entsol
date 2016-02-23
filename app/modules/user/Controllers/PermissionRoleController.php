@@ -39,20 +39,25 @@ class PermissionRoleController extends Controller
         $input = $request->all();
         $permission_id = $input['permission_id'];
         foreach ($permission_id as $p_id) {
-            $model = new PermissionRole;
-            $model->role_id = $input['role_id'];
-            $model->permission_id = $p_id;
-            $model->status = $input['status'];
-            /* Transaction Start Here */
-            DB::beginTransaction();
-            try {
-                $model->save();
-                DB::commit();
-                Session::flash('message', 'Successfully added!');
-            } catch (\Exception $e) {
-                //If there are any exceptions, rollback the transaction`
-                DB::rollback();
-                Session::flash('danger', $e->getMessage());
+            $permission_exists = PermissionRole::where('permission_id','=',$p_id)->where('role_id','=',$input['role_id'])->exists();
+            if(!$permission_exists){
+                $model = new PermissionRole;
+                $model->role_id = $input['role_id'];
+                $model->permission_id = $p_id;
+                $model->status = $input['status'];
+                /* Transaction Start Here */
+                DB::beginTransaction();
+                try {
+                    $model->save();
+                    DB::commit();
+                    Session::flash('message', 'Successfully added!');
+                } catch (\Exception $e) {
+                    //If there are any exceptions, rollback the transaction`
+                    DB::rollback();
+                    Session::flash('danger', $e->getMessage());
+                }
+            }else{
+                Session::flash('message','Some of the permission role already exists');
             }
         }
         return redirect()->route('index-permission-role');
@@ -121,7 +126,6 @@ class PermissionRoleController extends Controller
     public function destroy($id)
     {
         if($pr_ids = Input::get('pr_ids')){
-            print_r($pr_ids);
             foreach ($pr_ids as $id) {
                 $model = PermissionRole::findOrFail($id);
                 DB::beginTransaction();
