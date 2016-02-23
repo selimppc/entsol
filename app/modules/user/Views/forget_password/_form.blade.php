@@ -12,7 +12,7 @@
         </div>
 
         <div class="form-group">
-            {!! Form::email('email', null, ['class' => 'form-control input-lg','required','placeholder'=>'E-mail']) !!}
+            {!! Form::email('email', null, ['class' => 'form-control input-lg','required','placeholder'=>'E-mail','title'=>'Enter Email Address']) !!}
         </div>
 
         <div class="form-actions">
