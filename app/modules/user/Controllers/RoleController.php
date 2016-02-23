@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
 class RoleController extends Controller
@@ -19,8 +20,9 @@ class RoleController extends Controller
      */
     public function index()
     {
+        $role_title = Input::get('title');
         $pageTitle = "List of Role Informations";
-        $data = Role::where('status','!=','cancel')->paginate(30);
+        $data = Role::where('status','!=','cancel')->where('title', 'LIKE', '%'.$role_title.'%')->paginate(30);
         return view('user::role.index',['data'=>$data, 'pageTitle'=>$pageTitle]);
     }
 

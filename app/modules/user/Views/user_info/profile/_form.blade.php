@@ -94,7 +94,7 @@
 
 <div class="form-margin-btn">
     {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save branch information']) !!}
-    <a href="{{route('create-user-info')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
+    <a href="{{route('user-profile')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
 </div>
 
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/datepicker.js') }}"></script>

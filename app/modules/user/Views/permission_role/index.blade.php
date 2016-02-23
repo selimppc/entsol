@@ -5,30 +5,29 @@
 
 @section('content')
 
-<!-- form open for batch delete -->
-{!!  Form::open(['route' => ['delete-permission-role']]) !!}
+
 <!-- page start-->
 <div class="row">
     <div class="col-sm-12">
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>we can show all permission in this page<br> and add new permission, update from this page</em>">(?)</span>
-                <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="left" data-content="click add permission role button for new permission of a role">
+                <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="top" data-content="click add permission role button for new permission of a role">
                     <strong>Add New Permission Role</strong>
                 </a>
-                <input type="submit" id="deleteBatch" value="Delete Selected Permission Role" style="display: none;">
-                <a class="btn btn-primary btn-xs pull-right pop" href="{{route('index-permission')}}" data-placement="left" data-content="Back to Permission Page" style="margin-right: 10px;">
-                    <strong>Back</strong>
+                <input type="submit" id="deleteBatch" class="btn btn-primary btn-xs" value="Delete Selected Permission Role" style="display: none;">
+                <a class="btn btn-default btn-xs pull-right pop" href="{{route('index-permission')}}" data-placement="left" data-content="Click to redirect in permission page" style="margin-right: 10px;">
+                    <strong>Back to permission page</strong>
                 </a>
             </div>
 
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {{--{!! Form::open(['method' =>'GET','url'=>'/index-permission-role']) !!}
+                {!! Form::open(['method' =>'GET','url'=>'/index-permission-role']) !!}
                 <div id="index-search">
                     <div class="col-sm-3">
-                        {!! Form::text('role_name',@Input::get('role_name')? Input::get('role_name') : null,['class' => 'form-control','placeholder'=>'type role name', 'title'=>'type your require role "name", example :: Admin, then click "search" button']) !!}
+                        {!! Form::text('role_name',@Input::get('role_name')? Input::get('role_name') : null,['class' => 'form-control','placeholder'=>'Type role name', 'title'=>'Type your require role "name", then click "search" button']) !!}
                     </div>
                     <div class="col-sm-2 filter-btn">
                         {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button', 'data-placement'=>'right', 'data-content'=>'type role name in specific field then click search button for required information')) !!}
@@ -36,14 +35,16 @@
                 </div>
                 {!! Form::close() !!}
                 <p> &nbsp;</p>
-                <p> &nbsp;</p>--}}
+                <p> &nbsp;</p>
 
                 {{-------------- Filter :Ends -------------------------------------------}}
+                <!-- form open for batch delete -->
+                {!!  Form::open(['route' => ['delete-permission-role']]) !!}
                 <div class="table-primary">
                     <table id="jq-datatables-example" cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" >
                         <thead>
                         <tr>
-                            <th><input type="checkbox" id="checkAll"></th>
+                            <th><input type="checkbox" id="checkAll">&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="check for select permission roles delete">(?)</span></th>
                             <th> Role </th>
                             <th> Permission </th>
                             <th> Action &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="view : click for details information<br>update : click for update information">(?)</span></th>
@@ -67,14 +68,14 @@
                         </tbody>
                     </table>
                 </div>
+                <!-- form close for bathc delete -->
+                {!! Form::close() !!}
                 <span class="pull-left">{!! str_replace('/?', '?', $data->render()) !!} </span>
             </div>
         </div>
     </div>
 </div>
 <!-- page end-->
-<!-- form close for bathc delete -->
-{!! Form::close() !!}
 
 <div id="addData" class="modal fade" tabindex="" role="dialog" style="display: none;">
     <div class="modal-dialog modal-lg">

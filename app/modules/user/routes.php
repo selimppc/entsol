@@ -187,9 +187,9 @@ Route::any('delete-role/{slug}', [
         'uses' => 'RoleUserController@destroy'
     ]);
 
-    Route::any('create-user-info', [
+    Route::any('user-profile', [
         'middleware' => 'acl_access:create-user-info',
-        'as' => 'create-user-info',
+        'as' => 'user-profile',
         'uses' => 'UserController@create_user_info'
     ]);
 

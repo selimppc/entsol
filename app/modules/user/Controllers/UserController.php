@@ -4,6 +4,7 @@ namespace App\Modules\User\Controllers;
 
 use App\Branch;
 use App\UserImage;
+use Mockery\CountValidator\Exception;
 use Validator;
 use App\Country;
 use App\Helpers\ImageResize;
@@ -152,27 +153,28 @@ class UserController extends Controller
 
         $model = User::findOrFail($user_id->user_id);
 
-        DB::beginTransaction();
-        try {
-            //update status and password
-            date_default_timezone_set("Asia/Dacca");
-            $user_update_data =[
-                'password'=>Hash::make($data['password']),
-                'last_visit'=>date('Y-m-d h:i:s', time()),
-            ];
-            if($model->update($user_update_data)){
-                DB::table('user_reset_password')->where('user_id', '=', $user_id->user_id)->update(array('status' => 0));
+            if($data['confirm_password']==$data['password']) {
+                //update status and password
+                date_default_timezone_set("Asia/Dacca");
+                $user_update_data =[
+                    'password'=>Hash::make($data['password']),
+                    'last_visit'=>date('Y-m-d h:i:s', time()),
+                ];
+                DB::beginTransaction();
+                try {
+                    if ($model->update($user_update_data)) {
+                        DB::table('user_reset_password')->where('user_id', '=', $user_id->user_id)->update(array('status' => 0));
+                    }
+                    DB::commit();
+                    Session::flash('message', 'You have reset your password successfully. You may signin now.');
+                    return redirect()->route('get-user-login');
+                }catch(Exception $e){
+                    Session::flash('message', $e->getMessage());
+                }
+            }else{
+                Session::flash('error', "Password and Confirm Password Does not match !");
             }
-            DB::commit();
-            Session::flash('message','You have reset your password successfully. You may signin now.');
-            return redirect()->route('get-user-login');
-        }
-        catch ( \Exception $e ){
-            //If there are any exceptions, rollback the transaction
-            DB::rollback();
-            Session::flash('error', "Invalid Request! Please Try Again.");
-        }
-//            return redirect()->back();
+        return redirect()->back();
     }
 
     public function logout() {
@@ -385,8 +387,9 @@ class UserController extends Controller
             $user_id = Auth::user()->id;
             $profile_data = UserProfile::where('user_id',$user_id)->first();
             $user_image = UserImage::where('user_id',$user_id)->first();
+            $user = User::where('id',$user_id)->first();
             $countryList = array('' => 'Please Select') + Country::lists('title', 'id')->all();
-            return view('user::user_info.index',['user_id'=>$user_id,'countryList'=>$countryList,'profile_data'=>$profile_data,'user_image'=>$user_image]);
+            return view('user::user_info.index',['user_id'=>$user_id,'countryList'=>$countryList,'profile_data'=>$profile_data,'user_image'=>$user_image,'user'=>$user]);
         }
     }
     public function user_info($value){

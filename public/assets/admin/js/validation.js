@@ -205,6 +205,7 @@ init.push(function () {
             'jq-validation-policy': 'You must check it!'
         }
     });
+    
 });
 
 
