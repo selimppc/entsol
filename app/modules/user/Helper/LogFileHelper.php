@@ -10,7 +10,7 @@ use Monolog;
 class LogFileHelper
 {
     //log file create for user_module
-    public function log_file($label_name = null,$file_name = 'user_module'){
+    public static function log_file($label_name = null,$file_name = 'user_module'){
         $log = new Monolog\Logger($label_name);
         $log->pushHandler(new Monolog\Handler\StreamHandler(app_path().'/modules/user/logs/'.$file_name.''.date('Y-m-d').'.log'));
         return $log;
