@@ -112,3 +112,6 @@ body{
     height: 240px;
 }
 
+.input-group-addon {
+    padding: 0px 12px;
+}
