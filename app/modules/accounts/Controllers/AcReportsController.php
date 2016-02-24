@@ -21,7 +21,7 @@ class AcReportsController extends Controller
 
     private function connection(){
         $c = new Client(
-            "http://192.168.2.182:8080/jasperserver",
+            "http://localhost:8080/jasperserver",
             "jasperadmin",
             "jasperadmin",
             ""
