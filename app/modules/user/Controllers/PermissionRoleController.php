@@ -31,12 +31,13 @@ class PermissionRoleController extends Controller
         $role_name = Input::get('role_name');
         $permission_name = Input::get('permission_name');
         $data = new PermissionRole();
-        $data = $data->join('role','role.id','=','role_id');
-        $data = $data->join('permissions','permissions.id','=','permission_id');
+        $data = $data->select('permission_role.*');
         if(isset($role_name) && !empty($role_name)){
+            $data = $data->leftJoin('role','role.id','=','permission_role.role_id');
             $data = $data->where('role.title', 'LIKE', '%'.$role_name.'%');
         }
         if(isset($permission_name) && !empty($permission_name)){
+            $data = $data->leftJoin('permissions','permissions.id','=','permission_role.permission_id');
             $data = $data->where('permissions.title', 'LIKE', '%'.$permission_name.'%');
         }
         $data = $data->paginate(30);
