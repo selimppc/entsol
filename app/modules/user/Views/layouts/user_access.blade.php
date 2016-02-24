@@ -15,7 +15,7 @@
                          </span>
                     <h4 class="modal-title" id="myModalLabel">
                         You are: <span style="font-weight: bold; color: #002a80; text-transform:capitalize">
-                               {{isset(Auth::user()->role_id) ?\App\Role::where('id',Auth::user()->role_id)->first()->title: ''}}
+                               {{isset(\App\Role::where('id',Auth::user()->role_id)->first()->title) ?\App\Role::where('id',Auth::user()->role_id)->first()->title: ''}}
                                </span>
                     </h4>
                 </div>
