@@ -68,7 +68,7 @@ class UserRole extends Migration
 
         });
         Schema::table('role_user', function($table) {
-            $table->foreign('role_id')->references('id')->on('role_user');
+            $table->foreign('role_id')->references('id')->on('role');
             $table->foreign('user_id')->references('id')->on('user');
         });
 

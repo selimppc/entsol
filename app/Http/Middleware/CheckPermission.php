@@ -24,12 +24,13 @@ class CheckPermission
                 #return response('Unauthorized.', 401);
                 #return $next($permission, 401);
 
-                return response([
+                /*return response([
                     'error' => [
                         'code' => 'INSUFFICIENT_ROLE',
                         'description' => 'You are not authorized to access this resource.'
                     ]
-                ], 401);
+                ], 401);*/
+                return response(view('user::layouts.user_access')->render());
             }
         }
         //return redirect()->route('dashboard');

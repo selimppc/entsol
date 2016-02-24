@@ -108,3 +108,6 @@ body{
 .navigation a.active{
     font-weight: bold;
 }
+#permission_list{
+    height: 240px;
+}

@@ -1,7 +1,7 @@
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-12">
             {!! Form::label('role_id', 'Role :', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
             @if(count($role_id)>0)
@@ -16,18 +16,13 @@
         <div class="row">
             <div class="form-group col-sm-12">
                 {!! Form::label('permission_id', 'Select Permission :', ['class' => 'control-label']) !!}
-                <div class="col-sm-12">
+                <div class="">
                     {!! Form::select('permission_id[]',$permission_id,null,['class' => 'form-control','id'=>'permission_list','required'=>'required','multiple' => 'multiple']) !!}
                 </div>
             </div>
-            <div class="col-sm-6">
-                {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
-                <small class="required">(Required)</small>
-                {!! Form::select('status', array('active'=>'Active','inactive'=>'Inactive'),Input::old('status'),['class' => 'form-control','required','title'=>'select status of permission role']) !!}
-            </div>
         </div>
 </div>
-
+{!! Form::hidden('status','active') !!}
 <p> &nbsp; </p>
 
 <div class="form-margin-btn">
@@ -39,3 +34,4 @@
 <script type="text/javascript">
     $("#permission_list").bootstrapDualListbox();
 </script>
+
