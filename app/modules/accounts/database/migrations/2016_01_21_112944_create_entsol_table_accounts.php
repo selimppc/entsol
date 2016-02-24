@@ -201,7 +201,7 @@ class CreateEntsolTableAccounts extends Migration
             $table->decimal('exchange_rate', 20,6)->nullable();
             $table->decimal('prime_amount', 20,6)->nullable();
             $table->decimal('base_amount', 20,6)->nullable();
-            $table->enum('status',array('active','inactive','cancel'))->nullable();
+            $table->string('status', 16)->nullable();
             $table->integer('created_by', false, 11)->nullable();
             $table->integer('updated_by', false, 11)->nullable();
             $table->timestamps();
