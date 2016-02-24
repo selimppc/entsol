@@ -376,11 +376,12 @@ class AcReportsController extends Controller
         $to_date = date('Y-m-d', strtotime($data['pToDate']));
 
         $controls = array(
-            'pAccountCode' => $data['pAccountCode'],
+            'pAccountTitle' => $data['pAccountCode'],
             'pBranch' => $data['pBranch'],
             'pFromDate' => $from_date,
             'pToDate' => $to_date
         );
+
 
         //print_r($controls);exit;
 
