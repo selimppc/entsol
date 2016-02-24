@@ -153,27 +153,27 @@ class UserController extends Controller
 
         $model = User::findOrFail($user_id->user_id);
 
-            if($data['confirm_password']==$data['password']) {
-                //update status and password
-                date_default_timezone_set("Asia/Dacca");
-                $user_update_data =[
-                    'password'=>Hash::make($data['password']),
-                    'last_visit'=>date('Y-m-d h:i:s', time()),
-                ];
-                DB::beginTransaction();
-                try {
-                    if ($model->update($user_update_data)) {
-                        DB::table('user_reset_password')->where('user_id', '=', $user_id->user_id)->update(array('status' => 0));
-                    }
-                    DB::commit();
-                    Session::flash('message', 'You have reset your password successfully. You may signin now.');
-                    return redirect()->route('get-user-login');
-                }catch(Exception $e){
-                    Session::flash('message', $e->getMessage());
+        if($data['confirm_password']==$data['password']) {
+            //update status and password
+            date_default_timezone_set("Asia/Dacca");
+            $user_update_data =[
+                'password'=>Hash::make($data['password']),
+                'last_visit'=>date('Y-m-d h:i:s', time()),
+            ];
+            DB::beginTransaction();
+            try {
+                if ($model->update($user_update_data)) {
+                    DB::table('user_reset_password')->where('user_id', '=', $user_id->user_id)->update(array('status' => 0));
                 }
-            }else{
-                Session::flash('error', "Password and Confirm Password Does not match !");
+                DB::commit();
+                Session::flash('message', 'You have reset your password successfully. You may signin now.');
+                return redirect()->route('get-user-login');
+            }catch(Exception $e){
+                Session::flash('message', $e->getMessage());
             }
+        }else{
+            Session::flash('error', "Password and Confirm Password Does not match !");
+        }
         return redirect()->back();
     }
 
@@ -416,9 +416,9 @@ class UserController extends Controller
             return Response::json($e);
         }
 
-      /*}else{
-            return Response::json('only for ajax request!');
-        }*/
+        /*}else{
+              return Response::json('only for ajax request!');
+          }*/
 
     }
 
@@ -511,8 +511,6 @@ class UserController extends Controller
         $input = $request->all();
         $user_id = Auth::user()->id;
 
-//        print_r($user_image_id);exit;
-//        $image_model = $user_image_id ? UserImage::findOrFail($user_image_id):new UserImage();
         $profile_model = UserProfile::findOrFail($id);
 
         DB::beginTransaction();
@@ -578,7 +576,7 @@ class UserController extends Controller
                 Session::flash('error', " Profile Image Do Not added");
             }
         }
-        return redirect()->route('create-user-info');
+        return redirect()->route('user-profile');
     }
 
     public function store_profile_image(Request $request){
@@ -685,7 +683,7 @@ class UserController extends Controller
                 Session::flash('error', " Profile Image Do Not added");
             }
         }
-        return redirect()->route('create-user-info');
+        return redirect()->route('user-profile');
     }
 
     public function store_meta_data(Request $request){
@@ -726,7 +724,7 @@ class UserController extends Controller
             DB::rollback();
             Session::flash('danger', $e->getMessage());
         }
-        return redirect()->route('create-user-info');
+        return redirect()->route('user-profile');
     }
 
     public function edit_meta_data($id){
