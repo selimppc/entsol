@@ -218,7 +218,7 @@ Route::any('delete-role/{slug}', [
     ]);
 
     Route::any('update-user-profile/{id}', [
-        'middleware' => 'acl_access:update-user-profile/{id}/{user_image_id}',
+        'middleware' => 'acl_access:update-user-profile/{id}',
         'as' => 'update-user-profile',
         'uses' => 'UserController@update_user_profile'
     ]);
