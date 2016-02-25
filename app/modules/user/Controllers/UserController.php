@@ -243,7 +243,7 @@ class UserController extends Controller
             if (isset($username) && !empty($username)) $model->where('user.username', '=', $username);
             if (isset($status) && !empty($status)) $model->where('user.status', '=', $status);
 
-            $model = $model->where('status','!=','cancel')->paginate(30);
+            $model = $model->paginate(30);
         }else{
             $model = $model->with('relBranch','relRoleInfo')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(30);
         }
@@ -377,6 +377,7 @@ class UserController extends Controller
         try {
             if($model->status =='active'){
                 $model->status = 'cancel';
+                $model->last_visit = Null;
             }
             $model->save();
             DB::commit();
