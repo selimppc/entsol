@@ -147,7 +147,10 @@ class AuthController extends Controller
                         if($user_data->expire_date < date('Y-m-d h:i:s', time())){
                             DB::table('user')->where('id', '=', $user_data->id)->update(array('status' =>'inactive'));
                             Session::flash('message', "Login Activation Time Is Expired.You Can Contact With System-Admin To Reactivate Account.");
-                        }else{
+                        }elseif($user_data->status=='inactive'){
+                            Session::flash('error', "Sorry!!Your Account Is Inactive.You Can Contact With System-Admin To Reactivate Account.");
+                        }
+                        else{
                             $attempt = Auth::attempt([
                                 $field => $request->get('email'),
                                 'password' => $request->get('password'),
