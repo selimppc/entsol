@@ -37,7 +37,8 @@
             </div>
             <div class="col-sm-6">
                 {!! Form::label('confirm_password', 'Confirm Password') !!}
-                {!! Form::password('re_password', ['class' => 'form-control','placeholder'=>'Re-Enter New Password','required','id'=>'user-re-password','name'=>'re_password','onkeyup'=>"validation()",'title'=>'Enter Confirm Password That Must Be Match With New Passowrd.']) !!}
+                <small class="required">(Required)</small>
+                {!! Form::password('re_password',['class' => 'form-control','placeholder'=>'Re-Enter New Password','required','id'=>'user-re-password','name'=>'re_password','onkeyup'=>"validation()",'title'=>'Enter Confirm Password That Must Be Match With New Passowrd.']) !!}
                 <span id='user-show-message'></span>
 
             </div>
