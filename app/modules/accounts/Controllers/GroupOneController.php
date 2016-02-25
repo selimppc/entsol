@@ -9,6 +9,7 @@
 namespace App\Modules\Accounts\Controllers;
 
 use App\GroupOne;
+use App\Helpers\LogFileHelperAcc;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -58,10 +59,12 @@ class GroupOneController extends Controller
             GroupOne::create($input);
             DB::commit();
             Session::flash('message', 'Successfully added!');
+            LogFileHelperAcc::log_info('add-group-one', 'Successfully added', ['Group one title : '.$input['title']]);
         } catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
             Session::flash('danger', $e->getMessage());
+            LogFileHelperAcc::log_error('add-group-one', $e->getMessage(), ['Group one title : '.$input['title']]);
         }
 
         return redirect()->back();
@@ -115,11 +118,13 @@ class GroupOneController extends Controller
             $model->update($input);
             DB::commit();
             Session::flash('message', "Successfully Updated");
+            LogFileHelperAcc::log_info('update-group-one', 'Successfully updated', ['Group one title : '.$input['title']]);
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('error', $e->getMessage());
+            LogFileHelperAcc::log_error('update-group-one', $e->getMessage(), ['Group one title : '.$input['title']]);
         }
         return redirect()->back();
     }
@@ -144,10 +149,12 @@ class GroupOneController extends Controller
             $model->save();
             DB::commit();
             Session::flash('message', "Successfully Deleted.");
+            LogFileHelperAcc::log_info('delete-group-one', 'Successfully Change status to cancel', ['Group one title : '.$model->title]);
 
         } catch(\Exception $e) {
             DB::rollback();
             Session::flash('danger',$e->getMessage());
+            LogFileHelperAcc::log_error('delete-group-one', $e->getMessage(), ['Group one title : '.$model->title]);
         }
         return redirect()->back();
     }

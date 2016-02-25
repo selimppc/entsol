@@ -10,6 +10,7 @@ namespace App\Modules\Accounts\Controllers;
 use App\Branch;
 use App\ChartOfAccounts;
 use App\GroupOne;
+use App\Helpers\LogFileHelperAcc;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -70,10 +71,12 @@ class ChartOfAccountsController extends Controller
             ChartOfAccounts::create($input);
             DB::commit();
             Session::flash('message', 'Successfully added!');
+            LogFileHelperAcc::log_info('store-chart-of-accounts', 'Successfully added', ['Chart of accounts title : '.$input['title']]);
         } catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
             Session::flash('danger', $e->getMessage());
+            LogFileHelperAcc::log_error('store-chart-of-accounts', $e->getMessage(), ['Chart of accounts title : '.$input['title']]);
         }
 
         return redirect()->back();
@@ -125,11 +128,13 @@ class ChartOfAccountsController extends Controller
             $model->update($input);
             DB::commit();
             Session::flash('message', "Successfully Updated");
+            LogFileHelperAcc::log_info('update-chart-of-accounts', 'Successfully updated', ['Chart of accounts title : '.$input['title']]);
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('danger', $e->getMessage());
+            LogFileHelperAcc::log_error('update-chart-of-accounts', $e->getMessage(), ['Chart of accounts title : '.$input['title']]);
         }
         return redirect()->back();
     }
@@ -154,10 +159,12 @@ class ChartOfAccountsController extends Controller
             $model->save();
             DB::commit();
             Session::flash('message', "Successfully Deleted.");
+            LogFileHelperAcc::log_info('delete-chart-of-accounts', 'Successfully change status to cancel', ['Chart of accounts title : '.$model->title]);
 
         } catch(\Exception $e) {
             DB::rollback();
             Session::flash('danger',$e->getMessage());
+            LogFileHelperAcc::log_error('delete-chart-of-accounts', $e->getMessage(), ['Chart of accounts title : '.$model->title]);
         }
         return redirect()->back();
     }

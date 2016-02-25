@@ -8,6 +8,7 @@
 
 namespace App\Modules\Accounts\Controllers;
 use App\Currency;
+use App\Helpers\LogFileHelperAcc;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -57,10 +58,12 @@ class CurrencyController extends Controller
             Currency::create($input);
             DB::commit();
             Session::flash('message', 'Successfully added!');
+            LogFileHelperAcc::log_info('add-currency', 'Successfully added', ['Currency title : '.$input['title']]);
         } catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
             Session::flash('danger', $e->getMessage());
+            LogFileHelperAcc::log_error('add-currency', $e->getMessage(), ['Currency title : '.$input['title']]);
         }
 
         return redirect()->back();
@@ -118,11 +121,13 @@ class CurrencyController extends Controller
             $model->update($input);
             DB::commit();
             Session::flash('message', "Successfully Updated");
+            LogFileHelperAcc::log_info('update-currency', 'Successfully updated', ['Currency title : '.$input['title']]);
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('danger', $e->getMessage());
+            LogFileHelperAcc::log_error('update-currency', $e->getMessage(), ['Currency title : '.$input['title']]);
         }
         return redirect()->back();
     }
@@ -147,10 +152,12 @@ class CurrencyController extends Controller
             $model->save();
             DB::commit();
             Session::flash('message', "Successfully Deleted.");
+            LogFileHelperAcc::log_info('delete-currency', 'Successfully update status to cancel', ['Currency title : '.$model->title]);
 
         } catch(\Exception $e) {
             DB::rollback();
             Session::flash('danger',$e->getMessage());
+            LogFileHelperAcc::log_error('delete-currency', $e->getMessage(), ['Currency title : '.$model->title]);
         }
         return redirect()->back();
     }

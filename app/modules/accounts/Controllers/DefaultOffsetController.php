@@ -8,6 +8,7 @@
 
 namespace App\Modules\Accounts\Controllers;
 use App\DefaultOffset;
+use App\Helpers\LogFileHelperAcc;
 use App\VoucherHead;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -55,10 +56,12 @@ class DefaultOffsetController extends Controller
             DefaultOffset::create($input);
             DB::commit();
             Session::flash('flash_message', 'Successfully added!');
+            LogFileHelperAcc::log_info('add-default-offset', 'Successfully added', ['Default Offset : '.$input['offset']]);
         } catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
             Session::flash('flash_message_error', $e->getMessage());
+            LogFileHelperAcc::log_error('add-default-offset', $e->getMessage(), ['Default Offset : '.$input['offset']]);
         }
 
         return redirect()->back();
@@ -109,11 +112,13 @@ class DefaultOffsetController extends Controller
             $model->update($input);
             DB::commit();
             Session::flash('flash_message', "Successfully Updated");
+            LogFileHelperAcc::log_info('update-default-offset', 'Successfully updated', ['Default Offset : '.$input['offset']]);
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('flash_message_error', $e->getMessage());
+            LogFileHelperAcc::log_error('update-default-offset', $e->getMessage(), ['Default Offset : '.$input['offset']]);
         }
         return redirect()->back();
     }
@@ -138,10 +143,12 @@ class DefaultOffsetController extends Controller
             $model->save();
             DB::commit();
             Session::flash('message', "Successfully Deleted.");
+            LogFileHelperAcc::log_info('delete-default-offset', 'Successfully change status to cancel', ['Default Offset : '.$model->offset]);
 
         } catch(\Exception $e) {
             DB::rollback();
             Session::flash('danger',$e->getMessage());
+            LogFileHelperAcc::log_error('add-default-offset', 'Successfully added', ['Deafult Offset : '.$model->offset]);
         }
         return redirect()->back();
     }

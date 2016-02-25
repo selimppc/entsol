@@ -12,6 +12,7 @@ use App\Branch;
 use App\ChartOfAccounts;
 use App\Currency;
 use App\GroupOne;
+use App\Helpers\LogFileHelperAcc;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VoucherDetailRequest;
 use App\Http\Requests\VoucherHeadRequest;
@@ -112,10 +113,12 @@ class ReceiptVoucherDetailController extends Controller
 
             DB::commit();
             Session::flash('message', 'Successfully added!');
+            LogFileHelperAcc::log_info('store-receipt-voucher-detail', 'Successfully added voucher detail', ['Voucher head id : '.$input_data['voucher_head_id']]);
         } catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
             Session::flash('danger', $e->getMessage());
+            LogFileHelperAcc::log_error('store-receipt-voucher-detail', 'Successfully added voucher detail', ['Voucher head id : '.$input_data['voucher_head_id']]);
         }
         return redirect()->back();
     }
@@ -170,11 +173,13 @@ class ReceiptVoucherDetailController extends Controller
             $model->update($input_data);
             DB::commit();
             Session::flash('message', "Successfully Updated");
+            LogFileHelperAcc::log_info('update-receipt-voucher-detail', 'Successfully update voucher detail', ['Voucher head id : '.$input_data['voucher_head_id']]);
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('error', $e->getMessage());
+            LogFileHelperAcc::log_error('update-receipt-voucher-detail', $e->getMessage(), ['Voucher head id : '.$input_data['voucher_head_id']]);
         }
         return redirect()->back();
     }
@@ -190,11 +195,13 @@ class ReceiptVoucherDetailController extends Controller
 
             DB::commit();
             Session::flash('message', "Successfully Deleted.");
+            LogFileHelperAcc::log_info('delete-receipt-voucher-detail', 'Successfully change status to cancel in voucher detail', ['Voucher head id : '.$model->voucher_head_id]);
         }
         catch (Exception $ex){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('danger',$ex->getMessage());
+            LogFileHelperAcc::log_error('delete-receipt-voucher-detail', $ex->getMessage(), ['Voucher head id : '.$model->voucher_head_id]);
         }
         return redirect()->back();
     }
@@ -208,11 +215,13 @@ class ReceiptVoucherDetailController extends Controller
             $model->delete();
             DB::commit();
             Session::flash('message', "Successfully Deleted.");
+            LogFileHelperAcc::log_info('destroy-receipt-voucher-detail', 'Successfully delete voucher detail', ['Voucher head id : '.$model->voucher_head_id]);
         }
         catch (Exception $ex){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('danger',$ex->getMessage());
+            LogFileHelperAcc::log_error('destroy-receipt-voucher-detail', 'Successfully added voucher detail', ['Voucher head id : '.$model->voucher_head_id]);
         }
         return redirect()->back();
     }
@@ -226,9 +235,11 @@ class ReceiptVoucherDetailController extends Controller
             try{
                 DB::statement('call sp_voucher_post(?,?)',array($voucher_number,$user_id));
                 Session::flash('message', "Successfully Posted");
+                LogFileHelperAcc::log_info('journal-post-in-receipt-voucher-detail', 'Successfully added voucher detail journal report', ['Voucher number : '.$voucher_number]);
 
             }catch (\Exception $e){
                 Session::flash('danger',$e->getMessage());
+                LogFileHelperAcc::log_info('journal-post-in-receipt-voucher-detail', $e->getMessage(), ['Voucher number : '.$voucher_number]);
             }
         }else{
             Session::flash('danger','Please LogIn At First!!');

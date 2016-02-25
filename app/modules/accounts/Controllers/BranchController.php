@@ -9,6 +9,7 @@
 namespace App\Modules\Accounts\Controllers;
 use App\Branch;
 use App\Currency;
+use App\Helpers\LogFileHelperAcc;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -67,10 +68,12 @@ class BranchController extends Controller
             Branch::create($input);
             DB::commit();
             Session::flash('message', 'Successfully added!');
+            LogFileHelperAcc::log_info('store-branch', 'Successfully added', ['Branch title : '.$input['title']]);
         } catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
             Session::flash('danger', $e->getMessage());
+            LogFileHelperAcc::log_error('store-branch', $e->getMessage(), ['Branch title : '.$input['title']]);
         }
 
         return redirect()->back();
@@ -129,11 +132,13 @@ class BranchController extends Controller
             $model->update($input);
             DB::commit();
             Session::flash('message', "Successfully Updated");
+            LogFileHelperAcc::log_info('update-branch', 'Successfully updated', ['Branch title : '.$input['title']]);
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('danger', $e->getMessage());
+            LogFileHelperAcc::log_error('update-branch', $e->getMessage(), ['Branch title : '.$input['title']]);
         }
         return redirect()->back();
     }
@@ -158,10 +163,12 @@ class BranchController extends Controller
             $model->save();
             DB::commit();
             Session::flash('message', "Successfully Deleted.");
+            LogFileHelperAcc::log_info('delete-branch', 'Successfully update status to cancel', ['Branch title : '.$model->title]);
 
         } catch(\Exception $e) {
             DB::rollback();
             Session::flash('danger',$e->getMessage());
+            LogFileHelperAcc::log_error('delete-branch', $e->getMessage(), ['Branch title : '.$model->title]);
         }
         return redirect()->back();
     }
