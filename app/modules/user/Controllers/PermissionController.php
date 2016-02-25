@@ -59,12 +59,12 @@ class PermissionController extends Controller
                 Permission::create($input);
                 DB::commit();
                 Session::flash('message', 'Successfully added!');
-                LogFileHelper::log_info('permission', $message = 'Successfully added!', $input);
+                LogFileHelper::log_info('store-permission', $message = 'Successfully added!', ['Permission title : '.$input['title']]);
             } catch (\Exception $e) {
                 //If there are any exceptions, rollback the transaction`
                 DB::rollback();
                 Session::flash('danger', $e->getMessage());
-                LogFileHelper::log_info('permission', $message = 'Failed!', $e->getMessage());
+                LogFileHelper::log_error('store-permission', $e->getMessage(), ['Permission title: '.$input['title']]);
             }
         }
 
@@ -119,11 +119,13 @@ class PermissionController extends Controller
             $model->update($input);
             DB::commit();
             Session::flash('message', "Successfully Updated");
+            LogFileHelper::log_info('update-permission', 'Successfully updated', ['Permission title: '.$input['title']]);
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('danger', $e->getMessage());
+            LogFileHelper::log_error('update-permission', $e->getMessage(), ['Permission title: '.$input['title']]);
         }
         return redirect()->route('index-permission');
     }
@@ -143,10 +145,12 @@ class PermissionController extends Controller
             $model->delete();
             DB::commit();
             Session::flash('message', "Successfully Deleted.");
+            LogFileHelper::log_info('delete-permission', 'Successfully delete', ['Permission id: '.$model->id]);
 
         } catch(\Exception $e) {
             DB::rollback();
             Session::flash('danger',$e->getMessage());
+            LogFileHelper::log_error('delete-permission', $e->getMessage(), ['Permission id: '.$model->id]);
         }
         return redirect()->route('index-permission');
     }
@@ -172,10 +176,12 @@ class PermissionController extends Controller
                     $model->save();
                     DB::commit();
                     Session::flash('message', "Successfully Add all route_url in permission table.");
+                    LogFileHelper::log_info('route-insert-in-permission', 'Successfully insert', ['Permission id: '.$model->id]);
 
                 } catch(\Exception $e) {
                     DB::rollback();
                     Session::flash('danger',$e->getMessage());
+                    LogFileHelper::log_error('route-insert-in-permission', $e->getMessage(), ['Permission id: '.$model->id]);
                 }
             }
             else{
