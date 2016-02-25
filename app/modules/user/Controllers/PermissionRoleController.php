@@ -170,7 +170,7 @@ class PermissionRoleController extends Controller
             } catch(\Exception $e) {
                 DB::rollback();
                 Session::flash('danger',$e->getMessage());
-                LogFileHelper::log_info('delete-permission-role', 'Successfully delete ',  ['permission-role-id: '.$id]);
+                LogFileHelper::log_error('delete-permission-role', 'Successfully delete ',  ['permission-role-id: '.$id]);
             }
         }
         return redirect()->route('index-permission-role');
