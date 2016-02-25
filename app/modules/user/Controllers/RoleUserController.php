@@ -2,6 +2,7 @@
 #namespace App\Modules\Web\Controllers;
 namespace App\Modules\User\Controllers;
 
+use App\Helpers\LogFileHelper;
 use App\Permission;
 use App\PermissionRole;
 use App\Role;
@@ -57,10 +58,12 @@ class RoleUserController extends Controller
                 RoleUser::create($input);
                 DB::commit();
                 Session::flash('message', 'Successfully added!');
+                LogFileHelper::log_info('store-role-user', 'Successfully added', ['Role user id(user_id): '.$input['user_id']]);
             } catch (\Exception $e) {
                 //If there are any exceptions, rollback the transaction`
                 DB::rollback();
                 Session::flash('danger', $e->getMessage());
+                LogFileHelper::log_error('store-role-user', $e->getMessage(), ['Role user id(user_id): '.$input['user_id']]);
             }
 
         }else{
@@ -114,11 +117,13 @@ class RoleUserController extends Controller
             $model->update($input);
             DB::commit();
             Session::flash('message', "Successfully Updated");
+            LogFileHelper::log_info('update-role-user', 'Successfully Updated', ['Role-user id: '.$model->id]);
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('danger', $e->getMessage());
+            LogFileHelper::log_error('update-role-user', $e->getMessage(), ['Role-user id: '.$model->id]);
         }
         return redirect()->route('index-role-user');
     }
@@ -143,10 +148,12 @@ class RoleUserController extends Controller
             $model->save();
             DB::commit();
             Session::flash('message', "Successfully Deleted.");
+            LogFileHelper::log_info('delete-role-user', 'Successfully update status cancel', ['Role-user id: '.$model->id]);
 
         } catch(\Exception $e) {
             DB::rollback();
             Session::flash('danger',$e->getMessage());
+            LogFileHelper::log_error('delete-role-user', $e->getMessage(), ['Role-user id: '.$model->id]);
         }
         return redirect()->route('index-role-user');
     }
