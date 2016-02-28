@@ -24,7 +24,7 @@ class LogFileHelper
         }
     }
 
-    public static function log_error($label_name, $message, $value = array('value' => 'message')){
+    public static function log_error($label_name, $message = 'Change', $value = array('value' => 'message')){
         $file_create = LogFileHelper::log_file($label_name);
         if($file_create){
             $file_create->addError($message, $value);

@@ -118,7 +118,7 @@ class ReceiptVoucherDetailController extends Controller
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
             Session::flash('danger', $e->getMessage());
-            LogFileHelperAcc::log_error('store-receipt-voucher-detail', 'Successfully added voucher detail', ['Receipt voucher detail Voucher head id : '.$input_data['voucher_head_id']]);
+            LogFileHelperAcc::log_error('store-receipt-voucher-detail',$e->getMessage(), ['Receipt voucher detail : ']);
         }
         return redirect()->back();
     }
@@ -179,7 +179,7 @@ class ReceiptVoucherDetailController extends Controller
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('error', $e->getMessage());
-            LogFileHelperAcc::log_error('update-receipt-voucher-detail', $e->getMessage(), ['Receipt voucher detail Voucher head id : '.$input_data['voucher_head_id']]);
+            LogFileHelperAcc::log_error('update-receipt-voucher-detail', $e->getMessage(), ['Receipt voucher detail : ']);
         }
         return redirect()->back();
     }

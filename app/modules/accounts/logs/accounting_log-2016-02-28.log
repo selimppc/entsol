@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 [2016-02-28 06:48:04] store-voucher-head.INFO: Successfully added ["Voucher head id : 1"] []
 [2016-02-28 06:48:10] delete-voucher-head.INFO: Successfully change status to cancel ["Voucher head id : 1"] []
 [2016-02-28 06:48:21] store-voucher-head.INFO: Successfully added ["Voucher head id : 2"] []
 [2016-02-28 06:48:24] delete-voucher-head.INFO: Successfully change status to cancel ["Voucher head id : 2"] []
+=======
+[2016-02-28 06:23:19] store-voucher-head.ERROR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'JV--0000001' for key 'ac_voucher_head_voucher_number_unique' (SQL: insert into `ac_voucher_head` (`account_type`, `voucher_number`, `date`, `reference`, `year`, `period`, `branch_id`, `status`, `note`, `created_by`, `updated_at`, `created_at`) values (Journal-voucher, JV--0000001, 2016/02/28, 1234, 2016, 2, 1, Open, New Journal Voucher , 1, 2016-02-28 06:23:19, 2016-02-28 06:23:19)) ["Voucher head information : 1"] []
+[2016-02-28 06:23:41] delete-voucher-head.INFO: Successfully change status to cancel ["Voucher head id : 1"] []
+[2016-02-28 06:23:59] store-voucher-head.INFO: Successfully added ["Voucher head id : 33"] []
+[2016-02-28 06:24:04] delete-voucher-head.INFO: Successfully change status to cancel ["Voucher head id : 33"] []
+[2016-02-28 06:27:29] store-voucher-head.ERROR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'JV--0000003' for key 'ac_voucher_head_voucher_number_unique' (SQL: insert into `ac_voucher_head` (`account_type`, `voucher_number`, `date`, `reference`, `year`, `period`, `branch_id`, `status`, `note`, `created_by`, `updated_at`, `created_at`) values (Journal-voucher, JV--0000003, 2016/02/28, 123, 2016, 2, 1, Open, 123123123123123123123123, 1, 2016-02-28 06:27:29, 2016-02-28 06:27:29)) ["Voucher head information : "] []
+>>>>>>> a2d5b9996d04733e901beeb88cd61536519af80c

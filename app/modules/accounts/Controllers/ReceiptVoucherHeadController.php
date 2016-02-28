@@ -91,17 +91,17 @@ class ReceiptVoucherHeadController extends Controller
         /* Transaction Start Here */
         DB::beginTransaction();
         try {
-            VoucherHead::create($input);
+            $vh = VoucherHead::create($input);
             Settings::where('id', $input['settings_id'])->update(array('last_number' => $input['number']));
 
             DB::commit();
             Session::flash('message', 'Successfully added!');
-            LogFileHelperAcc::log_info('store-receipt-voucher-head', 'Successfully added', ['Receipt Voucher head detail : '.$input]);
+            LogFileHelperAcc::log_info('store-receipt-voucher-head', 'Successfully added', ['Receipt Voucher head detail id: '.$vh->id]);
         } catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
             Session::flash('danger', $e->getMessage());
-            LogFileHelperAcc::log_error('store-receipt-voucher-head', $e->getMessage(), ['Receipt Voucher head detail : '.$input]);
+            LogFileHelperAcc::log_error('store-receipt-voucher-head', $e->getMessage(), ['Receipt Voucher head detail : ']);
         }
         return redirect()->back();
     }
