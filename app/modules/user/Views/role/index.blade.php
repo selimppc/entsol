@@ -14,8 +14,8 @@
                 <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="top" data-content="click add role button for new role entry">
                     <strong>Add Role</strong>
                 </a>
-                <a class="btn btn-success btn-xs pull-right pop" data-toggle="modal" href="{{ route('index-role-user') }}" data-placement="left" data-content="Click to redirect in role user page" style="margin-right: 10px;">
-                    <strong>Go to Role User Page</strong>
+                <a class="btn btn-default btn-xs pull-right pop" data-toggle="modal" href="{{ route('index-role-user') }}" data-placement="left" data-content="Click to redirect in role user page" style="margin-right: 10px;">
+                    <strong>Back to Role User Page</strong>
                 </a>
             </div>
 

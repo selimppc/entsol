@@ -32,26 +32,28 @@
         <div class="row">
             <div class="col-sm-6">
                {!! Form::label('password', 'Password:', ['class' => 'control-label']) !!}
-                {{--<p class="narration">
-                   <input class="field" name="agree" type="checkbox" value="1"> Do you want to change password?
-               </p>
-               {!! Form::password('password',['id'=>'edit-user-password','class' => 'form-control','placeholder'=>'Password','title'=>'Enter User Password']) !!}--}}
-
                 <div class="checkbox" style="margin: 0;">
                     <label>
                         <input type="checkbox" value="yes" class="px" id="checkbox">
                         <span class="lbl narration">Do you want to change password?</span>
                     </label>
                 </div>
-                <div id="field-password">
-                    {!! Form::password('password',['id'=>'edit-user-password','class' => 'form-control','placeholder'=>'Password','title'=>'Enter User Password','readonly']) !!}
+                <div id="pass-old">
+                    {!! Form::hidden('password',$data['password']) !!}
+                    {!! Form::text('password1',null,['class' => 'form-control','placeholder'=>'Password','title'=>'Enter User Password','readonly']) !!}
+                </div>
+                <div style="display: none;" id="field-password">
+                    {!! Form::password('password2',['id'=>'edit-user-password','class' => 'form-control','placeholder'=>'Password','title'=>'Enter User Password']) !!}
                 </div>
             </div>
             <div class="col-sm-6">
                 <div style="margin-top: 20px;">
                     {!! Form::label('confirm_password', 'Confirm Password') !!}
-                    <div id="field-con-password">
-                        {!! Form::password('re_password',['class' => 'form-control','placeholder'=>'Re-Enter New Password','id'=>'user-re-password','name'=>'re_password','onkeyup'=>"validation()",'title'=>'Enter Confirm Password That Must Be Match With New Passowrd.','readonly']) !!}
+                    <div id="re-pass">
+                        {!! Form::password('re_password',['class' => 'form-control','placeholder'=>'Re-Enter New Password','name'=>'re_password','onkeyup'=>"validation()",'title'=>'Enter Confirm Password That Must Be Match With New Passowrd.','readonly']) !!}
+                    </div>
+                    <div style="display: none" id="field-con-password">
+                        {!! Form::password('re_password',['class' => 'form-control','placeholder'=>'Re-Enter New Password','id'=>'user-re-password','name'=>'re_password','onkeyup'=>"validation()",'title'=>'Enter Confirm Password That Must Be Match With New Passowrd.']) !!}
                     </div>
                 </div>
                 <span id='user-show-message'></span>
@@ -110,7 +112,11 @@
         {!! Form::close() !!}
 </div>
 
+
+
+
 <script>
+
     $(".btn").popover({ trigger: "manual" , html: true, animation:false})
             .on("mouseenter", function () {
                 var _this = this;
@@ -155,10 +161,6 @@
             document.getElementById("user-btn-disabled").disabled = true;
         });
     }
-
-</script>
-
-<script>
     //edit-user...........
     $("#user-jq-validation-form").validate({
         ignore: '.ignore, .select2-input',
@@ -244,15 +246,19 @@
 
         var check_value = $("#checkbox").is(":checked");
         if(check_value){
-            document.getElementById('edit-user-password').readOnly = false;
-            document.getElementById('user-re-password').readOnly = false;
+            $('#pass-old').hide();
+            $('#re-pass').hide();
+            $('#field-password').show();
+            $('#field-con-password').show();
         }else{
-            document.getElementById('edit-user-password').readOnly = true;
-            document.getElementById('user-re-password').readOnly = true;
+            $('#pass-old').show();
+            $('#re-pass').show();
+            $('#field-password').hide();
+            $('#field-con-password').hide();
         }
 
     })
 
-
 </script>
+
 
