@@ -9,6 +9,7 @@
 namespace App\Modules\Accounts\Controllers;
 
 use App\Branch;
+use App\Helpers\LogFileHelperAcc;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VoucherHeadRequest;
 use App\Settings;
@@ -94,10 +95,12 @@ class ReverseVoucherHeadController extends Controller
 
             DB::commit();
             Session::flash('message', 'Successfully added!');
+            LogFileHelperAcc::log_info('store-reverse-voucher-head', 'Successfully added', ['Reverse Voucher head information :'. $input]);
         } catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
             Session::flash('danger', $e->getMessage());
+            LogFileHelperAcc::log_error('store-reverse-voucher-head', $e->getMessage(), ['Reverse Voucher head information :'. $input]);
         }
         return redirect()->back();
     }
@@ -134,11 +137,13 @@ class ReverseVoucherHeadController extends Controller
             $model->update($input);
             DB::commit();
             Session::flash('message', "Successfully Updated");
+            LogFileHelperAcc::log_info('update-reverse-voucher-head', 'Successfully updated', ['Reverse Voucher head id :'. $model->id]);
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('error', $e->getMessage());
+            LogFileHelperAcc::log_error('update-reverse-voucher-head', $e->getMessage(), ['Reverse Voucher head id :'. $model->id]);
         }
         return redirect()->back();
     }
@@ -156,11 +161,13 @@ class ReverseVoucherHeadController extends Controller
             $model->save();
             DB::commit();
             Session::flash('message', "Successfully Changed Status.");
+            LogFileHelperAcc::log_info('change-status-reverse-voucher-head', 'Successfully change status', ['Reverse Voucher head id :'. $model->id]);
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('error', $e->getMessage());
+            LogFileHelperAcc::log_error('change-status-reverse-voucher-head', $e->getMessage(), ['Reverse Voucher head id :'. $model->id]);
         }
         return redirect()->route('reverse-voucher');
     }
@@ -178,11 +185,13 @@ class ReverseVoucherHeadController extends Controller
                 $model->save();
                 DB::commit();
                 Session::flash('message', "Successfully Deleted.");
+                LogFileHelperAcc::log_info('delete-reverse-voucher-head', 'Successfully change status to cancel', ['Reverse Voucher head id :'. $model->id]);
             }
             catch (Exception $ex){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
                 Session::flash('danger',$ex->getMessage());
+                LogFileHelperAcc::log_error('delete-reverse-voucher-head', $ex->getMessage(), ['Reverse Voucher head id :'. $model->id]);
             }
         }else{
             Session::flash('message', "Voucher Details Data Found ! You Can Not Delete This Voucher Number");

@@ -12,6 +12,7 @@ use App\Branch;
 use App\ChartOfAccounts;
 use App\Currency;
 use App\GroupOne;
+use App\Helpers\LogFileHelperAcc;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VoucherDetailRequest;
 use App\Http\Requests\VoucherHeadRequest;
@@ -112,10 +113,12 @@ class ReverseVoucherDetailController extends Controller
 
             DB::commit();
             Session::flash('message', 'Successfully added!');
+            LogFileHelperAcc::log_info('store-reverse-voucher-detail', 'Successfully added', ['Reverse Voucher detail information : voucher_head_id '.$input['voucher_head_id'].' -- Voucher number'.$input['voucher_number']]);
         } catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
             Session::flash('danger', $e->getMessage());
+            LogFileHelperAcc::log_error('store-reverse-voucher-detail', $e->getMessage(), ['Voucher detail information : voucher_head_id '.$input['voucher_head_id'].' -- Voucher number'.$input['voucher_number']]);
         }
         return redirect()->back();
     }
@@ -171,11 +174,13 @@ class ReverseVoucherDetailController extends Controller
             $model->update($input_data);
             DB::commit();
             Session::flash('message', "Successfully Updated");
+            LogFileHelperAcc::log_info('update-reverse-voucher-detail', 'Successfully updated', ['Reverse Voucher detail id : '. $model->id]);
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('error', $e->getMessage());
+            LogFileHelperAcc::log_error('update-reverse-voucher-detail', $e->getMessage(), ['Reverse Voucher detail id : '. $model->id]);
         }
         return redirect()->back();
     }
@@ -191,11 +196,13 @@ class ReverseVoucherDetailController extends Controller
 
             DB::commit();
             Session::flash('message', "Successfully Deleted.");
+            LogFileHelperAcc::log_info('delete-reverse-voucher-detail', 'Successfully cahnge status to cancel', ['Reverse Voucher detail id : '. $model->id]);
         }
         catch (Exception $ex){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('danger',$ex->getMessage());
+            LogFileHelperAcc::log_error('delete-reverse-voucher-detail', $ex->getMessage(), ['Reverse Voucher detail id : '. $model->id]);
         }
         return redirect()->back();
     }
@@ -209,11 +216,13 @@ class ReverseVoucherDetailController extends Controller
             $model->delete();
             DB::commit();
             Session::flash('message', "Successfully Deleted.");
+            LogFileHelperAcc::log_info('destroy-reverse-voucher-detail', 'Successfully delete', ['Reverse Voucher detail id : '. $model->id]);
         }
         catch (Exception $ex){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('danger',$ex->getMessage());
+            LogFileHelperAcc::log_error('delete-reverse-voucher-detail', $ex->getMessage(), ['Reverse Voucher detail id : '. $model->id]);
         }
         return redirect()->back();
     }
@@ -227,9 +236,11 @@ class ReverseVoucherDetailController extends Controller
             try{
                 DB::statement('call sp_voucher_post(?,?)',array($voucher_number,$user_id));
                 Session::flash('message', "Successfully Posted");
+                LogFileHelperAcc::log_info('journal-post-in-reverse-voucher-detail', 'Successfully cahnge status to cancel', ['Reverse Voucher detail id journal post: voucher number'. $voucher_number]);
 
             }catch (\Exception $e){
                 Session::flash('danger',$e->getMessage());
+                LogFileHelperAcc::log_error('journal-post-in-reverse-voucher-detail', $e->getMessage(), ['Reverse Voucher detail id journal post: voucher number'. $voucher_number]);
             }
         }else{
             Session::flash('danger','Please LogIn At First!!');

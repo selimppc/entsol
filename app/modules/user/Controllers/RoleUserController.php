@@ -33,6 +33,17 @@ class RoleUserController extends Controller
         $role_name = Input::get('role_name');
         $username = Input::get('username');
         $data = new RoleUser();
+        $data = $data->select('role_user.*');
+        if(isset($role_name) && !empty($role_name)){
+            $data = $data->leftJoin('role','role.id','=','role_user.role_id');
+            $data = $data->where('role.title', 'LIKE', '%'.$role_name.'%');
+        }
+        if(isset($username) && !empty($username)){
+            $data = $data->leftJoin('user','user.id','=','role_user.user_id');
+            $data = $data->where('user.username', 'LIKE', '%'.$username.'%');
+        }
+        $data = $data->paginate(30);
+        /*$data = new RoleUser();
         $data = $data->join('role','role.id','=','role_id');
         $data = $data->join('user','user.id','=','user_id');
         if(isset($role_name) && !empty($role_name)){
@@ -41,7 +52,7 @@ class RoleUserController extends Controller
         if(isset($username) && !empty($username)){
             $data = $data->where('user.username', 'LIKE', '%'.$username.'%');
         }
-        $data = $data->paginate(30);
+        $data = $data->paginate(30);*/
         $user_id = [''=>'Select User'] + User::lists('username','id')->all();
 
         $role_id = [''=>'Select Role'] + Role::lists('title','id')->all();

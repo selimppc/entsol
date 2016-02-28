@@ -7,6 +7,7 @@
  */
 
 namespace App\Modules\Accounts\Controllers;
+use App\Helpers\LogFileHelperAcc;
 use App\Settings;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -62,10 +63,12 @@ class SettingsController extends Controller
             Settings::create($input);
             DB::commit();
             Session::flash('message', 'Successfully added!');
+            LogFileHelperAcc::log_info('store-setting', 'Successfully added', ['Setting Title :'. $title]);
         } catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
             Session::flash('danger', $e->getMessage());
+            LogFileHelperAcc::log_error('store-setting', $e->getMessage(), ['Setting Title :'. $title]);
         }
 
         return redirect()->back();
@@ -123,11 +126,13 @@ class SettingsController extends Controller
             $model->update($input);
             DB::commit();
             Session::flash('message', "Successfully Updated");
+            LogFileHelperAcc::log_info('update-setting', 'Successfully updated', ['Setting Title :'. $title]);
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('error', $e->getMessage());
+            LogFileHelperAcc::log_error('update-setting', $e->getMessage(), ['Setting Title :'. $title]);
         }
         return redirect()->back();
     }
@@ -152,10 +157,12 @@ class SettingsController extends Controller
             $model->save();
             DB::commit();
             Session::flash('message', "Successfully Deleted.");
+            LogFileHelperAcc::log_info('delete-setting', 'Successfully change status to cancel', ['Setting Title :'. $model]);
 
         } catch(\Exception $e) {
             DB::rollback();
             Session::flash('danger',$e->getMessage());
+            LogFileHelperAcc::log_error('delete-setting', $e->getMessage(), ['Setting Title :'. $model]);
         }
         return redirect()->back();
     }
