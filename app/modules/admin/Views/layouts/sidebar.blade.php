@@ -4,7 +4,7 @@
              Javascript: html/assets/demo/demo.js
          -->
         <div>
-            <div class="text-bg"><span class="text-slim">Welcome,</span> <span class="text-semibold">{{isset(Auth::user()->username)?ucfirst(Auth::user()->username):''}}</span></div>
+            <div class="text-bg"><span class="text-slim">Welcome,</span><br> <span class="text-semibold">{{isset(Auth::user()->username)?ucfirst(Auth::user()->username):''}}</span></div>
 
             <img src="{{URL::to('assets/admin/img/avatar1.jpg')}}" alt="User Image" >
 

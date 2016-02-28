@@ -18,24 +18,24 @@ use Illuminate\Support\Facades\Response;
 class AcReportsController extends Controller
 {
 
-    private $report_path = '/entsol/gsg_reports';
-    #private $report_path = '/entsol/sns_reports';
+    #private $report_path = '/entsol/gsg_reports';
+    private $report_path = '/entsol/sns_reports';
     #private $report_path = '/entsol/Reports';
 
     private function connection(){
-        /*$c = new Client(
+        $c = new Client(
             "http://37.230.100.79:8080/jasperserver",
             "jasperadmin",
             "jasperadmin",
             ""
-        );*/
+        );
 
-        $c = new Client(
+        /*$c = new Client(
             "http://localhost:8080/jasperserver",
             "jasperadmin",
             "jasperadmin",
             ""
-        );
+        );*/
 
         return $c;
     }
