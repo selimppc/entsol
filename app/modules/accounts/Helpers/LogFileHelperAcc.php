@@ -10,9 +10,11 @@ use Monolog;
 class LogFileHelperAcc
 {
     //log file create for user_module
-    private static function log_file($label_name = null,$file_name = 'accounting_module'){
+    private static function log_file($label_name = null,$file_name = 'accounting_log'){
         $log = new Monolog\Logger($label_name);
         $log->pushHandler(new Monolog\Handler\StreamHandler(app_path().'/modules/accounts/logs/'.$file_name.''.date('Y-m-d').'.log'));
+        umask(0);
+        chmod(app_path().'/modules/accounts/logs/'.$file_name.''.date('Y-m-d').'.log', 777);
         return $log;
     }
 
