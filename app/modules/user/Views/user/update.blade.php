@@ -31,14 +31,29 @@
     <div class="form-group form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
         <div class="row">
             <div class="col-sm-6">
-                {!! Form::label('password', 'Password:', ['class' => 'control-label']) !!}
-                <small class="required">(Required)</small>
-                {!! Form::password('password',['id'=>'edit-user-password','class' => 'form-control','required','placeholder'=>'Password','title'=>'Enter User Password']) !!}
+               {!! Form::label('password', 'Password:', ['class' => 'control-label']) !!}
+                {{--<p class="narration">
+                   <input class="field" name="agree" type="checkbox" value="1"> Do you want to change password?
+               </p>
+               {!! Form::password('password',['id'=>'edit-user-password','class' => 'form-control','placeholder'=>'Password','title'=>'Enter User Password']) !!}--}}
+
+                <div class="checkbox" style="margin: 0;">
+                    <label>
+                        <input type="checkbox" value="yes" class="px" id="checkbox">
+                        <span class="lbl narration">Do you want to change password?</span>
+                    </label>
+                </div>
+                <div id="field-password">
+                    {!! Form::password('password',['id'=>'edit-user-password','class' => 'form-control','placeholder'=>'Password','title'=>'Enter User Password','readonly']) !!}
+                </div>
             </div>
             <div class="col-sm-6">
-                {!! Form::label('confirm_password', 'Confirm Password') !!}
-                <small class="required">(Required)</small>
-                {!! Form::password('re_password',['class' => 'form-control','placeholder'=>'Re-Enter New Password','required','id'=>'user-re-password','name'=>'re_password','onkeyup'=>"validation()",'title'=>'Enter Confirm Password That Must Be Match With New Passowrd.']) !!}
+                <div style="margin-top: 20px;">
+                    {!! Form::label('confirm_password', 'Confirm Password') !!}
+                    <div id="field-con-password">
+                        {!! Form::password('re_password',['class' => 'form-control','placeholder'=>'Re-Enter New Password','id'=>'user-re-password','name'=>'re_password','onkeyup'=>"validation()",'title'=>'Enter Confirm Password That Must Be Match With New Passowrd.','readonly']) !!}
+                    </div>
+                </div>
                 <span id='user-show-message'></span>
 
             </div>
@@ -224,5 +239,20 @@
             'jq-validation-policy': 'You must check it!'
         }
     });
+    //change password checkbox....
+    $('#checkbox').change(function (){
+
+        var check_value = $("#checkbox").is(":checked");
+        if(check_value){
+            document.getElementById('edit-user-password').readOnly = false;
+            document.getElementById('user-re-password').readOnly = false;
+        }else{
+            document.getElementById('edit-user-password').readOnly = true;
+            document.getElementById('user-re-password').readOnly = true;
+        }
+
+    })
+
+
 </script>
 
