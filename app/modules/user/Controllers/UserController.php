@@ -282,12 +282,12 @@ class UserController extends Controller
 
             DB::commit();
             Session::flash('message', 'Successfully added!');
-            LogFileHelper::log_info('user-add', 'Successfully added!', [$input_data]);
+            LogFileHelper::log_info('user-add', 'Successfully added!', ['Username: -'.$input_data['username']]);
         } catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
             Session::flash('danger', $e->getMessage());
-            LogFileHelper::log_error('user-add', $e->getMessage(), [$input_data]);
+            LogFileHelper::log_error('user-add', $e->getMessage(), ['Username:-'.$input['username']]);
         }
         return redirect()->back();
     }
@@ -353,13 +353,13 @@ class UserController extends Controller
             $model->update($input_data);
             DB::commit();
             Session::flash('message', "Successfully Updated");
-            LogFileHelper::log_info('user', 'Successfully Updated!', [$input['username']]);
+            LogFileHelper::log_info('user', 'Successfully Updated!', ['Username:'.$input['username']]);
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('error', $e->getMessage());
-            LogFileHelper::log_error('user', 'error!'.$e->getMessage(), [$input['username']]);
+            LogFileHelper::log_error('user', 'error!'.$e->getMessage(), ['Username:'.$input['username']]);
         }
         return redirect()->back();
     }
@@ -382,12 +382,12 @@ class UserController extends Controller
             $model->save();
             DB::commit();
             Session::flash('message', "Successfully Deleted.");
-            LogFileHelper::log_info('user', 'Successfully Deleted!',[$model->id]);
+            LogFileHelper::log_info('user', 'Successfully Deleted!',['User id:'.$model->id]);
 
         } catch(\Exception $e) {
             DB::rollback();
             Session::flash('danger',$e->getMessage());
-            LogFileHelper::log_error('user-destroy', $e->getMessage(), [$model->id]);
+            LogFileHelper::log_error('user-destroy', $e->getMessage(), ['User id:'.$model->id]);
         }
         return redirect()->route('user-list');
     }
@@ -453,13 +453,13 @@ class UserController extends Controller
             $profile_model->create($input);
             DB::commit();
             Session::flash('message', "Successfully Added");
-            LogFileHelper::log_info('store_user_profile', 'Successfully added', [$input['first_name']]);
+            LogFileHelper::log_info('store_user_profile', 'Successfully added', ['User profile firstname:'.$input['first_name']]);
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('error', 'Profile Information Do not Added');
-            LogFileHelper::log_error('user-destroy', $e->getMessage(),  [$input['first_name']]);
+            LogFileHelper::log_error('user-destroy', $e->getMessage(),  ['User profile firstname:'.$input['first_name']]);
         }
 
         $image = Input::file('image');
@@ -497,13 +497,13 @@ class UserController extends Controller
                 $image_model->create($input);
                 DB::commit();
                 Session::flash('message', "Successfully added");
-                LogFileHelper::log_info('store-user-profile', 'Successfully added', [$input['image']] );
+                LogFileHelper::log_info('store-user-profile', 'Successfully added', ['User profile image:'.$input['image']] );
             }
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
                 Session::flash('error', " Profile Image Do Not added");
-                LogFileHelper::log_error('store-user-profile', $e->getMessage(), [$input['image']] );
+                LogFileHelper::log_error('store-user-profile', $e->getMessage(), ['User profile image:'.$input['image']] );
             }
         }
         return redirect()->back();
@@ -534,13 +534,13 @@ class UserController extends Controller
             $profile_model->update($input);
             DB::commit();
             Session::flash('message', "Successfully Added");
-            LogFileHelper::log_info('update-user-profile', 'successfully updated', [$input['first_name']]);
+            LogFileHelper::log_info('update-user-profile', 'successfully updated', ['User profile firstname:'.$input['first_name']]);
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('error', 'Profile Information Do not Added');
-            LogFileHelper::log_error('update-user-profile', $e->getMessage(), [$input['first_name']]);
+            LogFileHelper::log_error('update-user-profile', $e->getMessage(), ['User profile firstname:'.$input['first_name']]);
         }
 
         $image = Input::file('image');
@@ -587,13 +587,13 @@ class UserController extends Controller
                 $image_model->fill($input)->save();
                 DB::commit();
                 Session::flash('message', "Successfully added");
-                LogFileHelper::log_info('update-user-profile', 'Successfully added',  [$input['image']]);
+                LogFileHelper::log_info('update-user-profile', 'Successfully added',  ['User profile image:'.$input['image']]);
             }
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
                 Session::flash('error', " Profile Image Do Not added");
-                LogFileHelper::log_error('update-user-profile', $e->getMessage(),  [$input['image']]);
+                LogFileHelper::log_error('update-user-profile', $e->getMessage(),  ['User profile image:'.$input['image']]);
             }
         }
         return redirect()->route('user-profile');
@@ -639,13 +639,13 @@ class UserController extends Controller
                 $image_model->create($input);
                 DB::commit();
                 Session::flash('message', "Successfully added");
-                LogFileHelper::log_info('store-profile-image', 'successfully added', [$input['image']]);
+                LogFileHelper::log_info('store-profile-image', 'successfully added', ['User profile image:'.$input['image']]);
             }
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
                 Session::flash('error', "Profile Image Do Not added");
-                LogFileHelper::log_error('store-profile-image', $e->getMessage(),  [$input['image']]);
+                LogFileHelper::log_error('store-profile-image', $e->getMessage(),  ['User profile image:'.$input['image']]);
             }
         }
         return redirect()->back();
@@ -698,13 +698,13 @@ class UserController extends Controller
                 $image_model->update($input);
                 DB::commit();
                 Session::flash('message', "Successfully added");
-                LogFileHelper::log_info('update-profile-image', 'successfully update',  [$input['image']]);
+                LogFileHelper::log_info('update-profile-image', 'successfully update',  ['User profile image:'.$input['image']]);
             }
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
                 Session::flash('error', " Profile Image Do Not added");
-                LogFileHelper::log_error('update-profile-image', $e->getMessage(), [$input['image']]);
+                LogFileHelper::log_error('update-profile-image', $e->getMessage(), ['User profile image:'.$input['image']]);
             }
         }
         return redirect()->route('user-profile');
@@ -743,12 +743,12 @@ class UserController extends Controller
             UserMeta::create($input);
             DB::commit();
             Session::flash('message', 'Successfully added!');
-            LogFileHelper::log_info('store-meta-data', 'Successfully added', [$file_name]);
+            LogFileHelper::log_info('store-meta-data', 'Successfully added', ['User metadata signature:'.$input['signature']]);
         } catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
             Session::flash('danger', $e->getMessage());
-            LogFileHelper::log_error('store-meta-data', $e->getMessage(),[$file_name]);
+            LogFileHelper::log_error('store-meta-data', $e->getMessage(),['User metadata signature:'.$input['signature']]);
         }
         return redirect()->route('user-profile');
     }
@@ -797,12 +797,12 @@ class UserController extends Controller
             $model->update($input);
             DB::commit();
             Session::flash('message', 'Successfully Updated!');
-            LogFileHelper::log_info('update-meat-data', 'Successfully updated',[$file_name]);
+            LogFileHelper::log_info('update-meat-data', 'Successfully updated',['User metadata signature:'.$input['signature']]);
         } catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
             Session::flash('danger', $e->getMessage());
-            LogFileHelper::log_error('update-meta-data', $e->getMessage(), [$file_name]);
+            LogFileHelper::log_error('update-meta-data', $e->getMessage(), ['User metadata signature:'.$input['signature']]);
         }
         return redirect()->back();
     }
@@ -831,13 +831,13 @@ class UserController extends Controller
 
                         DB::commit();
                         Session::flash('message', "Successfully Updated Your Password");
-                        LogFileHelper::log_info('update-user-password', 'Successfully update password', [$input['pass']]);
+                        LogFileHelper::log_info('update-user-password', 'Successfully update password', ['User id: '.$model->id]);
 
                     } catch (Exception $e) {
                         //If there are any exceptions, rollback the transaction
                         DB::rollback();
                         Session::flash('error',$e->getMessage());
-                        LogFileHelper::log_error('update-user-password', $e->getMessage(), [$input['pass']]);
+                        LogFileHelper::log_error('update-user-password', $e->getMessage(), ['User id: '.$model->id]);
                     }
                 } else {
                     Session::flash('error', "Your old password is not correct !");
