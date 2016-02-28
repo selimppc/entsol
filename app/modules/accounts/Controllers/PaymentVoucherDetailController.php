@@ -112,12 +112,12 @@ class PaymentVoucherDetailController extends Controller
 
             DB::commit();
             Session::flash('message', 'Successfully added!');
-            LogFileHelperAcc::log_info('add-payment-voucher-detail', 'Successfully added', ['Voucher number : '.$input_data['voucher_number']]);
+            LogFileHelperAcc::log_info('add-payment-voucher-detail', 'Successfully added', ['Payment voucher detail Voucher number : '.$input_data['voucher_number']]);
         } catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
             Session::flash('danger', $e->getMessage());
-            LogFileHelperAcc::log_error('add-payment-voucher-detail', $e->getMessage(), ['Voucher number : '.$input_data['voucher_number']]);
+            LogFileHelperAcc::log_error('add-payment-voucher-detail', $e->getMessage(), ['Payment voucher detail Voucher number : '.$input_data['voucher_number']]);
         }
         return redirect()->back();
     }
@@ -172,13 +172,13 @@ class PaymentVoucherDetailController extends Controller
             $model->update($input_data);
             DB::commit();
             Session::flash('message', "Successfully Updated");
-            LogFileHelperAcc::log_info('update-payment-voucher-detail', 'Successfully updated', ['Voucher number : '.$input_data['voucher_number']]);
+            LogFileHelperAcc::log_info('update-payment-voucher-detail', 'Successfully updated', ['Payment voucher detail Voucher number : '.$input_data['voucher_number']]);
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('error', $e->getMessage());
-            LogFileHelperAcc::log_error('update-payment-voucher-detail', $e->getMessage(), ['Voucher number : '.$input_data['voucher_number']]);
+            LogFileHelperAcc::log_error('update-payment-voucher-detail', $e->getMessage(), ['Payment voucher detail Voucher number : '.$input_data['voucher_number']]);
         }
         return redirect()->back();
     }
@@ -194,13 +194,13 @@ class PaymentVoucherDetailController extends Controller
 
             DB::commit();
             Session::flash('message', "Successfully Deleted.");
-            LogFileHelperAcc::log_info('delete-payment-voucher-detail', 'Successfully change status cancel.', ['Voucher number : '.$model->voucher_number]);
+            LogFileHelperAcc::log_info('delete-payment-voucher-detail', 'Successfully change status cancel.', ['Payment voucher detail Voucher number : '.$model->voucher_number]);
         }
         catch (Exception $ex){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('danger',$ex->getMessage());
-            LogFileHelperAcc::log_error('delete-payment-voucher-detail', $ex->getMessage(), ['Voucher number : '.$model->voucher_number]);
+            LogFileHelperAcc::log_error('delete-payment-voucher-detail', $ex->getMessage(), ['Payment voucher detail Voucher number : '.$model->voucher_number]);
         }
         return redirect()->back();
     }
@@ -214,13 +214,13 @@ class PaymentVoucherDetailController extends Controller
             $model->delete();
             DB::commit();
             Session::flash('message', "Successfully Deleted.");
-            LogFileHelperAcc::log_info('destroy-payment-voucher-detail', 'Successfully delete', ['Voucher number : '.$model->voucher_number]);
+            LogFileHelperAcc::log_info('destroy-payment-voucher-detail', 'Successfully delete', ['Payment voucher detail Voucher number : '.$model->voucher_number]);
         }
         catch (Exception $ex){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('danger',$ex->getMessage());
-            LogFileHelperAcc::log_error('destroy-payment-voucher-detail', $ex->getMessage(), ['Voucher number : '.$model->voucher_number]);
+            LogFileHelperAcc::log_error('destroy-payment-voucher-detail', $ex->getMessage(), ['Payment voucher detail Voucher number : '.$model->voucher_number]);
         }
         return redirect()->back();
     }
@@ -234,11 +234,11 @@ class PaymentVoucherDetailController extends Controller
             try{
                 DB::statement('call sp_voucher_post(?,?)',array($voucher_number,$user_id));
                 Session::flash('message', "Successfully Posted");
-                LogFileHelperAcc::log_info('add-journal-post', 'Successfully added', ['Voucher number : '.$voucher_number]);
+                LogFileHelperAcc::log_info('add-journal-post', 'Successfully added', ['Payment voucher detail Voucher number : '.$voucher_number]);
 
             }catch (\Exception $e){
                 Session::flash('danger',$e->getMessage());
-                LogFileHelperAcc::log_error('add-journal-post', $e->getMessage(), ['Voucher number : '.$voucher_number]);
+                LogFileHelperAcc::log_error('add-journal-post', $e->getMessage(), ['Payment voucher detail Voucher number : '.$voucher_number]);
             }
         }else{
             Session::flash('danger','Please LogIn At First!!');

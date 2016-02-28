@@ -118,7 +118,7 @@ class ReverseVoucherDetailController extends Controller
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
             Session::flash('danger', $e->getMessage());
-            LogFileHelperAcc::log_error('store-reverse-voucher-detail', $e->getMessage(), ['Voucher detail information : voucher_head_id '.$input['voucher_head_id'].' -- Voucher number'.$input['voucher_number']]);
+            LogFileHelperAcc::log_error('store-reverse-voucher-detail', $e->getMessage(), ['Reverse Voucher detail information  : voucher_head_id '.$input['voucher_head_id'].' -- Voucher number'.$input['voucher_number']]);
         }
         return redirect()->back();
     }

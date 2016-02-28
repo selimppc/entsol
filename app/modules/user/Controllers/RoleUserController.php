@@ -69,12 +69,12 @@ class RoleUserController extends Controller
                 RoleUser::create($input);
                 DB::commit();
                 Session::flash('message', 'Successfully added!');
-                LogFileHelper::log_info('store-role-user', 'Successfully added', ['Role user id(user_id): '.$input['user_id']]);
+                LogFileHelper::log_info('store-role-user', 'Successfully added', ['Role user (user_id): '.$input['user_id']]);
             } catch (\Exception $e) {
                 //If there are any exceptions, rollback the transaction`
                 DB::rollback();
                 Session::flash('danger', $e->getMessage());
-                LogFileHelper::log_error('store-role-user', $e->getMessage(), ['Role user id(user_id): '.$input['user_id']]);
+                LogFileHelper::log_error('store-role-user', $e->getMessage(), ['Role user (user_id): '.$input['user_id']]);
             }
 
         }else{

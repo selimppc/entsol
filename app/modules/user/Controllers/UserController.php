@@ -170,11 +170,11 @@ class UserController extends Controller
                 }
                 DB::commit();
                 Session::flash('message', 'You have reset your password successfully. You may signin now.');
-                LogFileHelper::log_info('save_new_password', 'successfully reset password',[$user_id->user_id]);
+                LogFileHelper::log_info('save_new_password', 'successfully reset password',["New password for user_id".$user_id->user_id]);
                 return redirect()->route('get-user-login');
             }catch(Exception $e){
                 Session::flash('message', $e->getMessage());
-                LogFileHelper::log_error('save_new_password', $e->getMessage(), [$user_id->user_id]);
+                LogFileHelper::log_error('save_new_password', $e->getMessage(), ["New password for user_id".$user_id->user_id]);
             }
         }else{
             Session::flash('error', "Password and Confirm Password Does not match !");
@@ -353,13 +353,13 @@ class UserController extends Controller
             $model->update($input_data);
             DB::commit();
             Session::flash('message', "Successfully Updated");
-            LogFileHelper::log_info('user', 'Successfully Updated!', ['Username:'.$input['username']]);
+            LogFileHelper::log_info('update-user', 'Successfully Updated!', ['Username:'.$input['username']]);
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('error', $e->getMessage());
-            LogFileHelper::log_error('user', 'error!'.$e->getMessage(), ['Username:'.$input['username']]);
+            LogFileHelper::log_error('update-user', 'error!'.$e->getMessage(), ['Username:'.$input['username']]);
         }
         return redirect()->back();
     }
@@ -382,7 +382,7 @@ class UserController extends Controller
             $model->save();
             DB::commit();
             Session::flash('message', "Successfully Deleted.");
-            LogFileHelper::log_info('user', 'Successfully Deleted!',['User id:'.$model->id]);
+            LogFileHelper::log_info('destroy-user', 'Successfully Deleted!change status to cancel',['User id:'.$model->id]);
 
         } catch(\Exception $e) {
             DB::rollback();
@@ -459,7 +459,7 @@ class UserController extends Controller
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('error', 'Profile Information Do not Added');
-            LogFileHelper::log_error('user-destroy', $e->getMessage(),  ['User profile firstname:'.$input['first_name']]);
+            LogFileHelper::log_error('store-user-profile', $e->getMessage(),  ['User profile firstname:'.$input['first_name']]);
         }
 
         $image = Input::file('image');
