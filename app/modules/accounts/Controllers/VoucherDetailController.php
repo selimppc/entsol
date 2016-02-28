@@ -146,12 +146,12 @@ class VoucherDetailController extends Controller
 
             DB::commit();
             Session::flash('message', 'Successfully added!');
-            LogFileHelperAcc::log_info('store-voucher-detail', 'Successfully added', ['Voucher Detail information : voucher_head_id: '.$input['voucher_head_id'].' --- voucher_number'.$input['voucher_number']]);
+            LogFileHelperAcc::log_info('store-voucher-detail', 'Successfully added', ['Voucher Detail information : voucher_head_id: '.$input['voucher_head_id'].' --- voucher_number'.$voucher_data['voucher_number']]);
         } catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
             Session::flash('danger', $e->getMessage());
-            LogFileHelperAcc::log_error('store-voucher-detail', $e->getMessage(), ['Voucher Detail information : voucher_head_id: '.$input['voucher_head_id'].' --- voucher_number'.$input['voucher_number']]);
+            LogFileHelperAcc::log_error('store-voucher-detail', $e->getMessage(), ['Voucher Detail information : voucher_head_id: '.$input['voucher_head_id'].' --- voucher_number'.$voucher_data['voucher_number']]);
         }
         return redirect()->back();
     }
