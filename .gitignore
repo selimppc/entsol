@@ -15,3 +15,5 @@ config/database.php
 composer.lock
 
 public/uploads
+app/modules/user/logs/
+app/modules/accounts/logs/
