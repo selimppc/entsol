@@ -48,9 +48,14 @@ class UserRole extends Migration
             $table->engine = 'InnoDB';
         });
         Schema::table('user', function($table) {
-            $table->foreign('branch_id')->references('id')->on('cm_branch');
+            /*if 'cm_branch' table  exists */
+            if(Schema::hasTable('cm_branch'))
+            {
+                $table->foreign('branch_id')->references('id')->on('cm_branch');
+            }
             $table->foreign('role_id')->references('id')->on('role');
         });
+
 
         /*role_user*/
 
