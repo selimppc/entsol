@@ -24,7 +24,6 @@
         </li>
 
         <li class="mm-dropdown">
-            <a><i class="menu-icon fa fa-th"></i><span class="mm-text mmc-dropdown-delay animated fadeIn">Layouts</span></a>
             <ul class="mmc-dropdown-delay animated fadeInLeft">
                 <li>
                     <a tabindex="-1" href="{{URL::to('form-elements')}}"><span class="mm-text">Example Pages</span></a>
