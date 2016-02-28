@@ -38,7 +38,7 @@ class UserRole extends Migration
             $table->string('ip_address', 32)->nullable();
             $table->unsignedInteger('branch_id')->nullable();
             $table->dateTime('last_visit')->nullable();
-            $table->unsignedInteger('role_id')->nullable();
+            #$table->unsignedInteger('role_id')->nullable();
             $table->dateTime('expire_date')->nullable();
             $table->string('remember_token',64)->nullable();
             $table->enum('status',array('active','inactive','cancel'))->nullable();
@@ -53,7 +53,7 @@ class UserRole extends Migration
             {
                 $table->foreign('branch_id')->references('id')->on('cm_branch');
             }
-            $table->foreign('role_id')->references('id')->on('role');
+            #$table->foreign('role_id')->references('id')->on('role');
         });
 
 

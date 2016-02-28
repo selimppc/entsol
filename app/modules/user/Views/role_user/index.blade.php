@@ -42,8 +42,8 @@
                     <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
                         <thead>
                         <tr>
-                            <th> Role </th>
                             <th> User </th>
+                            <th> Role </th>
                             <th> Action &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="view : click for details informations<br>update : click for update informations">(?)</span></th>
                         </tr>
                         </thead>
@@ -51,8 +51,8 @@
                         @if(isset($data))
                             @foreach($data as $values)
                                 <tr class="gradeX">
-                                    <td>{{ucfirst($values->relRole->title)}}</td>
                                     <td>{{ucfirst($values->relUser->username)}}</td>
+                                    <td>{{ucfirst($values->relRole->title)}}</td>
                                     <td>
                                         <a href="{{ route('view-role-user', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="view"><i class="fa fa-eye"></i></a>
                                         <a href="{{ route('edit-role-user', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="update"><i class="fa fa-edit"></i></a>
