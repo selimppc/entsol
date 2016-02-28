@@ -262,6 +262,7 @@ class UserController extends Controller
     public function add_user(Requests\UserRequest $request){
 
         $input = $request->all();
+
         date_default_timezone_set("Asia/Dacca");
         /* Transaction Start Here */
         DB::beginTransaction();
@@ -332,16 +333,21 @@ class UserController extends Controller
      */
     public function update_user(Requests\UserRequest $request, $id)
     {
-        $input = $request->all();
+        $input = Input::all();
         $model = User::findOrFail($id);
 
         DB::beginTransaction();
         try {
 
+            if($input['password2']!=Null){
+                $password = Hash::make($input['password2']);
+            }else{
+                $password =  $input['password'];
+            }
             $input_data = [
                 'username'=>$input['username'],
                 'email'=>$input['email'],
-                'password'=>Hash::make($input['password']),
+                'password'=>$password,
                 'csrf_token'=> str_random(30),
                 'ip_address'=> getHostByName(getHostName()),
                 'branch_id'=> $input['branch_id'],
