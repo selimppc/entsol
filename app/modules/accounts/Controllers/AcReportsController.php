@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Response;
 class AcReportsController extends Controller
 {
 
-    private $report_path = '/entsol/gsg_reports';
-    #private $report_path = '/entsol/sns_reports';
+    #private $report_path = '/entsol/gsg_reports';
+    private $report_path = '/entsol/sns_reports';
     #private $report_path = '/entsol/Reports';
 
     private function connection(){
