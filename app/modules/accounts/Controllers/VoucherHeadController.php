@@ -100,7 +100,7 @@ class VoucherHeadController extends Controller
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
             Session::flash('danger', $e->getMessage());
-            LogFileHelperAcc::log_error('store-voucher-head', $e->getMessage(), ['Voucher head information : '.$input]);
+            LogFileHelperAcc::log_error('store-voucher-head', $e->getMessage(), ['Voucher head information : ']);
         }
         return redirect()->back();
     }

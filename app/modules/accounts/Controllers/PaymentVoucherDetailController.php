@@ -117,7 +117,7 @@ class PaymentVoucherDetailController extends Controller
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
             Session::flash('danger', $e->getMessage());
-            LogFileHelperAcc::log_error('add-payment-voucher-detail', $e->getMessage(), ['Payment voucher detail Voucher number : '.$input_data['voucher_number']]);
+            LogFileHelperAcc::log_error('add-payment-voucher-detail', $e->getMessage(), ['Payment voucher detail : ']);
         }
         return redirect()->back();
     }
@@ -178,7 +178,7 @@ class PaymentVoucherDetailController extends Controller
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('error', $e->getMessage());
-            LogFileHelperAcc::log_error('update-payment-voucher-detail', $e->getMessage(), ['Payment voucher detail Voucher number : '.$input_data['voucher_number']]);
+            LogFileHelperAcc::log_error('update-payment-voucher-detail', $e->getMessage(), ['Payment voucher detail : ']);
         }
         return redirect()->back();
     }
