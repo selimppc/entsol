@@ -8,7 +8,7 @@
 
             <img src="{{URL::to('assets/admin/img/avatar1.jpg')}}" alt="User Image" >
 
-            <div class="btn-group">
+            <div class="btn-group btn-left">
                 <a href="{{Route('user-profile')}}" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-user"></i></a>
                 <a href="{{Route('user-logout')}}" class="btn btn-xs btn-danger btn-outline dark"><i class="fa fa-power-off"></i></a>
             </div>
