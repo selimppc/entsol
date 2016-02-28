@@ -282,12 +282,12 @@ class UserController extends Controller
 
             DB::commit();
             Session::flash('message', 'Successfully added!');
-            LogFileHelper::log_info('user-add', 'Successfully added!', ['Username: -'.$input_data['username']]);
+            LogFileHelper::log_info('user-add', 'Successfully added!', ['Username: '.$input_data['username']]);
         } catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
             Session::flash('danger', $e->getMessage());
-            LogFileHelper::log_error('user-add', $e->getMessage(), ['Username:-'.$input['username']]);
+            LogFileHelper::log_error('user-add', $e->getMessage(), ['Username: '.$input['username']]);
         }
         return redirect()->back();
     }
