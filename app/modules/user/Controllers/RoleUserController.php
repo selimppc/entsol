@@ -122,19 +122,23 @@ class RoleUserController extends Controller
     {
         $model = RoleUser::where('id',$id)->first();
         $input = $request->all();
-
-        DB::beginTransaction();
-        try {
-            $model->update($input);
-            DB::commit();
-            Session::flash('message', "Successfully Updated");
-            LogFileHelper::log_info('update-role-user', 'Successfully Updated', ['Role-user id: '.$model->id]);
-        }
-        catch ( Exception $e ){
-            //If there are any exceptions, rollback the transaction
-            DB::rollback();
-            Session::flash('danger', $e->getMessage());
-            LogFileHelper::log_error('update-role-user', $e->getMessage(), ['Role-user id: '.$model->id]);
+        $role_user_exists = RoleUser::where('user_id',$input['user_id'])->where('role_id',$input['role_id'])->exists();
+        if(!$role_user_exists){
+            DB::beginTransaction();
+            try {
+                $model->update($input);
+                DB::commit();
+                Session::flash('message', "Successfully Updated");
+                LogFileHelper::log_info('update-role-user', 'Successfully Updated', ['Role-user id: '.$model->id]);
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', $e->getMessage());
+                LogFileHelper::log_error('update-role-user', $e->getMessage(), ['Role-user id: '.$model->id]);
+            }
+        }else{
+            Session::flash('danger','User role already exists.');
         }
         return redirect()->route('index-role-user');
     }
