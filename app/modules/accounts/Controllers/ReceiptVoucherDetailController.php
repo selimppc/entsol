@@ -239,7 +239,7 @@ class ReceiptVoucherDetailController extends Controller
 
             }catch (\Exception $e){
                 Session::flash('danger',$e->getMessage());
-                LogFileHelperAcc::log_info('journal-post-in-receipt-voucher-detail', $e->getMessage(), ['Voucher number : '.$voucher_number]);
+                LogFileHelperAcc::log_error('journal-post-in-receipt-voucher-detail', $e->getMessage(), ['Voucher number : '.$voucher_number]);
             }
         }else{
             Session::flash('danger','Please LogIn At First!!');

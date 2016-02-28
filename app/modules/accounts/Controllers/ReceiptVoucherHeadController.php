@@ -9,6 +9,7 @@
 namespace App\Modules\Accounts\Controllers;
 
 use App\Branch;
+use App\Helpers\LogFileHelperAcc;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VoucherHeadRequest;
 use App\Settings;
@@ -95,10 +96,12 @@ class ReceiptVoucherHeadController extends Controller
 
             DB::commit();
             Session::flash('message', 'Successfully added!');
+            LogFileHelperAcc::log_info('store-receipt-voucher-head', 'Successfully added', ['Voucher head detail : '.$input]);
         } catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
             Session::flash('danger', $e->getMessage());
+            LogFileHelperAcc::log_error('store-receipt-voucher-head', $e->getMessage(), ['Voucher head detail : '.$input]);
         }
         return redirect()->back();
     }
@@ -135,11 +138,13 @@ class ReceiptVoucherHeadController extends Controller
             $model->update($input);
             DB::commit();
             Session::flash('message', "Successfully Updated");
+            LogFileHelperAcc::log_info('update-receipt-voucher-head', 'Successfully update', ['Voucher head detail id: '.$model->id]);
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('error', $e->getMessage());
+            LogFileHelperAcc::log_error('update-receipt-voucher-head', $e->getMessage(), ['Voucher head detail id: '.$model->id]);
         }
         return redirect()->back();
     }
@@ -157,11 +162,13 @@ class ReceiptVoucherHeadController extends Controller
             $model->save();
             DB::commit();
             Session::flash('message', "Successfully Changed Status.");
+            LogFileHelperAcc::log_info('change-status-receipt-voucher-head', 'Successfully change status', ['Voucher head detail id: '.$model->id]);
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('error', $e->getMessage());
+            LogFileHelperAcc::log_error('change-status-receipt-voucher-head', $e->getMessage(), ['Voucher head detail id: '.$model->id]);
         }
         return redirect()->route('payment-voucher');
     }
@@ -179,11 +186,13 @@ class ReceiptVoucherHeadController extends Controller
                 $model->save();
                 DB::commit();
                 Session::flash('message', "Successfully Deleted.");
+                LogFileHelperAcc::log_info('delete-receipt-voucher-head', 'Successfully change status as cancel', ['Voucher head detail id: '.$model->id]);
             }
             catch (Exception $ex){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
                 Session::flash('danger',$ex->getMessage());
+                LogFileHelperAcc::log_error('delete-receipt-voucher-head', $ex->getMessage(), ['Voucher head detail id: '.$model->id]);
             }
         }else{
             Session::flash('message', "Voucher Details Data Found ! You Can Not Delete This Voucher Number");
