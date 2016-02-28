@@ -1,0 +1,4 @@
+[2016-02-28 06:48:04] store-voucher-head.INFO: Successfully added ["Voucher head id : 1"] []
+[2016-02-28 06:48:10] delete-voucher-head.INFO: Successfully change status to cancel ["Voucher head id : 1"] []
+[2016-02-28 06:48:21] store-voucher-head.INFO: Successfully added ["Voucher head id : 2"] []
+[2016-02-28 06:48:24] delete-voucher-head.INFO: Successfully change status to cancel ["Voucher head id : 2"] []
