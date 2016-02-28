@@ -18,14 +18,25 @@ use Illuminate\Support\Facades\Response;
 class AcReportsController extends Controller
 {
 
+    private $report_path = '/entsol/gsg_reports';
+    #private $report_path = '/entsol/sns_reports';
+    #private $report_path = '/entsol/Reports';
 
     private function connection(){
+        /*$c = new Client(
+            "http://37.230.100.79:8080/jasperserver",
+            "jasperadmin",
+            "jasperadmin",
+            ""
+        );*/
+
         $c = new Client(
             "http://localhost:8080/jasperserver",
             "jasperadmin",
             "jasperadmin",
             ""
         );
+
         return $c;
     }
 
@@ -103,7 +114,7 @@ class AcReportsController extends Controller
         //print_r($controls);exit;
 
         if(@$data['PDF']=='PDF Report'){
-            $report = $c->reportService()->runReport('/entsol/Reports/ac_trial_balance', 'pdf', null, null, $controls);
+            $report = $c->reportService()->runReport($this->report_path.'/ac_trial_balance', 'pdf', null, null, $controls);
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
@@ -113,7 +124,7 @@ class AcReportsController extends Controller
             header('Content-Type: application/pdf');
             echo $report;
         }else if(@$data['Excel']=='Excel Report'){
-            $report = $c->reportService()->runReport('/entsol/Reports/ac_trial_balance', 'xls', null, null, $controls);
+            $report = $c->reportService()->runReport($this->report_path.'/ac_trial_balance', 'xls', null, null, $controls);
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
@@ -144,7 +155,7 @@ class AcReportsController extends Controller
         //print_r($controls);exit;
 
         if(@$data['PDF']=='PDF Report'){
-            $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_trialblall', 'pdf', null, null, $controls);
+            $report = $c->reportService()->runReport($this->report_path.'/ac_gl_trialblall', 'pdf', null, null, $controls);
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
@@ -154,7 +165,7 @@ class AcReportsController extends Controller
             header('Content-Type: application/pdf');
             echo $report;
         }else if(@$data['Excel']=='Excel Report'){
-            $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_trialblall', 'xls', null, null, $controls);
+            $report = $c->reportService()->runReport($this->report_path.'/ac_gl_trialblall', 'xls', null, null, $controls);
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
@@ -187,7 +198,7 @@ class AcReportsController extends Controller
         //print_r($controls);exit;
 
         if(@$data['PDF']=='PDF Report'){
-            $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_transaction', 'pdf', null, null, $controls);
+            $report = $c->reportService()->runReport($this->report_path.'/ac_gl_transaction', 'pdf', null, null, $controls);
 
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
@@ -198,7 +209,7 @@ class AcReportsController extends Controller
             header('Content-Type: application/pdf');
             echo $report;
         }else if(@$data['Excel']=='Excel Report'){
-            $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_transaction', 'xls', null, null, $controls);
+            $report = $c->reportService()->runReport($this->report_path.'/ac_gl_transaction', 'xls', null, null, $controls);
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
@@ -221,7 +232,7 @@ class AcReportsController extends Controller
 
         if(@$data['PDF']=='PDF Report'){
             try {
-                $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_singlvoucher', 'pdf', null, null, $controls);
+                $report = $c->reportService()->runReport($this->report_path.'/ac_gl_singlvoucher', 'pdf', null, null, $controls);
                 header('Cache-Control: must-revalidate');
                 header('Pragma: public');
                 header('Content-Description: File Transfer');
@@ -237,7 +248,7 @@ class AcReportsController extends Controller
 
         }else if(@$data['Excel']=='Excel Report'){
             try {
-            $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_singlvoucher', 'xls', null, null, $controls);
+            $report = $c->reportService()->runReport($this->report_path.'/ac_gl_singlvoucher', 'xls', null, null, $controls);
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
@@ -269,7 +280,7 @@ class AcReportsController extends Controller
         //print_r($controls);exit;/
 
         if(@$data['PDF']=='PDF Report'){
-            $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_pnlsheet', 'pdf', null, null, $controls);
+            $report = $c->reportService()->runReport($this->report_path.'/ac_gl_pnlsheet', 'pdf', null, null, $controls);
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
@@ -279,7 +290,7 @@ class AcReportsController extends Controller
             header('Content-Type: application/pdf');
             echo $report;
         }else if(@$data['Excel']=='Excel Report'){
-            $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_pnlsheet', 'xls', null, null, $controls);
+            $report = $c->reportService()->runReport($this->report_path.'/ac_gl_pnlsheet', 'xls', null, null, $controls);
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
@@ -304,7 +315,7 @@ class AcReportsController extends Controller
         //print_r($controls);exit;/
 
         if(@$data['PDF']=='PDF Report'){
-            $report = $c->reportService()->runReport('/entsol/Reports/ac_chart_of_ac', 'pdf', null, null, $controls);
+            $report = $c->reportService()->runReport($this->report_path.'/ac_chart_of_ac', 'pdf', null, null, $controls);
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
@@ -314,7 +325,7 @@ class AcReportsController extends Controller
             header('Content-Type: application/pdf');
             echo $report;
         }else if(@$data['Excel']=='Excel Report'){
-            $report = $c->reportService()->runReport('/entsol/Reports/ac_chart_of_ac', 'xls', null, null, $controls);
+            $report = $c->reportService()->runReport($this->report_path.'/ac_chart_of_ac', 'xls', null, null, $controls);
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
@@ -343,7 +354,7 @@ class AcReportsController extends Controller
         //print_r($controls);exit;/
 
         if(@$data['PDF']=='PDF Report'){
-            $report = $c->reportService()->runReport('/entsol/Reports/ac_balance_sheet', 'pdf', null, null, $controls);
+            $report = $c->reportService()->runReport($this->report_path.'/ac_balance_sheet', 'pdf', null, null, $controls);
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
@@ -353,7 +364,7 @@ class AcReportsController extends Controller
             header('Content-Type: application/pdf');
             echo $report;
         }else if(@$data['Excel']=='Excel Report'){
-            $report = $c->reportService()->runReport('/entsol/Reports/ac_balance_sheet', 'xls', null, null, $controls);
+            $report = $c->reportService()->runReport($this->report_path.'/ac_balance_sheet', 'xls', null, null, $controls);
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
@@ -386,7 +397,7 @@ class AcReportsController extends Controller
         //print_r($controls);exit;
 
         if(@$data['PDF']=='PDF Report'){
-            $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_account_report', 'pdf', null, null, $controls);
+            $report = $c->reportService()->runReport($this->report_path.'/ac_gl_account_report', 'pdf', null, null, $controls);
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
@@ -396,7 +407,7 @@ class AcReportsController extends Controller
             header('Content-Type: application/pdf');
             echo $report;
         }else if(@$data['Excel']=='Excel Report'){
-            $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_account_report', 'xls', null, null, $controls);
+            $report = $c->reportService()->runReport($this->report_path.'/ac_gl_account_report', 'xls', null, null, $controls);
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
@@ -418,7 +429,7 @@ class AcReportsController extends Controller
             'pVoucherNo'=>$voucher_number
         );
 
-        $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_singlvoucher', 'pdf', null, null, $controls);
+        $report = $c->reportService()->runReport($this->report_path.'/ac_gl_singlvoucher', 'pdf', null, null, $controls);
 
         header('Cache-Control: must-revalidate');
         header('Pragma: public');
@@ -439,7 +450,7 @@ class AcReportsController extends Controller
             'pVoucherNo'=>$voucher_number
         );
 
-        $report = $c->reportService()->runReport('/entsol/Reports/ac_gl_singlvoucher', 'xls', null, null, $controls);
+        $report = $c->reportService()->runReport($this->report_path.'/ac_gl_singlvoucher', 'xls', null, null, $controls);
         header('Cache-Control: must-revalidate');
         header('Pragma: public');
         header('Content-Description: File Transfer');
