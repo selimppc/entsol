@@ -29,9 +29,28 @@ class PermissionRoleController extends Controller
     public function index()
     {
         $pageTitle = "Permission Role List";
+
+        $data = DB::table('permission_role')
+            ->join('permissions', 'permissions.id', '=', 'permission_role.permission_id')
+            ->join('role', 'role.id', '=', 'permission_role.role_id')
+            ->where('role.title', '!=', 'super-admin')
+            ->select('permission_role.id', 'permissions.title as p_title', 'role.title as r_title')
+            ->paginate(30);
+        //$data = PermissionRole::where('status', '!=', 'cancel')->orderBy('id', 'DESC')->paginate(30);
+        $permission_id = Permission::lists('title','id')->all();
+        $role_id = [''=>'Select Role'] + Role::lists('title','id')->all();
+        return view('user::permission_role.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'permission_id'=>$permission_id,'role_id'=>$role_id]);
+    }
+
+
+    public function search_permission_role(){
+
+        $pageTitle = "Permission Role List";
+
         $role_name = Input::get('role_name');
         $permission_name = Input::get('permission_name');
         $data = new PermissionRole();
+
         $data = $data->select('permission_role.*');
         if(isset($role_name) && !empty($role_name)){
             $data = $data->leftJoin('role','role.id','=','permission_role.role_id');
@@ -42,12 +61,11 @@ class PermissionRoleController extends Controller
             $data = $data->where('permissions.title', 'LIKE', '%'.$permission_name.'%');
         }
         $data = $data->paginate(30);
-        //$data = PermissionRole::where('status', '!=', 'cancel')->orderBy('id', 'DESC')->paginate(30);
+
         $permission_id = Permission::lists('title','id')->all();
         $role_id = [''=>'Select Role'] + Role::lists('title','id')->all();
         return view('user::permission_role.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'permission_id'=>$permission_id,'role_id'=>$role_id]);
     }
-
     public function store(Requests\PermissionRoleRequest $request){
         $input = $request->all();
         $permission_id = $input['permission_id'];

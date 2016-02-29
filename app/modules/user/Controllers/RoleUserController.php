@@ -31,8 +31,6 @@ class RoleUserController extends Controller
     {
         $pageTitle = "Role User Informations";
 
-        $data = new RoleUser();
-
         $data = DB::table('role_user')
             ->join('user', 'user.id', '=', 'role_user.user_id')
             ->join('role', 'role.id', '=', 'role_user.role_id')

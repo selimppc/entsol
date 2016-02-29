@@ -5,7 +5,7 @@
 
 @section('content')
         <!-- form open for batch delete -->
-{!!  Form::open(['route' => ['delete-permission-role']]) !!}
+{{--{!!  Form::open(['route' => ['delete-permission-role']]) !!}--}}
 
 <!-- page start-->
 <div class="row">
@@ -25,7 +25,7 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['method' =>'GET','url'=>'/index-permission-role']) !!}
+                {!! Form::open(['method' =>'GET','url'=>'/search-permission-role']) !!}
                 <div id="index-search">
                     <div class="col-sm-3">
                         {!! Form::text('role_name',@Input::get('role_name')? Input::get('role_name') : null,['class' => 'form-control','placeholder'=>'Type role name', 'title'=>'Type your require role "name", then click "search" button']) !!}
@@ -58,8 +58,8 @@
                             @foreach($data as $values)
                                 <tr class="gradeX">
                                     <td><input type="checkbox" name="pr_ids[]" value="{{ $values->id }}"></td>
-                                    <td>{{ucfirst($values->relRole->title)}}</td>
-                                    <td>{{ucfirst($values->relPermission->title)}}</td>
+                                    <td>{{isset($values->r_title)?ucfirst($values->r_title):ucfirst($values->relRole->title)}}</td>
+                                    <td>{{isset($values->p_title)?ucfirst($values->p_title):ucfirst($values->relPermission->title)}}</td>
                                     <td>
                                         <a href="{{ route('view-permission-role', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="view"><i class="fa fa-eye"></i></a>
                                         <a href="{{ route('delete-permission-role', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" data-placement="top" data-content="delete"><i class="fa fa-trash-o"></i></a>
@@ -135,5 +135,5 @@
     </script>
 @endif
         <!-- form close for bathc delete -->
-    {!! Form::close() !!}
+    {{--{!! Form::close() !!}--}}
 @stop
