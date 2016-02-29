@@ -16,7 +16,7 @@
                 <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="top" data-content="click add permission role button for new permission of a role">
                     <strong>Add New Permission Role</strong>
                 </a>
-                <input type="submit" id="deleteBatch" class="btn btn-primary btn-xs" value="Delete Selected Permission Role" style="display: none;" onclick="return confirm('Are you sure to Delete?')">
+                <input type="button" id="deleteBatch" class="btn btn-primary btn-xs" value="Delete Selected Permission Role" style="display: none;"  onclick="submitForm()" {{--"return confirm('Are you sure to Delete?')"--}}>
                 <a class="btn btn-success btn-xs pull-right pop" href="{{route('index-permission')}}" data-placement="left" data-content="Click to redirect in permission page" style="margin-right: 10px;">
                     <strong>Go to permission page</strong>
                 </a>
@@ -42,7 +42,8 @@
                 <p> &nbsp;</p>
 
                 {{-------------- Filter :Ends -------------------------------------------}}
-
+                        <!-- form open for batch delete -->
+                {!!  Form::open(['route' => ['delete-permission-role'], 'id' => 'formCheckbox']) !!}
                 <div class="table-primary">
                     <table id="jq-datatables-example" cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" >
                         <thead>
@@ -71,6 +72,8 @@
                         </tbody>
                     </table>
                 </div>
+                <!-- form close for bathc delete -->
+                {!! Form::close() !!}
 
                 <span class="pull-left">{!! str_replace('/?', '?', $data->render()) !!} </span>
             </div>
@@ -124,6 +127,15 @@
             $("#deleteBatch").show();
         }
     });
+    function submitForm(){
+        var form = document.getElementById('formCheckbox');
+        var r = confirm("Press a button!");
+        if (r == true) {
+            form.submit();
+        } else {
+            return false;
+        }
+    }
 </script>
 
 <!--script for this page only-->
