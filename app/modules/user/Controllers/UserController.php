@@ -358,8 +358,10 @@ class UserController extends Controller
     public function update_user(Requests\UserRequest $request, $id)
     {
         $input = Input::all();
-        $model = User::findOrFail($id);
+        $model1 = User::findOrFail($id);
 
+        $model2 = RoleUser::with('relRole')->where('user_id',$id)->where('role_id','=',2)->first();
+print_r($model2);exit;
         DB::beginTransaction();
         try {
 
@@ -380,7 +382,24 @@ class UserController extends Controller
                 'status'=> $input['status'],
             ];
             //print_r($input_data);exit;
-            $model->update($input_data);
+            $user = $model1->update($input_data);
+            if($user){
+                DB::beginTransaction();
+                try{
+                    $role_user = [
+                        'user_id'=>$user['id'],
+                        'role_id'=>$user['role_id'],
+                        'status'=>'active',
+                    ];
+                    $model2->update($role_user);
+                    DB::commit();
+                    Session::flash('message', 'Successfully added!');
+                }catch(Exception $e){
+                    //If there are any exceptions, rollback the transaction`
+                    DB::rollback();
+                    Session::flash('danger', $e->getMessage());
+                }
+            }
             DB::commit();
             Session::flash('message', "Successfully Updated");
             LogFileHelper::log_info('update-user', 'Successfully Updated!', ['Username:'.$input['username']]);
