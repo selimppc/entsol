@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
+
 class HomeController extends Controller
 {
     /**
@@ -20,6 +21,7 @@ class HomeController extends Controller
      */
     public function dashboard()
     {
+
         $pageTitle = 'ENTSOL - Dashboard';
 
           return view('admin::layouts.dashboard',['pageTitle'=>$pageTitle]);

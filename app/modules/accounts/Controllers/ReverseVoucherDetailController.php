@@ -113,12 +113,12 @@ class ReverseVoucherDetailController extends Controller
 
             DB::commit();
             Session::flash('message', 'Successfully added!');
-            LogFileHelperAcc::log_info('store-reverse-voucher-detail', 'Successfully added', ['Reverse Voucher detail information : voucher_head_id '.$input['voucher_head_id'].' -- Voucher number'.$input['voucher_number']]);
+            //LogFileHelperAcc::log_info('store-reverse-voucher-detail', 'Successfully added', ['Reverse Voucher detail information : voucher_head_id '.$input['voucher_head_id'].' -- Voucher number'.$input['voucher_number']]);
         } catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
             Session::flash('danger', $e->getMessage());
-            LogFileHelperAcc::log_error('store-reverse-voucher-detail', $e->getMessage(), ['Reverse Voucher detail information  : voucher_head_id '.$input['voucher_head_id'].' -- Voucher number'.$input['voucher_number']]);
+            //LogFileHelperAcc::log_error('store-reverse-voucher-detail', $e->getMessage(), ['Reverse Voucher detail information  : voucher_head_id '.$input['voucher_head_id'].' -- Voucher number'.$input['voucher_number']]);
         }
         return redirect()->back();
     }
