@@ -157,6 +157,12 @@ Route::any('delete-role/{slug}', [
         'uses' => 'RoleUserController@index'
     ]);
 
+    Route::any('search-role-user', [
+        'middleware' => 'acl_access:search-role-user',
+        'as' => 'search-role-user',
+        'uses' => 'RoleUserController@search_role_user'
+    ]);
+
     Route::any('store-role-user', [
         'middleware' => 'acl_access:store-role-user',
         'as' => 'store-role-user',

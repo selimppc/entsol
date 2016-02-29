@@ -21,7 +21,7 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['method' =>'GET','url'=>'/index-role-user']) !!}
+                {!! Form::open(['method' =>'GET','url'=>'/search-role-user']) !!}
                 <div id="index-search">
                     <div class="col-sm-3">
                         {!! Form::text('role_name',@Input::get('role-name')? Input::get('role_name') : null,['class' => 'form-control','placeholder'=>'Type Role name', 'title'=>'Type your require role name, then click "search" button']) !!}
@@ -51,8 +51,8 @@
                         @if(isset($data))
                             @foreach($data as $values)
                                 <tr class="gradeX">
-                                    <td>{{ucfirst($values->relUser->username)}}</td>
-                                    <td>{{ucfirst($values->relRole->title)}}</td>
+                                    <td>{{isset($values->username)?ucfirst($values->username):ucfirst($values->relUser->username)}}</td>
+                                    <td>{{isset($values->title)?ucfirst($values->title):ucfirst($values->relRole->title)}}</td>
                                     <td>
                                         <a href="{{ route('view-role-user', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="view"><i class="fa fa-eye"></i></a>
                                         <a href="{{ route('edit-role-user', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="update"><i class="fa fa-edit"></i></a>

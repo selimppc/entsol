@@ -209,7 +209,14 @@ class UserController extends Controller
     public function index()
     {
         $pageTitle = "User List";
-        $model = User::with('relBranch','relRole')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(30);
+        /*$model = User::with('relBranch','relRole')->where('status','!=','cancel')->where('role_id','!=',1)->orderBy('id', 'DESC')->paginate(30);*/
+
+        $model = new User();
+        $model = $model->join('role', function($query){
+            $query->on('role.id', '=', 'user.role_id');
+            $query->where('role.title','!=','super-admin');
+        })->where('user.status','!=','cancel')->paginate(30);
+
         $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
         $role =  [''=>'Select Role'] +  Role::lists('title','id')->all();
 

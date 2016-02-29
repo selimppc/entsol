@@ -17,8 +17,8 @@
                     <strong>Add New Permission Role</strong>
                 </a>
                 <input type="submit" id="deleteBatch" class="btn btn-primary btn-xs" value="Delete Selected Permission Role" style="display: none;" onclick="return confirm('Are you sure to Delete?')">
-                <a class="btn btn-default btn-xs pull-right pop" href="{{route('index-permission')}}" data-placement="left" data-content="Click to redirect in permission page" style="margin-right: 10px;">
-                    <strong>Back to permission page</strong>
+                <a class="btn btn-success btn-xs pull-right pop" href="{{route('index-permission')}}" data-placement="left" data-content="Click to redirect in permission page" style="margin-right: 10px;">
+                    <strong>Go to permission page</strong>
                 </a>
             </div>
 
