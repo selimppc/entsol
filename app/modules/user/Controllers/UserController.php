@@ -218,7 +218,8 @@ class UserController extends Controller
         })->where('user.status','!=','cancel')->paginate(30);
 
         $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
-        $role =  [''=>'Select Role'] +  Role::lists('title','id')->all();
+        $role =  [''=>'Select Role'] +  Role::where('role.title', '!=', 'super-admin')->lists('title','id')->all();
+
 
         /*set 30days for expire-date to user*/
         $i=30;
