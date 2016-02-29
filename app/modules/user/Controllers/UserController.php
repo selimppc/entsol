@@ -4,6 +4,7 @@ namespace App\Modules\User\Controllers;
 
 use App\Branch;
 use App\Helpers\LogFileHelper;
+use App\RoleUser;
 use App\UserImage;
 use Mockery\CountValidator\Exception;
 use Validator;
@@ -286,9 +287,24 @@ class UserController extends Controller
                 'expire_date'=> $input['expire_date'],
                 'status'=> $input['status'],
             ];
-
-            User::create($input_data);
-
+           $user = User::create($input_data);
+           if($user){
+               DB::beginTransaction();
+               try{
+                   $role_user = [
+                       'user_id'=>$user['id'],
+                       'role_id'=>$user['role_id'],
+                       'status'=>'active',
+                   ];
+                   RoleUser::create($role_user);
+                   DB::commit();
+                   Session::flash('message', 'Successfully added!');
+               }catch(Exception $e){
+                   //If there are any exceptions, rollback the transaction`
+                   DB::rollback();
+                   Session::flash('danger', $e->getMessage());
+               }
+           }
             DB::commit();
             Session::flash('message', 'Successfully added!');
             LogFileHelper::log_info('user-add', 'Successfully added!', ['Username: '.$input_data['username']]);
