@@ -85,7 +85,7 @@ Route::any('delete-permission-role/{id}', [
     'uses' => 'PermissionRoleController@destroy'
 ]);
 
-Route::any('search-permission-role', [
+Route::get('search-permission-role', [
     'middleware' => 'acl_access:search-permission-role',
     'as' => 'search-permission-role',
     'uses' => 'PermissionRoleController@search_permission_role'
