@@ -37,7 +37,7 @@ class VoucherDetailController extends Controller
     public function index($id,$voucher_number){
 
         $pageTitle = 'Journal Voucher Detail';
-        $model = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('voucher_head_id',$id)->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
+        $model = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('voucher_head_id',$id)->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(30);
 
 
         //get vouncher data...
@@ -100,10 +100,10 @@ class VoucherDetailController extends Controller
                 $query->on('branch.id', '=', 'ac_voucher_detail.branch_id');
                 $query->where('branch.id',  '=', $search_branch);
             });*/
-            $model = $model->where('voucher_head_id',$id)->get();
+            $model = $model->where('voucher_head_id',$id)->paginate(30);
             #print_r($model);exit;
         }else{
-            $model = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('voucher_head_id',$id)->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
+            $model = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('voucher_head_id',$id)->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(30);
         }
 
         //get vouncher data...

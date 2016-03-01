@@ -79,7 +79,7 @@
                     </table>
 
                 </div>
-                    {{--<span class="pull-left">{!! str_replace('/?', '?', $model->render()) !!} </span>--}}
+                <span class="pull-right">{!! str_replace('/?', '?',  $model->appends(Input::except('page'))->render() ) !!} </span>
                 <a class="pull-right btn btn-xs btn-primary" href="{{ URL::route('reverse-voucher')}}"> <i class="fa fa-arrow-circle-left"></i> Back To Reverse Entry</a>
                 <p>&nbsp;</p>
 

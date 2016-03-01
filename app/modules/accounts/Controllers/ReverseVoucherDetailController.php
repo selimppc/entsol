@@ -37,7 +37,7 @@ class ReverseVoucherDetailController extends Controller
     public function index($id,$voucher_number){
 
         $pageTitle = 'Reverse Voucher Detail Informations';
-        $model = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('voucher_head_id',$id)->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
+        $model = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('voucher_head_id',$id)->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(30);
 
         //get vouncher data...
 
@@ -67,10 +67,10 @@ class ReverseVoucherDetailController extends Controller
             if (isset($id) && !empty($id)) $model = $model->where('ac_voucher_detail.voucher_head_id', '=', $id);
             if (isset($voucher_number) && !empty($voucher_number)) $model = $model->where('ac_voucher_detail.voucher_number', '=', $voucher_number);
 
-            $model = $model->where('voucher_head_id',$id)->get();
+            $model = $model->where('voucher_head_id',$id)->paginate(30);
             #print_r($model);exit;
         }else{
-            $model = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('voucher_head_id',$id)->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
+            $model = VoucherDetail::with('relVoucherHead','relChartOfAccounts','relCurrency')->where('voucher_head_id',$id)->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(30);
         }
 
         //get vouncher data...

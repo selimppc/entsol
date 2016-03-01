@@ -33,7 +33,7 @@ class ReverseVoucherHeadController extends Controller
 
        $pageTitle = 'Reverse Entry Informations';
        $model = new VoucherHead();
-       $model = $model->with('relBranch')->where('account_type','reverse-entry')->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
+       $model = $model->with('relBranch')->where('account_type','reverse-entry')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(30);
 
        $type = 'reverse-entry';
        $generate_number = GenerateNumber::generate_number($type);
@@ -74,9 +74,9 @@ class ReverseVoucherHeadController extends Controller
             if (isset($voucher_number) && !empty($voucher_number)) $model->where('ac_voucher_head.voucher_number', 'LIKE', '%'.$voucher_number.'%');
             if (isset($date) && !empty($date)) $model->where('ac_voucher_head.date', '=', $date);
             if (isset($status) && !empty($status)) $model->where('ac_voucher_head.status', '=', $status);
-            $model = $model->where('account_type','reverse-entry')->get();
+            $model = $model->where('account_type','reverse-entry')->paginate(30);
         }else{
-            $model = $model->with('relBranch')->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
+            $model = $model->with('relBranch')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(30);
         }
 
         $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();

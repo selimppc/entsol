@@ -81,6 +81,7 @@
                         </tbody>
                     </table>
                 </div>
+                <span class="pull-right">{!! str_replace('/?', '?',  $data->appends(Input::except('page'))->render() ) !!} </span>
             </div>
         </div>
     </div>

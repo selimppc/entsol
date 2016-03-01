@@ -47,7 +47,7 @@ class ChartOfAccountsController extends Controller
         if (isset($account_usage) && !empty($account_usage)) $data = $data->where('ac_chart_of_accounts.account_usage', '=', $account_usage);
         if (isset($group_one_id) && !empty($group_one_id)) $data = $data->where('ac_chart_of_accounts.group_one_id', '=', $group_one_id);
 
-        $data = $data->get();
+        $data = $data->paginate(30);
 
         $group_one_id = [''=>'Select Group One'] + GroupOne::lists('title','id')->all();
         $branch_id = [''=>'Select Branch'] + Branch::lists('title','id')->all();
