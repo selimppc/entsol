@@ -21,6 +21,11 @@ use Illuminate\Support\Facades\Session;
 
 class RoleUserController extends Controller
 {
+
+    protected function isGetRequest()
+    {
+        return Input::server("REQUEST_METHOD") == "GET";
+    }
     /**
      * Display the specified resource.
      *
@@ -35,7 +40,7 @@ class RoleUserController extends Controller
             ->join('user', 'user.id', '=', 'role_user.user_id')
             ->join('role', 'role.id', '=', 'role_user.role_id')
             ->where('role.title', '!=', 'super-admin')
-            ->select('role_user.id', 'user.username', 'role.title')
+            ->select('role_user.id', 'user.username','user.email', 'role.title')
             ->paginate(30);
         /*$data = new RoleUser();
         $data = $data->join('role','role.id','=','role_id');
@@ -49,7 +54,8 @@ class RoleUserController extends Controller
         $data = $data->paginate(30);*/
         $user_id = [''=>'Select User'] + User::lists('username','id')->all();
 
-        $role_id = [''=>'Select Role'] + Role::lists('title','id')->all();
+        $role_id =  [''=>'Select Role'] +  Role::where('role.title', '!=', 'super-admin')->lists('title','id')->all();
+
         return view('user::role_user.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'user_id'=>$user_id,'role_id'=>$role_id]);
     }
 
@@ -57,24 +63,33 @@ class RoleUserController extends Controller
 
         $pageTitle = "Role User Informations";
 
-        $role_name = Input::get('role_name');
+        if($this->isGetRequest()){
+        $role_id = Input::get('role_id');
         $username = Input::get('username');
         $data = new RoleUser();
 
         $data = $data->select('role_user.*');
-        if(isset($role_name) && !empty($role_name)){
+        if(isset($role_id) && !empty($role_id)){
             $data = $data->leftJoin('role','role.id','=','role_user.role_id');
-            $data = $data->where('role.title', 'LIKE', '%'.$role_name.'%');
+            $data = $data->where('role_user.role_id','=',$role_id);
+            $data = $data->where('role.title', '!=', 'super-admin');
         }
         if(isset($username) && !empty($username)){
             $data = $data->leftJoin('user','user.id','=','role_user.user_id');
             $data = $data->where('user.username', 'LIKE', '%'.$username.'%');
         }
         $data = $data->paginate(30);
-
+        }else{
+            $data = DB::table('role_user')
+                ->join('user', 'user.id', '=', 'role_user.user_id')
+                ->join('role', 'role.id', '=', 'role_user.role_id')
+                ->where('role.title', '!=', 'super-admin')
+                ->select('role_user.id', 'user.username','user.email', 'role.title')
+                ->paginate(30);
+        }
         $user_id = [''=>'Select User'] + User::lists('username','id')->all();
 
-        $role_id = [''=>'Select Role'] + Role::lists('title','id')->all();
+        $role_id = [''=>'Select Role'] +  Role::where('role.title', '!=', 'super-admin')->lists('title','id')->all();
         return view('user::role_user.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'user_id'=>$user_id,'role_id'=>$role_id]);
     }
 
