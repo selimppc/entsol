@@ -69,6 +69,7 @@ class PermissionRoleController extends Controller
         $role_id =  [''=>'Select Role'] +  Role::where('role.title', '!=', 'super-admin')->lists('title','id')->all();
         return view('user::permission_role.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'permission_id'=>$permission_id,'role_id'=>$role_id]);
     }
+
     public function store(Requests\PermissionRoleRequest $request){
         $input = $request->all();
         $permission_id = $input['permission_id'];
