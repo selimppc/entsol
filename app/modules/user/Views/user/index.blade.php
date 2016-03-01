@@ -72,7 +72,7 @@
                         </tbody>
                     </table>
                 </div>
-                <span class="pull-left">{!! str_replace('/?', '?', $model->render()) !!} </span>
+                <span class="pull-right">{!! str_replace('/?', '?',  $model->appends(Input::except('page'))->render() ) !!} </span>
             </div>
         </div>
     </div>
