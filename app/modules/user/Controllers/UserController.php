@@ -210,14 +210,7 @@ class UserController extends Controller
     public function index()
     {
         $pageTitle = "User List";
-        /*$model = User::with('relBranch','relRole')->where('status','!=','cancel')->where('role_id','!=',1)->orderBy('id', 'DESC')->paginate(30);*/
-
-        $model = new User();
-        $model = $model->select('user.*');
-        $model = $model->join('role', function($query){
-            $query->on('role.id', '=', 'user.role_id');
-            $query->where('role.title','!=','super-admin');
-        })->where('user.status','!=','cancel')->paginate(30);
+        $model = User::with('relBranch','relRole')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(30);
 
         $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
         $role =  [''=>'Select Role'] +  Role::where('role.title', '!=', 'super-admin')->lists('title','id')->all();
@@ -247,13 +240,37 @@ class UserController extends Controller
             $username = Input::get('username');
             $status = Input::get('status');
 
+            /*$role_user = RoleUser::where('id','=',$role_id)->first();
+
             $model = $model->with('relBranch','relRoleInfo');
             if (isset($branch_id) && !empty($branch_id)) $model->where('user.branch_id', '=', $branch_id);
-            if (isset($role_id) && !empty($role_id)) $model->where('user.role_id', '=', $role_id);
+            if (isset($role_id) && !empty($role_id)) $model->where('user.role_id', '=', $role_user['id']);
             if (isset($username) && !empty($username)) $model->where('user.username', '=', $username);
             if (isset($status) && !empty($status)) $model->where('user.status', '=', $status);
 
+            $model = $model->paginate(30);*/
+
+            $model = $model->select('user.*');
+            /*if(isset($role_id) && !empty($role_id)){
+                $model = $model->leftJoin('role','role.id','=','role_user.role_id');
+                $model = $model->where('role.title', 'LIKE', '%'.$role_name.'%');
+            }*/
+            if(isset($username) && !empty($username)){
+                $model = $model->where('user.username', 'LIKE', '%'.$username.'%');
+            }
+            if(isset($branch_id) && !empty($branch_id)){
+                $model = $model->where('user.branch_id', '=', $branch_id);
+            }
+            if(isset($status) && !empty($status)){
+                $model = $model->where('user.status', '=', $status);
+            }
+            if(isset($role_id) && !empty($role_id)){
+                $model = $model->leftJoin('role','role.id','=','role_user.role_id');
+                $model = $model->where('user.branch_id', '=', $branch_id);
+            }
             $model = $model->paginate(30);
+
+
         }else{
             $model = $model->with('relBranch','relRoleInfo')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(30);
         }
@@ -283,12 +300,18 @@ class UserController extends Controller
                 'csrf_token'=> str_random(30),
                 'ip_address'=> getHostByName(getHostName()),
                 'branch_id'=> $input['branch_id'],
-                'role_id'=> $input['role_id'],
                 'expire_date'=> $input['expire_date'],
                 'status'=> $input['status'],
             ];
-           
-           $user = User::create($input_data);
+
+           if($user = User::create($input_data)){
+               $role_user = [
+                   'user_id'=>$user['id'],
+                   'role_id'=>$input['role_id'],
+                   'status'=>'active',
+               ];
+               RoleUser::create($role_user);
+           }
             DB::commit();
             Session::flash('message', 'Successfully added!');
             LogFileHelper::log_info('user-add', 'Successfully added!', ['Username: '.$input_data['username']]);
@@ -299,23 +322,6 @@ class UserController extends Controller
             LogFileHelper::log_error('user-add', $e->getMessage(), ['Username: '.$input['username']]);
         }
 
-        if($user){
-            DB::beginTransaction();
-            try{
-                $role_user = [
-                    'user_id'=>$user['id'],
-                    'role_id'=>$user['role_id'],
-                    'status'=>'active',
-                ];
-                RoleUser::create($role_user);
-                DB::commit();
-                Session::flash('message', 'Successfully added!');
-            }catch(Exception $e){
-                //If there are any exceptions, rollback the transaction`
-                DB::rollback();
-                Session::flash('danger', $e->getMessage());
-            }
-        }
         return redirect()->back();
     }
     /**
@@ -362,10 +368,6 @@ class UserController extends Controller
         $input = Input::all();
         $model1 = User::findOrFail($id);
 
-        $role_user_exists = RoleUser::with('relRole','relUser')->where('user_id',$id)->where('role_id','=',$model1['role_id'])->exists();
-        if($role_user_exists) {
-            $role_user = RoleUser::with('relRole', 'relUser')->where('user_id', $id)->where('role_id', '=', $model1->role_id)->first();
-        }
             if($input['password2']!=Null){
                 $password = Hash::make($input['password2']);
             }else{
@@ -378,15 +380,13 @@ class UserController extends Controller
                 'csrf_token'=> str_random(30),
                 'ip_address'=> getHostByName(getHostName()),
                 'branch_id'=> $input['branch_id'],
-                'role_id'=> $input['role_id'],
                 'expire_date'=> $input['expire_date'],
                 'status'=> $input['status'],
             ];
-            $user_exists = User::with('relRole')->where('id',$id)->where('role_id','=',$input['role_id'])->exists();
-            if(!$user_exists){
                 DB::beginTransaction();
                 try{
-                    $user = $model1->update($input_data);
+                    $model1->update($input_data);
+
                     DB::commit();
                     Session::flash('message', "Successfully Updated");
                     LogFileHelper::log_info('update-user', 'Successfully Updated!', ['Username:'.$input['username']]);
@@ -397,30 +397,10 @@ class UserController extends Controller
                     Session::flash('error', $e->getMessage());
                     LogFileHelper::log_error('update-user', 'error!'.$e->getMessage(), ['Username:'.$input['username']]);
                 }
-            }else{
-                Session::flash('danger','Already Exists.');
-            }
+
         //role-user update if exists...
         #print_r($model1->role_id);exit;
-        if($user){
-                DB::beginTransaction();
-                try{
-                    $data_role_user = [
-                        'user_id'=>$model1->id,
-                        'role_id'=>$model1->role_id,
-                        'status'=>$model1->status,
-                    ];
-                    #print_r($data_role_user);exit;
-                    $role_user->update($data_role_user);
 
-                    DB::commit();
-                    Session::flash('message', 'Successfully updated!');
-                }catch(Exception $e){
-                    //If there are any exceptions, rollback the transaction`
-                    DB::rollback();
-                    Session::flash('danger', $e->getMessage());
-                }
-        }
         return redirect()->back();
     }
 

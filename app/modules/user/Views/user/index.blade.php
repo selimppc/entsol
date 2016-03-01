@@ -63,7 +63,7 @@
                                     <td>{{ucfirst($values->username)}}</td>
                                     <td>{{$values->email}}</td>
                                     <td>{{isset($values->relBranch->title)?ucfirst($values->relBranch->title):''}}</td>
-                                    <td>{{isset($values->relRoleInfo->title)?ucfirst($values->relRoleInfo->title):''}}</td>
+                                    <td>{{isset($values->relRole->title)?ucfirst($values->relRole->title):''}}</td>
                                     <td>{{ucfirst($values->status)}}</td>
                                     <td>{{$values->expire_date}}</td>
                                     <td>

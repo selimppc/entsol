@@ -63,13 +63,7 @@
     </div>
     <div class="form-group form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
         <div class="row">
-            <div class="col-sm-6">
-                {!! Form::label('role_id', 'User Role:', ['class' => 'control-label']) !!}
-                <small class="required">(Required)</small>
-                {!! Form::Select('role_id',$role, Input::old('role_id'),['style'=>'text-transform:capitalize','class' => 'form-control','required','title'=>'select role name']) !!}
-            </div>
-
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 {!! Form::label('branch_id', 'Branch:', ['class' => 'control-label']) !!}
                 <small class="required">(Required)</small>
                 @if(isset($data->branch_id))
