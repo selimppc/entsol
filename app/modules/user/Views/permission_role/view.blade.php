@@ -8,7 +8,7 @@
         <table id="" class="table table-bordered table-hover table-striped">
             <tr>
                 <th class="col-lg-4">Role</th>
-                <td>{{ isset($data->relRole->title)?$data->relRole->title:''}}</td>
+                <td>{{ isset($data->relRole->title)?ucfirst($data->relRole->title):''}}</td>
             </tr>
             <tr>
                 <th class="col-lg-4">Permission</th>
@@ -16,7 +16,7 @@
             </tr>
             <tr>
                 <th class="col-lg-4">Status</th>
-                <td>{{ isset($data->status)?$data->status:''}}</td>
+                <td>{{ isset($data->status)?ucfirst($data->status):''}}</td>
             </tr>
         </table>
     </div>
