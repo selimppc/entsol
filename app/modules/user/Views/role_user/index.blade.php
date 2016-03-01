@@ -28,7 +28,7 @@
                         {!! Form::text('username',@Input::get('username')? Input::get('username') : null,['class' => 'form-control','placeholder'=>'Type user name', 'title'=>'Type your require user name, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-3">
-                        {!! Form::text('role_name',@Input::get('role-name')? Input::get('role_name') : null,['class' => 'form-control','placeholder'=>'Type Role name', 'title'=>'Type your require role name, then click "search" button']) !!}
+                        {!! Form::Select('role_id',($role_id), @Input::get('role_id')? Input::get('role_id') : null,['class' => 'form-control', 'title'=>'select your require "role", example :: admin, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-2 filter-btn">
                         {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left','id'=>'button', 'data-placement'=>'right', 'data-content'=>'type code or title or both in specific field then click search button for required information')) !!}
@@ -44,6 +44,7 @@
                         <thead>
                         <tr>
                             <th> User </th>
+                            <th> Email Address </th>
                             <th> Role </th>
                             <th> Action &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="view : click for details informations<br>update : click for update informations">(?)</span></th>
                         </tr>
@@ -53,6 +54,7 @@
                             @foreach($data as $values)
                                 <tr class="gradeX">
                                     <td>{{isset($values->username)?ucfirst($values->username):ucfirst($values->relUser->username)}}</td>
+                                    <td>{{isset($values->email)?$values->email:$values->relUser->email}}</td>
                                     <td>{{isset($values->title)?ucfirst($values->title):ucfirst($values->relRole->title)}}</td>
                                     <td>
                                         <a href="{{ route('view-role-user', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="view"><i class="fa fa-eye"></i></a>

@@ -210,12 +210,11 @@ class UserController extends Controller
     public function index()
     {
         $pageTitle = "User List";
-        $model = User::with('relBranch','relRole')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(30);
+
+        $model = User::with('relBranch')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(30);
 
         $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
         $role =  [''=>'Select Role'] +  Role::where('role.title', '!=', 'super-admin')->lists('title','id')->all();
-
-
         /*set 30days for expire-date to user*/
         $i=30;
         $add_days = +$i.' days';
@@ -236,25 +235,11 @@ class UserController extends Controller
 
         if($this->isGetRequest()){
             $branch_id = Input::get('branch_id');
-            $role_id = Input::get('role_id');
             $username = Input::get('username');
             $status = Input::get('status');
 
-            /*$role_user = RoleUser::where('id','=',$role_id)->first();
-
-            $model = $model->with('relBranch','relRoleInfo');
-            if (isset($branch_id) && !empty($branch_id)) $model->where('user.branch_id', '=', $branch_id);
-            if (isset($role_id) && !empty($role_id)) $model->where('user.role_id', '=', $role_user['id']);
-            if (isset($username) && !empty($username)) $model->where('user.username', '=', $username);
-            if (isset($status) && !empty($status)) $model->where('user.status', '=', $status);
-
-            $model = $model->paginate(30);*/
-
             $model = $model->select('user.*');
-            /*if(isset($role_id) && !empty($role_id)){
-                $model = $model->leftJoin('role','role.id','=','role_user.role_id');
-                $model = $model->where('role.title', 'LIKE', '%'.$role_name.'%');
-            }*/
+
             if(isset($username) && !empty($username)){
                 $model = $model->where('user.username', 'LIKE', '%'.$username.'%');
             }
@@ -264,12 +249,8 @@ class UserController extends Controller
             if(isset($status) && !empty($status)){
                 $model = $model->where('user.status', '=', $status);
             }
-            if(isset($role_id) && !empty($role_id)){
-                $model = $model->leftJoin('role','role.id','=','role_user.role_id');
-                $model = $model->where('user.branch_id', '=', $branch_id);
-            }
-            $model = $model->paginate(30);
 
+            $model = $model->paginate(30);
 
         }else{
             $model = $model->with('relBranch','relRoleInfo')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(30);

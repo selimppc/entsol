@@ -19,12 +19,12 @@
                 <td>{{ isset($data->relBranch->title)?$data->relBranch->title:'' }}</td>
             </tr>
             <tr>
-                <th class="col-lg-4">User Role</th>
-                <td>{{ isset($data->relRoleInfo->title)?ucfirst($data->relRoleInfo->title):'' }}</td>
-            </tr>
-            <tr>
                 <th class="col-lg-4">Expire Date</th>
                 <td>{{ isset($data->expire_date)?$data->expire_date:'' }}</td>
+            </tr>
+            <tr>
+                <th class="col-lg-4">Status</th>
+                <td>{{ isset($data->status)?$data->status:'' }}</td>
             </tr>
 
         </table>

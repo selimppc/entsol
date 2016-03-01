@@ -28,7 +28,7 @@
                 {!! Form::open(['method' =>'GET','url'=>'/search-permission-role']) !!}
                 <div id="index-search">
                     <div class="col-sm-3">
-                        {!! Form::text('role_name',@Input::get('role_name')? Input::get('role_name') : null,['class' => 'form-control','placeholder'=>'Type role name', 'title'=>'Type your require role "name", then click "search" button']) !!}
+                        {!! Form::Select('role_id',($role_id), @Input::get('role_id')? Input::get('role_id') : null,['class' => 'form-control', 'title'=>'select your require "role", example :: admin, then click "search" button']) !!}
                     </div>
                     <div class="col-sm-3">
                         {!! Form::text('permission_name',@Input::get('permission_name')? Input::get('permission_name') : null,['class' => 'form-control','placeholder'=>'Type permission name', 'title'=>'Type your require "permission name", then click "search" button']) !!}

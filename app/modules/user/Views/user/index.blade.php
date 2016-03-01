@@ -27,9 +27,7 @@
                     <div class="col-sm-3">
                         {!! Form::Select('branch_id',$branch_data, @Input::get('branch_id')? Input::get('branch_id') : null,['class' => 'form-control', 'title'=>'select your require "branch", example :: Main Branch, then click "search" button']) !!}
                     </div>
-                    <div class="col-sm-2">
-                        {!! Form::Select('role_id',($role), @Input::get('role_id')? Input::get('role_id') : null,['class' => 'form-control', 'title'=>'select your require "role", example :: admin, then click "search" button']) !!}
-                    </div>
+
                     <div class="col-sm-2">
                         {!! Form::Select('status',array(''=>'Status','inactive'=>'Inactive','active'=>'Active','cancel'=>'Cancel'),@Input::get('status')? Input::get('status') : null,['class'=>'form-control', 'title'=>'select your require "status", example :: open, then click "search" button']) !!}
                     </div>
@@ -49,7 +47,6 @@
                             <th> Username </th>
                             <th> Email </th>
                             <th> Branch </th>
-                            <th> User Role </th>
                             <th> Status &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="you can change status from update page">(?)</span></th>
                             <th> Expire Date </th>
                             <th> Action &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="view : click for details informations<br>update : click for update informations<br>delete : click for delete informations">(?)</span></th>
@@ -59,11 +56,9 @@
                         @if(isset($model))
                             @foreach($model as $values)
                                 <tr class="gradeX">
-                                    {{--<td>{{$values->id}}</td>--}}
                                     <td>{{ucfirst($values->username)}}</td>
                                     <td>{{$values->email}}</td>
                                     <td>{{isset($values->relBranch->title)?ucfirst($values->relBranch->title):''}}</td>
-                                    <td>{{isset($values->relRole->title)?ucfirst($values->relRole->title):''}}</td>
                                     <td>{{ucfirst($values->status)}}</td>
                                     <td>{{$values->expire_date}}</td>
                                     <td>
