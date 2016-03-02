@@ -211,7 +211,7 @@ class UserController extends Controller
     {
         $pageTitle = "User List";
 
-        $model = User::with('relBranch')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(30);
+        $model = User::with('relBranch')->where('status','!=','cancel')->where('username','!=','super-admin')->orderBy('id', 'DESC')->paginate(30);
 
         $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
         $role =  [''=>'Select Role'] +  Role::where('role.title', '!=', 'super-admin')->lists('title','id')->all();
