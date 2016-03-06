@@ -19,7 +19,7 @@ class MenuPanel extends Model
         'menu_id',
         'menu_type',
         'menu_name',
-        'route', 
+        'route',
         'parent_menu_id'
     ];
 }

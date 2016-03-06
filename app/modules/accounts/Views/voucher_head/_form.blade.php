@@ -118,8 +118,7 @@
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/datepicker.js') }}"></script>
 
 <script>
-//    $(document).ready(function(){
-        $(document).on("focus",'#table tr:last-child td:last-child',function() {
+$(document).on("focus",'#table tr:last-child td:last-child',function() {
             //append the new row here.
             var table = $("#table");
 
@@ -129,7 +128,7 @@
          </td>\
 		<td><div>{!! Form::Select('branch_id', $branch_data, Input::old('branch_id'),['required','title'=>'select branch name','style'=>'width:150px;']) !!}</div>\
 		</td>\
-		<td><div>{!! Form::Select('currency_id', $currency_data, Input::old('currency_id'), ['class'=>'abc','required','title'=>'select currency name','style'=>'width:170px;']) !!}</div>\
+		<td><div>{!! Form::Select('currency_id', $currency_data, Input::old('currency_id'), ['class'=>'abc','required','style'=>'width:170px;']) !!}</div>\
 		</td>\
 		<td style="width:90px;"><div> {!! Form::input('number','exchange_rate', Input::old('exchange_rate'), ['id'=>'td-ex-rate','class' => '','readonly','required','title'=>'disabled field ! exchange rate auto populate by select currency','style'=>'width:90px']) !!}</div>\
 		</td>\
@@ -140,27 +139,23 @@
 		<div>{!! Form::text('credit', Input::old('credit'), ['title'=>'enter credit']) !!}</div>\
 		</td>\
 		</tr>');
-        });
-//    });
+});
 
+
+$('select[class=abc]').on('click', function(e){
+    alert('123');
+    var currency_id =   $(this).val();
+    $.ajax({
+        url: "{{Route('exchange-rate')}}",
+        type: 'POST',
+        data: {_token: '{!! csrf_token() !!}',currency_id: currency_id },
+        success: function(data){
+            $('#td-ex-rate').val(data);
+        }
+    });
+    e.preventDefault();
+});
 </script>
 
 @include('accounts::voucher_detail._script')
 
-<script>
-
-    $('select[class=abc]').change(function () {
-        alert('123');
-        var currency_id =   $(this).val();
-
-        $.ajax({
-            url: "{{Route('exchange-rate')}}",
-            type: 'POST',
-            data: {_token: '{!! csrf_token() !!}',currency_id: currency_id },
-            success: function(data){
-                $('#td-ex-rate').val(data);
-            }
-        });
-    });
-
-</script>
