@@ -126,7 +126,7 @@
 <!-- page end-->
 
 <div id="addData" class="modal fade" tabindex="" role="dialog" style="display: none;">
-    <div class="modal-dialog modal-lg" style="z-index:1050">
+    <div class="modal-dialog modal-lg" style="z-index:1050;width:85%">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>

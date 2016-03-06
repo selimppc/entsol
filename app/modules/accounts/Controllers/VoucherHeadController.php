@@ -9,6 +9,7 @@
 namespace App\Modules\Accounts\Controllers;
 
 use App\Branch;
+use App\Currency;
 use App\Helpers\LogFileHelperAcc;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VoucherHeadRequest;
@@ -42,8 +43,10 @@ class VoucherHeadController extends Controller
        $settings_id = $generate_number[1];
        $number = $generate_number[2];
 
+       $currency_data = [''=>'Select Currency'] + Currency::lists('title','id')->all();
        $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
-       return view('accounts::voucher_head.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model,'generate_voucher_number'=>$generate_voucher_number,'number'=>$number,'settings_id'=>$settings_id]);
+
+       return view('accounts::voucher_head.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'currency_data'=>$currency_data,'model'=>$model,'generate_voucher_number'=>$generate_voucher_number,'number'=>$number,'settings_id'=>$settings_id]);
    }
 
     public function search_voucher(){
@@ -78,9 +81,9 @@ class VoucherHeadController extends Controller
         }else{
             $model = $model->with('relBranch')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(30);
         }
-
+        $currency_data = [''=>'Select Currency'] + Currency::lists('title','id')->all();
         $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
-        return view('accounts::voucher_head.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model,'generate_voucher_number'=>$generate_voucher_number,'number'=>$number,'settings_id'=>$settings_id]);
+        return view('accounts::voucher_head.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model,'generate_voucher_number'=>$generate_voucher_number,'number'=>$number,'settings_id'=>$settings_id,'currency_data'=>$currency_data]);
     }
 
     public function store(VoucherHeadRequest $request){
@@ -119,12 +122,12 @@ class VoucherHeadController extends Controller
     {
         $pageTitle = 'Update Journal Voucher Informations';
         $branch_data = Branch::lists('title','id');
-
+        $currency_data = [''=>'Select Currency'] + Currency::lists('title','id')->all();
         /*$model = new VoucherHead();
         $year = $model->getYear();*/
 
         $data = VoucherHead::findOrFail($id);
-        return view('accounts::voucher_head.update', ['data' => $data,'branch_data'=>$branch_data,'pageTitle'=> $pageTitle]);
+        return view('accounts::voucher_head.update', ['data' => $data,'branch_data'=>$branch_data,'currency_data'=>$currency_data,'pageTitle'=> $pageTitle]);
     }
 
     public function update(VoucherHeadRequest $request, $id)

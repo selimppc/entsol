@@ -1,3 +1,4 @@
+{{--
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/custom.min.js') }}"></script>
 
@@ -12,7 +13,8 @@
             <small class="required">(Required)</small>
             {!! Form::text('ac_title', Input::old('coa_id'), ['id'=>'auto-search-ac','class' => 'form-control','required','placeholder'=>'Search By Name of Chart of account OR account-code','autofocus','title'=>'type your require chart of account "code" or "title" then select one and press enter']) !!}
             {!! Form::hidden('coa_id',null, ['id'=>'coa-id-val']) !!}
-            {{--<select id="coa_id" name="coa_id" class="form-control select2-offscreen">
+            --}}
+{{--<select id="coa_id" name="coa_id" class="form-control select2-offscreen">
                 @foreach ( $attributes as $key => $attr )
                     <optgroup label="{{strtoupper($key)}}">
                         @foreach ( $attr as $id => $values )
@@ -20,7 +22,8 @@
                         @endforeach
                     </optgroup>
                 @endforeach
-            </select>--}}
+            </select>--}}{{--
+
         </div>
     </div>
 </div>
@@ -91,3 +94,4 @@
 @include('accounts::voucher_detail._script')
 
 
+--}}
