@@ -142,8 +142,8 @@ $(document).on("focus",'#table tr:last-child td:last-child',function() {
 });
 
 
-$('select[class=abc]').on('click', function(e){
-    alert('123');
+$('select[class=abc]').click('click', function(e){
+    alert(e);
     var currency_id =   $(this).val();
     $.ajax({
         url: "{{Route('exchange-rate')}}",
