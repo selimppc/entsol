@@ -35,5 +35,48 @@ Route::any('validation-page', [
     'uses' => 'AdminController@validation_page'
 ]);
 
+
+/**Menu Panel**/
+
+Route::get("menu-panel", [
+    //"middleware" => "acl_access:branch",
+    "as"   => "menu-panel",
+    "uses" => "MenuPanelController@index"
+]);
+
+Route::any("store-menu-panel", [
+    //"middleware" => "acl_access:store-branch",
+    "as"   => "store-menu-panel",
+    "uses" => "MenuPanelController@store"
+]);
+
+Route::any("view-menu-panel/{id}", [
+    //"middleware" => "acl_access:view-branch/{id}",
+    "as"   => "view-menu-panel",
+    "uses" => "MenuPanelController@show"
+]);
+
+Route::any("edit-menu-panel/{id}", [
+    //"middleware" => "acl_access:edit-branch/{id}",
+    "as"   => "edit-menu-panel",
+    "uses" => "MenuPanelController@edit"
+]);
+
+Route::any("update-menu-panel/{id}", [
+    //"middleware" => "acl_access:update-branch/{id}",
+    "as"   => "update-menu-panel",
+    "uses" => "MenuPanelController@update"
+]);
+
+Route::any("delete-menu-panel/{id}", [
+    //"middleware" => "acl_access:delete-branch/{id}",
+    "as"   => "delete-menu-panel",
+    "uses" => "MenuPanelController@delete"
+]);
+
 });
+
+
+
+
 
