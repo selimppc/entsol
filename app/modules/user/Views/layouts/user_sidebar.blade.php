@@ -22,6 +22,9 @@
         {{--<li>
             <a tabindex="-1" href="{{route('get-user-login')}}"><span class="mm-text">Sign In</span></a>
         </li>--}}
+        <li>
+            <a tabindex="-1" href="{{route('menu-panel')}}"><span class="mm-text">Menu Panel</span></a>
+        </li>
     </ul>
 </li>
 
