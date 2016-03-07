@@ -15,11 +15,19 @@ use App\Http\Requests;
 use DB;
 use Session;
 use Input;
+use Illuminate\Support\Facades\Response;
 
 
 
 class MenuPanelController extends Controller
 {
+
+    protected function isGetRequest()
+    {
+        return Input::server("REQUEST_METHOD") == "GET";
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -34,12 +42,9 @@ class MenuPanelController extends Controller
         $menu_name = Input::get('menu_name');
         $route=Input::get('route');
 
-        //$list = MenuPanel::where('status','!=','cancel')->orderBy('id', 'DESC')->get();
-
-        //$data = $data->with('relCurrency');
-        if (isset($menu_type) && !empty($menu_type)) $data = $data ->where('menu_panel.menu_type', 'LIKE', '%'.$menu_type.'%');
+        /*if (isset($menu_type) && !empty($menu_type)) $data = $data ->where('menu_panel.menu_type', 'LIKE', '%'.$menu_type.'%');
         if (isset($menu_name) && !empty($menu_name)) $data = $data->where('menu_panel.menu_name', 'LIKE', '%'.$menu_name.'%');
-        if (isset($route) && !empty($route)) $data = $data->where('menu_panel.route', '=', $route);
+        if (isset($route) && !empty($route)) $data = $data->where('menu_panel.route', '=', $route);*/
         $data = $data->where('status','!=','cancel');
         $data = $data->get();
 
@@ -157,5 +162,32 @@ class MenuPanelController extends Controller
             //LogFileHelperAcc::log_error('delete-branch', $e->getMessage(), ['Branch title : '.$model->title]);
         }
         return redirect()->back();
+    }
+
+    public function get_ajax_menu_list(){
+
+        $menu_type = Input::get('menu_type');
+
+        $menu_data = DB::table('menu_panel');
+        if($menu_type=='MODU'){
+            $menu_data = $menu_data->where('menu_type', 'LIKE', "ROOT");
+        }
+
+        if($menu_type=='MENU'){
+            $menu_data = $menu_data->where('menu_type', 'LIKE', "MODU");
+        }
+
+        if($menu_type=='SUBM'){
+            $menu_data = $menu_data->where('menu_type', 'LIKE', "MENU");
+        }
+
+        $menu_data = $menu_data->lists('menu_name', 'menu_id');
+
+        if($menu_data){
+            return Response::make([''=>'please select one'] + $menu_data);
+
+        }else{
+            return Response::make(['no data found']);
+        }
     }
 }

@@ -74,6 +74,12 @@ Route::any("delete-menu-panel/{id}", [
     "uses" => "MenuPanelController@delete"
 ]);
 
+Route::any('menu-list', [
+    //'middleware' => 'acl_access:exchange-rate',
+    'as' => 'menu-list',
+    'uses' => 'MenuPanelController@get_ajax_menu_list'
+]);
+
 });
 
 
