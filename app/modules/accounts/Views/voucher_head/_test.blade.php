@@ -37,7 +37,7 @@
 
 
 <script>
-    $(document).on("focus",'#table tr:last-child td:last-child',function() {
+    $(document).on("blur",'#table tr:last-child td:last-child',function() {
         //append the new row here.
         var table = $("#table");
 

@@ -107,6 +107,24 @@ class UserRole extends Migration
             $table->foreign('role_id')->references('id')->on('role');
         });
 
+        /*user_activity*/
+        Schema::create('user_activity', function(Blueprint $table) {
+            $table->increments('id');
+            $table->string('action_name',64)->nullable();
+            $table->string('action_url',64)->nullable();
+            $table->text('action_details',64)->nullable();
+            $table->string('action_table',64)->nullable();
+            $table->dateTime('date',64)->nullable();
+            $table->unsignedInteger('user_id')->nullable();
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+        Schema::table('user_activity', function($table) {
+            $table->foreign('user_id')->references('id')->on('user');
+        });
+
         /*role_head*/
 
         /*Schema::create('user_role_head', function (Blueprint $table) {
@@ -237,6 +255,7 @@ class UserRole extends Migration
         Schema::drop('role_user');
         Schema::drop('permissions');
         Schema::drop('permission_role');
+        Schema::drop('user_activity');
         //Schema::drop('user_role_head');
         //Schema::drop('user_role_detail');
         Schema::drop('user_profile');

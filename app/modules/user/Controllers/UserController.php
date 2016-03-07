@@ -5,6 +5,7 @@ namespace App\Modules\User\Controllers;
 use App\Branch;
 use App\Helpers\LogFileHelper;
 use App\RoleUser;
+use App\UserActivity;
 use App\UserImage;
 use Mockery\CountValidator\Exception;
 use Validator;
@@ -184,13 +185,32 @@ class UserController extends Controller
     }
 
     public function logout() {
-        #exit('43324');
-        Auth::logout();
 
+        $user_act_model = new UserActivity();
+        /* Transaction Start Here */
+        DB::beginTransaction();
+        try{
+            $user_activity = [
+                'action_name' => 'user-logout',
+                'action_url' => 'user-logout',
+                'action_details' => Auth::user()->username.' '. 'logged out',
+                'action_table' => 'user',
+                'date' => date('Y-m-d h:i:s', time()),
+                'user_id' => Auth::user()->id,
+            ];
+            $user_act_model->create($user_activity);
+
+            Auth::logout();
+
+            DB::commit();
+            Session::flash('message', 'You Are Now Logged Out.');
+        }catch(\Exception $e){
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('error', $e->getMessage());
+        }
         Session::flush(); //delete the session
 
-        #Session::flash('message', "You are now logged out!");
-        #echo '13v2';exit;
         return redirect()->route('get-user-login');
     }
 
