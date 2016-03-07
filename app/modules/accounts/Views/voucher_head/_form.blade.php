@@ -136,7 +136,7 @@ $(document).on("focus",'#table tr:last-child td:last-child',function() {
          </td>\
 		<td><div>{!! Form::Select('branch_id', $branch_data, Input::old('branch_id'),['required','title'=>'select branch name','style'=>'width:150px;']) !!}</div>\
 		</td>\
-		<td><div>{!! Form::Select('currency_id', $currency_data, Input::old('currency_id'), ['id'=>'curr','required','style'=>'width:170px;']) !!}</div>\
+		<td><div>{!! Form::Select('currency_id', $currency_data, Input::old('currency_id'), ['class'=>'curr','required','style'=>'width:170px;','onclick'=>"myFunction()"]) !!}</div>\
 		</td>\
 		<td style="width:90px;"><div> {!! Form::input('number','exchange_rate', Input::old('exchange_rate'), ['id'=>'rate-of-ex','class' => '','readonly','required','title'=>'disabled field ! exchange rate auto populate by select currency','style'=>'width:90px']) !!}</div>\
 		</td>\
@@ -153,7 +153,7 @@ $(document).on("focus",'#table tr:last-child td:last-child',function() {
 <script>
     function myFunction() {
 
-        var curr_id = $('select[id=curr]').val();
+        var curr_id = $('select[class=curr]').val();
 
         $.ajax({
             url: "{{Route('exchange-rate')}}",
