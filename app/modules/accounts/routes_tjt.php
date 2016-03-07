@@ -8,7 +8,11 @@
 
 //Voucher Head .......
 
-
+Route::any('test-case', [
+    'middleware' => 'acl_access:test-case',
+    'as' => 'test-case',
+    'uses' => 'TestCaseController@test_case'
+]);
 
 Route::any('test', [
     'middleware' => 'acl_access:test',

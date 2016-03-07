@@ -1,4 +1,6 @@
+
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/admin/js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/custom.min.js') }}"></script>
 
 <div class="form-group form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
@@ -116,6 +118,11 @@
     <a href="{{route('voucher-head')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
 </div>
 
+
+Username: <input type="text" name="user" />
+<a href="#" class="reset">reset</a>
+
+
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/datepicker.js') }}"></script>
 
 <script>
@@ -129,9 +136,9 @@ $(document).on("focus",'#table tr:last-child td:last-child',function() {
          </td>\
 		<td><div>{!! Form::Select('branch_id', $branch_data, Input::old('branch_id'),['required','title'=>'select branch name','style'=>'width:150px;']) !!}</div>\
 		</td>\
-		<td><div>{!! Form::Select('currency_id', $currency_data, Input::old('currency_id'), ['class'=>'abc','required','style'=>'width:170px;']) !!}</div>\
+		<td><div>{!! Form::Select('currency_id', $currency_data, Input::old('currency_id'), ['id'=>'curr','required','style'=>'width:170px;']) !!}</div>\
 		</td>\
-		<td style="width:90px;"><div> {!! Form::input('number','exchange_rate', Input::old('exchange_rate'), ['id'=>'td-ex-rate','class' => '','readonly','required','title'=>'disabled field ! exchange rate auto populate by select currency','style'=>'width:90px']) !!}</div>\
+		<td style="width:90px;"><div> {!! Form::input('number','exchange_rate', Input::old('exchange_rate'), ['id'=>'rate-of-ex','class' => '','readonly','required','title'=>'disabled field ! exchange rate auto populate by select currency','style'=>'width:90px']) !!}</div>\
 		</td>\
 		<td>\
 		<div>{!! Form::text('debit', Input::old('debit'), ['title'=>'enter debit']) !!}</div>\
@@ -142,20 +149,22 @@ $(document).on("focus",'#table tr:last-child td:last-child',function() {
 		</tr>');
 });
 
+</script>
+<script>
+    function myFunction() {
 
-$('select[class=abc]').click('click', function(e){
-    alert(e);
-    var currency_id =   $(this).val();
-    $.ajax({
-        url: "{{Route('exchange-rate')}}",
-        type: 'POST',
-        data: {_token: '{!! csrf_token() !!}',currency_id: currency_id },
-        success: function(data){
-            $('#td-ex-rate').val(data);
-        }
-    });
-    e.preventDefault();
-});
+        var curr_id = $('select[id=curr]').val();
+
+        $.ajax({
+            url: "{{Route('exchange-rate')}}",
+            type: 'POST',
+            data: {_token: '{!! csrf_token() !!}',currency_id: curr_id },
+            success: function(data){
+                $('#rate-of-ex').val(data);
+            }
+        });
+    }
+
 </script>
 
 @include('accounts::voucher_detail._script')

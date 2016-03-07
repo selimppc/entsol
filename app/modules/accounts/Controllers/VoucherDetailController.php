@@ -323,7 +323,6 @@ class VoucherDetailController extends Controller
     public function get_ajax_exchange_rate(){
 
         $input_curr_id = Input::get('currency_id');
-
         try{
             $curr_data = Currency::where('id',$input_curr_id)->first();
             if($curr_data){
