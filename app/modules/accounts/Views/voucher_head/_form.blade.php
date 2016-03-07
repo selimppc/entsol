@@ -157,14 +157,16 @@ $(document).on("focus",'#table tr:last-child td:last-child',function() {
 
     table.append(element);
 
-    //console.log($("#table tr:last-child").find(".auto-search-ac"));
-    //console.log($("#table tr:last-child").find(".coa-id-val"));
+    console.log($("#table tr:last-child").find(".auto-search-ac"));
+    console.log($("#table tr:last-child").find(".coa-id-val"));
     $("#table tr:last-child").find(".auto-search-ac").autocomplete({
         source: "{{Route('coa-list')}}",
         minLength: 1,
         select: function(event, ui) {
+
+            //$('.auto-search-ac').append("<td>" + ui.item.coa_id + "</td>");
             //alert(ui.item.value);
-            alert(ui.item.ca_id);
+            //alert(ui.item.coa_id);
             //$("#table tr:last-child").find(".coa-id-val").val(ui.item.coa_id);
         }
     });
