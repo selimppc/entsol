@@ -1,7 +1,7 @@
 
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.min.js') }}"></script>
-<script type="text/javascript" src="{{ URL::asset('assets/admin/js/bootstrap.min.js') }}"></script>
-<script type="text/javascript" src="{{ URL::asset('assets/admin/js/custom.min.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery-ui.min.js') }}"></script>
+
 
 <div class="form-group form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
@@ -80,8 +80,10 @@
     <tr>
         <td style="width:250px;">
             <div>
-                {!! Form::text('ac_title', Input::old('coa_id'), ['id'=>'auto-search-ac','required','placeholder'=>'Search By Name of Chart of account OR account-code','autofocus','title'=>'type your require chart of account "code" or "title" then select one and press enter','style'=>'width:250px;']) !!}
-                {!! Form::hidden('coa_id',null, ['id'=>'coa-id-val']) !!}
+
+                {!! Form::text('ac_title', Input::old('coa_id'), ['class'=>'auto-search-ac','required','placeholder'=>'Search By account head or code','autofocus','title'=>'type your require account head and code']) !!}
+                {!! Form::text('coa_id',null, ['class'=>'coa-id-val']) !!}
+
             </div>
         </td>
         <td style="width:150px;">
@@ -119,20 +121,25 @@
 </div>
 
 
-Username: <input type="text" name="user" />
-<a href="#" class="reset">reset</a>
 
-
-<script type="text/javascript" src="{{ URL::asset('assets/admin/js/datepicker.js') }}"></script>
 
 <script>
+
+$(".auto-search-ac").autocomplete({
+    source: "{{Route('coa-list')}}",
+    minLength: 1,
+    select: function( event, ui ) {
+        $('.auto-search-ac').val(ui.item.value);
+        $('.coa-id-val').val(ui.item.coa_id);
+    }
+});
+
 $(document).on("focus",'#table tr:last-child td:last-child',function() {
             //append the new row here.
             var table = $("#table");
-
-            table.append('<tr>\
-		<td style="width:250px;"><div> {!! Form::text('ac_title', Input::old('coa_id'), ['id'=>'auto-search-ac','required','placeholder'=>'Search By Name of Chart of account OR account-code','autofocus','title'=>'type your require chart of account "code" or "title" then select one and press enter','style'=>'width:250px;']) !!}\
-                {!! Form::hidden('coa_id',null, ['id'=>'coa-id-val']) !!}</div>\
+            var element = '<tr>\
+		<td><div> {!! Form::text('ac_title', Input::old('coa_id'), ['class'=>'auto-search-ac','required','placeholder'=>'Search By account head or code','autofocus','title'=>'type your require account head and code']) !!}\
+                {!! Form::text('coa_id',null, ['id'=>'coa-id-val']) !!}</div>\
          </td>\
 		<td><div>{!! Form::Select('branch_id', $branch_data, Input::old('branch_id'),['required','title'=>'select branch name','style'=>'width:150px;']) !!}</div>\
 		</td>\
@@ -146,26 +153,44 @@ $(document).on("focus",'#table tr:last-child td:last-child',function() {
 		<td>\
 		<div>{!! Form::text('credit', Input::old('credit'), ['title'=>'enter credit']) !!}</div>\
 		</td>\
-		</tr>');
+		</tr>';
+
+    table.append(element);
+
+    //console.log($("#table tr:last-child").find(".auto-search-ac"));
+    //console.log($("#table tr:last-child").find(".coa-id-val"));
+    $("#table tr:last-child").find(".auto-search-ac").autocomplete({
+        source: "{{Route('coa-list')}}",
+        minLength: 1,
+        select: function(event, ui) {
+            //alert(ui.item.value);
+            alert(ui.item.ca_id);
+            //$("#table tr:last-child").find(".coa-id-val").val(ui.item.coa_id);
+        }
+    });
+
 });
 
+
+function myFunction() {
+
+    var curr_id = $('select[class=curr]').val();
+
+    $.ajax({
+        url: "{{Route('exchange-rate')}}",
+        type: 'POST',
+        data: {_token: '{!! csrf_token() !!}',currency_id: curr_id },
+        success: function(data){
+            $('#rate-of-ex').val(data);
+        }
+    });
+}
+
 </script>
-<script>
-    function myFunction() {
 
-        var curr_id = $('select[class=curr]').val();
 
-        $.ajax({
-            url: "{{Route('exchange-rate')}}",
-            type: 'POST',
-            data: {_token: '{!! csrf_token() !!}',currency_id: curr_id },
-            success: function(data){
-                $('#rate-of-ex').val(data);
-            }
-        });
-    }
 
-</script>
 
+<script type="text/javascript" src="{{ URL::asset('assets/admin/js/datepicker.js') }}"></script>
 @include('accounts::voucher_detail._script')
 
