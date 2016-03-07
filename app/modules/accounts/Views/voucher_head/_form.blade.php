@@ -11,28 +11,29 @@
             {!! Form::hidden('number', @$number? $number : 0) !!}
             {!! Form::hidden('settings_id', @$settings_id? $settings_id : 0) !!}
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-3">
             {!! Form::label('date', 'Date:', ['class' => 'control-label']) !!}
-            <small class="required">(Required)</small>
+            <small class="required">*</small>
             <div class="input-group date">
                 {!! Form::text('date', @$generate_voucher_number? date('Y/m/d') : Input::old('date'), ['class' => 'form-control bs-datepicker-component','required','title'=>'select journal voucher date']) !!}
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
             </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-3">
             {!! Form::label('year', 'Year:', ['class' => 'control-label']) !!}
             {{--old('date', Carbon\Carbon::today()->format('Y/m/d'))--}}
             {!! Form::selectrange('year',2010,2030, @$generate_voucher_number? Input::old('year', date('Y')) : Input::old('year'),['class' => 'form-control','required','title'=>'select journal voucher year']) !!}
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-3">
             {!! Form::label('period', 'Period:', ['class' => 'control-label']) !!}
             {!! Form::selectrange('period', 1,12,@$generate_voucher_number? Input::old('period', date('m')) : Input::old('period'),['class' => 'form-control','required','title'=>'select journal voucher month']) !!}
         </div>
-        <div class="col-sm-3">
+        {{--<div class="col-sm-3">
             {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
             <small class="narration">(Open status Selected)</small>
             {!! Form::text('status', @$generate_voucher_number? ucfirst('open') : Input::old('status'), ['class' => 'form-control','required','readonly','style'=>'font-weight:bold']) !!}
-        </div>
+        </div>--}}
+
     </div>
 </div>
 
@@ -110,7 +111,7 @@
 </table>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<div class="form-margin-btn">
+<div class="footer-margin-btn">
     {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save journal voucher information']) !!}&nbsp;
     <a href="{{route('voucher-head')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
 </div>
