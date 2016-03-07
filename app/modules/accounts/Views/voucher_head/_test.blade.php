@@ -42,8 +42,8 @@
         var table = $("#table");
 
         table.append('<tr>\
-		<td style="width:250px;"><div> {!! Form::text('ac_title', Input::old('coa_id'), ['id'=>'auto-search-ac','required','placeholder'=>'Search By Name of Chart of account OR account-code','autofocus','title'=>'type your require chart of account "code" or "title" then select one and press enter','style'=>'width:250px;']) !!}\
-                {!! Form::hidden('coa_id',null, ['id'=>'coa-id-val']) !!}</div>\
+		<td style="width:250px;"><div> {!! Form::text('ac_title', Input::old('coa_id'), ['id'=>'td-auto-search-ac','required','placeholder'=>'Search By Name of Chart of account OR account-code','autofocus','title'=>'type your require chart of account "code" or "title" then select one and press enter','style'=>'width:250px;','onclick'=>"coaFunction()"]) !!}\
+                {!! Form::hidden('coa_id',null, ['id'=>'td-coa-id-val']) !!}</div>\
          </td>\
 		<td style="width:500px;"><div>{!! Form::Select('currency_id', $currency_data, Input::old('currency_id'), ['id'=>'xxx','required','style'=>'width:500px;','onclick'=>"myFunction()"]) !!}</div>\
 		</td>\
@@ -57,8 +57,11 @@
 <script>
     function myFunction() {
 
-        var curr_id = $('select[id=xxx]').val();
+        /*$("table tr").click(function(){
+            alert (this.rowIndex);
+        });*/
 
+        var curr_id = $('select[id=xxx]').val();
         $.ajax({
             url: "{{Route('exchange-rate')}}",
             type: 'POST',
@@ -69,6 +72,19 @@
         });
     }
 
+
+    function coaFunction() {
+
+    $("#td-auto-search-ac").autocomplete({
+
+        source: "{{Route('coa-list')}}",
+        minLength: 1,
+        select: function( event, ui ) {
+            $('#td-auto-search-ac').val(ui.item.value);
+            $('#td-coa-id-val').val(ui.item.coa_id);
+        }
+    });
+}
 </script>
 
 @include('accounts::voucher_detail._script')

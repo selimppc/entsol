@@ -343,12 +343,15 @@ class VoucherDetailController extends Controller
             ->select(DB::raw('CONCAT(ac_chart_of_accounts.account_code, ":", " ",ac_chart_of_accounts.title) AS title, ac_chart_of_accounts.id as coa_id'))
             ->get();
        #print_r($coa);exit;
-
+    if($coa){
         foreach($coa as $v){
             $data[] = array('value'=>$v->title,
                 'coa_id' => $v->coa_id);
         }
-
+        return Response::json($data);
+    }else{
+        return Response::make(['No Data Found']);
+    }
         /*$results =  ChartOfAccounts::orderBy('account_type', 'ASC')->get();
 
         $attributes = array();
@@ -361,7 +364,7 @@ class VoucherDetailController extends Controller
         }*/
        #print_r($attributes);exit('333');
 
-        return Response::json($data);
+
 
     }
 
