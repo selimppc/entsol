@@ -4,7 +4,7 @@
 </div>
 
 <div class="modal-body">
-    {!! Form::model($data, ['method' => 'PATCH', 'route'=> ['update-voucher-head', $data->id]]) !!}
+    {!! Form::model($data, ['method' => 'PATCH', 'route'=> ['update-voucher-head', $data[0]['id'] ]]) !!}
 
     @include('accounts::voucher_head._form')
     {!! Form::close() !!}

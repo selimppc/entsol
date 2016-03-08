@@ -2,59 +2,77 @@
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery-ui.min.js') }}"></script>
 
+<style>
+    table tr td{
+        padding-right: 0;
+        padding-left: 0;
+        padding: -3px;
+    }
 
-<div class="form-group form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+    table tr td input, table tr td select{
+        width: 100%;
+        padding: 2px;
+    }
+    .form-group{
+        margin-bottom: 0px;
+    }
+
+    .form-group input, .form-group select, .form-group textarea{
+        width: 100%;
+        padding: 2px;
+    }
+
+
+</style>
+
+<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         {!! Form::hidden('account_type', 'journal-voucher') !!}
         <div class="col-sm-3">
-            {!! Form::label('voucher_number', 'Voucher Number:', ['class' => 'control-label']) !!}
+            {!! Form::label('voucher_number', 'Voucher Number:', []) !!}
             <small class="narration">(Auto Generated)</small>
-            {!! Form::text('voucher_number', @$generate_voucher_number? $generate_voucher_number : Input::old('voucher_number'), ['class' => 'form-control','required','readonly','style'=>'font-weight:bold']) !!}
+            {!! Form::text('voucher_number', @$generate_voucher_number? $generate_voucher_number : @$data[0]['voucher_number'], ['required','readonly','style'=>'font-weight:bold']) !!}
             {!! Form::hidden('number', @$number? $number : 0) !!}
             {!! Form::hidden('settings_id', @$settings_id? $settings_id : 0) !!}
         </div>
         <div class="col-sm-3">
-            {!! Form::label('date', 'Date:', ['class' => 'control-label']) !!}
+            {!! Form::label('date', 'Date:', []) !!}
             <small class="required">*</small>
             <div class="input-group date">
-                {!! Form::text('date', @$generate_voucher_number? date('Y/m/d') : Input::old('date'), ['class' => 'form-control bs-datepicker-component','required','title'=>'select journal voucher date']) !!}
+                {!! Form::text('date', @$generate_voucher_number? date('Y/m/d') : @$data[0]['date'], ['class' => 'bs-datepicker-component','required','title'=>'select journal voucher date']) !!}
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
             </div>
         </div>
         <div class="col-sm-3">
             {!! Form::label('year', 'Year:', ['class' => 'control-label']) !!}
             {{--old('date', Carbon\Carbon::today()->format('Y/m/d'))--}}
-            {!! Form::selectrange('year',2010,2030, @$generate_voucher_number? Input::old('year', date('Y')) : Input::old('year'),['class' => 'form-control','required','title'=>'select journal voucher year']) !!}
+            {!! Form::selectrange('year',2010,2030, @$generate_voucher_number? Input::old('year', date('Y')) : @$data[0]['year'],['required','title'=>'select journal voucher year']) !!}
         </div>
         <div class="col-sm-3">
             {!! Form::label('period', 'Period:', ['class' => 'control-label']) !!}
-            {!! Form::selectrange('period', 1,12,@$generate_voucher_number? Input::old('period', date('m')) : Input::old('period'),['class' => 'form-control','required','title'=>'select journal voucher month']) !!}
+            {!! Form::selectrange('period', 1,12,@$generate_voucher_number? Input::old('period', date('m')) : @$data[0]['period'],['required','title'=>'select journal voucher month']) !!}
         </div>
-        {{--<div class="col-sm-3">
-            {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
-            <small class="narration">(Open status Selected)</small>
-            {!! Form::text('status', @$generate_voucher_number? ucfirst('open') : Input::old('status'), ['class' => 'form-control','required','readonly','style'=>'font-weight:bold']) !!}
-        </div>--}}
+
 
     </div>
 </div>
 
-<div class="form-group form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         <div class="col-sm-3">
-            {!! Form::label('branch_id', 'Branch:', ['class' => 'control-label']) !!}
+            {!! Form::label('hd_branch_id', 'Branch:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::Select('branch_id', $branch_data, Input::old('branch_id'),['class' => 'form-control','required','title'=>'select journal voucher branch']) !!}
+            {!! Form::Select('hd_branch_id', $branch_data, @$data[0]['branch_id'],['required','title'=>'select journal voucher branch']) !!}
         </div>
         <div class="col-sm-3">
             {!! Form::label('reference', 'Reference:', ['class' => 'control-label']) !!}
             <small class="narration">(Voucher Informations)</small>
-            {!! Form::text('reference', Input::old('reference'), ['class' => 'form-control','autofocus','title'=>'enter narration for journal voucher informations']) !!}
+            {!! Form::text('reference', @$data[0]['reference'], ['autofocus','title'=>'enter narration for journal voucher informations']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('note', 'Note:', ['class' => 'control-label']) !!}
             <small class="narration">(Note for Journal Voucher Informations)</small>
-            {!! Form::textarea('note', Input::old('note'), ['class' => 'form-control','size' => '6x2','title'=>'enter journal voucher note']) !!}
+            {!! Form::textarea('note', @$data[0]['note'], ['size' => '6x2','title'=>'enter journal voucher note']) !!}
         </div>
     </div>
 </div>
@@ -70,48 +88,90 @@
     <thead  style="background-color: white">
     <tr>
         <th>Chat Of Accounts:</th>
+        <th></th>
         <th>Branch:</th>
         <th>Currency:</th>
-        <th>Exchange Rate:</th>
         <th>Debit:</th>
         <th>Credit:</th>
     </tr>
     </thead>
+    <tbody>
+
+    @if(@$data[0]['relVoucherDetail'])
+        @foreach($data[0]['relVoucherDetail'] as $value_dt )
+
+            <tr>
+                <td>
+                    <div>
+
+                        {!! Form::text('ac_title[]', @$value_dt['coa_id'], ['class'=>'auto-search-ac','required','placeholder'=>'Search By account head or code','title'=>'type your require account head and code']) !!}
+
+                    </div>
+                </td>
+                <td>
+                    <div> {!! Form::hidden('coa_id[]',@$value_dt['coa_id'], ['class'=>'coa-id-val']) !!} </div>
+                </td>
+                <td>
+                    <div>
+                        {!! Form::Select('branch_id[]', $branch_data, @$value_dt['branch_id'],['required','title'=>'select branch name']) !!}
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        {!! Form::Select('currency_id[]', $currency_data, @$value_dt['currency_id'], ['id'=>'currency-data','required','title'=>'select currency name']) !!}
+                    </div>
+                </td>
+
+                <td>
+                    <div>
+                        {!! Form::text('debit[]', @$value_dt['prime_amount']>0?$value_dt['prime_amount']:'', ['title'=>'enter debit']) !!}
+                    </div>
+                </td>
+
+                <td>
+                    <div>
+                        {!! Form::text('credit[]', @$value_dt['prime_amount']< 0? substr($value_dt['prime_amount'], 1):'', ['title'=>'enter credit']) !!}
+                    </div>
+                </td>
+            </tr>
+        @endforeach
+    @endif
+
     <tr>
-        <td style="width:250px;">
+        <td>
             <div>
 
-                {!! Form::text('ac_title', Input::old('coa_id'), ['class'=>'auto-search-ac','required','placeholder'=>'Search By account head or code','autofocus','title'=>'type your require account head and code']) !!}
-                {!! Form::text('coa_id',null, ['class'=>'coa-id-val']) !!}
+                {!! Form::text('ac_title[]', Input::old('coa_id'), ['class'=>'auto-search-ac','required','placeholder'=>'Search By account head or code','title'=>'type your require account head and code']) !!}
 
             </div>
         </td>
-        <td style="width:150px;">
+        <td>
+            <div> {!! Form::hidden('coa_id[]',null, ['class'=>'coa-id-val']) !!} </div>
+        </td>
+        <td>
             <div>
-                {!! Form::Select('branch_id', $branch_data, Input::old('branch_id'),['required','title'=>'select branch name','style'=>'width:150px;']) !!}
+                {!! Form::Select('branch_id[]', $branch_data, Input::old('branch_id'),['required','title'=>'select branch name']) !!}
             </div>
         </td>
-        <td style="width: 150px;">
+        <td>
             <div>
-                {!! Form::Select('currency_id', $currency_data, Input::old('currency_id'), ['id'=>'currency-data','required','title'=>'select currency name','style'=>'width:170px;']) !!}
-            </div>
-        </td>
-        <td style="width:90px;">
-            <div>
-                {!! Form::input('number','exchange_rate', Input::old('exchange_rate'), ['id'=>'ex-rate','class' => '','readonly','required','title'=>'disabled field ! exchange rate auto populate by select currency','style'=>'width:90px']) !!}
-            </div>
-        </td>
-        <td style="width:60px;">
-            <div>
-                {!! Form::text('debit', Input::old('debit'), ['title'=>'enter debit']) !!}
+                {!! Form::Select('currency_id[]', $currency_data, Input::old('currency_id'), ['id'=>'currency-data','required','title'=>'select currency name']) !!}
             </div>
         </td>
 
-        <td style="width:60px;">
+        <td>
             <div>
-                {!! Form::text('credit', Input::old('credit'), ['title'=>'enter credit']) !!}
+                {!! Form::text('debit[]', Input::old('debit'), ['title'=>'enter debit']) !!}
             </div>
         </td>
+
+        <td>
+            <div>
+                {!! Form::text('credit[]', Input::old('credit'), ['title'=>'enter credit']) !!}
+            </div>
+        </td>
+    </tr>
+    </tbody>
 </table>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -119,6 +179,9 @@
     {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save journal voucher information']) !!}&nbsp;
     <a href="{{route('voucher-head')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
 </div>
+
+
+
 
 
 
@@ -138,55 +201,51 @@ $(document).on("focus",'#table tr:last-child td:last-child',function() {
             //append the new row here.
             var table = $("#table");
             var element = '<tr>\
-		<td><div> {!! Form::text('ac_title', Input::old('coa_id'), ['class'=>'auto-search-ac','required','placeholder'=>'Search By account head or code','autofocus','title'=>'type your require account head and code']) !!}\
-                {!! Form::text('coa_id',null, ['id'=>'coa-id-val']) !!}</div>\
+		<td><div> {!! Form::text('ac_title[]', Input::old('coa_id'), ['class'=>'auto-search-ac','required','placeholder'=>'Search By account head or code','autofocus','title'=>'type your require account head and code']) !!}\
          </td>\
-		<td><div>{!! Form::Select('branch_id', $branch_data, Input::old('branch_id'),['required','title'=>'select branch name','style'=>'width:150px;']) !!}</div>\
+         <td class="hide-td"><div> </div></td>\
+		<td><div>{!! Form::Select('branch_id[]', $branch_data, Input::old('branch_id'),['required','title'=>'select branch name']) !!}</div>\
 		</td>\
-		<td><div>{!! Form::Select('currency_id', $currency_data, Input::old('currency_id'), ['class'=>'curr','required','style'=>'width:170px;','onclick'=>"myFunction()"]) !!}</div>\
-		</td>\
-		<td style="width:90px;"><div> {!! Form::input('number','exchange_rate', Input::old('exchange_rate'), ['id'=>'rate-of-ex','class' => '','readonly','required','title'=>'disabled field ! exchange rate auto populate by select currency','style'=>'width:90px']) !!}</div>\
-		</td>\
-		<td>\
-		<div>{!! Form::text('debit', Input::old('debit'), ['title'=>'enter debit']) !!}</div>\
+		<td><div>{!! Form::Select('currency_id[]', $currency_data, Input::old('currency_id'), ['class'=>'curr','required','onclick'=>"myFunction()"]) !!}</div>\
 		</td>\
 		<td>\
-		<div>{!! Form::text('credit', Input::old('credit'), ['title'=>'enter credit']) !!}</div>\
+		<div>{!! Form::text('debit[]', Input::old('debit'), ['title'=>'enter debit']) !!}</div>\
+		</td>\
+		<td>\
+		<div>{!! Form::text('credit[]', Input::old('credit'), ['title'=>'enter credit']) !!}</div>\
 		</td>\
 		</tr>';
 
     table.append(element);
 
     console.log($("#table tr:last-child").find(".auto-search-ac"));
-    console.log($("#table tr:last-child").find(".coa-id-val"));
+    //console.log($("#table tr:last-child").find(".coa-id-val"));
     $("#table tr:last-child").find(".auto-search-ac").autocomplete({
         source: "{{Route('coa-list')}}",
         minLength: 1,
         select: function(event, ui) {
+            //$(".hide-td").hide($(this).closest('td'));
 
-            //$('.auto-search-ac').append("<td>" + ui.item.coa_id + "</td>");
-            //alert(ui.item.value);
-            //alert(ui.item.coa_id);
-            //$("#table tr:last-child").find(".coa-id-val").val(ui.item.coa_id);
+            $('<td><div><input type="hidden" name="coa_id[]"  value=" '+ui.item.coa_id+' " ></div></td>').insertAfter($(this).closest('td'));
         }
     });
 
 });
 
-
+/*
 function myFunction() {
 
     var curr_id = $('select[class=curr]').val();
 
     $.ajax({
-        url: "{{Route('exchange-rate')}}",
+        url: "{{--{{Route('exchange-rate')}}--}}",
         type: 'POST',
         data: {_token: '{!! csrf_token() !!}',currency_id: curr_id },
         success: function(data){
             $('#rate-of-ex').val(data);
         }
     });
-}
+}*/
 
 </script>
 

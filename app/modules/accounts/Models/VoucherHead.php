@@ -27,6 +27,10 @@ class VoucherHead extends Model
         return $this->belongsTo('App\Branch', 'branch_id', 'id');
     }
 
+    public function relVoucherDetail(){
+        return $this->hasMany('App\VoucherDetail');
+    }
+
     /*public static function getYear(){
         return $year = [
             '2016'=>'2016',
