@@ -1,29 +1,5 @@
-
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery-ui.min.js') }}"></script>
-
-<style>
-    table tr td{
-        padding-right: 0;
-        padding-left: 0;
-        padding: -3px;
-    }
-
-    table tr td input, table tr td select{
-        width: 100%;
-        padding: 2px;
-    }
-    .form-group{
-        margin-bottom: 0px;
-    }
-
-    .form-group input, .form-group select, .form-group textarea{
-        width: 100%;
-        padding: 2px;
-    }
-
-
-</style>
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
@@ -32,8 +8,13 @@
             {!! Form::label('voucher_number', 'Voucher Number:', []) !!}
             <small class="narration">(Auto Generated)</small>
             {!! Form::text('voucher_number', @$generate_voucher_number? $generate_voucher_number : @$data[0]['voucher_number'], ['required','readonly','style'=>'font-weight:bold']) !!}
-            {!! Form::hidden('number', @$number? $number : 0) !!}
-            {!! Form::hidden('settings_id', @$settings_id? $settings_id : 0) !!}
+            {!! Form::hidden('number', @$number? $number : '') !!}
+            {!! Form::hidden('settings_id', @$settings_id? $settings_id : '') !!}
+
+            @if(@$data[0]['id'])
+                {!! Form::text('id', @$data[0]['id']) !!}
+            @endif
+
         </div>
         <div class="col-sm-3">
             {!! Form::label('date', 'Date:', []) !!}
@@ -52,8 +33,6 @@
             {!! Form::label('period', 'Period:', ['class' => 'control-label']) !!}
             {!! Form::selectrange('period', 1,12,@$generate_voucher_number? Input::old('period', date('m')) : @$data[0]['period'],['required','title'=>'select journal voucher month']) !!}
         </div>
-
-
     </div>
 </div>
 
@@ -99,13 +78,12 @@
 
     @if(@$data[0]['relVoucherDetail'])
         @foreach($data[0]['relVoucherDetail'] as $value_dt )
-
             <tr>
                 <td>
                     <div>
-
                         {!! Form::text('ac_title[]', @$value_dt['relChartOfAccounts']['title'], ['class'=>'auto-search-ac','placeholder'=>'Search By account head or code','title'=>'type your require account head and code']) !!}
-
+                        {{--{!! Form::text('dt_id[]',@$value_dt['relChartOfAccounts']['id'], ['class'=>'coa-id-val']) !!}--}}
+                        {!! Form::text('dt_id[]',@$value_dt['id'], ['class'=>'coa-id-val']) !!}
                     </div>
                 </td>
                 <td>
@@ -121,13 +99,11 @@
                         {!! Form::Select('currency_id[]', $currency_data, @$value_dt['currency_id'], ['id'=>'currency-data','required','title'=>'select currency name']) !!}
                     </div>
                 </td>
-
                 <td>
                     <div>
                         {!! Form::text('debit[]', @$value_dt['prime_amount']>0?$value_dt['prime_amount']:'', ['title'=>'enter debit']) !!}
                     </div>
                 </td>
-
                 <td>
                     <div>
                         {!! Form::text('credit[]', @$value_dt['prime_amount']< 0? substr($value_dt['prime_amount'], 1):'', ['title'=>'enter credit']) !!}
@@ -140,9 +116,7 @@
     <tr>
         <td>
             <div>
-
                 {!! Form::text('ac_title[]', Input::old('coa_id'), ['class'=>'auto-search-ac','placeholder'=>'Search By account head or code','title'=>'type your require account head and code']) !!}
-
             </div>
         </td>
         <td>
@@ -155,7 +129,7 @@
         </td>
         <td>
             <div>
-                {!! Form::Select('currency_id[]', $currency_data, Input::old('currency_id'), ['id'=>'currency-data','required','title'=>'select currency name']) !!}
+                {!! Form::Select('currency_id[]', $currency_data, Input::old('currency_id'), ['id'=>'currency-data','title'=>'select currency name']) !!}
             </div>
         </td>
 
@@ -181,78 +155,7 @@
 </div>
 
 
-
-
-<script>
-
-$(".auto-search-ac").autocomplete({
-    source: "{{Route('coa-list')}}",
-    minLength: 1,
-    select: function( event, ui ) {
-        $('.auto-search-ac').val(ui.item.value);
-        $('.coa-id-val').val(ui.item.coa_id);
-    }
-});
-
-$(document).on("focus",'#table tr:last-child td:last-child',function(e) {
-
-         e.preventDefault();
-            //append the new row here.
-            var table = $("#table");
-            var element = '<tr>\
-		<td><div> {!! Form::text('ac_title[]', Input::old('coa_id'), ['class'=>'ac-auto-search-ac','placeholder'=>'Search By account head or code','autofocus','title'=>'type your require account head and code']) !!}\
-         </td>\
-         <td class="hide-td"><div> </div></td>\
-		<td><div>{!! Form::Select('branch_id[]', $branch_data, Input::old('branch_id'),['required','title'=>'select branch name']) !!}</div>\
-		</td>\
-		<td><div>{!! Form::Select('currency_id[]', $currency_data, Input::old('currency_id'), ['class'=>'curr','required','onclick'=>"myFunction()"]) !!}</div>\
-		</td>\
-		<td>\
-		<div>{!! Form::text('debit[]', Input::old('debit'), ['title'=>'enter debit']) !!}</div>\
-		</td>\
-		<td>\
-		<div>{!! Form::text('credit[]', Input::old('credit'), ['title'=>'enter credit']) !!}</div>\
-		</td>\
-		</tr>';
-
-    table.append(element);
-
-    console.log($("#table tr:last-child").find(".ac-auto-search-ac"));
-    //console.log($("#table tr:last-child").find(".coa-id-val"));
-    $("#table tr:last-child").find(".ac-auto-search-ac").autocomplete({
-        source: "{{Route('coa-list')}}",
-        minLength: 1,
-        select: function(event, ui) {
-
-            $('<td width="5"><div><input type="hidden" name="coa_id[]"  value=" '+ui.item.coa_id+' " ></div></td>').insertAfter($(this).closest('td'));
-            $(".hide-td").css("display", "none");
-        }
-    });
-
-
-
-});
-
-/*
-function myFunction() {
-
-    var curr_id = $('select[class=curr]').val();
-
-    $.ajax({
-        url: "{{--{{Route('exchange-rate')}}--}}",
-        type: 'POST',
-        data: {_token: '{!! csrf_token() !!}',currency_id: curr_id },
-        success: function(data){
-            $('#rate-of-ex').val(data);
-        }
-    });
-}*/
-
-</script>
-
-
-
-
+@include('accounts::voucher_head._script')
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/datepicker.js') }}"></script>
 @include('accounts::voucher_detail._script')
 
