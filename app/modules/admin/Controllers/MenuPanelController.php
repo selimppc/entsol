@@ -169,22 +169,23 @@ class MenuPanelController extends Controller
         $menu_type = Input::get('menu_type');
 
         $menu_data = DB::table('menu_panel');
+
         if($menu_type=='MODU'){
-            $menu_data = $menu_data->where('menu_type', 'LIKE', "ROOT");
+            $menu_data = $menu_data->where('menu_type', '=', "ROOT");
         }
 
         if($menu_type=='MENU'){
-            $menu_data = $menu_data->where('menu_type', 'LIKE', "MODU");
+            $menu_data = $menu_data->where('menu_type', '=', "MODU");
         }
 
         if($menu_type=='SUBM'){
-            $menu_data = $menu_data->where('menu_type', 'LIKE', "MENU");
+            $menu_data = $menu_data->where('menu_type', '=', "MENU");
         }
 
-        $menu_data = $menu_data->lists('menu_name', 'menu_id');
+        $menu_data =  [''=>'please select one'] +  $menu_data->lists('menu_name', 'id');
 
         if($menu_data){
-            return Response::make([''=>'please select one'] + $menu_data);
+            return Response::make($menu_data);
 
         }else{
             return Response::make(['no data found']);

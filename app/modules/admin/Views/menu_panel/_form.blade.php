@@ -7,12 +7,12 @@
             {!! Form::hidden('menu_id',1) !!}
             {!! Form::label('menu_type', 'Menu Type:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::select('menu_type', array(''=>'Select Menu Type','MODU'=>'MODU','MENU'=>'MENU','SUBM'=>'SUBM'),Input::old('menu_type'),['id'=>'menu-data','class' => 'form-control','required','title'=>'select menu type']) !!}
+            {!! Form::select('menu_type', array(''=>'Select Menu Type','MODU'=>'MODU','MENU'=>'MENU','SUBM'=>'SUBM'),Input::old('menu_type'),['id'=>'menu-data','class' => 'form-control','autofocus','required','title'=>'select menu type']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('menu_name', 'Menu Name:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
-            {!! Form::text('menu_name', Input::old('menu_name'), ['id'=>'menu_name', 'class' => 'form-control','required','title'=>'enter menu name']) !!}
+            {!! Form::text('menu_name', Input::old('menu_name'), ['id'=>'menu_name', 'class' => 'form-control','required', 'style'=>'text-transform:capitalize','title'=>'enter menu name']) !!}
         </div>
     </div>
 </div>
