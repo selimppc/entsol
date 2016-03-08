@@ -18,7 +18,7 @@ class CreateMenuPanelTable extends Migration
 
         Schema::create('menu_panel', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('menu_id')->unique();
+            $table->unsignedInteger('menu_id');
             $table->enum('menu_type',array('ROOT','MODU','MENU','SUBM'))->nullable();
             $table->string('menu_name',64)->unique();
             $table->string('route',64);
