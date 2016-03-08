@@ -156,8 +156,6 @@ class VoucherHeadController extends Controller
 
             //Commit the transaction
             DB::commit();
-
-            exit("Committed");
             Session::flash('message', 'Successfully added!');
 
         } catch (\Exception $e) {
