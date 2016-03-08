@@ -84,8 +84,8 @@
     <h4 class="text-center">Debit/Credit</h4>
 </div>
 
-<table width="100%" id="table" class="table" border="1" cellpadding="0" cellspacing="0">
-    <thead  style="background-color: white">
+<table width="100%" id="table" class="table" cellpadding="0" cellspacing="0">
+    <thead  style="background-color: whitesmoke;">
     <tr>
         <th>Chat Of Accounts:</th>
         <th></th>
