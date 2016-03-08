@@ -37,6 +37,15 @@
             </ul>
         </li>
 
+        <li class="mm-dropdown">
+            <a href="#"><i class="menu-icon fa fa-columns"></i><span class="mm-text">Administration </span></a>
+            <ul>
+                <li>
+                    <a tabindex="-1" href="{{route('menu-panel')}}"><span class="mm-text">Menu Panel</span></a>
+                </li>
+            </ul>
+        </li>
+
         @if(file_exists(app_path().'/modules/user/Views/layouts/user_sidebar.blade.php'))
             @include('user::layouts.user_sidebar')
         @endif
