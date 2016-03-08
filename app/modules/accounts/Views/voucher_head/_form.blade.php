@@ -104,7 +104,7 @@
                 <td>
                     <div>
 
-                        {!! Form::text('ac_title[]', @$value_dt['relChartOfAccounts']['title'], ['class'=>'auto-search-ac','required','placeholder'=>'Search By account head or code','title'=>'type your require account head and code']) !!}
+                        {!! Form::text('ac_title[]', @$value_dt['relChartOfAccounts']['title'], ['class'=>'auto-search-ac','placeholder'=>'Search By account head or code','title'=>'type your require account head and code']) !!}
 
                     </div>
                 </td>
@@ -141,7 +141,7 @@
         <td>
             <div>
 
-                {!! Form::text('ac_title[]', Input::old('coa_id'), ['class'=>'auto-search-ac','required','placeholder'=>'Search By account head or code','title'=>'type your require account head and code']) !!}
+                {!! Form::text('ac_title[]', Input::old('coa_id'), ['class'=>'auto-search-ac','placeholder'=>'Search By account head or code','title'=>'type your require account head and code']) !!}
 
             </div>
         </td>
@@ -200,7 +200,7 @@ $(document).on("focus",'#table tr:last-child td:last-child',function(e) {
             //append the new row here.
             var table = $("#table");
             var element = '<tr>\
-		<td><div> {!! Form::text('ac_title[]', Input::old('coa_id'), ['class'=>'ac-auto-search-ac','required','placeholder'=>'Search By account head or code','autofocus','title'=>'type your require account head and code']) !!}\
+		<td><div> {!! Form::text('ac_title[]', Input::old('coa_id'), ['class'=>'ac-auto-search-ac','placeholder'=>'Search By account head or code','autofocus','title'=>'type your require account head and code']) !!}\
          </td>\
          <td class="hide-td"><div> </div></td>\
 		<td><div>{!! Form::Select('branch_id[]', $branch_data, Input::old('branch_id'),['required','title'=>'select branch name']) !!}</div>\
