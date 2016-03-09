@@ -188,8 +188,10 @@ class VoucherHeadController extends Controller
         $year = $model->getYear();*/
 
         $data = VoucherHead::with('relVoucherDetail')->where('id', $id)->get();
+        $status = VoucherHead::where('id',$id)->first();
 
-        return view('accounts::voucher_head.update', ['data' => $data,'branch_data'=>$branch_data,'currency_data'=>$currency_data,'pageTitle'=> $pageTitle]);
+
+        return view('accounts::voucher_head.update', ['data' => $data,'branch_data'=>$branch_data,'currency_data'=>$currency_data,'status'=>$status,'pageTitle'=> $pageTitle]);
     }
 
     public function update(VoucherHeadRequest $request, $id)

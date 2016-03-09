@@ -1,3 +1,7 @@
+<script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery-ui.min.js') }}"></script>
+
+
 <style>
     table tr td{
         padding-right: 0;
@@ -17,6 +21,8 @@
     }
     .ui-autocomplete {
         position: relative;
+        left: 117px !important;
+        top: -250px !important;
     }
 </style>
 
@@ -24,7 +30,7 @@
 
 <script>
 
-    $(function() { $(".auto-search-ac").autocomplete({
+    $(document).ready(function()  { $(".auto-search-ac").autocomplete({
         source: "{{Route('coa-list')}}",
         minLength: 1,
         select: function( event, ui ) {
@@ -45,18 +51,18 @@
         //append the new row here.
         var table = $("#table");
         var element = '<tr>\
-		<td><div> {!! Form::text('ac_title[]', Input::old('coa_id'), ['class'=>'ac-auto-search-ac','placeholder'=>'Search By account head or code','autofocus','title'=>'type your require account head and code']) !!}\
+		<td><div> {!! Form::text('ac_title[]', Input::old('coa_id'), ['class'=>'ac-auto-search-ac form-control','placeholder'=>'Search By account head or code','autofocus','title'=>'type your require account head and code']) !!}\
          </td>\
          <td class="hide-td"><div> </div></td>\
-		<td><div>{!! Form::Select('branch_id[]', $branch_data, Input::old('branch_id'),['required','title'=>'select branch name']) !!}</div>\
+		<td><div>{!! Form::Select('branch_id[]', $branch_data, Input::old('branch_id'),['required', 'class' => 'form-control','title'=>'select branch name']) !!}</div>\
 		</td>\
-		<td><div>{!! Form::Select('currency_id[]', $currency_data, Input::old('currency_id'), ['class'=>'curr','required','onclick'=>"myFunction()"]) !!}</div>\
-		</td>\
-		<td>\
-		<div>{!! Form::text('debit[]', Input::old('debit'), ['title'=>'enter debit']) !!}</div>\
+		<td><div>{!! Form::Select('currency_id[]', $currency_data, Input::old('currency_id'), ['class'=>'curr form-control','title'=>'select currency','required','onclick'=>"myFunction()"]) !!}</div>\
 		</td>\
 		<td>\
-		<div>{!! Form::text('credit[]', Input::old('credit'), ['title'=>'enter credit']) !!}</div>\
+		<div>{!! Form::text('debit[]', Input::old('debit'), ['title'=>'enter debit', 'class' => 'form-control']) !!}</div>\
+		</td>\
+		<td>\
+		<div>{!! Form::text('credit[]', Input::old('credit'), ['title'=>'enter credit', 'class' => 'form-control']) !!}</div>\
 		</td>\
 		</tr>';
 
@@ -92,5 +98,38 @@
      }
      });
      }*/
+
+
+    $(".btn").popover({ trigger: "manual" , html: true, animation:false})
+            .on("mouseenter", function () {
+                var _this = this;
+                $(this).popover("show");
+                $(".popover").on("mouseleave", function () {
+                    $(_this).popover('hide');
+                });
+            }).on("mouseleave", function () {
+                var _this = this;
+                setTimeout(function () {
+                    if (!$(".popover:hover").length) {
+                        $(_this).popover("hide");
+                    }
+                }, 300);
+            });
+
+
+    $(".form-control").tooltip();
+    $('input:disabled, button:disabled').after(function (e) {
+        d = $("<div>");
+        i = $(this);
+        d.css({
+            height: i.outerHeight(),
+            width: i.outerWidth(),
+            position: "absolute",
+        })
+        d.css(i.offset());
+        d.attr("title", i.attr("title"));
+        d.tooltip();
+        return d;
+    });
 
 </script>
