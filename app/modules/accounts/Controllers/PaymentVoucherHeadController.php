@@ -9,6 +9,8 @@
 namespace App\Modules\Accounts\Controllers;
 
 use App\Branch;
+use App\ChartOfAccounts;
+use App\Currency;
 use App\Helpers\LogFileHelperAcc;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VoucherHeadRequest;
@@ -34,7 +36,7 @@ class PaymentVoucherHeadController extends Controller
 
         $pageTitle = 'Payment Voucher Informations';
         $model = new VoucherHead();
-        $model = $model->with('relBranch')->where('account_type','payment-voucher')->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
+        $model = $model->with('relBranch')->where('account_type','payment-voucher')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(30);
 
         $type = 'payment-voucher';
         $generate_number = GenerateNumber::generate_number($type);
@@ -43,8 +45,11 @@ class PaymentVoucherHeadController extends Controller
         $settings_id = $generate_number[1];
         $number = $generate_number[2];
 
+        $currency_data = Currency::lists('title','id')->all();
         $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
-        return view('accounts::payment_voucher.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model,'generate_voucher_number'=>$generate_voucher_number,'number'=>$number,'settings_id'=>$settings_id]);
+
+        return view('accounts::payment_voucher.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'currency_data'=>$currency_data,'model'=>$model,'generate_voucher_number'=>$generate_voucher_number,'number'=>$number,'settings_id'=>$settings_id]);
+
     }
 
     public function search_payment_voucher(){
