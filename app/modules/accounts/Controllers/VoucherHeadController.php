@@ -203,6 +203,7 @@ class VoucherHeadController extends Controller
         $input_head =[
                 'id'=>@$input['id'],
                 'account_type'=>@$input['account_type'],
+                'voucher_number'=>$input['voucher_number'],
                 'date'=>@$input['date'],
                 'reference'=>@$input['reference'],
                 'year'=>@$input['year'],
@@ -210,6 +211,8 @@ class VoucherHeadController extends Controller
                 'branch_id'=>@$input['hd_branch_id'],
                 'note'=>@$input['note']
         ];
+
+
 
         // input data for voucher detail
         for($i=0; $i<count($input['coa_id']); $i++){
@@ -230,11 +233,9 @@ class VoucherHeadController extends Controller
             //insert into voucher head table
             $vh_model = VoucherHead::findOrNew($input['id']);
             $vh = $vh_model->update($input_head);
-            //print_r($i_detail);exit;
+            //print_r($vh_model);exit;
             // Store data into voucher detail
             foreach($i_detail as $value){
-
-
                 $dt_model = $value['dt_id'] ? VoucherDetail::findOrNew($value['dt_id']) : new VoucherDetail();
                 $prime_amount = $value['debit'] ? $value['debit'] : -($value['credit']);
 
@@ -248,8 +249,8 @@ class VoucherHeadController extends Controller
 
                     //detail data
                     $data = [
-                            //'voucher_head_id'=>$vh['id'],
-                            //'voucher_number'=> $vh['voucher_number'],
+                            'voucher_head_id'=>$vh_model['id'],
+                            'voucher_number'=> $vh_model['voucher_number'],
                             'coa_id'=> $value['coa_id'],
                             'account_code'=> $account_code,
                             'currency_id'=> $value['currency_id'],

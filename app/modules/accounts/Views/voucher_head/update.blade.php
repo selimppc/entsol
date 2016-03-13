@@ -127,7 +127,7 @@
         <tr>
             <td>
                 <div>
-                    {!! Form::text('ac_title[]', Input::old('coa_id'), ['id'=>'coa_name1','class'=>'auto-search-ac form-control','placeholder'=>'Search By account head or code','title'=>'type your require account head and code']) !!}
+                    {!! Form::text('ac_title[]', Input::old('coa_id'), ['class'=>'update-auto-search-ac form-control','placeholder'=>'Search By account head or code','title'=>'type your require account head and code']) !!}
                 </div>
             </td>
             <td>
@@ -135,7 +135,7 @@
             </td>
             <td>
                 <div>
-                    {!! Form::Select('branch_id[]', $branch_data, Input::old('branch_id'),['required', 'class' => 'form-control','title'=>'select branch name']) !!}
+                    {!! Form::Select('branch_id[]', $branch_data, Input::old('branch_id'),[ 'class' => 'form-control','title'=>'select branch name']) !!}
                 </div>
             </td>
             <td>

@@ -131,7 +131,7 @@
         </td>
         <td>
             <div>
-                {!! Form::Select('branch_id[]', $branch_data, Input::old('branch_id'),['required', 'class' => 'form-control','title'=>'select branch name']) !!}
+                {!! Form::Select('branch_id[]', $branch_data, Input::old('branch_id'),['class' => 'form-control','title'=>'select branch name']) !!}
             </div>
         </td>
         <td>
