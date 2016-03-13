@@ -141,7 +141,7 @@
 </div>
 
 <div class="modal fade" id="etsbModal" tabindex="" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" style="z-index:1151 !important; width:85%;">
+    <div class="modal-dialog modal-lg" style="z-index:1050; width:85%;">
         <div class="modal-content">
 
         </div>
