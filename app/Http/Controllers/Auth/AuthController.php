@@ -126,13 +126,13 @@ class AuthController extends Controller
         }
     }
 
-    public function postLogin(Request $request,\Exception $e)
+    public function postLogin(Request $request)
     {
-        if ($e instanceof TokenMismatchException){
+        /*if ($e instanceof TokenMismatchException){
 
             // Catch it here and do what you want. For example...
             return redirect()->back()->withInput()->with('error', 'Your session has expired');
-        }
+        }*/
         $data = Input::all();
         date_default_timezone_set("Asia/Dacca");
 
