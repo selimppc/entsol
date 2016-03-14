@@ -63,4 +63,24 @@ class PermissionRole extends Model implements AuthenticatableContract,
             }
         });
     }
+
+    public static function getModules()
+    {
+        return $modules = [
+            0 => 'Administration',
+            1 => 'User',
+            2 => 'Master Setup',
+            3 => 'General Ledger',
+        ];
+    }
+
+    public static function getSubModules()
+    {
+        return $modules = [
+            0 => 'Menu Panel',
+            1 => 'User',
+            2 => 'Master Setup',
+            3 => 'General Ledger',
+        ];
+    }
 }

@@ -36,13 +36,39 @@ class PermissionRoleController extends Controller
             ->where('role.title', '!=', 'super-admin')
             ->select('permission_role.id', 'permissions.title as p_title', 'role.title as r_title')
             ->paginate(30);
-        //$data = PermissionRole::where('status', '!=', 'cancel')->orderBy('id', 'DESC')->paginate(30);
+
         $permission_id = Permission::lists('title','id')->all();
-        #$role_id = [''=>'Select Role'] + Role::lists('title','id')->all();
         $role_id =  [''=>'Select Role'] +  Role::where('role.title', '!=', 'super-admin')->lists('title','id')->all();
+
         return view('user::permission_role.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'permission_id'=>$permission_id,'role_id'=>$role_id]);
     }
 
+
+    public function module_based_routes(){
+#exit('123');
+        $module = Input::get('value');
+        #print_r($module_list);
+        $routeCollection = \Route::getRoutes();
+
+        foreach ($routeCollection as $value) {
+            if($module=='user_list'||$module=='role_user'||$module=='permission_role'){
+                $lookFor = 'UserController';
+            }
+
+            $controller = $value->getAction();
+
+            if (isset($controller['controller'])) {
+                $controller = $controller['controller'];
+            }else{
+                continue;
+            }
+
+            if (strpos($controller, $lookFor)) {
+                echo "This route uses for only ".$lookFor." - ";
+                echo $value->getPath()."<br>";
+            }
+        }
+    }
 
     public function search_permission_role(){
 
@@ -65,8 +91,8 @@ class PermissionRoleController extends Controller
         $data = $data->paginate(30);
 
         $permission_id = Permission::lists('title','id')->all();
-        #$role_id = [''=>'Select Role'] + Role::lists('title','id')->all();
         $role_id =  [''=>'Select Role'] +  Role::where('role.title', '!=', 'super-admin')->lists('title','id')->all();
+
         return view('user::permission_role.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'permission_id'=>$permission_id,'role_id'=>$role_id]);
     }
 

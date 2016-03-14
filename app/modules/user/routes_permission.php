@@ -90,3 +90,9 @@ Route::get('search-permission-role', [
     'as' => 'search-permission-role',
     'uses' => 'PermissionRoleController@search_permission_role'
 ]);
+
+Route::any('module-based-routes', [
+    //'middleware' => 'acl_access:index-permission',
+    'as' => 'module-based-routes',
+    'uses' => 'PermissionRoleController@module_based_routes'
+]);
