@@ -27,7 +27,6 @@ class MenuPanelController extends Controller
         return Input::server("REQUEST_METHOD") == "GET";
     }
 
-
     /**
      * Display a listing of the resource.
      *
@@ -36,19 +35,9 @@ class MenuPanelController extends Controller
     public function index()
     {
         $pageTitle = "Menu Panel Informations";
-        $data = new MenuPanel();
+        $model = MenuPanel::orderBy('id', 'DESC')->where('status','!=','cancel')->paginate(30);
 
-        $menu_type = Input::get('menu_type');
-        $menu_name = Input::get('menu_name');
-        $route=Input::get('route');
-
-        /*if (isset($menu_type) && !empty($menu_type)) $data = $data ->where('menu_panel.menu_type', 'LIKE', '%'.$menu_type.'%');
-        if (isset($menu_name) && !empty($menu_name)) $data = $data->where('menu_panel.menu_name', 'LIKE', '%'.$menu_name.'%');
-        if (isset($route) && !empty($route)) $data = $data->where('menu_panel.route', '=', $route);*/
-        $data = $data->where('status','!=','cancel');
-        $data = $data->get();
-
-        return view('admin::menu_panel.index', ['data' => $data, 'pageTitle'=> $pageTitle]);
+        return view('admin::menu_panel.index', ['model' => $model, 'pageTitle'=> $pageTitle]);
     }
 
     /**
@@ -78,6 +67,30 @@ class MenuPanelController extends Controller
         return redirect()->back();
     }
 
+    public function search(){
+        $pageTitle = 'Menu Panel Informations';
+        $model = new MenuPanel();
+
+        if($this->isGetRequest()){
+            $menu_type = Input::get('menu_type');
+            $menu_name = Input::get('menu_name');
+            $route=Input::get('route');
+
+            $model = $model->select('menu_panel.*');
+
+            if (isset($menu_type) && !empty($menu_type)) $model = $model ->where('menu_panel.menu_type', 'LIKE', '%'.$menu_type.'%');
+            if (isset($menu_name) && !empty($menu_name)) $model = $model->where('menu_panel.menu_name', 'LIKE', '%'.$menu_name.'%');
+            if (isset($route) && !empty($route)) $model = $model->where('menu_panel.route', 'LIKE','%'. $route.'%');
+
+            $model = $model->paginate(30);
+
+        }else{
+            $model = MenuPanel::orderBy('id', 'DESC')->where('status','!=','cancel')->paginate(30);
+        }
+
+        return view('admin::menu_panel.index',['pageTitle'=>$pageTitle,'model'=>$model]);
+
+    }
 
     /**
      * Display the specified resource.
