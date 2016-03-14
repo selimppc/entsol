@@ -67,7 +67,7 @@ class MenuPanelController extends Controller
         return redirect()->back();
     }
 
-    public function search(){
+    public function search_menu_panel(){
         $pageTitle = 'Menu Panel Informations';
         $model = new MenuPanel();
 
