@@ -273,7 +273,7 @@ class ReverseVoucherHeadController extends Controller
 
             //Commit the transaction
             DB::commit();
-            Session::flash('message', 'Successfully added!');
+            Session::flash('message', 'Successfully updated!');
 
         } catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`

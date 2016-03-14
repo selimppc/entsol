@@ -183,7 +183,7 @@ class VoucherHeadController extends Controller
     {
         $pageTitle = 'Update Journal Voucher Informations';
         $branch_data = Branch::lists('title','id');
-        $currency_data = [''=>'Select Currency'] + Currency::lists('title','id')->all();
+        $currency_data = Currency::lists('title','id')->all();
         /*$model = new VoucherHead();
         $year = $model->getYear();*/
 
@@ -273,7 +273,7 @@ class VoucherHeadController extends Controller
 
             //Commit the transaction
             DB::commit();
-            Session::flash('message', 'Successfully added!');
+            Session::flash('message', 'Successfully updated!');
 
         } catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
