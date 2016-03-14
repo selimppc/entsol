@@ -19,7 +19,7 @@
                 {!! Form::hidden('settings_id', @$settings_id? $settings_id : '') !!}
 
                 @if(@$data[0]['id'])
-                    {!! Form::text('id', @$data[0]['id']) !!}
+                    {!! Form::hidden('id', @$data[0]['id']) !!}
                 @endif
 
             </div>

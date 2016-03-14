@@ -9,6 +9,8 @@
 namespace App\Modules\Accounts\Controllers;
 
 use App\Branch;
+use App\ChartOfAccounts;
+use App\Currency;
 use App\Helpers\LogFileHelperAcc;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VoucherHeadRequest;
@@ -34,7 +36,7 @@ class ReceiptVoucherHeadController extends Controller
 
         $pageTitle = 'Receipt Voucher Informations';
         $model = new VoucherHead();
-        $model = $model->with('relBranch')->where('account_type','receipt-voucher')->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
+        $model = $model->with('relBranch')->where('account_type','receipt-voucher')->where('status','!=','cancel')->orderBy('id', 'DESC')->paginate(30);
 
         $type = 'receipt-voucher';
         $generate_number = GenerateNumber::generate_number($type);
@@ -43,8 +45,10 @@ class ReceiptVoucherHeadController extends Controller
         $settings_id = $generate_number[1];
         $number = $generate_number[2];
 
-        $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
-        return view('accounts::receipt_voucher.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model,'generate_voucher_number'=>$generate_voucher_number,'number'=>$number,'settings_id'=>$settings_id]);
+        $currency_data = Currency::lists('title','id')->all();
+        $branch_data =  Branch::lists('title','id')->all();
+
+        return view('accounts::receipt_voucher.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'currency_data'=>$currency_data,'model'=>$model,'generate_voucher_number'=>$generate_voucher_number,'number'=>$number,'settings_id'=>$settings_id]);
     }
 
     public function search_receipt_voucher(){
@@ -80,28 +84,93 @@ class ReceiptVoucherHeadController extends Controller
             $model = $model->with('relBranch')->where('status','!=','cancel')->orderBy('id', 'DESC')->get();
         }
 
+        //print_r($model);exit;
+
         $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
-        return view('accounts::receipt_voucher.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model,'generate_voucher_number'=>$generate_voucher_number,'number'=>$number,'settings_id'=>$settings_id]);
+        $currency_data = Currency::lists('title','id')->all();
+        return view('accounts::receipt_voucher.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'currency_data'=>$currency_data,'model'=>$model,'generate_voucher_number'=>$generate_voucher_number,'number'=>$number,'settings_id'=>$settings_id]);
     }
 
     public function store(VoucherHeadRequest $request){
         $input = $request->all();
-
+        $settings_id = $input['settings_id'];
+        $number = $input['number'];
         #print_r($input);exit;
+
+        // input data for voucher head
+        $input_head =[
+            'account_type'=>$input['account_type'],
+            'voucher_number'=>$input['voucher_number'],
+            'date'=>$input['date'],
+            'reference'=>$input['reference'],
+            'year'=>$input['year'],
+            'period'=>$input['period'],
+            'branch_id'=>$input['hd_branch_id'],
+            'note'=>$input['note']
+        ];
+
+        // input data for voucher detail
+        for($i=0; $i<count($input['coa_id']); $i++){
+            $i_detail[] = array(
+                'ac_title'=>$input['ac_title'][$i],
+                'coa_id'=>$input['coa_id'][$i],
+                'currency_id'=>$input['currency_id'][$i],
+                'branch_id'=>$input['branch_id'][$i],
+                'debit'=>$input['debit'][$i],
+                'credit'=>$input['credit'][$i],
+            );
+        }
+
+
         /* Transaction Start Here */
         DB::beginTransaction();
         try {
-            $vh = VoucherHead::create($input);
-            Settings::where('id', $input['settings_id'])->update(array('last_number' => $input['number']));
+                //insert into voucher head table
+                $vh = VoucherHead::create($input_head);
 
+                // Store data into voucher detail
+                foreach($i_detail as $value){
+
+                    $prime_amount = $value['debit'] ? $value['debit'] : -($value['credit']);
+
+                    if($prime_amount!=0 || $prime_amount!=null){
+
+                        $chart_of_ac = ChartOfAccounts::findOrFail($value['coa_id']);
+                        $account_code = $chart_of_ac->account_code;
+                        $currency =Currency::findOrFail($value['currency_id']);
+                        $exchange_rate= $currency->exchange_rate;
+                        $base_amount = $prime_amount * $exchange_rate;
+
+                        //detail data
+                        $data = [
+                            'voucher_head_id'=>$vh['id'],
+                            'voucher_number'=> $vh['voucher_number'],
+                            'coa_id'=> $value['coa_id'],
+                            'account_code'=> $account_code,
+                            //'sub_account_code'=> $value['sub_account_code'],
+                            'currency_id'=> $value['currency_id'],
+                            'exchange_rate'=> $exchange_rate,
+                            'prime_amount'=> $prime_amount,
+                            'base_amount'=> $base_amount,
+                            'branch_id'=> $value['branch_id'],
+                            'status'=> 'active',
+                        ];
+                        // insert data into voucher detail table
+                        VoucherDetail::create($data);
+                    }
+                }
+                //Update Settings for voucher number
+                Settings::where('id', $settings_id)->update(array('last_number' => $number));
+
+            //Commit the transaction
             DB::commit();
             Session::flash('message', 'Successfully added!');
-            LogFileHelperAcc::log_info('store-receipt-voucher-head', 'Successfully added', ['Receipt Voucher head detail id: '.$vh->id]);
+            //LogFileHelperAcc::log_info('store-receipt-voucher-head', 'Successfully added', ['Receipt Voucher head detail id: '.$vh->id]);
         } catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
             Session::flash('danger', $e->getMessage());
-            LogFileHelperAcc::log_error('store-receipt-voucher-head', $e->getMessage(), ['Receipt Voucher head detail : ']);
+            //LogFileHelperAcc::log_error('store-receipt-voucher-head', $e->getMessage(), ['Receipt Voucher head detail : ']);
         }
         return redirect()->back();
     }
@@ -120,31 +189,103 @@ class ReceiptVoucherHeadController extends Controller
     {
         $pageTitle = 'Update Receipt Voucher Informations';
         $branch_data = Branch::lists('title','id');
+        $currency_data = Currency::lists('title','id')->all();
 
         /*$model = new VoucherHead();
         $year = $model->getYear();*/
 
-        $data = VoucherHead::findOrFail($id);
-        return view('accounts::receipt_voucher.update', ['data' => $data,'branch_data'=>$branch_data,'pageTitle'=> $pageTitle]);
+        $data = VoucherHead::with('relVoucherDetail')->where('id', $id)->get();
+        $status = VoucherHead::where('id',$id)->first();
+
+        return view('accounts::receipt_voucher.update', ['data' => $data,'branch_data'=>$branch_data,'currency_data'=>$currency_data,'status'=>$status,'pageTitle'=> $pageTitle]);
     }
 
     public function update(VoucherHeadRequest $request, $id)
     {
-        $model = VoucherHead::findOrFail($id);
         $input = $request->all();
+
+        // input data for voucher head
+        $input_head =[
+            'id'=>@$input['id'],
+            'account_type'=>@$input['account_type'],
+            'voucher_number'=>$input['voucher_number'],
+            'date'=>@$input['date'],
+            'reference'=>@$input['reference'],
+            'year'=>@$input['year'],
+            'period'=>@$input['period'],
+            'branch_id'=>@$input['hd_branch_id'],
+            'note'=>@$input['note']
+        ];
+
+
+
+        // input data for voucher detail
+        for($i=0; $i<count($input['coa_id']); $i++){
+            $i_detail[] = array(
+                'dt_id'=>@$input['dt_id'][$i],
+                'ac_title'=>@$input['ac_title'][$i],
+                'coa_id'=>@$input['coa_id'][$i],
+                'currency_id'=>@$input['currency_id'][$i],
+                'branch_id'=>@$input['branch_id'][$i],
+                'debit'=>@$input['debit'][$i],
+                'credit'=>@$input['credit'][$i],
+            );
+        }
+
 
         DB::beginTransaction();
         try {
-            $model->update($input);
-            DB::commit();
-            Session::flash('message', "Successfully Updated");
-            LogFileHelperAcc::log_info('update-receipt-voucher-head', 'Successfully update', ['Receipt Voucher head detail id: '.$model->id]);
+                //insert into voucher head table
+                $vh_model = VoucherHead::findOrNew($input['id']);
+                $vh = $vh_model->update($input_head);
+                //print_r($vh_model);exit;
+                // Store data into voucher detail
+
+                foreach($i_detail as $value){
+                    $dt_model = $value['dt_id'] ? VoucherDetail::findOrNew($value['dt_id']) : new VoucherDetail();
+                    $prime_amount = $value['debit'] ? $value['debit'] : -($value['credit']);
+
+                    if($prime_amount!=0 || $prime_amount!=null){
+
+                        $chart_of_ac = ChartOfAccounts::findOrFail($value['coa_id']);
+                        $account_code = $chart_of_ac->account_code;
+                        $currency =Currency::findOrFail($value['currency_id']);
+                        $exchange_rate= $currency->exchange_rate;
+                        $base_amount = $prime_amount * $exchange_rate;
+
+                        //detail data
+                        $data = [
+                            'voucher_head_id'=>$vh_model['id'],
+                            'voucher_number'=> $vh_model['voucher_number'],
+                            'coa_id'=> $value['coa_id'],
+                            'account_code'=> $account_code,
+                            'currency_id'=> $value['currency_id'],
+                            'exchange_rate'=> $exchange_rate,
+                            'prime_amount'=> $prime_amount,
+                            'base_amount'=> $base_amount,
+                            'branch_id'=> $value['branch_id'],
+                            'status'=> 'active',
+                        ];
+
+
+                        // insert data into voucher detail table
+                        if($value['dt_id']){
+                            $dt_model->update($data);
+                        }else{
+                            $dt_model->create($data);
+                        }
+                    }
+                }
+
+                DB::commit();
+                Session::flash('message', "Successfully Updated");
+                //LogFileHelperAcc::log_info('update-receipt-voucher-head', 'Successfully update', ['Receipt Voucher head detail id: '.$model->id]);
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
-            Session::flash('error', $e->getMessage());
-            LogFileHelperAcc::log_error('update-receipt-voucher-head', $e->getMessage(), ['Receipt Voucher head detail id: '.$model->id]);
+            Session::flash('danger', $e->getMessage());
+            //LogFileHelperAcc::log_error('update-receipt-voucher-head', $e->getMessage(), ['Receipt Voucher head detail id: '.$model->id]);
         }
         return redirect()->back();
     }

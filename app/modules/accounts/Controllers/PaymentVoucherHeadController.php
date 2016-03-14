@@ -87,7 +87,9 @@ class PaymentVoucherHeadController extends Controller
         }
 
         $branch_data =  [''=>'Select Branch'] + Branch::lists('title','id')->all();
-        return view('accounts::payment_voucher.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'model'=>$model,'generate_voucher_number'=>$generate_voucher_number,'number'=>$number,'settings_id'=>$settings_id]);
+        $currency_data = Currency::lists('title','id')->all();
+
+        return view('accounts::payment_voucher.index',['pageTitle'=>$pageTitle,'branch_data'=>$branch_data,'currency_data'=>$currency_data,'model'=>$model,'generate_voucher_number'=>$generate_voucher_number,'number'=>$number,'settings_id'=>$settings_id]);
     }
 
     public function store(VoucherHeadRequest $request){

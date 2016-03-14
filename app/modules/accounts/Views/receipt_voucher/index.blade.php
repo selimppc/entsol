@@ -62,7 +62,7 @@
                             <th> Note </th>
                             <th> Status </th>
                             <th> Action &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="1. when status open/suspend/balanced you can view, update, delete all actions<br>2. when status posted you can only view information">(?)</span></th>
-                            <th> V.Details &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="left" data-content="<em>click voucher details to go receipt voucher details page</em>">(?)</span></th>
+                            {{--<th> V.Details &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="left" data-content="<em>click voucher details to go receipt voucher details page</em>">(?)</span></th>--}}
                             <th> Reports </th>
                         </tr>
                         </thead>
@@ -70,12 +70,15 @@
                         @if(isset($model))
                             @foreach($model as $values)
                                 <tr>
-                                    <td>
+                                    {{--<td>
                                         @if($values->status == 'posted')
                                             <a href="{{ route('view-receipt-voucher', $values->id) }}" class="link-text-decoration" data-toggle="modal" data-target="#etsbModal" title="click for voucher-view page"><strong>{{$values->voucher_number}}</strong></a>
                                         @else
                                             <a href="{{ route('receipt-detail',['id'=>$values->id,'voucher_number'=>$values->voucher_number]) }}" class="link-text-decoration" title="click for voucher-detail page"><strong>{{$values->voucher_number}}</strong></a>
                                         @endif
+                                    </td>--}}
+                                    <td>
+                                        <a href="{{ route('view-receipt-voucher', $values->id) }}" class="link-text-decoration" data-toggle="modal" data-target="#etsbModal" title="click for voucher-view page"><strong>{{$values->voucher_number}}</strong></a>
                                     </td>
                                     <td>{{$values->date}}</td>
                                     <td>{{ucfirst($values->reference)}}</td>
@@ -93,14 +96,14 @@
                                             <a href="{{ route('delete-receipt-voucher', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" data-placement="top" data-content="delete"><i class="fa fa-trash-o"></i></a>
                                         @endif
                                     </td>
-                                    <td>
+                                    {{--<td>
                                         @if($values->status == 'posted')
                                             <a href="{{ route('view-receipt-voucher', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="receipt voucher details">receipt-details</a>
-                                            {{--<a href="{{ route('receipt-voucher-history',['id'=>$values->id]) }}" class="btn btn-info btn-xs" data-placement="top" data-content="voucher details">receipt-details</a>--}}
+                                            --}}{{--<a href="{{ route('receipt-voucher-history',['id'=>$values->id]) }}" class="btn btn-info btn-xs" data-placement="top" data-content="voucher details">receipt-details</a>--}}{{--
                                         @else
                                             <a href="{{ route('receipt-detail',['id'=>$values->id,'voucher_number'=>$values->voucher_number]) }}" class="btn btn-info btn-xs" data-placement="top" data-content="payment details">receipt-details</a>
                                         @endif
-                                    </td>
+                                    </td>--}}
                                     <td>
                                         @if($values->status == 'posted')
                                             <a href="{{ route('pdf-single-voucher',['voucher_number'=>$values->voucher_number]) }}" data-placement="top" data-content="PDF">{!! HTML::image('assets/admin/img/pdf-icon.png', 'PDF', array('style' => 'width: 20px; border: 1px solid #aaa')) !!} </a> &nbsp;
@@ -123,23 +126,17 @@
 <!-- page end-->
 
 <div id="addData" class="modal fade" tabindex="" role="dialog" style="display: none;">
-    <div class="modal-dialog modal-lg" style="z-index:1050">
+    <div class="modal-dialog modal-lg" style="z-index:1050;width:85%">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
-                <h4 class="modal-title" id="myModalLabel">{{ $pageTitle }} &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>system fill account type and voucher number <br> Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
-            </div>
-            <div class="modal-body">
-                {!! Form::open(['route' => 'store-receipt-voucher','id' => 'jq-validation-form']) !!}
-                @include('accounts::receipt_voucher._form')
-                {!! Form::close() !!}
-            </div> <!-- / .modal-body -->
+            {!! Form::open(['route' => 'store-receipt-voucher','id' => 'jq-validation-form']) !!}
+            @include('accounts::receipt_voucher._form')
+            {!! Form::close() !!}
         </div> <!-- / .modal-content -->
     </div> <!-- / .modal-dialog -->
 </div>
 
 <div class="modal fade" id="etsbModal" tabindex="" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" style="z-index:1151 !important;">
+    <div class="modal-dialog modal-lg" style="z-index:1050; width:85%;">
         <div class="modal-content">
 
         </div>
