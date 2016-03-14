@@ -127,11 +127,11 @@
         <tr>
             <td>
                 <div>
-                    {!! Form::text('ac_title[]', Input::old('coa_id'), ['class'=>'update-auto-search-ac form-control','placeholder'=>'Search By account head or code','title'=>'type your require account head and code']) !!}
+                    {!! Form::text('ac_title[]', Input::old('coa_id'), ['class'=>'upd-auto-search-ac form-control','placeholder'=>'Search By account head or code','title'=>'type your require account head and code']) !!}
                 </div>
             </td>
             <td>
-                <div> {!! Form::hidden('coa_id[]',null, ['class'=>'coa-id-val']) !!} </div>
+                <div> {!! Form::hidden('coa_id[]',null, ['class'=>'upd-coa-id-val']) !!} </div>
             </td>
             <td>
                 <div>
@@ -166,32 +166,32 @@
     @if(isset($status['status']))
         @if(@$status['status'] == 'balanced')
             <h4 class="balanced-text-color" style="background-color:lightblue">
-                <strong>The Journal Voucher is Balanced.</strong>
+                <strong>The Reverse Voucher is Balanced.</strong>
                 <a href="{{route('journal-post',@$status['voucher_number'])}}" class="btn btn-primary " title=""><strong class="text-center">POST to Ledger</strong></a>
             </h4>
         @elseif(@$status['status'] == 'posted')
             <h4 class="text-dark-green">
-                <strong>Journal Voucher({{@$status['voucher_number']}}) is Posted.</strong>
+                <strong>Reverse Voucher({{@$status['voucher_number']}}) is Posted.</strong>
             </h4>
         @else
             <h4 class="warning-report-text-color">
                 <strong>WARNING Report :</strong>
-                <span class="required"><strong>The journal voucher must be balance ie. debits equal to credits before it can be processed.</strong></span>
+                <span class="required"><strong>The reverse voucher must be balance ie. debits equal to credits before it can be processed.</strong></span>
             </h4>
         @endif
     @else
         <h4 class="warning-report-text-color">
             <strong>WARNING Report :</strong>
-            <span class="required"><strong>The journal voucher must be balance ie. debits equal to credits before it can be processed.</strong></span>
+            <span class="required"><strong>The reverse voucher must be balance ie. debits equal to credits before it can be processed.</strong></span>
         </h4>
     @endif
 </div>
 
 <div class="modal-footer">
-    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save journal voucher information']) !!}&nbsp;
+    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save reverse voucher information']) !!}&nbsp;
     <a href="{{route('reverse-voucher')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
 </div>
 
 {!! Form::close() !!}
 
-@include('accounts::voucher_head.update_script')
+@include('accounts::reverse_entry.update_script')

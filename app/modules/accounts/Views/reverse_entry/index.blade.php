@@ -73,7 +73,7 @@
                             @foreach($model as $values)
                                 <tr>
                                     <td>
-                                        <a href="{{ route('view-reverse-voucher', $values->id) }}" class="link-text-decoration" data-toggle="modal" data-target="#etsbModal" title="click for voucher-view page"><strong>{{$values->voucher_number}}</strong></a>
+                                        <a href="{{ route('view-reverse-voucher', $values->id) }}" class="link-text-decoration" data-toggle="modal" data-target="#reverse" title="click for voucher-view page"><strong>{{$values->voucher_number}}</strong></a>
                                     </td>
                                     <td>{{$values->date}}</td>
                                     <td>{{ucfirst($values->reference)}}</td>
