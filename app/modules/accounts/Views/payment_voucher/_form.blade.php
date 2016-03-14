@@ -14,12 +14,12 @@
             <div class="col-sm-3">
                 {!! Form::label('voucher_number', 'Voucher Number:', []) !!}
                 <small class="narration">(Auto Generated)</small>
-                {!! Form::text('voucher_number', @$generate_voucher_number? $generate_voucher_number : @$data[0]['voucher_number'], ['required', 'class' => 'form-control','readonly','title'=>'system generated "voucher number", example :: JV-0000001','style'=>'font-weight:bold']) !!}
+                {!! Form::text('voucher_number', @$generate_voucher_number? $generate_voucher_number : @$data[0]['voucher_number'], ['required', 'class' => 'form-control','readonly','title'=>'system generated "voucher number", example :: PAY-0000001','style'=>'font-weight:bold']) !!}
                 {!! Form::hidden('number', @$number? $number : '') !!}
                 {!! Form::hidden('settings_id', @$settings_id? $settings_id : '') !!}
 
                 @if(@$data[0]['id'])
-                    {!! Form::text('id', @$data[0]['id']) !!}
+                    {!! Form::hidden('id', @$data[0]['id']) !!}
                 @endif
 
             </div>
@@ -27,18 +27,18 @@
                 {!! Form::label('date', 'Date:', []) !!}
                 <small class="required">(Required)</small>
                 <div class="input-group date">
-                    {!! Form::text('date', @$generate_voucher_number? date('Y/m/d') : @$data[0]['date'], ['class' => 'bs-datepicker-component form-control','required','title'=>'select journal voucher date']) !!}
+                    {!! Form::text('date', @$generate_voucher_number? date('Y/m/d') : @$data[0]['date'], ['class' => 'bs-datepicker-component form-control','required','title'=>'select payment voucher date']) !!}
                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                 </div>
             </div>
             <div class="col-sm-3">
                 {!! Form::label('year', 'Year:', ['class' => 'control-label']) !!}
                 {{--old('date', Carbon\Carbon::today()->format('Y/m/d'))--}}
-                {!! Form::selectrange('year',2010,2030, @$generate_voucher_number? Input::old('year', date('Y')) : @$data[0]['year'],['required', 'class' => 'form-control','title'=>'select journal voucher year']) !!}
+                {!! Form::selectrange('year',2010,2030, @$generate_voucher_number? Input::old('year', date('Y')) : @$data[0]['year'],['required', 'class' => 'form-control','title'=>'select payment voucher year']) !!}
             </div>
             <div class="col-sm-3">
                 {!! Form::label('period', 'Period:', ['class' => 'control-label']) !!}
-                {!! Form::selectrange('period', 1,12,@$generate_voucher_number? Input::old('period', date('m')) : @$data[0]['period'],['required', 'class' => 'form-control','title'=>'select journal voucher month']) !!}
+                {!! Form::selectrange('period', 1,12,@$generate_voucher_number? Input::old('period', date('m')) : @$data[0]['period'],['required', 'class' => 'form-control','title'=>'select payment voucher month']) !!}
             </div>
         </div>
     </div>
@@ -48,17 +48,17 @@
             <div class="col-sm-3">
                 {!! Form::label('hd_branch_id', 'Branch:', ['class' => 'control-label']) !!}
                 <small class="required">(Required)</small>
-                {!! Form::Select('hd_branch_id', $branch_data, @$data[0]['branch_id'],['required', 'class' => 'form-control','title'=>'select journal voucher branch']) !!}
+                {!! Form::Select('hd_branch_id', $branch_data, @$data[0]['branch_id'],['required', 'class' => 'form-control','title'=>'select payment voucher branch']) !!}
             </div>
             <div class="col-sm-3">
                 {!! Form::label('reference', 'Reference:', ['class' => 'control-label']) !!}
                 <small class="narration">(Voucher Informations)</small>
-                {!! Form::text('reference', @$data[0]['reference'], ['autofocus', 'class' => 'form-control','title'=>'enter narration for journal voucher informations']) !!}
+                {!! Form::text('reference', @$data[0]['reference'], ['autofocus', 'class' => 'form-control','title'=>'enter narration for payment voucher informations']) !!}
             </div>
             <div class="col-sm-6">
                 {!! Form::label('note', 'Note:', ['class' => 'control-label']) !!}
-                <small class="narration">(Note for Journal Voucher Informations)</small>
-                {!! Form::textarea('note', @$data[0]['note'], ['size' => '6x2', 'class' => 'form-control','title'=>'enter journal voucher note']) !!}
+                <small class="narration">(Note for Payment Voucher Informations)</small>
+                {!! Form::textarea('note', @$data[0]['note'], ['size' => '6x2', 'class' => 'form-control','title'=>'enter payment voucher note']) !!}
             </div>
         </div>
     </div>
@@ -162,33 +162,33 @@
     @if(isset($status['status']))
         @if(@$status['status'] == 'balanced')
             <h4 class="balanced-text-color" style="background-color:lightblue">
-                <strong>The Journal Voucher is Balanced.</strong>
+                <strong>The Payment Voucher is Balanced.</strong>
                 <a href="{{route('journal-post',@$status['voucher_number'])}}" class="btn btn-primary " title=""><strong class="text-center">POST to Ledger</strong></a>
             </h4>
         @elseif(@$status['status'] == 'posted')
             <h4 class="text-dark-green">
-                <strong>Journal Voucher({{@$status['voucher_number']}}) is Posted.</strong>
+                <strong>Payment Voucher({{@$status['voucher_number']}}) is Posted.</strong>
             </h4>
         @else
             <h4 class="warning-report-text-color">
                 <strong>WARNING Report :</strong>
-                <span class="required"><strong>The journal voucher must be balance ie. debits equal to credits before it can be processed.</strong></span>
+                <span class="required"><strong>The payment voucher must be balance ie. debits equal to credits before it can be processed.</strong></span>
             </h4>
         @endif
     @else
         <h4 class="warning-report-text-color">
             <strong>WARNING Report :</strong>
-            <span class="required"><strong>The journal voucher must be balance ie. debits equal to credits before it can be processed.</strong></span>
+            <span class="required"><strong>The payment voucher must be balance ie. debits equal to credits before it can be processed.</strong></span>
         </h4>
     @endif
 </div>
 
 <div class="modal-footer">
-    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save journal voucher information']) !!}&nbsp;
-    <a href="{{route('voucher-head')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
+    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save payment voucher information']) !!}&nbsp;
+    <a href="{{route('payment-voucher')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
 </div>
 
-@include('accounts::voucher_head._script')
+@include('accounts::payment_voucher._script')
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/datepicker.js') }}"></script>
 {{--@include('accounts::voucher_detail._script')--}}
 

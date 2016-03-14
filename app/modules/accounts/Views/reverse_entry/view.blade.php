@@ -89,6 +89,32 @@
     </div>
 </div>
 
+<div class="panel-heading help-text-color message-width">
+
+    @if(isset($data->status))
+        @if(@$data->status == 'balanced')
+            <h4 class="balanced-text-color" style="background-color:lightblue">
+                <strong>The Journal Voucher is Balanced.</strong>
+                <a href="{{route('journal-post',@$data->status)}}" class="btn btn-primary " title=""><strong class="text-center">POST to Ledger</strong></a>
+            </h4>
+        @elseif(@$data->status == 'posted')
+            <h4 class="text-dark-green">
+                <strong>Journal Voucher({{@$data->status}}) is Posted.</strong>
+            </h4>
+        @else
+            <h4 class="warning-report-text-color">
+                <strong>WARNING Report :</strong>
+                <span class="required"><strong>The journal voucher must be balance ie. debits equal to credits before it can be processed.</strong></span>
+            </h4>
+        @endif
+    @else
+        <h4 class="warning-report-text-color">
+            <strong>WARNING Report :</strong>
+            <span class="required"><strong>The journal voucher must be balance ie. debits equal to credits before it can be processed.</strong></span>
+        </h4>
+    @endif
+</div>
+
 <div class="modal-footer">
     <a href="{{ URL::previous()}}" class="btn btn-default" type="button" data-placement="top" data-content="click close button for close this entry form"> Close </a>
 </div>

@@ -19,7 +19,7 @@
                 {!! Form::hidden('settings_id', @$settings_id? $settings_id : '') !!}
 
                 @if(@$data[0]['id'])
-                    {!! Form::text('id', @$data[0]['id']) !!}
+                    {!! Form::hidden('id', @$data[0]['id']) !!}
                 @endif
 
             </div>
@@ -162,33 +162,33 @@
     @if(isset($status['status']))
         @if(@$status['status'] == 'balanced')
             <h4 class="balanced-text-color" style="background-color:lightblue">
-                <strong>The Journal Voucher is Balanced.</strong>
+                <strong>The Reverse Voucher is Balanced.</strong>
                 <a href="{{route('journal-post',@$status['voucher_number'])}}" class="btn btn-primary " title=""><strong class="text-center">POST to Ledger</strong></a>
             </h4>
         @elseif(@$status['status'] == 'posted')
             <h4 class="text-dark-green">
-                <strong>Journal Voucher({{@$status['voucher_number']}}) is Posted.</strong>
+                <strong>Reverse Voucher({{@$status['voucher_number']}}) is Posted.</strong>
             </h4>
         @else
             <h4 class="warning-report-text-color">
                 <strong>WARNING Report :</strong>
-                <span class="required"><strong>The journal voucher must be balance ie. debits equal to credits before it can be processed.</strong></span>
+                <span class="required"><strong>The reverse voucher must be balance ie. debits equal to credits before it can be processed.</strong></span>
             </h4>
         @endif
     @else
         <h4 class="warning-report-text-color">
             <strong>WARNING Report :</strong>
-            <span class="required"><strong>The journal voucher must be balance ie. debits equal to credits before it can be processed.</strong></span>
+            <span class="required"><strong>The reverse voucher must be balance ie. debits equal to credits before it can be processed.</strong></span>
         </h4>
     @endif
 </div>
 
 <div class="modal-footer">
-    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save journal voucher information']) !!}&nbsp;
-    <a href="{{route('voucher-head')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
+    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save reverse voucher information']) !!}&nbsp;
+    <a href="{{route('reverse-voucher')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
 </div>
 
-@include('accounts::voucher_head._script')
+@include('accounts::reverse_entry._script')
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/datepicker.js') }}"></script>
 {{--@include('accounts::voucher_detail._script')--}}
 
