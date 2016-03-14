@@ -127,11 +127,11 @@
         <tr>
             <td>
                 <div>
-                    {!! Form::text('ac_title[]', Input::old('coa_id'), ['class'=>'update-auto-search-ac form-control','placeholder'=>'Search By account head or code','title'=>'type your require account head and code']) !!}
+                    {!! Form::text('ac_title[]', Input::old('coa_id'), ['class'=>'upd-auto-search-ac form-control','placeholder'=>'Search By account head or code','title'=>'type your require account head and code']) !!}
                 </div>
             </td>
             <td>
-                <div> {!! Form::hidden('coa_id[]',null, ['class'=>'coa-id-val']) !!} </div>
+                <div> {!! Form::hidden('coa_id[]',null, ['class'=>'upd-coa-id-val']) !!} </div>
             </td>
             <td>
                 <div>

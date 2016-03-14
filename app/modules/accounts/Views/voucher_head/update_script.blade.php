@@ -17,7 +17,20 @@
         minLength: 1,
         select: function( event, ui ) {
             $('.update-auto-search-ac').val(ui.item.value);
-            $('.coa-id-val').val(ui.item.coa_id);
+            $('.update-coa-id-val').val(ui.item.coa_id);
+
+        }
+
+    });
+
+    });
+
+    $(document).ready(function()  { $(".upd-auto-search-ac").autocomplete({
+        source: "{{Route('coa-list')}}",
+        minLength: 1,
+        select: function( event, ui ) {
+            $('.upd-auto-search-ac').val(ui.item.value);
+            $('.upd-coa-id-val').val(ui.item.coa_id);
 
         }
 
@@ -37,7 +50,7 @@
             var table = $("#update-table");
 
             var element = '<tr>\
-            <td><div> {!! Form::text('ac_title[]', Input::old('coa_id'), ['class'=>'update-auto-search-ac form-control','placeholder'=>'Search By account head or code','autofocus','title'=>'type your require account head and code']) !!}\
+            <td><div> {!! Form::text('ac_title[]', Input::old('coa_id'), ['class'=>'up-auto-search-ac form-control','placeholder'=>'Search By account head or code','autofocus','title'=>'type your require account head and code']) !!}\
              </td>\
              <td class="hide-td"><div> </div></td>\
             <td><div>{!! Form::Select('branch_id[]', $branch_data, Input::old('branch_id'),['class' => 'form-control','title'=>'select branch name']) !!}</div>\
@@ -54,9 +67,9 @@
 
             table.append(element);
 
-            console.log($("#update-table tr:last-child").find(".update-auto-search-ac"));
+            console.log($("#update-table tr:last-child").find(".up-auto-search-ac"));
             //console.log($("#table tr:last-child").find(".coa-id-val"));
-            $("#update-table tr:last-child").find(".update-auto-search-ac").autocomplete({
+            $("#update-table tr:last-child").find(".up-auto-search-ac").autocomplete({
                 source: "{{Route('coa-list')}}",
                 minLength: 1,
                 select: function(event, ui) {
