@@ -50,6 +50,12 @@ Route::any("store-menu-panel", [
     "uses" => "MenuPanelController@store"
 ]);
 
+Route::any("search-menu-panel", [
+    //"middleware" => "acl_access:search-menu-panel",
+    "as"   => "search-menu-panel",
+    "uses" => "MenuPanelController@search_menu_panel"
+]);
+
 Route::any("view-menu-panel/{id}", [
     //"middleware" => "acl_access:view-branch/{id}",
     "as"   => "view-menu-panel",

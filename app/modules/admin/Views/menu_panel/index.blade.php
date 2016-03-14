@@ -18,7 +18,7 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['method' =>'GET','url'=>'/menu-panel']) !!}
+                {!! Form::open(['method' =>'GET','url'=>'/search-menu-panel']) !!}
                 <div id="index-search">
                     <div class="col-sm-3">
                         {!! Form::select('menu_type', array(''=>'select menu type','ROOT'=>'ROOT','MODU'=>'MODU','MENU'=>'MENU','SUBM'=>'SUBM'),@Input::get('menu_type')? Input::get('menu_type') : null,['class' => 'form-control', 'title'=>'select your require "menu type", example :: ROOT']) !!}
@@ -53,8 +53,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @if(isset($data))
-                            @foreach($data as $values)
+                        @if(isset($model))
+                            @foreach($model as $values)
                                 <tr class="gradeX">
                                     <td>{{$values->menu_id}}</td>
                                     <td>{{ucfirst($values->menu_type)}}</td>
@@ -74,6 +74,7 @@
                         </tbody>
                     </table>
                 </div>
+                <span class="pull-left">{!! str_replace('/?', '?', $model->render()) !!} </span>
             </div>
         </div>
     </div>
