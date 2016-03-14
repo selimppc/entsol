@@ -16,6 +16,7 @@ use Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Session\TokenMismatchException;
 
 class AuthController extends Controller
 {
@@ -127,6 +128,11 @@ class AuthController extends Controller
 
     public function postLogin(Request $request)
     {
+        /*if ($e instanceof TokenMismatchException){
+
+            // Catch it here and do what you want. For example...
+            return redirect()->back()->withInput()->with('error', 'Your session has expired');
+        }*/
         $data = Input::all();
         date_default_timezone_set("Asia/Dacca");
 
