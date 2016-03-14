@@ -183,8 +183,7 @@ class VoucherHeadController extends Controller
     {
         $pageTitle = 'Update Journal Voucher Informations';
         $branch_data = Branch::lists('title','id');
-        $currency_data = Currency::lists('title','id')->all();
-        /*$currency_data = [''=>'Select Currency'] + Currency::lists('title','id')->all();*/
+        $currency_data = [''=>'Select Currency'] + Currency::lists('title','id')->all();
         /*$model = new VoucherHead();
         $year = $model->getYear();*/
 
