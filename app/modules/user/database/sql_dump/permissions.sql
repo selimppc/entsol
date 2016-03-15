@@ -203,11 +203,11 @@ INSERT INTO `permissions` (`id`, `title`, `route_url`, `description`, `created_b
 (193, 'delete-branch/{id}', 'delete-branch/{id}', NULL, 1, 0, '2016-03-15 02:08:40', '2016-03-15 02:08:40'),
 (194, 'gl-transaction', 'gl-transaction', NULL, 1, 0, '2016-03-15 02:08:40', '2016-03-15 02:08:40'),
 (195, 'voucher-history', 'voucher-history', NULL, 1, 0, '2016-03-15 02:08:40', '2016-03-15 02:08:40'),
-(196, 'settings', 'settings', NULL, 1, 0, '2016-03-15 02:08:40', '2016-03-15 02:08:40'),
-(197, 'store-settings', 'store-settings', NULL, 1, 0, '2016-03-15 02:08:41', '2016-03-15 02:08:41'),
-(198, 'view-settings/{id}', 'view-settings/{id}', NULL, 1, 0, '2016-03-15 02:08:41', '2016-03-15 02:08:41'),
-(199, 'edit-settings/{id}', 'edit-settings/{id}', NULL, 1, 0, '2016-03-15 02:08:41', '2016-03-15 02:08:41'),
-(200, 'update-settings/{id}', 'update-settings/{id}', NULL, 1, 0, '2016-03-15 02:08:41', '2016-03-15 02:08:41'),
-(201, 'delete-settings/{id}', 'delete-settings/{id}', NULL, 1, 0, '2016-03-15 02:08:41', '2016-03-15 02:08:41');
+(196, 'gl/settings', 'gl/settings', NULL, 1, 0, '2016-03-15 02:08:40', '2016-03-15 02:08:40'),
+(197, 'gl/store-settings', 'gl/store-settings', NULL, 1, 0, '2016-03-15 02:08:41', '2016-03-15 02:08:41'),
+(198, 'gl/view-settings/{id}', 'gl/view-settings/{id}', NULL, 1, 0, '2016-03-15 02:08:41', '2016-03-15 02:08:41'),
+(199, 'gl/edit-settings/{id}', 'gl/edit-settings/{id}', NULL, 1, 0, '2016-03-15 02:08:41', '2016-03-15 02:08:41'),
+(200, 'gl/update-settings/{id}', 'gl/update-settings/{id}', NULL, 1, 0, '2016-03-15 02:08:41', '2016-03-15 02:08:41'),
+(201, 'gl/delete-settings/{id}', 'gl/delete-settings/{id}', NULL, 1, 0, '2016-03-15 02:08:41', '2016-03-15 02:08:41');
 
 

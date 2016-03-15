@@ -230,38 +230,38 @@ Route::group(array('middleware' => 'auth','modules'=>'Accounts', 'namespace' => 
 
     /**Settings**/
 
-    Route::get('settings', [
-        'middleware' => 'acl_access:settings',
+    Route::get('gl/settings', [
+        'middleware' => 'acl_access:gl/settings',
         'as' => 'settings',
         'uses' => 'SettingsController@index'
     ]);
 
-    Route::any("store-settings", [
-        "middleware" => "acl_access:store-settings",
+    Route::any("gl/store-settings", [
+        "middleware" => "acl_access:gl/store-settings",
         "as"   => "store-settings",
         "uses" => "SettingsController@store"
     ]);
 
-    Route::any("view-settings/{id}", [
-        "middleware" => "acl_access:view-settings/{id}",
+    Route::any("gl/view-settings/{id}", [
+        "middleware" => "acl_access:gl/view-settings/{id}",
         "as"   => "view-settings",
         "uses" => "SettingsController@show"
     ]);
 
-    Route::any("edit-settings/{id}", [
-        "middleware" => "acl_access:edit-settings/{id}",
+    Route::any("gl/edit-settings/{id}", [
+        "middleware" => "acl_access:gl/edit-settings/{id}",
         "as"   => "edit-settings",
         "uses" => "SettingsController@edit"
     ]);
 
-    Route::any("update-settings/{id}", [
-        "middleware" => "acl_access:update-settings/{id}",
+    Route::any("gl/update-settings/{id}", [
+        "middleware" => "acl_access:gl/update-settings/{id}",
         "as"   => "update-settings",
         "uses" => "SettingsController@update"
     ]);
 
-    Route::any("delete-settings/{id}", [
-        "middleware" => "acl_access:delete-settings/{id}",
+    Route::any("gl/delete-settings/{id}", [
+        "middleware" => "acl_access:gl/delete-settings/{id}",
         "as"   => "delete-settings",
         "uses" => "SettingsController@delete"
     ]);
