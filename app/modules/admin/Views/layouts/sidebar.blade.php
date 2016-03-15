@@ -22,7 +22,7 @@
 
 
         {{--Top Menu Start--}}
-        @if(\Illuminate\Support\Facades\Session::has('sidebar_menu_user'))
+        {{--@if(\Illuminate\Support\Facades\Session::has('sidebar_menu_user'))
             <?php $side_bar_menu = \Illuminate\Support\Facades\Session::get('sidebar_menu_user'); ?>
             @if($side_bar_menu)
                 @foreach($side_bar_menu as $module)
@@ -39,7 +39,7 @@
                 </li>
                 @endforeach
             @endif
-        @endif
+        @endif--}}
 
 
 

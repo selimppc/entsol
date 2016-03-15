@@ -59,7 +59,7 @@ class AdminController extends Controller
         $parent = 1;
 
         $result = $this->menu_tree($tree, $parent);
-        print_r($result);exit;
+        //print_r($result);exit;
         
     }
 
