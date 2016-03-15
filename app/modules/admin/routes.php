@@ -87,6 +87,15 @@ Route::any('menu-list', [
     'uses' => 'MenuPanelController@get_ajax_menu_list'
 ]);
 
+
+
+    //Permission Menu Panel Lists
+
+Route::any('sidebar-menu', [
+    'as' => 'sidebar-menu',
+    'uses' => 'AdminController@sidebar_menu'
+]);
+
 });
 
 
