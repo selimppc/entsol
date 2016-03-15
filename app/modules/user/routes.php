@@ -9,6 +9,7 @@
 Route::group(array('prefix' => 'user','modules'=>'User', 'namespace' => 'App\Modules\User\Controllers'), function() {
     //Your routes belong to this module.
 include 'routes_permission.php';
+include 'routes_test.php';
 
     /*Route::get('routes', function() {
         \Artisan::call('route:list');

@@ -5,9 +5,9 @@
             {!! Form::label('role_id', 'Role :', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
             @if(count($role_id)>0)
-                {!! Form::select('role_id', $role_id,Input::old('role_id'),['class' => 'form-control','required','title'=>'select  role']) !!}
+                {!! Form::select('role_id', $role_id,Input::old('role_id'),['style'=>'text-transform:capitalize','class' => 'form-control','required','title'=>'select  role']) !!}
             @else
-                {!! Form::text('role_id', 'No role available',['id'=>'role_id','class' => 'form-control','required','disabled']) !!}
+                {!! Form::text('role_id', 'No role available',['style'=>'text-transform:capitalize','id'=>'role_id','class' => 'form-control','required','disabled']) !!}
             @endif
         </div>
         </div>
