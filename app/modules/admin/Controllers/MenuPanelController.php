@@ -116,7 +116,9 @@ class MenuPanelController extends Controller
     {
         $pageTitle = 'Update Menu Panel Informations';
         $data = MenuPanel::where('id',$id)->first();
-        return view('admin::menu_panel.update', ['data' => $data, 'pageTitle'=> $pageTitle]);
+        $menu_data = MenuPanel::where('id',$id)->lists('menu_name', 'id');
+
+        return view('admin::menu_panel.update', ['data' => $data, 'menu_data'=> $menu_data, 'pageTitle'=> $pageTitle]);
     }
 
     /**
