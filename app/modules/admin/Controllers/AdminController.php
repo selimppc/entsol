@@ -44,7 +44,15 @@ class AdminController extends Controller
            ->select('permissions.route_url')
            ->get();
 
-        print_r($permission_route);exit;
+        $menu_tree = DB::table('menu_panel')
+            ->whereExists('menu_panel.route',$permission_route)
+            ->select('menu_panel.route')
+            ->get()->toArray();
+
+
+
+
+        print_r($menu_tree);exit;
 
         
     }
