@@ -45,7 +45,7 @@ class PermissionRoleController extends Controller
     }
 
 
-    public function module_based_routes(){
+    /*public function module_based_routes(){
 #exit('123');
         $modules = Input::get('module');
         #print_r($modules);
@@ -71,7 +71,7 @@ class PermissionRoleController extends Controller
                 print_r(($value->getPath()));
             }
         }
-    }
+    }*/
 
     public function search_permission_role(){
 
