@@ -56,7 +56,7 @@
                         @if(isset($model))
                             @foreach($model as $values)
                                 <tr class="gradeX">
-                                    <td>{{$values->menu_id}}</td>
+                                    <td>{{$values->id}}</td>
                                     <td>{{ucfirst($values->menu_type)}}</td>
                                     <td>{{ucfirst($values->menu_name)}}</td>
                                     <td>{{$values->route}}</td>
