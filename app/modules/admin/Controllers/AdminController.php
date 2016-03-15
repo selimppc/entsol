@@ -34,15 +34,15 @@ class AdminController extends Controller
 
         $user_id = Auth::user()->id;
 
-        $role_list = RoleUser::where('user_id','=',$user_id)->first();
-
+        $role_list = RoleUser::where('user_id','=',$user_id)
+            ->select('role_user.role_id')
+            ->get()->toArray();
 
        $permission_route = DB::table('permissions')
            ->join('permission_role', 'permission_role.permission_id', '=', 'permissions.id')
-           ->join('role', 'role.id', '=', 'permission_role.role_id')
-           ->where('permission_role.role_id', '=', $role_list->role_id)
+           ->whereIn('permission_role.role_id', $role_list)
            ->select('permissions.route_url')
-           ->paginate(30);
+           ->get();
 
         print_r($permission_route);exit;
 
