@@ -19,7 +19,7 @@
             {!! Form::label('module', 'Module Name:', ['class' => 'control-label']) !!}
             {{--{!! Form::select('module', $modules,Input::old('module'),['class' => 'form-control','title'=>'select module name']) !!}--}}
 
-            <select class="form-control" name="option" onclick="myFunction()">
+            <select class="form-control" name="option" id="select_module">
                 <option value="" selected="selected" >Select One</option>
                 <optgroup label="Admistration">
                     <option value="menu_panel"> Menu Panel </option>
@@ -52,7 +52,7 @@
             <div class="form-group col-sm-12">
                 {!! Form::label('permission_id', 'Select Permission :', ['class' => 'control-label']) !!}
                 <div class="">
-                    {!! Form::select('permission_id[]',$permission_id,null,['class' => 'form-control','id'=>'permission_list','required'=>'required','multiple' => 'multiple']) !!}
+                    {!! Form::select('permission_id[]',$permission_id,null,['id' => 'route-list','class'=>'permission_list','required'=>'required','multiple' => 'multiple']) !!}
                 </div>
             </div>
         </div>
@@ -67,25 +67,8 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.bootstrap-duallistbox.js') }}"></script>
 <script type="text/javascript">
-    $("#permission_list").bootstrapDualListbox();
+    $(".permission_list").bootstrapDualListbox();
 </script>
 
 
-
-<script>
-    function myFunction() {
-
-        var value = $('select[name=option]').val();
-       //alert(value);
-
-        $.ajax({
-            url: "{{Route('module-based-routes')}}",
-            type: 'POST',
-            data: {_token: '{!! csrf_token() !!}',value: value },
-            success: function(data){
-                $('#rate-of-ex').val(data);
-            }
-        });
-    }
-</script>
-
+@include('user::permission_role._script')

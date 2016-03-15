@@ -11,6 +11,7 @@ use App\UserResetPassword;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -46,12 +47,13 @@ class PermissionRoleController extends Controller
 
     public function module_based_routes(){
 #exit('123');
-        $module = Input::get('value');
-        #print_r($module_list);
+        $modules = Input::get('module');
+        #print_r($modules);
         $routeCollection = \Route::getRoutes();
 
         foreach ($routeCollection as $value) {
-            if($module=='user_list'||$module=='role_user'||$module=='permission_role'){
+            if($modules=='user_list'||$modules=='role_user'||$modules=='permission_role'){
+                #exit('edasfdgfdh');
                 $lookFor = 'UserController';
             }
 
@@ -62,10 +64,11 @@ class PermissionRoleController extends Controller
             }else{
                 continue;
             }
-
             if (strpos($controller, $lookFor)) {
-                echo "This route uses for only ".$lookFor." - ";
-                echo $value->getPath()."<br>";
+                //echo "This route uses for only ".$lookFor." - ";
+                #echo $value->getPath() ."<br>";
+
+                print_r(($value->getPath()));
             }
         }
     }
