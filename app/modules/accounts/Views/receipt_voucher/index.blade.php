@@ -18,7 +18,7 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['method' =>'GET','url'=>'/search-receipt-voucher']) !!}
+                {!! Form::open(['method' =>'GET','route'=>'search-receipt-voucher']) !!}
                 <div id="index-search">
                     <div class="col-sm-2 pull-left">
                         {!! Form::text('voucher_number', @Input::get('voucher_number')? Input::get('voucher_number') : null,['class' => 'form-control','placeholder'=>'type receipt number', 'title'=>'type your require "receipt number", example :: REC-0000001, then click "search" button']) !!}

@@ -18,7 +18,7 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['method' =>'GET','url'=>'/search-payment-voucher']) !!}
+                {!! Form::open(['method' =>'GET','route'=>'search-payment-voucher']) !!}
                 <div id="index-search">
                     <div class="col-sm-2 pull-left">
                         {!! Form::text('voucher_number', @Input::get('voucher_number')? Input::get('voucher_number') : null,['class' => 'form-control','placeholder'=>'type voucher number', 'title'=>'type your require "voucher number", example :: PAY-0000001, then click "search" button']) !!}

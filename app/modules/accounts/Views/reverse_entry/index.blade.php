@@ -18,7 +18,7 @@
 
             <div class="panel-body">
     {{-------------- Filter :Starts -------------------------------------------}}
-                    {!! Form::open(['method' =>'GET','url'=>'/search-reverse_entry']) !!}
+                    {!! Form::open(['method' =>'GET','route'=>'search-reverse_entry']) !!}
                     <div id="index-search">
                         {{--<div class="col-sm-3">
                             {!! Form::Select('account_type',array(''=>'Select Account Type','account-payable'=>'Account Payable','account-receivable'=>'Account Receivable','account-adjustment'=>'account Adjustment','journal-voucher'=>'Journal Voucher','receipt-voucher'=>'Receipt Voucher','reverse-entry'=>'Reverse Entry'),Input::old('account_type'),['class'=>'form-control', 'title'=>'select your require  journal voucher "account type", example :: account payable, then click "search" button']) !!}

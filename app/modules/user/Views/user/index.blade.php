@@ -18,7 +18,7 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['method' =>'GET','url'=>'/search-user']) !!}
+                {!! Form::open(['method' =>'GET','route'=>'search-user']) !!}
                 <div class="col-sm-12">
                     <div class="col-sm-2">
                         {!! Form::text('username', @Input::get('username')? Input::get('username') : null, ['class' => 'form-control','placeholder'=>'select username','title'=>'type your require "username" then click "search" button']) !!}

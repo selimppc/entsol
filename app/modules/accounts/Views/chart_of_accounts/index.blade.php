@@ -18,7 +18,7 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['method' =>'GET','url'=>'/chart-of-accounts']) !!}
+                {!! Form::open(['method' =>'GET','route'=>'chart-of-accounts']) !!}
                 <div id="index-search">
                     <div class="col-sm-2">
                         {!! Form::text('account_code',@Input::get('account_code')? Input::get('account_code') : null,['class' => 'form-control','placeholder'=>'account code', 'title'=>'type your require "Account Code", example :: 101-004']) !!}
