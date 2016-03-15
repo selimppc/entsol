@@ -112,11 +112,11 @@ class MenuPanelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $parent_menu_id)
     {
         $pageTitle = 'Update Menu Panel Informations';
         $data = MenuPanel::where('id',$id)->first();
-        $menu_data = MenuPanel::where('id',$id)->lists('menu_name', 'id');
+        $menu_data = MenuPanel::where('id',$parent_menu_id)->lists('menu_name', 'id');
 
         return view('admin::menu_panel.update', ['data' => $data, 'menu_data'=> $menu_data, 'pageTitle'=> $pageTitle]);
     }

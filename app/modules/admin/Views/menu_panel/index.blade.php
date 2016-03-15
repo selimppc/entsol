@@ -56,7 +56,7 @@
                         @if(isset($model))
                             @foreach($model as $values)
                                 <tr class="gradeX">
-                                    <td>{{$values->menu_id}}</td>
+                                    <td>{{$values->id}}</td>
                                     <td>{{ucfirst($values->menu_type)}}</td>
                                     <td>{{ucfirst($values->menu_name)}}</td>
                                     <td>{{$values->route}}</td>
@@ -64,7 +64,7 @@
                                     <td>{{ucfirst($values->status)}}</td>
                                     <td>
                                         <a href="{{ route('view-menu-panel', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="view"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('edit-menu-panel', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="update"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('edit-menu-panel', ['id'=>$values->id,'parent_menu_id'=>$values->parent_menu_id]) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="update"><i class="fa fa-edit"></i></a>
                                         <a href="{{ route('delete-menu-panel', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" data-placement="top" data-content="delete"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>

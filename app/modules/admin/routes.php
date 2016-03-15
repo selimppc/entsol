@@ -62,7 +62,8 @@ Route::any("view-menu-panel/{id}", [
     "uses" => "MenuPanelController@show"
 ]);
 
-Route::any("edit-menu-panel/{id}", [
+
+Route::any("edit-menu-panel/{id}/{parent_menu_id}", [
     //"middleware" => "acl_access:edit-branch/{id}",
     "as"   => "edit-menu-panel",
     "uses" => "MenuPanelController@edit"
