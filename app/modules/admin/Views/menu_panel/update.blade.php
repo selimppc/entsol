@@ -1,15 +1,67 @@
+<script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/admin/js/custom.min.js') }}"></script>
+
+
+{!! Form::model($data, ['method' => 'PATCH', 'route'=> ['update-menu-panel', $data->id]]) !!}
+
 <div class="modal-header">
     <a href="{{ URL::previous() }}" class="close" type="button" title="click x button for close this entry form"> × </a>
     <h4 class="modal-title" id="myModalLabel">{{$pageTitle}}</h4>
 </div>
 
-
 <div class="modal-body">
-    @section('content_update')
-        {!! Form::model($data, ['method' => 'PATCH', 'route'=> ['update-menu-panel', $data->id]]) !!}
-        @include('admin::menu_panel._form')
-        {!! Form::close() !!}
+    <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+        <div class="row">
+            <div class="col-sm-6">
+                {!! Form::hidden('menu_id',1) !!}
+                {!! Form::label('menu_type', 'Menu Type:', ['class' => 'control-label']) !!}
+                <small class="required">(Required)</small>
+                {!! Form::select('menu_type', array(''=>'Select Menu Type','MODU'=>'MODU','MENU'=>'MENU','SUBM'=>'SUBM'),Input::old('menu_type'),['id'=>'update-menu-data','class' => 'form-control','autofocus','required','title'=>'select menu type']) !!}
+            </div>
+            <div class="col-sm-6">
+                {!! Form::label('menu_name', 'Menu Name:', ['class' => 'control-label']) !!}
+                <small class="required">(Required)</small>
+                {!! Form::text('menu_name', Input::old('menu_name'), ['id'=>'menu_name', 'class' => 'form-control','required', 'style'=>'text-transform:capitalize','title'=>'enter menu name']) !!}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+        <div class="row">
+            <div class="col-sm-6">
+                {!! Form::label('route', 'Route:', ['class' => 'control-label']) !!}
+                <small class="required">(Required)</small>
+                {!! Form::text('route', Input::old('route'), ['id'=>'route', 'class' => 'form-control','required','title'=>'enter route of menu']) !!}
+            </div>
+            <div class="col-sm-6">
+                {!! Form::label('parent_menu_id', 'Parent Menu Id	:', ['class' => 'control-label']) !!}
+                <small class="required">(Required)</small>
+                {!! Form::select('parent_menu_id', $menu_data,Input::old('parent_menu_id'),['id'=>'update-parent-menu-id','class' => 'form-control','required']) !!}
+                {{--{!! Form::Select('hd_branch_id', $branch_data, @$data[0]['branch_id'],['required', 'class' => 'form-control','title'=>'select journal voucher branch']) !!}--}}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+        <div class="row">
+            <div class="col-sm-6">
+                {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
+                <small class="required">(Required)</small>
+                {!! Form::select('status', array('active'=>'Active','inactive'=>'Inactive','cancel'=>'Cancel'),Input::old('status'),['class' => 'form-control','required','title'=>'select status of menu panel']) !!}
+            </div>
+        </div>
+    </div>
 </div>
+
+<div class="modal-footer">
+    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save menu information']) !!}&nbsp;
+    <a href="{{route('menu-panel')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
+</div>
+
+{!! Form::close() !!}
+
+@include('admin::menu_panel.update_script')
+
 
 <script>
     $(".btn").popover({ trigger: "manual" , html: true, animation:false})
