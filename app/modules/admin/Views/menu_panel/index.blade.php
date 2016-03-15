@@ -18,7 +18,7 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['method' =>'GET','url'=>'/search-menu-panel']) !!}
+                {!! Form::open(['method' =>'GET','route'=>'search-menu-panel']) !!}
                 <div id="index-search">
                     <div class="col-sm-3">
                         {!! Form::select('menu_type', array(''=>'select menu type','ROOT'=>'ROOT','MODU'=>'MODU','MENU'=>'MENU','SUBM'=>'SUBM'),@Input::get('menu_type')? Input::get('menu_type') : null,['class' => 'form-control', 'title'=>'select your require "menu type", example :: ROOT']) !!}

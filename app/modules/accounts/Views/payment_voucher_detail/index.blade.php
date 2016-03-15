@@ -24,7 +24,7 @@
                 {{-------------- Filter :Starts -------------------------------------------}}
                 {{--{!! Form::open(['route' => 'voucher-detail',$id]) !!}--}}
 
-                {!! Form::open(['method' =>'GET','url'=>'/search-payment-details/'.$id.'/'.$voucher_number]) !!}
+                {!! Form::open(['method' =>'GET','route'=>'search-payment-details/'.$id.'/'.$voucher_number]) !!}
 
                 <div id="index-search">
                     <div class="col-sm-3">

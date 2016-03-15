@@ -21,7 +21,7 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['method' =>'GET','url'=>'/search-role-user']) !!}
+                {!! Form::open(['method' =>'GET','route'=>'search-role-user']) !!}
                 <div id="index-search">
 
                     <div class="col-sm-3">

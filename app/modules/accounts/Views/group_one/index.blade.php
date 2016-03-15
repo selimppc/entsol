@@ -18,7 +18,7 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['method' =>'GET','url'=>'/group-one']) !!}
+                {!! Form::open(['method' =>'GET','route'=>'group-one']) !!}
                 {{--{!! Form::open(['route' => 'group-one']) !!}--}}
 
                 <div id="index-search">

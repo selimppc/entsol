@@ -25,7 +25,7 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['method' =>'GET','url'=>'/search-permission-role']) !!}
+                {!! Form::open(['method' =>'GET','route'=>'search-permission-role']) !!}
                 <div id="index-search">
                     <div class="col-sm-3">
                         {!! Form::Select('role_id',($role_id), @Input::get('role_id')? Input::get('role_id') : null,['class' => 'form-control', 'title'=>'select your require "role", example :: admin, then click "search" button']) !!}

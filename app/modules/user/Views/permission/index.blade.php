@@ -20,7 +20,7 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['method' =>'GET','url'=>'/index-permission']) !!}
+                {!! Form::open(['method' =>'GET','route'=>'index-permission']) !!}
                 <div id="index-search">
                     <div class="col-sm-3">
                         {!! Form::text('title',@Input::get('title')? Input::get('title') : null,['class' => 'form-control','placeholder'=>'type title', 'title'=>'type your require permission "title", example :: Main, then click "search" button']) !!}
