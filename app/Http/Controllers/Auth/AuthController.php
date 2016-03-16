@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 use App\User;
 use App\UserActivity;
+use App\UserImage;
 use App\UserLoginHistory;
 use Auth;
 use Illuminate\Http\Request;

@@ -6,8 +6,8 @@
         <div>
             <div class="text-bg"><span class="text-slim">Welcome,</span><br> <span class="text-semibold">{{isset(Auth::user()->username)?ucfirst(Auth::user()->username):''}}</span></div>
 
-            @if(isset($user_image))
-                <img src="{{ URL::to($user_image->thumbnail) }}">
+            @if(Session::has('user_image'))
+                <img src="{{Session::get('user_image')}}" alt="User Image">
             @else
                 <img src="{{ URL::to('assets/admin/img/avatar1.jpg') }}" alt="User Image">
             @endif
