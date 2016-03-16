@@ -18,13 +18,23 @@
     @if($side_bar_menu)
 
         @foreach($side_bar_menu as $module)
+
             <li class="mm-dropdown">
 
                 <a href="#"><i class="menu-icon fa fa-columns"></i><span class="mm-text">Administration </span></a>
                 <ul>
                     @foreach($module['sub-menu'] as $sub_module)
+                        <?php //print_r($sub_module['menu_name']);exit;  ?>
                         <li>
-                            <a tabindex="-1" href="{{route('menu-panel')}}"><span class="mm-text">Menu Panel</span></a>
+                            <a tabindex="-1" href="{{route('menu-panel')}}"><span class="mm-text">{{$sub_module['menu_name']}}</span></a>
+                            <ul>
+                                @foreach($sub_module['sub-menu'] as $sub_sub_module)
+                                    <?php //print_r($sub_sub_module['menu_name']);exit;  ?>
+                                    <li>
+                                        <a tabindex="-1" href="{{route('menu-panel')}}"><span class="mm-text">{{$sub_sub_module['menu_name']}}</span></a>
+                                    </li>
+                                @endforeach
+                            </ul>
                         </li>
                     @endforeach
                 </ul>
