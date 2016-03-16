@@ -21,12 +21,17 @@
     </div>
 
     <ul class="navigation"> {{--navigation--}}
+        <li class="active">
+            <a href="{{URL::to('dashboard')}}"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text mmc-dropdown-delay animated fadeIn">Dashboard</span></a>
+        </li>
 
         @if(\Illuminate\Support\Facades\Session::has('sidebar_menu_user'))
             <?php $side_bar_menu = \Illuminate\Support\Facades\Session::get('sidebar_menu_user'); ?>
             @if($side_bar_menu)
                 @foreach($side_bar_menu as $module)
                         @foreach($module['sub-menu'] as $sub_module)
+
+                            @if(count($sub_module['sub-menu'])>0)
                             <li class="mm-dropdown">
                                 <a tabindex="-1" href="{{URL::to($sub_module['route'])}}">
                                     <i class="{{@$sub_module['icon_code']}}"> </i>
@@ -43,6 +48,8 @@
                                     @endforeach
                                 </ul>
                             </li>
+                            @endif
+
                         @endforeach
                 @endforeach
             @endif
