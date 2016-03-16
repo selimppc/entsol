@@ -200,7 +200,7 @@ class UserController extends Controller
             $user_model->create($user_history);
 
             Auth::logout();
-
+            Session::flush(); //delete the session
             DB::commit();
             Session::flash('message', 'You Are Now Logged Out.');
         }catch(\Exception $e){
@@ -208,7 +208,7 @@ class UserController extends Controller
             DB::rollback();
             Session::flash('error', $e->getMessage());
         }
-        Session::flush(); //delete the session
+
 
         return redirect()->route('get-user-login');
     }
@@ -534,7 +534,12 @@ class UserController extends Controller
             }
             DB::beginTransaction();
             try {
+                Session::forget('user_image');
                 $image_model->create($input);
+
+                $user_image = $image_model['thumbnail'];
+                Session::put('user_image',$user_image);
+
                 DB::commit();
                 Session::flash('message', "Successfully added");
                 LogFileHelper::log_info('store-user-profile', 'Successfully added', ['User profile image:'.$input['image']] );
@@ -546,7 +551,7 @@ class UserController extends Controller
                 LogFileHelper::log_error('store-user-profile', $e->getMessage(), ['User profile image:'.$input['image']] );
             }
         }
-        return redirect()->back();
+        return redirect()->route('user-profile');
     }
 
     public function edit_user_profile($id){
@@ -623,8 +628,12 @@ class UserController extends Controller
                 }else{
                     $image_model = new UserImage();
                 }
-
+                Session::forget('user_image');
                 $image_model->fill($input)->save();
+
+                $user_image = $image_model['thumbnail'];
+                Session::put('user_image',$user_image);
+
                 DB::commit();
                 Session::flash('message', "Successfully added");
                 LogFileHelper::log_info('update-user-profile', 'Successfully added',  ['User profile image:'.$input['image']]);
@@ -649,19 +658,15 @@ class UserController extends Controller
         if(count($image)>0){
             $file_type_required = 'png,jpeg,jpg';
             $destinationPath = 'uploads/user_image/';
-
             $uploadfolder = 'uploads/';
-
             if ( !file_exists($uploadfolder) ) {
                 $oldmask = umask(0);  // helpful when used in linux server
                 mkdir ($uploadfolder, 0777);
             }
-
             if ( !file_exists($destinationPath) ) {
                 $oldmask = umask(0);  // helpful when used in linux server
                 mkdir ($destinationPath, 0777);
             }
-
             $file_name = UserController::image_upload($image,$file_type_required,$destinationPath);
             #print_r($file_name);exit;
             if($file_name != '') {
@@ -669,26 +674,28 @@ class UserController extends Controller
 //                unlink($model->thumbnail);
                 $input['image'] = $file_name[0];
                 $input['thumbnail'] = $file_name[1];
-            }
-            else{
+            }else{
                 Session::flash('error', 'Some thing error in image file type! Please Try again');
                 return redirect()->back();
             }
             DB::beginTransaction();
             try {
                 $image_model->create($input);
+                $user_image = $image_model['thumbnail'];
                 DB::commit();
+
+                Session::forget('user_image');
+                Session::put('user_image',$user_image);
                 Session::flash('message', "Successfully added");
                 LogFileHelper::log_info('store-profile-image', 'successfully added', ['User profile image:'.$input['image']]);
-            }
-            catch ( Exception $e ){
+            }catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
                 Session::flash('error', "Profile Image Do Not added");
                 LogFileHelper::log_error('store-profile-image', $e->getMessage(),  ['User profile image:'.$input['image']]);
             }
         }
-        return redirect()->back();
+        return redirect()->route('user-profile');
     }
 
     public function edit_profile_image($user_image_id){
@@ -736,11 +743,14 @@ class UserController extends Controller
             DB::beginTransaction();
             try {
                 $image_model->update($input);
+                $user_image = $image_model['thumbnail'];
+
                 DB::commit();
+                Session::forget('user_image');
+                Session::put('user_image',$user_image);
                 Session::flash('message', "Successfully added");
                 LogFileHelper::log_info('update-profile-image', 'successfully update',  ['User profile image:'.$input['image']]);
-            }
-            catch ( Exception $e ){
+            }catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
                 Session::flash('error', " Profile Image Do Not added");

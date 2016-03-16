@@ -181,6 +181,14 @@ class AuthController extends Controller
                                     'date' => date('Y-m-d h:i:s', time()),
                                 ];
                                 $user_model->create($user_history);
+                                /*user-image in session........*/
+                                if(!Session::has('user_image')){
+                                    $image_exists = UserImage::where('user_id',Auth::user()->id)->exists();
+                                    if($image_exists){
+                                        $user_image = UserImage::where('user_id',Auth::user()->id)->first()->thumbnail;
+                                        Session::put('user_image',$user_image);
+                                    }
+                                }
 
                                 Session::put('email', $user_data->email);
                                 Session::flash('message', "Successfully  Logged In.");

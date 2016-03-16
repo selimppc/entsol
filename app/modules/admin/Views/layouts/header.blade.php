@@ -215,11 +215,13 @@
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
-                                @if(isset($user_image))
-                                    <img src="{{ URL::to($user_image->thumbnail) }}">
+
+                                @if(Session::has('user_image'))
+                                    {!! HTML::image(Session::get('user_image')) !!}
                                 @else
-                                    <img src="{{ URL::to('assets/admin/img/avatar1.jpg') }}" alt="User Image">
+                                    {!! HTML::image('assets/admin/img/avatar1.jpg') !!}
                                 @endif
+
                                 <span>{!! isset(Auth::user()->username) ? strtoupper(Auth::user()->username) : '' !!}</span>
                             </a>
                             <ul class="dropdown-menu">

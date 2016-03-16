@@ -7,9 +7,9 @@
             <div class="text-bg"><span class="text-slim">Welcome,</span><br> <span class="text-semibold">{{isset(Auth::user()->username)?ucfirst(Auth::user()->username):''}}</span></div>
 
             @if(Session::has('user_image'))
-                <img src="{{Session::get('user_image')}}" alt="User Image">
+                {!! HTML::image(Session::get('user_image')) !!}
             @else
-                <img src="{{ URL::to('assets/admin/img/avatar1.jpg') }}" alt="User Image">
+                {!! HTML::image('assets/admin/img/avatar1.jpg') !!}
             @endif
 
             <div class="btn-group btn-left">

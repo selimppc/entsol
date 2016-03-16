@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\UserImage;
 use Illuminate\Support\ServiceProvider;
 use App\Helpers\MenuItems;
 use Illuminate\Support\Facades\Schema;
@@ -55,16 +54,6 @@ class AppServiceProvider extends ServiceProvider
                 #print_r($result); exit;
                 // put the menu items in session
                 Session::put('sidebar_menu_user', $result);
-
-                /*user-image in session........*/
-                if(!Session::has('user_image')){
-                    $image_exists = UserImage::where('user_id',$user_id)->exists();
-                    if($image_exists){
-                        $user_image = UserImage::where('user_id',$user_id)->first()->thumbnail;
-                        #print_r($user_image);exit;
-                        Session::put('user_image',$user_image);
-                    }
-                }
             }
         }
 
