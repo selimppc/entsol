@@ -29,7 +29,7 @@
     <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
         <div class="row">
             <div class="col-sm-6">
-                {!! Form::label('route', 'Route:', ['class' => 'control-label']) !!}
+                {!! Form::label('route', 'URL:', ['class' => 'control-label']) !!}
                 <small class="required">(Required)</small>
                 {!! Form::text('route', Input::old('route'), ['id'=>'route', 'class' => 'form-control','required','title'=>'enter route of menu']) !!}
             </div>
@@ -38,6 +38,21 @@
                 <small class="required">(Required)</small>
                 {!! Form::select('parent_menu_id', $menu_data,Input::old('parent_menu_id'),['id'=>'update-parent-menu-id','class' => 'form-control','required']) !!}
                 {{--{!! Form::Select('hd_branch_id', $branch_data, @$data[0]['branch_id'],['required', 'class' => 'form-control','title'=>'select journal voucher branch']) !!}--}}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+        <div class="row">
+            <div class="col-sm-6">
+                {!! Form::label('icon_code', 'Icon Code:', ['class' => 'control-label']) !!}
+                <small class="required">(Required)</small>
+                {!! Form::text('icon_code', Input::old('icon_code'), ['id'=>'icon_code', 'class' => 'form-control','required','title'=>'enter icon code of menu']) !!}
+            </div>
+            <div class="col-sm-6">
+                {!! Form::label('menu_order', 'Menu Order:', ['class' => 'control-label']) !!}
+                <small class="required">(Required)</small>
+                {!! Form::input('number', 'menu_order', Input::old('menu_order'), ['id'=>'menu_order', 'class' => 'form-control','required', 'step'=>'any','title'=>'enter menu order of menu']) !!}
             </div>
         </div>
     </div>

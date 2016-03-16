@@ -23,6 +23,8 @@ class CreateMenuPanelTable extends Migration
             $table->string('menu_name',64)->unique();
             $table->string('route',64);
             $table->unsignedInteger('parent_menu_id')->nullable();
+            $table->string('icon_code',128)->nullable();
+            $table->unsignedInteger('menu_order');
             $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11)->nullable();
             $table->integer('updated_by', false, 11)->nullable();

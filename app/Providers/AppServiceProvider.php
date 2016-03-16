@@ -46,7 +46,7 @@ class AppServiceProvider extends ServiceProvider
             $per_routes = array_merge($permis_route,$arr);
 
             //Get Menu Lists by PERMISSION (ROLE+USER+Permission)
-            $tree = MenuPanel::whereIn('menu_panel.route',$per_routes)->get()->toArray();
+            $tree = MenuPanel::whereIn('menu_panel.route',$per_routes)->orderBy('menu_order', 'ASC')->get()->toArray();
             $parent = 0;
 
             $result = MenuItems::menu_tree($tree, $parent);
