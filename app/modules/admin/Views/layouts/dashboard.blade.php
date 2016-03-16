@@ -16,7 +16,7 @@
 @if(\Illuminate\Support\Facades\Session::has('sidebar_menu_user'))
     <?php $side_bar_menu = \Illuminate\Support\Facades\Session::get('sidebar_menu_user'); ?>
     @if($side_bar_menu)
-        <?php print_r($side_bar_menu); exit(); ?>
+        <?php //print_r($side_bar_menu); exit(); ?>
         @foreach($side_bar_menu as $module)
                 @foreach($module['sub-menu'] as $sub_module)
                 <?php // print_r($sub_module['menu_name']);  ?>

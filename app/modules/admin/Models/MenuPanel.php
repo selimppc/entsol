@@ -23,6 +23,8 @@ class MenuPanel extends Model
         'menu_name',
         'route',
         'parent_menu_id',
+        'icon_code',
+        'menu_order',
         'status'
     ];
 

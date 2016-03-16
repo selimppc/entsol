@@ -133,6 +133,8 @@ class MenuPanelController extends Controller
         $model = MenuPanel::where('id',$id)->first();
         $input = $request->all();
 
+        //print_r($input);
+
         DB::beginTransaction();
         try {
             $model->update($input);
