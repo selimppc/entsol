@@ -278,5 +278,16 @@ Route::any('update-profile-image/{user_image_id}', [
     'uses' => 'UserController@update_profile_image'
 ]);
 
+Route::any('user-login-history', [
+    'middleware' => 'acl_access:user/user-login-history',
+    'as' => 'user-login-history',
+    'uses' => 'UserActivityHistory@login_history'
+]);
+
+Route::any('search-user-history', [
+    'middleware' => 'acl_access:user/search-user-history',
+    'as' => 'search-user-history',
+    'uses' => 'UserActivityHistory@search_user_history'
+]);
 
 });

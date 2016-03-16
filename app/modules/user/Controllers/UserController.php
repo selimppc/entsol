@@ -7,6 +7,7 @@ use App\Helpers\LogFileHelper;
 use App\RoleUser;
 use App\UserActivity;
 use App\UserImage;
+use App\UserLoginHistory;
 use Mockery\CountValidator\Exception;
 use Validator;
 use App\Country;
@@ -186,19 +187,17 @@ class UserController extends Controller
 
     public function logout() {
 
-        $user_act_model = new UserActivity();
+        $user_model = new UserLoginHistory();
         /* Transaction Start Here */
         DB::beginTransaction();
         try{
-            $user_activity = [
-                'action_name' => 'user-logout',
-                'action_url' => 'user-logout',
-                'action_details' => Auth::user()->username.' '. 'logged out',
-                'action_table' => 'user',
-                'date' => date('Y-m-d h:i:s', time()),
+            $user_history = [
                 'user_id' => Auth::user()->id,
+                'logout_time' => date('Y-m-d h:i:s', time()),
+                'ip_address' => getHostByName(getHostName()),
+                'date' => date('Y-m-d h:i:s', time()),
             ];
-            $user_act_model->create($user_activity);
+            $user_model->create($user_history);
 
             Auth::logout();
 
