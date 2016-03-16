@@ -7,21 +7,17 @@
         <li>
             <a tabindex="-1" href="{{route('index-role-user')}}"><span class="mm-text">Role User</span></a>
         </li>
-       {{-- <li>
-            <a tabindex="-1" href="{{route('index-role-user')}}"><span class="mm-text">Role User</span></a>
-        </li>--}}
+
         <li>
             <a tabindex="-1" href="{{route('index-permission-role')}}"><span class="mm-text">Permission Role</span></a>
         </li>
+        <li>
+            <a tabindex="-1" href="{{route('user-login-history')}}"><span class="mm-text">User Login History</span></a>
+        </li>
         {{--<li>
-            <a tabindex="-1" href="{{route('index-permission-role')}}"><span class="mm-text">Permission Role</span></a>
+            <a tabindex="-1" href="{{route('index-permission-role')}}"><span class="mm-text">User Activity</span></a>
         </li>--}}
-        {{--<li>
-            <a tabindex="-1" href="{{route('create-sign-up')}}"><span class="mm-text">Sign Up</span></a>
-        </li>--}}
-        {{--<li>
-            <a tabindex="-1" href="{{route('get-user-login')}}"><span class="mm-text">Sign In</span></a>
-        </li>--}}
+
     </ul>
 </li>
 

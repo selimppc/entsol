@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 use App\User;
 use App\UserActivity;
+use App\UserLoginHistory;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -164,17 +165,21 @@ class AuthController extends Controller
                             ]);
                             if($attempt){
                                 DB::table('user')->where('id', '=', $user_data->id)->update(array('last_visit' =>date('Y-m-d h:i:s', time())));
-                                $user_act_model = new UserActivity();
+                                $user_model = new UserLoginHistory();
 
-                                $user_activity = [
-                                    'action_name' => 'user-login',
+                                $user_history = [
+                                    /*'action_name' => 'user-login',
                                     'action_url' => 'get-user-login',
                                     'action_details' => Auth::user()->username.' '. 'logged in',
                                     'action_table' => 'user',
                                     'date' => date('Y-m-d h:i:s', time()),
+                                    'user_id' => Auth::user()->id,*/
                                     'user_id' => Auth::user()->id,
+                                    'login_time' => date('Y-m-d h:i:s', time()),
+                                    'ip_address' => getHostByName(getHostName()),
+                                    'date' => date('Y-m-d h:i:s', time()),
                                 ];
-                                $user_act_model->create($user_activity);
+                                $user_model->create($user_history);
 
                                 Session::put('email', $user_data->email);
                                 Session::flash('message', "Successfully  Logged In.");
