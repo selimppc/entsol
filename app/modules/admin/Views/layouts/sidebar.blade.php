@@ -28,14 +28,14 @@
                 @foreach($side_bar_menu as $module)
                         @foreach($module['sub-menu'] as $sub_module)
                             <li class="mm-dropdown">
-                                <a tabindex="-1" href="{{route('menu-panel')}}">
+                                <a tabindex="-1" href="{{URL::to($sub_module['route'])}}">
                                     <i class="{{@$sub_module['icon_code']}}"> </i>
                                     <span class="mm-text">{{$sub_module['menu_name']}}</span>
                                 </a>
                                 <ul>
                                     @foreach($sub_module['sub-menu'] as $sub_sub_module)
                                         <li>
-                                            <a tabindex="-1" href="{{route('menu-panel')}}">
+                                            <a tabindex="-1" href="{{URL::to($sub_sub_module['route'])}}">
                                                 <i class="{{@$sub_sub_module['icon_code']}}"> </i>
                                                 <span class="mm-text">{{$sub_sub_module['menu_name']}}</span>
                                             </a>

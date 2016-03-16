@@ -27,6 +27,14 @@
                 <td>{{ isset($data->parent_menu_id)?$data->parent_menu_id:'' }}</td>
             </tr>
             <tr>
+                <th class="col-lg-4">Icon Code</th>
+                <td>{{ isset($data->icon_code)?$data->icon_code:'' }}</td>
+            </tr>
+            <tr>
+                <th class="col-lg-4">Menu Order</th>
+                <td>{{ isset($data->menu_order)?$data->menu_order:'' }}</td>
+            </tr>
+            <tr>
                 <th class="col-lg-4">Status</th>
                 <td>{{ isset($data->status)?ucfirst($data->status):'' }}</td>
             </tr>

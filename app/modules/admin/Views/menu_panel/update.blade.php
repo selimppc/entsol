@@ -29,7 +29,7 @@
     <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
         <div class="row">
             <div class="col-sm-6">
-                {!! Form::label('route', 'Route:', ['class' => 'control-label']) !!}
+                {!! Form::label('route', 'URL:', ['class' => 'control-label']) !!}
                 <small class="required">(Required)</small>
                 {!! Form::text('route', Input::old('route'), ['id'=>'route', 'class' => 'form-control','required','title'=>'enter route of menu']) !!}
             </div>

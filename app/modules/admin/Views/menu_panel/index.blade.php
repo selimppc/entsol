@@ -46,8 +46,9 @@
                             <th> Menu Id </th>
                             <th> Menu Type &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="branch full name">(?)</span></th>
                             <th> Menu Name </th>
-                            <th> Route </th>
+                            <th> URL </th>
                             <th> Parent Menu Id </th>
+                            <th> Menu Order </th>
                             <th> Status &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="you can change status from update page">(?)</span></th>
                             <th> Action &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="view : click for details informations<br>update : click for update informations<br>delete : click for delete informations">(?)</span></th>
                         </tr>
@@ -61,6 +62,7 @@
                                     <td>{{ucfirst($values->menu_name)}}</td>
                                     <td>{{$values->route}}</td>
                                     <td>{{$values->parent_menu_id}}</td>
+                                    <td>{{$values->menu_order}}</td>
                                     <td>{{ucfirst($values->status)}}</td>
                                     <td>
                                         <a href="{{ route('view-menu-panel', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="view"><i class="fa fa-eye"></i></a>
