@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\UserImage;
 use Illuminate\Http\Request;
 use Auth;
 use App\Http\Requests;
@@ -21,10 +22,10 @@ class HomeController extends Controller
      */
     public function dashboard()
     {
-
         $pageTitle = 'ENTSOL - Dashboard';
+        $user_image = UserImage::where('user_id',Auth::user()->id)->first();
 
-          return view('admin::layouts.dashboard',['pageTitle'=>$pageTitle]);
+        return view('admin::layouts.dashboard',['pageTitle'=>$pageTitle,'user_image'=>$user_image]);
     }
 
     public function all_routes_uri(){

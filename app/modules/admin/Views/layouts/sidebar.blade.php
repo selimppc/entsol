@@ -6,7 +6,11 @@
         <div>
             <div class="text-bg"><span class="text-slim">Welcome,</span><br> <span class="text-semibold">{{isset(Auth::user()->username)?ucfirst(Auth::user()->username):''}}</span></div>
 
-            <img src="{{URL::to('assets/admin/img/avatar1.jpg')}}" alt="User Image" >
+            @if(isset($user_image))
+                <img src="{{ URL::to($user_image->thumbnail) }}">
+            @else
+                <img src="{{ URL::to('assets/admin/img/avatar1.jpg') }}" alt="User Image">
+            @endif
 
             <div class="btn-group btn-left">
                 <a href="{{Route('user-profile')}}" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-user"></i></a>
