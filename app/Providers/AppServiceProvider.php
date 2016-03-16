@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if(Schema::hasTable('role_user'||'menu_panel')){
+        if(Schema::hasTable('role_user') && Schema::hasTable('menu_panel')){
             if(!Session::has('sidebar_menu_user')) {
                 // Get User ID
                 $user_id = 3; //Auth::user()->id;
@@ -51,7 +51,7 @@ class AppServiceProvider extends ServiceProvider
                 $parent = 0;
 
                 $result = MenuItems::menu_tree($tree, $parent);
-                #print_r($result[1]['sub-menu'] [4]['sub-menu'] );exit;
+                #print_r($result); exit;
                 // put the menu items in session
                 Session::put('sidebar_menu_user', $result);
             }
