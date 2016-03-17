@@ -635,7 +635,7 @@ class UserController extends Controller
                 Session::forget('user_image');
                 Session::put('user_image',$user_image);
                 Session::flash('message', "Successfully Updated");
-                
+
                 LogFileHelper::log_info('update-user-profile', 'Successfully added',  ['User profile image:'.$input['image']]);
             }
             catch ( Exception $e ){
