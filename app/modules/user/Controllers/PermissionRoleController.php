@@ -40,39 +40,13 @@ class PermissionRoleController extends Controller
 
         $permission_id = Permission::lists('title','id')->all();
 
+        #print_r($permission_id);exit;
+
         $role_id =  [''=>'Select Role'] +  Role::where('role.title', '!=', 'super-admin')->lists('title','id')->all();
 
         return view('user::permission_role.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'permission_id'=>$permission_id,'role_id'=>$role_id]);
     }
 
-
-    /*public function module_based_routes(){
-#exit('123');
-        $modules = Input::get('module');
-        #print_r($modules);
-        $routeCollection = \Route::getRoutes();
-
-        foreach ($routeCollection as $value) {
-            if($modules=='user_list'||$modules=='role_user'||$modules=='permission_role'){
-                #exit('edasfdgfdh');
-                $lookFor = 'UserController';
-            }
-
-            $controller = $value->getAction();
-
-            if (isset($controller['controller'])) {
-                $controller = $controller['controller'];
-            }else{
-                continue;
-            }
-            if (strpos($controller, $lookFor)) {
-                //echo "This route uses for only ".$lookFor." - ";
-                #echo $value->getPath() ."<br>";
-
-                print_r(($value->getPath()));
-            }
-        }
-    }*/
     public function ajax_permission_role()
     {
 
@@ -81,14 +55,13 @@ class PermissionRoleController extends Controller
         $permission_id = DB::table('permission_role')
             ->join('permissions', 'permissions.id', '=', 'permission_role.permission_id')
             ->join('role', function ($join) use ($role_data) {
-            $join->on('role.id', '=', 'permission_role.role_id')
+                $join->on('role.id', '=', 'permission_role.role_id')
                 ->where('permission_role.role_id', '=', $role_data);
-        })->select('permissions.title')->get();
+            })
+            ->lists('permissions.title', 'permissions.id');
 
-        print_r($permission_id);exit;
-
-        #return Response::make($permission_id);
-        #print_r($permission_id);exit;
+        return Response::make($permission_id);
+       # print_r($permission_id);exit;
 
 
     }

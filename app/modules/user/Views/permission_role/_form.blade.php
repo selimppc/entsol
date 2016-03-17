@@ -1,4 +1,8 @@
-{{--{!! Form::select('permission_id', array(''=>'permission'),Input::old('permission_id'),['id'=>'avc','class' => 'form-control']) !!}--}}
+{{--<script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.min.js') }}"></script>--}}
+{{--<script type="text/javascript" src="{{ URL::asset('assets/admin/js/bootstrap.min.js') }}"></script>--}}
+{{--<script type="text/javascript" src="{{ URL::asset('assets/admin/js/custom.min.js') }}"></script>--}}
+
+
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         <div class="col-sm-12">
@@ -17,8 +21,12 @@
         <div class="row">
             <div class="form-group col-sm-12">
                 {!! Form::label('permission_id', 'Select Permission :', ['class' => 'control-label']) !!}
-                <div class="">
-                    {!! Form::select('permission_id[]',$permission_id,null,['id' => 'route-list','class'=>'permission_list','required'=>'required','multiple' => 'multiple']) !!}
+                <div id="old-dropdown">
+                    {!! Form::select('permissions_id[]',array(''=>''), null,['id' => 'route-list','class'=>'permission_list','required'=>'required','multiple' => 'multiple']) !!}
+                </div>
+
+                <div class="length" style="display: none;" id="new-dropdown">
+                    {!! Form::select('permission_id[]',array(''=>''), null,['id' => 'list-of-route','class'=>'permission_list','required'=>'required','multiple' => 'multiple']) !!}
                 </div>
             </div>
         </div>
@@ -37,23 +45,22 @@
 </script>
 
 <script>
-
     $('select[id=role_id]').change(function () {
         var role_id =   $(this).val();
-//alert(role_id);
+        $('#old-dropdown').hide(),
+        $('#new-dropdown').show(),
         $.ajax({
             url: "{{Route('ajax-permission-role')}}",
             type: 'POST',
             data: {_token: '{!! csrf_token() !!}',role_id: role_id },
+
             success: function(data){
-               // alert(data);
-                var model = $('#route-list');
+                var model = $('#list-of-route');
                 model.empty();
                 $.each(data, function(key, element) {
                     model.append("<option value='"+ key +"'>" + element + "</option>");
                 });
             }
-
         });
     });
 
