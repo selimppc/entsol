@@ -11,6 +11,12 @@ Route::any('index-permission', [
     'uses' => 'PermissionController@index'
 ]);
 
+Route::any('ajax-permission-role', [
+    'middleware' => 'acl_access:user/ajax-permission-role',
+    'as' => 'ajax-permission-role',
+    'uses' => 'PermissionRoleController@ajax_permission_role'
+]);
+
 Route::any('store-permission', [
     'middleware' => 'acl_access:user/store-permission',
     'as' => 'store-permission',

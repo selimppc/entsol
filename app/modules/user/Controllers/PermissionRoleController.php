@@ -39,6 +39,7 @@ class PermissionRoleController extends Controller
             ->paginate(30);
 
         $permission_id = Permission::lists('title','id')->all();
+
         $role_id =  [''=>'Select Role'] +  Role::where('role.title', '!=', 'super-admin')->lists('title','id')->all();
 
         return view('user::permission_role.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'permission_id'=>$permission_id,'role_id'=>$role_id]);
@@ -72,6 +73,25 @@ class PermissionRoleController extends Controller
             }
         }
     }*/
+    public function ajax_permission_role()
+    {
+
+        $role_data = Input::get('role_id');
+
+        $permission_id = DB::table('permission_role')
+            ->join('permissions', 'permissions.id', '=', 'permission_role.permission_id')
+            ->join('role', function ($join) use ($role_data) {
+            $join->on('role.id', '=', 'permission_role.role_id')
+                ->where('permission_role.role_id', '=', $role_data);
+        })->select('permissions.title')->get();
+
+        print_r($permission_id);exit;
+
+        #return Response::make($permission_id);
+        #print_r($permission_id);exit;
+
+
+    }
 
     public function search_permission_role(){
 

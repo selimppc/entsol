@@ -1,13 +1,13 @@
-
+{{--{!! Form::select('permission_id', array(''=>'permission'),Input::old('permission_id'),['id'=>'avc','class' => 'form-control']) !!}--}}
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         <div class="col-sm-12">
             {!! Form::label('role_id', 'Role :', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
             @if(count($role_id)>0)
-                {!! Form::select('role_id', $role_id,Input::old('role_id'),['style'=>'text-transform:capitalize','class' => 'form-control','required','title'=>'select  role']) !!}
+                {!! Form::select('role_id', $role_id,Input::old('role_id'),['id'=>'role_id','style'=>'text-transform:capitalize','class' => 'form-control','required','title'=>'select  role']) !!}
             @else
-                {!! Form::text('role_id', 'No role available',['style'=>'text-transform:capitalize','id'=>'role_id','class' => 'form-control','required','disabled']) !!}
+                {!! Form::text('role_id', 'No role available',['style'=>'text-transform:capitalize','class' => 'form-control','required','disabled']) !!}
             @endif
         </div>
         </div>
@@ -34,6 +34,29 @@
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.bootstrap-duallistbox.js') }}"></script>
 <script type="text/javascript">
     $(".permission_list").bootstrapDualListbox();
+</script>
+
+<script>
+
+    $('select[id=role_id]').change(function () {
+        var role_id =   $(this).val();
+//alert(role_id);
+        $.ajax({
+            url: "{{Route('ajax-permission-role')}}",
+            type: 'POST',
+            data: {_token: '{!! csrf_token() !!}',role_id: role_id },
+            success: function(data){
+               // alert(data);
+                var model = $('#route-list');
+                model.empty();
+                $.each(data, function(key, element) {
+                    model.append("<option value='"+ key +"'>" + element + "</option>");
+                });
+            }
+
+        });
+    });
+
 </script>
 
 
