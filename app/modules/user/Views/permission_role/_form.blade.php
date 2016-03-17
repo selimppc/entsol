@@ -17,20 +17,24 @@
         </div>
 </div>
 
-<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t" id="old-dropdown">
         <div class="row">
             <div class="form-group col-sm-12">
                 {!! Form::label('permission_id', 'Select Permission :', ['class' => 'control-label']) !!}
-                <div id="old-dropdown">
-                    {!! Form::select('permissions_id[]',array(''=>''), null,['id' => 'route-list','class'=>'permission_list','required'=>'required','multiple' => 'multiple']) !!}
-                </div>
-
-                <div class="length" style="display: none;" id="new-dropdown">
-                    {!! Form::select('permission_id[]',array(''=>''), null,['id' => 'list-of-route','class'=>'permission_list','required'=>'required','multiple' => 'multiple']) !!}
-                </div>
+                    {!! Form::select('permission_id[]',array(''=>''), null,['id' => 'route-list','class'=>'permission_list','required'=>'required','multiple' => 'multiple']) !!}
             </div>
         </div>
 </div>
+
+<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t" id="new-dropdown" style="display: none">
+    <div class="row">
+        <div class="form-group col-sm-12">
+        {!! Form::label('permission_id', 'Select Permission :', ['class' => 'control-label']) !!}
+        {!! Form::select('permission_id',array(),Input::old('permission_id'),['class' => 'form-control','id' => 'list-of-route','class'=>'permission_list','required'=>'required']) !!}
+        </div>
+    </div>
+</div>
+
 {!! Form::hidden('status','active') !!}
 <p> &nbsp; </p>
 
@@ -42,9 +46,10 @@
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.bootstrap-duallistbox.js') }}"></script>
 <script type="text/javascript">
     $(".permission_list").bootstrapDualListbox();
+    $(".route-permission-list").bootstrapDualListbox();
 </script>
 
-<script>
+{{--<script>
     $('select[id=role_id]').change(function () {
         var role_id =   $(this).val();
         $('#old-dropdown').hide(),
@@ -64,6 +69,6 @@
         });
     });
 
-</script>
+</script>--}}
 
 
