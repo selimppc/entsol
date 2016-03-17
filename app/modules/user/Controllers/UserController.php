@@ -534,13 +534,12 @@ class UserController extends Controller
             }
             DB::beginTransaction();
             try {
-                Session::forget('user_image');
                 $image_model->create($input);
-
-                $user_image = $image_model['thumbnail'];
-                Session::put('user_image',$user_image);
+                $user_image = $input['image'];
 
                 DB::commit();
+                Session::forget('user_image');
+                Session::put('user_image' , $user_image);
                 Session::flash('message', "Successfully added");
                 LogFileHelper::log_info('store-user-profile', 'Successfully added', ['User profile image:'.$input['image']] );
             }
@@ -628,14 +627,15 @@ class UserController extends Controller
                 }else{
                     $image_model = new UserImage();
                 }
-                Session::forget('user_image');
-                $image_model->fill($input)->save();
 
+                $image_model->update($input);
                 $user_image = $image_model['thumbnail'];
-                Session::put('user_image',$user_image);
 
                 DB::commit();
-                Session::flash('message', "Successfully added");
+                Session::forget('user_image');
+                Session::put('user_image',$user_image);
+                Session::flash('message', "Successfully Updated");
+                
                 LogFileHelper::log_info('update-user-profile', 'Successfully added',  ['User profile image:'.$input['image']]);
             }
             catch ( Exception $e ){
@@ -681,11 +681,11 @@ class UserController extends Controller
             DB::beginTransaction();
             try {
                 $image_model->create($input);
-                $user_image = $image_model['thumbnail'];
-                DB::commit();
+                $user_image = $input['image'];
 
+                DB::commit();
                 Session::forget('user_image');
-                Session::put('user_image',$user_image);
+                Session::put('user_image' , $user_image);
                 Session::flash('message', "Successfully added");
                 LogFileHelper::log_info('store-profile-image', 'successfully added', ['User profile image:'.$input['image']]);
             }catch ( Exception $e ){
@@ -748,7 +748,7 @@ class UserController extends Controller
                 DB::commit();
                 Session::forget('user_image');
                 Session::put('user_image',$user_image);
-                Session::flash('message', "Successfully added");
+                Session::flash('message', "Successfully Updated");
                 LogFileHelper::log_info('update-profile-image', 'successfully update',  ['User profile image:'.$input['image']]);
             }catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
