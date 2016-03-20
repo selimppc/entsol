@@ -46,10 +46,9 @@
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.bootstrap-duallistbox.js') }}"></script>
 <script type="text/javascript">
     $(".permission_list").bootstrapDualListbox();
-    $(".route-permission-list").bootstrapDualListbox();
 </script>
 
-{{--<script>
+<script>
     $('select[id=role_id]').change(function () {
         var role_id =   $(this).val();
         $('#old-dropdown').hide(),
@@ -69,6 +68,6 @@
         });
     });
 
-</script>--}}
+</script>
 
 
