@@ -51,7 +51,6 @@ class PermissionRoleController extends Controller
     public function get_permission(){
 
         $pageTitle = "Assign Permission";
-
         return view('user::permission_role._duallistbox_form',['pageTitle'=>$pageTitle]);
     }
     public function post_permission(){

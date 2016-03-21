@@ -18,14 +18,16 @@
 <p> &nbsp; </p>
 
 <div class="form-margin-btn">
-    <a class="btn btn-primary btn-xs" data-toggle="modal" data-placement="top" data-content="" id="modal-button">
+    {{--<a class="btn btn-primary btn-xs" data-toggle="modal" data-placement="top" data-content="" id="modal-button">
        Assign Permission
-    </a>
+    </a>--}}
+    <a href="{{route('get-permission')}}" class=" btn btn-default" data-toggle="modal" data-target="#Modal" data-placement="top" data-content="click close button for close this entry form">Assign Permission</a>
+
     <a href="{{route('index-permission-role')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
 </div>
 
 
-<div id="show-modal" class="modal fade" tabindex="" role="dialog">
+<div id="Modal" class="modal fade" tabindex="" role="dialog">
     <div class="modal-dialog modal-lg" style="z-index: 1050">
         <div class="modal-content">
             <div class="modal-header">
@@ -41,15 +43,17 @@
     </div> <!-- / .modal-dialog -->
 </div>
 
+
+
+
 <script>
     $('#modal-button').click(function(){
-        //alert('ghg');
        if($('#role_id').val()==''){
            $('#required-message').html('Please Select Role To Assign Permission');
        }else {
            $('#required-message').html('');
-           var $modal  = $('#show-modal').clone(true);
-           $modal.find('> div').addClass('modal-dialog modal-sm animated ' + $('#role_id').find(":selected").attr('value'));
+           var $modal  = $('#Modal').clone(true);
+//           $modal.find('> div').addClass('modal-dialog modal-sm animated ' + $('#role_id').find(":selected").attr('value'));
            $modal.modal('show');
        }
     });
