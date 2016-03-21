@@ -91,7 +91,7 @@
             </div>
             <div class="modal-body">
                 {{--{!! Form::open(['route' => 'store-permission-role','id' => 'jq-validation-form']) !!}--}}
-                @include('user::permission_role._form')
+                  @include('user::permission_role._form')
                 {{--{!! Form::close() !!}--}}
             </div> <!-- / .modal-body -->
         </div> <!-- / .modal-content -->

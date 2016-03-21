@@ -1,7 +1,4 @@
 
-<link href="{{ URL::asset('assets/admin/css/bootstrap-duallistbox.css') }}" rel="stylesheet" type="text/css" >
-
-
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         <div class="form-group col-sm-12">

@@ -18,17 +18,18 @@
 <p> &nbsp; </p>
 
 <div class="form-margin-btn">
-    {{--<a class="btn btn-primary btn-xs" data-toggle="modal" data-placement="top" data-content="" id="modal-button">
+    <a class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Modal2" data-placement="top" data-content="" id="modal-button" data-dismiss="addData">
        Assign Permission
-    </a>--}}
-    <a href="{{route('get-permission')}}" class=" btn btn-default" data-toggle="modal" data-target="#Modal" data-placement="top" data-content="click close button for close this entry form">Assign Permission</a>
+    </a>
 
     <a href="{{route('index-permission-role')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
+
 </div>
 
+{{--Second modal--}}
 
-<div id="Modal" class="modal fade" tabindex="" role="dialog">
-    <div class="modal-dialog modal-lg" style="z-index: 1050">
+<div id="Modal2" class="modal fade" tabindex="" role="dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
@@ -44,9 +45,7 @@
 </div>
 
 
-
-
-<script>
+{{--<script>
     $('#modal-button').click(function(){
        if($('#role_id').val()==''){
            $('#required-message').html('Please Select Role To Assign Permission');
@@ -54,8 +53,9 @@
            $('#required-message').html('');
            var $modal  = $('#Modal').clone(true);
 //           $modal.find('> div').addClass('modal-dialog modal-sm animated ' + $('#role_id').find(":selected").attr('value'));
-           $modal.modal('show');
+          $modal.modal('show');
        }
     });
-</script>
+</script>--}}
+
 
