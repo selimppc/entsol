@@ -394,10 +394,10 @@ class AcReportsController extends Controller
         );
 
 
-        //print_r($controls);exit;
+        #print_r($controls);exit;
 
         if(@$data['PDF']=='PDF Report'){
-            $report = $c->reportService()->runReport($this->report_path.'/ac_gl_account_report', 'pdf', null, null, $controls);
+            $report = $c->reportService()->runReport($this->report_path.'/ac_gl_ac', 'pdf', null, null, $controls); //ac_gl_account_report
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Description: File Transfer');
