@@ -103,11 +103,17 @@ Route::any('module-based-routes', [
     'uses' => 'PermissionRoleController@module_based_routes'
 ]);
 
+Route::any('get-role', [
+    'middleware' => 'acl_access:user/get-role',
+    'as' => 'get-role',
+    'uses' => 'PermissionRoleController@get_role'
+]);
 Route::any('get-permission', [
     'middleware' => 'acl_access:user/get-permission',
     'as' => 'get-permission',
     'uses' => 'PermissionRoleController@get_permission'
 ]);
+
 Route::any('post-permission', [
     'middleware' => 'acl_access:user/post-permission',
     'as' => 'post-permission',

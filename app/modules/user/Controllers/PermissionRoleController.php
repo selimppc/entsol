@@ -48,35 +48,41 @@ class PermissionRoleController extends Controller
     }
 
 
-    public function get_permission(){
+    public function get_role(Request $request){
 
         $role_id = Input::get('role_id');
 
-        $permission_id = DB::table('permission_role')
+        return redirect()->route('get-permission',['role'=>$role_id]);
+    }
+
+    public function get_permission($role_id){
+        print_r($role_id);exit;
+
+        $permission = DB::table('permission_role')
             ->join('permissions', 'permissions.id', '=', 'permission_role.permission_id')
             ->join('role', function ($join) use ($role_id) {
                 $join->on('role.id', '=', 'permission_role.role_id')
                     ->where('permission_role.role_id', '=', $role_id);
-            })
-            ->lists('permissions.title', 'permissions.id');
-        #print_r($permission_id);exit;
+            })->lists('permissions.title', 'permissions.id');
 
-        return Response::make($permission_id);
+           /* $data = DB::table('permission_role')
+            ->whereNotExists(function ($query) use($role_id) {
+                $query->select(DB::raw(1))
+                    ->from('permissions')
+                    ->whereRaw('permission_role.permission_id = permissions.id');
+            })->where('role.id', '=', 'permission_role.role_id')
+                ->where('permission_role.role_id', '=', $role_id)
+            ->get();
+        print_r($data);exit('gfg');*/
 
+        return view('user::permission_role._duallistbox_form', ['permission' => $permission, 'role_id'=>$role_id]);
     }
 
     public function post_permission(){
 
         $role_id = Input::get('role_id');
-        #print_r($role_id);exit;
-        $permission_id = DB::table('permission_role')
-            ->join('permissions', 'permissions.id', '=', 'permission_role.permission_id')
-            ->join('role', function ($join) use ($role_id) {
-                $join->on('role.id', '=', 'permission_role.role_id')
-                    ->where('permission_role.role_id', '=', $role_id);
-            })
-            ->lists('permissions.title', 'permissions.id');
-        print_r($permission_id);exit;
+       # print_r($role_id);exit;
+exit('1234');
 
     }
     public function ajax_permission_role()
