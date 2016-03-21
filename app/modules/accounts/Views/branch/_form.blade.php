@@ -29,7 +29,7 @@
             {!! Form::label('currency_id', 'Currency:', ['class' => 'control-label']) !!}
             <small class="required">(Required)</small>
             @if(count($currency_id)>0)
-                {!! Form::select('currency_id', $currency_id,Input::old('currency_id'),['class' => 'form-control','required','title'=>'select branch currency, example :: Bangladeshi Taka']) !!}
+                {!! Form::select('currency_id', $currency_id,Input::old('currency_id'),['id'=>'curr','class' => 'form-control','required','title'=>'select branch currency, example :: Bangladeshi Taka','onclick'=>'myFunction();']) !!}
             @else
                 {!! Form::text('currency_id', 'No Currency ID available',['id'=>'currency_id','class' => 'form-control','required','disabled']) !!}
             @endif
@@ -97,3 +97,5 @@
     {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save branch information']) !!}
     <a href="{{route('branch')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
 </div>
+
+@include('accounts::branch._script')
