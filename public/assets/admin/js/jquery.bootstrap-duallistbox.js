@@ -20,7 +20,7 @@
             moveAllLabel: 'Move all',
             removeSelectedLabel: 'Remove selected',
             removeAllLabel: 'Remove all',
-            moveOnSelect: true,                                                                 // true/false (forced true on androids, see the comment later)
+            moveOnSelect: false,                                                                 // true/false (forced true on androids, see the comment later)
             preserveSelectionOnMove: false,                                                     // 'all' / 'moved' / false
             selectedListLabel: false,                                                           // 'string', false
             nonSelectedListLabel: false,                                                        // 'string', false

@@ -47,12 +47,23 @@ class PermissionRoleController extends Controller
         return view('user::permission_role.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'permission_id'=>$permission_id,'role_id'=>$role_id]);
     }
 
+
+    public function get_permission(){
+
+        $pageTitle = "Assign Permission";
+
+        return view('user::permission_role._duallistbox_form',['pageTitle'=>$pageTitle]);
+    }
+    public function post_permission(){
+        $role_id = Input::get('role_id');
+        print_r($role_id);exit;
+    }
     public function ajax_permission_role()
     {
 
         $role_data = Input::get('role_id');
 
-        $permission_id = DB::table('permission_role')
+        $exists_permission_id = DB::table('permission_role')
             ->join('permissions', 'permissions.id', '=', 'permission_role.permission_id')
             ->join('role', function ($join) use ($role_data) {
                 $join->on('role.id', '=', 'permission_role.role_id')
@@ -60,7 +71,7 @@ class PermissionRoleController extends Controller
             })
             ->lists('permissions.title', 'permissions.id');
 
-        return Response::make($permission_id);
+        #return Response::make($permission_id);
        # print_r($permission_id);exit;
 
 

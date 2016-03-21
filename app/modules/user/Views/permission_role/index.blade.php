@@ -90,9 +90,9 @@
                 <h4 class="modal-title" id="myModalLabel">Add Permission Role Information <span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['route' => 'store-permission-role','id' => 'jq-validation-form']) !!}
+                {{--{!! Form::open(['route' => 'store-permission-role','id' => 'jq-validation-form']) !!}--}}
                 @include('user::permission_role._form')
-                {!! Form::close() !!}
+                {{--{!! Form::close() !!}--}}
             </div> <!-- / .modal-body -->
         </div> <!-- / .modal-content -->
     </div> <!-- / .modal-dialog -->
