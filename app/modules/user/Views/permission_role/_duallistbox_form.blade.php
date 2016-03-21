@@ -1,4 +1,4 @@
-
+{!! Form::hidden('role_id',Input::old('role_id'), ['id'=>'role']) !!}
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         <div class="form-group col-sm-12">
@@ -8,9 +8,17 @@
     </div>
 </div>
 
+<div class="form-margin-btn">
+    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save information']) !!}
+    <a href="" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
+</div>
+
+
+<p> &nbsp; </p>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.bootstrap-duallistbox.js') }}"></script>
 
 <script type="text/javascript">
     $(".permission_list").bootstrapDualListbox();
 </script>
+

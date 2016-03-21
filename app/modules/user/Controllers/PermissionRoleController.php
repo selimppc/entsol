@@ -50,12 +50,34 @@ class PermissionRoleController extends Controller
 
     public function get_permission(){
 
-        $pageTitle = "Assign Permission";
-        return view('user::permission_role._duallistbox_form',['pageTitle'=>$pageTitle]);
-    }
-    public function post_permission(){
         $role_id = Input::get('role_id');
-        print_r($role_id);exit;
+
+        $permission_id = DB::table('permission_role')
+            ->join('permissions', 'permissions.id', '=', 'permission_role.permission_id')
+            ->join('role', function ($join) use ($role_id) {
+                $join->on('role.id', '=', 'permission_role.role_id')
+                    ->where('permission_role.role_id', '=', $role_id);
+            })
+            ->lists('permissions.title', 'permissions.id');
+        #print_r($permission_id);exit;
+
+        return Response::make($permission_id);
+
+    }
+
+    public function post_permission(){
+
+        $role_id = Input::get('role_id');
+        #print_r($role_id);exit;
+        $permission_id = DB::table('permission_role')
+            ->join('permissions', 'permissions.id', '=', 'permission_role.permission_id')
+            ->join('role', function ($join) use ($role_id) {
+                $join->on('role.id', '=', 'permission_role.role_id')
+                    ->where('permission_role.role_id', '=', $role_id);
+            })
+            ->lists('permissions.title', 'permissions.id');
+        print_r($permission_id);exit;
+
     }
     public function ajax_permission_role()
     {
