@@ -27,6 +27,11 @@ class PermissionRoleController extends Controller
      * @param
      * @return \Illuminate\Http\Response
      */
+
+    protected function isPostRequest()
+    {
+        return Input::server("REQUEST_METHOD") == "POST";
+    }
     public function index()
     {
         $pageTitle = "Permission Role List";
@@ -48,15 +53,23 @@ class PermissionRoleController extends Controller
     }
 
 
-    public function get_role(Request $request){
+    public function get_role(){
 
-        $role_id = Input::get('role_id');
+        if($this->isPostRequest()){
 
-        return redirect()->route('get-permission',['role'=>$role_id]);
+            $role_value = Input::get('role_id');
+            return view('user::permission_role._duallistbox_form', ['role_value' => $role_value])->render();
+            #return view('user::permission_role._duallistbox_form', ['permission' => $permission, 'role_id'=>$role_id]);
+
+        }else{
+            return redirect()->route('index-permission-role');
+        }
     }
 
     public function get_permission($role_id){
-        print_r($role_id);exit;
+
+        #$role_value = Input::get('role_id');
+        #print_r($role_id);exit;
 
         $permission = DB::table('permission_role')
             ->join('permissions', 'permissions.id', '=', 'permission_role.permission_id')
@@ -65,7 +78,10 @@ class PermissionRoleController extends Controller
                     ->where('permission_role.role_id', '=', $role_id);
             })->lists('permissions.title', 'permissions.id');
 
-        return view('user::permission_role._duallistbox_form', ['permission' => $permission, 'role_id'=>$role_id]);
+        #$role_id =  [''=>'Select Role'] +  Role::where('role.title', '!=', 'super-admin')->lists('title','id')->all();
+
+        return view('user::permission_role.index',['permission'=>$permission])->render();
+
     }
 
     public function post_permission(){

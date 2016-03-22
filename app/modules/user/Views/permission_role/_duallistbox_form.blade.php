@@ -1,4 +1,4 @@
-
+{{--{!! Form::text('text',$role_value) !!}--}}
 {{--<div class="modal-body">
     {!! Form::model($data, ['method' => 'PATCH', 'route'=> ['post-permission']]) !!}--}}
 
@@ -6,7 +6,7 @@
         <div class="row">
             <div class="form-group col-sm-12">
                 {!! Form::label('permission_id', 'Select Permission :', ['class' => 'control-label']) !!}
-                {!! Form::select('permission_id',$permission_id,Input::old('permission_id'),['id' => 'route-list','class'=>'permission_list','multiple' => 'multiple']) !!}
+                {!! Form::select('permission_id',array(),Input::old('permission_id'),['id' => 'route-list','class'=>'permission_list','multiple' => 'multiple']) !!}
             </div>
         </div>
     </div>

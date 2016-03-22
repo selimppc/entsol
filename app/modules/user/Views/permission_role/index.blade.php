@@ -7,12 +7,14 @@
         <!-- form open for batch delete -->
 {{--{!!  Form::open(['route' => ['delete-permission-role']]) !!}--}}
 
+{{isset($role_data)?$role_data:''}}
+
 <!-- page start-->
 <div class="row">
     <div class="col-sm-12">
         <div class="panel">
             <div class="panel-heading">
-                <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>we can show all permission in this page<br> and add new permission, update from this page</em>">(?)</span>
+                <span class="panel-title">{{ isset($pageTitle)?$pageTitle:'' }}</span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>we can show all permission in this page<br> and add new permission, update from this page</em>">(?)</span>
                 <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="top" data-content="click add permission role button for new permission of a role">
                     <strong>Add New Permission Role</strong>
                 </a>
@@ -75,7 +77,7 @@
                 <!-- form close for bathc delete -->
                 {!! Form::close() !!}
 
-                <span class="pull-right">{!! str_replace('/?', '?',  $data->appends(Input::except('page'))->render() ) !!} </span>
+                <span class="pull-right">{!! str_replace('/?', '?',$data->appends(Input::except('page'))->render() ) !!} </span>
             </div>
         </div>
     </div>

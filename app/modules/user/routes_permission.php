@@ -108,7 +108,7 @@ Route::any('get-role', [
     'as' => 'get-role',
     'uses' => 'PermissionRoleController@get_role'
 ]);
-Route::any('get-permission', [
+Route::any('get-permission/{role_id}', [
     'middleware' => 'acl_access:user/get-permission',
     'as' => 'get-permission',
     'uses' => 'PermissionRoleController@get_permission'
