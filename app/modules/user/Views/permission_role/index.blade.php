@@ -92,7 +92,7 @@
                 <h4 class="modal-title" id="myModalLabel">Add Role To Assign Permission Information <span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['route' => 'get-role','id' => 'jq-validation-form','id'=>'role-form']) !!}
+                {!! Form::open(['route' => 'index-permission-role','id' => 'jq-validation-form','id'=>'role-form']) !!}
                     @include('user::permission_role._form')
                 {!! Form::close() !!}
             </div> <!-- / .modal-body -->
@@ -107,12 +107,28 @@
 <div class="modal fade" id="etsbModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-              
+
         </div>
     </div>
 </div>
 
+{{--Second modal--}}
 
+<div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
+                <h4 class="modal-title" id="myModalLabel">Assign Permission<span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field. <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
+            </div>
+            <div class="modal-body">
+                {!! Form::open(['route'=> ['post-permission']]) !!}
+                @include('user::permission_role._duallistbox_form')
+                {!! Form::close() !!}
+            </div> <!-- / .modal-body -->
+        </div> <!-- / .modal-content -->
+    </div> <!-- / .modal-dialog -->
+</div>
 
 
 
@@ -144,14 +160,17 @@
     }
 </script>
 
-<!--script for this page only-->
-{{--@if($errors->any())
-    <script type="text/javascript">
-        $(function(){
-            $("#addData").modal('show');
-        });
-    </script>
-@endif--}}
+@if(isset($exists_permission))
+    @if(count($exists_permission)>0)
+        <script type="text/javascript">
+            $(document).ready(function(){
+               $("#Modal2").modal('show');
+            });
+        </script>
+    @endif
+@endif
+
+
 @stop
 
 

@@ -19,40 +19,10 @@
 
 <div class="form-margin-btn">
 
-  {{--{!! Form::submit('Assign Permission', ['class' => 'btn btn-primary']) !!}--}}
-
-    <button type="submit" id="btn" class="btn btn-primary" data-toggle="modal" data-target="">Assign Permission</button>
-
-    <a href="{{route('index-permission-role')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
+  {!! Form::submit('Assign Permission', ['class' => 'btn btn-primary']) !!}
+  <a href="{{route('index-permission-role')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
 
 </div>
-
-{{--Second modal--}}
-
-<div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
-                <h4 class="modal-title" id="myModalLabel">Assign Permission<span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field. <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
-            </div>
-            <div class="modal-body">
-              {!! Form::open(['route'=> ['post-permission']]) !!}
-                     @include('user::permission_role._duallistbox_form')
-              {!! Form::close() !!}
-            </div> <!-- / .modal-body -->
-        </div> <!-- / .modal-content -->
-    </div> <!-- / .modal-dialog -->
-</div>
-
-
-@if(isset($permission))
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $("#Modal2").modal();
-        });
-    </script>
-@endif
 
 
 

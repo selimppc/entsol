@@ -43,11 +43,33 @@ class PermissionRoleController extends Controller
             ->select('permission_role.id', 'permissions.title as p_title', 'role.title as r_title')
             ->paginate(100);
 
-        $permission_id = Permission::lists('title','id')->all();
-
         $role_id =  [''=>'Select Role'] +  Role::where('role.title', '!=', 'super-admin')->lists('title','id')->all();
 
-        return view('user::permission_role.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'permission_id'=>$permission_id,'role_id'=>$role_id]);
+        if($this->isPostRequest()){
+
+            $role_value = Input::get('role_id');
+
+            # print_r($role_value);exit;
+
+            $exists_permission = PermissionRole::whereExists(function ($query) use ($role_value){
+                      $query->from('role')->where('permission_role.role_id', '=', $role_value);
+                })->join('permissions', 'permissions.id', '=', 'permission_role.permission_id')
+                ->lists('permissions.title', 'permissions.id');
+
+           #print_r($exists_permission);exit;
+
+            $not_exists_permission = PermissionRole::whereNotExists(function ($query) use ($role_value){
+                    $query->from('permissions')->where('permissions.id' ,'=', 'permission_role.permission_id');
+                })->where('permission_role.role_id', '=', $role_value)
+                ->get();
+
+            #print_r($not_exists_permission);exit;
+        }else{
+            $not_exists_permission = array();
+            $exists_permission = array();
+        }
+
+        return view('user::permission_role.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'role_id'=>$role_id,'exists_permission' => $exists_permission]);
     }
 
 
