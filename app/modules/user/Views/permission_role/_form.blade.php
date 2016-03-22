@@ -18,12 +18,10 @@
 <p> &nbsp; </p>
 
 <div class="form-margin-btn">
-    {{--<a href="{{Route("get-permission")}}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Modal2" data-placement="top" data-content="" id="modal-button">
-        Assign Permission
-    </a>
---}}
-  {!! Form::submit('Assign Permission', ['class' => 'btn btn-primary']) !!}
-    {{--<button type="submit" id="btn" class="btn btn-primary" data-toggle="modal" data-target="#Modal2">Assign Permission</button>--}}
+
+  {{--{!! Form::submit('Assign Permission', ['class' => 'btn btn-primary']) !!}--}}
+
+    <button type="submit" id="btn" class="btn btn-primary" data-toggle="modal" data-target="">Assign Permission</button>
 
     <a href="{{route('index-permission-role')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
 
@@ -31,7 +29,7 @@
 
 {{--Second modal--}}
 
-<div id="Modal2" class="modal" tabindex="" role="dialog">
+<div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -48,10 +46,10 @@
 </div>
 
 
-@if(isset($role_value))
+@if(isset($permission))
     <script type="text/javascript">
-        $(function(){
-            $("#Modal2").modal('show');
+        $(document).ready(function(){
+            $("#Modal2").modal();
         });
     </script>
 @endif

@@ -45,8 +45,6 @@ class PermissionRoleController extends Controller
 
         $permission_id = Permission::lists('title','id')->all();
 
-        #print_r($permission_id);exit;
-
         $role_id =  [''=>'Select Role'] +  Role::where('role.title', '!=', 'super-admin')->lists('title','id')->all();
 
         return view('user::permission_role.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'permission_id'=>$permission_id,'role_id'=>$role_id]);
@@ -56,14 +54,26 @@ class PermissionRoleController extends Controller
     public function get_role(){
 
         if($this->isPostRequest()){
-
             $role_value = Input::get('role_id');
-            return view('user::permission_role._duallistbox_form', ['role_value' => $role_value])->render();
-            #return view('user::permission_role._duallistbox_form', ['permission' => $permission, 'role_id'=>$role_id]);
-
+            $permission = DB::table('permission_role')
+                ->join('permissions', 'permissions.id', '=', 'permission_role.permission_id')
+                ->join('role', function ($join) use ($role_value) {
+                    $join->on('role.id', '=', 'permission_role.role_id')
+                        ->where('permission_role.role_id', '=', $role_value);
+                })->lists('permissions.title', 'permissions.id');
         }else{
-            return redirect()->route('index-permission-role');
+            $permission = '';
         }
+        $data = DB::table('permission_role')
+            ->join('permissions', 'permissions.id', '=', 'permission_role.permission_id')
+            ->join('role', 'role.id', '=', 'permission_role.role_id')
+            ->where('role.title', '!=', 'super-admin')
+            ->select('permission_role.id', 'permissions.title as p_title', 'role.title as r_title')
+            ->paginate(100);
+
+        $role_id =  [''=>'Select Role'] +  Role::where('role.title', '!=', 'super-admin')->lists('title','id')->all();
+
+        return view('user::permission_role.index', ['permission' => $permission,'data' => $data,'role_id'=>$role_id])->render();
     }
 
     public function get_permission($role_id){

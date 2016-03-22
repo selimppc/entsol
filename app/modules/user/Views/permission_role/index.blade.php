@@ -7,7 +7,7 @@
         <!-- form open for batch delete -->
 {{--{!!  Form::open(['route' => ['delete-permission-role']]) !!}--}}
 
-{{isset($role_data)?$role_data:''}}
+{{--{{isset($role_value)?$role_value:''}}--}}
 
 <!-- page start-->
 <div class="row">
@@ -92,7 +92,7 @@
                 <h4 class="modal-title" id="myModalLabel">Add Role To Assign Permission Information <span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['route' => 'get-role','id' => 'jq-validation-form']) !!}
+                {!! Form::open(['route' => 'get-role','id' => 'jq-validation-form','id'=>'role-form']) !!}
                     @include('user::permission_role._form')
                 {!! Form::close() !!}
             </div> <!-- / .modal-body -->
@@ -107,7 +107,7 @@
 <div class="modal fade" id="etsbModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-
+              
         </div>
     </div>
 </div>
@@ -145,16 +145,15 @@
 </script>
 
 <!--script for this page only-->
-@if($errors->any())
+{{--@if($errors->any())
     <script type="text/javascript">
         $(function(){
             $("#addData").modal('show');
         });
     </script>
-@endif
-        <!-- form close for bathc delete -->
-    {{--{!! Form::close() !!}--}}
+@endif--}}
 @stop
+
 
 
 
