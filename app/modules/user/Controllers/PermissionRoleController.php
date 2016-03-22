@@ -36,7 +36,7 @@ class PermissionRoleController extends Controller
             ->join('role', 'role.id', '=', 'permission_role.role_id')
             ->where('role.title', '!=', 'super-admin')
             ->select('permission_role.id', 'permissions.title as p_title', 'role.title as r_title')
-            ->paginate(30);
+            ->paginate(100);
 
         $permission_id = Permission::lists('title','id')->all();
 
@@ -64,16 +64,6 @@ class PermissionRoleController extends Controller
                 $join->on('role.id', '=', 'permission_role.role_id')
                     ->where('permission_role.role_id', '=', $role_id);
             })->lists('permissions.title', 'permissions.id');
-
-           /* $data = DB::table('permission_role')
-            ->whereNotExists(function ($query) use($role_id) {
-                $query->select(DB::raw(1))
-                    ->from('permissions')
-                    ->whereRaw('permission_role.permission_id = permissions.id');
-            })->where('role.id', '=', 'permission_role.role_id')
-                ->where('permission_role.role_id', '=', $role_id)
-            ->get();
-        print_r($data);exit('gfg');*/
 
         return view('user::permission_role._duallistbox_form', ['permission' => $permission, 'role_id'=>$role_id]);
     }
