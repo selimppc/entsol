@@ -51,19 +51,36 @@ class PermissionRoleController extends Controller
 
             # print_r($role_value);exit;
 
-            $exists_permission = PermissionRole::whereExists(function ($query) use ($role_value){
+           /* $exists_permission = PermissionRole::whereExists(function ($query) use ($role_value){
                       $query->from('role')->where('permission_role.role_id', '=', $role_value);
                 })->join('permissions', 'permissions.id', '=', 'permission_role.permission_id')
-                ->lists('permissions.title', 'permissions.id');
+                ->lists('permissions.title', 'permissions.id');*/
 
-           #print_r($exists_permission);exit;
+            $exists_permission = DB::table('permission_role')
 
-            $not_exists_permission = PermissionRole::whereNotExists(function ($query) use ($role_value){
-                    $query->from('permissions')->where('permissions.id' ,'=', 'permission_role.permission_id');
-                })->where('permission_role.role_id', '=', $role_value)
+                ->whereExists(function ($query)use($role_value) {
+                    $query->select(DB::raw(1))
+                        ->from('permissions')
+                        ->whereRaw('permission_role.permission_id = permissions.id')
+                        ->where('permission_role.role_id', '=', $role_value);
+                })->get();
+
+           print_r($exists_permission);
+echo "-----------------------------------------";
+echo "-----------------------------------------";
+echo "-----------------------------------------";
+
+            $not_exists_permission = DB::table('permission_role')
+                ->whereNotExists(function ($query) use($role_value){
+                    $query->select(DB::raw(1))
+                        ->from('permissions')
+                        ->where('permission_role.permission_id','=','permissions.id')
+                    ->where('permission_role.role_id', '=', $role_value);
+                })
                 ->get();
 
-            #print_r($not_exists_permission);exit;
+            print_r($not_exists_permission);exit;
+
         }else{
             $not_exists_permission = array();
             $exists_permission = array();
