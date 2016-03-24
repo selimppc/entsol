@@ -6,6 +6,7 @@ use App\Helpers\LogFileHelper;
 use App\Permission;
 use App\PermissionRole;
 use App\Role;
+use App\RoleUser;
 use App\User;
 use App\UserResetPassword;
 use Illuminate\Http\Request;
@@ -48,7 +49,7 @@ class PermissionRoleController extends Controller
         if($this->isPostRequest()){
 
             $role_value = Input::get('role_id');
-
+            $role_name = Role::findOrFail($role_value)->title;
             // whereExists()
             $exists_permission = DB::table('permissions')
                 ->whereExists(function ($query) use($role_value){
@@ -77,79 +78,11 @@ class PermissionRoleController extends Controller
         }else{
             $not_exists_permission = array();
             $exists_permission = array();
+            $role_name = Null;
+            $role_value = Null;
         }
 
-        return view('user::permission_role.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'role_id'=>$role_id,'exists_permission' => $exists_permission,'not_exists_permission' => $not_exists_permission]);
-    }
-
-
-    public function get_role(){
-
-        if($this->isPostRequest()){
-            $role_value = Input::get('role_id');
-            $permission = DB::table('permission_role')
-                ->join('permissions', 'permissions.id', '=', 'permission_role.permission_id')
-                ->join('role', function ($join) use ($role_value) {
-                    $join->on('role.id', '=', 'permission_role.role_id')
-                        ->where('permission_role.role_id', '=', $role_value);
-                })->lists('permissions.title', 'permissions.id');
-        }else{
-            $permission = '';
-        }
-        $data = DB::table('permission_role')
-            ->join('permissions', 'permissions.id', '=', 'permission_role.permission_id')
-            ->join('role', 'role.id', '=', 'permission_role.role_id')
-            ->where('role.title', '!=', 'super-admin')
-            ->select('permission_role.id', 'permissions.title as p_title', 'role.title as r_title')
-            ->paginate(100);
-
-        $role_id =  [''=>'Select Role'] +  Role::where('role.title', '!=', 'super-admin')->lists('title','id')->all();
-
-        return view('user::permission_role.index', ['permission' => $permission,'data' => $data,'role_id'=>$role_id])->render();
-    }
-
-    public function get_permission($role_id){
-
-        #$role_value = Input::get('role_id');
-        #print_r($role_id);exit;
-
-        $permission = DB::table('permission_role')
-            ->join('permissions', 'permissions.id', '=', 'permission_role.permission_id')
-            ->join('role', function ($join) use ($role_id) {
-                $join->on('role.id', '=', 'permission_role.role_id')
-                    ->where('permission_role.role_id', '=', $role_id);
-            })->lists('permissions.title', 'permissions.id');
-
-        #$role_id =  [''=>'Select Role'] +  Role::where('role.title', '!=', 'super-admin')->lists('title','id')->all();
-
-        return view('user::permission_role.index',['permission'=>$permission])->render();
-
-    }
-
-    public function post_permission(){
-
-        $role_id = Input::get('role_id');
-       # print_r($role_id);exit;
-exit('1234');
-
-    }
-    public function ajax_permission_role()
-    {
-
-        $role_data = Input::get('role_id');
-
-        $exists_permission_id = DB::table('permission_role')
-            ->join('permissions', 'permissions.id', '=', 'permission_role.permission_id')
-            ->join('role', function ($join) use ($role_data) {
-                $join->on('role.id', '=', 'permission_role.role_id')
-                ->where('permission_role.role_id', '=', $role_data);
-            })
-            ->lists('permissions.title', 'permissions.id');
-
-        #return Response::make($permission_id);
-       # print_r($permission_id);exit;
-
-
+        return view('user::permission_role.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'role_id'=>$role_id,'exists_permission' => $exists_permission,'not_exists_permission' => $not_exists_permission,'role_name'=>$role_name,'role_value'=>$role_value]);
     }
 
     public function search_permission_role(){
@@ -180,7 +113,9 @@ exit('1234');
 
     public function store(Requests\PermissionRoleRequest $request){
         $input = $request->all();
+        #print_r($input);exit;
         $permission_id = $input['permission_id'];
+
         foreach ($permission_id as $p_id) {
             $permission_exists = PermissionRole::where('permission_id','=',$p_id)->where('role_id','=',$input['role_id'])->exists();
             if(!$permission_exists){
