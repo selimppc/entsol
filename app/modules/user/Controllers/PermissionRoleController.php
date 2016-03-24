@@ -49,35 +49,28 @@ class PermissionRoleController extends Controller
 
             $role_value = Input::get('role_id');
 
-            # print_r($role_value);exit;
-
-           /* $exists_permission = PermissionRole::whereExists(function ($query) use ($role_value){
-                      $query->from('role')->where('permission_role.role_id', '=', $role_value);
-                })->join('permissions', 'permissions.id', '=', 'permission_role.permission_id')
-                ->lists('permissions.title', 'permissions.id');*/
-
-            $exists_permission = DB::table('permission_role')
-
-                ->whereExists(function ($query)use($role_value) {
+            // whereEsists()
+            $exists_permission = DB::table('permissions')
+                ->whereExists(function ($query) use($role_value){
                     $query->select(DB::raw(1))
-                        ->from('permissions')
+                        ->from('permission_role')
                         ->whereRaw('permission_role.permission_id = permissions.id')
-                        ->where('permission_role.role_id', '=', $role_value);
-                })->get();
+                        ->WhereRaw('permission_role.role_id = ?', [$role_value]);
+                })
+                ->lists('permissions.title', 'permissions.id');
 
            print_r($exists_permission);
-echo "-----------------------------------------";
-echo "-----------------------------------------";
-echo "-----------------------------------------";
 
-            $not_exists_permission = DB::table('permission_role')
+
+           //whereNotExists()
+            $not_exists_permission = DB::table('permissions')
                 ->whereNotExists(function ($query) use($role_value){
                     $query->select(DB::raw(1))
-                        ->from('permissions')
-                        ->where('permission_role.permission_id','=','permissions.id')
-                    ->where('permission_role.role_id', '=', $role_value);
+                        ->from('permission_role')
+                        ->whereRaw('permission_role.permission_id = permissions.id')
+                        ->WhereRaw('permission_role.role_id = ?', [$role_value]);
                 })
-                ->get();
+                ->lists('permissions.title', 'permissions.id');
 
             print_r($not_exists_permission);exit;
 
