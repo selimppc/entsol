@@ -6,8 +6,8 @@
 <div class="row">
     <div class="col-sm-5">
         <select name="permission_id" id="optgroup" class="form-control" size="20" multiple="multiple">
-            @foreach($not_exists_permission as $not_ex_per)
-                   <option value="">{{$not_ex_per}}</option>
+            @foreach($not_exists_permission as $key=>$value)
+                   <option value="{{$key}}">{{$value}}</option>
             @endforeach
         </select>
     </div>
