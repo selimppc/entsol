@@ -111,9 +111,9 @@ body{
 .navigation a.active{
     font-weight: bold;
 }
-#route-list{
-    height: 240px;
-}
+select#optgroup_to.route-list {
+    width: 100%;
+    height: 280px;}
 
 .input-group-addon {
     padding: 0px 12px;
