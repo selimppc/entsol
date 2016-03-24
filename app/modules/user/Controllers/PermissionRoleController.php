@@ -49,7 +49,7 @@ class PermissionRoleController extends Controller
 
             $role_value = Input::get('role_id');
 
-            // whereEsists()
+            // whereExists()
             $exists_permission = DB::table('permissions')
                 ->whereExists(function ($query) use($role_value){
                     $query->select(DB::raw(1))
@@ -59,7 +59,7 @@ class PermissionRoleController extends Controller
                 })
                 ->lists('permissions.title', 'permissions.id');
 
-           print_r($exists_permission);
+           #print_r($exists_permission);
 
 
            //whereNotExists()
@@ -72,14 +72,14 @@ class PermissionRoleController extends Controller
                 })
                 ->lists('permissions.title', 'permissions.id');
 
-            print_r($not_exists_permission);exit;
+            #print_r($not_exists_permission);exit;
 
         }else{
             $not_exists_permission = array();
             $exists_permission = array();
         }
 
-        return view('user::permission_role.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'role_id'=>$role_id,'exists_permission' => $exists_permission]);
+        return view('user::permission_role.index', ['data' => $data, 'pageTitle'=> $pageTitle, 'role_id'=>$role_id,'exists_permission' => $exists_permission,'not_exists_permission' => $not_exists_permission]);
     }
 
 
