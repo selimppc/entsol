@@ -10,14 +10,14 @@
 
     <link href="{{ URL::asset('assets/admin/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" >
 
-    <!---generate.min.css  refers to landerapp.min.css ----->
+    <!-- generate.min.css  refers to landerapp.min.css -->
     <link href="{{ URL::asset('assets/admin/css/generate.min.css') }}" rel="stylesheet" type="text/css" >
     <link href="{{ URL::asset('assets/admin/css/rtl.min.css') }}" rel="stylesheet" type="text/css" >
     <link href="{{ URL::asset('assets/admin/css/pages.min.css') }}" rel="stylesheet" type="text/css" >
     <link href="{{ URL::asset('assets/admin/css/widgets.min.css') }}" rel="stylesheet" type="text/css" >
     <link href="{{ URL::asset('assets/admin/css/themes.min.css') }}" rel="stylesheet" type="text/css" >
     <link href="{{ URL::asset('assets/admin/css/custom.css') }}" rel="stylesheet" type="text/css" >
-    <link href="{{ URL::asset('assets/admin/css/bootstrap-duallistbox.css') }}" rel="stylesheet" type="text/css" >
+    <!--link href="{{ URL::asset('assets/admin/css/bootstrap-duallistbox.css') }}" rel="stylesheet" type="text/css" -->
     {{--<link href="{{ URL::asset('assets/admin/css/styles.min.css') }}" rel="stylesheet" type="text/css" >--}}
 
 </head>
