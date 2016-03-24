@@ -113,32 +113,36 @@ class PermissionRoleController extends Controller
 
     public function store(Requests\PermissionRoleRequest $request){
         $input = $request->all();
-        #print_r($input);exit;
-        $permission_id = $input['permission_id'];
 
-        foreach ($permission_id as $p_id) {
-            $permission_exists = PermissionRole::where('permission_id','=',$p_id)->where('role_id','=',$input['role_id'])->exists();
-            if(!$permission_exists){
-                $model = new PermissionRole;
-                $model->role_id = $input['role_id'];
-                $model->permission_id = $p_id;
-                $model->status = $input['status'];
-                /* Transaction Start Here */
-                DB::beginTransaction();
-                try {
-                    $model->save();
-                    DB::commit();
-                    Session::flash('message', 'Successfully added!');
-                    LogFileHelper::log_info('store-permission-role', 'successfully added',  ['Permission role role_id'.$input['role_id']]);
-                } catch (\Exception $e) {
-                    //If there are any exceptions, rollback the transaction`
-                    DB::rollback();
-                    Session::flash('danger', $e->getMessage());
-                    LogFileHelper::log_error('store-permission-role', $e->getMessage(),  ['Permission role role_id'.$input['role_id']]);
+        if($input['permission_id']){
+            $permission_id = $input['permission_id'];
+
+            foreach ($permission_id as $p_id) {
+                $permission_exists = PermissionRole::where('permission_id','=',$p_id)->where('role_id','=',$input['role_id'])->exists();
+                if(!$permission_exists){
+                    $model = new PermissionRole;
+                    $model->role_id = $input['role_id'];
+                    $model->permission_id = $p_id;
+                    $model->status = $input['status'];
+                    /* Transaction Start Here */
+                    DB::beginTransaction();
+                    try {
+                        $model->save();
+                        DB::commit();
+                        Session::flash('message', 'Successfully added!');
+                        LogFileHelper::log_info('store-permission-role', 'successfully added',  ['Permission role role_id'.$input['role_id']]);
+                    } catch (\Exception $e) {
+                        //If there are any exceptions, rollback the transaction`
+                        DB::rollback();
+                        Session::flash('danger', $e->getMessage());
+                        LogFileHelper::log_error('store-permission-role', $e->getMessage(),  ['Permission role role_id'.$input['role_id']]);
+                    }
+                }else{
+                    Session::flash('message','Some of the permission role already exists');
                 }
-            }else{
-                Session::flash('message','Some of the permission role already exists');
-            }
+        }
+        }else{
+            Session::flash('error','Please Select Permission!!!');
         }
         return redirect()->route('index-permission-role');
     }
