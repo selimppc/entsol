@@ -29,7 +29,7 @@
                    <p>&nbsp;</p>
                 </div>
 
-                <div class="panel panel-transparent profile-skills">
+                {{--<div class="panel panel-transparent profile-skills">
                     <div class="panel-heading">
                         <span class="panel-title">Skills</span>
                     </div>
@@ -40,7 +40,7 @@
                         <span class="label label-primary">HTML</span>
                         <span class="label label-primary">CSS</span>
                     </div>
-                </div>
+                </div>--}}
 
                 <div class="panel panel-transparent">
                     <div class="panel-heading">
