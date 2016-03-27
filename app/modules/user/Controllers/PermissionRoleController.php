@@ -114,7 +114,7 @@ class PermissionRoleController extends Controller
     public function store(Requests\PermissionRoleRequest $request){
         $input = $request->all();
 
-        if($input['permission_id']){
+        if(isset($input['permission_id'])){
             $permission_id = $input['permission_id'];
 
             foreach ($permission_id as $p_id) {
@@ -142,7 +142,7 @@ class PermissionRoleController extends Controller
                 }
         }
         }else{
-            Session::flash('error','Please Select Permission!!!');
+            Session::flash('danger','Please Select Permission!!!');
         }
         return redirect()->route('index-permission-role');
     }

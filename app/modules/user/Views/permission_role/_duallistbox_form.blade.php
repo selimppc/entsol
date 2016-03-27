@@ -27,17 +27,17 @@
 
     <div class="form-group col-sm-5">
         <strong class="text-center">Assigned Permission List</strong>
-        <select name="permission_id[]" id="optgroup_to" class="form-control" size="20" multiple="multiple">
+        <select name="permission_id[]" id="optgroup_to" class="check form-control" size="20" multiple="multiple">
             @foreach($exists_permission as $keys=>$values)
                 <option value="{{$keys}}">{{$values}}</option>
             @endforeach
         </select>
-
+        <span id='check-message' class="required"></span>
     </div>
 </div>
 
 <div class="form-margin-btn" style="margin-left:79%">
-    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save information']) !!}
+    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save information','id'=>'check-empty']) !!}
     <a href="{{route('index-permission-role')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
 </div>
 
@@ -53,6 +53,27 @@
             }
         });
     });
+</script>
+
+<script>
+    /*$("#check-empty").click(function(){
+
+        var permission = $('select[id=optgroup_to]').val();
+        if (permission!=undefined && permission.length > 0) {
+            alert('gh');
+//            $('#check-message').html('please move at least one permission here and then submit.');
+//            document.getElementById("check-empty").disabled = true;
+//            return true;
+            $('#check-message').html('');
+           document.getElementById("check-empty").disabled = true;
+            //return false;
+        }else{
+            alert('333');
+            $('#check-message').html('please move at least one permission here and then submit.');
+           document.getElementById("check-empty").disabled = false;
+            //return false;
+        }
+    });*/
 </script>
 
 
