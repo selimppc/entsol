@@ -56,6 +56,7 @@ class CreateCommonTable extends Migration
             $table->string('email',64)->nullable();
             $table->string('emergency_contact_person',64)->nullable();
             $table->string('emergency_contact_number',64)->nullable();
+            $table->boolean('is_sub_contact');
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -77,7 +78,7 @@ class CreateCommonTable extends Migration
             $table->float('cost_price',8,2)->nullable();
             $table->string('purchase_unit',16)->nullable();
             $table->unsignedInteger('purchase_unit_qty')->nullable();
-            $table->string('stock_unit',16)->nullable();
+                $table->string('stock_unit',16)->nullable();
             $table->integer('stock_unit_qty')->unsigned()->nullable();
             $table->enum('stock_type',array('stock','non-stock'))->nullable();
             $table->integer('created_by', false, 11);
@@ -103,8 +104,10 @@ class CreateCommonTable extends Migration
             $table->text('address',256)->nullable();
             $table->string('phone',8)->nullable();
             $table->string('email',8)->nullable();
+            $table->string('fax',25)->nullable();
             $table->string('web',8)->nullable();
-
+            $table->string('contact_person',64)->nullable();
+            $table->string('contact_name',64)->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();

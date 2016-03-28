@@ -153,6 +153,7 @@ class CreateInventoryTable extends Migration
             $table->unsignedInteger('store_id')->nullable();
             $table->string('grn_no',16)->nullable();
             $table->string('voucher_no',16)->nullable();
+            $table->string('lc_no',16)->nullable();
             $table->dateTime('date',64)->nullable();
             $table->enum('pay_terms',array(''))->nullable();
             $table->float('tax_rate',8,2)->nullable();
@@ -240,6 +241,7 @@ class CreateInventoryTable extends Migration
             $table->string('unit',16)->nullable();
             $table->unsignedInteger('qty')->nullable();
             $table->float('rate',8,2)->nullable();
+            $table->float('total_price',8,2)->nullable();
             $table->enum('sign',array('-1','1'))->nullable();
             $table->text('note',256)->nullable();
             $table->string('voucher_no',16)->nullable();
