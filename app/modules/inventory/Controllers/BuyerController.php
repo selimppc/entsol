@@ -13,5 +13,5 @@ use App\Http\Controllers\Controller;
 
 class BuyerController extends Controller
 {
-    
+
 }
