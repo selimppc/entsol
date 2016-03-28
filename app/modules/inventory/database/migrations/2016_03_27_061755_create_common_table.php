@@ -54,6 +54,8 @@ class CreateCommonTable extends Migration
             $table->string('phone',16)->nullable();
             $table->string('fax',16)->nullable();
             $table->string('email',64)->nullable();
+            $table->string('emergency_contact_person',64)->nullable();
+            $table->string('emergency_contact_number',64)->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -98,6 +100,11 @@ class CreateCommonTable extends Migration
             $table->string('title',64)->nullable();
             $table->string('code',8)->nullable();
             $table->text('description',256)->nullable();
+            $table->text('address',256)->nullable();
+            $table->string('phone',8)->nullable();
+            $table->string('email',8)->nullable();
+            $table->string('web',8)->nullable();
+
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -115,7 +122,8 @@ class CreateCommonTable extends Migration
             $table->string('title',64)->nullable();
             $table->text('description',256)->nullable();
             $table->float('exchange_rate',8,2)->nullable();
-            $table->enum('status',array('active','cancel','approved'))->nullable();
+            #$table->enum('status',array('active','cancel'))->nullable();
+            $table->boolean('status');
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
