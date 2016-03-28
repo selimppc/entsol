@@ -265,10 +265,82 @@ class CreateInventoryTable extends Migration
 
         });
 
+        /*transfer_head*/
 
+        Schema::create('transfer_head', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('business_id')->nullable();
+            $table->string('transfer_no',45)->nullable();
+            $table->unsignedInteger('to_store_id')->nullable();
+            $table->unsignedInteger('from_store_id')->nullable();
+            $table->unsignedInteger('company_id',64)->nullable();
+            $table->dateTime('date',64)->nullable();
+            $table->dateTime('confirm_date',64)->nullable();
+            $table->text('note',256)->nullable();
+            $table->string('transfer_category',64)->nullable();
+            $table->string('transfer_type',64)->nullable();
+            $table->string('chalan_no',45)->nullable();
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+        Schema::table('transfer_head', function($table) {
+            $table->foreign('business_id')->references('id')->on('business');
+            $table->foreign('to_store_id')->references('id')->on('store');
+            $table->foreign('to_store_id')->references('id')->on('store');
+            if(Schema::hasTable('company'))
+            {
+                $table->foreign('company_id')->references('id')->on('company');
+            }
 
+        });
 
+        /*transfer_detail*/
 
+        Schema::create('transfer_detail', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('transfer_hd_id')->nullable();
+            $table->unsignedInteger('product_id')->nullable();
+            $table->unsignedInteger('store_id')->nullable();
+            $table->string('unit',8)->nullable();
+            $table->unsignedInteger('qty')->nullable();
+            $table->float('price',8,2)->nullable();
+            $table->float('transfer_value',8,2)->nullable();
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+        Schema::table('transfer_detail', function($table) {
+            $table->foreign('transfer_hd_id')->references('id')->on('transfer_head');
+            $table->foreign('product_id')->references('id')->on('product');
+            $table->foreign('store_id')->references('id')->on('store');
+        });
+
+        /*adjustment_head*/
+
+        Schema::create('adjustment_head', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('business_id')->nullable();
+            $table->unsignedInteger('currency_id')->nullable();
+            $table->unsignedInteger('store_id')->nullable();
+            $table->string('adj_no',45)->nullable();
+            $table->dateTime('date',64)->nullable();
+            $table->dateTime('confirm_date',64)->nullable();
+            $table->string('type',45)->nullable();
+            $table->string('voucher_number',45)->nullable();
+            $table->text('note',256)->nullable();
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+        Schema::table('adjustment_head', function($table) {
+            $table->foreign('business_id')->references('id')->on('business');
+            $table->foreign('currency_id')->references('id')->on('currency');
+            $table->foreign('store_id')->references('id')->on('store');
+        });
 
     }
 
@@ -288,6 +360,9 @@ class CreateInventoryTable extends Migration
         Schema::drop('inv_grn_head');
         Schema::drop('inv_grn_detail');
         Schema::drop('inv_transaction');
+        Schema::drop('transfer_head');
+        Schema::drop('transfer_detail');
+        Schema::drop('adjustment_head');
 
     }
 }
