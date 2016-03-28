@@ -14,5 +14,4 @@ Route::group(array('modules'=>'Inventory', 'namespace' => 'App\Modules\Inventory
         return 'Hello World inventory';
     });
 
-
 });
