@@ -36,8 +36,23 @@ class InvPurchaseOrderHeadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(){
+    public function store(Request $request){
 
+        $input = $request->all();
+
+        /* Transaction Start Here */
+        DB::beginTransaction();
+        try {
+            InvPurchaseOrderHeadController::create($input);
+            DB::commit();
+            Session::flash('message', 'Successfully added!');
+        } catch (\Exception $e) {
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', $e->getMessage());
+        }
+
+        return redirect()->back();
     }
 
     /**
@@ -70,9 +85,23 @@ class InvPurchaseOrderHeadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id){
+    public function update(Request $request,$id){
 
+        $input = $request->all();
+        $model = InvPurchaseOrderHeadController::findOrFail($id);
 
+        DB::beginTransaction();
+        try {
+            $model->update($input);
+            DB::commit();
+            Session::flash('message', "Successfully Updated");
+        }
+        catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('danger', $e->getMessage());
+        }
+        return redirect()->back();
     }
 
     /**

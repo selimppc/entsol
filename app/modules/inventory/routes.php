@@ -9,7 +9,6 @@
 Route::group(array('modules'=>'Inventory', 'namespace' => 'App\Modules\Inventory\Controllers'), function() {
     //Your routes belong to this module.
 
-
     Route::get('inventory', function () {
         return 'Hello World inventory';
     });
