@@ -6,11 +6,11 @@
  * Time: 12:11 PM
  */
 
-Route::group(array('modules'=>'Inventory', 'namespace' => 'App\Modules\Inventory\Controllers'), function() {
+Route::group(array('middleware' => 'auth','modules'=>'Inventory', 'namespace' => 'App\Modules\Inventory\Controllers'), function() {
     //Your routes belong to this module.
 
-    Route::get('inventory', function () {
-        return 'Hello World inventory';
+    Route::get('inventory-test', function () {
+        return 'Hello World:: Inventory';
     });
 
 });
