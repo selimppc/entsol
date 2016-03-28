@@ -9,7 +9,9 @@
 namespace App\Modules\Inventory\Controllers;
 
 
+use App\Business;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Request;
 
 class BusinessController extends Controller
 {
@@ -35,8 +37,23 @@ class BusinessController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(){
+    public function store(Request $request){
 
+        $input = $request->all();
+
+        /* Transaction Start Here */
+        DB::beginTransaction();
+        try {
+            Business::create($input);
+            DB::commit();
+            Session::flash('message', 'Successfully added!');
+        } catch (\Exception $e) {
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', $e->getMessage());
+        }
+
+        return redirect()->back();
     }
 
     /**
@@ -69,9 +86,23 @@ class BusinessController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id){
+    public function update(Request $request,$id){
 
+        $input = $request->all();
+        $model = Business::findOrFail($id);
 
+        DB::beginTransaction();
+        try {
+            $model->update($input);
+            DB::commit();
+            Session::flash('message', "Successfully Updated");
+        }
+        catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('danger', $e->getMessage());
+        }
+        return redirect()->back();
     }
 
     /**
