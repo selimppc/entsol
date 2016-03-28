@@ -204,7 +204,7 @@ class CreateInventoryTable extends Migration
             $table->double('tax_amount',16,2)->nullable();
             $table->float('discount_rate',8,2)->nullable();
             $table->double('discount_amount',16,2)->nullable();
-            $table->float('ILE',8,2)->nullable();
+            $table->string('ILE',45)->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -246,6 +246,7 @@ class CreateInventoryTable extends Migration
             $table->string('wo_pi_no',16)->nullable();
             $table->enum('status',array('active','cancel','approved'))->nullable();
             $table->integer('buyer_order_id',false,11)->nullable();
+            $table->string('ILE',45)->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();

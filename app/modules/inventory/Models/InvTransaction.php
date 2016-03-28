@@ -37,5 +37,6 @@ class InvTransaction extends Model
         'wo_pi_no',
         'status',
         'buyer_order_id',
+        'ILE',
     ];
 }
