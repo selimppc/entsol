@@ -8,11 +8,19 @@
         <table id="" class="table table-bordered table-hover table-striped">
             <tr>
                 <th class="col-lg-4">Title</th>
-                <td>{{ isset($data->title)?ucfirst($data->title):''}}</td>
+                <td>{{ isset($model->title)?ucfirst($model->title):''}}</td>
             </tr>
             <tr>
-                <th class="col-lg-4">Status</th>
-                <td>{{ isset($data->status)?ucfirst($data->status):'' }}</td>
+                <th class="col-lg-4">Country</th>
+                <td>{{isset($model->relCountry->title)?ucfirst($model->relCountry->title):'' }}</td>
+            </tr>
+            <tr>
+                <th class="col-lg-4">Description</th>
+                <td>{{ isset($model->description)?$model->description:'' }}</td>
+            </tr>
+            <tr>
+                <th class="col-lg-4">Details</th>
+                <td>{{ isset($model->details)?$model->details:'' }}</td>
             </tr>
 
         </table>

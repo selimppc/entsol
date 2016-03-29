@@ -7,9 +7,8 @@
 
 
 <div class="modal-body">
-    @section('content_update')
-        {!! Form::model($data, ['method' => 'PATCH', 'route'=> ['update-role', $data->slug]]) !!}
-        @include('user::role._form')
+        {!! Form::model($model, ['method' => 'PATCH', 'route'=> ['update-buyer', $model->id]]) !!}
+            @include('inventory::buyer._form')
         {!! Form::close() !!}
 </div>
 
