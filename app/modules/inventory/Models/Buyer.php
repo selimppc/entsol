@@ -28,14 +28,7 @@ class Buyer extends Model
 
 
 
-
-
-
-
-
-
-
-
+    
     // TODO :: boot
     // boot() function used to insert logged user_id at 'created_by' & 'updated_by'
 
