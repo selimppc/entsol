@@ -11,8 +11,8 @@
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>all buyer define from this page">(?)</span>
-                <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="top" data-content="click 'add buyer' button for new buyer entry">
-                    <strong>Add Buyer</strong>
+                <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="top" data-content="click 'add yarn count' button for new buyer entry">
+                    <strong>Add Yarn Count</strong>
                 </a>
             </div>
 
@@ -39,25 +39,22 @@
                         <thead>
                         <tr>
                             <th> Title </th>
-                            <th> Country</th>
                             <th> Action &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="view : click for details informations<br>update : click for update informations<br>delete : click for delete informations">(?)</span></th>
                         </tr>
                         </thead>
                         <tbody>
-                        @if(isset($model))
-                            @foreach($model as $values)
-                                <tr class="gradeX">
-                                    <td>{{ucfirst($values->title)}}</td>
-                                    <td>{{isset($values->relCountry->title)?ucfirst($values->relCountry->title):''}}</td>
-                                    <td>
-                                        <a href="{{ route('view-buyer', $values->id) }}" class="btn btn-info btn-xs" data-placement="top" data-toggle="modal" data-target="#etsbModal" data-content="view"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('edit-buyer', $values->id) }}" class="btn btn-primary btn-xs" data-placement="top" data-toggle="modal" data-target="#etsbModal" data-content="update"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('delete-buyer', $values->id) }}" class="btn btn-danger btn-xs" data-placement="top" onclick="return confirm('Are you sure to Delete?')" data-content="delete"><i class="fa fa-trash-o"></i></a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        @endif
-
+                            @if(isset($model))
+                                @foreach($model as $values)
+                                    <tr class="gradeX">
+                                        <td>{{ucfirst($values->title)}}</td>
+                                        <td>
+                                            <a href="{{ route('view-yarn-count', $values->id) }}" class="btn btn-info btn-xs" data-placement="top" data-toggle="modal" data-target="#etsbModal" data-content="view"><i class="fa fa-eye"></i></a>
+                                            <a href="{{ route('edit-yarn-count', $values->id) }}" class="btn btn-primary btn-xs" data-placement="top" data-toggle="modal" data-target="#etsbModal" data-content="update"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ route('delete-yarn-count', $values->id) }}" class="btn btn-danger btn-xs" data-placement="top" onclick="return confirm('Are you sure to Delete?')" data-content="delete"><i class="fa fa-trash-o"></i></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>
@@ -74,11 +71,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
-                <h4 class="modal-title" id="myModalLabel">Add Buyer Informations<span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
+                <h4 class="modal-title" id="myModalLabel">Add Yarn Count Informations<span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['route' => 'store-buyer','class' => 'form-horizontal','id' => 'jq-validation-form']) !!}
-                @include('inventory::buyer._form')
+                {!! Form::open(['route' => 'store-yarn-count','class' => 'form-horizontal','id' => 'jq-validation-form']) !!}
+                @include('inventory::yarn_count._form')
                 {!! Form::close() !!}
             </div> <!-- / .modal-body -->
         </div> <!-- / .modal-content -->

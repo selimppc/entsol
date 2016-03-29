@@ -23,6 +23,10 @@ class YarnCountController extends Controller
 
     public function index(){
 
+        $pageTitle = "Yarn Count";
+        $model = YarnCount::orderBy('id', 'DESC')->paginate(30);
+
+        return view('inventory::yarn_count.index', ['model' => $model, 'pageTitle'=> $pageTitle]);
 
     }
 
@@ -40,19 +44,22 @@ class YarnCountController extends Controller
     public function store(Request $request){
 
         $input = $request->all();
-
-        /* Transaction Start Here */
-        DB::beginTransaction();
-        try {
-            YarnCount::create($input);
-            DB::commit();
-            Session::flash('message', 'Successfully added!');
-        } catch (\Exception $e) {
-            //If there are any exceptions, rollback the transaction`
-            DB::rollback();
-            Session::flash('danger', $e->getMessage());
+        $yc_exists = YarnCount::where('title','=',$input['title'])->exists();
+        if($yc_exists){
+            Session::flash('danger',' Already Exists.');
+        }else{
+            /* Transaction Start Here */
+            DB::beginTransaction();
+            try {
+                YarnCount::create($input);
+                DB::commit();
+                Session::flash('message', 'Successfully added!');
+            } catch (\Exception $e) {
+                //If there are any exceptions, rollback the transaction`
+                DB::rollback();
+                Session::flash('danger', $e->getMessage());
+            }
         }
-
         return redirect()->back();
     }
 

@@ -1,7 +1,7 @@
 <div class="form-group form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
-        {!! Form::text('title',Input::old('title'),['class' => 'form-control','placeholder'=>'Role Name','required','autofocus', 'title'=>'Enter Buyer Title']) !!}
+        {!! Form::text('title',Input::old('title'),['class' => 'form-control','placeholder'=>'Enter Buyer Title','required','autofocus', 'title'=>'Enter Buyer Title']) !!}
     </div>
 </div>
 
