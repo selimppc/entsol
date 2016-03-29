@@ -51,6 +51,12 @@
 
         @endif
 
+        {{-- Token Mis mathched exception  --}}
+            @if ($errors->has('token_error'))
+            {{$errors}}
+                <div class="alert alert-warning"> {{ $errors->first('token_error') }} </div>
+            @endif
+
         {!! Form::open(['route' => 'post-user-login','id'=>'login-data-validation']) !!}
             <div class="signin-text">
                 <span>Sign In to your account</span>
