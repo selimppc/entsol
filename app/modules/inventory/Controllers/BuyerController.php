@@ -66,8 +66,8 @@ class BuyerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id){
-        $pageTitle = 'View Group One Information';
-        $data = GroupOne::where('id',$id)->first();
+        $pageTitle = 'View Buyer Information';
+        $data = Buyer::where('id',$id)->first();
 
         return view('accounts::group_one.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
 
