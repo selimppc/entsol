@@ -21,5 +21,5 @@ INSERT INTO `menu_panel` (`id`, `menu_id`, `menu_type`, `menu_name`, `route`, `p
 (16, 1, 'MENU', 'Reverse Entry', 'reverse/reverse-voucher', 15, 'fa fa-money', 0, 'active', NULL, NULL, '2016-03-14 23:29:37', '2016-03-16 01:04:52'),
 (17, 1, 'MENU', 'Payment Voucher', 'payment/payment-voucher', 15, 'fa fa-money', 0, 'active', NULL, NULL, '2016-03-14 23:30:26', '2016-03-16 01:05:08'),
 (18, 1, 'MENU', 'Receipt Voucher', 'receipt/receipt-voucher', 15, 'fa fa-money', 0, 'active', NULL, NULL, '2016-03-14 23:30:50', '2016-03-16 01:05:46'),
-(19, 1, 'MENU', 'Settings', 'settings', 15, 'fa  fa-gear', 0, 'active', NULL, NULL, '2016-03-14 23:31:18', '2016-03-16 01:06:09'),
+(19, 1, 'MENU', 'Settings', 'gl/settings', 15, 'fa  fa-gear', 0, 'active', NULL, NULL, '2016-03-14 23:31:18', '2016-03-16 01:06:09'),
 (20, 1, 'MENU', 'Reports', 'reports/account-reports', 15, 'fa fa-clipboard', 0, 'active', NULL, NULL, '2016-03-14 23:31:37', '2016-03-16 00:36:38');
