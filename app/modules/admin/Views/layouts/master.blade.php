@@ -71,7 +71,7 @@
 
             @endif
 
-            //Token Mis mathched exception 
+            {{-- Token Mis mathched exception  --}}
             @if ($errors->has('token_error'))
                 <div class="alert alert-warning"> {{ $errors->first('token_error') }} </div>
             @endif
