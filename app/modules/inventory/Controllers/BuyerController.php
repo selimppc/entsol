@@ -24,7 +24,9 @@ class BuyerController extends Controller
 
     public function index(){
 
-
+        $pageTitle = "Buyer List";
+        $model = Buyer::orderBy('id', 'DESC')->paginate(30);
+        return view('inventory::buyer.index', ['model' => $model, 'pageTitle'=> $pageTitle]);
     }
 
     public function search(){
@@ -64,7 +66,10 @@ class BuyerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id){
+        $pageTitle = 'View Group One Information';
+        $data = GroupOne::where('id',$id)->first();
 
+        return view('accounts::group_one.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
 
     }
 
@@ -76,7 +81,9 @@ class BuyerController extends Controller
      */
     public function edit($id){
 
-
+        $pageTitle = 'Update Group One Information';
+        $data = GroupOne::where('id',$id)->first();
+        return view('accounts::group_one.update', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 
 
@@ -113,7 +120,23 @@ class BuyerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function delete($id){
+        $model = GroupOne::findOrFail($id);
 
+        DB::beginTransaction();
+        try {
+            if($model->status =='active'){
+                $model->status = 'cancel';
+            }else{
+                $model->status = 'active';
+            }
+            $model->save();
+            DB::commit();
+            Session::flash('message', "Successfully Deleted.");
 
+        } catch(\Exception $e) {
+            DB::rollback();
+            Session::flash('danger',$e->getMessage());
+        }
+        return redirect()->back();
     }
 }
