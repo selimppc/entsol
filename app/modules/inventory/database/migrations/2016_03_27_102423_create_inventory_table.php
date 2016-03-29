@@ -195,7 +195,7 @@ class CreateInventoryTable extends Migration
             $table->unsignedInteger('yarn_type_id')->nullable();
             $table->unsignedInteger('yarn_composition_id')->nullable();
             $table->unsignedInteger('yarn_color_id')->nullable();
-            $table->unsignedInteger('yarn_lot_id')->nullable();
+            //$table->unsignedInteger('yarn_lot_id')->nullable();
             $table->string('batch_number',45)->nullable();
             $table->dateTime('expiry_date',64)->nullable();
             $table->unsignedInteger('receive_qty')->nullable();
@@ -218,7 +218,7 @@ class CreateInventoryTable extends Migration
             $table->foreign('yarn_type_id')->references('id')->on('yarn_type');
             $table->foreign('yarn_composition_id')->references('id')->on('yarn_composition');
             $table->foreign('yarn_color_id')->references('id')->on('yarn_color');
-            $table->foreign('yarn_lot_id')->references('id')->on('yarn_lot');
+            //$table->foreign('yarn_lot_id')->references('id')->on('yarn_lot');
         });
 
         /*inv_transaction*/
@@ -273,7 +273,7 @@ class CreateInventoryTable extends Migration
             $table->string('transfer_no',45)->nullable();
             $table->unsignedInteger('to_store_id')->nullable();
             $table->unsignedInteger('from_store_id')->nullable();
-            $table->unsignedInteger('company_id',64)->nullable();
+            $table->unsignedInteger('company_id')->nullable();
             $table->dateTime('date',64)->nullable();
             $table->dateTime('confirm_date',64)->nullable();
             $table->text('note',256)->nullable();
@@ -288,7 +288,7 @@ class CreateInventoryTable extends Migration
         Schema::table('transfer_head', function($table) {
             $table->foreign('business_id')->references('id')->on('business');
             $table->foreign('to_store_id')->references('id')->on('store');
-            $table->foreign('to_store_id')->references('id')->on('store');
+            $table->foreign('from_store_id')->references('id')->on('store');
             if(Schema::hasTable('company'))
             {
                 $table->foreign('company_id')->references('id')->on('company');
@@ -318,6 +318,7 @@ class CreateInventoryTable extends Migration
             $table->foreign('store_id')->references('id')->on('store');
         });
 
+
         /*adjustment_head*/
 
         Schema::create('adjustment_head', function (Blueprint $table) {
@@ -342,6 +343,160 @@ class CreateInventoryTable extends Migration
             $table->foreign('store_id')->references('id')->on('store');
         });
 
+
+        /*adjustment_detail*/
+
+        Schema::create('adjustment_detail', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('adj_hd_id')->nullable();
+            $table->unsignedInteger('product_id')->nullable();
+            $table->string('batch_number',45)->nullable();
+            $table->dateTime('expiry_date',64)->nullable();
+            $table->unsignedInteger('qty')->nullable();
+            $table->text('stock_note',256)->nullable();
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+        Schema::table('adjustment_detail', function($table) {
+            $table->foreign('adj_hd_id')->references('id')->on('adjustment_head');
+            $table->foreign('product_id')->references('id')->on('product');
+        });
+
+
+        /*return_head*/
+
+        Schema::create('return_head', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('grn_hd_id')->nullable();
+            $table->unsignedInteger('business_id')->nullable();
+            $table->unsignedInteger('return_from_store')->nullable();
+            $table->unsignedInteger('return_to_store')->nullable();
+            $table->string('return_category',64)->nullable();
+            $table->enum('return_type',array(''))->nullable();
+            $table->dateTime('return_date',64)->nullable();
+            $table->string('return_no',45)->nullable();
+            $table->string('challan_no',45)->nullable();
+            $table->text('note',256)->nullable();
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+        Schema::table('return_head', function($table) {
+            $table->foreign('business_id')->references('id')->on('business');
+            $table->foreign('grn_hd_id')->references('id')->on('inv_grn_head');
+            $table->foreign('return_from_store')->references('id')->on('store');
+            $table->foreign('return_to_store')->references('id')->on('store');
+        });
+
+
+        /*return_detail*/
+
+        Schema::create('return_detail', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('return_hd_id')->nullable();
+            $table->unsignedInteger('product_id')->nullable();
+            $table->float('return_qty',8,2)->nullable();
+            $table->float('rate',8,2)->nullable();
+            $table->double('amount',16,2)->nullable();
+            $table->integer('buyer_order_id',false,11)->nullable();
+            $table->float('current_stock',8,2)->nullable();
+            $table->string('unit',8)->nullable();
+            $table->float('avg_return_value',8,2)->nullable();
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+        Schema::table('return_detail', function($table) {
+            $table->foreign('return_hd_id')->references('id')->on('return_head');
+            $table->foreign('product_id')->references('id')->on('product');
+        });
+
+
+        /*issue_head*/
+
+        Schema::create('issue_head', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('business_id')->nullable();
+            $table->string('issue_no',45)->nullable();
+            $table->dateTime('issue_date',64)->nullable();
+            $table->enum('source',array(''))->nullable();
+            $table->unsignedInteger('from_store_id')->nullable();
+            $table->unsignedInteger('to_store_id')->nullable();
+            $table->string('challan_no',45)->nullable();
+            $table->unsignedInteger('buyer_id')->nullable();
+            $table->integer('buyer_order_id',false,11)->nullable();
+            $table->unsignedInteger('supplier_id')->nullable();
+            $table->unsignedInteger('currency_id')->nullable();
+            $table->text('note',256)->nullable();
+            $table->integer('item_category',false,11)->nullable();
+            $table->string('item_garment_color',45)->nullable();
+            $table->string('dying_batch_number',45)->nullable();
+            $table->string('dying_lap_dip_no',45)->nullable();
+            $table->text('fabric_description',256)->nullable();
+            $table->integer('knitting_dying_program_id',false,11)->nullable();
+            $table->integer('knitting_dying_business_id',false,11)->nullable();
+            $table->float('gray_fabric_required',8,2)->nullable();
+            $table->dateTime('confirm_date',64)->nullable();
+            $table->decimal('exchange_rate',20,6)->nullable();
+            $table->integer('to_currency_id',false,11)->nullable();
+            $table->integer('to_exchange_rate',false,11)->nullable();
+            $table->enum('status',array('active','cancel','approved'))->nullable();
+            $table->float('tax_rate',8,2)->nullable();
+            $table->double('tax_amount',16,2)->nullable();
+            $table->float('discount_rate',8,2)->nullable();
+            $table->double('discount_amount',16,2)->nullable();
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+        Schema::table('issue_head', function($table) {
+            $table->foreign('business_id')->references('id')->on('business');
+            $table->foreign('from_store_id')->references('id')->on('store');
+            $table->foreign('to_store_id')->references('id')->on('store');
+            $table->foreign('buyer_id')->references('id')->on('buyer');
+            $table->foreign('supplier_id')->references('id')->on('inv_supplier');
+            $table->foreign('currency_id')->references('id')->on('currency');
+        });
+
+
+        /*issue_detail*/
+
+        Schema::create('issue_detail', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('issue_head_id')->nullable();
+            $table->unsignedInteger('product_id')->nullable();
+            $table->string('yarn_lot_no',45)->nullable();
+            $table->unsignedInteger('yarn_count_id')->nullable();
+            $table->unsignedInteger('yarn_composition_id')->nullable();
+            $table->unsignedInteger('yarn_type_id')->nullable();
+            $table->unsignedInteger('yarn_color_id')->nullable();
+            $table->unsignedInteger('product_brand_id')->nullable();
+            $table->float('required_qty',8,2)->nullable();
+            $table->float('total_issued_qty',8,2)->nullable();
+            $table->string('unit',45)->nullable();
+            $table->double('base_amount',16,2)->nullable();
+            $table->double('prime_amount',16,2)->nullable();
+            $table->float('tax_rate',8,2)->nullable();
+            $table->double('tax_amount',16,2)->nullable();
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+        Schema::table('issue_detail', function($table) {
+            $table->foreign('issue_head_id')->references('id')->on('issue_head');
+            $table->foreign('product_id')->references('id')->on('product');
+            $table->foreign('yarn_count_id')->references('id')->on('yarn_count');
+            $table->foreign('yarn_type_id')->references('id')->on('yarn_type');
+            $table->foreign('yarn_composition_id')->references('id')->on('yarn_composition');
+            $table->foreign('yarn_color_id')->references('id')->on('yarn_color');
+            $table->foreign('product_brand_id')->references('id')->on('product_brand');
+        });
     }
 
     /**
@@ -351,7 +506,6 @@ class CreateInventoryTable extends Migration
      */
     public function down()
     {
-
         Schema::drop('inv_supplier');
         Schema::drop('inv_requisition_head');
         Schema::drop('inv_requisition_detail');
@@ -363,6 +517,12 @@ class CreateInventoryTable extends Migration
         Schema::drop('transfer_head');
         Schema::drop('transfer_detail');
         Schema::drop('adjustment_head');
+        Schema::drop('adjustment_detail');
+        Schema::drop('return_head');
+        Schema::drop('return_detail');
+        Schema::drop('issue_head');
+        Schema::drop('issue_detail');
+
 
     }
 }

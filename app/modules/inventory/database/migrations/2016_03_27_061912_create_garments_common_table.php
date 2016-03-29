@@ -113,5 +113,6 @@ class CreateGarmentsCommonTable extends Migration
         Schema::drop('yarn_composition');
         Schema::drop('yarn_type');
         Schema::drop('yarn_color');
+        Schema::drop('product_brand');
     }
 }
