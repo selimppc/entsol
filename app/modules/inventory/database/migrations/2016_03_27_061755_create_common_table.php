@@ -19,6 +19,7 @@ class CreateCommonTable extends Migration
             $table->string('title',64)->nullable();
             $table->string('code',8)->nullable();
             $table->text('description',256)->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -34,6 +35,7 @@ class CreateCommonTable extends Migration
             $table->string('title',64)->nullable();
             $table->string('code',8)->nullable();
             $table->text('description',256)->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -57,6 +59,7 @@ class CreateCommonTable extends Migration
             $table->string('emergency_contact_person',64)->nullable();
             $table->string('emergency_contact_number',64)->nullable();
             $table->boolean('is_sub_contact');
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -81,6 +84,7 @@ class CreateCommonTable extends Migration
                 $table->string('stock_unit',16)->nullable();
             $table->integer('stock_unit_qty')->unsigned()->nullable();
             $table->enum('stock_type',array('stock','non-stock'))->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -108,6 +112,7 @@ class CreateCommonTable extends Migration
             $table->string('web',8)->nullable();
             $table->string('contact_person',64)->nullable();
             $table->string('contact_name',64)->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -116,23 +121,6 @@ class CreateCommonTable extends Migration
         Schema::table('store', function($table) {
             $table->foreign('business_id')->references('id')->on('business');
         });
-
-
-        /*currency*/
-
-        Schema::create('currency', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('title',64)->nullable();
-            $table->text('description',256)->nullable();
-            $table->float('exchange_rate',8,2)->nullable();
-            #$table->enum('status',array('active','cancel'))->nullable();
-            $table->boolean('status');
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
-            $table->timestamps();
-            $table->engine = 'InnoDB';
-        });
-
 
     }
 
@@ -150,7 +138,5 @@ class CreateCommonTable extends Migration
         Schema::drop('business');
         Schema::drop('product');
         Schema::drop('store');
-        Schema::drop('currency');
-
     }
 }
