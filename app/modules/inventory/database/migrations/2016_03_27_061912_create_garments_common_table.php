@@ -22,6 +22,7 @@ class CreateGarmentsCommonTable extends Migration
             $table->text('description',256)->nullable();
             $table->unsignedInteger('country_id')->nullable();
             $table->text('details',256)->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -42,6 +43,7 @@ class CreateGarmentsCommonTable extends Migration
             $table->increments('id');
             $table->string('title',64)->nullable();
             $table->text('description',256)->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -54,6 +56,7 @@ class CreateGarmentsCommonTable extends Migration
             $table->increments('id');
             $table->string('title',64)->nullable();
             $table->text('description',256)->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -69,6 +72,7 @@ class CreateGarmentsCommonTable extends Migration
             $table->string('code',64)->nullable();
             $table->text('description',256)->nullable();
             $table->unsignedInteger('country_id')->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -82,6 +86,7 @@ class CreateGarmentsCommonTable extends Migration
             $table->increments('id');
             $table->string('title',64)->nullable();
             $table->text('description',256)->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -94,6 +99,7 @@ class CreateGarmentsCommonTable extends Migration
             $table->increments('id');
             $table->string('title',64)->nullable();
             $table->text('description',256)->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();

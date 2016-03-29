@@ -8,9 +8,13 @@
 
 namespace App\Modules\Inventory\Controllers;
 
-
 use App\Http\Controllers\Controller;
 use App\ProductCategory;
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use DB;
+use Session;
+use Input;
 
 class ProductCategoryController extends Controller
 {
@@ -22,9 +26,12 @@ class ProductCategoryController extends Controller
      */
 
     public function index(){
-
-
-    }
+        $pageTitle = "Product Catagory Information";
+        $code = Input::get('code');
+        $title = Input::get('title');
+        $data = ProductCategory::where('status','!=','cancel')->where('code', 'LIKE', '%'.$code.'%')->where('title', 'LIKE', '%'.$title.'%')->orderBy('id', 'DESC')->get();
+        return view('inventory::product_catagory.index', ['data' => $data, 'pageTitle'=> $pageTitle]);
+   }
 
     public function search(){
 

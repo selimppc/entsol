@@ -21,6 +21,7 @@ class CreateInventoryTable extends Migration
             $table->string('title',64)->nullable();
             $table->string('code',8)->nullable();
             $table->text('description',256)->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -60,6 +61,7 @@ class CreateInventoryTable extends Migration
             $table->unsignedInteger('product_id')->nullable();
             $table->string('unit',8)->nullable();
             $table->unsignedInteger('qty')->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -123,6 +125,7 @@ class CreateInventoryTable extends Migration
             $table->unsignedInteger('unit_qty')->nullable();
             $table->float('purchase_rate',8,2)->nullable();
             $table->double('amount',16,2)->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -206,6 +209,7 @@ class CreateInventoryTable extends Migration
             $table->float('discount_rate',8,2)->nullable();
             $table->double('discount_amount',16,2)->nullable();
             $table->string('ILE',45)->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -280,6 +284,7 @@ class CreateInventoryTable extends Migration
             $table->string('transfer_category',64)->nullable();
             $table->string('transfer_type',64)->nullable();
             $table->string('chalan_no',45)->nullable();
+            $table->enum('status',array('active','cancel','approved'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -307,6 +312,7 @@ class CreateInventoryTable extends Migration
             $table->unsignedInteger('qty')->nullable();
             $table->float('price',8,2)->nullable();
             $table->float('transfer_value',8,2)->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -332,6 +338,7 @@ class CreateInventoryTable extends Migration
             $table->string('type',45)->nullable();
             $table->string('voucher_number',45)->nullable();
             $table->text('note',256)->nullable();
+            $table->enum('status',array('active','cancel','approved'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -354,6 +361,7 @@ class CreateInventoryTable extends Migration
             $table->dateTime('expiry_date',64)->nullable();
             $table->unsignedInteger('qty')->nullable();
             $table->text('stock_note',256)->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -379,6 +387,7 @@ class CreateInventoryTable extends Migration
             $table->string('return_no',45)->nullable();
             $table->string('challan_no',45)->nullable();
             $table->text('note',256)->nullable();
+            $table->enum('status',array('active','cancel','approved'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -405,6 +414,7 @@ class CreateInventoryTable extends Migration
             $table->float('current_stock',8,2)->nullable();
             $table->string('unit',8)->nullable();
             $table->float('avg_return_value',8,2)->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -483,6 +493,7 @@ class CreateInventoryTable extends Migration
             $table->double('prime_amount',16,2)->nullable();
             $table->float('tax_rate',8,2)->nullable();
             $table->double('tax_amount',16,2)->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
