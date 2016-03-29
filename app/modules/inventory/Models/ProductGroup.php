@@ -10,6 +10,7 @@ namespace App;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class ProductGroup extends Model
 {
@@ -24,8 +25,11 @@ class ProductGroup extends Model
 
 
 
+    //TODO :: Model Relationship...
 
-
+    public function relProductCategory(){
+        return $this->belongsTo('App\ProductCategory', 'product_category_id', 'id');
+    }
 
 
 

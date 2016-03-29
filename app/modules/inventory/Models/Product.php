@@ -10,6 +10,7 @@ namespace App;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Product extends Model
 {
@@ -31,14 +32,19 @@ class Product extends Model
         'stock_type'
     ];
 
+    //TODO :: Model Relationship...
 
+    public function relBusiness(){
+        return $this->belongsTo('App\Business', 'business_id', 'id');
+    }
 
+    public function relProductGroup(){
+        return $this->belongsTo('App\ProductGroup', 'product_group_id', 'id');
+    }
 
-
-
-
-
-
+    public function relProductCategory(){
+        return $this->belongsTo('App\ProductCategory', 'product_category_id', 'id');
+    }
 
 
     // TODO :: boot

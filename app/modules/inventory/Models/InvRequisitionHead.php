@@ -10,6 +10,7 @@ namespace App;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class InvRequisitionHead extends Model
 {
@@ -28,14 +29,23 @@ class InvRequisitionHead extends Model
     ];
 
 
+    //TODO :: Model Relationship...
 
+    public function relBusiness(){
+        return $this->belongsTo('App\Business', 'business_id', 'id');
+    }
 
+    public function relInvSupplier(){
+        return $this->belongsTo('App\Business', 'supplier_id', 'id');
+    }
 
+    public function relStore(){
+        return $this->belongsTo('App\Business', 'store_id', 'id');
+    }
 
-
-
-
-
+    public function relBuyer(){
+        return $this->belongsTo('App\Business', 'buyer_id', 'id');
+    }
 
 
     // TODO :: boot

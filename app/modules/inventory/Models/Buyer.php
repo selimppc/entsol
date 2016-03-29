@@ -10,6 +10,7 @@ namespace App;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Buyer extends Model
 {
@@ -22,13 +23,15 @@ class Buyer extends Model
         'details'
     ];
 
+    //TODO :: Model Relationship...
+
+    public function relCountry(){
+        return $this->belongsTo('App\Country', 'country_id', 'id');
+    }
 
 
 
 
-
-
-    
     // TODO :: boot
     // boot() function used to insert logged user_id at 'created_by' & 'updated_by'
 

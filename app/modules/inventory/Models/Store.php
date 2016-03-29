@@ -10,6 +10,7 @@ namespace App;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Store extends Model
 {
@@ -20,10 +21,20 @@ class Store extends Model
         'code',
         'description',
         'business_id',
+        'fax',
+        'phone',
+        'email',
+        'web',
+        'contact_person',
+        'contact_name',
     ];
 
 
+    //TODO :: Model Relationship...
 
+    public function relBusiness(){
+        return $this->belongsTo('App\Business', 'business_id', 'id');
+    }
 
 
 

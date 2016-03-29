@@ -10,6 +10,7 @@ namespace App;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Business extends Model
 {
@@ -23,6 +24,9 @@ class Business extends Model
         'fax',
         'phone',
         'email',
+        'emergency_contact_person',
+        'emergency_contact_number',
+        'is_sub_contact',
     ];
 
 
