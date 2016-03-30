@@ -123,3 +123,42 @@ Route::any('delete-yarn-composition/{id}', [
     'uses' => 'YarnCompositionController@delete'
 
 ]);
+
+/*........product_brand..........*/
+
+Route::any('product-brand', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'product-brand',
+    'uses' => 'ProductBrandController@index'
+]);
+
+Route::any('store-product-brand', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'store-product-brand',
+    'uses' => 'ProductBrandController@store'
+]);
+
+Route::any('view-product-brand/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'view-product-brand',
+    'uses' => 'ProductBrandController@show'
+]);
+
+Route::any('edit-product-brand/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'edit-product-brand',
+    'uses' => 'ProductBrandController@edit'
+]);
+
+Route::any('update-product-brand/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'update-product-brand',
+    'uses' => 'ProductBrandController@update'
+]);
+
+Route::any('delete-product-brand/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'delete-product-brand',
+    'uses' => 'ProductBrandController@delete'
+
+]);
