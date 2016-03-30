@@ -84,3 +84,42 @@ Route::any('delete-yarn-count/{id}', [
     'uses' => 'YarnCountController@delete'
 
 ]);
+
+/*........yarn_composition..........*/
+
+Route::any('yarn-composition', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'yarn-composition',
+    'uses' => 'YarnCompositionController@index'
+]);
+
+Route::any('store-yarn-composition', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'store-yarn-composition',
+    'uses' => 'YarnCompositionController@store'
+]);
+
+Route::any('view-yarn-composition/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'view-yarn-composition',
+    'uses' => 'YarnCompositionController@show'
+]);
+
+Route::any('edit-yarn-composition/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'edit-yarn-composition',
+    'uses' => 'YarnCompositionController@edit'
+]);
+
+Route::any('update-yarn-composition/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'update-yarn-composition',
+    'uses' => 'YarnCompositionController@update'
+]);
+
+Route::any('delete-yarn-composition/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'delete-yarn-composition',
+    'uses' => 'YarnCompositionController@delete'
+
+]);

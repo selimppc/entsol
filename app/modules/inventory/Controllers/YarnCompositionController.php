@@ -11,6 +11,9 @@ namespace App\Modules\Inventory\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\YarnComposition;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class YarnCompositionController extends Controller
 {
@@ -23,6 +26,10 @@ class YarnCompositionController extends Controller
 
     public function index(){
 
+        $pageTitle = "Yarn Composition";
+        $model = YarnComposition::orderBy('id', 'DESC')->paginate(30);
+
+        return view('inventory::yarn_composition.index', ['model' => $model, 'pageTitle'=> $pageTitle]);
 
     }
 
@@ -40,19 +47,22 @@ class YarnCompositionController extends Controller
     public function store(Request $request){
 
         $input = $request->all();
-
-        /* Transaction Start Here */
-        DB::beginTransaction();
-        try {
-            YarnComposition::create($input);
-            DB::commit();
-            Session::flash('message', 'Successfully added!');
-        } catch (\Exception $e) {
-            //If there are any exceptions, rollback the transaction`
-            DB::rollback();
-            Session::flash('danger', $e->getMessage());
+        $yc_exists = YarnComposition::where('title','=',$input['title'])->exists();
+        if($yc_exists){
+            Session::flash('danger',' Already Exists.');
+        }else{
+            /* Transaction Start Here */
+            DB::beginTransaction();
+            try {
+                YarnComposition::create($input);
+                DB::commit();
+                Session::flash('message', 'Successfully added!');
+            } catch (\Exception $e) {
+                //If there are any exceptions, rollback the transaction`
+                DB::rollback();
+                Session::flash('danger', $e->getMessage());
+            }
         }
-
         return redirect()->back();
     }
 
@@ -64,7 +74,10 @@ class YarnCompositionController extends Controller
      */
     public function show($id){
 
+        $pageTitle = 'View Yarn Composition Information';
+        $model = YarnComposition::findOrFail($id);
 
+        return view('inventory::yarn_composition.view', ['model' => $model, 'pageTitle'=> $pageTitle]);
     }
 
     /**
@@ -75,7 +88,9 @@ class YarnCompositionController extends Controller
      */
     public function edit($id){
 
-
+        $pageTitle = 'Update Yarn Composition Information';
+        $model = YarnComposition::findOrFail($id);
+        return view('inventory::yarn_composition.update', ['model' => $model, 'pageTitle'=> $pageTitle]);
     }
 
 
@@ -113,6 +128,19 @@ class YarnCompositionController extends Controller
      */
     public function delete($id){
 
+        $model = YarnComposition::findOrFail($id);
+
+        DB::beginTransaction();
+        try {
+            $model->delete();
+            DB::commit();
+            Session::flash('message', "Successfully Deleted.");
+
+        } catch(\Exception $e) {
+            DB::rollback();
+            Session::flash('danger',$e->getMessage());
+        }
+        return redirect()->back();
 
     }
 }

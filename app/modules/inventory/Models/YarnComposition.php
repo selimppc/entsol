@@ -18,7 +18,7 @@ class YarnComposition extends Model
 
     protected $fillable = [
         'title',
-        'value'
+        'description'
     ];
 
 
