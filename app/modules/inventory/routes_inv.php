@@ -162,3 +162,43 @@ Route::any('delete-product-brand/{id}', [
     'uses' => 'ProductBrandController@delete'
 
 ]);
+
+
+/*........yarn-type..........*/
+
+Route::any('yarn-type', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'yarn-type',
+    'uses' => 'YarnTypeController@index'
+]);
+
+Route::any('store-yarn-type', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'store-yarn-type',
+    'uses' => 'YarnTypeController@store'
+]);
+
+Route::any('view-yarn-type/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'view-yarn-type',
+    'uses' => 'YarnTypeController@show'
+]);
+
+Route::any('edit-yarn-type/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'edit-yarn-type',
+    'uses' => 'YarnTypeController@edit'
+]);
+
+Route::any('update-yarn-type/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'update-yarn-type',
+    'uses' => 'YarnTypeController@update'
+]);
+
+Route::any('delete-yarn-type/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'delete-yarn-type',
+    'uses' => 'YarnTypeController@delete'
+
+]);
