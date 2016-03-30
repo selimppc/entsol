@@ -181,9 +181,12 @@ class CreateInventoryTable extends Migration
             $table->foreign('po_hd_id')->references('id')->on('inv_purchase_order_head');
             $table->foreign('supplier_id')->references('id')->on('inv_supplier');
             $table->foreign('req_hd_id')->references('id')->on('inv_requisition_head');
-            $table->foreign('currency_id')->references('id')->on('currency');
             $table->foreign('buyer_id')->references('id')->on('buyer');
             $table->foreign('store_id')->references('id')->on('store');
+            if(Schema::hasTable('cm_currency'))
+            {
+                $table->foreign('currency_id')->references('id')->on('cm_currency');
+            }
         });
 
 
@@ -265,7 +268,10 @@ class CreateInventoryTable extends Migration
             $table->foreign('product_id')->references('id')->on('product');
             $table->foreign('store_id')->references('id')->on('store');
             $table->foreign('supplier_id')->references('id')->on('inv_supplier');
-            $table->foreign('currency_id')->references('id')->on('currency');
+            if(Schema::hasTable('cm_currency'))
+            {
+                $table->foreign('currency_id')->references('id')->on('cm_currency');
+            }
 
         });
 
@@ -346,7 +352,10 @@ class CreateInventoryTable extends Migration
         });
         Schema::table('adjustment_head', function($table) {
             $table->foreign('business_id')->references('id')->on('business');
-            $table->foreign('currency_id')->references('id')->on('currency');
+            if(Schema::hasTable('cm_currency'))
+            {
+                $table->foreign('currency_id')->references('id')->on('cm_currency');
+            }
             $table->foreign('store_id')->references('id')->on('store');
         });
 
@@ -470,7 +479,10 @@ class CreateInventoryTable extends Migration
             $table->foreign('to_store_id')->references('id')->on('store');
             $table->foreign('buyer_id')->references('id')->on('buyer');
             $table->foreign('supplier_id')->references('id')->on('inv_supplier');
-            $table->foreign('currency_id')->references('id')->on('currency');
+            if(Schema::hasTable('cm_currency'))
+            {
+                $table->foreign('currency_id')->references('id')->on('cm_currency');
+            }
         });
 
 
