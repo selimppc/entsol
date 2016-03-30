@@ -202,3 +202,43 @@ Route::any('delete-yarn-type/{id}', [
     'uses' => 'YarnTypeController@delete'
 
 ]);
+
+
+/*........yarn-color..........*/
+
+Route::any('yarn-color', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'yarn-color',
+    'uses' => 'YarnColorController@index'
+]);
+
+Route::any('store-yarn-color', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'store-yarn-color',
+    'uses' => 'YarnColorController@store'
+]);
+
+Route::any('view-yarn-color/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'view-yarn-color',
+    'uses' => 'YarnColorController@show'
+]);
+
+Route::any('edit-yarn-color/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'edit-yarn-color',
+    'uses' => 'YarnColorController@edit'
+]);
+
+Route::any('update-yarn-color/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'update-yarn-color',
+    'uses' => 'YarnColorController@update'
+]);
+
+Route::any('delete-yarn-color/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'delete-yarn-color',
+    'uses' => 'YarnColorController@delete'
+
+]);

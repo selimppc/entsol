@@ -18,7 +18,7 @@ class YarnColor extends Model
 
     protected $fillable = [
         'title',
-        'value'
+        'description'
     ];
 
 
