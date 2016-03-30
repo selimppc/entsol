@@ -10,17 +10,10 @@
                 <th class="col-lg-4">Title</th>
                 <td>{{ isset($model->title)?ucfirst($model->title):''}}</td>
             </tr>
-            <tr>
-                <th class="col-lg-4">Country</th>
-                <td>{{isset($model->relCountry->title)?ucfirst($model->relCountry->title):'' }}</td>
-            </tr>
+
             <tr>
                 <th class="col-lg-4">Description</th>
                 <td>{{ isset($model->description)?$model->description:'' }}</td>
-            </tr>
-            <tr>
-                <th class="col-lg-4">Details</th>
-                <td>{{ isset($model->details)?$model->details:'' }}</td>
             </tr>
 
         </table>

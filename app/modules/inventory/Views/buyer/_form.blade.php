@@ -1,6 +1,7 @@
 <div class="form-group form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
         {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
+        <small class="required">(Required)</small>
         {!! Form::text('title',Input::old('title'),['class' => 'form-control','placeholder'=>'Enter Buyer Title','required','autofocus', 'title'=>'Enter Buyer Title']) !!}
     </div>
 </div>

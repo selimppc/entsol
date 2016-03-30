@@ -7,8 +7,8 @@
 
 
 <div class="modal-body">
-        {!! Form::model($model, ['method' => 'PATCH', 'route'=> ['update-buyer', $model->id]]) !!}
-            @include('inventory::buyer._form')
+        {!! Form::model($model, ['method' => 'PATCH', 'route'=> ['update-yarn-count', $model->id]]) !!}
+            @include('inventory::yarn_count._form')
         {!! Form::close() !!}
 </div>
 

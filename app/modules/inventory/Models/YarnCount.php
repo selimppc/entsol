@@ -18,7 +18,7 @@ class YarnCount extends Model
 
     protected $fillable = [
         'title',
-        'value'
+        'description'
     ];
 
 

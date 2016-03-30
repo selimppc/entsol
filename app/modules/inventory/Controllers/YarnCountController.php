@@ -11,6 +11,9 @@ namespace App\Modules\Inventory\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\YarnCount;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class YarnCountController extends Controller
 {
@@ -71,7 +74,10 @@ class YarnCountController extends Controller
      */
     public function show($id){
 
+        $pageTitle = 'View Yarn Count Information';
+        $model = YarnCount::findOrFail($id);
 
+        return view('inventory::yarn_count.view', ['model' => $model, 'pageTitle'=> $pageTitle]);
     }
 
     /**
@@ -82,7 +88,9 @@ class YarnCountController extends Controller
      */
     public function edit($id){
 
-
+        $pageTitle = 'Update Yarn Count Information';
+        $model = YarnCount::findOrFail($id);
+        return view('inventory::yarn_count.update', ['model' => $model, 'pageTitle'=> $pageTitle]);
     }
 
 
@@ -120,6 +128,19 @@ class YarnCountController extends Controller
      */
     public function delete($id){
 
+        $model = YarnCount::findOrFail($id);
+
+        DB::beginTransaction();
+        try {
+            $model->delete();
+            DB::commit();
+            Session::flash('message', "Successfully Deleted.");
+
+        } catch(\Exception $e) {
+            DB::rollback();
+            Session::flash('danger',$e->getMessage());
+        }
+        return redirect()->back();
 
     }
 }
