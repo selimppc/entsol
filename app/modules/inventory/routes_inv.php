@@ -282,3 +282,42 @@ Route::any('delete-product-category/{id}', [
 
 ]);
 
+/*........product_group..........*/
+
+Route::any('product-group', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'product-group',
+    'uses' => 'ProductGroupController@index'
+]);
+
+Route::any('store-product-group', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'store-product-group',
+    'uses' => 'ProductGroupController@store'
+]);
+
+Route::any('view-product-group/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'view-product-group',
+    'uses' => 'ProductGroupController@show'
+]);
+
+Route::any('edit-product-group/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'edit-product-group',
+    'uses' => 'ProductGroupController@edit'
+]);
+
+Route::any('update-product-group/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'update-product-group',
+    'uses' => 'ProductGroupController@update'
+]);
+
+Route::any('delete-product-group/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'delete-product-group',
+    'uses' => 'ProductGroupController@delete'
+
+]);
+
