@@ -107,7 +107,7 @@ class CreateCommonTable extends Migration
             $table->text('description',256)->nullable();
             $table->text('address',256)->nullable();
             $table->string('phone',8)->nullable();
-            $table->string('email',8)->nullable();
+            $table->string('email',64)->nullable();
             $table->string('fax',25)->nullable();
             $table->string('web',8)->nullable();
             $table->string('contact_person',64)->nullable();

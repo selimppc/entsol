@@ -402,3 +402,44 @@ Route::any('delete-business/{id}', [
 
 
 
+/*........inv-store..........*/
+
+Route::any('inv-store', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'inv-store',
+    'uses' => 'StoreController@index'
+]);
+
+Route::any('add-inv-store', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'add-inv-store',
+    'uses' => 'StoreController@store'
+]);
+
+Route::any('view-inv-store/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'view-inv-store',
+    'uses' => 'StoreController@show'
+]);
+
+Route::any('edit-inv-store/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'edit-inv-store',
+    'uses' => 'StoreController@edit'
+]);
+
+Route::any('update-inv-store/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'update-inv-store',
+    'uses' => 'StoreController@update'
+]);
+
+Route::any('delete-inv-store/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'delete-inv-store',
+    'uses' => 'StoreController@delete'
+
+]);
+
+
+
