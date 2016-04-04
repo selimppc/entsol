@@ -321,3 +321,43 @@ Route::any('delete-product-group/{id}', [
 
 ]);
 
+
+/*........inv-supplier..........*/
+
+Route::any('inv-supplier', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'inv-supplier',
+    'uses' => 'InvSupplierController@index'
+]);
+
+Route::any('store-inv-supplier', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'store-inv-supplier',
+    'uses' => 'InvSupplierController@store'
+]);
+
+Route::any('view-inv-supplier/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'view-inv-supplier',
+    'uses' => 'InvSupplierController@show'
+]);
+
+Route::any('edit-inv-supplier/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'edit-inv-supplier',
+    'uses' => 'InvSupplierController@edit'
+]);
+
+Route::any('update-inv-supplier/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'update-inv-supplier',
+    'uses' => 'InvSupplierController@update'
+]);
+
+Route::any('delete-inv-supplier/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'delete-inv-supplier',
+    'uses' => 'InvSupplierController@delete'
+
+]);
+
