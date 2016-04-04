@@ -442,4 +442,44 @@ Route::any('delete-inv-store/{id}', [
 ]);
 
 
+/*........  product  ..........*/
+
+Route::any('product', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'product',
+    'uses' => 'ProductController@index'
+]);
+
+Route::any('store-product', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'store-product',
+    'uses' => 'ProductController@store'
+]);
+
+Route::any('view-product/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'view-product',
+    'uses' => 'ProductController@show'
+]);
+
+Route::any('edit-product/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'edit-product',
+    'uses' => 'ProductController@edit'
+]);
+
+Route::any('update-product/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'update-product',
+    'uses' => 'ProductController@update'
+]);
+
+Route::any('delete-product/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'delete-product',
+    'uses' => 'ProductController@delete'
+
+]);
+
+
 
