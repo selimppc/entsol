@@ -26,11 +26,11 @@ class ProductCategoryController extends Controller
      */
 
     public function index(){
+
         $pageTitle = "Product Catagory Information";
-        $code = Input::get('code');
-        $title = Input::get('title');
-        $data = ProductCategory::where('status','!=','cancel')->where('code', 'LIKE', '%'.$code.'%')->where('title', 'LIKE', '%'.$title.'%')->orderBy('id', 'DESC')->get();
-        return view('inventory::product_catagory.index', ['data' => $data, 'pageTitle'=> $pageTitle]);
+        $data = ProductCategory::orderBy('id', 'DESC')->paginate(30);
+
+        return view('inventory::product_category.index', ['data' => $data, 'pageTitle'=> $pageTitle]);
    }
 
     public function search(){
@@ -47,19 +47,22 @@ class ProductCategoryController extends Controller
     public function store(Request $request){
 
         $input = $request->all();
-
-        /* Transaction Start Here */
-        DB::beginTransaction();
-        try {
-            ProductCategory::create($input);
-            DB::commit();
-            Session::flash('message', 'Successfully added!');
-        } catch (\Exception $e) {
-            //If there are any exceptions, rollback the transaction`
-            DB::rollback();
-            Session::flash('danger', $e->getMessage());
+        $pc_exists = ProductCategory::where('title','=',$input['title'])->where('code','=',$input['code'])->exists();
+        if($pc_exists){
+            Session::flash('danger',' Already Exists.');
+        }else{
+            /* Transaction Start Here */
+            DB::beginTransaction();
+            try {
+                ProductCategory::create($input);
+                DB::commit();
+                Session::flash('message', 'Successfully added!');
+            } catch (\Exception $e) {
+                //If there are any exceptions, rollback the transaction`
+                DB::rollback();
+                Session::flash('danger', $e->getMessage());
+            }
         }
-
         return redirect()->back();
     }
 
@@ -71,7 +74,10 @@ class ProductCategoryController extends Controller
      */
     public function show($id){
 
+        $pageTitle = 'View Product Category Information';
+        $model = ProductCategory::findOrFail($id);
 
+        return view('inventory::product_category.view', ['model' => $model, 'pageTitle'=> $pageTitle]);
     }
 
     /**
@@ -82,7 +88,9 @@ class ProductCategoryController extends Controller
      */
     public function edit($id){
 
-
+        $pageTitle = 'Update Product Category Information';
+        $model = ProductCategory::findOrFail($id);
+        return view('inventory::product_category.update', ['model' => $model, 'pageTitle'=> $pageTitle]);
     }
 
 
@@ -120,6 +128,19 @@ class ProductCategoryController extends Controller
      */
     public function delete($id){
 
+        $model = ProductCategory::findOrFail($id);
+
+        DB::beginTransaction();
+        try {
+            $model->delete();
+            DB::commit();
+            Session::flash('message', "Successfully Deleted.");
+
+        } catch(\Exception $e) {
+            DB::rollback();
+            Session::flash('danger',$e->getMessage());
+        }
+        return redirect()->back();
 
     }
 }

@@ -18,7 +18,7 @@
 
             <div class="panel-body">
                 {{-------------- Filter :Starts -------------------------------------------}}
-                {!! Form::open(['method' =>'GET','route'=>'product-catagory']) !!}
+                {!! Form::open(['method' =>'GET','route'=>'product-category']) !!}
                 {{--{!! Form::open(['route' => 'group-one']) !!}--}}
 
                 <div id="index-search">
@@ -43,9 +43,8 @@
                     <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
                         <thead>
                         <tr>
+                            <th> Title &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="Product Category full name">(?)</span></th>
                             <th> Code </th>
-                            <th> Title &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="Product Catagory full name">(?)</span></th>
-                            <th> Status &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="you can change status from update page">(?)</span></th>
                             <th> Action &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="view : click for details informations<br>update : click for update informations<br>delete : click for delete informations">(?)</span></th>
                         </tr>
                         </thead>
@@ -53,14 +52,13 @@
                         @if(isset($data))
                             @foreach($data as $values)
                                 <tr class="gradeX">
-                                    <td>{{$values->code}}</td>
                                     <td>{{$values->title}}</td>
-                                    <td>{{ucfirst($values->status)}}</td>
-                                    {{--<td>
-                                        <a href="{{ route('view-group-one', $values->id) }}" class="btn btn-info btn-xs" data-placement="top" data-toggle="modal" data-target="#etsbModal" data-content="view"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('edit-group-one', $values->id) }}" class="btn btn-primary btn-xs" data-placement="top" data-toggle="modal" data-target="#etsbModal" data-content="update"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('delete-group-one', $values->id) }}" class="btn btn-danger btn-xs" data-placement="top" onclick="return confirm('Are you sure to Delete?')" data-content="delete"><i class="fa fa-trash-o"></i></a>
-                                    </td>--}}
+                                    <td>{{$values->code}}</td>
+                                    <td>
+                                        <a href="{{ route('view-product-category', $values->id) }}" class="btn btn-info btn-xs" data-placement="top" data-toggle="modal" data-target="#etsbModal" data-content="view"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('edit-product-category', $values->id) }}" class="btn btn-primary btn-xs" data-placement="top" data-toggle="modal" data-target="#etsbModal" data-content="update"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('delete-product-category', $values->id) }}" class="btn btn-danger btn-xs" data-placement="top" onclick="return confirm('Are you sure to Delete?')" data-content="delete"><i class="fa fa-trash-o"></i></a>
+                                    </td>
                                 </tr>
                             @endforeach
                         @endif
@@ -80,11 +78,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
-                <h4 class="modal-title" id="myModalLabel">{{ $pageTitle }} <span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
+                <h4 class="modal-title" id="myModalLabel">Add {{ $pageTitle }} <span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['route' => 'store-product-catagory','class' => 'form-horizontal','id' => 'jq-validation-form']) !!}
-                @include('inventory::product_catagory._form')
+                {!! Form::open(['route' => 'store-product-category','class' => 'form-horizontal','id' => 'jq-validation-form']) !!}
+                @include('inventory::product_category._form')
                 {!! Form::close() !!}
             </div> <!-- / .modal-body -->
         </div> <!-- / .modal-content -->

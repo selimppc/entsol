@@ -242,3 +242,43 @@ Route::any('delete-yarn-color/{id}', [
     'uses' => 'YarnColorController@delete'
 
 ]);
+
+/*........product_category..........*/
+
+Route::any('product-category', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'product-category',
+    'uses' => 'ProductCategoryController@index'
+]);
+
+Route::any('store-product-category', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'store-product-category',
+    'uses' => 'ProductCategoryController@store'
+]);
+
+Route::any('view-product-category/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'view-product-category',
+    'uses' => 'ProductCategoryController@show'
+]);
+
+Route::any('edit-product-category/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'edit-product-category',
+    'uses' => 'ProductCategoryController@edit'
+]);
+
+Route::any('update-product-category/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'update-product-category',
+    'uses' => 'ProductCategoryController@update'
+]);
+
+Route::any('delete-product-category/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'delete-product-category',
+    'uses' => 'ProductCategoryController@delete'
+
+]);
+
