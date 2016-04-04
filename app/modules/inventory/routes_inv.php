@@ -361,3 +361,44 @@ Route::any('delete-inv-supplier/{id}', [
 
 ]);
 
+/*........business..........*/
+
+Route::any('business', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'business',
+    'uses' => 'BusinessController@index'
+]);
+
+Route::any('store-business', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'store-business',
+    'uses' => 'BusinessController@store'
+]);
+
+Route::any('view-business/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'view-business',
+    'uses' => 'BusinessController@show'
+]);
+
+Route::any('edit-business/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'edit-business',
+    'uses' => 'BusinessController@edit'
+]);
+
+Route::any('update-business/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'update-business',
+    'uses' => 'BusinessController@update'
+]);
+
+Route::any('delete-business/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'delete-business',
+    'uses' => 'BusinessController@delete'
+
+]);
+
+
+

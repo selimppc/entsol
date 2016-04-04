@@ -8,19 +8,49 @@
         <table id="" class="table table-bordered table-hover table-striped">
             <tr>
                 <th class="col-lg-4">Title</th>
-                <td>{{ isset($model->title)?ucfirst($model->title):''}}</td>
-            </tr>
-            <tr>
-                <th class="col-lg-4">Country</th>
-                <td>{{isset($model->relCountry->title)?ucfirst($model->relCountry->title):'' }}</td>
+                <td>{{ isset($model->title)?$model->title:''}}</td>
             </tr>
             <tr>
                 <th class="col-lg-4">Description</th>
-                <td>{{ isset($model->description)?$model->description:'' }}</td>
+                <td>{{ isset($model->description)?$model->description:''}}</td>
             </tr>
             <tr>
-                <th class="col-lg-4">Details</th>
-                <td>{{ isset($model->details)?$model->details:'' }}</td>
+                <th class="col-lg-4">Address</th>
+                <td>{{isset($model->address)?$model->address:'' }}</td>
+            </tr>
+            <tr>
+                <th class="col-lg-4">Contact Person</th>
+                <td>{{ isset($model->contact_person)?$model->contact_person:'' }}</td>
+            </tr>
+            <tr>
+                <th class="col-lg-4">Email</th>
+                <td>{{ isset($model->email)?$model->email:'' }}</td>
+            </tr>
+            <tr>
+                <th class="col-lg-4">Phone</th>
+                <td>{{ isset($model->phone)?$model->phone:'' }}</td>
+            </tr>
+            <tr>
+                <th class="col-lg-4">Fax</th>
+                <td>{{ isset($model->fax)?$model->fax:'' }}</td>
+            </tr>
+            <tr>
+                <th class="col-lg-4">Emergency Contact Person</th>
+                <td>{{ isset($model->emergency_contact_person)?$model->emergency_contact_person:'' }}</td>
+            </tr>
+            <tr>
+                <th class="col-lg-4">Emergency Contact Number</th>
+                <td>{{ isset($model->emergency_contact_number)?$model->emergency_contact_number:'' }}</td>
+            </tr>
+
+
+            <tr>
+                <th class="col-lg-4">Is Sub Contact ?</th>
+                <td>
+                    @if(isset($model->is_sub_contact))
+                        {{ $model['is_sub_contact']==1 ? 'Yes' : 'No'}}
+                    @endif
+                </td>
             </tr>
 
         </table>

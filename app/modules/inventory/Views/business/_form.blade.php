@@ -21,7 +21,8 @@
     <div class="row">
         <div class="col-sm-12">
             {!! Form::label('address', 'Address:', ['class' => 'control-label']) !!}
-            {!! Form::textarea('address', Input::old('address'), ['id'=>'description', 'class' => 'form-control','size' => '12x3','title'=>'Address']) !!}
+            <small class="required">(Required)</small>
+            {!! Form::textarea('address', Input::old('address'), ['id'=>'description', 'class' => 'form-control','size' => '12x3','title'=>'Address','required']) !!}
         </div>
     </div>
 </div>
@@ -35,6 +36,7 @@
        </div>
         <div class="col-sm-6">
             {!! Form::label('phone', 'Phone:', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
             {!! Form::text('phone',Input::old('phone'),['class' => 'form-control','placeholder'=>'Enter phone','required','autofocus', 'title'=>'Enter phone']) !!}
         </div>
     </div>
@@ -44,7 +46,7 @@
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('fax', 'Fax:', ['class' => 'control-label']) !!}
-            {!! Form::text('fax',Input::old('fax'),['class' => 'form-control','placeholder'=>'Enter Fax','required','autofocus', 'title'=>'Enter Fax']) !!}
+            {!! Form::text('fax',Input::old('fax'),['class' => 'form-control','placeholder'=>'Enter Fax','autofocus', 'title'=>'Enter Fax']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('email', 'Email Address:', ['class' => 'control-label']) !!}
@@ -54,8 +56,44 @@
     </div>
 </div>
 
+<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+    <div class="row">
+        <div class="col-sm-6">
+            {!! Form::label('emergency_contact_person', 'Emergency Contact Person:', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
+            {!! Form::text('emergency_contact_person',Input::old('emergency_contact_person'),['class' => 'form-control','placeholder'=>'Enter Emergency Contact Person','required','autofocus', 'title'=>'Enter Emergency Contact Person']) !!}
+        </div>
+        <div class="col-sm-6">
+            {!! Form::label('emergency_contact_number', 'Emergency Contact Number:', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
+            {!! Form::text('emergency_contact_number',Input::old('emergency_contact_number'),['class' => 'form-control','placeholder'=>'Emergency Contact Number','required', 'title'=>'Enter Emergency Contact Number']) !!}
+        </div>
+    </div>
+</div>
+
+<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+    <div class="row">
+
+        <div class="col-sm-6">
+            {!! Form::label('is_sub_contact', 'Is Sub Contact ?', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
+            <div class="form-inline">
+
+                <div class="radio">
+                    {!! Form::radio('is_sub_contact', '1', (Input::old('is_sub_contact') == '1'), array('id'=>'1', 'class'=>'radio','required','title'=>'Select (Yes/No)')) !!}
+                    {!! Form::label('is_sub_contact', 'Yes') !!}
+                </div>
+                <div class="radio">
+                    {!! Form::radio('is_sub_contact', '0', (Input::old('is_sub_contact') == '0'), array('id'=>'0', 'class'=>'radio','title'=>'Select (Yes/No)')) !!}
+                    {!!Form::label('is_sub_contact', 'No')  !!}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="form-margin-btn">
     {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save information']) !!}&nbsp;
-    <a href="{{route('buyer')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
+    <a href="{{route('business')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
 </div>
 

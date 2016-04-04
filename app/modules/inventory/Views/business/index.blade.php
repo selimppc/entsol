@@ -10,9 +10,9 @@
     <div class="col-sm-12">
         <div class="panel">
             <div class="panel-heading">
-                <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>all buyer define from this page">(?)</span>
-                <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="top" data-content="click 'add buyer' button for new buyer entry">
-                    <strong>Add Buyer</strong>
+                <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>all business define from this page">(?)</span>
+                <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="top" data-content="click 'add business' button for new business entry">
+                    <strong>Add Business</strong>
                 </a>
             </div>
 
@@ -38,9 +38,13 @@
                     <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
                         <thead>
                         <tr>
-                            <th class="col-lg-4"> Title </th>
-                            <th class="col-sm-4"> Country</th>
-                            <th> Action &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="view : click for details informations<br>update : click for update informations<br>delete : click for delete informations">(?)</span></th>
+                            <th> Title </th>
+                            <th> Address</th>
+                            <th class="col-lg-2"> Contact Person</th>
+                            <th class="col-lg-2"> Email </th>
+                            <th class="col-lg-1"> Phone</th>
+                            <th> Fax</th>
+                            <th class="col-lg-2"> Action &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="view : click for details informations<br>update : click for update informations<br>delete : click for delete informations">(?)</span></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -48,11 +52,15 @@
                             @foreach($model as $values)
                                 <tr class="gradeX">
                                     <td>{{ucfirst($values->title)}}</td>
-                                    <td>{{isset($values->relCountry->title)?ucfirst($values->relCountry->title):''}}</td>
+                                    <td>{{ucfirst($values->address)}}</td>
+                                    <td>{{ucfirst($values->contact_person)}}</td>
+                                    <td>{{ucfirst($values->email)}}</td>
+                                    <td>{{ucfirst($values->phone)}}</td>
+                                    <td>{{ucfirst($values->fax)}}</td>
                                     <td>
-                                        <a href="{{ route('view-buyer', $values->id) }}" class="btn btn-info btn-xs" data-placement="top" data-toggle="modal" data-target="#etsbModal" data-content="view"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('edit-buyer', $values->id) }}" class="btn btn-primary btn-xs" data-placement="top" data-toggle="modal" data-target="#etsbModal" data-content="update"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('delete-buyer', $values->id) }}" class="btn btn-danger btn-xs" data-placement="top" onclick="return confirm('Are you sure to Delete?')" data-content="delete"><i class="fa fa-trash-o"></i></a>
+                                        <a href="{{ route('view-business', $values->id) }}" class="btn btn-info btn-xs" data-placement="top" data-toggle="modal" data-target="#etsbModal" data-content="view"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('edit-business', $values->id) }}" class="btn btn-primary btn-xs" data-placement="top" data-toggle="modal" data-target="#etsbModal" data-content="update"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('delete-business', $values->id) }}" class="btn btn-danger btn-xs" data-placement="top" onclick="return confirm('Are you sure to Delete?')" data-content="delete"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -74,11 +82,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
-                <h4 class="modal-title" id="myModalLabel">Add Buyer Informations<span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
+                <h4 class="modal-title" id="myModalLabel">Add Business Informations<span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['route' => 'store-buyer','class' => 'form-horizontal','id' => 'jq-validation-form']) !!}
-                @include('inventory::buyer._form')
+                {!! Form::open(['route' => 'store-business','class' => 'form-horizontal','id' => 'jq-validation-form']) !!}
+                @include('inventory::business._form')
                 {!! Form::close() !!}
             </div> <!-- / .modal-body -->
         </div> <!-- / .modal-content -->
