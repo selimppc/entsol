@@ -102,7 +102,7 @@
 
             <div class="modal-footer">
                 {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save journal voucher information']) !!}&nbsp;
-                <a href="{{route('voucher-head')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
+                <a href="{{route('requisition-head')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
             </div>
 
             {!! Form::close() !!}
