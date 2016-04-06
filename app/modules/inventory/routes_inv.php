@@ -481,5 +481,51 @@ Route::any('delete-product/{id}', [
 
 ]);
 
+//inv_requisition_head.....
+
+Route::any('requisition-head', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'requisition-head',
+    'uses' => 'InvRequisitionHeadController@index'
+]);
+
+Route::any('create-requisition-head', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'create-requisition-head',
+    'uses' => 'InvRequisitionHeadController@create_requisition_head'
+]);
+
+Route::any('store-requisition-head', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'store-requisition-head',
+    'uses' => 'InvRequisitionHeadController@store'
+]);
+
+Route::any('view-requisition-head/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'view-requisition-head',
+    'uses' => 'InvRequisitionHeadController@show'
+]);
+
+Route::any('edit-requisition-head/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'edit-requisition-head',
+    'uses' => 'InvRequisitionHeadController@edit'
+]);
+
+Route::any('update-requisition-head/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'update-requisition-head',
+    'uses' => 'InvRequisitionHeadController@update'
+]);
+
+Route::any('delete-requisition-head/{id}', [
+    //'middleware' => 'acl_access:user/add-user',
+    'as' => 'delete-requisition-head',
+    'uses' => 'InvRequisitionHeadController@delete'
+]);
+
+
+
 
 

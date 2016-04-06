@@ -9,8 +9,13 @@
 namespace App\Modules\Inventory\Controllers;
 
 
+use App\Business;
+use App\Buyer;
 use App\Http\Controllers\Controller;
 use App\InvRequisitionHead;
+use App\InvSupplier;
+use App\Product;
+use App\Store;
 
 class InvRequisitionHeadController extends Controller
 {
@@ -23,9 +28,42 @@ class InvRequisitionHeadController extends Controller
 
     public function index(){
 
+        $pageTitle = "Requisition Information";
+        $model = InvRequisitionHead::orderBy('id', 'DESC')->paginate(30);
 
+        $business = array('' => 'Please Select Business') + Business::lists('title', 'id')->all();
+        $supplier = array('' => 'Please Select Supplier') + InvSupplier::lists('title', 'id')->all();
+        $store = array('' => 'Please Select Store') + Store::lists('title', 'id')->all();
+        $buyer = array('' => 'Please Select Buyer') + Buyer::lists('title', 'id')->all();
+        $product = array('' => 'Please Select Product') + Product::lists('title', 'id')->all();
+
+        return view('inventory::inv_requisition_head.index', [
+            'model' => $model,
+            'pageTitle'=> $pageTitle,
+            'business'=>$business,
+            'supplier'=>$supplier,
+            'store'=>$store,
+            'buyer'=>$buyer,
+            'product'=>$product
+        ]);
     }
 
+    public function create_requisition_head(){
+
+        $business = array('' => 'Please Select Business') + Business::lists('title', 'id')->all();
+        $supplier = array('' => 'Please Select Supplier') + InvSupplier::lists('title', 'id')->all();
+        $store = array('' => 'Please Select Store') + Store::lists('title', 'id')->all();
+        $buyer = array('' => 'Please Select Buyer') + Buyer::lists('title', 'id')->all();
+        $product = array('' => 'Please Select Product') + Product::lists('title', 'id')->all();
+
+        return view('inventory::inv_requisition_head._form',[
+            'business'=>$business,
+            'supplier'=>$supplier,
+            'store'=>$store,
+            'buyer'=>$buyer,
+            'product'=>$product
+        ]);
+    }
     public function search(){
 
     }
