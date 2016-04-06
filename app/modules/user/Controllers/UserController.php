@@ -904,7 +904,7 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    public function image_upload($image,$file_type_required,$destinationPath){
+    public static function image_upload($image,$file_type_required,$destinationPath){
 
         if ($image != '') {
             $img_name = ($_FILES['image']['name']);

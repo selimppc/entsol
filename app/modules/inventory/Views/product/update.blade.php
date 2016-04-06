@@ -7,7 +7,7 @@
 
 
 <div class="modal-body">
-    {!! Form::model($model, ['method' => 'PATCH', 'route'=> ['update-product', $model->id,'files'=>'true']]) !!}
+    {!! Form::model($model, ['method' => 'PATCH', 'route'=> ['update-product', $model->id],'files'=>'true']) !!}
     @include('inventory::product._form')
     {!! Form::close() !!}
 </div>

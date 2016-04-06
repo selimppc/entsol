@@ -69,7 +69,7 @@ class ProductController extends Controller
         }else{
 
 
-print_r($image);exit;
+//print_r($image);exit;
             if(count($image)>0){
 
                 $file_type_required = 'png,jpeg,jpg';
@@ -99,8 +99,6 @@ print_r($image);exit;
                     return redirect()->back();
                 }
             }
-
-
             /* Transaction Start Here */
             DB::beginTransaction();
             try {
@@ -164,7 +162,39 @@ print_r($image);exit;
     public function update(Request $request,$id){
 
         $input = $request->all();
+        $image = Input::file('image');
+
         $model = Product::findOrFail($id);
+
+        if(count($image)>0){
+
+            $file_type_required = 'png,jpeg,jpg';
+            $destinationPath = 'uploads/product_images/';
+
+            $uploadfolder = 'uploads/';
+
+            if ( !file_exists($uploadfolder) ) {
+                $oldmask = umask(0);  // helpful when used in linux server
+                mkdir ($uploadfolder, 0777);
+            }
+
+            if ( !file_exists($destinationPath) ) {
+                $oldmask = umask(0);  // helpful when used in linux server
+                mkdir ($destinationPath, 0777);
+            }
+
+            $file_name = UserController::image_upload($image,$file_type_required,$destinationPath);
+            #print_r($file_name);exit;
+            if($file_name != '') {
+//                unlink($model->image);
+//                unlink($model->thumbnail);
+                $input['image'] = $file_name[0];
+            }
+            else{
+                Session::flash('error', 'Some thing error in image file type! Please Try again');
+                return redirect()->back();
+            }
+        }
 
         DB::beginTransaction();
         try {

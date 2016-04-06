@@ -38,9 +38,9 @@
                     <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
                         <thead>
                         <tr>
-                            <th> Business </th>
-                            <th> Title </th>
                             <th> Code </th>
+                            <th> Title </th>
+                            <th> Business </th>
                             <th> Product Group</th>
                             <th> Product Category</th>
                             <th> Cost Price</th>
@@ -52,9 +52,10 @@
                         @if(isset($model))
                             @foreach($model as $values)
                                 <tr class="gradeX">
-                                    <td>{{isset($values->relBusiness->title)?ucfirst($values->relBusiness->title):''}}</td>
+                                    <td><a href="{{ route('view-product', $values->id) }}" class="" data-placement="top" data-toggle="modal" data-target="#etsbModal" data-content="view">{{ucfirst($values->code)}}</a>
                                     <td>{{ucfirst($values->title)}}</td>
-                                    <td>{{ucfirst($values->code)}}</td>
+                                    <td>{{isset($values->relBusiness->title)?ucfirst($values->relBusiness->title):''}}</td>
+                                    </td>
                                     <td>{{isset($values->relProductGroup->title)?ucfirst($values->relProductGroup->title):''}}</td>
                                     <td>{{isset($values->relProductCategory->title)?ucfirst($values->relProductCategory->title):''}}</td>
                                     <td>{{$values->cost_price}}</td>

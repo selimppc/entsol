@@ -8,7 +8,7 @@
         <table id="" class="table table-bordered table-hover table-striped">
             <tr>
                 <th class="col-lg-4">Title</th>
-                <td>{{ isset($model->title)?$model->title:''}}</td>
+                <td>{{ isset($model->title)?ucfirst($model->title):''}}</td>
             </tr>
 
             <tr>
@@ -73,9 +73,9 @@
                 <th>Product Image</th>
                 <td>
                     @if(isset($model->image))
-                        <img src="{{ URL::to($model->image) }}">
+                        <img src="{{ URL::to($model->image) }}" width="100px" height="100px">
                     @else
-                        <img src="{{ URL::to('/assets/img/default.jpg') }}" width="80px" height="80px">
+                        <img src="{{ URL::to('/assets/img/default.jpg') }}" width="100px" height="100px">
                     @endif
                 </td>
             </tr>
