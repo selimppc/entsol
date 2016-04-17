@@ -35,7 +35,7 @@
 </div>
 
 <div class="modal-footer">
-    <a href="{{ URL::previous()}}" class="btn btn-default" type="button" data-placement="top" data-content="click close button for close this entry form"> Close </a>
+    <a href="{{ URL::previous()}}" class="btn btn-default" onclick="updateURL();" id="abc" type="button" data-placement="top" data-content="click close button for close this entry form"> Close </a>
 </div>
 
 <script>
@@ -54,6 +54,36 @@
                     }
                 }, 300);
             });
+
+
+    /*function ChangeUrl(page, url) {
+        if (typeof (history.pushState) != "undefined") {
+            var obj = { Page: page, Url: url };
+            history.pushState(obj, obj.Page, obj.Url);
+        } else {
+            alert("Browser does not support HTML5.");
+        }
+    }
+    $(function () {
+        $("#abc").click(function () {
+            ChangeUrl('Page1', '{{ URL::previous()}}');
+        });
+
+    });*/
+
+    /*function updateURL()
+    {
+        if (history.pushState) {
+            var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?para=hello';
+            alert(newurl);
+            window.history.pushState({path:newurl},'',newurl);
+        }
+    }*/
+
+
+
+
+
 </script>
 
 
