@@ -31,12 +31,12 @@
         var state = document.readyState;
         //alert(state);
         if (state == 'interactive') {
-            document.getElementById('abc').style.visibility="hidden";
+            document.getElementById('abc1').style.visibility="hidden";
         } else if (state == 'complete') {
             setTimeout(function(){
                 document.getElementById('interactive');
                 document.getElementById('load').style.visibility="hidden";
-                document.getElementById('abc').style.visibility="visible";
+                document.getElementById('abc1').style.visibility="visible";
             },1000);
         }
     }
