@@ -111,7 +111,7 @@
             $("#addData").modal('show');
         });
 
-        function open_modal(){
+        function open_modal(){alert("ok");
             document.getElementById('load').style.visibility="visible";
         }
     </script>
