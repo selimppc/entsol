@@ -35,7 +35,7 @@
 </div>
 
 <div class="modal-footer">
-    <a href="{{ URL::previous()}}" class="btn btn-default" onclick="updateURL();" id="abc" type="button" data-placement="top" data-content="click close button for close this entry form"> Close </a>
+    <a href="{{ URL::previous()}}" class="btn btn-default" id="abc" type="button" data-placement="top" data-content="click close button for close this entry form"> Close </a>
 </div>
 
 <script>
@@ -56,10 +56,13 @@
             });
 
 
-    /*function ChangeUrl(page, url) {
+   function ChangeUrl(page,url) {
         if (typeof (history.pushState) != "undefined") {
             var obj = { Page: page, Url: url };
-            history.pushState(obj, obj.Page, obj.Url);
+            //history.pushState(obj, obj.Page, obj.Url);
+            //window.history.pushState(obj, obj.Page, obj.Url);
+            //window.history.replaceState(obj, obj.Page, obj.Url);
+            //window.location.href = url;
         } else {
             alert("Browser does not support HTML5.");
         }
@@ -69,19 +72,27 @@
             ChangeUrl('Page1', '{{ URL::previous()}}');
         });
 
-    });*/
+    });
 
     /*function updateURL()
     {
         if (history.pushState) {
             var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?para=hello';
-            alert(newurl);
-            window.history.pushState({path:newurl},'',newurl);
+            //alert(newurl);
+            window.history.pushState('{{ URL::previous()}}','',newurl);
         }
     }*/
 
-
-
+    /*$('document').ready(function()
+    {
+        $('#abc').ajaxForm( {
+            target: '#preview',
+            success: function() {alert("123");
+                $('#formbox').slideUp('fast');
+            }
+        });
+    });
+*/
 
 
 </script>

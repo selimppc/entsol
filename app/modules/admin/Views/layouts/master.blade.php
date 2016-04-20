@@ -29,12 +29,12 @@
     document.onreadystatechange = function () {
         var state = document.readyState
         if (state == 'interactive') {
-            document.getElementById('contents').style.visibility="hidden";
+            document.getElementById('abc').style.visibility="hidden";
         } else if (state == 'complete') {
             setTimeout(function(){
                 document.getElementById('interactive');
                 document.getElementById('load').style.visibility="hidden";
-                /*document.getElementById('contents').style.visibility="visible";*/
+                document.getElementById('abc').style.visibility="visible";
             },1000);
         }
     }
@@ -90,11 +90,8 @@
             @if ($errors->has('token_error'))
                 <div class="alert alert-warning"> {{ $errors->first('token_error') }} </div>
             @endif
-
-            <div>
-
-                <div id="load"></div>
-
+            <div id="load"></div>
+            <div id="abc">
                 @yield('content')
             </div>
         </div>
