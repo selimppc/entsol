@@ -11,7 +11,7 @@
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>These currency informations are used in <b>Branch and journal voucher details page</b>.</em>">(?)</span>
-                <a class="btn btn-primary btn-xs pull-right" data-toggle="modal" href="#addData" data-placement="left" data-content="click add currency button for new currency entry">
+                <a class="btn btn-primary btn-xs pull-right" data-toggle="modal" href="#addData" data-placement="left" data-content="click add currency button for new currency entry" onclick="open_modal();">
                     <strong>Add Currency</strong>
                 </a>
             </div>
@@ -55,9 +55,9 @@
                                     <td>{{$values->exchange_rate}}</td>
                                     <td>{{ucfirst($values->	status)}}</td>
                                     <td>
-                                        <a href="{{ route('view-currency', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="view"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('edit-currency', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="update"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('delete-currency', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" data-placement="top" data-content="delete"><i class="fa fa-trash-o"></i></a>
+                                        <a href="{{ route('view-currency', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="view" onclick="open_modal();"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('edit-currency', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="update" onclick="open_modal();"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('delete-currency', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" data-placement="top" data-content="delete" onclick="open_modal();"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -110,6 +110,10 @@
         $(function(){
             $("#addData").modal('show');
         });
+
+        function open_modal(){
+            document.getElementById('load').style.visibility="visible";
+        }
     </script>
 @endif
 
