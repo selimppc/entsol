@@ -11,7 +11,7 @@
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>These currency informations are used in <b>Branch and journal voucher details page</b>.</em>">(?)</span>
-                <a class="btn btn-primary btn-xs pull-right" data-toggle="modal" href="#addData" data-placement="left" data-content="click add currency button for new currency entry" onclick="open_modal();">
+                <a class="btn btn-primary btn-xs pull-right" data-toggle="modal" href="#addData" data-placement="left" data-content="click add currency button for new currency entry">
                     <strong>Add Currency</strong>
                 </a>
             </div>
@@ -106,6 +106,7 @@
     function open_modal(){
         document.getElementById('load').style.visibility="visible";
     }
+
 </script>
 
 <!--script for this page only-->

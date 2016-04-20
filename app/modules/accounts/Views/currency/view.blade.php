@@ -3,7 +3,7 @@
 
 
 <div class="modal-header">
-    <a href="{{ URL::previous() }}" class="close" type="button" title="click x button for close this entry form"> × </a>
+    <a href="{{ URL::previous() }}" class="close" type="button" title="click x button for close this entry form" onclick="close_modal();"> × </a>
     <h4 class="modal-title" id="myModalLabel">{{$pageTitle}}</h4>
 </div>
 
