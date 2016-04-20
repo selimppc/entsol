@@ -32,6 +32,7 @@
         //alert(state);
         if (state == 'interactive') {
             document.getElementById('abc1').style.visibility="hidden";
+            document.getElementById('load').style.visibility="visible";
         } else if (state == 'complete') {
             setTimeout(function(){
                 document.getElementById('interactive');
@@ -94,7 +95,9 @@
             @if ($errors->has('token_error'))
                 <div class="alert alert-warning"> {{ $errors->first('token_error') }} </div>
             @endif
+
             <div id="load"></div>
+
             <div id="abc">
                 @yield('content')
             </div>

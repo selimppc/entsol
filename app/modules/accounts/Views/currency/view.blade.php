@@ -58,6 +58,7 @@
 
     function close_modal(){
         document.getElementById('etsbModal').style.visibility="hidden";
+        document.getElementById('load').style.visibility="visible";
     }
 </script>
 
