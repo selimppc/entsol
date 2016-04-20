@@ -27,7 +27,9 @@
     var init = [];
 
     document.onreadystatechange = function () {
-        var state = document.readyState
+
+        var state = document.readyState;
+        //alert(state);
         if (state == 'interactive') {
             document.getElementById('abc').style.visibility="hidden";
         } else if (state == 'complete') {
@@ -38,6 +40,8 @@
             },1000);
         }
     }
+
+
 </script>
 
    <div id="main-wrapper">

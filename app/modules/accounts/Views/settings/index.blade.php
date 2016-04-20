@@ -115,6 +115,11 @@
         $(function(){
             $("#addData").modal('show');
         });
+
+        function close(){
+            alert("close");
+        }
+
     </script>
 @endif
 
