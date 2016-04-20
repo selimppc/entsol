@@ -37,7 +37,7 @@
                 document.getElementById('interactive');
                 document.getElementById('load').style.visibility="hidden";
                 document.getElementById('abc1').style.visibility="visible";
-            },1000);
+            },1);
         }
     }
 
