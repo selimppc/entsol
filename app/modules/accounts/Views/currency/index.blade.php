@@ -102,7 +102,11 @@
     </div>
 </div>
 <!-- modal -->
-
+<script>
+    function open_modal(){
+        document.getElementById('load').style.visibility="visible";
+    }
+</script>
 
 <!--script for this page only-->
 @if($errors->any())
@@ -110,10 +114,6 @@
         $(function(){
             $("#addData").modal('show');
         });
-
-        function open_modal(){alert("ok");
-            document.getElementById('load').style.visibility="visible";
-        }
     </script>
 @endif
 
