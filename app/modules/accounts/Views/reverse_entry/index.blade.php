@@ -84,17 +84,17 @@
                                     <td>{{ ucfirst($values->status) }}</td>
                                     <td>
                                         @if($values->status == 'posted')
-                                            <a href="{{ route('view-reverse-voucher', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#reverse" data-placement="top" data-content="view"><i class="fa fa-eye"></i></a>
+                                            <a href="{{ route('view-reverse-voucher', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#reverse" data-placement="top" data-content="view" onclick="open_modal();"><i class="fa fa-eye"></i></a>
                                         @else
-                                            <a href="{{ route('view-reverse-voucher', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#reverse" data-placement="top" data-content="view"><i class="fa fa-eye"></i></a>
-                                            <a href="{{ route('edit-reverse-voucher', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#reverse" data-placement="top" data-content="update"><i class="fa fa-edit"></i></a>
-                                            <a href="{{ route('delete-reverse-voucher', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" data-placement="top" data-content="delete"><i class="fa fa-trash-o"></i></a>
+                                            <a href="{{ route('view-reverse-voucher', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#reverse" data-placement="top" data-content="view" onclick="open_modal();"><i class="fa fa-eye"></i></a>
+                                            <a href="{{ route('edit-reverse-voucher', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#reverse" data-placement="top" data-content="update" onclick="open_modal();"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ route('delete-reverse-voucher', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" data-placement="top" data-content="delete" onclick="open_modal();"><i class="fa fa-trash-o"></i></a>
                                         @endif
                                     </td>
                                     <td>
                                         @if($values->status == 'posted')
-                                            <a href="{{ route('pdf-single-voucher',['voucher_number'=>$values->voucher_number]) }}" data-placement="top" data-content="PDF">{!! HTML::image('assets/admin/img/pdf-icon.png', 'PDF', array('style' => 'width: 20px; border: 1px solid #aaa')) !!} </a> &nbsp;
-                                            <a href="{{ route('xls-single-voucher',['voucher_number'=>$values->voucher_number]) }}" data-placement="top" data-content="XLS">{!! HTML::image('assets/admin/img/xls-icon.png', 'XLS', array('style' => 'width: 20px')) !!}</a>
+                                            <a href="{{ route('pdf-single-voucher',['voucher_number'=>$values->voucher_number]) }}" data-placement="top" data-content="PDF" onclick="open_modal();">{!! HTML::image('assets/admin/img/pdf-icon.png', 'PDF', array('style' => 'width: 20px; border: 1px solid #aaa')) !!} </a> &nbsp;
+                                            <a href="{{ route('xls-single-voucher',['voucher_number'=>$values->voucher_number]) }}" data-placement="top" data-content="XLS" onclick="open_modal();">{!! HTML::image('assets/admin/img/xls-icon.png', 'XLS', array('style' => 'width: 20px')) !!}</a>
                                         @endif
                                     </td>
                                 </tr>
@@ -132,7 +132,11 @@
     </div>
 </div>
 <!-- modal -->
-
+<script>
+    function open_modal(){
+        document.getElementById('load').style.visibility="visible";
+    }
+</script>
 
 <!--script for this page only-->
 @if($errors->any())

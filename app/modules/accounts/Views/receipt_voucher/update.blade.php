@@ -3,6 +3,8 @@
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/custom.min.js') }}"></script>
 
+<script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery-ui.min.js') }}"></script>
+
 
 {!! Form::model($data, ['method' => 'PATCH', 'route'=> ['update-receipt-voucher', $data[0]['id'] ]]) !!}
 
@@ -189,9 +191,17 @@
 
 <div class="modal-footer">
     {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save receipt voucher information']) !!}&nbsp;
-    <a href="{{route('receipt-voucher')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
+    <a href="{{route('receipt-voucher')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form" onclick="close_modal();">Close</a>
 </div>
 
 {!! Form::close() !!}
+
+<script>
+    function close_modal(){
+        document.getElementById('addData').style.visibility="hidden";
+        document.getElementById('etsbModal').style.visibility="hidden";
+        document.getElementById('load').style.visibility="visible";
+    }
+</script>
 
 @include('accounts::receipt_voucher.update_script')

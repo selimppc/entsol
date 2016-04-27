@@ -2,7 +2,7 @@
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery-ui.min.js') }}"></script>
 
 <div class="modal-header">
-    <a href="{{ URL::previous() }}" class="close" type="button" title="click x button for close this entry form"> × </a>
+    <a href="{{ URL::previous() }}" class="close" type="button" title="click x button for close this entry form" onclick="close_modal();"> × </a>
     <h4 class="modal-title" id="myModalLabel">{{$pageTitle}}</h4>
 </div>
 
@@ -102,9 +102,10 @@
     });
 */
 
-function close_modal(){
-    document.getElementById('etsbModal').style.visibility="hidden";
-}
+    function close_modal(){
+        document.getElementById('etsbModal').style.visibility="hidden";
+        document.getElementById('load').style.visibility="visible";
+    }
 
 </script>
 

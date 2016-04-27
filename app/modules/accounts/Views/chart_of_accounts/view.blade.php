@@ -1,5 +1,8 @@
+<script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery-ui.min.js') }}"></script>
+
 <div class="modal-header">
-    <a href="{{ URL::previous() }}" class="close" type="button"> × </a>
+    <a href="{{ URL::previous() }}" class="close" type="button" onclick="close_modal();"> × </a>
     <h4 class="modal-title" id="myModalLabel">{{$pageTitle}}</h4>
 </div>
 
@@ -51,9 +54,14 @@
 </div>
 
 <div class="modal-footer">
-    <a href="{{ URL::previous()}}" class="btn btn-default" type="button"> Close </a>
+    <a href="{{ URL::previous()}}" class="btn btn-default" type="button" onclick="close_modal();"> Close </a>
 </div>
-
+<script>
+    function close_modal(){
+        document.getElementById('etsbModal').style.visibility="hidden";
+        document.getElementById('load').style.visibility="visible";
+    }
+</script>
 
 
 
