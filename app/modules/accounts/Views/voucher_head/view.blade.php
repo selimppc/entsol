@@ -1,5 +1,10 @@
+<script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery-ui.min.js') }}"></script>
+
+
+
 <div class="modal-header">
-    <a href="{{ URL::previous() }}" class="close" type="button" title="click x button for close this entry form"> × </a>
+    <a href="{{ URL::previous() }}" class="close" type="button" title="click x button for close this entry form" onclick="close_modal();"> × </a>
     <h4 class="modal-title" id="myModalLabel">{{$pageTitle}}</h4>
 </div>
 
@@ -118,7 +123,7 @@
 </div>
 
 <div class="modal-footer">
-    <a href="{{ URL::previous()}}" class="btn btn-default" type="button" data-placement="top" data-content="click close button for close this entry form"> Close </a>
+    <a href="{{ URL::previous()}}" class="btn btn-default" type="button" data-placement="top" data-content="click close button for close this entry form" onclick="close_modal();"> Close </a>
 </div>
 
 
@@ -139,4 +144,10 @@
                     }
                 }, 300);
             });
+
+    function close_modal(){
+        document.getElementById('etsbModal').style.visibility="hidden";
+        document.getElementById('load').style.visibility="visible";
+    }
+
 </script>

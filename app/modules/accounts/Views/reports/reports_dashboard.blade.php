@@ -97,7 +97,7 @@
             <div class="modal-footer">
                 {!! Form::submit('PDF Report', ['name'=>'PDF', 'class' => 'btn btn-primary']) !!}
                 {!! Form::submit('Excel Report', ['name'=>'Excel', 'class' => 'btn btn-primary']) !!}
-                <a href="{{route('account-reports')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
+                <a href="{{route('account-reports')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form" onclick="close_modal_trialbalance();">Close</a>
             </div>
             {!! Form::close() !!}
         </div>
@@ -120,7 +120,7 @@
             <div class="modal-footer">
                 {!! Form::submit('PDF Report', ['name'=>'PDF', 'class' => 'btn btn-primary']) !!}
                 {!! Form::submit('Excel Report', ['name'=>'Excel', 'class' => 'btn btn-primary']) !!}
-                <a href="{{route('account-reports')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
+                <a href="{{route('account-reports')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form" onclick="close_modal_trialbalanceall();">Close</a>
             </div>
             {!! Form::close() !!}
         </div>
@@ -143,7 +143,7 @@
             <div class="modal-footer">
                 {!! Form::submit('PDF Report', ['name'=>'PDF', 'class' => 'btn btn-primary']) !!}
                 {!! Form::submit('Excel Report', ['name'=>'Excel', 'class' => 'btn btn-primary']) !!}
-                <a href="{{route('account-reports')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
+                <a href="{{route('account-reports')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form" onclick="close_modal_gltransction();">Close</a>
             </div>
             {!! Form::close() !!}
         </div>
@@ -167,7 +167,7 @@
             <div class="modal-footer">
                 {!! Form::submit('PDF Report', ['name'=>'PDF', 'class' => 'btn btn-primary']) !!}
                 {!! Form::submit('Excel Report', ['name'=>'Excel', 'class' => 'btn btn-primary']) !!}
-                <a href="{{route('account-reports')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
+                <a href="{{route('account-reports')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form" onclick="close_modal_glsinglevoucher();">Close</a>
             </div>
             {!! Form::close() !!}
         </div>
@@ -191,7 +191,7 @@
             <div class="modal-footer">
                 {!! Form::submit('PDF Report', ['name'=>'PDF', 'class' => 'btn btn-primary']) !!}
                 {!! Form::submit('Excel Report', ['name'=>'Excel', 'class' => 'btn btn-primary']) !!}
-                <a href="{{route('account-reports')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
+                <a href="{{route('account-reports')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form" onclick="close_modal_glpnlsheet();">Close</a>
             </div>
             {!! Form::close() !!}
         </div>
@@ -215,7 +215,7 @@
             <div class="modal-footer">
                 {!! Form::submit('PDF Report', ['name'=>'PDF', 'class' => 'btn btn-primary']) !!}
                 {!! Form::submit('Excel Report', ['name'=>'Excel', 'class' => 'btn btn-primary']) !!}
-                <a href="{{route('account-reports')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
+                <a href="{{route('account-reports')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form" onclick="close_modal_coa();">Close</a>
             </div>
             {!! Form::close() !!}
         </div>
@@ -238,7 +238,7 @@
             <div class="modal-footer">
                 {!! Form::submit('PDF Report', ['name'=>'PDF', 'class' => 'btn btn-primary']) !!}
                 {!! Form::submit('Excel Report', ['name'=>'Excel', 'class' => 'btn btn-primary']) !!}
-                <a href="{{route('account-reports')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
+                <a href="{{route('account-reports')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form" onclick="close_modal_balancesheet();">Close</a>
             </div>
             {!! Form::close() !!}
         </div>
@@ -263,13 +263,54 @@
             <div class="modal-footer">
                 {!! Form::submit('PDF Report', ['name'=>'PDF', 'class' => 'btn btn-primary']) !!}
                 {!! Form::submit('Excel Report', ['name'=>'Excel', 'class' => 'btn btn-primary']) !!}
-                <a href="{{route('account-reports')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
+                <a href="{{route('account-reports')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form" onclick="close_modal_ledgerbalance();">Close</a>
             </div>
             {!! Form::close() !!}
         </div>
     </div>
 </div>
+<script>
+    function close_modal_trialbalance(){
+        document.getElementById('addTrialBalance').style.visibility="hidden";
+        document.getElementById('load').style.visibility="visible";
+    }
 
+    function close_modal_trialbalanceall(){
+        document.getElementById('addTrialBalanceAll').style.visibility="hidden";
+        document.getElementById('load').style.visibility="visible";
+    }
+
+    function close_modal_gltransction(){
+        document.getElementById('addGlTransaction').style.visibility="hidden";
+        document.getElementById('load').style.visibility="visible";
+    }
+
+    function close_modal_glsinglevoucher(){
+        document.getElementById('addGlSingleVoucher').style.visibility="hidden";
+        document.getElementById('load').style.visibility="visible";
+    }
+
+    function close_modal_glpnlsheet(){
+        document.getElementById('addGlPnlSheet').style.visibility="hidden";
+        document.getElementById('load').style.visibility="visible";
+    }
+
+    function close_modal_coa(){
+        document.getElementById('addChartofAccounts').style.visibility="hidden";
+        document.getElementById('load').style.visibility="visible";
+    }
+
+    function close_modal_balancesheet(){
+        document.getElementById('addBalanceSheet').style.visibility="hidden";
+        document.getElementById('load').style.visibility="visible";
+    }
+
+    function close_modal_ledgerbalance(){
+        document.getElementById('addLedgerBalance').style.visibility="hidden";
+        document.getElementById('load').style.visibility="visible";
+    }
+
+</script>
 
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/datepicker.js') }}"></script>
 
