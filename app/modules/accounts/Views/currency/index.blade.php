@@ -106,7 +106,6 @@
     function open_modal(){
         document.getElementById('load').style.visibility="visible";
     }
-
 </script>
 
 <!--script for this page only-->

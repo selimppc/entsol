@@ -61,9 +61,9 @@
                 <div class="profile-content">
 
                     <ul id="profile-tabs" class="nav nav-tabs">
-                        <li class="active"><a href="{{route('user-info',['value'=>'profile'])}}" data-target="#profile" class="media_node" id="new_tab" data-toggle="ajax-tab" rel="tooltip">Profile</a></li>
-                        <li><a href="{{route('user-info',['value'=>'meta'])}}" data-target="#meta" class="media_node span" id="open_tab" data-toggle="ajax-tab" rel="tooltip"> Meta Information</a></li>
-                        <li><a href="{{route('user-info',['value'=>'acc-settings'])}}" data-target="#acc-settings" class="media_node" id="replied_tab" data-toggle="ajax-tab" rel="tooltip">Account Settings</a></li>
+                        <li class="active"><a href="{{route('user-info',['value'=>'profile'])}}" data-target="#profile" class="media_node" id="new_tab" data-toggle="ajax-tab" rel="tooltip" onclick="close_modal();">Profile</a></li>
+                        <li><a href="{{route('user-info',['value'=>'meta'])}}" data-target="#meta" class="media_node span" id="open_tab" data-toggle="ajax-tab" rel="tooltip" onclick="close_modal();"> Meta Information</a></li>
+                        <li><a href="{{route('user-info',['value'=>'acc-settings'])}}" data-target="#acc-settings" class="media_node" id="replied_tab" data-toggle="ajax-tab" rel="tooltip" onclick="close_modal();">Account Settings</a></li>
                     </ul>
 
                     <div class="tab-content tab-content-bordered panel-padding">
@@ -194,3 +194,9 @@ account
     </div>
     <!-- modal -->
 @stop
+
+<script>
+    function open_modal(){
+        document.getElementById('load').style.visibility="visible";
+    }
+</script>

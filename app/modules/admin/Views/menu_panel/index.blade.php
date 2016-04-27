@@ -65,9 +65,9 @@
                                     <td>{{$values->menu_order}}</td>
                                     <td>{{ucfirst($values->status)}}</td>
                                     <td>
-                                        <a href="{{ route('view-menu-panel', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="view"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('edit-menu-panel', ['id'=>$values->id,'parent_menu_id'=>$values->parent_menu_id]) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="update"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('delete-menu-panel', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" data-placement="top" data-content="delete"><i class="fa fa-trash-o"></i></a>
+                                        <a href="{{ route('view-menu-panel', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="view" onclick="open_modal();"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('edit-menu-panel', ['id'=>$values->id,'parent_menu_id'=>$values->parent_menu_id]) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="update" onclick="open_modal();"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('delete-menu-panel', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" data-placement="top" data-content="delete" onclick="open_modal();"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -113,6 +113,11 @@
 
 <!-- modal -->
 
+<script>
+    function open_modal(){
+        document.getElementById('load').style.visibility="visible";
+    }
+</script>
 
 <!--script for this page only-->
 @if($errors->any())

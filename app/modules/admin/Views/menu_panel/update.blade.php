@@ -70,7 +70,7 @@
 
 <div class="modal-footer">
     {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save menu information']) !!}&nbsp;
-    <a href="{{route('menu-panel')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
+    <a href="{{route('menu-panel')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form" onclick="open_modal();">Close</a>
 </div>
 
 {!! Form::close() !!}
@@ -110,4 +110,13 @@
         d.tooltip();
         return d;
     });
+
+
+    function close_modal(){
+        document.getElementById('addData').style.visibility="hidden";
+        document.getElementById('etsbModal').style.visibility="hidden";
+        document.getElementById('load').style.visibility="visible";
+    }
+
+
 </script>

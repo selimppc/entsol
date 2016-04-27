@@ -13,8 +13,16 @@
             </div>
             <div class="modal-footer">
                 {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save permission role information']) !!}
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="close_modal();">Close</button>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    function close_modal(){
+        document.getElementById('addData').style.visibility="hidden";
+        document.getElementById('etsbModal').style.visibility="hidden";
+        document.getElementById('load').style.visibility="visible";
+    }
+</script>

@@ -57,8 +57,8 @@
                                     <td>{{isset($values->email)?$values->email:$values->relUser->email}}</td>
                                     <td>{{isset($values->title)?ucfirst($values->title):ucfirst($values->relRole->title)}}</td>
                                     <td>
-                                        <a href="{{ route('view-role-user', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="view"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('edit-role-user', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="update"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('view-role-user', $values->id) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="view" onclick="close_modal();"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('edit-role-user', $values->id) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#etsbModal" data-placement="top" data-content="update" onclick="close_modal();"><i class="fa fa-edit"></i></a>
                                         {{--<a href="{{ route('delete-role-user', $values->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to Delete?')" data-placement="top" data-content="delete"><i class="fa fa-trash-o"></i></a>--}}
                                     </td>
                                 </tr>
@@ -104,7 +104,11 @@
 </div>
 
 <!-- modal -->
-
+<script>
+    function open_modal(){
+        document.getElementById('load').style.visibility="visible";
+    }
+</script>
 
 <!--script for this page only-->
 @if($errors->any())
