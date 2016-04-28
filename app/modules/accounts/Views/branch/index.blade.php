@@ -122,7 +122,7 @@
 
     $('#jq-validation-form').submit(function() {
         $('#gif').css('visibility', 'visible');
-        return true;
+        //return true;
     });
 
 

@@ -103,6 +103,7 @@
     <a href="{{route('branch')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form" onclick="close_modal();">Close</a>
 </div>
 
+{{--
 <script>
     function close_modal(){
         document.getElementById('addData').style.visibility="hidden";
@@ -110,5 +111,6 @@
         document.getElementById('load').style.visibility="visible";
     }
 </script>
+--}}
 
 @include('accounts::branch._script')
