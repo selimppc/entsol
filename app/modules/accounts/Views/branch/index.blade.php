@@ -89,7 +89,7 @@
                 <h4 class="modal-title" id="myModalLabel">{{ $pageTitle }} <span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['route' => 'store-branch','id' => 'jq-validation-form']) !!}
+                {!! Form::open(['route' => 'store-branch','id' => 'jq-validation-form','onsubmit'=>'return close_modal();']) !!}
                 @include('accounts::branch._form')
                 {!! Form::close() !!}
             </div> <!-- / .modal-body -->
@@ -115,6 +115,13 @@
     function open_modal(){
         document.getElementById('load').style.visibility="visible";
     }
+
+
+    function close_modal(){
+        document.getElementById('load').style.visibility="visible";
+
+    }
+
 </script>
 
 <!--script for this page only-->

@@ -97,7 +97,7 @@
 <p> &nbsp; </p>
 
 <div class="form-margin-btn">
-    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','onclick'=>'close_modal()','data-content'=>'click save changes button for save branch information']) !!}
+    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save branch information']) !!}
     <a href="{{route('branch')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form" onclick="close_modal();">Close</a>
 </div>
 
