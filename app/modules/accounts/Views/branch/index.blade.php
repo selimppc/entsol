@@ -36,7 +36,8 @@
                 {!! Form::close() !!}
                 <p> &nbsp;</p>
                 <p> &nbsp;</p>
-                <img src="assets/admin/img/loading.gif" id="gif" style="display: block; margin: 0 auto; width: 100px; visibility: hidden;">
+
+
 
 
                 {{-------------- Filter :Ends -------------------------------------------}}
