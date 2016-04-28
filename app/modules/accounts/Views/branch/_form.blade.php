@@ -1,7 +1,7 @@
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery-ui.min.js') }}"></script>
 
-<img src="assets/admin/img/loading.gif" id="gif" style="display: block; margin: 0 auto; width: 50px; visibility: hidden;">
+<img src="assets/admin/img/loading.gif" id="gif" style="display: block; margin: 0 auto; width: 100px; visibility: hidden;">
 
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
@@ -60,10 +60,12 @@
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('contact_person', 'Contact Person:', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
             {!! Form::text('contact_person', Input::old('contact_person'), ['id'=>'contact_person', 'class' => 'form-control','required','title'=>'enter contact person of branch']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('phone', 'Phone:', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
             {!! Form::input('number','phone', Input::old('phone'), ['id'=>'phone', 'class' => 'form-control','required','title'=>'enter phone number of branch']) !!}
         </div>
     </div>
@@ -86,6 +88,7 @@
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('email', 'Email:', ['class' => 'control-label']) !!}
+            <small class="required">(Required)</small>
             {!! Form::email('email', Input::old('email'), ['id'=>'email', 'class' => 'form-control','required','title'=>'enter email address of branch']) !!}
         </div>
         <div class="col-sm-6">
@@ -103,7 +106,7 @@
     <a href="{{route('branch')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form" onclick="close_modal();">Close</a>
 </div>
 
-{{--
+
 <script>
     function close_modal(){
         document.getElementById('addData').style.visibility="hidden";
@@ -111,6 +114,4 @@
         document.getElementById('load').style.visibility="visible";
     }
 </script>
---}}
-
 @include('accounts::branch._script')
