@@ -36,6 +36,8 @@
                 {!! Form::close() !!}
                 <p> &nbsp;</p>
                 <p> &nbsp;</p>
+                <img src="assets/admin/img/loading.gif" id="gif" style="display: block; margin: 0 auto; width: 100px; visibility: hidden;">
+
 
                 {{-------------- Filter :Ends -------------------------------------------}}
                 <div class="table-primary">
@@ -89,7 +91,7 @@
                 <h4 class="modal-title" id="myModalLabel">{{ $pageTitle }} <span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2">(?)</font> </span></h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['route' => 'store-branch','id' => 'jq-validation-form','onsubmit'=>'return close_modal();']) !!}
+                {!! Form::open(['route' => 'store-branch','id' => 'jq-validation-form']) !!}
                 @include('accounts::branch._form')
                 {!! Form::close() !!}
             </div> <!-- / .modal-body -->
@@ -117,10 +119,11 @@
     }
 
 
-    function close_modal(){
-        document.getElementById('load').style.visibility="visible";
+    $('#jq-validation-form').submit(function() {
+        $('#gif').css('visibility', 'visible');
+        return true;
+    });
 
-    }
 
 </script>
 
