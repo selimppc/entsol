@@ -96,9 +96,16 @@
 
 <!-- modal -->
 <script>
+
     function open_modal(){
         document.getElementById('load').style.visibility="visible";
     }
+
+    $('#jq-validation-form').submit(function() {
+        $('#gif').css('visibility', 'visible');
+        //return true;
+    });
+
 </script>
 
 <!--script for this page only-->

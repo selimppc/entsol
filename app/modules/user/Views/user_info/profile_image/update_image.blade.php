@@ -8,8 +8,15 @@
 
 
 <div class="modal-body">
-    {!! Form::model($model, ['method' => 'PATCH', 'route'=> ['update-profile-image',$user_image_id],'files'=>'true']) !!}
+    {!! Form::model($model, ['method' => 'PATCH', 'route'=> ['update-profile-image',$user_image_id],'files'=>'true','id' => 'jq-validation-form']) !!}
     @include('user::user_info.profile_image.add_image')
     {!! Form::close() !!}
 </div>
+
+<script>
+    $('#jq-validation-form').submit(function() {
+        $('#gif').css('visibility', 'visible');
+        //return true;
+    });
+</script>
 

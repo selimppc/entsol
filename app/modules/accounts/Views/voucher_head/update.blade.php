@@ -2,11 +2,11 @@
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/datepicker.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/custom.min.js') }}"></script>
-
 <script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery-ui.min.js') }}"></script>
 
+<img src="assets/admin/img/loading.gif" id="gif" style="display: block; margin: 0 auto; width: 100px; visibility: hidden;">
 
-{!! Form::model($data, ['method' => 'PATCH', 'route'=> ['update-voucher-head', $data[0]['id'] ]]) !!}
+{!! Form::model($data, ['method' => 'PATCH', 'route'=> ['update-voucher-head', $data[0]['id'] ,'id' => 'jq-validation-form']]) !!}
 
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
@@ -196,6 +196,12 @@
 
 {!! Form::close() !!}
 <script>
+
+    $('#jq-validation-form').submit(function() {
+        $('#gif').css('visibility', 'visible');
+        //return true;
+    });
+
     function close_modal(){
         document.getElementById('addData').style.visibility="hidden";
         document.getElementById('etsbModal').style.visibility="hidden";

@@ -19,10 +19,17 @@
             <h4 class="modal-title">Change Password</h4>
         </div>
         <div class="modal-body">
-            {!! Form::model($data, ['method' => 'PATCH', 'route'=> ['user-signup.update_password', $data->id]]) !!}
+            {!! Form::model($data, ['method' => 'PATCH', 'route'=> ['user-signup.update_password', $data->id,'id' => 'jq-validation-form']]) !!}
             @include('user.user_info.update_password')
             {!! Form::close() !!}
 
         </div>
     </div>
 </div>
+
+<script>
+    $('#jq-validation-form').submit(function() {
+        $('#gif').css('visibility', 'visible');
+        //return true;
+    });
+</script>
