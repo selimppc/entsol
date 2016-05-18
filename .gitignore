@@ -3,8 +3,8 @@ node_modules/
 
 # Laravel 4 specific
 bootstrap/compiled.php
-bootstrap/app.php
-bootstrap/autoload.php
+#bootstrap/app.php
+#bootstrap/autoload.php
 
 # Laravel 5 & Lumen specific
 .env.*.php
