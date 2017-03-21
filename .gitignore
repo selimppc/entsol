@@ -1,19 +1,19 @@
 # Created by .ignore support plugin (selim)
 ### Laravel template
-/bootstrap/compiled.php
+#/bootstrap/compiled.php
 .env.*.php
 .env.php
-.env
+#.env
 .idea
-vendor
-vendor/
+#vendor
+#vendor/
 .idea/
 .idea/workspace.xml
 
-config/database.php
+#config/database.php
 
 composer.lock
 
-public/uploads
+#public/uploads
 app/modules/user/logs/
 app/modules/accounts/logs/
